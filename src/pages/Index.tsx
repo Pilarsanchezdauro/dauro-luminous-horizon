@@ -51,6 +51,32 @@ const Index = () => {
           reversed
         />
 
+        {/* Antiguo Blog Section */}
+        <section className="my-32">
+          <div className="relative bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-12 lg:p-20 rounded-3xl border-2 border-primary/10 overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+            <div className="max-w-3xl mx-auto text-center relative z-10">
+              <p className="text-6xl lg:text-7xl font-bold text-primary mb-6">Desde 2000</p>
+              <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+                ¿Quieres ver nuestros trabajos desde el año 2000?
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Ve a nuestro antiguo blog donde encontrarás toda una hemeroteca 
+                interesante de nuestros autores
+              </p>
+              <a href="#" className="inline-block">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
+                >
+                  Visitar Antiguo Blog
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Bottom CTA */}
         <section className="my-32">
           <div className="text-center py-24 px-4 border-y-2 border-foreground/10">

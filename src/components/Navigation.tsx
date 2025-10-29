@@ -39,7 +39,14 @@ const Navigation = () => {
         { name: "Música", path: "/tienda/musica" },
       ],
     },
-    { name: "Blog", path: "/blog" },
+    {
+      name: "Blog",
+      path: "/blog",
+      submenu: [
+        { name: "Blog Actual", path: "/blog" },
+        { name: "Antiguo Blog", path: "#" }, // Configurar enlace aquí
+      ],
+    },
     { name: "Contacto", path: "/contacto" },
   ];
 
