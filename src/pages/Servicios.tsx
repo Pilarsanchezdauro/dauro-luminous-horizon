@@ -188,11 +188,11 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7 mb-12">
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col max-h-[340px]"
+                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col"
               >
                 {service.icon}
                 <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2">
@@ -202,13 +202,13 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
                   {service.subtitle}
                 </p>
 
-                <div className="flex-1 overflow-hidden space-y-3 mb-4">
+                <div className="space-y-3 mb-4">
                   <div>
                     <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
                       Hacemos:
                     </h3>
                     <ul className="space-y-1">
-                      {service.hacemos.slice(0, 5).map((item, idx) => (
+                      {service.hacemos.map((item, idx) => (
                         <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
                           • {item}
                         </li>
@@ -221,7 +221,7 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
                       Aplicaciones:
                     </h3>
                     <ul className="space-y-1">
-                      {service.aplicaciones.slice(0, 5).map((item, idx) => (
+                      {service.aplicaciones.map((item, idx) => (
                         <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
                           • {item}
                         </li>
@@ -232,16 +232,16 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
 
                 <Accordion type="single" collapsible className="mt-auto">
                   <AccordionItem value={service.id} className="border-0">
-                    <AccordionTrigger className="hover:no-underline p-0 pb-0">
+                    <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-4">
                       <Button
                         className="w-full bg-primary hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-200"
                       >
                         Más información
                       </Button>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-4">
-                      <div className="bg-white p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] -mx-[18px] md:-mx-[22px] -mb-[18px] md:-mb-[22px] mt-4">
-                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
+                    <AccordionContent className="pt-0">
+                      <div className="bg-[#F8F8F8] p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9]">
+                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-4">
                           {service.title}
                         </h3>
                         <div className="text-[15px] md:text-[16px] text-[#333333] leading-[1.5] whitespace-pre-line">
