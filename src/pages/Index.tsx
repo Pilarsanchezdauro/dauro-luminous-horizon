@@ -51,14 +51,6 @@ const Index = () => {
           reversed
         />
 
-        {/* Servicios Section */}
-        <SectionCard
-          title="Servicios"
-          description="Ofrecemos consultoría cultural, gestión de proyectos artísticos y servicios editoriales. Acompañamos a creadores y organizaciones en su desarrollo cultural."
-          image={editorialBg}
-          link="/servicios"
-        />
-
         {/* Bottom CTA */}
         <section className="py-30">
           <div className="bg-muted rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
