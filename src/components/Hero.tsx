@@ -21,7 +21,7 @@ const Hero = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-background/40" />
+      <div className="absolute inset-0 bg-black/60" />
       
       {/* Large background shapes */}
       <div 
@@ -52,21 +52,21 @@ const Hero = () => {
         className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100"
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
-        <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-8 animate-fade-in">
+        <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-8 animate-fade-in">
           Creamos productos culturales de calidad
         </p>
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in-up leading-none">
+        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in-up leading-none text-white">
           HAGÁMOSLO
           <br />
           <span className="italic text-accent">EXCEPCIONAL</span>
         </h1>
-        <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-delayed">
+        <p className="text-base md:text-lg text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-delayed">
           Somos Grupo Cultural Dauro. Editorial, arte, cine e inteligencia artificial.
           <br />Transformando ideas en experiencias culturales memorables.
         </p>
         <Button 
           size="lg" 
-          className="text-sm uppercase tracking-wider px-12 py-6 animate-fade-in-up-delayed-more border-2 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all"
+          className="text-sm uppercase tracking-wider px-12 py-6 animate-fade-in-up-delayed-more border-2 border-white bg-white text-black hover:bg-transparent hover:text-white transition-all"
         >
           Explorar
         </Button>
@@ -75,7 +75,7 @@ const Hero = () => {
       {/* Scroll indicator */}
       <button 
         onClick={scrollToContent}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer z-10 hover:opacity-50 transition-opacity"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer z-10 hover:opacity-50 transition-opacity text-white"
         aria-label="Scroll to content"
       >
         <ChevronDown className="w-6 h-6" />
