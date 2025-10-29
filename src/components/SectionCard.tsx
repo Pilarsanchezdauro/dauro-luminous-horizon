@@ -27,20 +27,20 @@ const SectionCard = ({
     >
       <div className={reversed ? "lg:col-start-2" : ""}>
         <div className="space-y-8">
-          <h2 className="text-5xl lg:text-7xl font-black text-primary leading-none tracking-tight">
-            {title}
+          <h2 className="text-5xl lg:text-6xl font-semibold text-primary leading-tight tracking-tight">
+            Dauro {title}
           </h2>
-          <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">
+          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
             {description}
           </p>
           <Link to={link}>
             <Button
               size="lg"
               variant="ghost"
-              className="group text-primary hover:text-primary hover:bg-transparent text-lg font-semibold px-0"
+              className="group text-primary hover:text-primary hover:bg-transparent text-base font-medium px-0"
             >
               Descubrir más
-              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
           </Link>
         </div>

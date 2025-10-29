@@ -37,14 +37,14 @@ const Index = () => {
           <div className="bg-muted rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 organic-shape" />
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-4xl lg:text-6xl font-black mb-6 text-primary">
-                PROMOVEMOS LA CULTURA
+              <h2 className="text-4xl lg:text-5xl font-semibold mb-6 text-primary">
+                Promovemos la Cultura
               </h2>
-              <p className="text-xl lg:text-2xl text-muted-foreground mb-10 font-light">
+              <p className="text-lg lg:text-xl text-muted-foreground mb-10 leading-relaxed">
                 Desde 2004 trabajando en la intersección entre arte, literatura, cine y tecnología
               </p>
               <Link to="/contacto">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg px-12 py-7 rounded-full font-semibold">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base px-12 py-7 rounded-full font-medium">
                   Contáctanos
                 </Button>
               </Link>

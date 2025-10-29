@@ -43,22 +43,20 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 max-w-5xl">
         <div className="space-y-8">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-primary leading-none animate-fade-in-up">
-            diseñamos
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-semibold text-foreground leading-tight animate-fade-in-up">
+            Grupo Cultural
             <br />
-            e investigamos
-            <br />
-            <span className="text-foreground">en cultura</span>
+            <span className="text-primary">Dauro</span>
           </h1>
           
-          <p className="text-2xl lg:text-3xl text-muted-foreground max-w-2xl font-light animate-fade-in-up-delayed">
+          <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl font-light animate-fade-in-up-delayed leading-relaxed">
             Una nueva mirada al arte, la literatura, el cine y la inteligencia artificial
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up-delayed-more">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white text-lg px-10 py-7 rounded-full font-semibold group"
+              className="bg-primary hover:bg-primary/90 text-white text-lg px-10 py-7 rounded-full font-medium group"
             >
               Descubre más
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

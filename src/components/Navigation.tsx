@@ -49,8 +49,8 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-2">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary" />
-              <h1 className="text-2xl font-black tracking-tight">
-                grupo<span className="text-primary">dauro</span>
+              <h1 className="text-xl font-semibold tracking-tight">
+                Grupo Cultural <span className="text-primary">Dauro</span>
               </h1>
             </div>
           </Link>
@@ -66,7 +66,7 @@ const Navigation = () => {
               >
                 <Link
                   to={item.path}
-                  className="px-5 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 flex items-center gap-1 uppercase tracking-wide"
+                  className="px-5 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 flex items-center gap-1"
                 >
                   {item.name}
                   {item.submenu && <ChevronDown className="h-4 w-4" />}
@@ -107,7 +107,7 @@ const Navigation = () => {
               <div key={item.name} className="mb-3">
                 <Link
                   to={item.path}
-                  className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200 uppercase tracking-wide"
+                  className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
                   onClick={() => !item.submenu && setIsOpen(false)}
                 >
                   {item.name}
