@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Video, FileText, Edit, Image, Zap } from "lucide-react";
+import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
 
 const Servicios = () => {
   const services = [
@@ -164,13 +164,43 @@ Incluye:
 
 Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expanda.`,
     },
+    {
+      id: "publicacion",
+      icon: <BookOpen className="h-12 w-12 text-primary mb-4" />,
+      title: "Edición y Publicación",
+      subtitle: "Del manuscrito a la obra final.",
+      hacemos: [
+        "Evaluación y curaduría editorial",
+        "Diseño y maquetación profesional",
+        "Corrección de estilo",
+        "ISBN y registro legal",
+        "Publicación impresa y digital",
+      ],
+      aplicaciones: [
+        "Libros de autor",
+        "Ensayos y antologías",
+        "Catálogos culturales",
+        "Publicaciones institucionales",
+      ],
+      masInfo: `Acompañamos a autores y proyectos culturales desde el manuscrito hasta la publicación final.
+Nuestro proceso editorial combina rigor técnico, criterio estético y gestión profesional del libro.
+
+Cada obra pasa por un flujo completo de:
+— Evaluación editorial y curaduría conceptual.
+— Corrección de estilo y revisión de contenidos.
+— Diseño gráfico, maquetación y preparación de archivos.
+— Gestión de ISBN, depósito legal y distribución.
+— Publicación en formato impreso, digital y audiolibro.
+
+En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calidad y profesionalidad que merece cada proyecto literario.`,
+    },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8F8F8]">
       <Navigation />
 
-      <main className="container mx-auto px-6 lg:px-8 pt-32 pb-16">
+      <main className="container mx-auto px-6 lg:px-10 pt-32 pb-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
@@ -188,28 +218,28 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-12">
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col"
+                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col max-h-[340px]"
               >
                 {service.icon}
-                <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2">
+                <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2 leading-tight">
                   {service.title}
                 </h2>
                 <p className="text-[16px] md:text-[18px] font-semibold text-primary mb-3">
                   {service.subtitle}
                 </p>
 
-                <div className="space-y-3 mb-4">
+                <div className="space-y-[10px] mb-3 overflow-hidden flex-1">
                   <div>
                     <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
                       Hacemos:
                     </h3>
-                    <ul className="space-y-1">
-                      {service.hacemos.map((item, idx) => (
-                        <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
+                    <ul className="space-y-[4px]">
+                      {service.hacemos.slice(0, 5).map((item, idx) => (
+                        <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
                           • {item}
                         </li>
                       ))}
@@ -220,9 +250,9 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
                     <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
                       Aplicaciones:
                     </h3>
-                    <ul className="space-y-1">
-                      {service.aplicaciones.map((item, idx) => (
-                        <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
+                    <ul className="space-y-[4px]">
+                      {service.aplicaciones.slice(0, 5).map((item, idx) => (
+                        <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
                           • {item}
                         </li>
                       ))}
@@ -232,19 +262,19 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
 
                 <Accordion type="single" collapsible className="mt-auto">
                   <AccordionItem value={service.id} className="border-0">
-                    <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-4">
+                    <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-3">
                       <Button
-                        className="w-full bg-primary hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-200"
+                        className="w-full bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0"
                       >
                         Más información
                       </Button>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0">
-                      <div className="bg-[#F8F8F8] p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9]">
-                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-4">
+                    <AccordionContent className="pt-0 animate-accordion-down">
+                      <div className="bg-white p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9] max-h-[380px] md:max-h-[440px] overflow-y-auto">
+                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
                           {service.title}
                         </h3>
-                        <div className="text-[15px] md:text-[16px] text-[#333333] leading-[1.5] whitespace-pre-line">
+                        <div className="text-[15px] md:text-[16px] font-normal text-[#333333] leading-[1.5] whitespace-pre-line">
                           {service.masInfo}
                         </div>
                       </div>
