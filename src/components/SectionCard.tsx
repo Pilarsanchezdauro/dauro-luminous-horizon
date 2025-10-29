@@ -41,7 +41,7 @@ const SectionCard = ({
       <div className={`space-y-8 ${reversed ? 'md:col-start-2' : ''}`}>
         {icon && <div className="text-foreground text-6xl mb-6">{icon}</div>}
         <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-          <span className="text-accent">Dauro</span> {title}
+          Dauro {title}
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
           {description}
