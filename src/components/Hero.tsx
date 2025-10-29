@@ -52,7 +52,7 @@ const Hero = () => {
         className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100"
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
-        <p className="text-[1.5rem] md:text-[2.5rem] font-bold leading-[1.15] md:leading-[1.1] tracking-[0.01em] md:tracking-[0.02em] text-[#666666] mb-3 md:mb-4 animate-fade-in text-center max-w-[95%] md:max-w-none mx-auto">
+        <p className="text-[1.25rem] md:text-[2rem] font-normal leading-[1.15] md:leading-[1.1] tracking-[0.01em] md:tracking-[0.02em] text-[#666666] mb-6 md:mb-8 animate-fade-in text-center max-w-[95%] md:max-w-none mx-auto">
           En Grupo Dauro Transformamos La Cultura en Experiencia
         </p>
         <h1 className="text-[4rem] md:text-[7.5rem] font-black leading-[0.95] tracking-normal mb-5 animate-fade-in-up text-[#111111]">
