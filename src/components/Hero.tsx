@@ -14,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-[8vh] md:pt-[10vh] pb-[6vh] md:pb-[8vh]">
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -52,23 +52,21 @@ const Hero = () => {
         className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100"
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
-        <p className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-8 animate-fade-in">
-          Creamos productos culturales de calidad
+        <p className="text-[1.75rem] md:text-[3rem] font-bold leading-[1.15] md:leading-[1.1] tracking-[0.01em] md:tracking-[0.02em] text-[#111111] mb-3 md:mb-4 animate-fade-in text-center max-w-[95%] md:max-w-none mx-auto">
+          EN GRUPO DAURO, TRANSFORMAMOS LA CULTURA EN EXPERIENCIA.
         </p>
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in-up leading-none text-foreground">
+        <h1 className="text-[4rem] md:text-[7.5rem] font-black leading-[0.95] tracking-normal mb-5 animate-fade-in-up text-[#E31B23]">
           HAGÁMOSLO
           <br />
-          <span className="italic text-accent">EXCEPCIONAL</span>
+          <span className="italic">EXCEPCIONAL</span>
         </h1>
-        <p className="text-base md:text-lg text-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-delayed">
-          Somos Grupo Cultural Dauro. Editorial, arte, cine e inteligencia artificial.
-          <br />Transformando ideas en experiencias culturales memorables.
+        <p className="text-[1.125rem] md:text-[1.375rem] font-normal leading-[1.45] md:leading-[1.4] text-[#333333] mb-7 max-w-[92%] md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center">
+          Creamos proyectos que combinan arte, pensamiento y tecnología para conectar la emoción humana con la innovación. Convertimos cada idea en algo vivo, profundo y memorable.
         </p>
         <Button 
-          size="lg" 
-          className="text-sm uppercase tracking-wider px-12 py-6 animate-fade-in-up-delayed-more border-2 border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-all"
+          className="text-base font-bold uppercase px-7 py-4 rounded-lg bg-[#111111] text-white hover:bg-[#E31B23] transition-all duration-200 animate-fade-in-up-delayed-more"
         >
-          Explorar
+          EXPLORAR
         </Button>
       </div>
 
