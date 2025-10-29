@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
+import cineBg from "@/assets/cine-bg.jpg";
+import iaBg from "@/assets/ia-bg.jpg";
 
 const Index = () => {
   return (
@@ -30,6 +32,31 @@ const Index = () => {
           image={arteBg}
           link="/grupo-dauro/arte"
           reversed
+        />
+
+        {/* Cine Section */}
+        <SectionCard
+          title="Cine"
+          description="Producimos y distribuimos contenido audiovisual de calidad. Apostamos por narrativas innovadoras que exploran nuevas formas de contar historias."
+          image={cineBg}
+          link="/grupo-dauro/cine"
+        />
+
+        {/* IA Section */}
+        <SectionCard
+          title="Inteligencia Artificial"
+          description="Exploramos las posibilidades creativas de la IA en el arte y la cultura. Desarrollamos proyectos que fusionan tecnología y expresión artística."
+          image={iaBg}
+          link="/grupo-dauro/ia"
+          reversed
+        />
+
+        {/* Servicios Section */}
+        <SectionCard
+          title="Servicios"
+          description="Ofrecemos consultoría cultural, gestión de proyectos artísticos y servicios editoriales. Acompañamos a creadores y organizaciones en su desarrollo cultural."
+          image={editorialBg}
+          link="/servicios"
         />
 
         {/* Bottom CTA */}
