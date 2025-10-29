@@ -33,6 +33,9 @@ const Cine = () => {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Intro */}
         <div className="max-w-4xl mx-auto mb-20 text-center">
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+            Narrativas que Emocionan y Transforman
+          </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Dauro Cine produce contenido audiovisual que explora nuevas narrativas y formas de 
             expresión cinematográfica. Desde cortometrajes experimentales hasta largometrajes 
@@ -41,22 +44,22 @@ const Cine = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">15+</div>
-            <div className="text-sm text-muted-foreground">Producciones</div>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">15+</p>
+            <p className="text-sm text-muted-foreground">Producciones</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">8</div>
-            <div className="text-sm text-muted-foreground">Premios</div>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">8</p>
+            <p className="text-sm text-muted-foreground">Premios</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">20+</div>
-            <div className="text-sm text-muted-foreground">Festivales</div>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">20+</p>
+            <p className="text-sm text-muted-foreground">Festivales</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">30+</div>
-            <div className="text-sm text-muted-foreground">Colaboradores</div>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">30+</p>
+            <p className="text-sm text-muted-foreground">Colaboradores</p>
           </div>
         </div>
 
@@ -67,34 +70,38 @@ const Cine = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-card p-8 rounded-xl border border-border text-center">
-              <Film className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Producción</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <Film className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Producción</h3>
+              <p className="text-muted-foreground text-sm relative z-10">
                 Cortometrajes, documentales y largometrajes
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl border border-border text-center">
-              <Video className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Postproducción</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <Video className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Postproducción</h3>
+              <p className="text-muted-foreground text-sm relative z-10">
                 Edición, color grading y efectos visuales
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl border border-border text-center">
-              <Award className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Distribución</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <Award className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Distribución</h3>
+              <p className="text-muted-foreground text-sm relative z-10">
                 Festivales y plataformas de streaming
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl border border-border text-center">
-              <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Formación</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 w-24 h-24 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <Users className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Formación</h3>
+              <p className="text-muted-foreground text-sm relative z-10">
                 Talleres y masterclasses de cine
               </p>
             </div>
@@ -165,15 +172,16 @@ const Cine = () => {
         </section>
 
         {/* CTA */}
-        <div className="text-center bg-secondary p-12 rounded-3xl">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+        <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
             ¿Tienes un proyecto audiovisual?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
             Trabajamos con directores, productores y creadores de contenido. 
             Cuéntanos tu idea y exploremos cómo hacerla realidad.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10">
             Proponer proyecto
           </Button>
         </div>

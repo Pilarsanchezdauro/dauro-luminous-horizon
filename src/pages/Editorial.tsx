@@ -33,6 +33,9 @@ const Editorial = () => {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Intro */}
         <div className="max-w-4xl mx-auto mb-20 text-center">
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+            Donde las Palabras Cobran Vida
+          </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Dauro Editorial es más que una casa editorial. Somos un espacio donde la tradición 
             literaria se encuentra con la innovación, donde cada libro es una puerta a nuevas 
@@ -42,35 +45,39 @@ const Editorial = () => {
         </div>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          <div className="bg-card p-8 rounded-xl border border-border text-center">
-            <BookOpen className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-playfair font-bold mb-3">Catálogo Diverso</h3>
-            <p className="text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <BookOpen className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Catálogo Diverso</h3>
+            <p className="text-muted-foreground text-sm relative z-10">
               Ficción, ensayo, poesía y obras académicas
             </p>
           </div>
           
-          <div className="bg-card p-8 rounded-xl border border-border text-center">
-            <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-playfair font-bold mb-3">Autores Emergentes</h3>
-            <p className="text-muted-foreground">
+          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <Users className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Autores Emergentes</h3>
+            <p className="text-muted-foreground text-sm relative z-10">
               Apostamos por nuevas voces literarias
             </p>
           </div>
           
-          <div className="bg-card p-8 rounded-xl border border-border text-center">
-            <Award className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-playfair font-bold mb-3">Calidad Editorial</h3>
-            <p className="text-muted-foreground">
+          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <Award className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Calidad Editorial</h3>
+            <p className="text-muted-foreground text-sm relative z-10">
               Cuidamos cada detalle del proceso
             </p>
           </div>
           
-          <div className="bg-card p-8 rounded-xl border border-border text-center">
-            <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-playfair font-bold mb-3">Distribución Global</h3>
-            <p className="text-muted-foreground">
+          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] text-center relative overflow-hidden">
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <TrendingUp className="h-10 w-10 text-primary mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Distribución Global</h3>
+            <p className="text-muted-foreground text-sm relative z-10">
               Presencia en librerías de todo el mundo
             </p>
           </div>
@@ -110,15 +117,16 @@ const Editorial = () => {
         </section>
 
         {/* CTA */}
-        <div className="text-center bg-secondary p-12 rounded-3xl">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+        <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
             ¿Eres autor? ¿Tienes un manuscrito?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
             Estamos siempre buscando nuevas propuestas editoriales. 
             Envíanos tu proyecto y lo evaluaremos con atención.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10">
             Enviar propuesta editorial
           </Button>
         </div>
