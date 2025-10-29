@@ -1,5 +1,7 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -15,6 +17,9 @@ import gallery12 from "@/assets/gallery-12.jpeg";
 import gallery13 from "@/assets/gallery-13.webp";
 
 const GrupoDauro = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13];
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -84,9 +89,10 @@ const GrupoDauro = () => {
                 Nuestra Trayectoria en Imágenes
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13].map((image, index) => (
+                {galleryImages.map((image, index) => (
                   <div
                     key={index}
+                    onClick={() => setSelectedImage(image)}
                     className="aspect-square overflow-hidden rounded-lg cursor-pointer group"
                   >
                     <img
@@ -98,9 +104,24 @@ const GrupoDauro = () => {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </main>
+
+      {/* Modal para imagen ampliada */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-transparent border-none">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img
+              src={selectedImage || ""}
+              alt="Imagen ampliada"
+              className="max-w-full max-h-[95vh] object-contain rounded-lg"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <Footer />
     </div>
   );
