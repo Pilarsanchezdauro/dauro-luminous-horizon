@@ -17,19 +17,30 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
-    /* Rojo coral estilo espacio rojo */
-    --primary: 354 70% 54%;
+    /* Rojo coral vibrante */
+    --primary: 354 82% 58%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 354 100% 68%;
 
     /* Gris plateado brillante */
-    --secondary: 210 15% 88%;
+    --secondary: 210 20% 90%;
     --secondary-foreground: 0 0% 20%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 210 12% 85%;
+    /* Accent más vibrante */
+    --accent: 210 40% 75%;
     --accent-foreground: 0 0% 20%;
+    
+    /* Gradientes vibrantes */
+    --gradient-primary: linear-gradient(135deg, hsl(354 82% 58%), hsl(354 100% 68%));
+    --gradient-accent: linear-gradient(135deg, hsl(210 40% 75%), hsl(354 82% 58%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 97%));
+    
+    /* Sombras con brillo */
+    --shadow-glow: 0 10px 40px -10px hsl(354 82% 58% / 0.3);
+    --shadow-primary: 0 20px 60px -15px hsl(354 82% 58% / 0.4);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
