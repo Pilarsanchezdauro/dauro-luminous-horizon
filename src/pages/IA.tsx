@@ -169,7 +169,7 @@ const IA = () => {
             Analizamos tus necesidades y diseñamos soluciones personalizadas que respeten 
             tu visión creativa y optimicen tus procesos.
           </p>
-          <a href="https://www.dauro.ia" target="_blank" rel="noopener noreferrer">
+          <a href="https://dauroia.com/" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-primary hover:bg-primary/90">
               Solicitar consultoría
             </Button>
