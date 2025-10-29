@@ -1,0 +1,132 @@
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { BookOpen, Users, Award, TrendingUp } from "lucide-react";
+import editorialBg from "@/assets/editorial-bg.jpg";
+
+const Editorial = () => {
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${editorialBg})`,
+            filter: "brightness(0.6)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+            Dauro Editorial
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+            Damos voz a autores contemporáneos y rescatamos obras fundamentales de la literatura
+          </p>
+        </div>
+      </section>
+
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Intro */}
+        <div className="max-w-4xl mx-auto mb-20 text-center">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Dauro Editorial es más que una casa editorial. Somos un espacio donde la tradición 
+            literaria se encuentra con la innovación, donde cada libro es una puerta a nuevas 
+            experiencias y reflexiones. Publicamos obras que trascienden el tiempo y conectan 
+            con los lectores del siglo XXI.
+          </p>
+        </div>
+
+        {/* Features */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <div className="bg-card p-8 rounded-xl border border-border text-center">
+            <BookOpen className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-playfair font-bold mb-3">Catálogo Diverso</h3>
+            <p className="text-muted-foreground">
+              Ficción, ensayo, poesía y obras académicas
+            </p>
+          </div>
+          
+          <div className="bg-card p-8 rounded-xl border border-border text-center">
+            <Users className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-playfair font-bold mb-3">Autores Emergentes</h3>
+            <p className="text-muted-foreground">
+              Apostamos por nuevas voces literarias
+            </p>
+          </div>
+          
+          <div className="bg-card p-8 rounded-xl border border-border text-center">
+            <Award className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-playfair font-bold mb-3">Calidad Editorial</h3>
+            <p className="text-muted-foreground">
+              Cuidamos cada detalle del proceso
+            </p>
+          </div>
+          
+          <div className="bg-card p-8 rounded-xl border border-border text-center">
+            <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-playfair font-bold mb-3">Distribución Global</h3>
+            <p className="text-muted-foreground">
+              Presencia en librerías de todo el mundo
+            </p>
+          </div>
+        </div>
+
+        {/* Líneas editoriales */}
+        <section className="mb-20">
+          <h2 className="text-4xl font-playfair font-bold text-center mb-12">
+            Nuestras líneas editoriales
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
+              <h3 className="text-2xl font-playfair font-bold mb-4">Ficción Contemporánea</h3>
+              <p className="text-muted-foreground mb-4">
+                Novelas y cuentos que exploran la condición humana desde perspectivas frescas 
+                y originales. Narrativas que desafían y emocionan.
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
+              <h3 className="text-2xl font-playfair font-bold mb-4">Ensayo Cultural</h3>
+              <p className="text-muted-foreground mb-4">
+                Reflexiones profundas sobre arte, sociedad, filosofía y cultura. 
+                Textos que invitan al pensamiento crítico y al diálogo.
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
+              <h3 className="text-2xl font-playfair font-bold mb-4">Poesía y Clásicos</h3>
+              <p className="text-muted-foreground mb-4">
+                Nuevas voces poéticas y reediciones cuidadas de obras fundamentales. 
+                Preservamos y renovamos la tradición literaria.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <div className="text-center bg-secondary p-12 rounded-3xl">
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+            ¿Eres autor? ¿Tienes un manuscrito?
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Estamos siempre buscando nuevas propuestas editoriales. 
+            Envíanos tu proyecto y lo evaluaremos con atención.
+          </p>
+          <Button size="lg" className="bg-primary hover:bg-primary/90">
+            Enviar propuesta editorial
+          </Button>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Editorial;

@@ -5,6 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import GrupoDauro from "./pages/GrupoDauro";
+import Editorial from "./pages/Editorial";
+import Arte from "./pages/Arte";
+import Cine from "./pages/Cine";
+import IA from "./pages/IA";
+import Servicios from "./pages/Servicios";
+import Tienda from "./pages/Tienda";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
@@ -20,19 +26,19 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/grupo-dauro" element={<GrupoDauro />} />
-          <Route path="/grupo-dauro/editorial" element={<GrupoDauro />} />
-          <Route path="/grupo-dauro/arte" element={<GrupoDauro />} />
-          <Route path="/grupo-dauro/cine" element={<GrupoDauro />} />
-          <Route path="/grupo-dauro/ia" element={<GrupoDauro />} />
-          <Route path="/servicios" element={<GrupoDauro />} />
-          <Route path="/servicios/editoriales" element={<GrupoDauro />} />
-          <Route path="/servicios/musicales" element={<GrupoDauro />} />
-          <Route path="/servicios/cine" element={<GrupoDauro />} />
-          <Route path="/servicios/arte" element={<GrupoDauro />} />
-          <Route path="/tienda" element={<GrupoDauro />} />
-          <Route path="/tienda/libros" element={<GrupoDauro />} />
-          <Route path="/tienda/arte" element={<GrupoDauro />} />
-          <Route path="/tienda/musica" element={<GrupoDauro />} />
+          <Route path="/grupo-dauro/editorial" element={<Editorial />} />
+          <Route path="/grupo-dauro/arte" element={<Arte />} />
+          <Route path="/grupo-dauro/cine" element={<Cine />} />
+          <Route path="/grupo-dauro/ia" element={<IA />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/servicios/editoriales" element={<Servicios />} />
+          <Route path="/servicios/musicales" element={<Servicios />} />
+          <Route path="/servicios/cine" element={<Servicios />} />
+          <Route path="/servicios/arte" element={<Servicios />} />
+          <Route path="/tienda" element={<Tienda />} />
+          <Route path="/tienda/libros" element={<Tienda />} />
+          <Route path="/tienda/arte" element={<Tienda />} />
+          <Route path="/tienda/musica" element={<Tienda />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="*" element={<NotFound />} />
