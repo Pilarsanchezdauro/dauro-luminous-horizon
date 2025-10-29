@@ -52,23 +52,22 @@ const Index = () => {
         />
 
         {/* Bottom CTA */}
-        <section className="py-30">
-          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden border-2 border-primary/20">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px]" />
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter">
-                <span className="gradient-text glow-effect">Promovemos la Cultura</span>
-              </h2>
-              <p className="text-lg lg:text-2xl text-foreground/80 mb-10 leading-relaxed">
-                Desde 2004 trabajando en la intersección entre arte, literatura, cine y tecnología
-              </p>
-              <Link to="/contacto">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg px-12 py-8 rounded-full font-bold hover:shadow-[0_0_60px_hsl(354_85%_62%/0.8)] transition-all duration-300 hover:scale-105">
-                  Contáctanos
-                </Button>
-              </Link>
-            </div>
+        <section className="my-32">
+          <div className="text-center py-24 px-4 border-y-2 border-foreground/10">
+            <h2 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+              ¿Listo para crear<br />algo extraordinario?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
+              Únete a nosotros en la vanguardia de la cultura y la innovación
+            </p>
+            <Link to="/contacto">
+              <Button 
+                size="lg" 
+                className="text-sm uppercase tracking-wider px-12 py-6 border-2 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all"
+              >
+                Contáctanos
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
