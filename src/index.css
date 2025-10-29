@@ -29,8 +29,8 @@ All colors MUST be HSL.
     --muted: 0 0% 92%;
     --muted-foreground: 0 0% 45%;
 
-    /* Acento tierra sutil */
-    --accent: 25 30% 50%;
+    /* Rojo vibrante para acentos */
+    --accent: 0 85% 55%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -60,8 +60,8 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
-    --accent: 25 30% 60%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 0 85% 55%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 25%;

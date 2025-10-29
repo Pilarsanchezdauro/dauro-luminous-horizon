@@ -24,7 +24,7 @@ const SectionCard = ({
       <div className={`space-y-8 ${reversed ? 'md:col-start-2' : ''}`}>
         {icon && <div className="text-foreground text-6xl mb-6">{icon}</div>}
         <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-          {title}
+          <span className="text-accent">Dauro</span> {title}
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
           {description}
@@ -32,7 +32,7 @@ const SectionCard = ({
         <Link to={link}>
           <Button 
             size="lg" 
-            className="mt-6 text-sm uppercase tracking-wider px-8 py-6 border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-all"
+            className="mt-6 text-sm uppercase tracking-wider px-8 py-6 border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-white transition-all"
           >
             Descubrir más
           </Button>

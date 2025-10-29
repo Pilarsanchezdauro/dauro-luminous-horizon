@@ -55,7 +55,7 @@ const Index = () => {
         <section className="my-32">
           <div className="text-center py-24 px-4 border-y-2 border-foreground/10">
             <h2 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              ¿Listo para crear<br />algo extraordinario?
+              ¿Listo para crear<br />algo <span className="text-accent">extraordinario</span>?
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
               Únete a nosotros en la vanguardia de la cultura y la innovación

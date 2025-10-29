@@ -12,8 +12,8 @@ const Hero = () => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Geometric shapes */}
-      <div className="absolute top-20 right-20 w-32 h-32 border-2 border-foreground/10 rounded-full" />
-      <div className="absolute bottom-40 left-20 w-24 h-24 border-2 border-foreground/10 rotate-45" />
+      <div className="absolute top-20 right-20 w-32 h-32 border-2 border-accent/30 rounded-full" />
+      <div className="absolute bottom-40 left-20 w-24 h-24 border-2 border-accent/30 rotate-45" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
@@ -23,7 +23,7 @@ const Hero = () => {
         <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in-up leading-none">
           HAGÁMOSLO
           <br />
-          <span className="italic">EXCEPCIONAL</span>
+          <span className="italic text-accent">EXCEPCIONAL</span>
         </h1>
         <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-delayed">
           Somos Grupo Cultural Dauro. Editorial, arte, cine e inteligencia artificial.
