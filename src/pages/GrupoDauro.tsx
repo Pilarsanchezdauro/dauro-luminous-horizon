@@ -1,5 +1,13 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import gallery1 from "@/assets/gallery-1.webp";
+import gallery2 from "@/assets/gallery-2.webp";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpeg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpeg";
 
 const GrupoDauro = () => {
   return (
@@ -62,6 +70,27 @@ const GrupoDauro = () => {
                 <p className="text-muted-foreground">
                   Profesionales de prestigio internacional, creadores y editores premiados que combinan sensibilidad artística, conocimiento técnico y visión innovadora.
                 </p>
+              </div>
+            </div>
+
+            {/* Galería de fotos */}
+            <div className="mt-24">
+              <h2 className="text-4xl font-playfair font-bold mb-8 text-center text-foreground">
+                Nuestra Trayectoria en Imágenes
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8].map((image, index) => (
+                  <div
+                    key={index}
+                    className="aspect-square overflow-hidden rounded-lg cursor-pointer group"
+                  >
+                    <img
+                      src={image}
+                      alt={`Actividad cultural de Grupo Dauro ${index + 1}`}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
