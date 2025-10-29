@@ -93,8 +93,13 @@ export default {
         "parallax-slow": "parallax-slow 20s ease-in-out infinite alternate",
       },
       fontFamily: {
-        'playfair': ['Playfair Display', 'Georgia', 'serif'],
         'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '26': '6.5rem',
+        '30': '7.5rem',
       },
     },
   },
