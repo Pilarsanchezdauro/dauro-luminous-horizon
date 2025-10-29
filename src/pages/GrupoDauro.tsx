@@ -13,19 +13,22 @@ const GrupoDauro = () => {
             </h1>
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                Somos un colectivo cultural dedicado a promover y crear arte,
-                literatura, cine y proyectos innovadores que integran
-                inteligencia artificial.
+                Desde el año 2000, Grupo Cultural Dauro impulsa la creación, la edición y la innovación cultural desde una vocación clara: unir la herencia artística con la tecnología del futuro.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Nacimos con la vocación de ser un puente entre la tradición
-                cultural y la vanguardia tecnológica, creando espacios donde la
-                creatividad humana se potencia con herramientas del siglo XXI.
+                Nacimos como una editorial independiente con una mirada abierta al arte, la literatura y el pensamiento contemporáneo. Con el tiempo, nos hemos convertido en un grupo creativo multidisciplinar que abarca la edición literaria, la producción audiovisual, la dirección técnica de guion y el desarrollo de proyectos basados en inteligencia artificial.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Nuestro trabajo abarca desde la publicación de obras literarias
-                hasta la producción audiovisual, pasando por la representación
-                artística y el desarrollo de soluciones creativas basadas en IA.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                Con más de 1.000 obras publicadas, nuestra labor editorial ha consolidado un catálogo diverso y exigente que incluye narrativa, poesía, ensayo, investigación y colecciones especializadas. A lo largo de estas dos décadas, las publicaciones de Dauro y sus autores han sido reconocidos con numerosos galardones, entre ellos el Premio Andalucía de la Crítica en sus distintas modalidades, reafirmando nuestro compromiso con la excelencia literaria.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                El grupo está liderado por profesionales de prestigio internacional, creadores y editores premiados y reconocidos por su aportación al pensamiento y la cultura, que combinan sensibilidad artística, conocimiento técnico y visión innovadora.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                Hoy, Dauro continúa expandiendo su alcance: producimos obras audiovisuales generadas mediante IA, desarrollamos sistemas de análisis y catalogación cultural, y diseñamos soluciones de comunicación que combinan creatividad, precisión y belleza.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
+                Nuestro propósito no ha cambiado: dar forma a las ideas, elevar la palabra y convertir la cultura en una experiencia viva, inteligente y transformadora.
               </p>
             </div>
 
@@ -38,7 +41,7 @@ const GrupoDauro = () => {
                   Desde 2000
                 </p>
                 <p className="text-xl lg:text-2xl text-foreground font-medium">
-                  Más de dos décadas impulsando y transformando la cultura
+                  Impulsando la creación, edición e innovación cultural
                 </p>
               </div>
             </div>
@@ -46,22 +49,18 @@ const GrupoDauro = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-2xl font-playfair font-bold mb-4 text-primary">
-                  Nuestra Misión
+                  Más de 1.000 obras publicadas
                 </h3>
                 <p className="text-muted-foreground">
-                  Impulsar la cultura contemporánea a través de proyectos que
-                  fusionen tradición e innovación, democratizando el acceso al
-                  arte y la literatura.
+                  Nuestro catálogo editorial incluye narrativa, poesía, ensayo, investigación y colecciones especializadas, con obras y autores galardonados con premios de prestigio como el Premio Andalucía de la Crítica.
                 </p>
               </div>
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-2xl font-playfair font-bold mb-4 text-primary">
-                  Nuestra Visión
+                  Liderazgo reconocido
                 </h3>
                 <p className="text-muted-foreground">
-                  Ser referentes en la creación y difusión cultural,
-                  reconocidos por nuestra capacidad de integrar arte,
-                  tecnología y narrativas que inspiren.
+                  Profesionales de prestigio internacional, creadores y editores premiados que combinan sensibilidad artística, conocimiento técnico y visión innovadora.
                 </p>
               </div>
             </div>
