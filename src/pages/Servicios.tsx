@@ -12,34 +12,34 @@ import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
 const Servicios = () => {
   const services = [
     {
-      id: "audiovisual",
-      icon: <Video className="h-12 w-12 text-primary mb-4" />,
-      title: "Producción Audiovisual con IA",
-      subtitle: "La creación visual del futuro.",
+      id: "publicacion",
+      icon: <BookOpen className="h-12 w-12 text-primary mb-4" />,
+      title: "Edición y Publicación",
+      subtitle: "Del manuscrito a la obra final.",
       hacemos: [
-        "Vídeo generativo IA",
-        "Escenas y personajes digitales",
-        "Montaje asistido algorítmico",
-        "Voz y música sintéticas",
-        "Postproducción inteligente",
+        "Evaluación y curaduría editorial",
+        "Diseño y maquetación profesional",
+        "Corrección de estilo",
+        "ISBN y registro legal",
+        "Publicación impresa y digital",
       ],
       aplicaciones: [
-        "Proyectos culturales",
-        "Videopoesía y arte",
-        "Piezas institucionales",
-        "Laboratorio creativo",
+        "Libros de autor",
+        "Ensayos y antologías",
+        "Catálogos culturales",
+        "Publicaciones institucionales",
       ],
-      masInfo: `En Grupo Cultural Dauro trabajamos exclusivamente con inteligencia artificial generativa aplicada al audiovisual.
-Creamos vídeos, secuencias y composiciones visuales con algoritmos avanzados, guiados por una dirección artística humana.
-Nuestra metodología combina la experimentación estética con la ingeniería creativa.
+      masInfo: `Acompañamos a autores y proyectos culturales desde el manuscrito hasta la publicación final.
+Nuestro proceso editorial combina rigor técnico, criterio estético y gestión profesional del libro.
 
-Desarrollamos:
-— Videopoesía, videoarte y ensayos visuales.
-— Piezas institucionales con enfoque artístico.
-— Integraciones audiovisuales en entornos culturales.
-— Contenidos editoriales y educativos con IA.
+Cada obra pasa por un flujo completo de:
+— Evaluación editorial y curaduría conceptual.
+— Corrección de estilo y revisión de contenidos.
+— Diseño gráfico, maquetación y preparación de archivos.
+— Gestión de ISBN, depósito legal y distribución.
+— Publicación en formato impreso, digital y audiolibro.
 
-Cada obra es una síntesis entre máquina y sensibilidad humana: una mirada contemporánea al lenguaje de la imagen.`,
+En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calidad y profesionalidad que merece cada proyecto literario.`,
     },
     {
       id: "guion",
@@ -73,6 +73,36 @@ Incluye:
 — Dirección técnica y estética del guion.
 
 Nuestro objetivo: unir la visión artística con la precisión técnica, haciendo que cada historia se vea antes de ser filmada.`,
+    },
+    {
+      id: "audiovisual",
+      icon: <Video className="h-12 w-12 text-primary mb-4" />,
+      title: "Producción Audiovisual con IA",
+      subtitle: "La creación visual del futuro.",
+      hacemos: [
+        "Vídeo generativo IA",
+        "Escenas y personajes digitales",
+        "Montaje asistido algorítmico",
+        "Voz y música sintéticas",
+        "Postproducción inteligente",
+      ],
+      aplicaciones: [
+        "Proyectos culturales",
+        "Videopoesía y arte",
+        "Piezas institucionales",
+        "Laboratorio creativo",
+      ],
+      masInfo: `En Grupo Cultural Dauro trabajamos exclusivamente con inteligencia artificial generativa aplicada al audiovisual.
+Creamos vídeos, secuencias y composiciones visuales con algoritmos avanzados, guiados por una dirección artística humana.
+Nuestra metodología combina la experimentación estética con la ingeniería creativa.
+
+Desarrollamos:
+— Videopoesía, videoarte y ensayos visuales.
+— Piezas institucionales con enfoque artístico.
+— Integraciones audiovisuales en entornos culturales.
+— Contenidos editoriales y educativos con IA.
+
+Cada obra es una síntesis entre máquina y sensibilidad humana: una mirada contemporánea al lenguaje de la imagen.`,
     },
     {
       id: "escritura",
@@ -163,36 +193,6 @@ Incluye:
 — Desarrollo de metodologías híbridas entre arte y ciencia de datos.
 
 Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expanda.`,
-    },
-    {
-      id: "publicacion",
-      icon: <BookOpen className="h-12 w-12 text-primary mb-4" />,
-      title: "Edición y Publicación",
-      subtitle: "Del manuscrito a la obra final.",
-      hacemos: [
-        "Evaluación y curaduría editorial",
-        "Diseño y maquetación profesional",
-        "Corrección de estilo",
-        "ISBN y registro legal",
-        "Publicación impresa y digital",
-      ],
-      aplicaciones: [
-        "Libros de autor",
-        "Ensayos y antologías",
-        "Catálogos culturales",
-        "Publicaciones institucionales",
-      ],
-      masInfo: `Acompañamos a autores y proyectos culturales desde el manuscrito hasta la publicación final.
-Nuestro proceso editorial combina rigor técnico, criterio estético y gestión profesional del libro.
-
-Cada obra pasa por un flujo completo de:
-— Evaluación editorial y curaduría conceptual.
-— Corrección de estilo y revisión de contenidos.
-— Diseño gráfico, maquetación y preparación de archivos.
-— Gestión de ISBN, depósito legal y distribución.
-— Publicación en formato impreso, digital y audiolibro.
-
-En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calidad y profesionalidad que merece cada proyecto literario.`,
     },
   ];
 
