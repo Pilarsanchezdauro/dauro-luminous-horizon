@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -123,6 +124,13 @@ const GrupoDauro = () => {
       {/* Modal para imagen ampliada */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-transparent border-none">
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="w-6 h-6 text-foreground" />
+          </button>
           <div className="relative w-full h-full flex items-center justify-center">
             <img
               src={selectedImage || ""}
