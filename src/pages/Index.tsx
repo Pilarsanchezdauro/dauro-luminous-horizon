@@ -4,6 +4,7 @@ import SectionCard from "@/components/SectionCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BookOpen, Newspaper, Upload } from "lucide-react";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -50,6 +51,108 @@ const Index = () => {
           link="/grupo-dauro/ia"
           reversed
         />
+
+        {/* Blog Section - Latest News */}
+        <section className="my-32">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-4">
+              Últimas noticias del blog
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Mantente al día con nuestras publicaciones más recientes
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {[1, 2, 3].map((i) => (
+              <Link 
+                key={i} 
+                to="/blog"
+                className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+                <Newspaper className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">
+                  Título de la noticia {i}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 relative z-10">
+                  Breve descripción de la noticia que invita a leer más sobre el contenido publicado en nuestro blog cultural.
+                </p>
+                <p className="text-primary text-sm font-semibold relative z-10">
+                  Leer más →
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link to="/blog">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="hover:border-primary/60 hover:text-primary transition-all"
+              >
+                Ver todas las publicaciones
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* Authors CTA Section */}
+        <section className="my-32">
+          <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-20 rounded-3xl border-2 border-primary/20 overflow-hidden">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+            
+            <div className="max-w-4xl mx-auto relative z-10">
+              <div className="text-center mb-10">
+                <Upload className="h-16 w-16 text-primary mx-auto mb-6" />
+                <h2 className="text-3xl lg:text-5xl font-playfair font-bold mb-6">
+                  ¿Eres autor de obras literarias?
+                </h2>
+                <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8">
+                  Publicamos obras de calidad que merecen ser leídas. Si tienes un manuscrito 
+                  terminado o un proyecto editorial en mente, nos encantaría conocerlo.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div className="bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 text-center">
+                  <BookOpen className="h-10 w-10 text-primary mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Evaluación profesional</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Revisamos tu obra con criterio editorial experto
+                  </p>
+                </div>
+                <div className="bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 text-center">
+                  <BookOpen className="h-10 w-10 text-primary mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Publicación de calidad</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Diseño, edición y distribución profesional
+                  </p>
+                </div>
+                <div className="bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 text-center">
+                  <BookOpen className="h-10 w-10 text-primary mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Promoción efectiva</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Difusión en medios y presencia en librerías
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <Link to="/contacto">
+                  <Button 
+                    size="lg" 
+                    className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
+                  >
+                    Enviar mi obra
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Antiguo Blog Section */}
         <section className="my-32">
