@@ -55,10 +55,10 @@ const Hero = () => {
         <p className="text-[1.5rem] md:text-[2.5rem] font-bold leading-[1.15] md:leading-[1.1] tracking-[0.01em] md:tracking-[0.02em] text-[#666666] mb-3 md:mb-4 animate-fade-in text-center max-w-[95%] md:max-w-none mx-auto">
           En Grupo Dauro Transformamos La Cultura en Experiencia
         </p>
-        <h1 className="text-[4rem] md:text-[7.5rem] font-black leading-[0.95] tracking-normal mb-5 animate-fade-in-up text-[#E31B23]">
+        <h1 className="text-[4rem] md:text-[7.5rem] font-black leading-[0.95] tracking-normal mb-5 animate-fade-in-up text-[#111111]">
           HAGÁMOSLO
           <br />
-          <span className="italic">EXCEPCIONAL</span>
+          <span className="italic text-[#E31B23]">EXCEPCIONAL</span>
         </h1>
         <p className="text-[1.125rem] md:text-[1.375rem] font-normal leading-[1.45] md:leading-[1.4] text-[#333333] mb-7 max-w-[92%] md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center">
           Creamos proyectos que combinan arte, pensamiento y tecnología para conectar la emoción humana con la innovación. Convertimos cada idea en algo vivo, profundo y memorable.
