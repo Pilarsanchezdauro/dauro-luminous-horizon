@@ -44,18 +44,12 @@ const Hero = () => {
         <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold text-white mb-6 animate-fade-in-up leading-tight">
           Grupo Cultural Dauro
         </h1>
-        <p
-          className="text-xl sm:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto mb-12 font-light animate-fade-in-up"
-          style={{ animationDelay: "0.2s", opacity: 0 }}
-        >
+        <p className="text-xl sm:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto mb-12 font-light animate-fade-in-up-delayed">
           Una nueva mirada al arte, la literatura, el cine y la inteligencia
           artificial
         </p>
 
-        <div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up"
-          style={{ animationDelay: "0.4s", opacity: 0 }}
-        >
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up-delayed-more">
           <Button
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
