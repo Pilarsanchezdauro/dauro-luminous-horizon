@@ -29,6 +29,20 @@ const GrupoDauro = () => {
               </p>
             </div>
 
+            {/* Destacado de trayectoria */}
+            <div className="relative my-16 py-12 px-8 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-2xl border border-primary/10 overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl" />
+              <div className="relative text-center">
+                <p className="text-6xl lg:text-7xl font-playfair font-bold text-primary mb-4">
+                  Desde 2000
+                </p>
+                <p className="text-xl lg:text-2xl text-foreground font-medium">
+                  Más de dos décadas impulsando y transformando la cultura
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-2xl font-playfair font-bold mb-4 text-primary">
