@@ -43,14 +43,14 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-primary" />
-              <h1 className="text-xl font-semibold tracking-tight">
-                Grupo Cultural <span className="text-primary">Dauro</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_0_30px_hsl(354_85%_62%/0.5)]" />
+              <h1 className="text-xl font-bold tracking-tight text-foreground">
+                Grupo Cultural <span className="gradient-text">Dauro</span>
               </h1>
             </div>
           </Link>
@@ -73,7 +73,7 @@ const Navigation = () => {
                 </Link>
 
                 {item.submenu && activeDropdown === item.name && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-border rounded-2xl shadow-xl py-3 animate-fade-in">
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-card/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] py-3 animate-fade-in">
                     {item.submenu.map((subitem) => (
                       <Link
                         key={subitem.name}

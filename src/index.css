@@ -8,39 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 20%;
+    /* Fondo oscuro moderno */
+    --background: 215 28% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 99%;
-    --card-foreground: 0 0% 20%;
+    --card: 215 25% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover: 215 28% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Rojo coral vibrante */
-    --primary: 354 82% 58%;
+    /* Rojo coral vibrante con rosa */
+    --primary: 354 85% 62%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 354 100% 68%;
+    --primary-glow: 330 100% 75%;
+    --primary-dark: 354 85% 45%;
 
-    /* Gris plateado brillante */
-    --secondary: 210 20% 90%;
-    --secondary-foreground: 0 0% 20%;
+    /* Plateado con tono azulado */
+    --secondary: 215 20% 25%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 97%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 215 20% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    /* Accent más vibrante */
-    --accent: 210 40% 75%;
-    --accent-foreground: 0 0% 20%;
+    /* Rosa vibrante para acentos */
+    --accent: 330 80% 65%;
+    --accent-foreground: 0 0% 100%;
     
-    /* Gradientes vibrantes */
-    --gradient-primary: linear-gradient(135deg, hsl(354 82% 58%), hsl(354 100% 68%));
-    --gradient-accent: linear-gradient(135deg, hsl(210 40% 75%), hsl(354 82% 58%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 97%));
+    /* Gradientes vibrantes cinematográficos */
+    --gradient-primary: linear-gradient(135deg, hsl(354 85% 45%), hsl(354 85% 62%), hsl(330 100% 75%));
+    --gradient-text: linear-gradient(135deg, hsl(354 85% 55%), hsl(330 90% 70%));
+    --gradient-accent: linear-gradient(135deg, hsl(215 40% 35%), hsl(354 85% 62%));
+    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(354 85% 62% / 0.2), transparent 70%);
     
-    /* Sombras con brillo */
-    --shadow-glow: 0 10px 40px -10px hsl(354 82% 58% / 0.3);
-    --shadow-primary: 0 20px 60px -15px hsl(354 82% 58% / 0.4);
+    /* Sombras con brillo intenso */
+    --shadow-glow: 0 0 60px hsl(354 85% 62% / 0.6);
+    --shadow-primary: 0 20px 80px -15px hsl(354 85% 62% / 0.7);
+    --shadow-text: 0 0 30px hsl(330 100% 75% / 0.8);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -61,25 +65,25 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 354 70% 54%;
+    --background: 215 28% 8%;
+    --foreground: 0 0% 98%;
+    --card: 215 25% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 215 28% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 354 85% 62%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 15% 25%;
+    --secondary: 215 20% 25%;
     --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 210 12% 30%;
-    --accent-foreground: 0 0% 95%;
+    --muted: 215 20% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 330 80% 65%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 95%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 354 70% 54%;
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 354 85% 62%;
   }
 }
 
@@ -96,8 +100,21 @@ All colors MUST be HSL.
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--shadow-text);
+  }
+
+  .glow-effect {
+    text-shadow: 0 0 30px hsl(354 85% 62% / 0.8), 0 0 60px hsl(330 100% 75% / 0.5);
   }
 }
 

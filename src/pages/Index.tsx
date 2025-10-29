@@ -53,17 +53,18 @@ const Index = () => {
 
         {/* Bottom CTA */}
         <section className="py-30">
-          <div className="bg-muted rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 organic-shape" />
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden border-2 border-primary/20">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px]" />
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-4xl lg:text-5xl font-semibold mb-6 text-primary">
-                Promovemos la Cultura
+              <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter">
+                <span className="gradient-text glow-effect">Promovemos la Cultura</span>
               </h2>
-              <p className="text-lg lg:text-xl text-muted-foreground mb-10 leading-relaxed">
+              <p className="text-lg lg:text-2xl text-foreground/80 mb-10 leading-relaxed">
                 Desde 2004 trabajando en la intersección entre arte, literatura, cine y tecnología
               </p>
               <Link to="/contacto">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base px-12 py-7 rounded-full font-medium">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg px-12 py-8 rounded-full font-bold hover:shadow-[0_0_60px_hsl(354_85%_62%/0.8)] transition-all duration-300 hover:scale-105">
                   Contáctanos
                 </Button>
               </Link>
