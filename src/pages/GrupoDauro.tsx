@@ -104,7 +104,6 @@ const GrupoDauro = () => {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </main>
