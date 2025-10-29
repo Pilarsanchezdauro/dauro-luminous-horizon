@@ -1,164 +1,258 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Music, Film, Palette } from "lucide-react";
-import { Link } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Video, FileText, Edit, Image, Zap } from "lucide-react";
 
 const Servicios = () => {
+  const services = [
+    {
+      id: "audiovisual",
+      icon: <Video className="h-12 w-12 text-primary mb-4" />,
+      title: "Producción Audiovisual con IA",
+      subtitle: "La creación visual del futuro.",
+      hacemos: [
+        "Vídeo generativo IA",
+        "Escenas y personajes digitales",
+        "Montaje asistido algorítmico",
+        "Voz y música sintéticas",
+        "Postproducción inteligente",
+      ],
+      aplicaciones: [
+        "Proyectos culturales",
+        "Videopoesía y arte",
+        "Piezas institucionales",
+        "Laboratorio creativo",
+      ],
+      masInfo: `En Grupo Cultural Dauro trabajamos exclusivamente con inteligencia artificial generativa aplicada al audiovisual.
+Creamos vídeos, secuencias y composiciones visuales con algoritmos avanzados, guiados por una dirección artística humana.
+Nuestra metodología combina la experimentación estética con la ingeniería creativa.
+
+Desarrollamos:
+— Videopoesía, videoarte y ensayos visuales.
+— Piezas institucionales con enfoque artístico.
+— Integraciones audiovisuales en entornos culturales.
+— Contenidos editoriales y educativos con IA.
+
+Cada obra es una síntesis entre máquina y sensibilidad humana: una mirada contemporánea al lenguaje de la imagen.`,
+    },
+    {
+      id: "guion",
+      icon: <FileText className="h-12 w-12 text-primary mb-4" />,
+      title: "Adaptación y Dirección Técnica de Guion",
+      subtitle: "Del texto a la imagen.",
+      hacemos: [
+        "Adaptación de obras a guiones",
+        "Guiones literarios y técnicos",
+        "Análisis de personajes",
+        "Diseño de secuencias y planos",
+        "Creación de storyboards",
+      ],
+      aplicaciones: [
+        "Cine y documental",
+        "Videoarte y poesía visual",
+        "Narrativas experimentales",
+        "Obras literarias adaptadas",
+      ],
+      masInfo: `En Grupo Cultural Dauro, convertimos la palabra en imagen.
+Adaptamos obras literarias, guiones previos o ideas conceptuales al lenguaje cinematográfico, definiendo su estructura narrativa, técnica y visual.
+
+Nuestro proceso combina análisis narrativo, dirección artística y planificación técnica para crear una hoja de ruta completa del proyecto.
+Desde el concepto hasta el storyboard, cada paso está pensado para que la idea respire coherencia estética y narrativa.
+
+Incluye:
+— Adaptación literaria y técnica.
+— Diseño narrativo de secuencias y planos.
+— Creación de storyboards visuales (manuales o generados con IA).
+— Análisis de personajes, ambiente y simbología visual.
+— Dirección técnica y estética del guion.
+
+Nuestro objetivo: unir la visión artística con la precisión técnica, haciendo que cada historia se vea antes de ser filmada.`,
+    },
+    {
+      id: "escritura",
+      icon: <Edit className="h-12 w-12 text-primary mb-4" />,
+      title: "Escritura, Edición y Datos",
+      subtitle: "La palabra con método.",
+      hacemos: [
+        "Redacción técnica y literaria",
+        "Edición y corrección",
+        "Metadatos (DC, XMP)",
+        "Indexación y taxonomías",
+        "IA para contenidos",
+      ],
+      aplicaciones: [
+        "Libros y catálogos",
+        "Guiones y dossieres",
+        "Archivo y preservación",
+        "Comunicación cultural",
+      ],
+      masInfo: `Nos especializamos en la arquitectura del texto: escritura, edición y gestión de información en entornos culturales.
+Combinamos precisión lingüística con sistemas de IA que amplifican la capacidad de análisis y catalogación.
+
+Incluye:
+— Redacción literaria, técnica y conceptual.
+— Edición y corrección profesional.
+— Creación de taxonomías y estructuras de datos.
+— Indexación e integración de metadatos (Dublin Core, IPTC, XMP).
+— Generación y validación de contenidos con IA supervisada.
+
+En Dauro, la palabra no solo comunica: organiza, preserva y genera conocimiento.`,
+    },
+    {
+      id: "diseno",
+      icon: <Image className="h-12 w-12 text-primary mb-4" />,
+      title: "Imagen, Diseño e Identidad Visual",
+      subtitle: "Estética con precisión técnica.",
+      hacemos: [
+        "Branding editorial",
+        "Dirección de arte",
+        "Retoque y restauración",
+        "Impresión y web",
+        "Sistemas visuales",
+      ],
+      aplicaciones: [
+        "Portadas y colecciones",
+        "Catálogos y revistas",
+        "Exposición y web",
+        "Material institucional",
+      ],
+      masInfo: `Diseñamos sistemas visuales con precisión técnica y coherencia cultural.
+Nuestro enfoque une la estética editorial, la ingeniería visual y la dirección de arte contemporánea.
+
+Desarrollamos:
+— Identidad visual y branding cultural.
+— Diseño de portadas, catálogos y colecciones.
+— Restauración y digitalización avanzada de imagen.
+— Producción gráfica optimizada para impresión y web.
+— Integración visual entre arte, diseño e IA.
+
+Cada imagen está pensada para hablar el idioma de la cultura: belleza con estructura, arte con método.`,
+    },
+    {
+      id: "innovacion",
+      icon: <Zap className="h-12 w-12 text-primary mb-4" />,
+      title: "Innovación Cultural y Tecnología",
+      subtitle: "IA aplicada a la cultura.",
+      hacemos: [
+        "Flujos de trabajo con IA",
+        "Automatización creativa",
+        "Análisis predictivo",
+        "Integración DAM/CMS",
+        "Consultoría transformación",
+      ],
+      aplicaciones: [
+        "Editorial y museos",
+        "Centros culturales",
+        "Archivos digitales",
+        "Estrategia de datos",
+      ],
+      masInfo: `Investigamos e implementamos tecnologías emergentes aplicadas a la cultura y las artes.
+Transformamos procesos editoriales, visuales y de gestión en entornos automatizados, analíticos y creativos.
+
+Incluye:
+— Modelos predictivos y analítica cultural con IA.
+— Automatización de edición, indexación y archivado.
+— Integración de sistemas DAM/CMS.
+— Consultoría en transformación digital cultural.
+— Desarrollo de metodologías híbridas entre arte y ciencia de datos.
+
+Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expanda.`,
+    },
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#F8F8F8]">
       <Navigation />
-      
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="max-w-6xl mx-auto">
+
+      <main className="container mx-auto px-6 lg:px-8 pt-32 pb-16">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground">
+          <div className="text-center mb-12 lg:mb-16">
+            <h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-4 text-[#111111]">
               Nuestros Servicios
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Soluciones profesionales para creadores, artistas y proyectos culturales
+            <p className="text-lg lg:text-xl text-[#333333] mb-3 font-semibold">
+              Innovación técnica con visión cultural.
+            </p>
+            <p className="text-base lg:text-lg text-[#333333] max-w-4xl mx-auto leading-relaxed">
+              En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 
+              editoriales, audiovisuales y digitales con precisión técnica y profundidad estética.
+              Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
             </p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-card p-10 rounded-2xl border border-border hover:shadow-lg transition-shadow">
-              <BookOpen className="h-12 w-12 text-primary mb-6" />
-              <h2 className="text-3xl font-playfair font-bold mb-4">Servicios Editoriales</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Acompañamos a autores y editoriales en todo el proceso de creación y publicación 
-                de obras literarias.
-              </p>
-              <ul className="space-y-3 mb-6 text-muted-foreground">
-                <li>• Corrección y edición de textos</li>
-                <li>• Asesoramiento editorial</li>
-                <li>• Diseño de portadas y maquetación</li>
-                <li>• Distribución y promoción</li>
-                <li>• Conversión a ebook y audiolibro</li>
-              </ul>
-              <Link to="/servicios/editoriales">
-                <Button>Más información</Button>
-              </Link>
-            </div>
-
-            <div className="bg-card p-10 rounded-2xl border border-border hover:shadow-lg transition-shadow">
-              <Music className="h-12 w-12 text-primary mb-6" />
-              <h2 className="text-3xl font-playfair font-bold mb-4">Servicios Musicales</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Producción, gestión y promoción de proyectos musicales contemporáneos.
-              </p>
-              <ul className="space-y-3 mb-6 text-muted-foreground">
-                <li>• Producción musical</li>
-                <li>• Gestión de derechos de autor</li>
-                <li>• Distribución digital</li>
-                <li>• Promoción y marketing musical</li>
-                <li>• Composición para proyectos</li>
-              </ul>
-              <Link to="/servicios/musicales">
-                <Button>Más información</Button>
-              </Link>
-            </div>
-
-            <div className="bg-card p-10 rounded-2xl border border-border hover:shadow-lg transition-shadow">
-              <Film className="h-12 w-12 text-primary mb-6" />
-              <h2 className="text-3xl font-playfair font-bold mb-4">Servicios de Cine</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Producción audiovisual integral para proyectos cinematográficos y multimedia.
-              </p>
-              <ul className="space-y-3 mb-6 text-muted-foreground">
-                <li>• Producción de cortometrajes</li>
-                <li>• Documentales y video arte</li>
-                <li>• Postproducción y VFX</li>
-                <li>• Distribución en festivales</li>
-                <li>• Servicios de rodaje</li>
-              </ul>
-              <Link to="/servicios/cine">
-                <Button>Más información</Button>
-              </Link>
-            </div>
-
-            <div className="bg-card p-10 rounded-2xl border border-border hover:shadow-lg transition-shadow">
-              <Palette className="h-12 w-12 text-primary mb-6" />
-              <h2 className="text-3xl font-playfair font-bold mb-4">Servicios de Arte</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Gestión integral de carrera artística y asesoramiento para coleccionistas.
-              </p>
-              <ul className="space-y-3 mb-6 text-muted-foreground">
-                <li>• Representación de artistas</li>
-                <li>• Organización de exposiciones</li>
-                <li>• Asesoramiento para coleccionistas</li>
-                <li>• Valoración de obras</li>
-                <li>• Marketing artístico</li>
-              </ul>
-              <Link to="/servicios/arte">
-                <Button>Más información</Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Process */}
-          <section className="mb-16">
-            <h2 className="text-4xl font-playfair font-bold text-center mb-12">
-              Cómo trabajamos
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-bold text-primary mx-auto mb-4">
-                  1
-                </div>
-                <h3 className="font-bold mb-2">Consulta inicial</h3>
-                <p className="text-sm text-muted-foreground">
-                  Analizamos tu proyecto y necesidades
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col max-h-[340px]"
+              >
+                {service.icon}
+                <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2">
+                  {service.title}
+                </h2>
+                <p className="text-[16px] md:text-[18px] font-semibold text-primary mb-3">
+                  {service.subtitle}
                 </p>
-              </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-bold text-primary mx-auto mb-4">
-                  2
+                <div className="flex-1 overflow-hidden space-y-3 mb-4">
+                  <div>
+                    <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
+                      Hacemos:
+                    </h3>
+                    <ul className="space-y-1">
+                      {service.hacemos.slice(0, 5).map((item, idx) => (
+                        <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
+                          • {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
+                      Aplicaciones:
+                    </h3>
+                    <ul className="space-y-1">
+                      {service.aplicaciones.slice(0, 5).map((item, idx) => (
+                        <li key={idx} className="text-[14px] md:text-[15px] text-[#333333] leading-[1.35]">
+                          • {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="font-bold mb-2">Propuesta</h3>
-                <p className="text-sm text-muted-foreground">
-                  Diseñamos un plan personalizado
-                </p>
-              </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-bold text-primary mx-auto mb-4">
-                  3
-                </div>
-                <h3 className="font-bold mb-2">Desarrollo</h3>
-                <p className="text-sm text-muted-foreground">
-                  Ejecutamos con seguimiento continuo
-                </p>
+                <Accordion type="single" collapsible className="mt-auto">
+                  <AccordionItem value={service.id} className="border-0">
+                    <AccordionTrigger className="hover:no-underline p-0 pb-0">
+                      <Button
+                        className="w-full bg-primary hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-200"
+                      >
+                        Más información
+                      </Button>
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-4">
+                      <div className="bg-white p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] -mx-[18px] md:-mx-[22px] -mb-[18px] md:-mb-[22px] mt-4">
+                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
+                          {service.title}
+                        </h3>
+                        <div className="text-[15px] md:text-[16px] text-[#333333] leading-[1.5] whitespace-pre-line">
+                          {service.masInfo}
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-bold text-primary mx-auto mb-4">
-                  4
-                </div>
-                <h3 className="font-bold mb-2">Entrega</h3>
-                <p className="text-sm text-muted-foreground">
-                  Resultados profesionales garantizados
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* CTA */}
-          <div className="text-center bg-gradient-to-br from-primary/5 to-accent/5 p-12 rounded-3xl border border-primary/10">
-            <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
-              ¿Tienes un proyecto en mente?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Cuéntanos tu idea y exploremos juntos cómo podemos ayudarte a hacerla realidad.
-            </p>
-            <Link to="/contacto">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
-                Solicitar presupuesto
-              </Button>
-            </Link>
+            ))}
           </div>
         </div>
       </main>
