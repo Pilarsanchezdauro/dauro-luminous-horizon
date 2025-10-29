@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useParallax } from "@/hooks/use-parallax";
-import heroBg from "@/assets/hero-cultural-bg.jpg";
+import heroBg from "@/assets/hero-culture-bg.png";
 
 const Hero = () => {
   const parallaxOffset = useParallax(0.5);
