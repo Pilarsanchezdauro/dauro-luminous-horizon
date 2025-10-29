@@ -13,7 +13,20 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-transparent to-primary/5 animate-pulse" />
+      
+      {/* Large background shapes */}
+      <div 
+        className="absolute -top-40 -right-40 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-100"
+        style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
+      />
+      <div 
+        className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-100"
+        style={{ transform: `translateY(${-parallaxOffset * 0.4}px)` }}
+      />
+      
       {/* Geometric shapes with parallax */}
       <div 
         className="absolute top-20 right-20 w-32 h-32 border-2 border-accent/30 rounded-full transition-transform duration-100"
@@ -22,6 +35,10 @@ const Hero = () => {
       <div 
         className="absolute bottom-40 left-20 w-24 h-24 border-2 border-accent/30 rotate-45 transition-transform duration-100"
         style={{ transform: `translateY(${-parallaxOffset * 0.5}px)` }}
+      />
+      <div 
+        className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-primary/20 rounded-full transition-transform duration-100"
+        style={{ transform: `translateY(${parallaxOffset * 0.6}px)` }}
       />
 
       {/* Content */}
