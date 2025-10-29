@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useParallax } from "@/hooks/use-parallax";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-culture-bg.png";
 
 const Hero = () => {
@@ -63,11 +64,13 @@ const Hero = () => {
         <p className="text-[1.125rem] md:text-[1.375rem] font-normal leading-[1.45] md:leading-[1.4] text-[#333333] mb-7 max-w-[92%] md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center">
           Creamos proyectos que combinan arte, pensamiento y tecnología para conectar la emoción humana con la innovación. Convertimos cada idea en algo vivo, profundo y memorable.
         </p>
-        <Button 
-          className="text-base font-bold uppercase px-7 py-4 rounded-lg bg-[#111111] text-white hover:bg-[#E31B23] transition-all duration-200 animate-fade-in-up-delayed-more"
-        >
-          EXPLORAR
-        </Button>
+        <Link to="/grupo-dauro">
+          <Button 
+            className="text-base font-bold uppercase px-7 py-4 rounded-lg bg-[#111111] text-white hover:bg-[#E31B23] transition-all duration-200 animate-fade-in-up-delayed-more"
+          >
+            EXPLORAR
+          </Button>
+        </Link>
       </div>
 
       {/* Scroll indicator */}
