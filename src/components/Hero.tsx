@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useParallax } from "@/hooks/use-parallax";
 import heroBg from "@/assets/hero-cultural-bg.jpg";
+import logo from "@/assets/logo.png";
 
 const Hero = () => {
   const parallaxOffset = useParallax(0.5);
@@ -52,10 +53,12 @@ const Hero = () => {
         className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100"
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
-        <p className="text-sm uppercase tracking-[0.3em] text-foreground/70 mb-8 animate-fade-in">
-          Creamos productos culturales de calidad
-        </p>
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in-up leading-none text-foreground">
+        <img 
+          src={logo} 
+          alt="Grupo Cultural Dauro" 
+          className="w-full max-w-3xl mx-auto mb-12 animate-fade-in"
+        />
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 animate-fade-in-up leading-none text-foreground">
           HAGÁMOSLO
           <br />
           <span className="italic text-accent">EXCEPCIONAL</span>
