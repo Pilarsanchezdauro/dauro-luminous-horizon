@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -19,6 +19,23 @@ const SectionCard = ({
   icon,
   reversed = false,
 }: SectionCardProps) => {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const [scrollOffset, setScrollOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        const rect = imageRef.current.getBoundingClientRect();
+        const scrollProgress = (window.innerHeight - rect.top) / window.innerHeight;
+        setScrollOffset(scrollProgress * 50);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className={`grid md:grid-cols-2 gap-16 items-center my-32 ${reversed ? 'md:grid-flow-dense' : ''}`}>
       <div className={`space-y-8 ${reversed ? 'md:col-start-2' : ''}`}>
@@ -38,12 +55,16 @@ const SectionCard = ({
           </Button>
         </Link>
       </div>
-      <div className={`relative overflow-hidden ${reversed ? 'md:col-start-1 md:row-start-1' : ''} group`}>
+      <div 
+        ref={imageRef}
+        className={`relative overflow-hidden ${reversed ? 'md:col-start-1 md:row-start-1' : ''} group`}
+      >
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={image}
             alt={title}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+            style={{ transform: `translateY(${-scrollOffset}px)` }}
           />
         </div>
       </div>

@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { useParallax } from "@/hooks/use-parallax";
 
 const Hero = () => {
+  const parallaxOffset = useParallax(0.5);
+  
   const scrollToContent = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -11,12 +14,21 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Geometric shapes */}
-      <div className="absolute top-20 right-20 w-32 h-32 border-2 border-accent/30 rounded-full" />
-      <div className="absolute bottom-40 left-20 w-24 h-24 border-2 border-accent/30 rotate-45" />
+      {/* Geometric shapes with parallax */}
+      <div 
+        className="absolute top-20 right-20 w-32 h-32 border-2 border-accent/30 rounded-full transition-transform duration-100"
+        style={{ transform: `translateY(${parallaxOffset * 0.3}px)` }}
+      />
+      <div 
+        className="absolute bottom-40 left-20 w-24 h-24 border-2 border-accent/30 rotate-45 transition-transform duration-100"
+        style={{ transform: `translateY(${-parallaxOffset * 0.5}px)` }}
+      />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+      <div 
+        className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100"
+        style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
+      >
         <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-8 animate-fade-in">
           Creamos productos culturales de calidad
         </p>
