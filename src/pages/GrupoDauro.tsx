@@ -18,7 +18,9 @@ import gallery13 from "@/assets/gallery-13.webp";
 
 const GrupoDauro = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13];
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 9);
 
   return (
     <div className="min-h-screen">
@@ -88,8 +90,8 @@ const GrupoDauro = () => {
               <h2 className="text-4xl font-playfair font-bold mb-8 text-center text-foreground">
                 Nuestra Trayectoria en Imágenes
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {galleryImages.map((image, index) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {displayedImages.map((image, index) => (
                   <div
                     key={index}
                     onClick={() => setSelectedImage(image)}
@@ -103,6 +105,16 @@ const GrupoDauro = () => {
                   </div>
                 ))}
               </div>
+              {!showAll && galleryImages.length > 9 && (
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={() => setShowAll(true)}
+                    className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    Ver más fotos
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
