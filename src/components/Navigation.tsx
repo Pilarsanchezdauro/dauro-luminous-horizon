@@ -60,27 +60,29 @@ const Navigation = () => {
             {menuItems.map((item) => (
               <div
                 key={item.name}
-                className="relative"
+                className="relative group"
                 onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link
                   to={item.path}
-                  className="text-sm uppercase tracking-wide text-foreground/70 hover:text-foreground transition-colors"
+                  className="text-sm uppercase tracking-wide text-foreground/70 hover:text-foreground transition-colors inline-block py-2"
                 >
                   {item.name}
                 </Link>
                 {item.submenu && activeDropdown === item.name && (
-                  <div className="absolute top-full left-0 mt-4 w-48 bg-card border border-border rounded-sm shadow-lg overflow-hidden">
-                    {item.submenu.map((subitem) => (
-                      <Link
-                        key={subitem.name}
-                        to={subitem.path}
-                        className="block px-4 py-3 text-sm text-card-foreground hover:bg-muted transition-colors"
-                      >
-                        {subitem.name}
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-0 pt-2 w-56 z-50">
+                    <div className="bg-card border border-border rounded-lg shadow-xl overflow-hidden">
+                      {item.submenu.map((subitem) => (
+                        <Link
+                          key={subitem.name}
+                          to={subitem.path}
+                          className="block px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
+                        >
+                          {subitem.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
