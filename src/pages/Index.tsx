@@ -4,13 +4,16 @@ import SectionCard from "@/components/SectionCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen, Newspaper, Upload } from "lucide-react";
+import { BookOpen, Calendar, User, Upload } from "lucide-react";
+import { getLatestPosts } from "@/data/blogData";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
 import iaBg from "@/assets/ia-bg.jpg";
 
 const Index = () => {
+  const latestPosts = getLatestPosts(3);
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -64,23 +67,41 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {[1, 2, 3].map((i) => (
+            {latestPosts.map((post, index) => (
               <Link 
-                key={i} 
+                key={index} 
                 to="/blog"
-                className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+                className="group bg-card rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-                <Newspaper className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">
-                  Título de la noticia {i}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 relative z-10">
-                  Breve descripción de la noticia que invita a leer más sobre el contenido publicado en nuestro blog cultural.
-                </p>
-                <p className="text-primary text-sm font-semibold relative z-10">
-                  Leer más →
-                </p>
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {post.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <User className="h-3 w-3" />
+                      {post.author}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-playfair font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <p className="text-primary text-sm font-semibold">
+                    Leer más →
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
