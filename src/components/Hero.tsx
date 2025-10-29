@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useParallax } from "@/hooks/use-parallax";
+import heroBg from "@/assets/hero-exceptional-bg.jpg";
 
 const Hero = () => {
   const parallaxOffset = useParallax(0.5);
@@ -13,9 +14,14 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-transparent to-primary/5 animate-pulse" />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-background/40" />
       
       {/* Large background shapes */}
       <div 
