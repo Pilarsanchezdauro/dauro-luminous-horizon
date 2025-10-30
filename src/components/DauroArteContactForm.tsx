@@ -224,6 +224,7 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
             <SelectItem value="gestion_venta">Gestión y venta de obras de arte</SelectItem>
             <SelectItem value="portfolio_artistico">Creación y gestión de portfolio artístico</SelectItem>
             <SelectItem value="museos_instituciones">Servicios especializados para museos e instituciones</SelectItem>
+            <SelectItem value="otros">Otros</SelectItem>
           </SelectContent>
         </Select>
         {errors.servicio && (
