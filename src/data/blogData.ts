@@ -208,10 +208,7 @@ En Grupo Dauro IA no enseñamos a usar herramientas. Enseñamos a usarlas con cr
 
 ## ¿Te gustaría aplicar este enfoque a tu proyecto?
 
-Si quieres usar la inteligencia artificial sin perder estilo, sin renunciar a tu esencia creativa, sin caer en el contenido genérico… estás en el lugar adecuado.
-
-Explora más en:  
-👉 [www.dauroia.com](https://www.dauroia.com)`
+Si quieres usar la inteligencia artificial sin perder estilo, sin renunciar a tu esencia creativa, sin caer en el contenido genérico… estás en el lugar adecuado.`
   },
 ];
 
