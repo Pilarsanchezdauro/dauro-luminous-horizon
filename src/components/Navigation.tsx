@@ -23,16 +23,7 @@ const Navigation = () => {
         { name: "Dauro IA", path: "/grupo-dauro/ia" },
       ],
     },
-    {
-      name: "Servicios",
-      path: "/servicios",
-      submenu: [
-        { name: "Servicios Editoriales", path: "/servicios/editoriales" },
-        { name: "Servicios Musicales", path: "/servicios/musicales" },
-        { name: "Servicios de Cine", path: "/servicios/cine" },
-        { name: "Servicios de Arte", path: "/servicios/arte" },
-      ],
-    },
+    { name: "Servicios", path: "/servicios" },
     {
       name: "Tienda",
       path: "/tienda",
