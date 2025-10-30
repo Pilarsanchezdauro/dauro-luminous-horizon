@@ -98,28 +98,24 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
     setIsSubmitting(true);
 
     try {
-      let documentFilePath: string | null = null;
+      const formData = new window.FormData();
+      formData.append('Nombre', data.nombre);
+      formData.append('Apellidos', data.apellidos);
+      formData.append('Email', data.email);
+      formData.append('Teléfono', data.telefono);
+      formData.append('Servicio', data.servicio);
+      formData.append('Descripción', data.descripcion);
+      if (data.enlace_web) formData.append('Web', data.enlace_web);
+      if (documentFile) formData.append('Documento', documentFile);
 
-      if (documentFile) {
-        const timestamp = Date.now();
-        const documentPath = `services/${timestamp}_${documentFile.name}`;
-        documentFilePath = await uploadFile(documentFile, documentPath);
+      const response = await fetch('https://formsubmit.co/info@grupodauro.com', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
       }
-
-      const { error: dbError } = await supabase
-        .from("services_contacts")
-        .insert({
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          servicio: data.servicio,
-          descripcion: data.descripcion,
-          enlace_web: data.enlace_web || null,
-          documento_file_path: documentFilePath,
-        });
-
-      if (dbError) throw dbError;
 
       toast({
         title: "¡Consulta enviada!",

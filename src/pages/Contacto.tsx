@@ -26,7 +26,11 @@ const Contacto = () => {
                 <h2 className="text-2xl font-playfair font-bold mb-6">
                   Envíanos un mensaje
                 </h2>
-                <form className="space-y-6">
+                <form 
+                  action="https://formsubmit.co/info@grupodauro.com" 
+                  method="POST"
+                  className="space-y-6"
+                >
                   <div>
                     <label
                       htmlFor="name"
@@ -36,9 +40,11 @@ const Contacto = () => {
                     </label>
                     <Input
                       id="name"
+                      name="name"
                       type="text"
                       placeholder="Tu nombre"
                       className="w-full"
+                      required
                     />
                   </div>
                   <div>
@@ -50,9 +56,11 @@ const Contacto = () => {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="tu@email.com"
                       className="w-full"
+                      required
                     />
                   </div>
                   <div>
@@ -64,9 +72,11 @@ const Contacto = () => {
                     </label>
                     <Input
                       id="subject"
+                      name="subject"
                       type="text"
                       placeholder="¿En qué podemos ayudarte?"
                       className="w-full"
+                      required
                     />
                   </div>
                   <div>
@@ -78,8 +88,10 @@ const Contacto = () => {
                     </label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Cuéntanos más sobre tu consulta..."
                       className="w-full min-h-[150px]"
+                      required
                     />
                   </div>
                   <Button

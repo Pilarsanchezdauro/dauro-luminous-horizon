@@ -96,48 +96,42 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
   };
 
   const onSubmit = async (data: FormData) => {
-    // Validar archivos
-    if (!validateFile(obraFile, "obra")) return;
-    if (!validateFile(curriculumFile, "curriculum")) return;
+    if (!obraFile || !curriculumFile) {
+      toast({
+        title: "Error",
+        description: "Debes adjuntar tanto la obra como el currículum.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
-      // Crear nombres únicos para los archivos
-      const timestamp = Date.now();
-      const obraPath = `${timestamp}_obra_${obraFile!.name}`;
-      const curriculumPath = `${timestamp}_cv_${curriculumFile!.name}`;
+      const formData = new window.FormData();
+      formData.append('Nombre', data.nombre);
+      formData.append('Apellidos', data.apellidos);
+      formData.append('Email', data.email);
+      formData.append('Teléfono', data.telefono);
+      formData.append('Título de la Obra', data.titulo_obra);
+      formData.append('Tipo de Obra', data.tipo_obra);
+      formData.append('Obra', obraFile);
+      formData.append('Currículum', curriculumFile);
 
-      // Subir archivos
-      const obraFilePath = await uploadFile(obraFile!, obraPath);
-      const curriculumFilePath = await uploadFile(curriculumFile!, curriculumPath);
+      const response = await fetch('https://formsubmit.co/info@grupodauro.com', {
+        method: 'POST',
+        body: formData,
+      });
 
-      if (!obraFilePath || !curriculumFilePath) {
-        throw new Error("Error al subir los archivos");
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
       }
-
-      // Guardar datos en la base de datos
-      const { error: dbError } = await supabase
-        .from("editorial_submissions")
-        .insert({
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          titulo_obra: data.titulo_obra,
-          tipo_obra: data.tipo_obra,
-          obra_file_path: obraFilePath,
-          curriculum_file_path: curriculumFilePath,
-        });
-
-      if (dbError) throw dbError;
 
       toast({
         title: "¡Propuesta enviada!",
         description: "Hemos recibido tu propuesta editorial. Te contactaremos pronto.",
       });
 
-      // Resetear formulario
       reset();
       setObraFile(null);
       setCurriculumFile(null);
