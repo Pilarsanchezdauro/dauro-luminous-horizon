@@ -203,86 +203,97 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
       <main className="container mx-auto px-6 lg:px-10 pt-32 pb-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12 lg:mb-16">
-            <h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-4 text-[#111111]">
-              Nuestros Servicios
-            </h1>
-            <p className="text-lg lg:text-xl text-[#333333] mb-3 font-semibold">
-              Innovación técnica con visión cultural.
-            </p>
-            <p className="text-base lg:text-lg text-[#333333] max-w-4xl mx-auto leading-relaxed">
-              En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 
-              editoriales, audiovisuales y digitales con precisión técnica y profundidad estética.
-              Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
-            </p>
+          <div className="max-w-4xl mx-auto mb-12 lg:mb-16">
+            <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+              <h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-4 text-[#111111] text-center relative z-10">
+                Nuestros Servicios
+              </h1>
+              <p className="text-lg lg:text-xl text-[#333333] mb-3 font-semibold text-center relative z-10">
+                Innovación técnica con visión cultural.
+              </p>
+              <p className="text-base lg:text-lg text-[#333333] max-w-4xl mx-auto leading-relaxed text-center relative z-10">
+                En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 
+                editoriales, audiovisuales y digitales con precisión técnica y profundidad estética.
+                Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
+              </p>
+            </div>
           </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-12">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="bg-white border border-[#E9E9E9] rounded-[14px] p-[18px] md:p-[22px] shadow-[0_6px_18px_rgba(0,0,0,0.05)] flex flex-col max-h-[340px]"
-              >
-                {service.icon}
-                <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2 leading-tight">
-                  {service.title}
-                </h2>
-                <p className="text-[16px] md:text-[18px] font-semibold text-primary mb-3">
-                  {service.subtitle}
-                </p>
+            {services.map((service, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <div
+                  key={service.id}
+                  className={`group ${isEven ? 'bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 border-primary/20' : 'bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 border-accent/30'} border-2 hover:border-primary/40 rounded-3xl p-6 md:p-8 shadow-[0_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] flex flex-col max-h-[340px] relative overflow-hidden`}
+                >
+                  <div className={`absolute ${isEven ? 'top-0 right-0' : 'bottom-0 left-0'} w-32 h-32 ${isEven ? 'bg-primary/10' : 'bg-accent/20'} rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300`} />
+                  <div className="relative z-10">
+                    <div className="group-hover:scale-110 transition-transform duration-300 inline-block">
+                      {service.icon}
+                    </div>
+                    <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2 leading-tight">
+                      {service.title}
+                    </h2>
+                    <p className="text-[16px] md:text-[18px] font-semibold text-primary mb-3">
+                      {service.subtitle}
+                    </p>
 
-                <div className="space-y-[10px] mb-3 overflow-hidden flex-1">
-                  <div>
-                    <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
-                      Hacemos:
-                    </h3>
-                    <ul className="space-y-[4px]">
-                      {service.hacemos.slice(0, 5).map((item, idx) => (
-                        <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <div className="space-y-[10px] mb-3 overflow-hidden flex-1">
+                      <div>
+                        <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
+                          Hacemos:
+                        </h3>
+                        <ul className="space-y-[4px]">
+                          {service.hacemos.slice(0, 5).map((item, idx) => (
+                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
+                              • {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                  <div>
-                    <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
-                      Aplicaciones:
-                    </h3>
-                    <ul className="space-y-[4px]">
-                      {service.aplicaciones.slice(0, 5).map((item, idx) => (
-                        <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
+                      <div>
+                        <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
+                          Aplicaciones:
+                        </h3>
+                        <ul className="space-y-[4px]">
+                          {service.aplicaciones.slice(0, 5).map((item, idx) => (
+                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
+                              • {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <Accordion type="single" collapsible className="mt-auto">
+                      <AccordionItem value={service.id} className="border-0">
+                        <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-3">
+                          <Button
+                            className="w-full bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0 hover:scale-105"
+                          >
+                            Más información
+                          </Button>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-0 animate-accordion-down">
+                          <div className="bg-white/95 p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9] max-h-[380px] md:max-h-[440px] overflow-y-auto backdrop-blur-sm">
+                            <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
+                              {service.title}
+                            </h3>
+                            <div className="text-[15px] md:text-[16px] font-normal text-[#333333] leading-[1.5] whitespace-pre-line">
+                              {service.masInfo}
+                            </div>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </div>
                 </div>
-
-                <Accordion type="single" collapsible className="mt-auto">
-                  <AccordionItem value={service.id} className="border-0">
-                    <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-3">
-                      <Button
-                        className="w-full bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0"
-                      >
-                        Más información
-                      </Button>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-0 animate-accordion-down">
-                      <div className="bg-white p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9] max-h-[380px] md:max-h-[440px] overflow-y-auto">
-                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
-                          {service.title}
-                        </h3>
-                        <div className="text-[15px] md:text-[16px] font-normal text-[#333333] leading-[1.5] whitespace-pre-line">
-                          {service.masInfo}
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </main>
