@@ -6,6 +6,7 @@ import nftArgentinaCollection from "@/assets/nft-argentina-collection.png";
 import iaConArte from "@/assets/ia-con-arte.png";
 import logoDauroIA from "@/assets/logo-dauro-ia.png";
 import latidoPresentacion from "@/assets/latido-presentacion-principal.jpg";
+import libroLatido from "@/assets/libro-latido.png";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -35,7 +36,7 @@ export const blogPosts: BlogPost[] = [
     image: latidoPresentacion,
     category: "literatura",
     slug: "presentacion-latido-carmen-alcaide",
-    bookImage: "/src/assets/libro-latido.png",
+    bookImage: libroLatido,
     bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
     amazonLink: "https://www.amazon.es/Latido-Apasionadamente-vuestro-Carmen-Alcaide/dp/8412849663",
     gallery: [
