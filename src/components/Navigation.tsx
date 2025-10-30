@@ -26,12 +26,8 @@ const Navigation = () => {
     { name: "Servicios", path: "/servicios" },
     {
       name: "Tienda",
-      path: "/tienda",
-      submenu: [
-        { name: "Libros", path: "/tienda/libros" },
-        { name: "Arte", path: "/tienda/arte" },
-        { name: "Música", path: "/tienda/musica" },
-      ],
+      path: "https://www.edicionesdauro.com/",
+      external: true,
     },
     {
       name: "Blog",
@@ -78,12 +74,23 @@ const Navigation = () => {
                 onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Link
-                  to={item.path}
-                  className="text-sm uppercase tracking-wide text-foreground/70 hover:text-foreground transition-colors inline-block py-2"
-                >
-                  {item.name}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm uppercase tracking-wide text-foreground/70 hover:text-foreground transition-colors inline-block py-2"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="text-sm uppercase tracking-wide text-foreground/70 hover:text-foreground transition-colors inline-block py-2"
+                  >
+                    {item.name}
+                  </Link>
+                )}
                 {item.submenu && activeDropdown === item.name && (
                   <div className="absolute top-full left-0 pt-2 w-56 z-50">
                     <div className="bg-card border border-border rounded-lg shadow-xl overflow-hidden">
@@ -119,13 +126,24 @@ const Navigation = () => {
           <div className="lg:hidden py-6 animate-fade-in">
             {menuItems.map((item) => (
               <div key={item.name} className="mb-3">
-                <Link
-                  to={item.path}
-                  className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                  onClick={() => !item.submenu && setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                    onClick={() => !item.submenu && setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
                 {item.submenu && (
                   <div className="pl-4 mt-2 space-y-2">
                     {item.submenu.map((subitem) => (
