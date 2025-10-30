@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Calendar, User, ExternalLink, ArrowLeft } from "lucide-react";
 import { blogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import NotFound from "./NotFound";
 import { useState } from "react";
 
@@ -11,6 +12,7 @@ const BlogPost = () => {
   const { slug } = useParams();
   const post = blogPosts.find(p => p.slug === slug);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!post) {
     return <NotFound />;
@@ -134,13 +136,16 @@ const BlogPost = () => {
                       Galería
                     </h3>
                     <div className="space-y-4">
-                      <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                      <button 
+                        onClick={() => setIsModalOpen(true)}
+                        className="relative rounded-lg overflow-hidden shadow-2xl w-full cursor-zoom-in hover:opacity-95 transition-opacity"
+                      >
                         <img
                           src={post.gallery[selectedGalleryImage]}
                           alt={`Imagen de galería ${selectedGalleryImage + 1}`}
                           className="w-full h-96 object-cover"
                         />
-                      </div>
+                      </button>
                       <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
                         {post.gallery.map((image, idx) => (
                           <button
@@ -209,6 +214,18 @@ const BlogPost = () => {
         </div>
       </main>
       <Footer />
+      
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 overflow-hidden">
+          <div className="relative w-full h-full flex items-center justify-center bg-black/95">
+            <img
+              src={post?.gallery?.[selectedGalleryImage]}
+              alt={`Imagen de galería ${selectedGalleryImage + 1}`}
+              className="max-w-full max-h-[90vh] object-contain"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
