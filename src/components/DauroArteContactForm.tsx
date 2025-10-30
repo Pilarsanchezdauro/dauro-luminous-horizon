@@ -114,6 +114,8 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
         'Servicio': data.servicio,
         'Descripción': data.descripcion,
         'Web': data.enlace_web || '',
+        '_next': `${window.location.origin}/gracias`,
+        '_captcha': 'false',
       };
 
       Object.entries(fields).forEach(([name, value]) => {

@@ -123,6 +123,8 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         'Teléfono': data.telefono,
         'Título de la Obra': data.titulo_obra,
         'Tipo de Obra': data.tipo_obra,
+        '_next': `${window.location.origin}/gracias`,
+        '_captcha': 'false',
       };
 
       Object.entries(fields).forEach(([name, value]) => {
