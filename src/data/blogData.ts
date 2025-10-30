@@ -91,7 +91,7 @@ Disponible en librerías y en nuestra tienda online.`
     category: "cine",
     slug: "el-hidalgo-don-rodrigo-guion",
     bookImage: donRodrigoPortrait,
-    bookLink: "https://www.youtube.com/@GrupoDauroEditorial",
+    bookLink: "https://www.youtube.com/@grupodauro2900",
     content: `⚜️ El Hidalgo Don Rodrigo de Cervantes: de las páginas al guion
 
 Después de más de un año de escritura, documentación y desarrollo creativo, Grupo Dauro se complace en anunciar que el guion de la serie El Hidalgo Don Rodrigo de Cervantes está casi terminado.

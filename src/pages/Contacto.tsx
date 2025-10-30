@@ -203,7 +203,7 @@ const Contacto = () => {
                       </svg>
                     </a>
                     <a
-                      href="https://www.youtube.com/channel/UCd7vhVWcx6aMdkj2YPKxAxw"
+                      href="https://www.youtube.com/@grupodauro2900"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"

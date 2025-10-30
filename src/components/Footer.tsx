@@ -144,7 +144,7 @@ const Footer = () => {
                   <Pin className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://www.youtube.com/channel/UCd7vhVWcx6aMdkj2YPKxAxw"
+                  href="https://www.youtube.com/@grupodauro2900"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
