@@ -21,11 +21,9 @@ const BlogPost = () => {
     return <NotFound />;
   }
 
-  const shareUrl = window.location.href;
-  const shareTitle = post.title;
-  const shareText = post.excerpt;
-
   const handleShare = (platform: string) => {
+    const shareUrl = window.location.href;
+    const shareTitle = post.title;
     let url = '';
     
     switch (platform) {
@@ -49,6 +47,7 @@ const BlogPost = () => {
   };
 
   const copyToClipboard = async () => {
+    const shareUrl = window.location.href;
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
