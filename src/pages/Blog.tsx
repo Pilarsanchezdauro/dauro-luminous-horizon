@@ -10,6 +10,7 @@ import { useState } from "react";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | "todas">("todas");
+  const [featuredPostIndex, setFeaturedPostIndex] = useState(0);
   
   const getFilteredPosts = () => {
     if (activeCategory === "todas") return blogPosts;
@@ -17,7 +18,13 @@ const Blog = () => {
   };
   
   const filteredPosts = getFilteredPosts();
-  const featuredPost = activeCategory === "todas" ? blogPosts[0] : null;
+  const featuredPost = activeCategory === "todas" ? filteredPosts[featuredPostIndex] : null;
+
+  const handleReadMore = (postIndex: number) => {
+    setFeaturedPostIndex(postIndex);
+    setActiveCategory("todas");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen">
@@ -196,9 +203,14 @@ const Blog = () => {
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      <button className="text-primary font-semibold hover:underline">
-                        Leer más →
-                      </button>
+                      {post.content && (
+                        <button 
+                          onClick={() => handleReadMore(blogPosts.findIndex(p => p.title === post.title))}
+                          className="text-primary font-semibold hover:underline"
+                        >
+                          Leer más →
+                        </button>
+                      )}
                     </div>
                   </article>
                 ))}
