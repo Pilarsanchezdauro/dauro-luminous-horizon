@@ -98,24 +98,45 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
     setIsSubmitting(true);
 
     try {
-      const formData = new window.FormData();
-      formData.append('Nombre', data.nombre);
-      formData.append('Apellidos', data.apellidos);
-      formData.append('Email', data.email);
-      formData.append('Teléfono', data.telefono);
-      formData.append('Servicio', data.servicio);
-      formData.append('Descripción', data.descripcion);
-      if (data.enlace_web) formData.append('Web', data.enlace_web);
-      if (documentFile) formData.append('Documento', documentFile);
+      // Create form element
+      const formElement = document.createElement('form');
+      formElement.action = 'https://formsubmit.co/info@grupodauro.com';
+      formElement.method = 'POST';
+      formElement.enctype = 'multipart/form-data';
+      formElement.style.display = 'none';
 
-      const response = await fetch('https://formsubmit.co/info@grupodauro.com', {
-        method: 'POST',
-        body: formData,
+      // Add all fields
+      const fields = {
+        'Nombre': data.nombre,
+        'Apellidos': data.apellidos,
+        'Email': data.email,
+        'Teléfono': data.telefono,
+        'Servicio': data.servicio,
+        'Descripción': data.descripcion,
+        'Web': data.enlace_web || '',
+      };
+
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        formElement.appendChild(input);
       });
 
-      if (!response.ok) {
-        throw new Error('Error al enviar el formulario');
+      // Add file if present
+      if (documentFile) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.name = 'Documento';
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(documentFile);
+        fileInput.files = dataTransfer.files;
+        formElement.appendChild(fileInput);
       }
+
+      document.body.appendChild(formElement);
+      formElement.submit();
 
       toast({
         title: "¡Consulta enviada!",
@@ -132,7 +153,6 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
         description: "No se pudo enviar la consulta. Inténtalo de nuevo.",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   };

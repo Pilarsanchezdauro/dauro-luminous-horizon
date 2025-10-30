@@ -108,24 +108,50 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     setIsSubmitting(true);
 
     try {
-      const formData = new window.FormData();
-      formData.append('Nombre', data.nombre);
-      formData.append('Apellidos', data.apellidos);
-      formData.append('Email', data.email);
-      formData.append('Teléfono', data.telefono);
-      formData.append('Título de la Obra', data.titulo_obra);
-      formData.append('Tipo de Obra', data.tipo_obra);
-      formData.append('Obra', obraFile);
-      formData.append('Currículum', curriculumFile);
+      // Create form element
+      const formElement = document.createElement('form');
+      formElement.action = 'https://formsubmit.co/info@grupodauro.com';
+      formElement.method = 'POST';
+      formElement.enctype = 'multipart/form-data';
+      formElement.style.display = 'none';
 
-      const response = await fetch('https://formsubmit.co/info@grupodauro.com', {
-        method: 'POST',
-        body: formData,
+      // Add all fields
+      const fields = {
+        'Nombre': data.nombre,
+        'Apellidos': data.apellidos,
+        'Email': data.email,
+        'Teléfono': data.telefono,
+        'Título de la Obra': data.titulo_obra,
+        'Tipo de Obra': data.tipo_obra,
+      };
+
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        formElement.appendChild(input);
       });
 
-      if (!response.ok) {
-        throw new Error('Error al enviar el formulario');
-      }
+      // Add file inputs
+      const obraInput = document.createElement('input');
+      obraInput.type = 'file';
+      obraInput.name = 'Obra';
+      const obraDataTransfer = new DataTransfer();
+      obraDataTransfer.items.add(obraFile);
+      obraInput.files = obraDataTransfer.files;
+      formElement.appendChild(obraInput);
+
+      const cvInput = document.createElement('input');
+      cvInput.type = 'file';
+      cvInput.name = 'Currículum';
+      const cvDataTransfer = new DataTransfer();
+      cvDataTransfer.items.add(curriculumFile);
+      cvInput.files = cvDataTransfer.files;
+      formElement.appendChild(cvInput);
+
+      document.body.appendChild(formElement);
+      formElement.submit();
 
       toast({
         title: "¡Propuesta enviada!",
@@ -143,7 +169,6 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         description: "No se pudo enviar la propuesta. Inténtalo de nuevo.",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
