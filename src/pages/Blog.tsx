@@ -30,7 +30,7 @@ const Blog = () => {
                 Blog
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Reflexiones, novedades y análisis sobre arte, cultura,
+                Presentaciones, reflexiones, novedades y análisis sobre arte, cultura,
                 literatura y tecnología
               </p>
             </div>
