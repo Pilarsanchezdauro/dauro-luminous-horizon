@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Mail, Facebook, Instagram, Twitter, Youtube, Pin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -108,28 +108,45 @@ const Footer = () => {
               </a>
               <div className="flex gap-3 pt-2">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/grupodauro"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/grupodauro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/EdicionesDauro"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
-                  aria-label="Twitter"
+                  aria-label="Twitter/X"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://es.pinterest.com/Grupoculturaldauro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/70 hover:text-background transition-colors"
+                  aria-label="Pinterest"
+                >
+                  <Pin className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCd7vhVWcx6aMdkj2YPKxAxw"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
                   aria-label="Youtube"
                 >
