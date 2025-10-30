@@ -1,9 +1,12 @@
+export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
+
 export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
   author: string;
   image: string;
+  category: BlogCategory;
   slug?: string;
   content?: string;
   bookImage?: string;
@@ -17,6 +20,7 @@ export const blogPosts: BlogPost[] = [
     date: "28 Octubre 2025",
     author: "Equipo Dauro",
     image: "/src/assets/presentacion-latido.jpg",
+    category: "literatura",
     slug: "presentacion-latido-carmen-alcaide",
     bookImage: "/src/assets/libro-latido.png",
     bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
@@ -80,6 +84,7 @@ Disponible en librerías y en nuestra tienda online.`
     date: "15 Enero 2025",
     author: "Equipo Dauro",
     image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800",
+    category: "literatura",
   },
   {
     title: "Arte contemporáneo y nuevas narrativas visuales",
@@ -88,6 +93,7 @@ Disponible en librerías y en nuestra tienda online.`
     date: "10 Enero 2025",
     author: "María González",
     image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800",
+    category: "arte",
   },
   {
     title: "La inteligencia artificial como herramienta creativa",
@@ -96,9 +102,21 @@ Disponible en librerías y en nuestra tienda online.`
     date: "5 Enero 2025",
     author: "Carlos Ruiz",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+    category: "ia",
   },
 ];
 
 export const getLatestPosts = (count: number = 3): BlogPost[] => {
   return blogPosts.slice(0, count);
+};
+
+export const getPostsByCategory = (category: BlogCategory): BlogPost[] => {
+  return blogPosts.filter(post => post.category === category);
+};
+
+export const categoryLabels: Record<BlogCategory, string> = {
+  literatura: "Literatura",
+  arte: "Arte",
+  cine: "Cine",
+  ia: "Inteligencia Artificial"
 };
