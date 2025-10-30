@@ -3,6 +3,8 @@ import donRodrigoPortrait from "@/assets/don-rodrigo-portrait.png";
 import nftArgentinaMexico from "@/assets/nft-argentina-mexico.png";
 import nftArgentinaPuertoRico from "@/assets/nft-argentina-puertorico.png";
 import nftArgentinaCollection from "@/assets/nft-argentina-collection.png";
+import iaConArte from "@/assets/ia-con-arte.png";
+import logoDauroIA from "@/assets/logo-dauro-ia.png";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -160,6 +162,56 @@ Cada partido cuenta con una edición limitada de cien mil NFTs, numerados y regi
 La colección representa una nueva forma de vivir el fútbol argentino: uniendo arte, historia y tecnología en un mismo concepto.
 
 Con The Last Four, el coleccionismo digital da un paso adelante, y cada NFT se convierte en un fragmento de la historia de la Selección Argentina.`
+  },
+  {
+    title: "IA con identidad estética: la apuesta de Grupo Dauro IA",
+    excerpt: "En un momento donde todo se acelera, se automatiza y se simplifica, en Grupo Dauro IA apostamos por lo contrario: por crear con intención, con belleza, con estructura. Nuestra propuesta no es usar la inteligencia artificial como una herramienta de producción rápida, sino como una extensión estética del pensamiento humano.",
+    date: "31 Octubre 2025",
+    author: "Grupo Dauro",
+    image: iaConArte,
+    category: "ia",
+    slug: "ia-con-identidad-estetica",
+    bookImage: logoDauroIA,
+    bookLink: "https://www.dauroia.com",
+    content: `En un momento donde todo se acelera, se automatiza y se simplifica, en Grupo Dauro IA apostamos por lo contrario: por crear con intención, con belleza, con estructura. Nuestra propuesta no es usar la inteligencia artificial como una herramienta de producción rápida, sino como una extensión estética del pensamiento humano.
+
+Trabajamos con IA, sí. Pero no delegamos en ella. Dialogamos con ella. La dirigimos. La integramos.
+
+## El arte no es un lujo: es el lenguaje
+
+Desde nuestras raíces como editores, creadores y consultores culturales, entendimos muy pronto que el arte no es solo un campo de expresión, sino una forma de organizar el conocimiento, el mensaje y la presencia. Por eso, cuando empezamos a trabajar con inteligencia artificial, no lo hicimos desde la técnica, sino desde la estética.
+
+Para nosotros, lo importante no es lo que la IA puede generar por sí sola, sino lo que puede construir cuando está al servicio de una mirada humana. Una voz. Un símbolo. Una idea que merece forma, tono y emoción.
+
+## IA + mano humana: una colaboración necesaria
+
+Lo que ves en nuestros vídeos, presentaciones, branding, informes o visuales no es contenido genérico. Es el resultado de un proceso en el que la IA se pone al servicio de una narrativa: la de cada autor, cada marca, cada organización.
+
+Nuestros proyectos integran:
+
+- Dirección artística
+- Decisiones de estilo
+- Curaduría visual
+- Edición textual con intención
+- Y siempre, un concepto profundo detrás
+
+La IA no sustituye. Acompaña. Expande. Responde a una dirección clara.
+
+## IA con identidad estética
+
+Hemos elegido un lema que resume nuestra visión:
+**"Inteligencia artificial con identidad estética"**
+
+Porque no basta con que algo funcione. Tiene que decir algo. Tiene que tener presencia, coherencia, personalidad. Desde un avatar hasta una marca, desde una portada hasta una narrativa visual. Cada elemento que generamos tiene esa intención.
+
+En Grupo Dauro IA no enseñamos a usar herramientas. Enseñamos a usarlas con criterio.
+
+## ¿Te gustaría aplicar este enfoque a tu proyecto?
+
+Si quieres usar la inteligencia artificial sin perder estilo, sin renunciar a tu esencia creativa, sin caer en el contenido genérico… estás en el lugar adecuado.
+
+Explora más en:  
+👉 [www.dauroia.com](https://www.dauroia.com)`
   },
 ];
 
