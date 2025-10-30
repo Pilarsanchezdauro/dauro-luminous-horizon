@@ -5,14 +5,6 @@ import nftArgentinaPuertoRico from "@/assets/nft-argentina-puertorico.png";
 import nftArgentinaCollection from "@/assets/nft-argentina-collection.png";
 import iaConArte from "@/assets/ia-con-arte.png";
 import logoDauroIA from "@/assets/logo-dauro-ia.png";
-import latidoPresentacion1 from "@/assets/latido-presentacion-1.jpg";
-import latidoPresentacion2 from "@/assets/latido-presentacion-2.jpg";
-import latidoPresentacion3 from "@/assets/latido-presentacion-3.jpg";
-import latidoPresentacion4 from "@/assets/latido-presentacion-4.jpg";
-import latidoPresentacion5 from "@/assets/latido-presentacion-5.jpg";
-import latidoPresentacion6 from "@/assets/latido-presentacion-6.jpg";
-import latidoPresentacion7 from "@/assets/latido-presentacion-7.jpg";
-import latidoPresentacion8 from "@/assets/latido-presentacion-8.jpg";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -44,14 +36,14 @@ export const blogPosts: BlogPost[] = [
     bookImage: "/src/assets/libro-latido.png",
     bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
     gallery: [
-      latidoPresentacion1,
-      latidoPresentacion2,
-      latidoPresentacion3,
-      latidoPresentacion4,
-      latidoPresentacion5,
-      latidoPresentacion6,
-      latidoPresentacion7,
-      latidoPresentacion8
+      "/latido-presentacion-1.jpg",
+      "/latido-presentacion-2.jpg",
+      "/latido-presentacion-3.jpg",
+      "/latido-presentacion-4.jpg",
+      "/latido-presentacion-5.jpg",
+      "/latido-presentacion-6.jpg",
+      "/latido-presentacion-7.jpg",
+      "/latido-presentacion-8.jpg"
     ],
     content: `Granada, 28 de octubre de 2025
 
