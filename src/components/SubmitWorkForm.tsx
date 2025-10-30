@@ -18,12 +18,12 @@ const ACCEPTED_FILE_TYPES = [
 ];
 
 const formSchema = z.object({
-  nombre: z.string().min(1, "El nombre es obligatorio").max(100),
-  apellidos: z.string().min(1, "Los apellidos son obligatorios").max(100),
-  email: z.string().email("Email inválido").max(255),
-  telefono: z.string().min(9, "Teléfono inválido").max(20),
-  titulo_obra: z.string().min(1, "El título de la obra es obligatorio").max(200),
-  tipo_obra: z.string().min(1, "Selecciona un tipo de obra"),
+  nombre: z.string().trim().min(1, "El nombre es obligatorio").max(100),
+  apellidos: z.string().trim().min(1, "Los apellidos son obligatorios").max(100),
+  email: z.string().trim().email("Email inválido").max(255),
+  telefono: z.string().trim().min(9, "Teléfono inválido").max(20),
+  titulo_obra: z.string().trim().min(1, "El título de la obra es obligatorio").max(200),
+  tipo_obra: z.string().trim().min(1, "Selecciona un tipo de obra"),
 });
 
 type FormData = z.infer<typeof formSchema>;
