@@ -171,40 +171,62 @@ const BlogPost = () => {
 
                 {/* Book image and link for posts with additional content */}
                 {post.bookImage && post.bookLink && (
-                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-xl border border-primary/10 flex flex-col md:flex-row items-center gap-8 mt-8">
-                    <div className="flex-shrink-0">
-                      <img
-                        src={post.bookImage}
-                        alt={post.category === "literatura" ? "Portada del libro" : "Imagen relacionada"}
-                        className="w-48 h-auto shadow-2xl rounded-lg"
-                      />
-                    </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
-                        {post.category === "literatura" ? "Disponible ahora" : post.category === "ia" ? "Descubre la colección" : "Sigue el proyecto"}
-                      </h3>
-                      <p className="text-muted-foreground mb-6">
-                        {post.category === "literatura" 
-                          ? "Ya disponible en librerías y en nuestra tienda online."
-                          : post.category === "ia"
-                          ? "Descubre y adquiere los NFTs oficiales de la Selección Argentina."
-                          : "Descubre más avances, imágenes y fragmentos del proceso creativo en nuestro canal de YouTube."}
-                      </p>
-                      <Button
-                        asChild
-                        size="lg"
-                        className="bg-primary hover:bg-primary/90"
-                      >
-                        <a
-                          href={post.bookLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2"
-                        >
-                          {post.category === "literatura" ? "Comprar ahora" : post.category === "ia" ? "Ver colección NFT" : "Ver canal de YouTube"}
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
+                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-xl border border-primary/10 mt-8">
+                    <div className="flex flex-col md:flex-row items-center gap-8">
+                      <div className="flex-shrink-0">
+                        <img
+                          src={post.bookImage}
+                          alt={post.category === "literatura" ? "Portada del libro" : "Imagen relacionada"}
+                          className="w-48 h-auto shadow-2xl rounded-lg"
+                        />
+                      </div>
+                      <div className="flex-1 text-center md:text-left">
+                        <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
+                          {post.category === "literatura" ? "Disponible ahora" : post.category === "ia" ? "Descubre la colección" : "Sigue el proyecto"}
+                        </h3>
+                        <p className="text-muted-foreground mb-6">
+                          {post.category === "literatura" 
+                            ? "Ya disponible en librerías y en nuestra tienda online."
+                            : post.category === "ia"
+                            ? "Descubre y adquiere los NFTs oficiales de la Selección Argentina."
+                            : "Descubre más avances, imágenes y fragmentos del proceso creativo en nuestro canal de YouTube."}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                          <Button
+                            asChild
+                            size="lg"
+                            className="bg-primary hover:bg-primary/90"
+                          >
+                            <a
+                              href={post.bookLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2"
+                            >
+                              {post.category === "literatura" ? "Comprar en tienda" : post.category === "ia" ? "Ver colección NFT" : "Ver canal de YouTube"}
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          </Button>
+                          {post.amazonLink && (
+                            <Button
+                              asChild
+                              size="lg"
+                              variant="outline"
+                              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                            >
+                              <a
+                                href={post.amazonLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                              >
+                                Comprar en Amazon
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

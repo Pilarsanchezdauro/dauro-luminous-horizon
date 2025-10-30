@@ -19,6 +19,7 @@ export interface BlogPost {
   content?: string;
   bookImage?: string;
   bookLink?: string;
+  amazonLink?: string;
   image2?: string;
   image3?: string;
   gallery?: string[];
@@ -35,6 +36,7 @@ export const blogPosts: BlogPost[] = [
     slug: "presentacion-latido-carmen-alcaide",
     bookImage: "/src/assets/libro-latido.png",
     bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
+    amazonLink: "https://www.amazon.es/Latido-Apasionadamente-vuestro-Carmen-Alcaide/dp/8412849663",
     gallery: [
       "/latido-presentacion-1.jpg",
       "/latido-presentacion-2.jpg",
