@@ -162,7 +162,7 @@ const Index = () => {
               </div>
 
               <div className="text-center">
-                <Link to="/contacto">
+                <Link to="/grupo-dauro/editorial">
                   <Button 
                     size="lg" 
                     className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
