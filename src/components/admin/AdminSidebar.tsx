@@ -1,0 +1,75 @@
+import { NavLink } from 'react-router-dom';
+import { FileText, Mail, BookOpen, LayoutDashboard } from 'lucide-react';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from '@/components/ui/sidebar';
+
+const menuItems = [
+  {
+    title: 'Panel Principal',
+    url: '/admin',
+    icon: LayoutDashboard,
+  },
+  {
+    title: 'Contactos DauroArte',
+    url: '/admin/dauro-arte',
+    icon: Mail,
+  },
+  {
+    title: 'Propuestas Editoriales',
+    url: '/admin/editorial',
+    icon: BookOpen,
+  },
+  {
+    title: 'Contactos Servicios',
+    url: '/admin/servicios',
+    icon: FileText,
+  },
+];
+
+export function AdminSidebar() {
+  const { open } = useSidebar();
+
+  return (
+    <Sidebar>
+      <SidebarTrigger className="m-2 self-end" />
+      
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Administración</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.url}>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to={item.url}
+                      end
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'bg-muted text-primary font-medium'
+                          : 'hover:bg-muted/50'
+                      }
+                    >
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  );
+}
