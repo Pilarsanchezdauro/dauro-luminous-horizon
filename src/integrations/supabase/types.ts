@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      editorial_submissions: {
+        Row: {
+          apellidos: string
+          created_at: string
+          curriculum_file_path: string | null
+          email: string
+          id: string
+          nombre: string
+          obra_file_path: string | null
+          telefono: string
+          tipo_obra: string
+          titulo_obra: string
+        }
+        Insert: {
+          apellidos: string
+          created_at?: string
+          curriculum_file_path?: string | null
+          email: string
+          id?: string
+          nombre: string
+          obra_file_path?: string | null
+          telefono: string
+          tipo_obra: string
+          titulo_obra: string
+        }
+        Update: {
+          apellidos?: string
+          created_at?: string
+          curriculum_file_path?: string | null
+          email?: string
+          id?: string
+          nombre?: string
+          obra_file_path?: string | null
+          telefono?: string
+          tipo_obra?: string
+          titulo_obra?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

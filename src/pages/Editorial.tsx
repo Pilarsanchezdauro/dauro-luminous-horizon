@@ -1,10 +1,15 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { BookOpen, Users, Award, TrendingUp } from "lucide-react";
 import editorialBg from "@/assets/editorial-bg.jpg";
+import SubmitWorkForm from "@/components/SubmitWorkForm";
 
 const Editorial = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -126,11 +131,26 @@ const Editorial = () => {
             Estamos siempre buscando nuevas propuestas editoriales. 
             Envíanos tu proyecto y lo evaluaremos con atención.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10">
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10"
+            onClick={() => setIsFormOpen(true)}
+          >
             Enviar propuesta editorial
           </Button>
         </div>
       </main>
+
+      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-playfair">
+              Envía tu propuesta editorial
+            </DialogTitle>
+          </DialogHeader>
+          <SubmitWorkForm onSuccess={() => setIsFormOpen(false)} />
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
