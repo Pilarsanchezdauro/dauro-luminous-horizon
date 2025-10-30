@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { BookOpen, Users, Award, TrendingUp, ShoppingCart, Store } from "lucide-react";
+import { BookOpen, Users, Award, TrendingUp, ShoppingCart, Store, ExternalLink } from "lucide-react";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import SubmitWorkForm from "@/components/SubmitWorkForm";
 
@@ -191,9 +192,21 @@ const Editorial = () => {
             <p className="text-lg text-muted-foreground leading-relaxed text-center mb-6 max-w-3xl mx-auto relative z-10">
               En Dauro Editorial, creemos en el poder de la palabra como forma de cultura y de memoria. Desde el manuscrito hasta el lector, cuidamos cada etapa del proceso creativo.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto relative z-10">
+            <p className="text-lg text-muted-foreground leading-relaxed text-center mb-8 max-w-3xl mx-auto relative z-10">
               Nuestro legado no es solo un catálogo: es un universo literario vivo, donde la tradición y la innovación conviven para seguir siendo —como desde el principio— la cuna de autores de éxito.
             </p>
+            <div className="text-center relative z-10">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  Descubrir nuestro catálogo
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
 
