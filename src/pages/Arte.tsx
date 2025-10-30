@@ -1,155 +1,239 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Palette, Eye, ShoppingBag, Music } from "lucide-react";
-import arteBg from "@/assets/arte-bg.jpg";
+import { Card, CardContent } from "@/components/ui/card";
+import { FileCheck, TrendingUp, FileSearch, ShoppingBag, Briefcase, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Arte = () => {
+  const services = [
+    {
+      icon: FileCheck,
+      title: "Informes periciales de obras de arte",
+      description: "Elaboramos informes técnicos y jurídicos con validez oficial, integrando criterios de autenticidad, análisis de materiales y contexto histórico.",
+      includes: [
+        "Estudios técnicos, estéticos y materiales",
+        "Análisis de procedencia y datación",
+        "Dictámenes judiciales y extrajudiciales",
+        "Documentación certificada con respaldo pericial"
+      ]
+    },
+    {
+      icon: TrendingUp,
+      title: "Tasación y valoración de obras de arte",
+      description: "Realizamos tasaciones y valoraciones patrimoniales con rigor metodológico y respaldo documental. Determinamos el valor real de mercado mediante comparativas internacionales, autenticidad y estado de conservación.",
+      applications: [
+        "Patrimonios y herencias artísticas",
+        "Fondos de inversión cultural",
+        "Seguros y valoraciones fiscales",
+        "Colecciones privadas o institucionales"
+      ]
+    },
+    {
+      icon: FileSearch,
+      title: "Análisis de firma, autenticidad y documentoscopia",
+      description: "Aplicamos IA avanzada, visión artificial y técnicas de documentoscopia forense para verificar la autenticidad de obras, firmas y documentos asociados. Combinamos el sistema NEGA (Neural Graphic Analysis) con métodos de laboratorio tradicionales.",
+      includes: [
+        "Escaneo de alta resolución y análisis de trazos",
+        "Estudio de tintas, soportes y papel",
+        "Comparación con bases de datos certificadas",
+        "Informe técnico con validación humana y trazabilidad forense"
+      ]
+    },
+    {
+      icon: ShoppingBag,
+      title: "Gestión y venta de obras de arte",
+      description: "Gestionamos operaciones de venta, adquisición y cesión de obras de arte de primer nivel, con red de compradores y coleccionistas internacionales.",
+      services: [
+        "Intermediación profesional y confidencial",
+        "Verificación documental y certificación previa",
+        "Asesoramiento en negociación y contratos",
+        "Obras de artistas como Picasso, Basquiat, Warhol, Miró, Kandinsky, entre otros"
+      ]
+    },
+    {
+      icon: Briefcase,
+      title: "Creación y gestión de portfolio artístico",
+      description: "En Dauro Arte construimos y gestionamos el portfolio integral de artistas consolidados. Creamos su catálogo técnico y visual, documentamos su trayectoria, certificamos su obra y proyectamos su imagen en el circuito internacional del arte.",
+      offers: [
+        "Elaboración completa del catálogo de obra",
+        "Documentación técnica y archivo digital",
+        "Identidad visual y posicionamiento artístico",
+        "Coordinación de publicaciones, ferias y exposiciones"
+      ]
+    },
+    {
+      icon: Building2,
+      title: "Servicios especializados para museos e instituciones",
+      description: "Diseñamos informes y proyectos de catalogación técnica y digital para colecciones públicas y privadas, combinando arte, conservación y tecnología.",
+      offers: [
+        "Auditorías técnicas y documentoscópicas",
+        "Catalogación y digitalización con IA",
+        "Modelos 3D y documentación avanzada",
+        "Informes curatoriales y de conservación"
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${arteBg})`,
-            filter: "brightness(0.6)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
-            Dauro Arte
-          </h1>
-          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
-            Galería, representación artística y promoción del arte contemporáneo
-          </p>
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 
+              className="text-5xl lg:text-6xl font-bold mb-6"
+              style={{ color: '#E31B23' }}
+            >
+              DAURO ARTE
+            </h1>
+            <p className="text-2xl lg:text-3xl font-semibold mb-8" style={{ color: '#111111' }}>
+              Análisis. Valor. Autenticidad.
+            </p>
+          </div>
         </div>
       </section>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Intro */}
-        <div className="max-w-4xl mx-auto mb-20 text-center">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
-            Arte que Conecta y Transforma
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Dauro Arte es un espacio dedicado a la promoción y difusión del arte contemporáneo. 
-            Representamos a artistas visuales y musicales, organizamos exposiciones y facilitamos 
-            la adquisición de obras originales. Creamos puentes entre creadores y coleccionistas.
-          </p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Palette className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Representación de Artistas</h3>
-            <p className="text-muted-foreground text-sm mb-6 relative z-10">
-              Gestionamos la carrera de artistas visuales emergentes y consolidados. 
-              Promoción, ventas, exposiciones y desarrollo de proyectos artísticos.
+        {/* Introducción */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="bg-white rounded-lg p-8 lg:p-12 shadow-sm">
+            <p className="text-base lg:text-lg leading-relaxed mb-6" style={{ color: '#333333' }}>
+              En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.
+              Trabajamos con coleccionistas, museos, instituciones y artistas de trayectoria consolidada, garantizando rigor técnico, discreción y excelencia profesional.
             </p>
-            <Link to="/grupo-dauro/arte/artistas" className="relative z-10">
-              <Button variant="outline" className="group-hover:border-primary/60 transition-colors">
-                Ver artistas representados
-              </Button>
-            </Link>
-          </div>
-
-          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Eye className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Exposiciones y Eventos</h3>
-            <p className="text-muted-foreground text-sm mb-6 relative z-10">
-              Organizamos muestras individuales y colectivas en espacios culturales. 
-              Eventos de inauguración, encuentros con artistas y visitas guiadas.
+            <p className="text-base lg:text-lg leading-relaxed" style={{ color: '#333333' }}>
+              Nuestro equipo está formado por peritos judiciales, historiadores del arte, analistas documentales e ingenieros en IA, capaces de unir la sensibilidad estética con la objetividad científica.
+              Cada informe, valoración o proyecto nace con un mismo propósito: preservar la autenticidad del arte y proteger su valor real.
             </p>
-            <Button variant="outline" className="relative z-10 group-hover:border-primary/60 transition-colors">
-              Ver agenda de exposiciones
-            </Button>
-          </div>
-
-          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <ShoppingBag className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Venta de Obras</h3>
-            <p className="text-muted-foreground text-sm mb-6 relative z-10">
-              Catálogo de obras disponibles: pinturas, esculturas, fotografía y arte digital. 
-              Asesoramiento personalizado para coleccionistas y compradores.
-            </p>
-            <Link to="/tienda/arte" className="relative z-10">
-              <Button variant="outline" className="group-hover:border-primary/60 transition-colors">
-                Explorar catálogo
-              </Button>
-            </Link>
-          </div>
-
-          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Music className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Música y Composición</h3>
-            <p className="text-muted-foreground text-sm mb-6 relative z-10">
-              Representamos compositores y músicos. Producción de álbumes, gestión de derechos 
-              y promoción de proyectos musicales contemporáneos.
-            </p>
-            <Link to="/tienda/musica" className="relative z-10">
-              <Button variant="outline" className="group-hover:border-primary/60 transition-colors">
-                Ver catálogo musical
-              </Button>
-            </Link>
           </div>
         </div>
 
-        {/* Artists Section */}
-        <section className="mb-20">
-          <h2 className="text-4xl font-playfair font-bold text-center mb-4">
-            Artistas representados
+        {/* Servicios */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <h2 
+            className="text-3xl lg:text-4xl font-bold text-center mb-12"
+            style={{ color: '#E31B23' }}
+          >
+            Nuestros Servicios
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Trabajamos con creadores que exploran nuevas formas de expresión visual y sonora
-          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="text-center group">
-                <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl mb-6 flex items-center justify-center border-2 border-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Palette className="h-16 w-16 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <h3 className="text-xl font-playfair font-bold mb-2">Artista {i}</h3>
-                <p className="text-muted-foreground text-sm">Pintura contemporánea</p>
-              </div>
-            ))}
+          <div className="space-y-6">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const listItems = service.includes || service.applications || service.services || service.offers || [];
+              
+              return (
+                <Card 
+                  key={index} 
+                  className="bg-white shadow-[0_4px_20px_rgba(0,0,0,.05)] border-0 overflow-hidden hover:shadow-[0_8px_30px_rgba(227,27,35,.15)] transition-shadow duration-300"
+                  style={{ maxHeight: '340px' }}
+                >
+                  <CardContent className="p-5 lg:p-6">
+                    <div className="flex items-start gap-4">
+                      <div 
+                        className="flex-shrink-0 p-3 rounded-lg"
+                        style={{ backgroundColor: 'rgba(227, 27, 35, 0.1)' }}
+                      >
+                        <Icon className="h-6 w-6" style={{ color: '#E31B23' }} />
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <h3 
+                          className="text-xl lg:text-2xl font-bold mb-3"
+                          style={{ color: '#111111' }}
+                        >
+                          {service.title}
+                        </h3>
+                        <p 
+                          className="text-sm lg:text-base mb-4 leading-relaxed"
+                          style={{ color: '#333333' }}
+                        >
+                          {service.description}
+                        </p>
+                        
+                        {listItems.length > 0 && (
+                          <div className="mb-4">
+                            <p 
+                              className="text-sm lg:text-base font-semibold mb-2"
+                              style={{ color: '#E31B23' }}
+                            >
+                              {service.includes ? 'Incluye:' : 
+                               service.applications ? 'Aplicaciones:' : 
+                               service.services ? 'Servicios:' : 
+                               'Ofrecemos:'}
+                            </p>
+                            <ul className="space-y-1 text-sm lg:text-base" style={{ color: '#333333' }}>
+                              {listItems.map((item, i) => (
+                                <li key={i} className="flex items-start">
+                                  <span className="mr-2" style={{ color: '#E31B23' }}>•</span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        <Link to="/contacto">
+                          <Button 
+                            className="text-white font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
+                            style={{ 
+                              backgroundColor: '#E31B23',
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+                          >
+                            Más información
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
-        </section>
+        </div>
 
-        {/* CTA */}
-        <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
-            ¿Eres artista o coleccionista?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
-            Contacta con nosotros para conocer cómo podemos ayudarte a desarrollar tu 
-            carrera artística o encontrar la obra perfecta para tu colección.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap relative z-10">
-            <Link to="/contacto">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105">
-                Contactar
-              </Button>
-            </Link>
-            <Link to="/tienda/arte">
-              <Button size="lg" variant="outline" className="hover:border-primary/60">
-                Ver obras disponibles
-              </Button>
-            </Link>
+        {/* Visión */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="bg-white rounded-lg p-8 lg:p-12 shadow-sm">
+            <h2 
+              className="text-3xl lg:text-4xl font-bold text-center mb-8"
+              style={{ color: '#E31B23' }}
+            >
+              Nuestra Visión
+            </h2>
+            <p className="text-base lg:text-lg leading-relaxed mb-6 text-center" style={{ color: '#333333' }}>
+              En Dauro Arte entendemos el arte como patrimonio intelectual, técnico y emocional.
+              Nuestra misión es garantizar su autenticidad, proteger su legado y ampliar su valor cultural y económico, integrando la historia, la ciencia y la inteligencia artificial.
+            </p>
+            <p 
+              className="text-lg lg:text-xl font-semibold text-center"
+              style={{ color: '#E31B23' }}
+            >
+              Cultura, tecnología y verdad: tres pilares de una misma visión.
+            </p>
           </div>
+        </div>
+
+        {/* CTA Final */}
+        <div className="max-w-3xl mx-auto text-center">
+          <Link to="/contacto">
+            <Button 
+              size="lg"
+              className="text-white font-semibold text-lg px-8 py-6 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg"
+              style={{ 
+                backgroundColor: '#E31B23',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+            >
+              Solicitar informe o valoración
+            </Button>
+          </Link>
         </div>
       </main>
 
