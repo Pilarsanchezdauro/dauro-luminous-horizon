@@ -58,7 +58,7 @@ const Index = () => {
         {/* Blog Section - Latest News */}
         <section className="my-32">
           <div className="text-center mb-12">
-            <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold mb-4">
               Últimas noticias del blog
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -128,7 +128,7 @@ const Index = () => {
             <div className="max-w-4xl mx-auto relative z-10">
               <div className="text-center mb-10">
                 <Upload className="h-16 w-16 text-primary mx-auto mb-6" />
-                <h2 className="text-3xl lg:text-5xl font-playfair font-bold mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold mb-6">
                   ¿Eres autor de obras literarias?
                 </h2>
                 <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8">
@@ -181,8 +181,8 @@ const Index = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
             <div className="max-w-3xl mx-auto text-center relative z-10">
-              <p className="text-6xl lg:text-7xl font-bold text-primary mb-6">Desde 2000</p>
-              <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+              <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-6">Desde 2000</p>
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-playfair font-bold mb-6">
                 ¿Quieres ver nuestros trabajos desde el año 2000?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -204,7 +204,7 @@ const Index = () => {
         {/* Bottom CTA */}
         <section className="my-32">
           <div className="text-center py-24 px-4 border-y-2 border-foreground/10">
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight">
               ¿Listo para crear<br />algo <span className="italic">extraordinario</span>?
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">

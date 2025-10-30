@@ -29,7 +29,7 @@ const GrupoDauro = () => {
       <main className="pt-32 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-8 text-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-8 text-foreground">
               Grupo Cultural Dauro
             </h1>
             <div className="prose prose-lg max-w-none">
@@ -58,7 +58,7 @@ const GrupoDauro = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl" />
               <div className="relative text-center">
-                <p className="text-6xl lg:text-7xl font-playfair font-bold text-primary mb-4">
+                <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-primary mb-4">
                   Desde 2000
                 </p>
                 <p className="text-xl lg:text-2xl text-foreground font-medium">

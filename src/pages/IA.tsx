@@ -22,7 +22,7 @@ const IA = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <p className="text-lg lg:text-xl text-white/80 mb-4 uppercase tracking-wider">DAURO IA</p>
-          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
             Visión Artística,<br/>
             <span className="text-primary">Creación IA</span><br/>
             Belleza Inteligente
