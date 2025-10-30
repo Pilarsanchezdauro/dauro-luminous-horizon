@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { BookOpen, Users, Award, TrendingUp } from "lucide-react";
+import { BookOpen, Users, Award, TrendingUp, ShoppingCart, Store } from "lucide-react";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import SubmitWorkForm from "@/components/SubmitWorkForm";
 
@@ -29,8 +29,11 @@ const Editorial = () => {
           <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
             Dauro Editorial
           </h1>
-          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
-            Damos voz a autores contemporáneos y rescatamos obras fundamentales de la literatura
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
+            Cuna de autores de éxito
+          </p>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Más de 1.000 obras publicadas. Presencia en 4.000 librerías de España y Portugal. Distribución global y un compromiso firme con la excelencia literaria.
           </p>
         </div>
       </section>
@@ -41,13 +44,13 @@ const Editorial = () => {
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
             <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
-              Donde las Palabras Cobran Vida
+              Más de dos décadas de excelencia editorial
             </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10 mb-4">
+              Desde el año 2000, Dauro Editorial se ha consolidado como una de las editoriales independientes más sólidas y respetadas del panorama cultural español.
+            </p>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
-              Dauro Editorial es más que una casa editorial. Somos un espacio donde la tradición 
-              literaria se encuentra con la innovación, donde cada libro es una puerta a nuevas 
-              experiencias y reflexiones. Publicamos obras que trascienden el tiempo y conectan 
-              con los lectores del siglo XXI.
+              Con más de mil obras publicadas, nuestro catálogo abarca narrativa, poesía, ensayo, historia, biografía, arte y pensamiento contemporáneo, reflejando un compromiso constante con la calidad literaria y la excelencia editorial.
             </p>
           </div>
         </div>
@@ -91,6 +94,57 @@ const Editorial = () => {
           </div>
         </div>
 
+        {/* Distribución */}
+        <section className="mb-20">
+          <div className="bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 lg:p-12 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
+              Distribución Global
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center mb-8 max-w-3xl mx-auto relative z-10">
+              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 relative z-10">
+              <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
+                <ShoppingCart className="h-5 w-5 text-primary" />
+                <span className="font-medium">Amazon</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
+                <Store className="h-5 w-5 text-primary" />
+                <span className="font-medium">Casa del Libro</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
+                <Store className="h-5 w-5 text-primary" />
+                <span className="font-medium">El Corte Inglés</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
+                <Store className="h-5 w-5 text-primary" />
+                <span className="font-medium">Agapea</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
+                <Store className="h-5 w-5 text-primary" />
+                <span className="font-medium">FNAC</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Autores */}
+        <section className="mb-20">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
+              Autores consolidados y nuevas voces
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10 mb-4">
+              A lo largo de más de dos décadas, hemos construido un sello que combina rigor editorial, sensibilidad artística y proyección internacional.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
+              Autores de gran prestigio literario forman parte de nuestro elenco, junto a nuevas voces que van consolidándose gracias a la confianza, el cuidado y la profesionalidad que caracterizan cada publicación.
+            </p>
+          </div>
+        </section>
+
         {/* Líneas editoriales */}
         <section className="mb-20">
           <h2 className="text-4xl font-playfair font-bold text-center mb-12">
@@ -124,6 +178,22 @@ const Editorial = () => {
                 Preservamos y renovamos la tradición literaria.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Filosofía Editorial */}
+        <section className="mb-20">
+          <div className="bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-12 lg:p-16 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <blockquote className="text-3xl lg:text-4xl xl:text-5xl font-playfair font-bold text-center mb-8 relative z-10 leading-tight">
+              "Editamos con la precisión de un artesano y la mirada del futuro"
+            </blockquote>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center mb-6 max-w-3xl mx-auto relative z-10">
+              En Dauro Editorial, creemos en el poder de la palabra como forma de cultura y de memoria. Desde el manuscrito hasta el lector, cuidamos cada etapa del proceso creativo.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto relative z-10">
+              Nuestro legado no es solo un catálogo: es un universo literario vivo, donde la tradición y la innovación conviven para seguir siendo —como desde el principio— la cuna de autores de éxito.
+            </p>
           </div>
         </section>
 
