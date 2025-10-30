@@ -5,14 +5,62 @@ import { Calendar, User, ExternalLink, ArrowLeft } from "lucide-react";
 import { blogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import NotFound from "./NotFound";
+import { useState } from "react";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = blogPosts.find(p => p.slug === slug);
+  const [selectedGalleryImage, setSelectedGalleryImage] = useState<number>(0);
 
   if (!post) {
     return <NotFound />;
   }
+
+  const renderContent = (content: string) => {
+    return content.split('\n').map((paragraph, idx) => {
+      // Imágenes en markdown: ![alt](url)
+      const imageMatch = paragraph.match(/^!\[(.*?)\]\((.*?)\)$/);
+      if (imageMatch) {
+        return (
+          <div key={idx} className="my-8">
+            <img
+              src={imageMatch[2]}
+              alt={imageMatch[1]}
+              className="w-full rounded-lg shadow-lg"
+            />
+            {imageMatch[1] && (
+              <p className="text-sm text-center text-muted-foreground mt-2 italic">
+                {imageMatch[1]}
+              </p>
+            )}
+          </div>
+        );
+      }
+
+      if (paragraph.startsWith('## ')) {
+        return (
+          <h2 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
+            {paragraph.replace('## ', '')}
+          </h2>
+        );
+      }
+      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+        return (
+          <p key={idx} className="font-semibold mb-2">
+            {paragraph.replace(/\*\*/g, '')}
+          </p>
+        );
+      }
+      if (paragraph.trim()) {
+        return (
+          <p key={idx} className="mb-4">
+            {paragraph}
+          </p>
+        );
+      }
+      return null;
+    });
+  };
 
   return (
     <div className="min-h-screen">
@@ -52,35 +100,69 @@ const BlogPost = () => {
                   {post.title}
                 </h1>
                 <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
-                  {post.content ? (
-                    post.content.split('\n').map((paragraph, idx) => {
-                      if (paragraph.startsWith('## ')) {
-                        return (
-                          <h2 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
-                            {paragraph.replace('## ', '')}
-                          </h2>
-                        );
-                      }
-                      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                        return (
-                          <p key={idx} className="font-semibold mb-2">
-                            {paragraph.replace(/\*\*/g, '')}
-                          </p>
-                        );
-                      }
-                      if (paragraph.trim()) {
-                        return (
-                          <p key={idx} className="mb-4">
-                            {paragraph}
-                          </p>
-                        );
-                      }
-                      return null;
-                    })
-                  ) : (
-                    <p>{post.excerpt}</p>
-                  )}
+                  {post.content ? renderContent(post.content) : <p>{post.excerpt}</p>}
                 </div>
+
+                {/* Imágenes adicionales (image2, image3) */}
+                {(post.image2 || post.image3) && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    {post.image2 && (
+                      <div className="rounded-lg overflow-hidden shadow-lg">
+                        <img
+                          src={post.image2}
+                          alt="Imagen adicional del artículo"
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                    )}
+                    {post.image3 && (
+                      <div className="rounded-lg overflow-hidden shadow-lg">
+                        <img
+                          src={post.image3}
+                          alt="Imagen adicional del artículo"
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Galería de imágenes */}
+                {post.gallery && post.gallery.length > 0 && (
+                  <div className="mb-8">
+                    <h3 className="text-xl font-playfair font-bold mb-4 text-foreground">
+                      Galería
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                        <img
+                          src={post.gallery[selectedGalleryImage]}
+                          alt={`Imagen de galería ${selectedGalleryImage + 1}`}
+                          className="w-full h-96 object-cover"
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+                        {post.gallery.map((image, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setSelectedGalleryImage(idx)}
+                            className={`rounded-lg overflow-hidden border-2 transition-all ${
+                              selectedGalleryImage === idx
+                                ? 'border-primary shadow-lg scale-105'
+                                : 'border-transparent opacity-70 hover:opacity-100'
+                            }`}
+                          >
+                            <img
+                              src={image}
+                              alt={`Miniatura ${idx + 1}`}
+                              className="w-full h-16 object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Book image and link for posts with additional content */}
                 {post.bookImage && post.bookLink && (

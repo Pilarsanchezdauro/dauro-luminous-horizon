@@ -19,6 +19,9 @@ export interface BlogPost {
   content?: string;
   bookImage?: string;
   bookLink?: string;
+  image2?: string;
+  image3?: string;
+  gallery?: string[];
 }
 
 export const blogPosts: BlogPost[] = [
