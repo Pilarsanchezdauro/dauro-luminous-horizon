@@ -2,6 +2,7 @@ import donRodrigoMain from "@/assets/don-rodrigo-main.png";
 import donRodrigoPortrait from "@/assets/don-rodrigo-portrait.png";
 import nftArgentinaMexico from "@/assets/nft-argentina-mexico.png";
 import nftArgentinaPuertoRico from "@/assets/nft-argentina-puertorico.png";
+import nftArgentinaCollection from "@/assets/nft-argentina-collection.png";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -127,34 +128,38 @@ El Hidalgo Don Rodrigo de Cervantes no es solo una serie: es un homenaje al padr
 Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creativo.`
   },
   {
-    title: "Grupo Dauro lanza los NFTs oficiales que representan los últimos partidos de la Selección Argentina",
-    excerpt: "El arte, la tecnología y el fútbol se unen en un proyecto histórico. Grupo Dauro, en colaboración con VMG Sports, ha sido el encargado de crear los NFTs oficiales que representan los cuatro últimos partidos amistosos de la Selección Argentina dentro del proyecto The Last Four.",
+    title: "Grupo Dauro crea los NFTs oficiales de los últimos partidos de la Selección Argentina, con arte final de Manuel Francisco Sánchez y la tecnología de Hipercapital Finance",
+    excerpt: "El arte, la innovación y el fútbol argentino se unen en un proyecto sin precedentes. Grupo Dauro, en colaboración con Hipercapital Finance y el artista español Manuel Francisco Sánchez, ha creado los NFTs oficiales que representan los cuatro últimos partidos amistosos de la Selección Argentina.",
     date: "30 Octubre 2025",
     author: "Grupo Dauro",
-    image: nftArgentinaMexico,
+    image: nftArgentinaCollection,
     category: "ia",
     slug: "nfts-oficiales-seleccion-argentina",
     bookImage: nftArgentinaPuertoRico,
     bookLink: "https://hipercapitalfinance.com/argentina-nft",
-    content: `El arte, la tecnología y el fútbol se unen en un proyecto histórico.
+    content: `El arte, la innovación y el fútbol argentino se unen en un proyecto sin precedentes.
 
-Grupo Dauro, en colaboración con VMG Sports, ha sido el encargado de crear los NFTs oficiales que representan los cuatro últimos partidos amistosos de la Selección Argentina dentro del proyecto The Last Four.
+Grupo Dauro, en colaboración con Hipercapital Finance y el artista español Manuel Francisco Sánchez, ha creado los NFTs oficiales que representan los cuatro últimos partidos amistosos de la Selección Argentina, dentro del proyecto The Last Four, desarrollado por VMG Sports.
 
-Estos NFTs transforman la emoción del fútbol en obras digitales únicas, convertidas en pósters de colección que conmemoran los enfrentamientos frente a Venezuela, Puerto Rico, México y Honduras.
+Estos NFTs transforman el legado deportivo en obras digitales coleccionables, una fusión de arte contemporáneo y tecnología blockchain que inmortaliza los encuentros frente a Venezuela, Puerto Rico, México y Honduras.
 
-Cada diseño ha sido desarrollado a partir de los artes finales del pintor español Manuel Francisco Sánchez, cuya obra combina color, energía y sentimiento en torno al legado de la albiceleste.
+## Un proceso creativo y técnico único
 
-## Tecnología blockchain y exclusividad
+Cada NFT ha sido producido por Grupo Dauro con un proceso creativo y técnico único.
 
-La colección está certificada en la blockchain de Hipercapital Finance, patrocinador tecnológico del proyecto, lo que garantiza su autenticidad, trazabilidad y exclusividad digital.
+El arte final lleva la firma de Manuel Francisco Sánchez, reconocido por su capacidad para plasmar en color la emoción del deporte y el sentimiento de todo un país.
 
-Cada NFT cuenta con un número único y limitado — solo cien mil unidades por partido — y además, cada uno otorga acceso al sorteo de la camiseta oficial del encuentro.
+Por su parte, Hipercapital Finance aporta la certificación en blockchain, asegurando la autenticidad, la trazabilidad y el valor digital de cada obra.
 
-## Un nuevo paso para Grupo Dauro
+## Edición limitada y exclusividad
 
-Este trabajo marca un nuevo paso para Grupo Dauro en la creación de experiencias digitales que unen arte, innovación y deporte.
+Cada partido cuenta con una edición limitada de cien mil NFTs, numerados y registrados, y cada uno incluye la participación en el sorteo de la camiseta oficial del encuentro, lo que convierte cada pieza en un recuerdo único e irrepetible.
 
-Con The Last Four, el fútbol argentino entra en una nueva era de coleccionismo y expresión cultural, donde cada NFT se convierte en una pieza que guarda para siempre la historia de una generación.`
+## Una nueva forma de vivir el fútbol
+
+La colección representa una nueva forma de vivir el fútbol argentino: uniendo arte, historia y tecnología en un mismo concepto.
+
+Con The Last Four, el coleccionismo digital da un paso adelante, y cada NFT se convierte en un fragmento de la historia de la Selección Argentina.`
   },
   {
     title: "El futuro de la edición literaria en la era digital",
