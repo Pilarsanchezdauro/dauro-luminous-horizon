@@ -210,7 +210,7 @@ const Index = () => {
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
               Únete a nosotros en la vanguardia de la cultura y la innovación
             </p>
-            <Link to="/contacto">
+            <Link to="/servicios">
               <Button 
                 size="lg" 
                 className="text-sm uppercase tracking-wider px-12 py-6 bg-accent text-white hover:bg-accent/90 transition-all"
