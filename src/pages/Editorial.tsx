@@ -135,40 +135,40 @@ const Editorial = () => {
 
         {/* Premios Literarios Section */}
         <section className="mb-20">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Award className="h-10 w-10 text-primary" />
-              <h2 className="text-4xl font-playfair font-bold text-foreground">Premios Andalucía de la Crítica</h2>
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Award className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-playfair font-bold text-foreground">Premios Andalucía de la Crítica</h2>
             </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
               Nuestros autores destacan en los más prestigiosos premios literarios
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {/* Boabdil - Novela */}
-            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 rounded-3xl shadow-xl overflow-hidden border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[3/4] overflow-hidden">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 rounded-2xl shadow-lg overflow-hidden border border-primary/20 hover:border-primary/40 hover:shadow-[0_15px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.03]">
+              <div className="aspect-[2/3] overflow-hidden">
                 <img 
                   src={libroBoabdil} 
                   alt="Boabdil, el príncipe del día y de la noche - Antonio Enrique" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-semibold rounded-full mb-3">
+              <div className="p-4">
+                <span className="inline-block px-2.5 py-0.5 bg-primary/20 text-primary text-xs font-semibold rounded-full mb-2">
                   NOVELA
                 </span>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Boabdil</h3>
-                <p className="text-sm text-muted-foreground mb-1 font-medium">Antonio Enrique</p>
-                <p className="text-xs text-muted-foreground italic mb-4">El príncipe del día y de la noche</p>
+                <h3 className="text-lg font-playfair font-bold text-foreground mb-1">Boabdil</h3>
+                <p className="text-xs text-muted-foreground mb-1 font-medium">Antonio Enrique</p>
+                <p className="text-[10px] text-muted-foreground italic mb-3">El príncipe del día y de la noche</p>
                 <Button 
                   size="sm" 
                   variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-white transition-all"
+                  className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=boabdil" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                  <a href="https://www.edicionesdauro.com/?buscar=boabdil" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
@@ -177,28 +177,28 @@ const Editorial = () => {
             </div>
 
             {/* Yo soy todos los besos - Relato */}
-            <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 rounded-3xl shadow-xl overflow-hidden border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[3/4] overflow-hidden">
+            <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 rounded-2xl shadow-lg overflow-hidden border border-accent/30 hover:border-primary/40 hover:shadow-[0_15px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.03]">
+              <div className="aspect-[2/3] overflow-hidden">
                 <img 
                   src={libroBesos} 
                   alt="Yo soy todos los besos que nunca pude darte - Francisco López Barrios" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-semibold rounded-full mb-3">
+              <div className="p-4">
+                <span className="inline-block px-2.5 py-0.5 bg-primary/20 text-primary text-xs font-semibold rounded-full mb-2">
                   RELATO
                 </span>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Yo soy todos los besos</h3>
-                <p className="text-sm text-muted-foreground mb-1 font-medium">Francisco López Barrios</p>
-                <p className="text-xs text-muted-foreground italic mb-4">XXII Premio Andalucía de la Crítica</p>
+                <h3 className="text-lg font-playfair font-bold text-foreground mb-1">Yo soy todos los besos</h3>
+                <p className="text-xs text-muted-foreground mb-1 font-medium">Francisco López Barrios</p>
+                <p className="text-[10px] text-muted-foreground italic mb-3">XXII Premio Andalucía de la Crítica</p>
                 <Button 
                   size="sm" 
                   variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-white transition-all"
+                  className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=francisco+lopez+barrios" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                  <a href="https://www.edicionesdauro.com/?buscar=Yo+soy+todos+los+besos+que+nunca+supe+darte" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
@@ -207,28 +207,28 @@ const Editorial = () => {
             </div>
 
             {/* Horizonte interior - Poesía */}
-            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 rounded-3xl shadow-xl overflow-hidden border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[3/4] overflow-hidden">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 rounded-2xl shadow-lg overflow-hidden border border-primary/20 hover:border-primary/40 hover:shadow-[0_15px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.03]">
+              <div className="aspect-[2/3] overflow-hidden">
                 <img 
                   src={libroHorizonte} 
                   alt="Horizonte interior - Juvenal Soto" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-semibold rounded-full mb-3">
+              <div className="p-4">
+                <span className="inline-block px-2.5 py-0.5 bg-primary/20 text-primary text-xs font-semibold rounded-full mb-2">
                   POESÍA
                 </span>
-                <h3 className="text-xl font-playfair font-bold text-foreground mb-2">Horizonte interior</h3>
-                <p className="text-sm text-muted-foreground mb-1 font-medium">Juvenal Soto</p>
-                <p className="text-xs text-muted-foreground italic mb-4">Premio Andalucía de la Crítica</p>
+                <h3 className="text-lg font-playfair font-bold text-foreground mb-1">Horizonte interior</h3>
+                <p className="text-xs text-muted-foreground mb-1 font-medium">Juvenal Soto</p>
+                <p className="text-[10px] text-muted-foreground italic mb-3">Premio Andalucía de la Crítica</p>
                 <Button 
                   size="sm" 
                   variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-white transition-all"
+                  className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=juvenal+soto" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                  <a href="https://www.edicionesdauro.com/?buscar=juvenal+soto" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
