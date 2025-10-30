@@ -45,7 +45,10 @@ export const blogPosts: BlogPost[] = [
       "/latido-presentacion-7.jpg",
       "/latido-presentacion-8.jpg",
       "/latido-presentacion-9.jpg",
-      "/latido-presentacion-10.jpg"
+      "/latido-presentacion-10.jpg",
+      "/latido-presentacion-11.jpg",
+      "/latido-presentacion-12.jpg",
+      "/latido-presentacion-13.jpg"
     ],
     content: `Granada, 28 de octubre de 2025
 
