@@ -5,6 +5,7 @@ import nftArgentinaPuertoRico from "@/assets/nft-argentina-puertorico.png";
 import nftArgentinaCollection from "@/assets/nft-argentina-collection.png";
 import iaConArte from "@/assets/ia-con-arte.png";
 import logoDauroIA from "@/assets/logo-dauro-ia.png";
+import latidoPresentacion from "@/assets/latido-presentacion-principal.jpg";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -31,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Granada, 28 de octubre de 2025. Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide, con un anuncio inesperado: estamos trabajando en la adaptación de la obra a serie de televisión.",
     date: "28 Octubre 2025",
     author: "Equipo Dauro",
-    image: "/src/assets/presentacion-latido.jpg",
+    image: latidoPresentacion,
     category: "literatura",
     slug: "presentacion-latido-carmen-alcaide",
     bookImage: "/src/assets/libro-latido.png",
