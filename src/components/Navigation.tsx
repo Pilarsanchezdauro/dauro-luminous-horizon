@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const menuItems = [
     { name: "Inicio", path: "/" },
@@ -54,13 +57,26 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
-          <Link to="/" className="flex items-center">
-            <img 
-              src={logo} 
-              alt="Grupo Cultural Dauro" 
-              className="h-24 w-auto hover:opacity-80 transition-opacity"
-            />
-          </Link>
+          <div className="flex items-center gap-4">
+            {!isHomePage && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate(-1)}
+                className="text-foreground/70 hover:text-foreground"
+              >
+                <ArrowLeft className="h-5 w-5 mr-2" />
+                <span className="hidden sm:inline">Volver</span>
+              </Button>
+            )}
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logo} 
+                alt="Grupo Cultural Dauro" 
+                className="h-24 w-auto hover:opacity-80 transition-opacity"
+              />
+            </Link>
+          </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
