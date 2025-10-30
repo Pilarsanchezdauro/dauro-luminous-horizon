@@ -1,7 +1,10 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, User } from "lucide-react";
+import { Calendar, User, ExternalLink } from "lucide-react";
 import { blogPosts } from "@/data/blogData";
+import { Button } from "@/components/ui/button";
+import presentacionLatido from "@/assets/presentacion-latido.jpg";
+import libroLatido from "@/assets/libro-latido.png";
 
 const Blog = () => {
   const posts = blogPosts;
@@ -22,8 +25,103 @@ const Blog = () => {
               </p>
             </div>
 
+            {/* Featured Post - First post with full content */}
+            {posts[0] && posts[0].content && (
+              <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl mb-16">
+                <div className="relative h-96 overflow-hidden">
+                  <img
+                    src={presentacionLatido}
+                    alt={posts[0].title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
+                <div className="p-8 lg:p-12">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      {posts[0].date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <User className="h-4 w-4" />
+                      {posts[0].author}
+                    </span>
+                  </div>
+                  <h2 className="text-4xl font-playfair font-bold mb-6 text-foreground">
+                    {posts[0].title}
+                  </h2>
+                  <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
+                    {posts[0].content.split('\n').map((paragraph, idx) => {
+                      if (paragraph.startsWith('## ')) {
+                        return (
+                          <h3 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
+                            {paragraph.replace('## ', '')}
+                          </h3>
+                        );
+                      }
+                      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                        return (
+                          <p key={idx} className="font-semibold mb-2">
+                            {paragraph.replace(/\*\*/g, '')}
+                          </p>
+                        );
+                      }
+                      if (paragraph.trim()) {
+                        return (
+                          <p key={idx} className="mb-4">
+                            {paragraph}
+                          </p>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+
+                  {/* Book image and purchase link */}
+                  {posts[0].bookImage && posts[0].bookLink && (
+                    <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-xl border border-primary/10 flex flex-col md:flex-row items-center gap-8 mt-8">
+                      <div className="flex-shrink-0">
+                        <img
+                          src={libroLatido}
+                          alt="Portada Latido"
+                          className="w-48 h-auto shadow-2xl rounded-lg"
+                        />
+                      </div>
+                      <div className="flex-1 text-center md:text-left">
+                        <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
+                          Disponible ahora
+                        </h3>
+                        <p className="text-muted-foreground mb-6">
+                          Latido. Apasionadamente vuestro de Carmen Alcaide ya está disponible en librerías y en nuestra tienda online.
+                        </p>
+                        <Button
+                          asChild
+                          size="lg"
+                          className="bg-primary hover:bg-primary/90"
+                        >
+                          <a
+                            href={posts[0].bookLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2"
+                          >
+                            Comprar ahora
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </article>
+            )}
+
+            {/* Other posts grid */}
+            <h2 className="text-3xl font-playfair font-bold mb-8 text-foreground">
+              Más artículos
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post, index) => (
+              {posts.slice(1).map((post, index) => (
                 <article
                   key={index}
                   className="bg-card rounded-xl overflow-hidden border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 group"

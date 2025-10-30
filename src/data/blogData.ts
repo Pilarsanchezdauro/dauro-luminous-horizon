@@ -5,9 +5,74 @@ export interface BlogPost {
   author: string;
   image: string;
   slug?: string;
+  content?: string;
+  bookImage?: string;
+  bookLink?: string;
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Presentación de 'Latido. Apasionadamente vuestro' en el Cuarto Real de Santo Domingo",
+    excerpt: "Granada, 28 de octubre de 2025. Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide, con un anuncio inesperado: estamos trabajando en la adaptación de la obra a serie de televisión.",
+    date: "28 Octubre 2025",
+    author: "Equipo Dauro",
+    image: "/src/assets/presentacion-latido.jpg",
+    slug: "presentacion-latido-carmen-alcaide",
+    bookImage: "/src/assets/libro-latido.png",
+    bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
+    content: `Granada, 28 de octubre de 2025
+
+Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide, en un formato de tertulia que sorprendió gratamente a los asistentes con un anuncio inesperado: estamos trabajando en la adaptación de la obra a serie de televisión.
+
+## Una tertulia que se convirtió en noticia
+
+La presentación, lejos de seguir el formato tradicional, se desarrolló como una conversación íntima entre Carmen Alcaide (autora), Pilar Sánchez (nuestra presidenta) y María José M. Bonilla (nuestra directora editorial), quienes durante 45 minutos desgranaron los entresijos de esta ambiciosa novela de 560 páginas ambientada en la Transición española.
+
+Carmen Alcaide, filóloga y profesora jubilada, compartió el proceso creativo detrás de Ilya Sinclair, su complejo protagonista: un exmilitar angloespañol miembro de los GEO que debe equilibrar su peligrosa profesión con una vida personal marcada por cuatro mujeres que dejan huella en su camino. La autora explicó cómo capturó no solo el contexto histórico de los años 1975-1982, sino también las formas de pensar y expresarse de aquella época, un trabajo de precisión que refleja su formación filológica.
+
+## El anuncio: de la página a la pantalla
+
+El momento clave de la tarde llegó cuando nuestra presidenta, Pilar Sánchez, reveló que hemos dado un paso adelante como editorial: estamos desarrollando la adaptación de Latido a serie de televisión, un proyecto en el que Pilar dirige el guion.
+
+"Llevaba tiempo pensando que las novelas de Carmen son muy cinematográficas", explicó. "Cuando empezamos a recibir consultas de productoras buscando obras de autoras con potencial audiovisual, supimos que teníamos a Carmen. Inicialmente pensamos en Anónimo florentino, pero María José identificó que Latido cumplía con todos los requisitos para una serie".
+
+Este es nuestro segundo proyecto de guion, tras El hidalgo don Rodrigo de Francisco del Valle. Pilar, con formación en dirección de cine, lidera la escritura del guion en un proceso colaborativo donde Carmen Alcaide y María José aportan sus profundos conocimientos de la obra.
+
+## Un reto narrativo particular
+
+Uno de los aspectos más interesantes revelados durante la tertulia fue el desafío específico que plantea Latido para su adaptación: Carmen escribió la novela desde el punto de vista de cada personaje, una multiplicidad de voces que funciona perfectamente en papel pero que requiere decisiones cruciales en el lenguaje audiovisual.
+
+"Tenemos que decidir desde qué perspectiva contar cada escena sin perder esa riqueza de puntos de vista", explicó Pilar. Las tres trabajan escena por escena, reuniéndose regularmente para dar forma a un guion que mantiene la esencia de la novela: la tensión constante entre deber y deseo, la humanidad de sus personajes, y un contexto histórico poco explorado en ficción española de calidad.
+
+## Productoras interesadas y timing perfecto
+
+Aunque por acuerdos de confidencialidad no podemos revelar nombres, Pilar confirmó que ya existen conversaciones avanzadas con productoras de prestigio interesadas en el proyecto.
+
+El momento no podría ser más oportuno: se cumplen 50 años desde la muerte de Franco, hay un interés renovado en la Transición española, y las plataformas buscan contenido español de calidad con potencial internacional. La Transición, con su carga histórica y emocional, sigue siendo un período relativamente inexplorado en ficción audiovisual de alta calidad.
+
+## Una obra que captura la complejidad humana
+
+A lo largo de la tertulia, se fue revelando la riqueza de Latido: un protagonista moralmente ambiguo pero profundamente humano, cuatro mujeres que representan diferentes caminos vitales (Iris, Marta, y dos más cuyas identidades mantuvimos en misterio para no hacer spoilers), relaciones masculinas complejas que incluyen el tratamiento sensible de la homosexualidad en una época difícil, y un contexto histórico que no es mero decorado sino parte fundamental del conflicto.
+
+"Todos los personajes tienen matices", señaló Pilar. "Nadie es completamente bueno o malo. Los personajes aman sabiendo que pueden traicionar; y traicionan sin dejar de amar."
+
+## Grupo Dauro: más allá de la publicación tradicional
+
+Esta iniciativa representa un paso significativo para nosotros como editorial independiente: la demostración de que podemos ser no solo publicadores, sino incubadores de proyectos transmedia que acompañan a nuestros autores en todas las fases creativas.
+
+Desde que publicamos Anónimo florentino en 2013, pasando por Razón de amor en 2018, hemos visto a Carmen Alcaide madurar su voz hasta llegar a Latido, una obra que sintetiza su capacidad para crear mundos visuales, personajes complejos y tramas que funcionan tanto en página como en pantalla.
+
+## Próximos pasos
+
+El guion está en desarrollo activo, las conversaciones con productoras avanzan, y desde Grupo Dauro iremos informando a través de nuestras redes sociales sobre la evolución del proyecto.
+
+Mientras tanto, Latido. Apasionadamente vuestro ya está disponible para los lectores que quieran adentrarse en esta historia donde amor, lealtad, celos y supervivencia se entrelazan en uno de los períodos más fascinantes de nuestra historia reciente.
+
+**Latido. Apasionadamente vuestro**  
+Carmen Alcaide  
+Grupo Dauro, 2025  
+Disponible en librerías y en nuestra tienda online.`
+  },
   {
     title: "El futuro de la edición literaria en la era digital",
     excerpt:
