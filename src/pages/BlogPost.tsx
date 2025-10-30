@@ -8,6 +8,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import NotFound from "./NotFound";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet-async";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -121,6 +122,24 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{post.title} | Grupo Dauro</title>
+        <meta name="description" content={post.excerpt} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={getShareUrl()} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.image.startsWith('http') ? post.image : `https://grupodauro.com${post.image}`} />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={getShareUrl()} />
+        <meta property="twitter:title" content={post.title} />
+        <meta property="twitter:description" content={post.excerpt} />
+        <meta property="twitter:image" content={post.image.startsWith('http') ? post.image : `https://grupodauro.com${post.image}`} />
+      </Helmet>
       <Navigation />
       <main className="pt-32 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
