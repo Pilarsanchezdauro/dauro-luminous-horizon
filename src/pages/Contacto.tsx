@@ -106,10 +106,25 @@ const Contacto = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
                         <a
-                          href="mailto:info@grupodauro.com"
+                          href="mailto:Info@grupodauro.com"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          info@grupodauro.com
+                          Info@grupodauro.com
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-3 rounded-lg">
+                        <Phone className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Teléfono</h3>
+                        <a
+                          href="tel:+34958281183"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          +34 958 28 11 83
                         </a>
                       </div>
                     </div>
@@ -121,10 +136,20 @@ const Contacto = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Dirección</h3>
                         <p className="text-muted-foreground">
-                          Granada, España
+                          Calle Almajara 11<br />
+                          18008 Granada, España
                         </p>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
+                  <h3 className="text-xl font-playfair font-bold mb-4">
+                    Horario de atención al público
+                  </h3>
+                  <div className="text-muted-foreground">
+                    <p className="font-medium">Lunes a Viernes: 10:00 - 14:00</p>
                   </div>
                 </div>
 
