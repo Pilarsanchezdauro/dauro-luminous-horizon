@@ -139,8 +139,8 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
       formElement.submit();
 
       toast({
-        title: "¡Consulta enviada!",
-        description: "Hemos recibido tu consulta. Te contactaremos pronto.",
+        title: "¡Mensaje recibido con éxito! ✨",
+        description: "Estamos deseando conocer más sobre tu proyecto. Te responderemos a la mayor brevedad posible.",
       });
 
       reset();
@@ -149,8 +149,8 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({
-        title: "Error",
-        description: "No se pudo enviar la consulta. Inténtalo de nuevo.",
+        title: "Vaya, ha ocurrido un problema 😔",
+        description: "Por favor, inténtalo nuevamente. Si continúa fallando, escríbenos directamente a info@grupodauro.com",
         variant: "destructive",
       });
       setIsSubmitting(false);

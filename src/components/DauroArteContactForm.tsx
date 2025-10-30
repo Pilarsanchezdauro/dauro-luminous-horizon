@@ -139,8 +139,8 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
       formElement.submit();
 
       toast({
-        title: "¡Consulta enviada!",
-        description: "Hemos recibido tu consulta. Te contactaremos pronto.",
+        title: "¡Gracias por confiar en nosotros! 🎨",
+        description: "Tu consulta está en buenas manos. Nuestro equipo la revisará con atención y te responderá muy pronto.",
       });
 
       reset();
@@ -149,8 +149,8 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({
-        title: "Error",
-        description: "No se pudo enviar la consulta. Inténtalo de nuevo.",
+        title: "Ups, algo no salió bien 😔",
+        description: "Por favor, inténtalo de nuevo en unos momentos. Si el problema persiste, contáctanos directamente.",
         variant: "destructive",
       });
       setIsSubmitting(false);

@@ -154,8 +154,8 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       formElement.submit();
 
       toast({
-        title: "¡Propuesta enviada!",
-        description: "Hemos recibido tu propuesta editorial. Te contactaremos pronto.",
+        title: "¡Tu obra está en camino! 📚✨",
+        description: "Gracias por compartir tu creatividad con nosotros. Evaluaremos tu propuesta con el cariño que merece y te contactaremos pronto.",
       });
 
       reset();
@@ -165,8 +165,8 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({
-        title: "Error",
-        description: "No se pudo enviar la propuesta. Inténtalo de nuevo.",
+        title: "Oh no, algo falló 😓",
+        description: "Por favor, intenta enviarnos tu obra nuevamente. Si persiste el error, escríbenos a info@grupodauro.com",
         variant: "destructive",
       });
       setIsSubmitting(false);
