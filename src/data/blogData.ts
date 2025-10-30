@@ -1,3 +1,6 @@
+import donRodrigoMain from "@/assets/don-rodrigo-main.png";
+import donRodrigoPortrait from "@/assets/don-rodrigo-portrait.png";
+
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
 export interface BlogPost {
@@ -76,6 +79,50 @@ Mientras tanto, Latido. Apasionadamente vuestro ya está disponible para los lec
 Carmen Alcaide  
 Grupo Dauro, 2025  
 Disponible en librerías y en nuestra tienda online.`
+  },
+  {
+    title: "El Hidalgo Don Rodrigo de Cervantes: de las páginas al guion",
+    excerpt: "Después de más de un año de escritura, documentación y desarrollo creativo, Grupo Dauro se complace en anunciar que el guion de la serie El Hidalgo Don Rodrigo de Cervantes está casi terminado.",
+    date: "29 Octubre 2025",
+    author: "Grupo Dauro",
+    image: donRodrigoMain,
+    category: "cine",
+    slug: "el-hidalgo-don-rodrigo-guion",
+    bookImage: donRodrigoPortrait,
+    bookLink: "https://www.youtube.com/@GrupoDauroEditorial",
+    content: `⚜️ El Hidalgo Don Rodrigo de Cervantes: de las páginas al guion
+
+Después de más de un año de escritura, documentación y desarrollo creativo, Grupo Dauro se complace en anunciar que el guion de la serie El Hidalgo Don Rodrigo de Cervantes está casi terminado.
+
+Este ambicioso proyecto audiovisual se basa en la obra homónima del escritor Francisco del Valle, publicada por Grupo Dauro, que rescata del silencio la figura casi desconocida de Don Rodrigo de Cervantes, el padre del autor del Quijote.
+
+## 📜 Un hombre olvidado por la Historia
+
+Muy poco se ha escrito sobre Rodrigo de Cervantes, aquel cirujano sangrador que, con sus manos y su esfuerzo, sostuvo a una familia marcada por las deudas, los desplazamientos y los sueños.
+
+Su vida transcurre en una España desgarrada por la desigualdad, la ambición y los cambios de un siglo que oscilaba entre la fe y la ruina.
+
+Francisco del Valle lo convierte en un personaje trágico, orgulloso y profundamente humano, en quien se adivinan ya los rasgos del idealismo y la rebeldía que más tarde encarnará su hijo Miguel.
+
+El guion de la serie toma esta esencia y la transforma en una narrativa visual intensa, que combina la fidelidad histórica con una mirada moderna y cinematográfica.
+
+## ⚔️ Entre la Historia y la ficción
+
+Ambientada en la segunda mitad del siglo XVI, El Hidalgo Don Rodrigo de Cervantes nos lleva por los caminos polvorientos de Castilla, los hospitales donde los cirujanos luchan con las manos desnudas, las calles de Alcalá y Valladolid, los mercados, las tabernas y los oscuros rincones de una España que busca su alma entre guerras y rezos.
+
+La serie, inspirada en el estilo narrativo de producciones como Yellowstone o Vikingos, combina ritmo ágil, emoción y rigor histórico, con personajes complejos, dilemas morales y una estética visual que transporta al espectador a un tiempo de sombras y esplendor.
+
+## 🎬 Un proyecto de creación y memoria
+
+Desde Grupo Dauro, este proyecto representa un paso más en la difusión de la literatura histórica española y en la conversión del patrimonio literario en relato audiovisual.
+
+El guion, desarrollado a partir de la obra de Francisco del Valle, mantiene su tono épico y reflexivo, explorando la figura de un hombre que luchó por conservar su dignidad cuando el mundo parecía olvidarla.
+
+El Hidalgo Don Rodrigo de Cervantes no es solo una serie: es un homenaje al padre del genio, al hombre común que forjó, sin saberlo, las raíces de la imaginación cervantina.
+
+## 📺 Síguenos y descubre más
+
+Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creativo.`
   },
   {
     title: "El futuro de la edición literaria en la era digital",

@@ -113,17 +113,19 @@ const Blog = () => {
                     <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-xl border border-primary/10 flex flex-col md:flex-row items-center gap-8 mt-8">
                       <div className="flex-shrink-0">
                         <img
-                          src={libroLatido}
-                          alt="Portada Latido"
+                          src={featuredPost.bookImage}
+                          alt={featuredPost.category === "literatura" ? "Portada Latido" : "Don Rodrigo de Cervantes"}
                           className="w-48 h-auto shadow-2xl rounded-lg"
                         />
                       </div>
                       <div className="flex-1 text-center md:text-left">
                         <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
-                          Disponible ahora
+                          {featuredPost.category === "literatura" ? "Disponible ahora" : "Sigue el proyecto"}
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          Latido. Apasionadamente vuestro de Carmen Alcaide ya está disponible en librerías y en nuestra tienda online.
+                          {featuredPost.category === "literatura" 
+                            ? "Latido. Apasionadamente vuestro de Carmen Alcaide ya está disponible en librerías y en nuestra tienda online."
+                            : "Descubre más avances, imágenes y fragmentos del proceso creativo en nuestro canal de YouTube."}
                         </p>
                         <Button
                           asChild
@@ -136,7 +138,7 @@ const Blog = () => {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2"
                           >
-                            Comprar ahora
+                            {featuredPost.category === "literatura" ? "Comprar ahora" : "Ver canal de YouTube"}
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         </Button>
