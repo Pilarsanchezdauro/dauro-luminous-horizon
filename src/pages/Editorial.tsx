@@ -95,25 +95,28 @@ const Editorial = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
-              <h3 className="text-2xl font-playfair font-bold mb-4">Ficción Contemporánea</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <h3 className="text-2xl font-playfair font-bold mb-4 relative z-10">Ficción Contemporánea</h3>
+              <p className="text-muted-foreground mb-4 relative z-10">
                 Novelas y cuentos que exploran la condición humana desde perspectivas frescas 
                 y originales. Narrativas que desafían y emocionan.
               </p>
             </div>
             
-            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
-              <h3 className="text-2xl font-playfair font-bold mb-4">Ensayo Cultural</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <h3 className="text-2xl font-playfair font-bold mb-4 relative z-10">Ensayo Cultural</h3>
+              <p className="text-muted-foreground mb-4 relative z-10">
                 Reflexiones profundas sobre arte, sociedad, filosofía y cultura. 
                 Textos que invitan al pensamiento crítico y al diálogo.
               </p>
             </div>
             
-            <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
-              <h3 className="text-2xl font-playfair font-bold mb-4">Poesía y Clásicos</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+              <h3 className="text-2xl font-playfair font-bold mb-4 relative z-10">Poesía y Clásicos</h3>
+              <p className="text-muted-foreground mb-4 relative z-10">
                 Nuevas voces poéticas y reediciones cuidadas de obras fundamentales. 
                 Preservamos y renovamos la tradición literaria.
               </p>
