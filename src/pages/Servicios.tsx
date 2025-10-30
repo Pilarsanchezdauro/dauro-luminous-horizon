@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
+import ServicesContactForm from "@/components/ServicesContactForm";
 
 const Servicios = () => {
   const services = [
@@ -294,6 +295,25 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Formulario de Contacto */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <h2 
+              className="text-3xl lg:text-4xl font-playfair font-bold text-center mb-4 relative z-10"
+              style={{ color: '#111111' }}
+            >
+              Solicitar servicio
+            </h2>
+            <p className="text-center text-gray-600 mb-8 relative z-10">
+              Completa el formulario y nos pondremos en contacto contigo lo antes posible
+            </p>
+            <div className="relative z-10">
+              <ServicesContactForm />
+            </div>
           </div>
         </div>
       </main>

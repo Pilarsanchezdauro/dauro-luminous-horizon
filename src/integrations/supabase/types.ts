@@ -92,6 +92,45 @@ export type Database = {
         }
         Relationships: []
       }
+      services_contacts: {
+        Row: {
+          apellidos: string
+          created_at: string
+          descripcion: string
+          documento_file_path: string | null
+          email: string
+          enlace_web: string | null
+          id: string
+          nombre: string
+          servicio: string
+          telefono: string
+        }
+        Insert: {
+          apellidos: string
+          created_at?: string
+          descripcion: string
+          documento_file_path?: string | null
+          email: string
+          enlace_web?: string | null
+          id?: string
+          nombre: string
+          servicio: string
+          telefono: string
+        }
+        Update: {
+          apellidos?: string
+          created_at?: string
+          descripcion?: string
+          documento_file_path?: string | null
+          email?: string
+          enlace_web?: string | null
+          id?: string
+          nombre?: string
+          servicio?: string
+          telefono?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
