@@ -34,7 +34,7 @@ const Navigation = () => {
       path: "/blog",
       submenu: [
         { name: "Blog Actual", path: "/blog" },
-        { name: "Antiguo Blog", path: "#" }, // Configurar enlace aquí
+        { name: "Antiguo Blog", path: "https://grupodauro.wpcomstaging.com/", external: true },
       ],
     },
     { name: "Contacto", path: "/contacto" },
@@ -95,13 +95,25 @@ const Navigation = () => {
                   <div className="absolute top-full left-0 pt-2 w-56 z-50">
                     <div className="bg-card border border-border rounded-lg shadow-xl overflow-hidden">
                       {item.submenu.map((subitem) => (
-                        <Link
-                          key={subitem.name}
-                          to={subitem.path}
-                          className="block px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
-                        >
-                          {subitem.name}
-                        </Link>
+                        subitem.external ? (
+                          <a
+                            key={subitem.name}
+                            href={subitem.path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
+                          >
+                            {subitem.name}
+                          </a>
+                        ) : (
+                          <Link
+                            key={subitem.name}
+                            to={subitem.path}
+                            className="block px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
+                          >
+                            {subitem.name}
+                          </Link>
+                        )
                       ))}
                     </div>
                   </div>
@@ -147,14 +159,27 @@ const Navigation = () => {
                 {item.submenu && (
                   <div className="pl-4 mt-2 space-y-2">
                     {item.submenu.map((subitem) => (
-                      <Link
-                        key={subitem.name}
-                        to={subitem.path}
-                        className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {subitem.name}
-                      </Link>
+                      subitem.external ? (
+                        <a
+                          key={subitem.name}
+                          href={subitem.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {subitem.name}
+                        </a>
+                      ) : (
+                        <Link
+                          key={subitem.name}
+                          to={subitem.path}
+                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {subitem.name}
+                        </Link>
+                      )
                     ))}
                   </div>
                 )}

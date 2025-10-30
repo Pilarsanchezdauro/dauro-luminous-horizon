@@ -189,7 +189,7 @@ const Index = () => {
                 Ve a nuestro antiguo blog donde encontrarás toda una hemeroteca 
                 interesante de nuestros autores
               </p>
-              <a href="#" className="inline-block">
+              <a href="https://grupodauro.wpcomstaging.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
                 <Button 
                   size="lg" 
                   className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
