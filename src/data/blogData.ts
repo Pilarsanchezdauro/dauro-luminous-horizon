@@ -35,6 +35,16 @@ export const blogPosts: BlogPost[] = [
     slug: "presentacion-latido-carmen-alcaide",
     bookImage: "/src/assets/libro-latido.png",
     bookLink: "https://www.edicionesdauro.com/articulo/1186-LATIDO-Apasionamente-vuestro/",
+    gallery: [
+      "/src/assets/latido-presentacion-1.jpg",
+      "/src/assets/latido-presentacion-2.jpg",
+      "/src/assets/latido-presentacion-3.jpg",
+      "/src/assets/latido-presentacion-4.jpg",
+      "/src/assets/latido-presentacion-5.jpg",
+      "/src/assets/latido-presentacion-6.jpg",
+      "/src/assets/latido-presentacion-7.jpg",
+      "/src/assets/latido-presentacion-8.jpg"
+    ],
     content: `Granada, 28 de octubre de 2025
 
 Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide, en un formato de tertulia que sorprendió gratamente a los asistentes con un anuncio inesperado: estamos trabajando en la adaptación de la obra a serie de televisión.
