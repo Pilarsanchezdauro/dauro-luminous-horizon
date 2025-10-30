@@ -16,6 +16,7 @@ export interface BlogPost {
   date: string;
   author: string;
   image: string;
+  ogImage?: string; // Open Graph image URL (public path)
   category: BlogCategory;
   slug?: string;
   content?: string;
@@ -34,6 +35,7 @@ export const blogPosts: BlogPost[] = [
     date: "28 Octubre 2025",
     author: "Equipo Dauro",
     image: latidoPresentacion,
+    ogImage: "/og-latido-presentacion.jpg",
     category: "literatura",
     slug: "presentacion-latido-carmen-alcaide",
     bookImage: libroLatido,
@@ -113,6 +115,7 @@ Disponible en librerías y en nuestra tienda online.`
     date: "29 Octubre 2025",
     author: "Grupo Dauro",
     image: donRodrigoMain,
+    ogImage: "/og-don-rodrigo.png",
     category: "cine",
     slug: "el-hidalgo-don-rodrigo-guion",
     bookImage: donRodrigoPortrait,
@@ -157,6 +160,7 @@ Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creati
     date: "30 Octubre 2025",
     author: "Grupo Dauro",
     image: nftArgentinaCollection,
+    ogImage: "/og-nft-argentina.png",
     category: "ia",
     slug: "nfts-oficiales-seleccion-argentina",
     bookImage: nftArgentinaPuertoRico,
@@ -191,6 +195,7 @@ Con The Last Four, el coleccionismo digital da un paso adelante, y cada NFT se c
     date: "31 Octubre 2025",
     author: "Grupo Dauro",
     image: iaConArte,
+    ogImage: "/og-ia-con-arte.png",
     category: "ia",
     slug: "ia-con-identidad-estetica",
     bookImage: logoDauroIA,

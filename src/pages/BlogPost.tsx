@@ -30,6 +30,22 @@ const BlogPost = () => {
     return `${baseUrl}/blog/${post.slug}`;
   };
 
+  const getAbsoluteImageUrl = (imageUrl: string) => {
+    // If it's already an absolute URL, return it
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      return imageUrl;
+    }
+    
+    // Get the base URL
+    const baseUrl = window.location.hostname.includes('lovableproject.com') 
+      ? 'https://grupodauro.com' 
+      : window.location.origin;
+    
+    // If the image starts with /, it's already a path from root
+    const imagePath = imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
+    return `${baseUrl}${imagePath}`;
+  };
+
   const handleShare = (platform: string) => {
     const shareUrl = getShareUrl();
     const shareTitle = post.title;
@@ -131,14 +147,16 @@ const BlogPost = () => {
         <meta property="og:url" content={getShareUrl()} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.image.startsWith('http') ? post.image : `https://grupodauro.com${post.image}`} />
+        <meta property="og:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={getShareUrl()} />
         <meta property="twitter:title" content={post.title} />
         <meta property="twitter:description" content={post.excerpt} />
-        <meta property="twitter:image" content={post.image.startsWith('http') ? post.image : `https://grupodauro.com${post.image}`} />
+        <meta property="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
       </Helmet>
       <Navigation />
       <main className="pt-32 pb-16">
