@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      dauro_arte_contacts: {
+        Row: {
+          apellidos: string
+          created_at: string
+          descripcion: string
+          documento_file_path: string | null
+          email: string
+          enlace_web: string | null
+          id: string
+          nombre: string
+          servicio: string
+          telefono: string
+        }
+        Insert: {
+          apellidos: string
+          created_at?: string
+          descripcion: string
+          documento_file_path?: string | null
+          email: string
+          enlace_web?: string | null
+          id?: string
+          nombre: string
+          servicio: string
+          telefono: string
+        }
+        Update: {
+          apellidos?: string
+          created_at?: string
+          descripcion?: string
+          documento_file_path?: string | null
+          email?: string
+          enlace_web?: string | null
+          id?: string
+          nombre?: string
+          servicio?: string
+          telefono?: string
+        }
+        Relationships: []
+      }
       editorial_submissions: {
         Row: {
           apellidos: string

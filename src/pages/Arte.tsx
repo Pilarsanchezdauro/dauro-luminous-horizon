@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileCheck, TrendingUp, FileSearch, ShoppingBag, Briefcase, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import DauroArteContactForm from "@/components/DauroArteContactForm";
 
 const Arte = () => {
   const services = [
@@ -219,21 +220,20 @@ const Arte = () => {
           </div>
         </div>
 
-        {/* CTA Final */}
-        <div className="max-w-3xl mx-auto text-center">
-          <Link to="/contacto">
-            <Button 
-              size="lg"
-              className="text-white font-semibold text-lg px-8 py-6 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg"
-              style={{ 
-                backgroundColor: '#E31B23',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+        {/* Formulario de Contacto */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-white rounded-lg p-8 lg:p-12 shadow-sm">
+            <h2 
+              className="text-3xl lg:text-4xl font-bold text-center mb-4"
+              style={{ color: '#111111' }}
             >
               Solicitar informe o valoración
-            </Button>
-          </Link>
+            </h2>
+            <p className="text-center text-gray-600 mb-8">
+              Completa el formulario y nos pondremos en contacto contigo lo antes posible
+            </p>
+            <DauroArteContactForm />
+          </div>
         </div>
       </main>
 
