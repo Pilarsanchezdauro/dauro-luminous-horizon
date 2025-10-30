@@ -7,10 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import presentacionLatido from "@/assets/presentacion-latido.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | "todas">("todas");
-  const [featuredPostIndex, setFeaturedPostIndex] = useState(0);
   
   const getFilteredPosts = () => {
     if (activeCategory === "todas") return blogPosts;
@@ -18,13 +18,7 @@ const Blog = () => {
   };
   
   const filteredPosts = getFilteredPosts();
-  const featuredPost = activeCategory === "todas" ? filteredPosts[featuredPostIndex] : null;
-
-  const handleReadMore = (postIndex: number) => {
-    setFeaturedPostIndex(postIndex);
-    setActiveCategory("todas");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const featuredPost = activeCategory === "todas" ? blogPosts[0] : null;
 
   return (
     <div className="min-h-screen">
@@ -203,13 +197,13 @@ const Blog = () => {
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      {post.content && (
-                        <button 
-                          onClick={() => handleReadMore(blogPosts.findIndex(p => p.title === post.title))}
-                          className="text-primary font-semibold hover:underline"
+                      {post.content && post.slug && (
+                        <Link 
+                          to={`/blog/${post.slug}`}
+                          className="text-primary font-semibold hover:underline inline-block"
                         >
                           Leer más →
-                        </button>
+                        </Link>
                       )}
                     </div>
                   </article>

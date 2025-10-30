@@ -132,6 +132,7 @@ Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creati
     author: "Equipo Dauro",
     image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800",
     category: "literatura",
+    slug: "futuro-edicion-literaria-era-digital",
   },
   {
     title: "Arte contemporáneo y nuevas narrativas visuales",
@@ -141,6 +142,7 @@ Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creati
     author: "María González",
     image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800",
     category: "arte",
+    slug: "arte-contemporaneo-narrativas-visuales",
   },
   {
     title: "La inteligencia artificial como herramienta creativa",
@@ -150,6 +152,7 @@ Muy pronto compartiremos más avances, imágenes y fragmentos del proceso creati
     author: "Carlos Ruiz",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
     category: "ia",
+    slug: "ia-herramienta-creativa",
   },
 ];
 
