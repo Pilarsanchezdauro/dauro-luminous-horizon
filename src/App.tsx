@@ -13,6 +13,8 @@ import Servicios from "./pages/Servicios";
 import Tienda from "./pages/Tienda";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
+import Privacidad from "./pages/Privacidad";
+import Terminos from "./pages/Terminos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +43,8 @@ const App = () => (
           <Route path="/tienda/musica" element={<Tienda />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/privacidad" element={<Privacidad />} />
+          <Route path="/terminos" element={<Terminos />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
