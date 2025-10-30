@@ -115,17 +115,19 @@ const Blog = () => {
                       <div className="flex-shrink-0">
                         <img
                           src={featuredPost.bookImage}
-                          alt={featuredPost.category === "literatura" ? "Portada Latido" : "Don Rodrigo de Cervantes"}
+                          alt={featuredPost.category === "literatura" ? "Portada Latido" : featuredPost.category === "ia" ? "NFT Argentina" : "Don Rodrigo de Cervantes"}
                           className="w-48 h-auto shadow-2xl rounded-lg"
                         />
                       </div>
                       <div className="flex-1 text-center md:text-left">
                         <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
-                          {featuredPost.category === "literatura" ? "Disponible ahora" : "Sigue el proyecto"}
+                          {featuredPost.category === "literatura" ? "Disponible ahora" : featuredPost.category === "ia" ? "Descubre la colección" : "Sigue el proyecto"}
                         </h3>
                         <p className="text-muted-foreground mb-6">
                           {featuredPost.category === "literatura" 
                             ? "Latido. Apasionadamente vuestro de Carmen Alcaide ya está disponible en librerías y en nuestra tienda online."
+                            : featuredPost.category === "ia"
+                            ? "Descubre y adquiere los NFTs oficiales de la Selección Argentina."
                             : "Descubre más avances, imágenes y fragmentos del proceso creativo en nuestro canal de YouTube."}
                         </p>
                         <Button
@@ -139,7 +141,7 @@ const Blog = () => {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2"
                           >
-                            {featuredPost.category === "literatura" ? "Comprar ahora" : "Ver canal de YouTube"}
+                            {featuredPost.category === "literatura" ? "Comprar ahora" : featuredPost.category === "ia" ? "Ver colección NFT" : "Ver canal de YouTube"}
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         </Button>

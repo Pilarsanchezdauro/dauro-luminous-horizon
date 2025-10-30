@@ -94,11 +94,13 @@ const BlogPost = () => {
                     </div>
                     <div className="flex-1 text-center md:text-left">
                       <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
-                        {post.category === "literatura" ? "Disponible ahora" : "Sigue el proyecto"}
+                        {post.category === "literatura" ? "Disponible ahora" : post.category === "ia" ? "Descubre la colección" : "Sigue el proyecto"}
                       </h3>
                       <p className="text-muted-foreground mb-6">
                         {post.category === "literatura" 
                           ? "Ya disponible en librerías y en nuestra tienda online."
+                          : post.category === "ia"
+                          ? "Descubre y adquiere los NFTs oficiales de la Selección Argentina."
                           : "Descubre más avances, imágenes y fragmentos del proceso creativo en nuestro canal de YouTube."}
                       </p>
                       <Button
@@ -112,7 +114,7 @@ const BlogPost = () => {
                           rel="noopener noreferrer"
                           className="flex items-center gap-2"
                         >
-                          {post.category === "literatura" ? "Comprar ahora" : "Ver canal de YouTube"}
+                          {post.category === "literatura" ? "Comprar ahora" : post.category === "ia" ? "Ver colección NFT" : "Ver canal de YouTube"}
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>
