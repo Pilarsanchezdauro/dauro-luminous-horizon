@@ -198,22 +198,31 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F8F8]">
+    <div className="min-h-screen">
       <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-background" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-foreground mb-6">
+            Nuestros Servicios
+          </h1>
+          <p className="text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto">
+            Innovación técnica con visión cultural
+          </p>
+        </div>
+      </section>
 
-      <main className="container mx-auto px-6 lg:px-10 pt-32 pb-16">
+      <main className="container mx-auto px-6 lg:px-10 py-16">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Intro */}
           <div className="max-w-4xl mx-auto mb-12 lg:mb-16">
             <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-              <h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-4 text-[#111111] text-center relative z-10">
-                Nuestros Servicios
-              </h1>
-              <p className="text-lg lg:text-xl text-[#333333] mb-3 font-semibold text-center relative z-10">
-                Innovación técnica con visión cultural.
-              </p>
-              <p className="text-base lg:text-lg text-[#333333] max-w-4xl mx-auto leading-relaxed text-center relative z-10">
+              <p className="text-base lg:text-lg text-[#333333] leading-relaxed text-center relative z-10">
                 En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 
                 editoriales, audiovisuales y digitales con precisión técnica y profundidad estética.
                 Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
