@@ -221,6 +221,7 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
             <SelectItem value="escritura">Escritura, Edición y Datos</SelectItem>
             <SelectItem value="diseno">Imagen, Diseño e Identidad Visual</SelectItem>
             <SelectItem value="innovacion">Innovación Cultural y Tecnología</SelectItem>
+            <SelectItem value="otros">Otros</SelectItem>
           </SelectContent>
         </Select>
         {errors.servicio && (

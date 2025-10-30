@@ -306,7 +306,7 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
               className="text-3xl lg:text-4xl font-playfair font-bold text-center mb-4 relative z-10"
               style={{ color: '#111111' }}
             >
-              Solicitar servicio
+              Solicitar información de servicios
             </h2>
             <p className="text-center text-gray-600 mb-8 relative z-10">
               Completa el formulario y nos pondremos en contacto contigo lo antes posible
