@@ -21,8 +21,16 @@ const BlogPost = () => {
     return <NotFound />;
   }
 
+  const getShareUrl = () => {
+    // Use the production domain or current origin if in production
+    const baseUrl = window.location.hostname.includes('lovableproject.com') 
+      ? 'https://grupodauro.com' 
+      : window.location.origin;
+    return `${baseUrl}/blog/${post.slug}`;
+  };
+
   const handleShare = (platform: string) => {
-    const shareUrl = window.location.href;
+    const shareUrl = getShareUrl();
     const shareTitle = post.title;
     let url = '';
     
@@ -47,7 +55,7 @@ const BlogPost = () => {
   };
 
   const copyToClipboard = async () => {
-    const shareUrl = window.location.href;
+    const shareUrl = getShareUrl();
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
