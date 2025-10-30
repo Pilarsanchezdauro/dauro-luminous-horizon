@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { FileCheck, TrendingUp, FileSearch, ShoppingBag, Briefcase, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
@@ -100,12 +99,13 @@ const Arte = () => {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Introducción */}
         <div className="max-w-5xl mx-auto mb-16">
-          <div className="bg-white rounded-lg p-8 lg:p-12 shadow-sm">
-            <p className="text-base lg:text-lg leading-relaxed mb-6" style={{ color: '#333333' }}>
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <p className="text-base lg:text-lg leading-relaxed mb-6 relative z-10" style={{ color: '#333333' }}>
               En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.
               Trabajamos con coleccionistas, museos, instituciones y artistas de trayectoria consolidada, garantizando rigor técnico, discreción y excelencia profesional.
             </p>
-            <p className="text-base lg:text-lg leading-relaxed" style={{ color: '#333333' }}>
+            <p className="text-base lg:text-lg leading-relaxed relative z-10" style={{ color: '#333333' }}>
               Nuestro equipo está formado por peritos judiciales, historiadores del arte, analistas documentales e ingenieros en IA, capaces de unir la sensibilidad estética con la objetividad científica.
               Cada informe, valoración o proyecto nace con un mismo propósito: preservar la autenticidad del arte y proteger su valor real.
             </p>
@@ -127,72 +127,71 @@ const Arte = () => {
               const listItems = service.includes || service.applications || service.services || service.offers || [];
               
               return (
-                <Card 
+                <div
                   key={index} 
-                  className="bg-white shadow-[0_4px_20px_rgba(0,0,0,.05)] border-0 overflow-hidden hover:shadow-[0_8px_30px_rgba(227,27,35,.15)] transition-shadow duration-300"
-                  style={{ maxHeight: '340px' }}
+                  className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-6 lg:p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden"
                 >
-                  <CardContent className="p-5 lg:p-6">
-                    <div className="flex items-start gap-4">
-                      <div 
-                        className="flex-shrink-0 p-3 rounded-lg"
-                        style={{ backgroundColor: 'rgba(227, 27, 35, 0.1)' }}
-                      >
-                        <Icon className="h-6 w-6" style={{ color: '#E31B23' }} />
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <h3 
-                          className="text-xl lg:text-2xl font-bold mb-3"
-                          style={{ color: '#111111' }}
-                        >
-                          {service.title}
-                        </h3>
-                        <p 
-                          className="text-sm lg:text-base mb-4 leading-relaxed"
-                          style={{ color: '#333333' }}
-                        >
-                          {service.description}
-                        </p>
-                        
-                        {listItems.length > 0 && (
-                          <div className="mb-4">
-                            <p 
-                              className="text-sm lg:text-base font-semibold mb-2"
-                              style={{ color: '#E31B23' }}
-                            >
-                              {service.includes ? 'Incluye:' : 
-                               service.applications ? 'Aplicaciones:' : 
-                               service.services ? 'Servicios:' : 
-                               'Ofrecemos:'}
-                            </p>
-                            <ul className="space-y-1 text-sm lg:text-base" style={{ color: '#333333' }}>
-                              {listItems.map((item, i) => (
-                                <li key={i} className="flex items-start">
-                                  <span className="mr-2" style={{ color: '#E31B23' }}>•</span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                        
-                        <Link to="/contacto">
-                          <Button 
-                            className="text-white font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
-                            style={{ 
-                              backgroundColor: '#E31B23',
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
-                          >
-                            Más información
-                          </Button>
-                        </Link>
-                      </div>
+                  <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div 
+                      className="flex-shrink-0 p-3 rounded-lg"
+                      style={{ backgroundColor: 'rgba(227, 27, 35, 0.1)' }}
+                    >
+                      <Icon className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" style={{ color: '#E31B23' }} />
                     </div>
-                  </CardContent>
-                </Card>
+                    
+                    <div className="flex-1 min-w-0">
+                      <h3 
+                        className="text-xl lg:text-2xl font-bold mb-3"
+                        style={{ color: '#111111' }}
+                      >
+                        {service.title}
+                      </h3>
+                      <p 
+                        className="text-sm lg:text-base mb-4 leading-relaxed"
+                        style={{ color: '#333333' }}
+                      >
+                        {service.description}
+                      </p>
+                      
+                      {listItems.length > 0 && (
+                        <div className="mb-4">
+                          <p 
+                            className="text-sm lg:text-base font-semibold mb-2"
+                            style={{ color: '#E31B23' }}
+                          >
+                            {service.includes ? 'Incluye:' : 
+                             service.applications ? 'Aplicaciones:' : 
+                             service.services ? 'Servicios:' : 
+                             'Ofrecemos:'}
+                          </p>
+                          <ul className="space-y-1 text-sm lg:text-base" style={{ color: '#333333' }}>
+                            {listItems.map((item, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="mr-2" style={{ color: '#E31B23' }}>•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      <Link to="/contacto">
+                        <Button 
+                          className="text-white font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
+                          style={{ 
+                            backgroundColor: '#E31B23',
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+                        >
+                          Más información
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -200,19 +199,20 @@ const Arte = () => {
 
         {/* Visión */}
         <div className="max-w-5xl mx-auto mb-16">
-          <div className="bg-white rounded-lg p-8 lg:p-12 shadow-sm">
+          <div className="bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 lg:p-12 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
             <h2 
-              className="text-3xl lg:text-4xl font-bold text-center mb-8"
+              className="text-3xl lg:text-4xl font-bold text-center mb-8 relative z-10"
               style={{ color: '#111111' }}
             >
               Nuestra Visión
             </h2>
-            <p className="text-base lg:text-lg leading-relaxed mb-6 text-center" style={{ color: '#333333' }}>
+            <p className="text-base lg:text-lg leading-relaxed mb-6 text-center relative z-10" style={{ color: '#333333' }}>
               En Dauro Arte entendemos el arte como patrimonio intelectual, técnico y emocional.
               Nuestra misión es garantizar su autenticidad, proteger su legado y ampliar su valor cultural y económico, integrando la historia, la ciencia y la inteligencia artificial.
             </p>
             <p 
-              className="text-lg lg:text-xl font-semibold text-center"
+              className="text-lg lg:text-xl font-semibold text-center relative z-10"
               style={{ color: '#E31B23' }}
             >
               Cultura, tecnología y verdad: tres pilares de una misma visión.
