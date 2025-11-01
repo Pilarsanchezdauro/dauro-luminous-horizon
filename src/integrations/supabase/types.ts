@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author: string
+          category: string
+          content: string
+          created_at: string
+          excerpt: string
+          id: string
+          image_url: string | null
+          meta_description: string | null
+          meta_title: string | null
+          published_at: string | null
+          published_to_social: boolean | null
+          slug: string
+          social_publish_error: string | null
+          status: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+          zapier_webhook_url: string | null
+        }
+        Insert: {
+          author?: string
+          category: string
+          content: string
+          created_at?: string
+          excerpt: string
+          id?: string
+          image_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          published_to_social?: boolean | null
+          slug: string
+          social_publish_error?: string | null
+          status?: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          zapier_webhook_url?: string | null
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          image_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          published_to_social?: boolean | null
+          slug?: string
+          social_publish_error?: string | null
+          status?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          zapier_webhook_url?: string | null
+        }
+        Relationships: []
+      }
       dauro_arte_contacts: {
         Row: {
           apellidos: string
