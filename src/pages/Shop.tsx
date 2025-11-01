@@ -6,11 +6,12 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink } from "lucide-react";
 import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
+import editorialBg from "@/assets/editorial-bg.jpg";
 
 export default function Shop() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -108,26 +109,42 @@ export default function Shop() {
       <div className="min-h-screen flex flex-col">
         <Navigation />
         
-        <main className="flex-1 pt-28">
+        {/* Hero Section */}
+        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${editorialBg})`,
+              filter: "brightness(0.6)",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
+          
+          <div className="relative z-10 container mx-auto px-4 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+              Nuestra Tienda Cultural
+            </h1>
+            <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
+              Descubre nuestras colecciones de libros, obras de arte y NFTs culturales
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+              <p className="text-lg text-white/80">
+                Catálogo editorial completo en:
+              </p>
+              <Button asChild variant="secondary" size="lg">
+                <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" />
+                  www.edicionesdauro.com
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <main className="flex-1">
           <div className="container mx-auto px-6 py-12">
-            <div className="mb-12">
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex-1">
-                  <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
-                  <p className="text-xl text-muted-foreground mb-4">
-                    En la sección de libros encontrarás una selección de los títulos más destacados de nuestra editorial.
-                  </p>
-                  <p className="text-lg text-muted-foreground mb-4">
-                    Todo nuestro fondo editorial completo lo puedes encontrar en:
-                  </p>
-                  <Button asChild variant="default" size="lg">
-                    <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer">
-                      Visitar Catálogo Completo
-                    </a>
-                  </Button>
-                </div>
-                <CartDrawer />
-              </div>
+            <div className="flex justify-end mb-8">
+              <CartDrawer />
             </div>
 
             {isLoading ? (
