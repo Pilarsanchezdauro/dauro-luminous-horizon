@@ -16,12 +16,32 @@ export default function Shop() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("libros");
+  const [bookCategory, setBookCategory] = useState<string>("todos");
   const addItem = useCartStore(state => state.addItem);
 
   // For now, all products are books. Arte and NFT sections will be populated later
   const bookProducts = products;
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
+
+  // Get unique book categories from tags
+  const bookCategories = Array.from(
+    new Set(
+      bookProducts.flatMap(p => 
+        // Extract main category from tags
+        ['narrativa', 'desarrollo personal', 'novela histórica', 'ensayo', 'poesía', 'teatro']
+          .filter(cat => p.node.title.toLowerCase().includes(cat) || p.node.description?.toLowerCase().includes(cat))
+      )
+    )
+  ).sort();
+
+  // Filter books by selected category
+  const filteredBooks = bookCategory === "todos" 
+    ? bookProducts 
+    : bookProducts.filter(p => {
+        const text = `${p.node.title} ${p.node.description}`.toLowerCase();
+        return text.includes(bookCategory.toLowerCase());
+      });
 
   useEffect(() => {
     loadProducts();
@@ -112,8 +132,45 @@ export default function Shop() {
                       </p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {bookProducts.map((product) => (
+                    <>
+                      <div className="flex gap-2 mb-6 flex-wrap">
+                        <Button
+                          variant={bookCategory === "todos" ? "default" : "outline"}
+                          onClick={() => setBookCategory("todos")}
+                          size="sm"
+                        >
+                          Todos ({bookProducts.length})
+                        </Button>
+                        <Button
+                          variant={bookCategory === "narrativa" ? "default" : "outline"}
+                          onClick={() => setBookCategory("narrativa")}
+                          size="sm"
+                        >
+                          Narrativa ({bookProducts.filter(p => {
+                            const text = `${p.node.title} ${p.node.description}`.toLowerCase();
+                            return text.includes('narrativa') || text.includes('novela');
+                          }).length})
+                        </Button>
+                        <Button
+                          variant={bookCategory === "desarrollo personal" ? "default" : "outline"}
+                          onClick={() => setBookCategory("desarrollo personal")}
+                          size="sm"
+                        >
+                          Desarrollo Personal ({bookProducts.filter(p => {
+                            const text = `${p.node.title} ${p.node.description}`.toLowerCase();
+                            return text.includes('desarrollo personal') || text.includes('autoayuda');
+                          }).length})
+                        </Button>
+                      </div>
+
+                      {filteredBooks.length === 0 ? (
+                        <div className="text-center py-20">
+                          <Book className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                          <h2 className="text-2xl font-semibold mb-2">No hay libros en esta categoría</h2>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {filteredBooks.map((product) => (
                         <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                           <Link to={`/producto/${product.node.handle}`} className="block">
                             {product.node.images.edges[0]?.node && (
@@ -158,8 +215,10 @@ export default function Shop() {
                             </Button>
                           </CardFooter>
                         </Card>
-                      ))}
-                    </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   )}
                 </TabsContent>
 
