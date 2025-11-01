@@ -27,11 +27,7 @@ const Navigation = () => {
       ],
     },
     { name: "Servicios", path: "/servicios" },
-    {
-      name: "Tienda",
-      path: "https://www.edicionesdauro.com/",
-      external: true,
-    },
+    { name: "Tienda", path: "/tienda" },
     {
       name: "Blog",
       path: "/blog",
@@ -93,7 +89,7 @@ const Navigation = () => {
                 onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                {item.external ? (
+                {'external' in item && item.external ? (
                   <a
                     href={item.path}
                     target="_blank"
@@ -171,7 +167,7 @@ const Navigation = () => {
             )}
             {menuItems.map((item) => (
               <div key={item.name} className="mb-3">
-                {item.external ? (
+                {'external' in item && item.external ? (
                   <a
                     href={item.path}
                     target="_blank"
