@@ -11,7 +11,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, Save, Eye, Share2 } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Share2, Copy, Check } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const formSchema = z.object({
   title: z.string().min(1, 'El título es obligatorio').max(200),
@@ -25,7 +26,6 @@ const formSchema = z.object({
   status: z.enum(['draft', 'published', 'scheduled']),
   meta_title: z.string().max(60).optional(),
   meta_description: z.string().max(160).optional(),
-  zapier_webhook_url: z.string().url('URL inválida').optional().or(z.literal('')),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -35,7 +35,8 @@ export default function BlogPostForm() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [publishing, setPublishing] = useState(false);
+  const [showSocialDialog, setShowSocialDialog] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const isEditing = !!id;
 
   const {
@@ -126,7 +127,6 @@ export default function BlogPostForm() {
         status: data.status,
         meta_title: data.meta_title || null,
         meta_description: data.meta_description || null,
-        zapier_webhook_url: data.zapier_webhook_url || null,
         published_at: data.status === 'published' ? new Date().toISOString() : null,
       };
 
@@ -164,10 +164,47 @@ export default function BlogPostForm() {
     }
   };
 
-  const handlePublishAndShare = async (data: FormData) => {
-    setPublishing(true);
+  const generateSocialTexts = (data: FormData) => {
+    const postUrl = `${window.location.origin}/blog/${data.slug}`;
+    const hashtags = data.tags
+      ? data.tags.split(',').map((tag) => `#${tag.trim().replace(/\s+/g, '')}`).join(' ')
+      : '';
+
+    // Twitter/X (280 caracteres)
+    const twitterText = `${data.title}
+
+${data.excerpt.substring(0, 120)}...
+
+Lee más: ${postUrl}
+
+${hashtags}`.substring(0, 280);
+
+    // Facebook (más largo, formato conversacional)
+    const facebookText = `📚 ${data.title}
+
+${data.excerpt}
+
+👉 Lee el artículo completo aquí: ${postUrl}
+
+${hashtags}`;
+
+    // LinkedIn (profesional)
+    const linkedinText = `${data.title}
+
+${data.excerpt}
+
+Descubre más en nuestro blog: ${postUrl}
+
+${hashtags}`;
+
+    return { twitterText, facebookText, linkedinText, postUrl };
+  };
+
+  const handleShowSocialDialog = async (data: FormData) => {
+    setLoading(true);
     
     try {
+      // Primero guardamos el post como publicado
       const tags = data.tags
         ? data.tags.split(',').map((tag) => tag.trim()).filter(Boolean)
         : [];
@@ -184,11 +221,8 @@ export default function BlogPostForm() {
         status: 'published',
         meta_title: data.meta_title || null,
         meta_description: data.meta_description || null,
-        zapier_webhook_url: data.zapier_webhook_url || null,
         published_at: new Date().toISOString(),
       };
-
-      let postId = id;
 
       if (isEditing) {
         const { error } = await supabase
@@ -197,36 +231,19 @@ export default function BlogPostForm() {
           .eq('id', id);
         if (error) throw error;
       } else {
-        const { data: newPost, error } = await supabase
+        const { error } = await supabase
           .from('blog_posts')
-          .insert([postData])
-          .select()
-          .single();
-        
+          .insert([postData]);
         if (error) throw error;
-        postId = newPost.id;
       }
 
-      // Trigger social media publication
-      if (postId && data.zapier_webhook_url) {
-        const { error: publishError } = await supabase.functions.invoke('publish-to-social', {
-          body: {
-            postId,
-            zapierWebhookUrl: data.zapier_webhook_url,
-          },
-        });
+      toast({
+        title: '¡Post publicado!',
+        description: 'Ahora puedes compartirlo en redes sociales',
+      });
 
-        if (publishError) throw publishError;
-
-        toast({
-          title: '¡Publicado exitosamente!',
-          description: 'Tu post ha sido guardado y compartido en todas tus redes sociales',
-        });
-      } else {
-        throw new Error('Por favor configura tu Zapier Webhook URL para publicar en redes sociales');
-      }
-
-      navigate('/admin/blog-posts');
+      // Mostramos el diálogo con los textos generados
+      setShowSocialDialog(true);
     } catch (error: any) {
       toast({
         title: 'Error al publicar',
@@ -234,7 +251,25 @@ export default function BlogPostForm() {
         variant: 'destructive',
       });
     } finally {
-      setPublishing(false);
+      setLoading(false);
+    }
+  };
+
+  const copyToClipboard = async (text: string, field: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedField(field);
+      toast({
+        title: 'Copiado',
+        description: 'Texto copiado al portapapeles',
+      });
+      setTimeout(() => setCopiedField(null), 2000);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'No se pudo copiar el texto',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -407,22 +442,11 @@ export default function BlogPostForm() {
               />
             </div>
 
-            <div>
-              <Label htmlFor="zapier_webhook_url">Zapier Webhook URL</Label>
-              <Input
-                id="zapier_webhook_url"
-                {...register('zapier_webhook_url')}
-                placeholder="https://hooks.zapier.com/hooks/catch/..."
-              />
-              <p className="text-xs text-muted-foreground mt-1">
-                Configura tu Zap en Zapier y pega aquí la URL del webhook
-              </p>
-            </div>
           </CardContent>
         </Card>
 
         <div className="flex gap-4">
-          <Button type="submit" disabled={loading || publishing}>
+          <Button type="submit" disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             {loading ? 'Guardando...' : 'Guardar'}
           </Button>
@@ -430,12 +454,12 @@ export default function BlogPostForm() {
           <Button
             type="button"
             variant="default"
-            onClick={handleSubmit(handlePublishAndShare)}
-            disabled={loading || publishing}
+            onClick={handleSubmit(handleShowSocialDialog)}
+            disabled={loading}
             className="bg-gradient-to-r from-primary to-accent"
           >
             <Share2 className="h-4 w-4 mr-2" />
-            {publishing ? 'Publicando...' : 'Publicar en Redes'}
+            {loading ? 'Publicando...' : 'Publicar en Redes'}
           </Button>
 
           <Button
@@ -458,6 +482,146 @@ export default function BlogPostForm() {
           </Button>
         </div>
       </form>
+
+      <Dialog open={showSocialDialog} onOpenChange={setShowSocialDialog}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Compartir en Redes Sociales</DialogTitle>
+          </DialogHeader>
+          
+          {(() => {
+            const formData = watch();
+            const { twitterText, facebookText, linkedinText, postUrl } = generateSocialTexts(formData);
+            
+            return (
+              <div className="space-y-6">
+                {/* Twitter/X */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>Twitter / X</span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => copyToClipboard(twitterText, 'twitter')}
+                      >
+                        {copiedField === 'twitter' ? (
+                          <Check className="h-4 w-4 mr-2" />
+                        ) : (
+                          <Copy className="h-4 w-4 mr-2" />
+                        )}
+                        Copiar
+                      </Button>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={twitterText}
+                      readOnly
+                      rows={6}
+                      className="font-mono text-sm mb-2"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      {twitterText.length}/280 caracteres
+                    </p>
+                    <Button
+                      className="mt-2 w-full"
+                      variant="secondary"
+                      onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`, '_blank')}
+                    >
+                      Abrir en Twitter/X
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Facebook */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>Facebook</span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => copyToClipboard(facebookText, 'facebook')}
+                      >
+                        {copiedField === 'facebook' ? (
+                          <Check className="h-4 w-4 mr-2" />
+                        ) : (
+                          <Copy className="h-4 w-4 mr-2" />
+                        )}
+                        Copiar
+                      </Button>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={facebookText}
+                      readOnly
+                      rows={8}
+                      className="font-mono text-sm"
+                    />
+                    <Button
+                      className="mt-2 w-full"
+                      variant="secondary"
+                      onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`, '_blank')}
+                    >
+                      Abrir en Facebook
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* LinkedIn */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>LinkedIn</span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => copyToClipboard(linkedinText, 'linkedin')}
+                      >
+                        {copiedField === 'linkedin' ? (
+                          <Check className="h-4 w-4 mr-2" />
+                        ) : (
+                          <Copy className="h-4 w-4 mr-2" />
+                        )}
+                        Copiar
+                      </Button>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={linkedinText}
+                      readOnly
+                      rows={8}
+                      className="font-mono text-sm"
+                    />
+                    <Button
+                      className="mt-2 w-full"
+                      variant="secondary"
+                      onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`, '_blank')}
+                    >
+                      Abrir en LinkedIn
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <div className="pt-4 border-t">
+                  <Button
+                    className="w-full"
+                    onClick={() => {
+                      setShowSocialDialog(false);
+                      navigate('/admin/blog-posts');
+                    }}
+                  >
+                    Finalizar
+                  </Button>
+                </div>
+              </div>
+            );
+          })()}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
