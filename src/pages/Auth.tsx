@@ -99,7 +99,7 @@ export default function Auth() {
                   <TabsTrigger value="signup">Registrarse</TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="login">
+                <TabsContent value="login" className="space-y-4">
                   <form onSubmit={handleSignIn} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="login-email">Email</Label>
@@ -127,16 +127,18 @@ export default function Auth() {
                     <Button type="submit" className="w-full" disabled={loading}>
                       {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
                     </Button>
-                    
-                    <Button
-                      type="button"
-                      variant="link"
-                      className="w-full"
-                      onClick={() => setShowResetPassword(true)}
-                    >
-                      ¿Olvidaste tu contraseña?
-                    </Button>
                   </form>
+                  
+                  <button
+                    type="button"
+                    className="text-sm text-primary hover:underline w-full text-center"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowResetPassword(true);
+                    }}
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </button>
                 </TabsContent>
               
                 <TabsContent value="signup">
