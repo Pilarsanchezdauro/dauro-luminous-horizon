@@ -24,24 +24,26 @@ export default function Shop() {
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
-  // Get unique book categories from tags
-  const bookCategories = Array.from(
-    new Set(
-      bookProducts.flatMap(p => 
-        // Extract main category from tags
-        ['narrativa', 'desarrollo personal', 'novela histórica', 'ensayo', 'poesía', 'teatro']
-          .filter(cat => p.node.title.toLowerCase().includes(cat) || p.node.description?.toLowerCase().includes(cat))
-      )
-    )
-  ).sort();
-
-  // Filter books by selected category
+  // Filter books by selected category using tags
   const filteredBooks = bookCategory === "todos" 
     ? bookProducts 
     : bookProducts.filter(p => {
-        const text = `${p.node.title} ${p.node.description}`.toLowerCase();
-        return text.includes(bookCategory.toLowerCase());
+        const tags = p.node.tags || [];
+        const tagsLower = tags.map(t => t.toLowerCase());
+        return tagsLower.includes(bookCategory.toLowerCase()) || 
+               (bookCategory === "desarrollo personal" && (tagsLower.includes("autoayuda") || tagsLower.includes("desarrollo personal")));
       });
+
+  // Count books per category
+  const narrativaCount = bookProducts.filter(p => {
+    const tags = p.node.tags || [];
+    return tags.some(t => t.toLowerCase() === "narrativa");
+  }).length;
+
+  const desarrolloPersonalCount = bookProducts.filter(p => {
+    const tags = p.node.tags || [];
+    return tags.some(t => t.toLowerCase() === "desarrollo personal" || t.toLowerCase() === "autoayuda");
+  }).length;
 
   useEffect(() => {
     loadProducts();
@@ -146,20 +148,14 @@ export default function Shop() {
                           onClick={() => setBookCategory("narrativa")}
                           size="sm"
                         >
-                          Narrativa ({bookProducts.filter(p => {
-                            const text = `${p.node.title} ${p.node.description}`.toLowerCase();
-                            return text.includes('narrativa') || text.includes('novela');
-                          }).length})
+                          Narrativa ({narrativaCount})
                         </Button>
                         <Button
                           variant={bookCategory === "desarrollo personal" ? "default" : "outline"}
                           onClick={() => setBookCategory("desarrollo personal")}
                           size="sm"
                         >
-                          Desarrollo Personal ({bookProducts.filter(p => {
-                            const text = `${p.node.title} ${p.node.description}`.toLowerCase();
-                            return text.includes('desarrollo personal') || text.includes('autoayuda');
-                          }).length})
+                          Desarrollo Personal ({desarrolloPersonalCount})
                         </Button>
                       </div>
 
