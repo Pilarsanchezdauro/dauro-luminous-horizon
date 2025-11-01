@@ -24,6 +24,22 @@ export default function Shop() {
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
+  // All book categories
+  const bookCategories = [
+    { id: "todos", label: "Todos" },
+    { id: "narrativa", label: "Narrativa" },
+    { id: "cultura y sociedad", label: "Cultura y Sociedad" },
+    { id: "poesía", label: "Poesía" },
+    { id: "granada", label: "Granada" },
+    { id: "ensayo", label: "Ensayo" },
+    { id: "teatro", label: "Teatro" },
+    { id: "infantil y juvenil", label: "Infantil y Juvenil" },
+    { id: "memorias", label: "Memorias" },
+    { id: "desarrollo personal", label: "Desarrollo Personal" },
+    { id: "miscelánea", label: "Miscelánea" },
+    { id: "crónica", label: "Crónica" },
+  ];
+
   // Filter books by selected category using tags
   const filteredBooks = bookCategory === "todos" 
     ? bookProducts 
@@ -31,19 +47,19 @@ export default function Shop() {
         const tags = p.node.tags || [];
         const tagsLower = tags.map(t => t.toLowerCase());
         return tagsLower.includes(bookCategory.toLowerCase()) || 
-               (bookCategory === "desarrollo personal" && (tagsLower.includes("autoayuda") || tagsLower.includes("desarrollo personal")));
+               (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
 
   // Count books per category
-  const narrativaCount = bookProducts.filter(p => {
-    const tags = p.node.tags || [];
-    return tags.some(t => t.toLowerCase() === "narrativa");
-  }).length;
-
-  const desarrolloPersonalCount = bookProducts.filter(p => {
-    const tags = p.node.tags || [];
-    return tags.some(t => t.toLowerCase() === "desarrollo personal" || t.toLowerCase() === "autoayuda");
-  }).length;
+  const getCategoryCount = (categoryId: string) => {
+    if (categoryId === "todos") return bookProducts.length;
+    return bookProducts.filter(p => {
+      const tags = p.node.tags || [];
+      const tagsLower = tags.map(t => t.toLowerCase());
+      return tagsLower.includes(categoryId.toLowerCase()) ||
+             (categoryId === "desarrollo personal" && tagsLower.includes("autoayuda"));
+    }).length;
+  };
 
   useEffect(() => {
     loadProducts();
@@ -136,27 +152,16 @@ export default function Shop() {
                   ) : (
                     <>
                       <div className="flex gap-2 mb-6 flex-wrap">
-                        <Button
-                          variant={bookCategory === "todos" ? "default" : "outline"}
-                          onClick={() => setBookCategory("todos")}
-                          size="sm"
-                        >
-                          Todos ({bookProducts.length})
-                        </Button>
-                        <Button
-                          variant={bookCategory === "narrativa" ? "default" : "outline"}
-                          onClick={() => setBookCategory("narrativa")}
-                          size="sm"
-                        >
-                          Narrativa ({narrativaCount})
-                        </Button>
-                        <Button
-                          variant={bookCategory === "desarrollo personal" ? "default" : "outline"}
-                          onClick={() => setBookCategory("desarrollo personal")}
-                          size="sm"
-                        >
-                          Desarrollo Personal ({desarrolloPersonalCount})
-                        </Button>
+                        {bookCategories.map(category => (
+                          <Button
+                            key={category.id}
+                            variant={bookCategory === category.id ? "default" : "outline"}
+                            onClick={() => setBookCategory(category.id)}
+                            size="sm"
+                          >
+                            {category.label} ({getCategoryCount(category.id)})
+                          </Button>
+                        ))}
                       </div>
 
                       {filteredBooks.length === 0 ? (
