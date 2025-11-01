@@ -7,7 +7,9 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRouteProps) {
-  const { user, loading, isAdmin, isStaff } = useAuth();
+  const { user, loading, isAdmin, isStaff, roles } = useAuth();
+
+  console.log('ProtectedRoute - User:', user?.email, 'Roles:', roles, 'isStaff:', isStaff, 'Loading:', loading);
 
   if (loading) {
     return (
@@ -18,10 +20,12 @@ export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRout
   }
 
   if (!user) {
+    console.log('ProtectedRoute - No user, redirecting to /auth');
     return <Navigate to="/auth" replace />;
   }
 
   if (requireAdmin && !isStaff) {
+    console.log('ProtectedRoute - User is not staff, redirecting to /');
     return <Navigate to="/" replace />;
   }
 
