@@ -167,6 +167,12 @@ export default function ProductDetail() {
                         Éxito de Ventas
                       </div>
                     )}
+                    {product.tags?.some((tag: string) => tag.toLowerCase() === 'joya') && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <Gem className="w-4 h-4" />
+                        Joya
+                      </div>
+                    )}
                     {product.tags?.some((tag: string) => tag.toLowerCase() === 'premio andalucía de la crítica') && (
                       <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
                         <Trophy className="w-4 h-4" />

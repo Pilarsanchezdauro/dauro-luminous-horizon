@@ -216,16 +216,23 @@ export default function Shop() {
                                     Éxito de Ventas
                                   </div>
                                 )}
+                                {/* Joya Badge */}
+                                {product.node.tags?.some(tag => tag.toLowerCase() === 'joya') && (
+                                  <div className="absolute top-16 right-4 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                    <Gem className="w-3.5 h-3.5" />
+                                    Joya
+                                  </div>
+                                )}
                                 {/* Premio Andalucía de la Crítica Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'premio andalucía de la crítica') && (
-                                  <div className="absolute top-16 right-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                  <div className="absolute top-28 right-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
                                     <Trophy className="w-3.5 h-3.5" />
                                     Premio Andalucía
                                   </div>
                                 )}
                                 {/* Cine Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'cine') && (
-                                  <div className="absolute top-28 right-4 bg-gradient-to-r from-red-600 to-rose-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                  <div className="absolute top-40 right-4 bg-gradient-to-r from-red-600 to-rose-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
                                     <Film className="w-3.5 h-3.5" />
                                     Llevada al Cine
                                   </div>
