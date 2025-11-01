@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy } from "lucide-react";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck } from "lucide-react";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -177,6 +177,12 @@ export default function ProductDetail() {
                       <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
                         <Trophy className="w-4 h-4" />
                         Premio Andalucía de la Crítica
+                      </div>
+                    )}
+                    {product.tags?.some((tag: string) => tag.toLowerCase() === 'basada en hechos reales') && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <FileCheck className="w-4 h-4" />
+                        Basada en Hechos Reales
                       </div>
                     )}
                     {product.tags?.some((tag: string) => tag.toLowerCase() === 'cine') && (

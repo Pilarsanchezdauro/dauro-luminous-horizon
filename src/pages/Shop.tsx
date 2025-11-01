@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck } from "lucide-react";
 import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -231,9 +231,16 @@ export default function Shop() {
                                     Premio Andalucía
                                   </div>
                                 )}
+                                {/* Basada en Hechos Reales Badge */}
+                                {product.node.tags?.some(tag => tag.toLowerCase() === 'basada en hechos reales') && (
+                                  <div className="absolute top-40 right-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                    <FileCheck className="w-3.5 h-3.5" />
+                                    Hechos Reales
+                                  </div>
+                                )}
                                 {/* Cine Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'cine') && (
-                                  <div className="absolute top-40 right-4 bg-gradient-to-r from-red-600 to-rose-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                  <div className="absolute top-52 right-4 bg-gradient-to-r from-red-600 to-rose-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
                                     <Film className="w-3.5 h-3.5" />
                                     Llevada al Cine
                                   </div>
