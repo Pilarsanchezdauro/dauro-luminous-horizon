@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Pencil, Trash2, ExternalLink, Share2 } from 'lucide-react';
+import { Plus, Pencil, Trash2, ExternalLink, Copy } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   AlertDialog,
@@ -17,25 +17,34 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 
 interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  excerpt: string;
+  tags: string[];
   status: 'draft' | 'published' | 'scheduled';
   author: string;
   category: string;
   published_at: string | null;
   created_at: string;
-  published_to_social: boolean;
-  social_publish_error: string | null;
 }
 
 export default function BlogPosts() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [publishingId, setPublishingId] = useState<string | null>(null);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [socialContent, setSocialContent] = useState('');
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -47,7 +56,7 @@ export default function BlogPosts() {
     try {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, title, slug, status, author, category, published_at, created_at, published_to_social, social_publish_error')
+        .select('id, title, slug, excerpt, tags, status, author, category, published_at, created_at')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -91,31 +100,28 @@ export default function BlogPosts() {
     }
   };
 
-  const handlePublishToSocial = async (postId: string) => {
-    setPublishingId(postId);
+  const handlePrepareForSocial = (post: BlogPost) => {
+    const postUrl = `https://grupodauro.com/blog/${post.slug}`;
+    const hashtags = post.tags?.map((tag: string) => `#${tag.replace(/\s+/g, '')}`).join(' ') || '';
     
-    try {
-      const { data, error } = await supabase.functions.invoke('publish-to-social', {
-        body: { postId },
-      });
+    const content = `${post.title}
 
-      if (error) throw error;
+${post.excerpt}
 
-      toast({
-        title: '¡Publicado!',
-        description: 'El post ha sido enviado a tus redes sociales',
-      });
+Leer más: ${postUrl}
 
-      fetchPosts();
-    } catch (error: any) {
-      toast({
-        title: 'Error al publicar',
-        description: error.message || 'No se pudo publicar en redes sociales',
-        variant: 'destructive',
-      });
-    } finally {
-      setPublishingId(null);
-    }
+${hashtags}`;
+    
+    setSocialContent(content);
+    setSelectedPost(post);
+  };
+
+  const handleCopyContent = () => {
+    navigator.clipboard.writeText(socialContent);
+    toast({
+      title: '¡Copiado!',
+      description: 'El contenido ha sido copiado al portapapeles. Ahora puedes pegarlo en Grupo Dauro.',
+    });
   };
 
   const getStatusBadge = (status: string) => {
@@ -165,7 +171,6 @@ export default function BlogPosts() {
                 <TableHead>Estado</TableHead>
                 <TableHead>Categoría</TableHead>
                 <TableHead>Autor</TableHead>
-                <TableHead>Redes Sociales</TableHead>
                 <TableHead>Fecha</TableHead>
                 <TableHead className="text-right">Acciones</TableHead>
               </TableRow>
@@ -178,27 +183,6 @@ export default function BlogPosts() {
                   <TableCell>{post.category}</TableCell>
                   <TableCell>{post.author}</TableCell>
                   <TableCell>
-                    {post.published_to_social ? (
-                      <Badge variant="default" className="bg-green-500">
-                        Publicado
-                      </Badge>
-                    ) : post.social_publish_error ? (
-                      <Badge variant="destructive">Error</Badge>
-                    ) : post.status === 'published' ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handlePublishToSocial(post.id)}
-                        disabled={publishingId === post.id}
-                      >
-                        <Share2 className="h-3 w-3 mr-1" />
-                        {publishingId === post.id ? 'Publicando...' : 'Publicar'}
-                      </Button>
-                    ) : (
-                      <span className="text-muted-foreground text-sm">-</span>
-                    )}
-                  </TableCell>
-                  <TableCell>
                     {post.published_at
                       ? new Date(post.published_at).toLocaleDateString('es-ES')
                       : new Date(post.created_at).toLocaleDateString('es-ES')}
@@ -206,13 +190,23 @@ export default function BlogPosts() {
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       {post.status === 'published' && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handlePrepareForSocial(post)}
+                          >
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copiar para redes
+                          </Button>
+                        </>
                       )}
                       <Button
                         variant="ghost"
@@ -253,6 +247,28 @@ export default function BlogPosts() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Contenido listo para Grupo Dauro</DialogTitle>
+            <DialogDescription>
+              Copia este contenido y pégalo manualmente en el grupo de Facebook
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <Textarea
+              value={socialContent}
+              readOnly
+              className="min-h-[200px] font-mono text-sm"
+            />
+            <Button onClick={handleCopyContent} className="w-full">
+              <Copy className="h-4 w-4 mr-2" />
+              Copiar al portapapeles
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
