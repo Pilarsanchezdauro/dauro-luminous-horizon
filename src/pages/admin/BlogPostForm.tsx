@@ -168,27 +168,68 @@ export default function BlogPostForm() {
     setPublishing(true);
     
     try {
-      // First, save/update the post as published
-      data.status = 'published';
-      await onSubmit(data);
+      const tags = data.tags
+        ? data.tags.split(',').map((tag) => tag.trim()).filter(Boolean)
+        : [];
 
-      // Then trigger social media publication
-      if (id || data.zapier_webhook_url) {
-        await supabase.functions.invoke('publish-to-social', {
+      const postData: any = {
+        title: data.title,
+        slug: data.slug,
+        excerpt: data.excerpt,
+        content: data.content,
+        author: data.author,
+        category: data.category,
+        tags,
+        image_url: data.image_url || null,
+        status: 'published',
+        meta_title: data.meta_title || null,
+        meta_description: data.meta_description || null,
+        zapier_webhook_url: data.zapier_webhook_url || null,
+        published_at: new Date().toISOString(),
+      };
+
+      let postId = id;
+
+      if (isEditing) {
+        const { error } = await supabase
+          .from('blog_posts')
+          .update(postData)
+          .eq('id', id);
+        if (error) throw error;
+      } else {
+        const { data: newPost, error } = await supabase
+          .from('blog_posts')
+          .insert([postData])
+          .select()
+          .single();
+        
+        if (error) throw error;
+        postId = newPost.id;
+      }
+
+      // Trigger social media publication
+      if (postId && data.zapier_webhook_url) {
+        const { error: publishError } = await supabase.functions.invoke('publish-to-social', {
           body: {
-            postId: id,
+            postId,
             zapierWebhookUrl: data.zapier_webhook_url,
           },
         });
 
+        if (publishError) throw publishError;
+
         toast({
-          title: '¡Publicado en redes sociales!',
-          description: 'Tu post ha sido compartido en todas tus redes',
+          title: '¡Publicado exitosamente!',
+          description: 'Tu post ha sido guardado y compartido en todas tus redes sociales',
         });
+      } else {
+        throw new Error('Por favor configura tu Zapier Webhook URL para publicar en redes sociales');
       }
+
+      navigate('/admin/blog-posts');
     } catch (error: any) {
       toast({
-        title: 'Error al publicar en redes',
+        title: 'Error al publicar',
         description: error.message,
         variant: 'destructive',
       });
@@ -386,17 +427,16 @@ export default function BlogPostForm() {
             {loading ? 'Guardando...' : 'Guardar'}
           </Button>
 
-          {(!isEditing || status !== 'published') && (
-            <Button
-              type="button"
-              variant="default"
-              onClick={handleSubmit(handlePublishAndShare)}
-              disabled={loading || publishing}
-            >
-              <Share2 className="h-4 w-4 mr-2" />
-              {publishing ? 'Publicando...' : 'Publicar y Compartir'}
-            </Button>
-          )}
+          <Button
+            type="button"
+            variant="default"
+            onClick={handleSubmit(handlePublishAndShare)}
+            disabled={loading || publishing}
+            className="bg-gradient-to-r from-primary to-accent"
+          >
+            <Share2 className="h-4 w-4 mr-2" />
+            {publishing ? 'Publicando...' : 'Publicar en Redes'}
+          </Button>
 
           <Button
             type="button"
