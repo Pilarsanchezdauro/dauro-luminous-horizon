@@ -169,11 +169,14 @@ export default function BlogPostForm() {
     const hashtags = data.tags
       ? data.tags.split(',').map((tag) => `#${tag.trim().replace(/\s+/g, '')}`).join(' ')
       : '';
+    
+    const excerpt = data.excerpt || '';
+    const excerptPreview = excerpt ? excerpt.substring(0, 120) : '';
 
     // Twitter/X (280 caracteres)
     const twitterText = `${data.title}
 
-${data.excerpt.substring(0, 120)}...
+${excerptPreview}${excerptPreview ? '...' : ''}
 
 Lee más: ${postUrl}
 
@@ -182,7 +185,7 @@ ${hashtags}`.substring(0, 280);
     // Facebook (más largo, formato conversacional)
     const facebookText = `📚 ${data.title}
 
-${data.excerpt}
+${excerpt}
 
 👉 Lee el artículo completo aquí: ${postUrl}
 
@@ -191,7 +194,7 @@ ${hashtags}`;
     // LinkedIn (profesional)
     const linkedinText = `${data.title}
 
-${data.excerpt}
+${excerpt}
 
 Descubre más en nuestro blog: ${postUrl}
 
