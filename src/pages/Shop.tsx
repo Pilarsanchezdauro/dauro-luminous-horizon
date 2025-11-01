@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Loader2, Book, Palette, Image } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award } from "lucide-react";
 import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -174,7 +174,7 @@ export default function Shop() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                           {filteredBooks.map((product) => (
                         <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                          <Link to={`/producto/${product.node.handle}`} className="block">
+                          <Link to={`/producto/${product.node.handle}`} className="block relative">
                             {product.node.images.edges[0]?.node && (
                               <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4">
                                 <img
@@ -182,6 +182,13 @@ export default function Shop() {
                                   alt={product.node.images.edges[0].node.altText || product.node.title}
                                   className="w-full h-full object-contain hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
                                 />
+                                {/* Bestseller Badge */}
+                                {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
+                                  <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                    <Award className="w-3.5 h-3.5" />
+                                    Éxito de Ventas
+                                  </div>
+                                )}
                               </div>
                             )}
                           </Link>
