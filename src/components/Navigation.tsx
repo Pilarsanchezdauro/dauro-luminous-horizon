@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, ArrowLeft, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/logo.png";
+import mascot from "@/assets/mascot.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,12 @@ const Navigation = () => {
                 <span className="hidden sm:inline">Volver</span>
               </Button>
             )}
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center gap-4">
+              <img 
+                src={mascot} 
+                alt="Mascota Dauro" 
+                className="h-16 w-16 hover:opacity-80 transition-opacity"
+              />
               <img 
                 src={logo} 
                 alt="Grupo Cultural Dauro" 
