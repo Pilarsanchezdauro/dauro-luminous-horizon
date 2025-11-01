@@ -28,6 +28,7 @@ export default function Shop() {
   const bookCategories = [
     { id: "todos", label: "Todos" },
     { id: "narrativa", label: "Narrativa" },
+    { id: "relato", label: "Relato" },
     { id: "cultura y sociedad", label: "Cultura y Sociedad" },
     { id: "poesía", label: "Poesía" },
     { id: "granada", label: "Granada" },
