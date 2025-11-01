@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ArrowLeft } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowLeft, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/logo.png";
 
 const Navigation = () => {
@@ -9,6 +10,7 @@ const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, signOut } = useAuth();
   const isHomePage = location.pathname === "/";
 
   const menuItems = [
@@ -67,6 +69,17 @@ const Navigation = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
+            {user && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => signOut()}
+                className="text-foreground/70 hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Cerrar Sesión
+              </Button>
+            )}
             {menuItems.map((item) => (
               <div
                 key={item.name}
@@ -136,6 +149,20 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden py-6 animate-fade-in">
+            {user && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  signOut();
+                  setIsOpen(false);
+                }}
+                className="w-full justify-start mb-3 text-foreground/70 hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Cerrar Sesión
+              </Button>
+            )}
             {menuItems.map((item) => (
               <div key={item.name} className="mb-3">
                 {item.external ? (
