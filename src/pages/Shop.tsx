@@ -110,14 +110,24 @@ export default function Shop() {
         
         <main className="flex-1 pt-28">
           <div className="container mx-auto px-6 py-12">
-            <div className="flex justify-between items-center mb-12">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
-                <p className="text-xl text-muted-foreground">
-                  Explora nuestras colecciones de libros, arte y NFTs
-                </p>
+            <div className="mb-12">
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex-1">
+                  <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestra Tienda</h1>
+                  <p className="text-xl text-muted-foreground mb-4">
+                    En la sección de libros encontrarás una selección de los títulos más destacados de nuestra editorial.
+                  </p>
+                  <p className="text-lg text-muted-foreground mb-4">
+                    Todo nuestro fondo editorial completo lo puedes encontrar en:
+                  </p>
+                  <Button asChild variant="default" size="lg">
+                    <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer">
+                      Visitar Catálogo Completo
+                    </a>
+                  </Button>
+                </div>
+                <CartDrawer />
               </div>
-              <CartDrawer />
             </div>
 
             {isLoading ? (
