@@ -14,6 +14,8 @@ import Cine from "./pages/Cine";
 import IA from "./pages/IA";
 import Servicios from "./pages/Servicios";
 import Tienda from "./pages/Tienda";
+import Shop from "./pages/Shop";
+import ProductDetail from "./pages/ProductDetail";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -50,10 +52,8 @@ const App = () => (
             <Route path="/grupo-dauro/cine" element={<Cine />} />
             <Route path="/grupo-dauro/ia" element={<IA />} />
             <Route path="/servicios" element={<Servicios />} />
-            <Route path="/tienda" element={<Tienda />} />
-            <Route path="/tienda/libros" element={<Tienda />} />
-            <Route path="/tienda/arte" element={<Tienda />} />
-            <Route path="/tienda/musica" element={<Tienda />} />
+            <Route path="/tienda" element={<Shop />} />
+            <Route path="/producto/:handle" element={<ProductDetail />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/feed.xml" element={<RssFeed />} />
