@@ -122,10 +122,10 @@ export default function Shop() {
           
           <div className="relative z-10 container mx-auto px-4 text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
-              Nuestra Tienda Cultural
+              Nuestras Obras Destacadas
             </h1>
             <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
-              Descubre nuestras colecciones de libros, obras de arte y NFTs culturales
+              Aquí encontrarás una selección de nuestras obras más destacadas: libros, arte y NFTs culturales
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
               <p className="text-lg text-white/80">
