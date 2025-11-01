@@ -66,12 +66,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+    supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
       
       if (currentSession?.user) {
-        fetchUserRoles(currentSession.user.id).then(setRoles);
+        const userRoles = await fetchUserRoles(currentSession.user.id);
+        setRoles(userRoles);
       }
       setLoading(false);
     });
