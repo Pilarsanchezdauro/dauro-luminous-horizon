@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +18,11 @@ const menuItems = [
     title: 'Panel Principal',
     url: '/admin',
     icon: LayoutDashboard,
+  },
+  {
+    title: 'Posts del Blog',
+    url: '/admin/blog-posts',
+    icon: Newspaper,
   },
   {
     title: 'Contactos DauroArte',

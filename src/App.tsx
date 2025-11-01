@@ -27,6 +27,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import DauroArteContacts from "./pages/admin/DauroArteContacts";
 import EditorialSubmissions from "./pages/admin/EditorialSubmissions";
 import ServicesContacts from "./pages/admin/ServicesContacts";
+import BlogPosts from "./pages/admin/BlogPosts";
+import BlogPostForm from "./pages/admin/BlogPostForm";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +64,9 @@ const App = () => (
               <Route path="dauro-arte" element={<DauroArteContacts />} />
               <Route path="editorial" element={<EditorialSubmissions />} />
               <Route path="servicios" element={<ServicesContacts />} />
+              <Route path="blog-posts" element={<BlogPosts />} />
+              <Route path="blog-posts/new" element={<BlogPostForm />} />
+              <Route path="blog-posts/edit/:id" element={<BlogPostForm />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
