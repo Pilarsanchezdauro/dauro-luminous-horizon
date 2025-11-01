@@ -92,11 +92,11 @@ export default function Shop() {
                   <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                     <Link to={`/producto/${product.node.handle}`} className="block">
                       {product.node.images.edges[0]?.node && (
-                        <div className="aspect-square overflow-hidden bg-secondary/20">
+                        <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4">
                           <img
                             src={product.node.images.edges[0].node.url}
                             alt={product.node.images.edges[0].node.altText || product.node.title}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-contain hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
                           />
                         </div>
                       )}

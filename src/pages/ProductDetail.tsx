@@ -130,12 +130,12 @@ export default function ProductDetail() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-4">
                 {product.images.edges[0]?.node && (
-                  <Card className="overflow-hidden">
-                    <CardContent className="p-0">
+                  <Card className="overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30">
+                    <CardContent className="p-8 flex items-center justify-center min-h-[600px]">
                       <img
                         src={product.images.edges[0].node.url}
                         alt={product.images.edges[0].node.altText || product.title}
-                        className="w-full h-auto object-cover"
+                        className="w-full max-w-md h-auto object-contain drop-shadow-2xl"
                       />
                     </CardContent>
                   </Card>
