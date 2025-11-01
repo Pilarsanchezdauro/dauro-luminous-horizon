@@ -29,6 +29,7 @@ export default function Shop() {
   const bookCategories = [
     { id: "todos", label: "Todos" },
     { id: "narrativa", label: "Narrativa" },
+    { id: "novela histórica", label: "Novela Histórica" },
     { id: "relato", label: "Relato" },
     { id: "cultura y sociedad", label: "Cultura y Sociedad" },
     { id: "poesía", label: "Poesía" },
