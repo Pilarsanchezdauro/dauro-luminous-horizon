@@ -5,6 +5,14 @@
     {
       "source": "/blog/:slug",
       "destination": "/index.html"
+    },
+    {
+      "source": "/feed.xml",
+      "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     }
   ],
   "headers": [
