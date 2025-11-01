@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award } from "lucide-react";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem } from "lucide-react";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -160,12 +160,20 @@ export default function ProductDetail() {
 
               <div className="space-y-6">
                 <div>
-                  {product.tags?.some((tag: string) => tag.toLowerCase() === 'bestseller') && (
-                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide mb-4">
-                      <Award className="w-4 h-4" />
-                      Éxito de Ventas
-                    </div>
-                  )}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {product.tags?.some((tag: string) => tag.toLowerCase() === 'bestseller') && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <Award className="w-4 h-4" />
+                        Éxito de Ventas
+                      </div>
+                    )}
+                    {product.tags?.some((tag: string) => tag.toLowerCase() === 'joya') && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <Gem className="w-4 h-4" />
+                        Joya
+                      </div>
+                    )}
+                  </div>
                   <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
                   <p className="text-3xl font-bold text-primary mb-6">
                     {selectedVariant.price.currencyCode}{' '}

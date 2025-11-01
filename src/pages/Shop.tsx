@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem } from "lucide-react";
 import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -187,6 +187,13 @@ export default function Shop() {
                                   <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
                                     <Award className="w-3.5 h-3.5" />
                                     Éxito de Ventas
+                                  </div>
+                                )}
+                                {/* Joya Badge */}
+                                {product.node.tags?.some(tag => tag.toLowerCase() === 'joya') && (
+                                  <div className="absolute top-16 right-4 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
+                                    <Gem className="w-3.5 h-3.5" />
+                                    Joya
                                   </div>
                                 )}
                               </div>
