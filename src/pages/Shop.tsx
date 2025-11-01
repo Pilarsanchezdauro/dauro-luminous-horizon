@@ -207,7 +207,7 @@ export default function Shop() {
                                 <img
                                   src={product.node.images.edges[0].node.url}
                                   alt={product.node.images.edges[0].node.altText || product.node.title}
-                                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
+                                  className="w-full h-full object-contain hover:scale-105 transition-all duration-300 drop-shadow-2xl grayscale hover:grayscale-0"
                                 />
                                 {/* Bestseller Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
