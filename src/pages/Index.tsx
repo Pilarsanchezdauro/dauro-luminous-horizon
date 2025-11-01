@@ -15,12 +15,12 @@ const Index = () => {
   const latestPosts = getLatestPosts(3);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden w-full">
       <Navigation />
       <Hero />
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 lg:px-8 max-w-7xl">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
         {/* Editorial Section */}
         <SectionCard
           title="Editorial"
@@ -204,7 +204,7 @@ const Index = () => {
         {/* Bottom CTA */}
         <section className="my-32">
           <div className="text-center py-24 px-4 border-y-2 border-foreground/10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 leading-tight max-w-full break-words px-4">
               ¿Listo para crear<br />algo <span className="italic">extraordinario</span>?
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">

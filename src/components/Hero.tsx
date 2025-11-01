@@ -15,7 +15,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24 pb-16 md:pb-20">
+    <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24 pb-16 md:pb-20 w-full">
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -24,13 +24,13 @@ const Hero = () => {
       {/* Subtle overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
       
-      {/* Large background shapes */}
+      {/* Large background shapes - Hidden on mobile to prevent overflow */}
       <div 
-        className="absolute -top-40 -right-40 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-100"
+        className="hidden md:block absolute -top-40 -right-40 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-100"
         style={{ transform: `translateY(${parallaxOffset * 0.4}px)` }}
       />
       <div 
-        className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-100"
+        className="hidden md:block absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-100"
         style={{ transform: `translateY(${-parallaxOffset * 0.4}px)` }}
       />
       
@@ -50,18 +50,18 @@ const Hero = () => {
 
       {/* Content */}
       <div 
-        className="relative z-10 text-center px-4 max-w-6xl mx-auto transition-transform duration-100 w-full"
+        className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto transition-transform duration-100 w-full"
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
-        <p className="text-base sm:text-lg md:text-[2rem] font-normal leading-tight md:leading-[1.1] tracking-wide md:tracking-[0.02em] text-[#666666] mb-4 md:mb-8 animate-fade-in text-center px-2">
+        <p className="text-base sm:text-lg md:text-[2rem] font-normal leading-tight md:leading-[1.1] tracking-wide md:tracking-[0.02em] text-[#666666] mb-4 md:mb-8 animate-fade-in text-center px-2 max-w-full break-words">
           En Grupo Dauro Transformamos La Cultura en Experiencia
         </p>
-        <h1 className="text-5xl sm:text-6xl md:text-[7.5rem] font-black leading-[0.95] tracking-tight mb-4 md:mb-5 animate-fade-in-up text-[#111111] px-2">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[7.5rem] font-black leading-[0.95] tracking-tight mb-4 md:mb-5 animate-fade-in-up text-[#111111] px-2 max-w-full break-words">
           HAGÁMOSLO
           <br />
           <span className="italic text-[#E31B23]">EXCEPCIONAL</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-[1.375rem] font-normal leading-relaxed md:leading-[1.4] text-[#333333] mb-6 md:mb-7 max-w-full md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center px-4">
+        <p className="text-sm sm:text-base md:text-[1.375rem] font-normal leading-relaxed md:leading-[1.4] text-[#333333] mb-6 md:mb-7 max-w-full md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center px-4 break-words">
           Creamos proyectos que combinan arte, pensamiento y tecnología para conectar la emoción humana con la innovación. Convertimos cada idea en algo vivo, profundo y memorable.
         </p>
         <Link to="/grupo-dauro">
