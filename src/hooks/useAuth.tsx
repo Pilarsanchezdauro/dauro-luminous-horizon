@@ -48,9 +48,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
+    console.log('useAuth - Initializing...');
+    
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
+        console.log('useAuth - Auth state changed:', event, 'User:', currentSession?.user?.email);
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
         
@@ -66,15 +69,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
+    console.log('useAuth - Checking for existing session...');
+    supabase.auth.getSession().then(async ({ data: { session: currentSession }, error }) => {
+      console.log('useAuth - getSession result:', 'Session exists:', !!currentSession, 'User:', currentSession?.user?.email, 'Error:', error);
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
       
       if (currentSession?.user) {
+        console.log('useAuth - Fetching roles for user:', currentSession.user.id);
         const userRoles = await fetchUserRoles(currentSession.user.id);
+        console.log('useAuth - User roles loaded:', userRoles);
         setRoles(userRoles);
+      } else {
+        console.log('useAuth - No session found, user will need to login');
       }
       setLoading(false);
+      console.log('useAuth - Initialization complete');
     });
 
     return () => subscription.unsubscribe();
