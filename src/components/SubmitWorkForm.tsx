@@ -108,52 +108,56 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Create form element
-      const formElement = document.createElement('form');
-      formElement.action = 'https://formsubmit.co/info@grupodauro.com';
-      formElement.method = 'POST';
-      formElement.enctype = 'multipart/form-data';
-      formElement.style.display = 'none';
+      let obraFilePath = null;
+      let curriculumFilePath = null;
 
-      // Add all fields
-      const fields = {
-        'Nombre': data.nombre,
-        'Apellidos': data.apellidos,
-        'Email': data.email,
-        'Teléfono': data.telefono,
-        'Título de la Obra': data.titulo_obra,
-        'Tipo de Obra': data.tipo_obra,
-        '_next': `${window.location.origin}/gracias`,
-        '_captcha': 'false',
-      };
+      // Upload manuscript file
+      const obraFileExt = obraFile.name.split('.').pop();
+      const obraFileName = `obra-${Date.now()}-${Math.random().toString(36).substring(7)}.${obraFileExt}`;
+      const obraPath = `manuscripts/${obraFileName}`;
 
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        formElement.appendChild(input);
-      });
+      const { error: obraUploadError } = await supabase.storage
+        .from('editorial-submissions')
+        .upload(obraPath, obraFile);
 
-      // Add file inputs
-      const obraInput = document.createElement('input');
-      obraInput.type = 'file';
-      obraInput.name = 'Obra';
-      const obraDataTransfer = new DataTransfer();
-      obraDataTransfer.items.add(obraFile);
-      obraInput.files = obraDataTransfer.files;
-      formElement.appendChild(obraInput);
+      if (obraUploadError) {
+        throw new Error('Error al subir la obra');
+      }
 
-      const cvInput = document.createElement('input');
-      cvInput.type = 'file';
-      cvInput.name = 'Currículum';
-      const cvDataTransfer = new DataTransfer();
-      cvDataTransfer.items.add(curriculumFile);
-      cvInput.files = cvDataTransfer.files;
-      formElement.appendChild(cvInput);
+      obraFilePath = obraPath;
 
-      document.body.appendChild(formElement);
-      formElement.submit();
+      // Upload curriculum file
+      const cvFileExt = curriculumFile.name.split('.').pop();
+      const cvFileName = `cv-${Date.now()}-${Math.random().toString(36).substring(7)}.${cvFileExt}`;
+      const cvPath = `cvs/${cvFileName}`;
+
+      const { error: cvUploadError } = await supabase.storage
+        .from('editorial-submissions')
+        .upload(cvPath, curriculumFile);
+
+      if (cvUploadError) {
+        throw new Error('Error al subir el curriculum');
+      }
+
+      curriculumFilePath = cvPath;
+
+      // Insert data into database
+      const { error: insertError } = await supabase
+        .from('editorial_submissions')
+        .insert({
+          nombre: data.nombre,
+          apellidos: data.apellidos,
+          email: data.email,
+          telefono: data.telefono,
+          titulo_obra: data.titulo_obra,
+          tipo_obra: data.tipo_obra,
+          obra_file_path: obraFilePath,
+          curriculum_file_path: curriculumFilePath,
+        });
+
+      if (insertError) {
+        throw insertError;
+      }
 
       toast({
         title: "¡Tu obra está en camino! 📚✨",
@@ -171,6 +175,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         description: "Por favor, intenta enviarnos tu obra nuevamente. Si persiste el error, escríbenos a info@grupodauro.com",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };

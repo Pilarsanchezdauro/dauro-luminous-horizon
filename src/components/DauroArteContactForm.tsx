@@ -98,47 +98,42 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
     setIsSubmitting(true);
 
     try {
-      // Create form element
-      const formElement = document.createElement('form');
-      formElement.action = 'https://formsubmit.co/info@grupodauro.com';
-      formElement.method = 'POST';
-      formElement.enctype = 'multipart/form-data';
-      formElement.style.display = 'none';
+      let documentFilePath = null;
 
-      // Add all fields
-      const fields = {
-        'Nombre': data.nombre,
-        'Apellidos': data.apellidos,
-        'Email': data.email,
-        'Teléfono': data.telefono,
-        'Servicio': data.servicio,
-        'Descripción': data.descripcion,
-        'Web': data.enlace_web || '',
-        '_next': `${window.location.origin}/gracias`,
-        '_captcha': 'false',
-      };
-
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        formElement.appendChild(input);
-      });
-
-      // Add file if present
+      // Upload file to Supabase Storage if present
       if (documentFile) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name = 'Documento';
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(documentFile);
-        fileInput.files = dataTransfer.files;
-        formElement.appendChild(fileInput);
+        const fileExt = documentFile.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+        const filePath = `dauro-arte/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('dauro-arte-documents')
+          .upload(filePath, documentFile);
+
+        if (uploadError) {
+          throw new Error('Error al subir el documento');
+        }
+
+        documentFilePath = filePath;
       }
 
-      document.body.appendChild(formElement);
-      formElement.submit();
+      // Insert data into database
+      const { error: insertError } = await supabase
+        .from('dauro_arte_contacts')
+        .insert({
+          nombre: data.nombre,
+          apellidos: data.apellidos,
+          email: data.email,
+          telefono: data.telefono,
+          servicio: data.servicio,
+          descripcion: data.descripcion,
+          enlace_web: data.enlace_web || null,
+          documento_file_path: documentFilePath,
+        });
+
+      if (insertError) {
+        throw insertError;
+      }
 
       toast({
         title: "¡Gracias por confiar en nosotros! 🎨",
@@ -155,6 +150,7 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
         description: "Por favor, inténtalo de nuevo en unos momentos. Si el problema persiste, contáctanos directamente.",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
