@@ -10,7 +10,7 @@ import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck }
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 
 export default function ProductDetail() {
   const { handle } = useParams();
@@ -107,12 +107,44 @@ export default function ProductDetail() {
     return null;
   }
 
+  const productUrl = `https://grupodauro.com/producto/${product.handle}`;
+  const productImage = product.images.edges[0]?.node?.url || 'https://grupodauro.com/og-image.jpg';
+  
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.title,
+    "description": product.description,
+    "image": productImage,
+    "url": productUrl,
+    "offers": {
+      "@type": "Offer",
+      "price": parseFloat(selectedVariant.price.amount).toFixed(2),
+      "priceCurrency": selectedVariant.price.currencyCode,
+      "availability": selectedVariant.availableForSale ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "url": productUrl,
+      "seller": {
+        "@type": "Organization",
+        "name": "Grupo Cultural Dauro"
+      }
+    },
+    "brand": {
+      "@type": "Organization",
+      "name": "Ediciones Dauro"
+    }
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{product.title} - Grupo Cultural Dauro</title>
-        <meta name="description" content={product.description || `Compra ${product.title} en la tienda de Grupo Cultural Dauro`} />
-      </Helmet>
+      <SEO
+        title={product.title}
+        description={product.description || `Compra ${product.title} en la tienda de Grupo Cultural Dauro. ${selectedVariant.price.currencyCode} ${parseFloat(selectedVariant.price.amount).toFixed(2)}`}
+        keywords={`${product.title}, libro, comprar, Ediciones Dauro, literatura, Granada, ${product.tags?.join(', ')}`}
+        image={productImage}
+        url={productUrl}
+        type="product"
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Navigation />

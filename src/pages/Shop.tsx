@@ -10,7 +10,7 @@ import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, External
 import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import editorialBg from "@/assets/editorial-bg.jpg";
 
 export default function Shop() {
@@ -100,12 +100,41 @@ export default function Shop() {
     });
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Tienda Grupo Cultural Dauro",
+    "description": "Tienda oficial de Grupo Cultural Dauro con libros, arte y NFTs culturales",
+    "url": "https://grupodauro.com/tienda",
+    "image": "https://grupodauro.com/og-image.jpg",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Productos Culturales",
+      "itemListElement": bookProducts.slice(0, 10).map((product, index) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": product.node.title,
+          "image": product.node.images.edges[0]?.node?.url,
+          "description": product.node.description,
+          "url": `https://grupodauro.com/producto/${product.node.handle}`
+        },
+        "price": parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2),
+        "priceCurrency": product.node.priceRange.minVariantPrice.currencyCode
+      }))
+    }
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Tienda - Grupo Cultural Dauro</title>
-        <meta name="description" content="Descubre nuestra colección de productos culturales. Arte, literatura y más en la tienda de Grupo Cultural Dauro." />
-      </Helmet>
+      <SEO
+        title="Tienda - Obras Destacadas"
+        description="Descubre nuestra colección de productos culturales: libros, arte y NFTs. Ediciones Dauro, editorial independiente de Granada especializada en literatura andaluza."
+        keywords="tienda, libros, editorial Dauro, comprar libros online, literatura Granada, arte, NFTs culturales"
+        image="https://grupodauro.com/og-image.jpg"
+        url="https://grupodauro.com/tienda"
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Navigation />
