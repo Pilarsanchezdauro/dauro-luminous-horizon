@@ -166,7 +166,9 @@ export default function ProductDetail() {
                     <CardContent className="p-8 flex items-center justify-center min-h-[600px]">
                       <img
                         src={product.images.edges[0].node.url}
-                        alt={product.images.edges[0].node.altText || product.title}
+                        alt={product.images.edges[0].node.altText || `${product.title} - Comprar libro en Ediciones Dauro`}
+                        width="600"
+                        height="800"
                         className="w-full max-w-md h-auto object-contain drop-shadow-2xl"
                       />
                     </CardContent>
@@ -180,7 +182,10 @@ export default function ProductDetail() {
                         <CardContent className="p-0">
                           <img
                             src={edge.node.url}
-                            alt={edge.node.altText || `${product.title} ${index + 2}`}
+                            alt={edge.node.altText || `${product.title} - Vista ${index + 2}`}
+                            loading="lazy"
+                            width="200"
+                            height="200"
                             className="w-full h-full object-cover aspect-square"
                           />
                         </CardContent>

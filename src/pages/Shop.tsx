@@ -236,7 +236,10 @@ export default function Shop() {
                               <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4">
                                 <img
                                   src={product.node.images.edges[0].node.url}
-                                  alt={product.node.images.edges[0].node.altText || product.node.title}
+                                  alt={product.node.images.edges[0].node.altText || `${product.node.title} - Libro disponible en Ediciones Dauro`}
+                                  loading="lazy"
+                                  width="400"
+                                  height="533"
                                   className="w-full h-full object-contain hover:scale-105 transition-all duration-300 drop-shadow-2xl grayscale hover:grayscale-0"
                                 />
                                 {/* Bestseller Badge */}
