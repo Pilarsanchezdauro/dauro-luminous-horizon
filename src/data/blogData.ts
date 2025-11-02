@@ -7,6 +7,7 @@ import iaConArte from "@/assets/ia-con-arte.png";
 import logoDauroIA from "@/assets/logo-dauro-ia.png";
 import latidoPresentacion from "@/assets/latido-presentacion-principal.jpg";
 import libroLatido from "@/assets/libro-latido.png";
+import lorenaAvelar from "@/assets/lorena-avelar.jpg";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -29,6 +30,44 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Una voz para dos tierras: un viaje poético entre continentes",
+    excerpt: "El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas. Hemos tenido el privilegio de acompañar a la autora en un recorrido lleno de emoción, poesía y encuentros significativos a ambos lados del Atlántico.",
+    date: "1 Noviembre 2025",
+    author: "Equipo Dauro",
+    image: lorenaAvelar,
+    category: "literatura",
+    slug: "una-voz-para-dos-tierras-presentaciones",
+    bookImage: "/products/una-voz-dos-tierras.jpg",
+    bookLink: "/producto/una-voz-para-dos-tierras",
+    content: `El periplo de presentaciones del libro **Una voz para dos tierras**, de Lorena Avelar, ha sido un auténtico puente entre culturas. Hemos tenido el privilegio de acompañar a la autora en un recorrido lleno de emoción, poesía y encuentros significativos a ambos lados del Atlántico.
+
+## Un viaje poético por España
+
+Este ciclo ha culminado con cuatro presentaciones en España que han dejado huella en cada rincón:
+
+📍 **Madrid**, en la emblemática Casa de México en España, donde todo comenzó y donde la poesía tendió su primer lazo entre las dos tierras.
+
+📍 **Monachil**, en la Casa de la Cultura, rodeados de montañas y palabras compartidas.
+
+📍 **Albolote**, otra parada entrañable en la Casa de la Cultura, donde el público nos recibió con calidez.
+
+📍 **Valencia**, ciudad abierta y luminosa, donde la poesía resonó con fuerza.
+
+## Regreso a las raíces
+
+Y, como no podía ser de otra manera, este viaje también regresó a sus raíces con dos presentaciones en **México**, país natal de la autora, donde la emoción fue aún más intensa y el reencuentro con lectores y amigos dio un cierre simbólico y entrañable a este trayecto.
+
+## Más que un libro: un puente cultural
+
+*Una voz para dos tierras* no solo ha unido a autores y lectores, sino también a dos culturas, dos idiomas compartidos y una sola pasión: la poesía.
+
+Desde el equipo editorial de Grupo Dauro, no podemos estar más orgullosos de haber acompañado esta obra en su camino. Gracias a todas las instituciones, lectores y personas que han hecho posible esta gira.
+
+## Hasta pronto
+
+Esto no es un adiós, sino un hasta pronto. Porque los libros, como los buenos viajes, siempre dejan la puerta entreabierta para volver.`
+  },
   {
     title: "Presentación de 'Latido. Apasionadamente vuestro' en el Cuarto Real de Santo Domingo",
     excerpt: "Granada, 28 de octubre de 2025. Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide, con un anuncio inesperado: estamos trabajando en la adaptación de la obra a serie de televisión.",
