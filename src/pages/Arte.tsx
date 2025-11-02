@@ -3,9 +3,19 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { FileCheck, TrendingUp, FileSearch, ShoppingBag, Briefcase, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
 
 const Arte = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ArtGallery",
+    "name": "Dauro Arte",
+    "url": "https://grupodauro.com/grupo-dauro/arte",
+    "description": "Galería de arte y servicios de tasación, peritaje y asesoramiento artístico",
+    "priceRange": "€€€"
+  };
+
   const services = [
     {
       icon: FileCheck,

@@ -2,11 +2,27 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Film, Video, Award, Users } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import cineBg from "@/assets/cine-bg.jpg";
 
 const Cine = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Dauro Cine",
+    "url": "https://grupodauro.com/grupo-dauro/cine",
+    "description": "Producción audiovisual, narrativas innovadoras y cine de autor"
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Dauro Cine - Producción Audiovisual y Cine de Autor"
+        description="Producción cinematográfica innovadora: cortometrajes, documentales, videoclips y contenido audiovisual de calidad. Apostamos por narrativas originales y cine independiente."
+        keywords="producción audiovisual, cine independiente, cortometrajes, documentales, videoclips, producción cine Granada, cine autor"
+        url="https://grupodauro.com/grupo-dauro/cine"
+        structuredData={structuredData}
+      />
       <Navigation />
       
       {/* Hero Section */}

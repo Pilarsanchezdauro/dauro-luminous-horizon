@@ -2,11 +2,31 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Brain, Zap, Code } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import iaBg from "@/assets/ia-bg.jpg";
 
 const IA = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Dauro IA - Inteligencia Artificial Creativa",
+    "url": "https://grupodauro.com/grupo-dauro/ia",
+    "description": "Servicios creativos con inteligencia artificial: generación de imágenes, textos, música y contenido multimedia",
+    "provider": {
+      "@type": "Organization",
+      "name": "Grupo Cultural Dauro"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Dauro IA - Creatividad e Inteligencia Artificial"
+        description="Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos."
+        keywords="inteligencia artificial arte, IA creatividad, generación imágenes IA, música IA, contenido IA, servicios IA creativos, arte generativo"
+        url="https://grupodauro.com/grupo-dauro/ia"
+        structuredData={structuredData}
+      />
       <Navigation />
       
       {/* Hero Section */}

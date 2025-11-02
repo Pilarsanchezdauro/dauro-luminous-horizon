@@ -1,14 +1,27 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Grupo Cultural Dauro - Robots.txt
+# Configuración para buscadores
 
 User-agent: *
 Allow: /
+
+# Páginas principales
+Allow: /grupo-dauro/
+Allow: /blog/
+Allow: /shop/
+
+# No indexar páginas de administración
+Disallow: /admin/
+Disallow: /auth/
+
+# No indexar páginas privadas
+Disallow: /gracias/
+
+# Sitemaps
+Sitemap: https://grupodauro.com/sitemap.xml
+Sitemap: https://grupodauro.com/feed.xml
+
+# Rastreo específico para imágenes
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /products/
+Allow: /public/

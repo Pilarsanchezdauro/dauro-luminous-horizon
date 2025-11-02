@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { BookOpen, Calendar, User, Upload } from "lucide-react";
 import { getLatestPosts } from "@/data/blogData";
+import { SEO } from "@/components/SEO";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -14,8 +15,28 @@ import iaBg from "@/assets/ia-bg.jpg";
 const Index = () => {
   const latestPosts = getLatestPosts(3);
 
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Grupo Cultural Dauro",
+    "url": "https://grupodauro.com",
+    "description": "Grupo cultural dedicado al arte, literatura, cine e inteligencia artificial",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://grupodauro.com/blog?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden w-full">
+      <SEO
+        title="Grupo Cultural Dauro - Arte, Literatura, Cine e Inteligencia Artificial"
+        description="Descubre el Grupo Cultural Dauro: editorial de calidad, galería de arte contemporáneo, producción cinematográfica y servicios creativos con IA en Granada. Promovemos la cultura y el talento."
+        keywords="editorial Granada, galería arte Granada, producción audiovisual, servicios IA, cultura Granada, literatura contemporánea, arte moderno, cine independiente"
+        url="https://grupodauro.com"
+        structuredData={homeStructuredData}
+      />
       <Navigation />
       <Hero />
 

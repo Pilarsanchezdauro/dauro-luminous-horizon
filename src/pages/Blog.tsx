@@ -4,6 +4,7 @@ import { Calendar, User, ExternalLink } from "lucide-react";
 import { blogPosts, getPostsByCategory, categoryLabels, type BlogCategory } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SEO } from "@/components/SEO";
 import presentacionLatido from "@/assets/presentacion-latido.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import { useState } from "react";
@@ -20,8 +21,27 @@ const Blog = () => {
   const filteredPosts = getFilteredPosts();
   const featuredPost = activeCategory === "todas" ? blogPosts[0] : null;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog Grupo Cultural Dauro",
+    "url": "https://grupodauro.com/blog",
+    "description": "Noticias, eventos y novedades sobre arte, literatura, cine e inteligencia artificial",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Grupo Cultural Dauro"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Blog - Noticias Culturales y Eventos"
+        description="Lee las últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos cinematográficos y novedades sobre IA creativa. Blog actualizado del Grupo Dauro."
+        keywords="blog cultura, noticias arte, eventos literarios, presentaciones libros, actualidad cultural, blog Granada cultura"
+        url="https://grupodauro.com/blog"
+        structuredData={structuredData}
+      />
       <Navigation />
       <main className="pt-32 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

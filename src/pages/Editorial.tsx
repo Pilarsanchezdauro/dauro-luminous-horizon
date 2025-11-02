@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { BookOpen, Users, Award, TrendingUp, ShoppingCart, Store, ExternalLink } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import libroHorizonte from "@/assets/libro-horizonte-interior.png";
 import libroBesos from "@/assets/libro-besos.png";
@@ -14,8 +15,23 @@ import SubmitWorkForm from "@/components/SubmitWorkForm";
 const Editorial = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Publisher",
+    "name": "Ediciones Dauro",
+    "url": "https://grupodauro.com/grupo-dauro/editorial",
+    "description": "Editorial de calidad que publica literatura contemporánea y rescata obras fundamentales"
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Editorial Dauro - Literatura de Calidad y Autores Contemporáneos"
+        description="Descubre Ediciones Dauro: publicamos literatura de calidad, damos voz a autores contemporáneos y rescatamos obras fundamentales. Envía tu manuscrito y forma parte de nuestro catálogo."
+        keywords="editorial España, publicar libro, editorial literatura, autores contemporáneos, editorial Granada, enviar manuscrito, publicar novela"
+        url="https://grupodauro.com/grupo-dauro/editorial"
+        structuredData={structuredData}
+      />
       <Navigation />
       
       {/* Hero Section */}
