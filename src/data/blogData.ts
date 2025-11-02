@@ -8,6 +8,7 @@ import logoDauroIA from "@/assets/logo-dauro-ia.png";
 import latidoPresentacion from "@/assets/latido-presentacion-principal.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import lorenaAvelar from "@/assets/lorena-avelar.jpg";
+import unaVozDosTierrasPortada from "@/assets/una-voz-dos-tierras-portada.png";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
 
@@ -35,7 +36,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas. Hemos tenido el privilegio de acompañar a la autora en un recorrido lleno de emoción, poesía y encuentros significativos a ambos lados del Atlántico.",
     date: "1 Noviembre 2025",
     author: "Equipo Dauro",
-    image: lorenaAvelar,
+    image: unaVozDosTierrasPortada,
     category: "literatura",
     slug: "una-voz-para-dos-tierras-presentaciones",
     bookImage: "/products/una-voz-dos-tierras.jpg",
