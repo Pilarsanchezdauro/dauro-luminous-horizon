@@ -99,7 +99,10 @@ const BlogPost = () => {
           <div key={idx} className="my-8">
             <img
               src={imageMatch[2]}
-              alt={imageMatch[1]}
+              alt={imageMatch[1] || "Imagen del artículo"}
+              loading="lazy"
+              width="1200"
+              height="800"
               className="w-full rounded-lg shadow-lg"
             />
             {imageMatch[1] && (
@@ -174,7 +177,9 @@ const BlogPost = () => {
               <div className="relative h-96 overflow-hidden">
                 <img
                   src={post.image}
-                  alt={post.title}
+                  alt={`${post.title} - Artículo completo del blog Grupo Cultural Dauro`}
+                  width="1200"
+                  height="630"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -264,7 +269,10 @@ const BlogPost = () => {
                       <div className="rounded-lg overflow-hidden shadow-lg">
                         <img
                           src={post.image2}
-                          alt="Imagen adicional del artículo"
+                          alt={`${post.title} - Imagen 2`}
+                          loading="lazy"
+                          width="600"
+                          height="400"
                           className="w-full h-64 object-cover"
                         />
                       </div>
@@ -273,7 +281,10 @@ const BlogPost = () => {
                       <div className="rounded-lg overflow-hidden shadow-lg">
                         <img
                           src={post.image3}
-                          alt="Imagen adicional del artículo"
+                          alt={`${post.title} - Imagen 3`}
+                          loading="lazy"
+                          width="600"
+                          height="400"
                           className="w-full h-64 object-cover"
                         />
                       </div>
@@ -294,7 +305,10 @@ const BlogPost = () => {
                       >
                         <img
                           src={post.gallery[selectedGalleryImage]}
-                          alt={`Imagen de galería ${selectedGalleryImage + 1}`}
+                          alt={`${post.title} - Galería imagen ${selectedGalleryImage + 1}`}
+                          loading="lazy"
+                          width="1200"
+                          height="800"
                           className="w-full h-96 object-cover"
                         />
                       </button>
@@ -311,7 +325,10 @@ const BlogPost = () => {
                           >
                             <img
                               src={image}
-                              alt={`Miniatura ${idx + 1}`}
+                              alt={`${post.title} - Miniatura ${idx + 1}`}
+                              loading="lazy"
+                              width="150"
+                              height="100"
                               className="w-full h-16 object-cover"
                             />
                           </button>
@@ -328,7 +345,10 @@ const BlogPost = () => {
                       <div className="flex-shrink-0">
                         <img
                           src={post.bookImage}
-                          alt={post.category === "literatura" ? "Portada del libro" : "Imagen relacionada"}
+                          alt={post.category === "literatura" ? "Portada del libro - Comprar en Editorial Dauro" : post.category === "ia" ? "NFT Argentina - Colección digital" : "Proyecto cultural relacionado"}
+                          loading="lazy"
+                          width="300"
+                          height="400"
                           className="w-48 h-auto shadow-2xl rounded-lg"
                         />
                       </div>
@@ -394,7 +414,7 @@ const BlogPost = () => {
           <div className="relative w-full h-full flex items-center justify-center bg-black/95">
             <img
               src={post?.gallery?.[selectedGalleryImage]}
-              alt={`Imagen de galería ${selectedGalleryImage + 1}`}
+              alt={`${post?.title} - Galería imagen ampliada ${selectedGalleryImage + 1}`}
               className="max-w-full max-h-[90vh] object-contain"
             />
           </div>

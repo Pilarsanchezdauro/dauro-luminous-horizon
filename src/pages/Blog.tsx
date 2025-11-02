@@ -83,7 +83,9 @@ const Blog = () => {
                 <div className="relative h-96 overflow-hidden">
                   <img
                     src={presentacionLatido}
-                    alt={featuredPost.title}
+                    alt={`${featuredPost.title} - Evento cultural en Granada`}
+                    width="1200"
+                    height="630"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -135,7 +137,10 @@ const Blog = () => {
                       <div className="flex-shrink-0">
                         <img
                           src={featuredPost.bookImage}
-                          alt={featuredPost.category === "literatura" ? "Portada Latido" : featuredPost.category === "ia" ? "NFT Argentina" : "Don Rodrigo de Cervantes"}
+                          alt={featuredPost.category === "literatura" ? "Portada del libro Latido de Carmen Alcaide - Editorial Dauro" : featuredPost.category === "ia" ? "Colección NFT Argentina - Arte digital" : "Don Rodrigo de Cervantes - Proyecto editorial"}
+                          loading="lazy"
+                          width="300"
+                          height="400"
                           className="w-48 h-auto shadow-2xl rounded-lg"
                         />
                       </div>
@@ -194,7 +199,10 @@ const Blog = () => {
                   <div className="relative h-64 overflow-hidden">
                     <img
                       src={post.image}
-                      alt={post.title}
+                      alt={`${post.title} - Artículo del blog Grupo Dauro`}
+                      loading="lazy"
+                      width="600"
+                      height="400"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
