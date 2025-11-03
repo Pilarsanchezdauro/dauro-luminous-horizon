@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Globe, Users, Video, Palette, Briefcase, Film, Music } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -201,6 +202,54 @@ export default function Portafolio() {
               <p className="text-muted-foreground text-lg">
                 No se encontraron proyectos con los filtros seleccionados
               </p>
+            </div>
+          )}
+
+          {/* Booktrailer CTA Section */}
+          {categoryFilter === 'booktrailers' && projects && projects.length > 0 && (
+            <div className="mt-16 mb-8">
+              <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-2xl p-8 md:p-12">
+                <div className="text-center space-y-8">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                      ¿Te gustaron nuestros booktrailers?
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                      Descubre más trabajos o solicita el tuyo
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Button 
+                      size="lg" 
+                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
+                      asChild
+                    >
+                      <a 
+                        href="https://www.youtube.com/@grupodauro2900" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        <Youtube className="w-5 h-5" />
+                        Ver más en YouTube
+                      </a>
+                    </Button>
+                    
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
+                      asChild
+                    >
+                      <Link to="/contacto" className="flex items-center gap-2">
+                        <Mail className="w-5 h-5" />
+                        Solicita tu booktrailer
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </main>
