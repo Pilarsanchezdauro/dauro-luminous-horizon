@@ -306,10 +306,13 @@ export default function Portafolio() {
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      ¿Te gustaron nuestras portadas?
+                      Crea tu propia portada con IA
                     </h2>
-                    <p className="text-lg text-muted-foreground">
-                      Visita nuestra tienda online y descubre todos los libros
+                    <p className="text-lg text-muted-foreground mb-2">
+                      Usa nuestra herramienta gratuita de inteligencia artificial
+                    </p>
+                    <p className="text-muted-foreground">
+                      O visita nuestra tienda para ver todos los libros publicados
                     </p>
                   </div>
                   
@@ -319,9 +322,26 @@ export default function Portafolio() {
                       className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
                       asChild
                     >
+                      <a 
+                        href="https://dauroia.com/herramientas/portadas" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        <BookOpen className="w-5 h-5" />
+                        Crear portada gratis con IA
+                      </a>
+                    </Button>
+                    
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
+                      asChild
+                    >
                       <Link to="/tienda" className="flex items-center gap-2">
                         <BookOpen className="w-5 h-5" />
-                        Visitar tienda
+                        Ver tienda
                       </Link>
                     </Button>
                     
