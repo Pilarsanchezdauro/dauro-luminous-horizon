@@ -215,6 +215,48 @@ export type Database = {
         }
         Relationships: []
       }
+      portfolio_inquiries: {
+        Row: {
+          apellidos: string
+          categoria: string
+          created_at: string
+          descripcion: string
+          email: string
+          empresa: string | null
+          id: string
+          nombre: string
+          plazo: string | null
+          presupuesto: string | null
+          telefono: string
+        }
+        Insert: {
+          apellidos: string
+          categoria: string
+          created_at?: string
+          descripcion: string
+          email: string
+          empresa?: string | null
+          id?: string
+          nombre: string
+          plazo?: string | null
+          presupuesto?: string | null
+          telefono: string
+        }
+        Update: {
+          apellidos?: string
+          categoria?: string
+          created_at?: string
+          descripcion?: string
+          email?: string
+          empresa?: string | null
+          id?: string
+          nombre?: string
+          plazo?: string | null
+          presupuesto?: string | null
+          telefono?: string
+        }
+        Relationships: []
+      }
       projects: {
         Row: {
           category: string

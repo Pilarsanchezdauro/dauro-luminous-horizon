@@ -76,6 +76,76 @@ const Index = () => {
           reversed
         />
 
+        {/* Portfolio CTA Section - SEO Optimized */}
+        <section className="my-32">
+          <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-3xl p-8 md:p-16 overflow-hidden">
+            <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
+            
+            <div className="max-w-5xl mx-auto relative z-10">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6">
+                  Descubre Nuestros Proyectos Destacados
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                  Explora nuestro portafolio de trabajos en desarrollo web, booktrailers, producción audiovisual, creación de avatares y más. Cada proyecto refleja nuestro compromiso con la calidad y la innovación.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                  <h3 className="font-semibold mb-1">Proyectos Web</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Sitios profesionales y aplicaciones
+                  </p>
+                </div>
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">100+</div>
+                  <h3 className="font-semibold mb-1">Booktrailers</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Videos promocionales creativos
+                  </p>
+                </div>
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">30+</div>
+                  <h3 className="font-semibold mb-1">Producción Audiovisual</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Cine, documentales y contenido
+                  </p>
+                </div>
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">20+</div>
+                  <h3 className="font-semibold mb-1">Avatares & Branding</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Identidad visual corporativa
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link to="/portafolio">
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-8 py-6 h-auto w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
+                  >
+                    Ver Portafolio Completo
+                  </Button>
+                </Link>
+                <Link to="/solicitar-proyecto">
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="text-lg px-8 py-6 h-auto w-full sm:w-auto border-2 hover:border-primary/60 transition-all"
+                  >
+                    Solicita tu Proyecto
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Blog Section - Latest News */}
         <section className="my-32">
           <div className="text-center mb-12">

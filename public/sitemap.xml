@@ -123,6 +123,34 @@
   </url>
 
   <url>
+    <loc>https://grupodauro.com/portafolio</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grupodauro.com/solicitar-proyecto</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://grupodauro.com/solicitar-web</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://grupodauro.com/solicitar-booktrailer</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://grupodauro.com/privacidad</loc>
     <lastmod>2025-10-30</lastmod>
     <changefreq>yearly</changefreq>

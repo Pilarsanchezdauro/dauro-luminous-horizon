@@ -38,8 +38,10 @@ import Projects from "./pages/admin/Projects";
 import ProjectForm from "./pages/admin/ProjectForm";
 import WebRequests from "./pages/admin/WebRequests";
 import BooktrailerRequests from "./pages/admin/BooktrailerRequests";
+import PortfolioInquiries from "./pages/admin/PortfolioInquiries";
 import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
 import SolicitarWeb from "./pages/SolicitarWeb";
+import SolicitarProyecto from "./pages/SolicitarProyecto";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +73,7 @@ const App = () => (
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/solicitar-booktrailer" element={<SolicitarBooktrailer />} />
             <Route path="/solicitar-web" element={<SolicitarWeb />} />
+            <Route path="/solicitar-proyecto" element={<SolicitarProyecto />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
@@ -87,6 +90,7 @@ const App = () => (
               <Route path="projects/:id" element={<ProjectForm />} />
               <Route path="web-requests" element={<WebRequests />} />
               <Route path="booktrailer-requests" element={<BooktrailerRequests />} />
+              <Route path="portfolio-inquiries" element={<PortfolioInquiries />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
