@@ -7,21 +7,27 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink, Youtube, Globe, Image, FileText } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const categoryIcons = {
-  youtube: Youtube,
-  web: Globe,
-  imagen: Image,
-  guion: FileText,
+  webs: Globe,
+  personajes: Users,
+  booktrailers: Video,
+  pintura: Palette,
+  'imagen-corporativa': Briefcase,
+  cine: Film,
+  musica: Music,
 };
 
 const categoryLabels = {
-  youtube: 'YouTube',
-  web: 'Web',
-  imagen: 'Imagen',
-  guion: 'Guion',
+  webs: 'Webs',
+  personajes: 'Personajes',
+  booktrailers: 'Booktrailers',
+  pintura: 'Pintura',
+  'imagen-corporativa': 'Imagen Corporativa',
+  cine: 'Cine',
+  musica: 'Música',
 };
 
 export default function ProjectDetail() {
@@ -119,7 +125,7 @@ export default function ProjectDetail() {
             </div>
 
             {/* Main Image or Video */}
-            {project.category === 'youtube' && links.length > 0 && links[0].url.includes('youtube') ? (
+            {links.length > 0 && links[0].url.includes('youtube') ? (
               <div className="aspect-video">
                 <iframe
                   src={links[0].url.replace('watch?v=', 'embed/')}
