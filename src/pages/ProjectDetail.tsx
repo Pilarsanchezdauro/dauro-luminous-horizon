@@ -147,6 +147,13 @@ export default function ProjectDetail() {
             <Card>
               <CardContent className="pt-6">
                 <p className="text-lg leading-relaxed">{project.summary}</p>
+                {project.category === 'pintura' && (
+                  <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
+                    <p className="text-sm text-muted-foreground font-medium">
+                      © Todos los derechos reservados. Esta obra no puede ser copiada ni utilizada sin el permiso expreso de su autora <strong>Pilar Sánchez</strong>, CEO del Grupo Dauro.
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
