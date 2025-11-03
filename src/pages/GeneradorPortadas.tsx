@@ -300,7 +300,7 @@ export default function GeneradorPortadas() {
     }
 
     // Open Shopify product page in new tab
-    const shopUrl = `https://www.edicionesdauro.com/products/${selectedPackage.productHandle}`;
+    const shopUrl = `https://dauro-luminous-horizon-6vj19.myshopify.com/products/${selectedPackage.productHandle}`;
     window.open(shopUrl, '_blank');
     setShowPurchaseDialog(false);
     
