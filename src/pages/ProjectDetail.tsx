@@ -195,7 +195,7 @@ export default function ProjectDetail() {
                               <img
                                 src={img.url}
                                 alt={img.caption || `Imagen ${index + 1}`}
-                                className="w-full aspect-square object-cover rounded"
+                                className="w-full aspect-video object-cover rounded"
                               />
                               {img.caption && (
                                 <p className="text-sm text-muted-foreground mt-2 px-2">
