@@ -33,6 +33,7 @@ const categoryLabels = {
   'imagen-corporativa': 'Imagen Corporativa',
   cine: 'Cine',
   musica: 'Música',
+  avatares: 'Avatares',
 };
 
 export default function Projects() {

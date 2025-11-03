@@ -237,6 +237,7 @@ export default function ProjectForm() {
                         <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
                         <SelectItem value="cine">Cine</SelectItem>
                         <SelectItem value="musica">Música</SelectItem>
+                        <SelectItem value="avatares">Avatares</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
