@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Youtube, Globe, Image, FileText } from 'lucide-react';
+import { Globe, Users, Video, Palette, Briefcase } from 'lucide-react';
 
 interface Project {
   id: string;
   title: string;
   slug: string;
-  category: 'youtube' | 'web' | 'imagen' | 'guion';
+  category: 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa';
   client: string | null;
   year: number | null;
   summary: string;
@@ -24,17 +24,19 @@ interface Project {
 }
 
 const categoryIcons = {
-  youtube: Youtube,
-  web: Globe,
-  imagen: Image,
-  guion: FileText,
+  webs: Globe,
+  personajes: Users,
+  booktrailers: Video,
+  pintura: Palette,
+  'imagen-corporativa': Briefcase,
 };
 
 const categoryLabels = {
-  youtube: 'YouTube',
-  web: 'Web',
-  imagen: 'Imagen',
-  guion: 'Guion',
+  webs: 'Webs',
+  personajes: 'Personajes',
+  booktrailers: 'Booktrailers',
+  pintura: 'Pintura',
+  'imagen-corporativa': 'Imagen Corporativa',
 };
 
 export default function Portafolio() {
@@ -96,10 +98,11 @@ export default function Portafolio() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Todas las categorías</SelectItem>
-                <SelectItem value="youtube">YouTube</SelectItem>
-                <SelectItem value="web">Web</SelectItem>
-                <SelectItem value="imagen">Imagen</SelectItem>
-                <SelectItem value="guion">Guion</SelectItem>
+                <SelectItem value="webs">Webs</SelectItem>
+                <SelectItem value="personajes">Personajes</SelectItem>
+                <SelectItem value="booktrailers">Booktrailers</SelectItem>
+                <SelectItem value="pintura">Pintura</SelectItem>
+                <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
               </SelectContent>
             </Select>
 

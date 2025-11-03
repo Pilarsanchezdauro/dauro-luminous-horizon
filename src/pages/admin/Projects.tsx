@@ -26,10 +26,11 @@ import {
 } from '@/components/ui/alert-dialog';
 
 const categoryLabels = {
-  youtube: 'YouTube',
-  web: 'Web',
-  imagen: 'Imagen',
-  guion: 'Guion',
+  webs: 'Webs',
+  personajes: 'Personajes',
+  booktrailers: 'Booktrailers',
+  pintura: 'Pintura',
+  'imagen-corporativa': 'Imagen Corporativa',
 };
 
 export default function Projects() {

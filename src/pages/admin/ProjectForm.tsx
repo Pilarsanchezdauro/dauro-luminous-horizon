@@ -32,7 +32,7 @@ import { useState } from 'react';
 const projectSchema = z.object({
   title: z.string().min(1, 'El título es obligatorio'),
   slug: z.string().min(1, 'El slug es obligatorio'),
-  category: z.enum(['youtube', 'web', 'imagen', 'guion']),
+  category: z.enum(['webs', 'personajes', 'booktrailers', 'pintura', 'imagen-corporativa']),
   client: z.string().optional(),
   year: z.coerce.number().optional(),
   summary: z.string().min(1, 'El resumen es obligatorio'),
@@ -83,7 +83,7 @@ export default function ProjectForm() {
     defaultValues: {
       title: '',
       slug: '',
-      category: 'web',
+      category: 'webs',
       client: '',
       summary: '',
       description: '',
@@ -94,7 +94,7 @@ export default function ProjectForm() {
     values: project ? {
       title: project.title,
       slug: project.slug,
-      category: project.category as 'youtube' | 'web' | 'imagen' | 'guion',
+      category: project.category as 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa',
       client: project.client || '',
       year: project.year || undefined,
       summary: project.summary,
@@ -230,10 +230,11 @@ export default function ProjectForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="youtube">YouTube</SelectItem>
-                        <SelectItem value="web">Web</SelectItem>
-                        <SelectItem value="imagen">Imagen</SelectItem>
-                        <SelectItem value="guion">Guion</SelectItem>
+                        <SelectItem value="webs">Webs</SelectItem>
+                        <SelectItem value="personajes">Personajes</SelectItem>
+                        <SelectItem value="booktrailers">Booktrailers</SelectItem>
+                        <SelectItem value="pintura">Pintura</SelectItem>
+                        <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
