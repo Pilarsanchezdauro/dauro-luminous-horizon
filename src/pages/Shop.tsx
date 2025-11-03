@@ -244,37 +244,37 @@ export default function Shop() {
                                 />
                                 {/* Bestseller Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
-                                  <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
-                                    <Award className="w-3.5 h-3.5" />
-                                    Éxito de Ventas
+                                  <div className="absolute top-2 right-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Award className="w-3 h-3" />
+                                    Éxito
                                   </div>
                                 )}
                                 {/* Joya Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'joya') && (
-                                  <div className="absolute top-16 right-4 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
-                                    <Gem className="w-3.5 h-3.5" />
+                                  <div className="absolute top-10 right-2 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Gem className="w-3 h-3" />
                                     Joya
                                   </div>
                                 )}
                                 {/* Premio Andalucía de la Crítica Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'premio andalucía de la crítica') && (
-                                  <div className="absolute top-28 right-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
-                                    <Trophy className="w-3.5 h-3.5" />
-                                    Premio Andalucía
+                                  <div className="absolute top-[4.5rem] right-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Trophy className="w-3 h-3" />
+                                    Premio
                                   </div>
                                 )}
                                 {/* Basada en Hechos Reales Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'basada en hechos reales') && (
-                                  <div className="absolute top-40 right-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
-                                    <FileCheck className="w-3.5 h-3.5" />
-                                    Hechos Reales
+                                  <div className="absolute top-[6.5rem] right-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <FileCheck className="w-3 h-3" />
+                                    H. Reales
                                   </div>
                                 )}
                                 {/* Cine Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'cine') && (
-                                  <div className="absolute top-52 right-4 bg-gradient-to-r from-red-600 to-rose-700 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wide">
-                                    <Film className="w-3.5 h-3.5" />
-                                    Llevada al Cine
+                                  <div className="absolute top-[8.5rem] right-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Film className="w-3 h-3" />
+                                    Cine
                                   </div>
                                 )}
                               </div>
