@@ -7,7 +7,7 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 
@@ -15,6 +15,7 @@ const categoryIcons = {
   webs: Globe,
   booktrailers: Video,
   pintura: Palette,
+  'portadas-libros': BookOpen,
   'imagen-corporativa': Briefcase,
   cine: Film,
   musica: Music,
@@ -25,6 +26,7 @@ const categoryLabels = {
   webs: 'Webs',
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
+  'portadas-libros': 'Portadas de Libros',
   'imagen-corporativa': 'Imagen Corporativa',
   cine: 'Cine',
   musica: 'Música',
