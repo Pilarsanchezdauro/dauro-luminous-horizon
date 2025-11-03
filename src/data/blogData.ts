@@ -37,6 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: "1 Noviembre 2025",
     author: "Equipo Dauro",
     image: unaVozDosTierrasPortada,
+    ogImage: "/og-una-voz-dos-tierras.png",
     category: "literatura",
     slug: "una-voz-para-dos-tierras-presentaciones",
     bookImage: "/products/una-voz-dos-tierras.jpg",

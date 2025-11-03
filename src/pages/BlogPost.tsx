@@ -151,15 +151,22 @@ const BlogPost = () => {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
+        <meta property="og:image:secure_url" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="Grupo Cultural Dauro" />
+        <meta property="article:published_time" content={post.date} />
+        <meta property="article:author" content={post.author} />
         
         {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={getShareUrl()} />
-        <meta property="twitter:title" content={post.title} />
-        <meta property="twitter:description" content={post.excerpt} />
-        <meta property="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={getShareUrl()} />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
+        <meta name="twitter:image:alt" content={post.title} />
       </Helmet>
       <Navigation />
       <main className="pt-32 pb-16">
