@@ -169,15 +169,10 @@ const Index = () => {
                   className="text-lg px-10 py-7 h-auto shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-primary hover:bg-primary/90"
                   asChild
                 >
-                  <a 
-                    href="https://dauroia.com/herramientas/portadas" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3"
-                  >
+                  <Link to="/generador-portadas" className="flex items-center gap-3">
                     <BookOpen className="w-6 h-6" />
                     Crear mi portada gratis
-                  </a>
+                  </Link>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
                   Sin registro • Sin costos ocultos • Resultados instantáneos

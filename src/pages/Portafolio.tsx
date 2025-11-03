@@ -322,15 +322,10 @@ export default function Portafolio() {
                       className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
                       asChild
                     >
-                      <a 
-                        href="https://dauroia.com/herramientas/portadas" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
+                      <Link to="/generador-portadas" className="flex items-center gap-2">
                         <BookOpen className="w-5 h-5" />
                         Crear portada gratis con IA
-                      </a>
+                      </Link>
                     </Button>
                     
                     <Button 
