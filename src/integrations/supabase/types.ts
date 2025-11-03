@@ -335,6 +335,57 @@ export type Database = {
         }
         Relationships: []
       }
+      web_requests: {
+        Row: {
+          apellidos: string
+          created_at: string
+          descripcion: string
+          documento_file_path: string | null
+          email: string
+          empresa: string | null
+          funcionalidades: string | null
+          id: string
+          nombre: string
+          plazo: string | null
+          presupuesto: string | null
+          referencia_web: string | null
+          telefono: string
+          tipo_web: string
+        }
+        Insert: {
+          apellidos: string
+          created_at?: string
+          descripcion: string
+          documento_file_path?: string | null
+          email: string
+          empresa?: string | null
+          funcionalidades?: string | null
+          id?: string
+          nombre: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencia_web?: string | null
+          telefono: string
+          tipo_web: string
+        }
+        Update: {
+          apellidos?: string
+          created_at?: string
+          descripcion?: string
+          documento_file_path?: string | null
+          email?: string
+          empresa?: string | null
+          funcionalidades?: string | null
+          id?: string
+          nombre?: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencia_web?: string | null
+          telefono?: string
+          tipo_web?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
