@@ -191,6 +191,63 @@ export type Database = {
         }
         Relationships: []
       }
+      cover_credits: {
+        Row: {
+          created_at: string
+          credits_remaining: number
+          email: string
+          id: string
+          stripe_customer_id: string | null
+          stripe_payment_intent_id: string | null
+          total_credits_purchased: number
+        }
+        Insert: {
+          created_at?: string
+          credits_remaining?: number
+          email: string
+          id?: string
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          total_credits_purchased?: number
+        }
+        Update: {
+          created_at?: string
+          credits_remaining?: number
+          email?: string
+          id?: string
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          total_credits_purchased?: number
+        }
+        Relationships: []
+      }
+      cover_generation_usage: {
+        Row: {
+          created_at: string
+          email: string | null
+          generations_count: number
+          id: string
+          ip_address: string | null
+          last_generated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          generations_count?: number
+          id?: string
+          ip_address?: string | null
+          last_generated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          generations_count?: number
+          id?: string
+          ip_address?: string | null
+          last_generated_at?: string
+        }
+        Relationships: []
+      }
       dauro_arte_contacts: {
         Row: {
           apellidos: string

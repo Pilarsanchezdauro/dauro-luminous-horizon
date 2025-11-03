@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { SEO } from '@/components/SEO';
@@ -9,7 +9,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Sparkles, BookOpen, Loader2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Sparkles, BookOpen, Loader2, CreditCard, Check, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -27,8 +29,14 @@ const generos = [
   'Historia', 'Biografía', 'Autoayuda', 'Poesía', 'Thriller'
 ];
 
+const PACKAGES = [
+  { id: '10', credits: 10, price: 10, name: 'Paquete Básico' },
+  { id: '20', credits: 20, price: 20, name: 'Paquete Popular', popular: true },
+  { id: '30', credits: 30, price: 30, name: 'Paquete Pro' }
+];
+
 export default function GeneradorPortadas() {
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [genero, setGenero] = useState('');
@@ -39,7 +47,102 @@ export default function GeneradorPortadas() {
   const [sorprenderColores, setSorprenderColores] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [generationsLeft, setGenerationsLeft] = useState(2);
+  
+  // User state
+  const [email, setEmail] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [showEmailDialog, setShowEmailDialog] = useState(false);
+  const [ipAddress, setIpAddress] = useState('');
+  
+  // Limits state
+  const [generationsUsed, setGenerationsUsed] = useState(0);
+  const [availableCredits, setAvailableCredits] = useState(0);
+  const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+  const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
+
+  // Get user IP address on mount
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => setIpAddress(data.ip))
+      .catch(err => console.error('Error getting IP:', err));
+  }, []);
+
+  // Check for payment success
+  useEffect(() => {
+    const payment = searchParams.get('payment');
+    if (payment === 'success') {
+      toast.success('¡Pago completado! Tus créditos estarán disponibles en breve.');
+      checkLimits();
+    } else if (payment === 'canceled') {
+      toast.error('Pago cancelado');
+    }
+  }, [searchParams]);
+
+  // Check limits when component mounts or email changes
+  useEffect(() => {
+    if (email || ipAddress) {
+      checkLimits();
+    }
+  }, [email, ipAddress]);
+
+  const checkLimits = async () => {
+    try {
+      const identifier = email || ipAddress;
+      if (!identifier) return;
+
+      // Check usage
+      const { data: usageData } = await supabase
+        .from('cover_generation_usage')
+        .select('*')
+        .or(email ? `email.eq.${email}` : `ip_address.eq.${ipAddress}`)
+        .single();
+
+      if (usageData) {
+        setGenerationsUsed(usageData.generations_count);
+      }
+
+      // Check credits if user has email
+      if (email) {
+        const { data: creditsData } = await supabase
+          .from('cover_credits')
+          .select('*')
+          .eq('email', email)
+          .single();
+
+        if (creditsData) {
+          setAvailableCredits(creditsData.credits_remaining);
+        }
+      }
+    } catch (error) {
+      console.error('Error checking limits:', error);
+    }
+  };
+
+  const getMaxFreeGenerations = () => {
+    return email ? 3 : 2;
+  };
+
+  const getRemainingFreeGenerations = () => {
+    const max = getMaxFreeGenerations();
+    const remaining = max - generationsUsed;
+    return Math.max(0, remaining);
+  };
+
+  const canGenerate = () => {
+    const freeRemaining = getRemainingFreeGenerations();
+    return freeRemaining > 0 || availableCredits > 0;
+  };
+
+  const handleEmailSubmit = () => {
+    if (!emailInput.trim() || !emailInput.includes('@')) {
+      toast.error('Por favor, ingresa un email válido');
+      return;
+    }
+    setEmail(emailInput);
+    setShowEmailDialog(false);
+    toast.success('¡Email registrado! Ahora tienes 3 generaciones gratis.');
+  };
 
   const handleGenerar = async () => {
     if (!titulo.trim()) {
@@ -47,14 +150,21 @@ export default function GeneradorPortadas() {
       return;
     }
 
-    if (generationsLeft <= 0) {
-      toast.error('Has alcanzado el límite de generaciones gratuitas');
+    if (!canGenerate()) {
+      setShowPurchaseDialog(true);
+      return;
+    }
+
+    // If user hasn't provided email and has used 2 generations, ask for email
+    if (!email && generationsUsed >= 2) {
+      setShowEmailDialog(true);
       return;
     }
 
     setIsGenerating(true);
 
     try {
+      // Generate cover
       const { data, error } = await supabase.functions.invoke('generate-book-cover', {
         body: {
           titulo,
@@ -72,7 +182,10 @@ export default function GeneradorPortadas() {
 
       if (data?.image) {
         setGeneratedImage(data.image);
-        setGenerationsLeft(prev => prev - 1);
+        
+        // Update usage
+        await updateUsage();
+        
         toast.success('¡Portada generada con éxito!');
       } else {
         throw new Error('No se recibió imagen');
@@ -82,6 +195,99 @@ export default function GeneradorPortadas() {
       toast.error(error.message || 'Error al generar la portada. Por favor, intenta de nuevo.');
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const updateUsage = async () => {
+    try {
+      const identifier = email || ipAddress;
+      if (!identifier) return;
+
+      // Check if record exists
+      const { data: existing } = await supabase
+        .from('cover_generation_usage')
+        .select('*')
+        .or(email ? `email.eq.${email}` : `ip_address.eq.${ipAddress}`)
+        .single();
+
+      if (existing) {
+        // Update existing record
+        const { error } = await supabase
+          .from('cover_generation_usage')
+          .update({
+            generations_count: existing.generations_count + 1,
+            last_generated_at: new Date().toISOString()
+          })
+          .eq('id', existing.id);
+
+        if (error) throw error;
+        setGenerationsUsed(existing.generations_count + 1);
+      } else {
+        // Create new record
+        const { error } = await supabase
+          .from('cover_generation_usage')
+          .insert({
+            email: email || null,
+            ip_address: ipAddress || null,
+            generations_count: 1
+          });
+
+        if (error) throw error;
+        setGenerationsUsed(1);
+      }
+
+      // If using credits, decrease them
+      if (getRemainingFreeGenerations() === 0 && availableCredits > 0) {
+        const { data: creditsData } = await supabase
+          .from('cover_credits')
+          .select('*')
+          .eq('email', email)
+          .single();
+
+        if (creditsData) {
+          await supabase
+            .from('cover_credits')
+            .update({
+              credits_remaining: creditsData.credits_remaining - 1
+            })
+            .eq('id', creditsData.id);
+
+          setAvailableCredits(creditsData.credits_remaining - 1);
+        }
+      }
+    } catch (error) {
+      console.error('Error updating usage:', error);
+    }
+  };
+
+  const handlePurchase = async (packageId: string) => {
+    if (!email) {
+      toast.error('Por favor, ingresa tu email primero');
+      setShowPurchaseDialog(false);
+      setShowEmailDialog(true);
+      return;
+    }
+
+    setIsLoadingCheckout(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-cover-checkout', {
+        body: {
+          package_id: packageId,
+          email: email
+        }
+      });
+
+      if (error) throw error;
+
+      if (data?.url) {
+        window.open(data.url, '_blank');
+        setShowPurchaseDialog(false);
+      }
+    } catch (error: any) {
+      console.error('Error creating checkout:', error);
+      toast.error('Error al procesar el pago. Por favor, intenta de nuevo.');
+    } finally {
+      setIsLoadingCheckout(false);
     }
   };
 
@@ -97,12 +303,51 @@ export default function GeneradorPortadas() {
 
         <main className="container mx-auto px-4 pt-24 pb-16">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Generador de Portadas con IA
               </h1>
               <p className="text-lg text-muted-foreground">
                 Crea portadas profesionales para tus libros en segundos
+              </p>
+            </div>
+
+            {/* Credits Banner */}
+            <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
+              <p className="text-lg font-medium">
+                {availableCredits > 0 ? (
+                  <>
+                    <Check className="inline w-5 h-5 mr-2 text-green-500" />
+                    Tienes <span className="font-bold text-primary">{availableCredits}</span> créditos disponibles
+                  </>
+                ) : getRemainingFreeGenerations() > 0 ? (
+                  <>
+                    Generaciones gratis restantes: <span className="font-bold text-primary">{getRemainingFreeGenerations()}</span> de {getMaxFreeGenerations()}
+                    {!email && generationsUsed >= 1 && (
+                      <Button
+                        variant="link"
+                        size="sm"
+                        onClick={() => setShowEmailDialog(true)}
+                        className="ml-2"
+                      >
+                        + Obtén 1 gratis con tu email
+                      </Button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <X className="inline w-5 h-5 mr-2 text-destructive" />
+                    Has usado todas tus generaciones gratuitas.{' '}
+                    <Button
+                      variant="link"
+                      size="sm"
+                      onClick={() => setShowPurchaseDialog(true)}
+                      className="p-0 h-auto"
+                    >
+                      Compra más créditos
+                    </Button>
+                  </>
+                )}
               </p>
             </div>
 
@@ -226,7 +471,7 @@ export default function GeneradorPortadas() {
                   {/* Botón Generar */}
                   <Button
                     onClick={handleGenerar}
-                    disabled={isGenerating || generationsLeft <= 0}
+                    disabled={isGenerating || !canGenerate()}
                     className="w-full bg-accent hover:bg-accent/90 text-accent-foreground h-12 text-base font-semibold"
                   >
                     {isGenerating ? (
@@ -241,10 +486,6 @@ export default function GeneradorPortadas() {
                       </>
                     )}
                   </Button>
-
-                  <p className="text-xs text-center text-muted-foreground">
-                    Completa el formulario y haz clic en "Generar". Tienes {generationsLeft} creaciones gratis para probar la herramienta.
-                  </p>
                 </div>
               </div>
 
@@ -286,7 +527,7 @@ export default function GeneradorPortadas() {
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Tu portada profesional te espera</h3>
                         <p className="text-sm text-muted-foreground">
-                          Completa el formulario y haz clic en "Generar". Tienes {generationsLeft} creaciones gratis para probar la herramienta.
+                          Completa el formulario y haz clic en "Generar"
                         </p>
                       </div>
                     </div>
@@ -296,6 +537,84 @@ export default function GeneradorPortadas() {
             </div>
           </div>
         </main>
+
+        {/* Email Dialog */}
+        <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>¡Obtén 1 generación extra gratis!</DialogTitle>
+              <DialogDescription>
+                Ingresa tu email para desbloquear una generación adicional y poder comprar más créditos en el futuro.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <Input
+                type="email"
+                placeholder="tu@email.com"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+              />
+              <Button onClick={handleEmailSubmit} className="w-full">
+                Desbloquear generación extra
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Purchase Dialog */}
+        <Dialog open={showPurchaseDialog} onOpenChange={setShowPurchaseDialog}>
+          <DialogContent className="max-w-4xl">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">Compra más créditos para seguir creando</DialogTitle>
+              <DialogDescription>
+                Elige el paquete que mejor se adapte a tus necesidades
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {PACKAGES.map((pkg) => (
+                <Card key={pkg.id} className={pkg.popular ? 'border-primary shadow-lg' : ''}>
+                  {pkg.popular && (
+                    <div className="bg-primary text-primary-foreground text-center py-1 text-sm font-medium rounded-t-lg">
+                      Más Popular
+                    </div>
+                  )}
+                  <CardHeader>
+                    <CardTitle>{pkg.name}</CardTitle>
+                    <CardDescription>
+                      {pkg.credits} portadas
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-center">
+                      <div className="text-4xl font-bold">{pkg.price}€</div>
+                      <div className="text-sm text-muted-foreground">
+                        {(pkg.price / pkg.credits).toFixed(2)}€ por portada
+                      </div>
+                    </div>
+                    <Button
+                      onClick={() => handlePurchase(pkg.id)}
+                      disabled={isLoadingCheckout}
+                      className="w-full"
+                      variant={pkg.popular ? 'default' : 'outline'}
+                    >
+                      {isLoadingCheckout ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Procesando...
+                        </>
+                      ) : (
+                        <>
+                          <CreditCard className="mr-2 h-4 w-4" />
+                          Comprar ahora
+                        </>
+                      )}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <Footer />
       </div>
