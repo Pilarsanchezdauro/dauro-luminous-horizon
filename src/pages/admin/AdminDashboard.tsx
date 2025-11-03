@@ -1,27 +1,33 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { FileText, Mail, BookOpen } from 'lucide-react';
+import { FileText, Mail, BookOpen, Video, Globe } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     dauroArte: 0,
     editorial: 0,
     servicios: 0,
+    webRequests: 0,
+    booktrailerRequests: 0,
   });
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [dauroArte, editorial, servicios] = await Promise.all([
+      const [dauroArte, editorial, servicios, webRequests, booktrailerRequests] = await Promise.all([
         supabase.from('dauro_arte_contacts').select('id', { count: 'exact', head: true }),
         supabase.from('editorial_submissions').select('id', { count: 'exact', head: true }),
         supabase.from('services_contacts').select('id', { count: 'exact', head: true }),
+        supabase.from('web_requests').select('id', { count: 'exact', head: true }),
+        supabase.from('booktrailer_requests').select('id', { count: 'exact', head: true }),
       ]);
 
       setStats({
         dauroArte: dauroArte.count || 0,
         editorial: editorial.count || 0,
         servicios: servicios.count || 0,
+        webRequests: webRequests.count || 0,
+        booktrailerRequests: booktrailerRequests.count || 0,
       });
     };
 
@@ -37,7 +43,37 @@ export default function AdminDashboard() {
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Solicitudes Web
+            </CardTitle>
+            <Globe className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.webRequests}</div>
+            <CardDescription>
+              Proyectos web solicitados
+            </CardDescription>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Solicitudes Booktrailer
+            </CardTitle>
+            <Video className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.booktrailerRequests}</div>
+            <CardDescription>
+              Booktrailers solicitados
+            </CardDescription>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
