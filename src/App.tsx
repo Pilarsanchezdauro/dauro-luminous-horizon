@@ -36,6 +36,7 @@ import Portafolio from "./pages/Portafolio";
 import ProjectDetail from "./pages/ProjectDetail";
 import Projects from "./pages/admin/Projects";
 import ProjectForm from "./pages/admin/ProjectForm";
+import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,7 @@ const App = () => (
             <Route path="/portafolio" element={<Portafolio />} />
             <Route path="/portafolio/:slug" element={<ProjectDetail />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/solicitar-booktrailer" element={<SolicitarBooktrailer />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />

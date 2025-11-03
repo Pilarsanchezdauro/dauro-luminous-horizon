@@ -274,7 +274,7 @@ export default function ProjectDetail() {
                         className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
                         asChild
                       >
-                        <Link to="/contacto" className="flex items-center gap-2">
+                        <Link to="/solicitar-booktrailer" className="flex items-center gap-2">
                           <Mail className="w-5 h-5" />
                           Solicita tu booktrailer
                         </Link>

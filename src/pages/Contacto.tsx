@@ -3,8 +3,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import BooktrailerRequestForm from "@/components/BooktrailerRequestForm";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const Contacto = () => {
@@ -22,19 +20,12 @@ const Contacto = () => {
               Nos encantaría escucharte.
             </p>
 
-            <Tabs defaultValue="general" className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
-                <TabsTrigger value="general">Consulta General</TabsTrigger>
-                <TabsTrigger value="booktrailer">Solicitar Booktrailer</TabsTrigger>
-              </TabsList>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Forms */}
-                <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
-                  <TabsContent value="general" className="mt-0">
-                    <h2 className="text-2xl font-playfair font-bold mb-6">
-                      Envíanos un mensaje
-                    </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
+                <h2 className="text-2xl font-playfair font-bold mb-6">
+                  Envíanos un mensaje
+                </h2>
                     <form 
                       action="https://formsubmit.co/info@grupodauro.com" 
                       method="POST"
@@ -103,23 +94,15 @@ const Contacto = () => {
                           required
                         />
                       </div>
-                      <Button
-                        type="submit"
-                        className="w-full bg-primary hover:bg-primary/90"
-                        size="lg"
-                      >
-                        Enviar mensaje
-                      </Button>
-                    </form>
-                  </TabsContent>
-
-                  <TabsContent value="booktrailer" className="mt-0">
-                    <h2 className="text-2xl font-playfair font-bold mb-6">
-                      Solicita tu booktrailer
-                    </h2>
-                    <BooktrailerRequestForm />
-                  </TabsContent>
-                </div>
+                  <Button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90"
+                    size="lg"
+                  >
+                    Enviar mensaje
+                  </Button>
+                </form>
+              </div>
 
                 {/* Contact Info */}
                 <div className="space-y-8">
@@ -243,10 +226,9 @@ const Contacto = () => {
                       </svg>
                     </a>
                   </div>
-                </div>
-                </div>
               </div>
-            </Tabs>
+            </div>
+          </div>
           </div>
         </div>
       </main>
