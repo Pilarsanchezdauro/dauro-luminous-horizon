@@ -84,7 +84,7 @@ export default function Portafolio() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestro Portafolio</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explora nuestros proyectos creativos y trabajos realizados
+              Explora algunos de nuestros proyectos y trabajos realizados
             </p>
           </div>
 
