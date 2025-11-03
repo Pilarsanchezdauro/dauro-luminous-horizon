@@ -7,7 +7,7 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const categoryIcons = {
@@ -237,17 +237,67 @@ export default function ProjectDetail() {
               </div>
             )}
 
-            {/* CTA */}
-            <Card className="bg-primary/5">
-              <CardContent className="pt-6 text-center">
-                <h2 className="text-2xl font-bold mb-4">
-                  ¿Te interesa un proyecto similar?
-                </h2>
-                <Link to="/contacto">
-                  <Button size="lg">Solicitar proyecto</Button>
-                </Link>
-              </CardContent>
-            </Card>
+            {/* Booktrailer CTA Section */}
+            {project.category === 'booktrailers' && (
+              <div className="mb-8">
+                <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-2xl p-8 md:p-12">
+                  <div className="text-center space-y-8">
+                    <div>
+                      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        ¿Te gustó este booktrailer?
+                      </h2>
+                      <p className="text-lg text-muted-foreground">
+                        Descubre más trabajos o solicita el tuyo
+                      </p>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                      <Button 
+                        size="lg" 
+                        className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
+                        asChild
+                      >
+                        <a 
+                          href="https://www.youtube.com/@grupodauro2900" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <Youtube className="w-5 h-5" />
+                          Ver más en YouTube
+                        </a>
+                      </Button>
+                      
+                      <Button 
+                        size="lg" 
+                        variant="outline"
+                        className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
+                        asChild
+                      >
+                        <Link to="/contacto" className="flex items-center gap-2">
+                          <Mail className="w-5 h-5" />
+                          Solicita tu booktrailer
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Generic CTA */}
+            {project.category !== 'booktrailers' && (
+              <Card className="bg-primary/5">
+                <CardContent className="pt-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4">
+                    ¿Te interesa un proyecto similar?
+                  </h2>
+                  <Link to="/contacto">
+                    <Button size="lg">Solicitar proyecto</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </main>
 
