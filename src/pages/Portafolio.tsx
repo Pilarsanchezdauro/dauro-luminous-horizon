@@ -9,13 +9,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail } from 'lucide-react';
+import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
 
 interface Project {
   id: string;
   title: string;
   slug: string;
-  category: 'webs' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares';
+  category: 'webs' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares' | 'portadas-libros';
   client: string | null;
   year: number | null;
   summary: string;
@@ -32,6 +32,7 @@ const categoryIcons = {
   cine: Film,
   musica: Music,
   avatares: Users,
+  'portadas-libros': BookOpen,
 };
 
 const categoryLabels = {
@@ -42,6 +43,7 @@ const categoryLabels = {
   cine: 'Cine',
   musica: 'Música',
   avatares: 'Avatares',
+  'portadas-libros': 'Portadas de Libros',
 };
 
 export default function Portafolio() {
