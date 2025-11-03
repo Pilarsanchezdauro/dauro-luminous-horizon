@@ -18,6 +18,7 @@ const categoryIcons = {
   'imagen-corporativa': Briefcase,
   cine: Film,
   musica: Music,
+  avatares: Users,
 };
 
 const categoryLabels = {
@@ -28,6 +29,7 @@ const categoryLabels = {
   'imagen-corporativa': 'Imagen Corporativa',
   cine: 'Cine',
   musica: 'Música',
+  avatares: 'Avatares',
 };
 
 export default function ProjectDetail() {
