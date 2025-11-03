@@ -42,6 +42,7 @@ import PortfolioInquiries from "./pages/admin/PortfolioInquiries";
 import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
 import SolicitarWeb from "./pages/SolicitarWeb";
 import SolicitarProyecto from "./pages/SolicitarProyecto";
+import GeneradorPortadas from "./pages/GeneradorPortadas";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/solicitar-booktrailer" element={<SolicitarBooktrailer />} />
             <Route path="/solicitar-web" element={<SolicitarWeb />} />
             <Route path="/solicitar-proyecto" element={<SolicitarProyecto />} />
+            <Route path="/generador-portadas" element={<GeneradorPortadas />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
