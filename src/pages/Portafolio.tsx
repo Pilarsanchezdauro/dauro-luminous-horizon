@@ -15,7 +15,7 @@ interface Project {
   id: string;
   title: string;
   slug: string;
-  category: 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares';
+  category: 'webs' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares';
   client: string | null;
   year: number | null;
   summary: string;
@@ -26,7 +26,6 @@ interface Project {
 
 const categoryIcons = {
   webs: Globe,
-  personajes: Users,
   booktrailers: Video,
   pintura: Palette,
   'imagen-corporativa': Briefcase,
@@ -37,7 +36,6 @@ const categoryIcons = {
 
 const categoryLabels = {
   webs: 'Webs',
-  personajes: 'Personajes',
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
   'imagen-corporativa': 'Imagen Corporativa',
@@ -106,7 +104,6 @@ export default function Portafolio() {
               <SelectContent>
                 <SelectItem value="all">Todas las categorías</SelectItem>
                 <SelectItem value="webs">Webs</SelectItem>
-                <SelectItem value="personajes">Personajes</SelectItem>
                 <SelectItem value="booktrailers">Booktrailers</SelectItem>
                 <SelectItem value="pintura">Pintura</SelectItem>
                 <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>

@@ -27,7 +27,6 @@ import {
 
 const categoryLabels = {
   webs: 'Webs',
-  personajes: 'Personajes',
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
   'imagen-corporativa': 'Imagen Corporativa',

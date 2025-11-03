@@ -13,7 +13,6 @@ import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 
 const categoryIcons = {
   webs: Globe,
-  personajes: Users,
   booktrailers: Video,
   pintura: Palette,
   'imagen-corporativa': Briefcase,
@@ -24,7 +23,6 @@ const categoryIcons = {
 
 const categoryLabels = {
   webs: 'Webs',
-  personajes: 'Personajes',
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
   'imagen-corporativa': 'Imagen Corporativa',

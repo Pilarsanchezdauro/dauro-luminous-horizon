@@ -32,7 +32,7 @@ import { useState } from 'react';
 const projectSchema = z.object({
   title: z.string().min(1, 'El título es obligatorio'),
   slug: z.string().min(1, 'El slug es obligatorio'),
-  category: z.enum(['webs', 'personajes', 'booktrailers', 'pintura', 'imagen-corporativa', 'cine', 'musica']),
+  category: z.enum(['webs', 'booktrailers', 'pintura', 'imagen-corporativa', 'cine', 'musica', 'avatares']),
   client: z.string().optional(),
   year: z.coerce.number().optional(),
   summary: z.string().min(1, 'El resumen es obligatorio'),
@@ -94,7 +94,7 @@ export default function ProjectForm() {
     values: project ? {
       title: project.title,
       slug: project.slug,
-      category: project.category as 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica',
+      category: project.category as 'webs' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares',
       client: project.client || '',
       year: project.year || undefined,
       summary: project.summary,
@@ -231,7 +231,6 @@ export default function ProjectForm() {
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="webs">Webs</SelectItem>
-                        <SelectItem value="personajes">Personajes</SelectItem>
                         <SelectItem value="booktrailers">Booktrailers</SelectItem>
                         <SelectItem value="pintura">Pintura</SelectItem>
                         <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
