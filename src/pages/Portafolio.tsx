@@ -103,11 +103,12 @@ export default function Portafolio() {
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Categoría" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-background z-50">
                 <SelectItem value="all">Todas las categorías</SelectItem>
                 <SelectItem value="webs">Webs</SelectItem>
                 <SelectItem value="booktrailers">Booktrailers</SelectItem>
                 <SelectItem value="pintura">Pintura</SelectItem>
+                <SelectItem value="portadas-libros">Portadas de Libros</SelectItem>
                 <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
                 <SelectItem value="cine">Cine</SelectItem>
                 <SelectItem value="musica">Música</SelectItem>
@@ -119,7 +120,7 @@ export default function Portafolio() {
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Año" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-background z-50">
                 <SelectItem value="all">Todos los años</SelectItem>
                 {years.map((year) => (
                   <SelectItem key={year} value={year?.toString() || ''}>
@@ -318,15 +319,10 @@ export default function Portafolio() {
                       className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
                       asChild
                     >
-                      <a 
-                        href="https://www.edicionesdauro.com/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
+                      <Link to="/tienda" className="flex items-center gap-2">
                         <BookOpen className="w-5 h-5" />
                         Visitar tienda
-                      </a>
+                      </Link>
                     </Button>
                     
                     <Button 
