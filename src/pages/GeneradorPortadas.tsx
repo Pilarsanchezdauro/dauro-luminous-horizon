@@ -111,12 +111,14 @@ export default function GeneradorPortadas() {
       const identifier = email || ipAddress;
       if (!identifier) return;
 
-      // Check usage
+      // Check usage - get the most recent record if multiple exist
       const { data: usageData } = await supabase
         .from('cover_generation_usage')
         .select('*')
         .or(email ? `email.eq.${email}` : `ip_address.eq.${ipAddress}`)
-        .single();
+        .order('last_generated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
       if (usageData) {
         setGenerationsUsed(usageData.generations_count);
@@ -228,12 +230,14 @@ export default function GeneradorPortadas() {
       const identifier = email || ipAddress;
       if (!identifier) return;
 
-      // Check if record exists
+      // Check if record exists - get the most recent one
       const { data: existing } = await supabase
         .from('cover_generation_usage')
         .select('*')
         .or(email ? `email.eq.${email}` : `ip_address.eq.${ipAddress}`)
-        .single();
+        .order('last_generated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
       if (existing) {
         // Update existing record
