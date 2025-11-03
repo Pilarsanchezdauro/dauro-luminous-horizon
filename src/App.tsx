@@ -32,6 +32,10 @@ import ServicesContacts from "./pages/admin/ServicesContacts";
 import BlogPosts from "./pages/admin/BlogPosts";
 import BlogPostForm from "./pages/admin/BlogPostForm";
 import RssFeed from "./pages/RssFeed";
+import Portafolio from "./pages/Portafolio";
+import ProjectDetail from "./pages/ProjectDetail";
+import Projects from "./pages/admin/Projects";
+import ProjectForm from "./pages/admin/ProjectForm";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +62,8 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/feed.xml" element={<RssFeed />} />
             <Route path="/rss.xml" element={<RssFeed />} />
+            <Route path="/portafolio" element={<Portafolio />} />
+            <Route path="/portafolio/:slug" element={<ProjectDetail />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
@@ -70,6 +76,9 @@ const App = () => (
               <Route path="blog-posts" element={<BlogPosts />} />
               <Route path="blog-posts/new" element={<BlogPostForm />} />
               <Route path="blog-posts/edit/:id" element={<BlogPostForm />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="projects/new" element={<ProjectForm />} />
+              <Route path="projects/:id" element={<ProjectForm />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

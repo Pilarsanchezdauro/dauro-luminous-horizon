@@ -155,6 +155,66 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          category: string
+          client: string | null
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          gallery_images: Json | null
+          id: string
+          links: Json | null
+          main_image_url: string | null
+          published: boolean | null
+          services: string[] | null
+          slug: string
+          summary: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+          year: number | null
+        }
+        Insert: {
+          category: string
+          client?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          gallery_images?: Json | null
+          id?: string
+          links?: Json | null
+          main_image_url?: string | null
+          published?: boolean | null
+          services?: string[] | null
+          slug: string
+          summary: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          year?: number | null
+        }
+        Update: {
+          category?: string
+          client?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          gallery_images?: Json | null
+          id?: string
+          links?: Json | null
+          main_image_url?: string | null
+          published?: boolean | null
+          services?: string[] | null
+          slug?: string
+          summary?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
       services_contacts: {
         Row: {
           apellidos: string

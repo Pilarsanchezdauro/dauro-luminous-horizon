@@ -1,0 +1,252 @@
+import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { SEO } from '@/components/SEO';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { ArrowLeft, ExternalLink, Youtube, Globe, Image, FileText } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
+const categoryIcons = {
+  youtube: Youtube,
+  web: Globe,
+  imagen: Image,
+  guion: FileText,
+};
+
+const categoryLabels = {
+  youtube: 'YouTube',
+  web: 'Web',
+  imagen: 'Imagen',
+  guion: 'Guion',
+};
+
+export default function ProjectDetail() {
+  const { slug } = useParams();
+
+  const { data: project, isLoading } = useQuery({
+    queryKey: ['project', slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('slug', slug)
+        .eq('published', true)
+        .single();
+
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="container mx-auto px-4 pt-24 pb-16">
+          <div className="animate-pulse space-y-8">
+            <div className="h-8 bg-muted rounded w-1/4" />
+            <div className="h-12 bg-muted rounded w-3/4" />
+            <div className="aspect-video bg-muted rounded" />
+            <div className="space-y-4">
+              <div className="h-4 bg-muted rounded" />
+              <div className="h-4 bg-muted rounded w-5/6" />
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="container mx-auto px-4 pt-24 pb-16 text-center">
+          <h1 className="text-3xl font-bold mb-4">Proyecto no encontrado</h1>
+          <Link to="/portafolio">
+            <Button>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Volver al portafolio
+            </Button>
+          </Link>
+        </main>
+      </div>
+    );
+  }
+
+  const Icon = categoryIcons[project.category];
+  const links = project.links as Array<{ url: string; label: string }> || [];
+  const galleryImages = project.gallery_images as Array<{ url: string; caption?: string }> || [];
+
+  return (
+    <>
+      <SEO
+        title={project.title}
+        description={project.summary}
+        image={project.main_image_url || undefined}
+        type="article"
+      />
+      <div className="min-h-screen bg-background">
+        <Navigation />
+
+        <main className="container mx-auto px-4 pt-24 pb-16">
+          <Link to="/portafolio">
+            <Button variant="ghost" className="mb-6">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Volver al portafolio
+            </Button>
+          </Link>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            {/* Header */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Badge variant="secondary">
+                  <Icon className="w-3 h-3 mr-1" />
+                  {categoryLabels[project.category]}
+                </Badge>
+                {project.featured && <Badge>Destacado</Badge>}
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
+              <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+                {project.client && <span className="font-medium">{project.client}</span>}
+                {project.year && <span>{project.year}</span>}
+              </div>
+            </div>
+
+            {/* Main Image or Video */}
+            {project.category === 'youtube' && links.length > 0 && links[0].url.includes('youtube') ? (
+              <div className="aspect-video">
+                <iframe
+                  src={links[0].url.replace('watch?v=', 'embed/')}
+                  className="w-full h-full rounded-lg"
+                  allowFullScreen
+                  title={project.title}
+                />
+              </div>
+            ) : project.main_image_url ? (
+              <img
+                src={project.main_image_url}
+                alt={project.title}
+                className="w-full aspect-video object-cover rounded-lg"
+              />
+            ) : null}
+
+            {/* Summary */}
+            <Card>
+              <CardContent className="pt-6">
+                <p className="text-lg leading-relaxed">{project.summary}</p>
+              </CardContent>
+            </Card>
+
+            {/* Description */}
+            {project.description && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Descripción</h2>
+                <div className="prose prose-lg max-w-none">
+                  <p className="whitespace-pre-wrap">{project.description}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Services */}
+            {project.services && project.services.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Servicios</h2>
+                <div className="flex flex-wrap gap-2">
+                  {project.services.map((service) => (
+                    <Badge key={service} variant="outline" className="text-base px-4 py-2">
+                      {service}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Gallery */}
+            {galleryImages.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Galería</h2>
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {galleryImages.map((img, index) => (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="p-2">
+                              <img
+                                src={img.url}
+                                alt={img.caption || `Imagen ${index + 1}`}
+                                className="w-full aspect-square object-cover rounded"
+                              />
+                              {img.caption && (
+                                <p className="text-sm text-muted-foreground mt-2 px-2">
+                                  {img.caption}
+                                </p>
+                              )}
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            )}
+
+            {/* Links */}
+            {links.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Enlaces</h2>
+                <div className="flex flex-wrap gap-3">
+                  {links.map((link, index) => (
+                    <Button key={index} asChild variant="outline">
+                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        {link.label}
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tags */}
+            {project.tags && project.tags.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Etiquetas</h2>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CTA */}
+            <Card className="bg-primary/5">
+              <CardContent className="pt-6 text-center">
+                <h2 className="text-2xl font-bold mb-4">
+                  ¿Te interesa un proyecto similar?
+                </h2>
+                <Link to="/contacto">
+                  <Button size="lg">Solicitar proyecto</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+}
