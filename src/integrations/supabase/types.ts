@@ -77,6 +77,60 @@ export type Database = {
         }
         Relationships: []
       }
+      book_cover_requests: {
+        Row: {
+          apellidos: string
+          autor: string
+          created_at: string
+          descripcion: string
+          dimensiones: string | null
+          email: string
+          estilo_preferido: string | null
+          genero: string | null
+          id: string
+          nombre: string
+          plazo: string | null
+          presupuesto: string | null
+          referencia_visual_path: string | null
+          telefono: string
+          titulo_libro: string
+        }
+        Insert: {
+          apellidos: string
+          autor: string
+          created_at?: string
+          descripcion: string
+          dimensiones?: string | null
+          email: string
+          estilo_preferido?: string | null
+          genero?: string | null
+          id?: string
+          nombre: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencia_visual_path?: string | null
+          telefono: string
+          titulo_libro: string
+        }
+        Update: {
+          apellidos?: string
+          autor?: string
+          created_at?: string
+          descripcion?: string
+          dimensiones?: string | null
+          email?: string
+          estilo_preferido?: string | null
+          genero?: string | null
+          id?: string
+          nombre?: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencia_visual_path?: string | null
+          telefono?: string
+          titulo_libro?: string
+        }
+        Relationships: []
+      }
       booktrailer_requests: {
         Row: {
           apellidos: string

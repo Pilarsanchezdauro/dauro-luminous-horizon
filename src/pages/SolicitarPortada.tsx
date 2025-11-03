@@ -1,0 +1,106 @@
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { SEO } from '@/components/SEO';
+import BookCoverRequestForm from '@/components/BookCoverRequestForm';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { BookOpen, Palette, Sparkles } from 'lucide-react';
+
+export default function SolicitarPortada() {
+  return (
+    <>
+      <SEO
+        title="Solicitar Diseño de Portada Personalizada"
+        description="Solicita el diseño profesional de la portada de tu libro. Nuestro equipo creará una portada única que capture la esencia de tu obra."
+        keywords="diseño portada libro, portada personalizada, diseño editorial, portada profesional"
+      />
+      <div className="min-h-screen bg-background">
+        <Navigation />
+
+        <main className="container mx-auto px-4 pt-24 pb-16">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="flex justify-center mb-4">
+                <div className="bg-primary/10 p-4 rounded-full">
+                  <BookOpen className="w-12 h-12 text-primary" />
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Solicitar Portada Personalizada
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Crea una portada única y profesional para tu libro con nuestro equipo de diseñadores expertos
+              </p>
+            </div>
+
+            {/* Benefits Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <Card>
+                <CardHeader>
+                  <Palette className="w-8 h-8 mb-2 text-primary" />
+                  <CardTitle className="text-lg">Diseño Profesional</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Portadas creadas por diseñadores con años de experiencia en el sector editorial
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <Sparkles className="w-8 h-8 mb-2 text-primary" />
+                  <CardTitle className="text-lg">100% Personalizado</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Cada diseño es único y adaptado específicamente a tu libro y tu visión
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <BookOpen className="w-8 h-8 mb-2 text-primary" />
+                  <CardTitle className="text-lg">Múltiples Revisiones</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Trabajamos contigo hasta conseguir la portada perfecta para tu obra
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Form */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Cuéntanos sobre tu libro</CardTitle>
+                <CardDescription>
+                  Completa el formulario y nos pondremos en contacto contigo para comenzar el diseño de tu portada
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <BookCoverRequestForm />
+              </CardContent>
+            </Card>
+
+            {/* Additional Info */}
+            <div className="mt-8 p-6 bg-muted/50 rounded-lg">
+              <h3 className="font-semibold mb-2">¿Prefieres usar nuestro generador gratuito de IA?</h3>
+              <p className="text-sm text-muted-foreground">
+                Si quieres crear tu portada de forma rápida y gratuita, prueba nuestro{' '}
+                <a href="/generador-portadas" className="text-primary hover:underline">
+                  generador de portadas con inteligencia artificial
+                </a>
+                . Es ideal para obtener ideas iniciales o portadas sencillas.
+              </p>
+            </div>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+}

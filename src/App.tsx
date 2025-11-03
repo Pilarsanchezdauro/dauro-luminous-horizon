@@ -42,7 +42,9 @@ import PortfolioInquiries from "./pages/admin/PortfolioInquiries";
 import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
 import SolicitarWeb from "./pages/SolicitarWeb";
 import SolicitarProyecto from "./pages/SolicitarProyecto";
+import SolicitarPortada from "./pages/SolicitarPortada";
 import GeneradorPortadas from "./pages/GeneradorPortadas";
+import BookCoverRequests from "./pages/admin/BookCoverRequests";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +77,7 @@ const App = () => (
             <Route path="/solicitar-booktrailer" element={<SolicitarBooktrailer />} />
             <Route path="/solicitar-web" element={<SolicitarWeb />} />
             <Route path="/solicitar-proyecto" element={<SolicitarProyecto />} />
+            <Route path="/solicitar-portada" element={<SolicitarPortada />} />
             <Route path="/generador-portadas" element={<GeneradorPortadas />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
@@ -92,6 +95,7 @@ const App = () => (
               <Route path="projects/:id" element={<ProjectForm />} />
               <Route path="web-requests" element={<WebRequests />} />
               <Route path="booktrailer-requests" element={<BooktrailerRequests />} />
+              <Route path="book-cover-requests" element={<BookCoverRequests />} />
               <Route path="portfolio-inquiries" element={<PortfolioInquiries />} />
             </Route>
             <Route path="*" element={<NotFound />} />

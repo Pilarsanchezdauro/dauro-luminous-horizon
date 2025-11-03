@@ -223,11 +223,12 @@ export default function ProjectDetail() {
                 <div className="flex flex-wrap gap-3">
                   {links.map((link, index) => {
                     const isExternal = link.url.startsWith('http');
+                    const showIcon = isExternal || link.text.toLowerCase().includes('tienda');
                     return (
-                      <Button key={index} asChild variant="outline">
+                      <Button key={index} asChild variant="outline" size="lg">
                         {isExternal ? (
                           <a href={link.url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" />
+                            {showIcon && <ExternalLink className="mr-2 h-4 w-4" />}
                             {link.text}
                           </a>
                         ) : (
