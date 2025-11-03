@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 
 const categoryIcons = {
   webs: Globe,
@@ -287,19 +288,17 @@ export default function ProjectDetail() {
               </div>
             )}
 
-            {/* Generic CTA */}
-            {project.category !== 'booktrailers' && (
-              <Card className="bg-primary/5">
-                <CardContent className="pt-6 text-center">
-                  <h2 className="text-2xl font-bold mb-4">
-                    ¿Te interesa un proyecto similar?
-                  </h2>
-                  <Link to="/contacto">
-                    <Button size="lg">Solicitar proyecto</Button>
-                  </Link>
+            {/* Contact Form for All Categories */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                ¿Te interesa un proyecto similar?
+              </h2>
+              <Card>
+                <CardContent className="pt-6">
+                  <PortfolioInquiryForm />
                 </CardContent>
               </Card>
-            )}
+            </div>
           </div>
         </main>
 
