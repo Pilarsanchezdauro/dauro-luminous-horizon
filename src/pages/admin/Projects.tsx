@@ -31,6 +31,8 @@ const categoryLabels = {
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
   'imagen-corporativa': 'Imagen Corporativa',
+  cine: 'Cine',
+  musica: 'Música',
 };
 
 export default function Projects() {

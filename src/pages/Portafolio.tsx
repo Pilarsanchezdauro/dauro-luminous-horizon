@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Globe, Users, Video, Palette, Briefcase } from 'lucide-react';
+import { Globe, Users, Video, Palette, Briefcase, Film, Music } from 'lucide-react';
 
 interface Project {
   id: string;
   title: string;
   slug: string;
-  category: 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa';
+  category: 'webs' | 'personajes' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica';
   client: string | null;
   year: number | null;
   summary: string;
@@ -29,6 +29,8 @@ const categoryIcons = {
   booktrailers: Video,
   pintura: Palette,
   'imagen-corporativa': Briefcase,
+  cine: Film,
+  musica: Music,
 };
 
 const categoryLabels = {
@@ -37,6 +39,8 @@ const categoryLabels = {
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
   'imagen-corporativa': 'Imagen Corporativa',
+  cine: 'Cine',
+  musica: 'Música',
 };
 
 export default function Portafolio() {
@@ -103,6 +107,8 @@ export default function Portafolio() {
                 <SelectItem value="booktrailers">Booktrailers</SelectItem>
                 <SelectItem value="pintura">Pintura</SelectItem>
                 <SelectItem value="imagen-corporativa">Imagen Corporativa</SelectItem>
+                <SelectItem value="cine">Cine</SelectItem>
+                <SelectItem value="musica">Música</SelectItem>
               </SelectContent>
             </Select>
 
