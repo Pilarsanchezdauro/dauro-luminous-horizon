@@ -82,7 +82,7 @@ const Blog = () => {
               <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl mb-16">
                 <div className="relative h-96 overflow-hidden">
                   <img
-                    src={presentacionLatido}
+                    src={featuredPost.image}
                     alt={`${featuredPost.title} - Evento cultural en Granada`}
                     width="1200"
                     height="630"
