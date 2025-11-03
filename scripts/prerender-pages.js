@@ -11,49 +11,49 @@ const pages = [
     path: 'grupo-dauro',
     title: 'Grupo Dauro - Quiénes Somos',
     description: 'Conoce al Grupo Cultural Dauro: editorial, galería de arte y producción cinematográfica en Granada.',
-    image: '/og-image.jpg'
+    image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'editorial',
     title: 'Editorial Dauro - Publicación de Obras Literarias',
     description: 'Editorial independiente especializada en literatura de calidad. Publicamos novela, poesía y ensayo.',
-    image: '/og-image.jpg'
+    image: '/og-editorial.jpg'
   },
   {
     path: 'arte',
     title: 'Dauro Arte - Galería y Servicios Artísticos',
     description: 'Galería de arte contemporáneo y servicios de consultoría artística en Granada.',
-    image: '/og-image.jpg'
+    image: '/og-arte.jpg'
   },
   {
     path: 'cine',
     title: 'Dauro Cine - Producción Audiovisual',
     description: 'Producción cinematográfica independiente y servicios audiovisuales de calidad.',
-    image: '/og-image.jpg'
+    image: '/og-cine.jpg'
   },
   {
     path: 'ia',
     title: 'Dauro IA - Inteligencia Artificial con Identidad Estética',
     description: 'Servicios creativos con IA: generación de contenido, diseño y estrategia digital.',
-    image: '/og-image.jpg'
+    image: '/og-ia.jpg'
   },
   {
     path: 'servicios',
     title: 'Servicios Culturales y Creativos',
     description: 'Consultoría cultural, diseño editorial, producción audiovisual y servicios creativos con IA.',
-    image: '/og-image.jpg'
+    image: '/og-logo.png'
   },
   {
     path: 'blog',
     title: 'Blog - Noticias Culturales y Eventos',
     description: 'Últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos y novedades sobre IA creativa.',
-    image: '/og-image.jpg'
+    image: '/og-logo.png'
   },
   {
     path: 'contacto',
     title: 'Contacto - Grupo Cultural Dauro',
     description: 'Ponte en contacto con el Grupo Cultural Dauro para proyectos editoriales, artísticos o audiovisuales.',
-    image: '/og-image.jpg'
+    image: '/og-logo.png'
   }
 ];
 
