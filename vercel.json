@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build && node scripts/prerender-blog.js",
+  "buildCommand": "npm run build && node scripts/prerender-pages.js && node scripts/prerender-blog.js",
   "outputDirectory": "dist",
   "rewrites": [
     {

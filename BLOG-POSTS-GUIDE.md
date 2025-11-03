@@ -1,4 +1,39 @@
-# Guía para Añadir Posts del Blog con Imágenes Open Graph
+# Guía para Configurar Imágenes Open Graph en Todo el Sitio
+
+## 🎯 Configuración actual
+
+El sitio ya está configurado para mostrar imágenes correctamente en WhatsApp y redes sociales:
+
+✅ **Páginas principales** - Usan imagen genérica del sitio (`/og-image.jpg`)
+✅ **Posts del blog** - Cada uno tiene su imagen personalizada
+✅ **Pre-renderizado automático** - Se genera HTML estático en cada deploy
+
+---
+
+## 📱 Para compartir páginas principales (Inicio, Editorial, Arte, etc.)
+
+Estas páginas usan la imagen genérica del sitio. Para personalizarlas:
+
+### 1. Edita `scripts/prerender-pages.js`
+
+Encuentra la página que quieres personalizar:
+
+```javascript
+{
+  path: 'editorial',
+  title: 'Editorial Dauro - Publicación de Obras Literarias',
+  description: 'Editorial independiente...',
+  image: '/og-editorial.jpg'  // ← Cambia a tu imagen personalizada
+}
+```
+
+### 2. Crea la imagen Open Graph
+
+- Dimensiones: **1200 x 630 píxeles**
+- Guarda en: `public/og-[nombre].jpg`
+- Diseño: Logo + título de la sección + visual relevante
+
+---
 
 ## ✅ Checklist para cada nuevo post del blog
 
