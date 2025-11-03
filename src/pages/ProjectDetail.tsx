@@ -88,7 +88,7 @@ export default function ProjectDetail() {
   }
 
   const Icon = categoryIcons[project.category];
-  const links = project.links as Array<{ url: string; label: string }> || [];
+  const links = project.links as Array<{ url: string; text: string }> || [];
   const galleryImages = project.gallery_images as Array<{ url: string; caption?: string }> || [];
 
   return (
@@ -221,14 +221,23 @@ export default function ProjectDetail() {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Enlaces</h2>
                 <div className="flex flex-wrap gap-3">
-                  {links.map((link, index) => (
-                    <Button key={index} asChild variant="outline">
-                      <a href={link.url} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        {link.label}
-                      </a>
-                    </Button>
-                  ))}
+                  {links.map((link, index) => {
+                    const isExternal = link.url.startsWith('http');
+                    return (
+                      <Button key={index} asChild variant="outline">
+                        {isExternal ? (
+                          <a href={link.url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            {link.text}
+                          </a>
+                        ) : (
+                          <Link to={link.url}>
+                            {link.text}
+                          </Link>
+                        )}
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
             )}
