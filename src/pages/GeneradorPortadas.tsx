@@ -11,9 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, BookOpen, Loader2, CreditCard, Check, X } from 'lucide-react';
+import { Sparkles, BookOpen, Loader2, CreditCard, Check, X, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 const estilos = [
   { id: 'minimalista', label: 'Minimalista', icon: '💎' },
@@ -56,6 +57,7 @@ const PACKAGES = [
 
 export default function GeneradorPortadas() {
   const [searchParams] = useSearchParams();
+  const { isAdmin } = useAuth();
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [genero, setGenero] = useState('');
@@ -148,6 +150,9 @@ export default function GeneradorPortadas() {
   };
 
   const canGenerate = () => {
+    // Admins always can generate
+    if (isAdmin) return true;
+    
     const freeRemaining = getRemainingFreeGenerations();
     return freeRemaining > 0 || availableCredits > 0;
   };
@@ -173,8 +178,8 @@ export default function GeneradorPortadas() {
       return;
     }
 
-    // If user hasn't provided email and has used 2 generations, ask for email
-    if (!email && generationsUsed >= 2) {
+    // If user hasn't provided email and has used 2 generations, ask for email (not for admins)
+    if (!isAdmin && !email && generationsUsed >= 2) {
       setShowEmailDialog(true);
       return;
     }
@@ -201,8 +206,10 @@ export default function GeneradorPortadas() {
       if (data?.image) {
         setGeneratedImage(data.image);
         
-        // Update usage
-        await updateUsage();
+        // Update usage (skip for admins)
+        if (!isAdmin) {
+          await updateUsage();
+        }
         
         toast.success('¡Portada generada con éxito!');
       } else {
@@ -324,7 +331,12 @@ export default function GeneradorPortadas() {
             {/* Credits Banner */}
             <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
               <p className="text-lg font-medium">
-                {availableCredits > 0 ? (
+                {isAdmin ? (
+                  <>
+                    <Crown className="inline w-5 h-5 mr-2 text-yellow-500" />
+                    <span className="font-bold text-primary">Acceso ilimitado de administrador</span>
+                  </>
+                ) : availableCredits > 0 ? (
                   <>
                     <Check className="inline w-5 h-5 mr-2 text-green-500" />
                     Tienes <span className="font-bold text-primary">{availableCredits}</span> créditos disponibles
