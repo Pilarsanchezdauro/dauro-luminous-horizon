@@ -77,6 +77,66 @@ export type Database = {
         }
         Relationships: []
       }
+      booktrailer_requests: {
+        Row: {
+          apellidos: string
+          autor: string
+          created_at: string
+          elementos_visuales: string | null
+          email: string
+          genero: string | null
+          id: string
+          imagen_portada_path: string | null
+          material_adicional_paths: string[] | null
+          nombre: string
+          plazo: string | null
+          presupuesto: string | null
+          referencias: string | null
+          sinopsis: string
+          telefono: string
+          titulo_libro: string
+          tono: string | null
+        }
+        Insert: {
+          apellidos: string
+          autor: string
+          created_at?: string
+          elementos_visuales?: string | null
+          email: string
+          genero?: string | null
+          id?: string
+          imagen_portada_path?: string | null
+          material_adicional_paths?: string[] | null
+          nombre: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencias?: string | null
+          sinopsis: string
+          telefono: string
+          titulo_libro: string
+          tono?: string | null
+        }
+        Update: {
+          apellidos?: string
+          autor?: string
+          created_at?: string
+          elementos_visuales?: string | null
+          email?: string
+          genero?: string | null
+          id?: string
+          imagen_portada_path?: string | null
+          material_adicional_paths?: string[] | null
+          nombre?: string
+          plazo?: string | null
+          presupuesto?: string | null
+          referencias?: string | null
+          sinopsis?: string
+          telefono?: string
+          titulo_libro?: string
+          tono?: string | null
+        }
+        Relationships: []
+      }
       dauro_arte_contacts: {
         Row: {
           apellidos: string

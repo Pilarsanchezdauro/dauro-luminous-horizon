@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import BooktrailerRequestForm from "@/components/BooktrailerRequestForm";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const Contacto = () => {
@@ -20,92 +22,107 @@ const Contacto = () => {
               Nos encantaría escucharte.
             </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
-                <h2 className="text-2xl font-playfair font-bold mb-6">
-                  Envíanos un mensaje
-                </h2>
-                <form 
-                  action="https://formsubmit.co/info@grupodauro.com" 
-                  method="POST"
-                  className="space-y-6"
-                >
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Nombre
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Tu nombre"
-                      className="w-full"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="tu@email.com"
-                      className="w-full"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Asunto
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      placeholder="¿En qué podemos ayudarte?"
-                      className="w-full"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Mensaje
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Cuéntanos más sobre tu consulta..."
-                      className="w-full min-h-[150px]"
-                      required
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary/90"
-                    size="lg"
-                  >
-                    Enviar mensaje
-                  </Button>
-                </form>
-              </div>
+            <Tabs defaultValue="general" className="w-full">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+                <TabsTrigger value="general">Consulta General</TabsTrigger>
+                <TabsTrigger value="booktrailer">Solicitar Booktrailer</TabsTrigger>
+              </TabsList>
 
-              {/* Contact Info */}
-              <div className="space-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Forms */}
+                <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
+                  <TabsContent value="general" className="mt-0">
+                    <h2 className="text-2xl font-playfair font-bold mb-6">
+                      Envíanos un mensaje
+                    </h2>
+                    <form 
+                      action="https://formsubmit.co/info@grupodauro.com" 
+                      method="POST"
+                      className="space-y-6"
+                    >
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Nombre
+                        </label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          placeholder="Tu nombre"
+                          className="w-full"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Email
+                        </label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="tu@email.com"
+                          className="w-full"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="subject"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Asunto
+                        </label>
+                        <Input
+                          id="subject"
+                          name="subject"
+                          type="text"
+                          placeholder="¿En qué podemos ayudarte?"
+                          className="w-full"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Mensaje
+                        </label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          placeholder="Cuéntanos más sobre tu consulta..."
+                          className="w-full min-h-[150px]"
+                          required
+                        />
+                      </div>
+                      <Button
+                        type="submit"
+                        className="w-full bg-primary hover:bg-primary/90"
+                        size="lg"
+                      >
+                        Enviar mensaje
+                      </Button>
+                    </form>
+                  </TabsContent>
+
+                  <TabsContent value="booktrailer" className="mt-0">
+                    <h2 className="text-2xl font-playfair font-bold mb-6">
+                      Solicita tu booktrailer
+                    </h2>
+                    <BooktrailerRequestForm />
+                  </TabsContent>
+                </div>
+
+                {/* Contact Info */}
+                <div className="space-y-8">
                 <div>
                   <h2 className="text-2xl font-playfair font-bold mb-6">
                     Información de contacto
@@ -227,8 +244,9 @@ const Contacto = () => {
                     </a>
                   </div>
                 </div>
+                </div>
               </div>
-            </div>
+            </Tabs>
           </div>
         </div>
       </main>
