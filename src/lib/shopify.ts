@@ -222,3 +222,47 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
     throw error;
   }
 }
+
+export async function createCheckoutForProduct(productHandle: string, quantity: number = 1): Promise<string> {
+  try {
+    // First, get the product to obtain its variant ID
+    const product = await getProductByHandle(productHandle);
+    
+    if (!product || !product.variants.edges.length) {
+      throw new Error('Product not found or has no variants');
+    }
+
+    // Get the first available variant
+    const variant = product.variants.edges[0].node;
+    
+    // Create checkout with this variant
+    const lines = [{
+      quantity,
+      merchandiseId: variant.id,
+    }];
+
+    const cartData = await storefrontApiRequest(CART_CREATE_MUTATION, {
+      input: {
+        lines,
+      },
+    });
+
+    if (cartData.data.cartCreate.userErrors.length > 0) {
+      throw new Error(`Cart creation failed: ${cartData.data.cartCreate.userErrors.map((e: any) => e.message).join(', ')}`);
+    }
+
+    const cart = cartData.data.cartCreate.cart;
+    
+    if (!cart.checkoutUrl) {
+      throw new Error('No checkout URL returned from Shopify');
+    }
+
+    const url = new URL(cart.checkoutUrl);
+    url.searchParams.set('channel', 'online_store');
+    const checkoutUrl = url.toString();
+    return checkoutUrl;
+  } catch (error) {
+    console.error('Error creating checkout for product:', error);
+    throw error;
+  }
+}

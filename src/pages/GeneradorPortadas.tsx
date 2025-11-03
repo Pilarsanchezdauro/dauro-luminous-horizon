@@ -289,7 +289,7 @@ export default function GeneradorPortadas() {
     }
   };
 
-  const handlePurchase = (packageId: string) => {
+  const handlePurchase = async (packageId: string) => {
     if (!email) {
       toast.error('Por favor, ingresa tu email primero');
       setShowPurchaseDialog(false);
@@ -303,12 +303,26 @@ export default function GeneradorPortadas() {
       return;
     }
 
-    // Open Shopify product page in new tab
-    const shopUrl = `https://dauro-luminous-horizon-6vj19.myshopify.com/products/${selectedPackage.productHandle}`;
-    window.open(shopUrl, '_blank');
-    setShowPurchaseDialog(false);
-    
-    toast.success('Redirigiendo a la tienda... Completa tu compra para recibir los créditos.');
+    try {
+      setShowPurchaseDialog(false);
+      toast.loading('Creando checkout...');
+      
+      // Import the function dynamically to avoid circular dependencies
+      const { createCheckoutForProduct } = await import('@/lib/shopify');
+      
+      // Create checkout programmatically with Shopify Storefront API
+      const checkoutUrl = await createCheckoutForProduct(selectedPackage.productHandle, 1);
+      
+      toast.dismiss();
+      toast.success('Redirigiendo al checkout...');
+      
+      // Open checkout in new tab
+      window.open(checkoutUrl, '_blank');
+    } catch (error: any) {
+      toast.dismiss();
+      console.error('Error creating checkout:', error);
+      toast.error('Error al crear el checkout. Por favor, intenta de nuevo.');
+    }
   };
 
   return (
