@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
-import { createHmac } from "https://deno.land/std@0.190.0/node/crypto.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -15,12 +14,24 @@ const SKU_TO_CREDITS: Record<string, number> = {
 };
 
 // Verify Shopify webhook signature
-function verifyShopifyWebhook(body: string, hmacHeader: string, secret: string): boolean {
-  const hash = createHmac("sha256", secret)
-    .update(body, "utf8")
-    .digest("base64");
-  
-  return hash === hmacHeader;
+async function verifyShopifyWebhook(body: string, hmacHeader: string, secret: string): Promise<boolean> {
+  const encoder = new TextEncoder();
+  const keyData = encoder.encode(secret);
+  const messageData = encoder.encode(body);
+
+  const key = await crypto.subtle.importKey(
+    "raw",
+    keyData,
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+
+  const signature = await crypto.subtle.sign("HMAC", key, messageData);
+  const hashArray = Array.from(new Uint8Array(signature));
+  const hashBase64 = btoa(String.fromCharCode.apply(null, hashArray as any));
+
+  return hashBase64 === hmacHeader;
 }
 
 serve(async (req) => {
@@ -54,7 +65,8 @@ serve(async (req) => {
     }
 
     // Verify webhook authenticity
-    if (!verifyShopifyWebhook(rawBody, shopifyHmac, webhookSecret)) {
+    const isValid = await verifyShopifyWebhook(rawBody, shopifyHmac, webhookSecret);
+    if (!isValid) {
       console.error("Invalid Shopify webhook signature");
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 401,
@@ -201,8 +213,9 @@ serve(async (req) => {
     );
   } catch (error) {
     console.error("Error processing webhook:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

@@ -197,6 +197,7 @@ export type Database = {
           credits_remaining: number
           email: string
           id: string
+          shopify_order_id: string | null
           stripe_customer_id: string | null
           stripe_payment_intent_id: string | null
           total_credits_purchased: number
@@ -206,6 +207,7 @@ export type Database = {
           credits_remaining?: number
           email: string
           id?: string
+          shopify_order_id?: string | null
           stripe_customer_id?: string | null
           stripe_payment_intent_id?: string | null
           total_credits_purchased?: number
@@ -215,6 +217,7 @@ export type Database = {
           credits_remaining?: number
           email?: string
           id?: string
+          shopify_order_id?: string | null
           stripe_customer_id?: string | null
           stripe_payment_intent_id?: string | null
           total_credits_purchased?: number

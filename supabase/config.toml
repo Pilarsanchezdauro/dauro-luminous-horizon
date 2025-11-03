@@ -6,8 +6,5 @@ verify_jwt = false
 [functions.generate-book-cover]
 verify_jwt = false
 
-[functions.create-cover-checkout]
-verify_jwt = false
-
-[functions.stripe-webhook]
+[functions.shopify-webhook]
 verify_jwt = false

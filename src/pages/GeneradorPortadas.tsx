@@ -30,9 +30,28 @@ const generos = [
 ];
 
 const PACKAGES = [
-  { id: '10', credits: 10, price: 10, name: 'Paquete Básico' },
-  { id: '20', credits: 20, price: 20, name: 'Paquete Popular', popular: true },
-  { id: '30', credits: 30, price: 30, name: 'Paquete Pro' }
+  { 
+    id: '10', 
+    credits: 10, 
+    price: 10, 
+    name: 'Paquete Básico',
+    productHandle: 'creditos-generador-de-portadas-10-covers'
+  },
+  { 
+    id: '20', 
+    credits: 20, 
+    price: 20, 
+    name: 'Paquete Popular', 
+    popular: true,
+    productHandle: 'creditos-generador-de-portadas-20-covers'
+  },
+  { 
+    id: '30', 
+    credits: 30, 
+    price: 30, 
+    name: 'Paquete Pro',
+    productHandle: 'creditos-generador-de-portadas-30-covers'
+  }
 ];
 
 export default function GeneradorPortadas() {
@@ -58,7 +77,6 @@ export default function GeneradorPortadas() {
   const [generationsUsed, setGenerationsUsed] = useState(0);
   const [availableCredits, setAvailableCredits] = useState(0);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
-  const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
 
   // Get user IP address on mount
   useEffect(() => {
@@ -260,7 +278,7 @@ export default function GeneradorPortadas() {
     }
   };
 
-  const handlePurchase = async (packageId: string) => {
+  const handlePurchase = (packageId: string) => {
     if (!email) {
       toast.error('Por favor, ingresa tu email primero');
       setShowPurchaseDialog(false);
@@ -268,27 +286,18 @@ export default function GeneradorPortadas() {
       return;
     }
 
-    setIsLoadingCheckout(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('create-cover-checkout', {
-        body: {
-          package_id: packageId,
-          email: email
-        }
-      });
-
-      if (error) throw error;
-
-      if (data?.url) {
-        window.open(data.url, '_blank');
-        setShowPurchaseDialog(false);
-      }
-    } catch (error: any) {
-      console.error('Error creating checkout:', error);
-      toast.error('Error al procesar el pago. Por favor, intenta de nuevo.');
-    } finally {
-      setIsLoadingCheckout(false);
+    const selectedPackage = PACKAGES.find(p => p.id === packageId);
+    if (!selectedPackage) {
+      toast.error('Paquete no encontrado');
+      return;
     }
+
+    // Open Shopify product page in new tab
+    const shopUrl = `https://www.edicionesdauro.com/products/${selectedPackage.productHandle}`;
+    window.open(shopUrl, '_blank');
+    setShowPurchaseDialog(false);
+    
+    toast.success('Redirigiendo a la tienda... Completa tu compra para recibir los créditos.');
   };
 
   return (
@@ -593,21 +602,11 @@ export default function GeneradorPortadas() {
                     </div>
                     <Button
                       onClick={() => handlePurchase(pkg.id)}
-                      disabled={isLoadingCheckout}
                       className="w-full"
                       variant={pkg.popular ? 'default' : 'outline'}
                     >
-                      {isLoadingCheckout ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Procesando...
-                        </>
-                      ) : (
-                        <>
-                          <CreditCard className="mr-2 h-4 w-4" />
-                          Comprar ahora
-                        </>
-                      )}
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      Comprar ahora
                     </Button>
                   </CardContent>
                 </Card>
