@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
 import ServicesContactForm from "@/components/ServicesContactForm";
+import mascotLogo from "@/assets/mascot.png";
 
 const Servicios = () => {
   const services = [
@@ -216,7 +217,33 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
         </div>
       </section>
 
-      <main className="container mx-auto px-6 lg:px-10 py-16">
+      <main className="container mx-auto px-6 lg:px-10 py-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-20 right-12 w-20 h-20 opacity-7 animate-bounce"
+          style={{ animationDuration: '3.3s', animationDelay: '0.4s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-96 left-20 w-16 h-16 opacity-5 animate-bounce"
+          style={{ animationDuration: '4.3s', animationDelay: '1.3s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-64 right-1/4 w-24 h-24 opacity-6 animate-bounce"
+          style={{ animationDuration: '5.3s', animationDelay: '0.9s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-20 left-1/3 w-20 h-20 opacity-9 animate-bounce"
+          style={{ animationDuration: '6.3s', animationDelay: '2.3s' }}
+        />
+        
         <div className="max-w-7xl mx-auto">
           {/* Intro */}
           <div className="max-w-4xl mx-auto mb-12 lg:mb-16">

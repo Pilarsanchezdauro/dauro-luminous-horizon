@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Film, Video, Award, Users } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import cineBg from "@/assets/cine-bg.jpg";
+import mascotLogo from "@/assets/mascot.png";
 
 const Cine = () => {
   const structuredData = {
@@ -46,7 +47,33 @@ const Cine = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-24 left-10 w-20 h-20 opacity-7 animate-bounce"
+          style={{ animationDuration: '3.5s', animationDelay: '0s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-72 right-20 w-16 h-16 opacity-5 animate-bounce"
+          style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-60 left-1/4 w-24 h-24 opacity-6 animate-bounce"
+          style={{ animationDuration: '5.5s', animationDelay: '1s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-20 right-1/3 w-20 h-20 opacity-8 animate-bounce"
+          style={{ animationDuration: '6.5s', animationDelay: '2.5s' }}
+        />
+        
         {/* Intro */}
         <div className="max-w-4xl mx-auto mb-20 text-center">
           <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">

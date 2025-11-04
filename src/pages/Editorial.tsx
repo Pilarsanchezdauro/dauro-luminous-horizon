@@ -11,6 +11,7 @@ import libroHorizonte from "@/assets/libro-horizonte-interior.png";
 import libroBesos from "@/assets/libro-besos.png";
 import libroBoabdil from "@/assets/libro-boabdil.png";
 import SubmitWorkForm from "@/components/SubmitWorkForm";
+import mascotLogo from "@/assets/mascot.png";
 
 const Editorial = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -58,7 +59,33 @@ const Editorial = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-32 right-16 w-20 h-20 opacity-8 animate-bounce"
+          style={{ animationDuration: '3.2s', animationDelay: '0.3s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-80 left-10 w-16 h-16 opacity-6 animate-bounce"
+          style={{ animationDuration: '4.2s', animationDelay: '1.2s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-72 right-1/4 w-24 h-24 opacity-5 animate-bounce"
+          style={{ animationDuration: '5.2s', animationDelay: '0.8s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-40 left-1/3 w-20 h-20 opacity-10 animate-bounce"
+          style={{ animationDuration: '6.2s', animationDelay: '2.2s' }}
+        />
+        
         {/* Intro */}
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">

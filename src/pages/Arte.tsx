@@ -5,6 +5,7 @@ import { FileCheck, TrendingUp, FileSearch, ShoppingBag, Briefcase, Building2 } 
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
+import mascotLogo from "@/assets/mascot.png";
 
 const Arte = () => {
   const structuredData = {
@@ -106,7 +107,33 @@ const Arte = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-20 right-10 w-20 h-20 opacity-8 animate-bounce"
+          style={{ animationDuration: '3s', animationDelay: '0s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-96 left-16 w-16 h-16 opacity-5 animate-bounce"
+          style={{ animationDuration: '4s', animationDelay: '1s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-40 right-1/4 w-24 h-24 opacity-6 animate-bounce"
+          style={{ animationDuration: '5s', animationDelay: '0.5s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-96 left-1/3 w-20 h-20 opacity-10 animate-bounce"
+          style={{ animationDuration: '6s', animationDelay: '2s' }}
+        />
+        
         {/* Introducción */}
         <div className="max-w-5xl mx-auto mb-16">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
