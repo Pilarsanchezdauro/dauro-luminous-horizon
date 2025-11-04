@@ -290,6 +290,9 @@ export default function GeneradorPortadas() {
   };
 
   const handlePurchase = async (packageId: string) => {
+    console.log('handlePurchase called with packageId:', packageId);
+    console.log('Current email:', email);
+    
     if (!email) {
       toast.error('Por favor, ingresa tu email primero');
       setShowPurchaseDialog(false);
@@ -298,30 +301,39 @@ export default function GeneradorPortadas() {
     }
 
     const selectedPackage = PACKAGES.find(p => p.id === packageId);
+    console.log('Selected package:', selectedPackage);
+    
     if (!selectedPackage) {
       toast.error('Paquete no encontrado');
       return;
     }
 
     try {
-      setShowPurchaseDialog(false);
-      toast.loading('Creando checkout...');
+      console.log('Starting checkout creation...');
+      toast.loading('Creando checkout...', { id: 'checkout-loading' });
       
       // Import the function dynamically to avoid circular dependencies
       const { createCheckoutForProduct } = await import('@/lib/shopify');
+      console.log('createCheckoutForProduct imported');
       
       // Create checkout programmatically with Shopify Storefront API
+      console.log('Calling createCheckoutForProduct with handle:', selectedPackage.productHandle);
       const checkoutUrl = await createCheckoutForProduct(selectedPackage.productHandle, 1);
+      console.log('Checkout URL created:', checkoutUrl);
       
-      toast.dismiss();
+      toast.dismiss('checkout-loading');
       toast.success('Redirigiendo al checkout...');
       
       // Open checkout in new tab
-      window.open(checkoutUrl, '_blank');
+      console.log('Opening checkout in new tab');
+      const opened = window.open(checkoutUrl, '_blank');
+      console.log('Window opened:', opened !== null);
+      
+      setShowPurchaseDialog(false);
     } catch (error: any) {
-      toast.dismiss();
       console.error('Error creating checkout:', error);
-      toast.error('Error al crear el checkout. Por favor, intenta de nuevo.');
+      toast.dismiss('checkout-loading');
+      toast.error(`Error: ${error.message || 'No se pudo crear el checkout'}`);
     }
   };
 

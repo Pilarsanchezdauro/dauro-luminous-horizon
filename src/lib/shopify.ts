@@ -23,7 +23,7 @@ export async function storefrontApiRequest(query: string, variables: any = {}) {
     toast.error("Shopify: Pago requerido", {
       description: "El acceso a la API de Shopify requiere un plan de facturación activo. Tu tienda necesita actualizarse a un plan de pago."
     });
-    return;
+    throw new Error('Shopify payment required');
   }
 
   if (!response.ok) {
@@ -225,8 +225,11 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
 
 export async function createCheckoutForProduct(productHandle: string, quantity: number = 1): Promise<string> {
   try {
+    console.log('createCheckoutForProduct - Starting with handle:', productHandle);
+    
     // First, get the product to obtain its variant ID
     const product = await getProductByHandle(productHandle);
+    console.log('createCheckoutForProduct - Product fetched:', product);
     
     if (!product || !product.variants.edges.length) {
       throw new Error('Product not found or has no variants');
@@ -234,6 +237,7 @@ export async function createCheckoutForProduct(productHandle: string, quantity: 
 
     // Get the first available variant
     const variant = product.variants.edges[0].node;
+    console.log('createCheckoutForProduct - Using variant:', variant.id);
     
     // Create checkout with this variant
     const lines = [{
@@ -241,11 +245,18 @@ export async function createCheckoutForProduct(productHandle: string, quantity: 
       merchandiseId: variant.id,
     }];
 
+    console.log('createCheckoutForProduct - Creating cart with lines:', lines);
     const cartData = await storefrontApiRequest(CART_CREATE_MUTATION, {
       input: {
         lines,
       },
     });
+
+    console.log('createCheckoutForProduct - Cart data received:', cartData);
+
+    if (!cartData || !cartData.data) {
+      throw new Error('No data returned from Shopify');
+    }
 
     if (cartData.data.cartCreate.userErrors.length > 0) {
       throw new Error(`Cart creation failed: ${cartData.data.cartCreate.userErrors.map((e: any) => e.message).join(', ')}`);
@@ -260,6 +271,7 @@ export async function createCheckoutForProduct(productHandle: string, quantity: 
     const url = new URL(cart.checkoutUrl);
     url.searchParams.set('channel', 'online_store');
     const checkoutUrl = url.toString();
+    console.log('createCheckoutForProduct - Final checkout URL:', checkoutUrl);
     return checkoutUrl;
   } catch (error) {
     console.error('Error creating checkout for product:', error);
