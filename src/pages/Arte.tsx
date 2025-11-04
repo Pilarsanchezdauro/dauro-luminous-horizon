@@ -136,6 +136,7 @@ const Arte = () => {
         {/* Introducción */}
         <div className="max-w-5xl mx-auto mb-16">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/public/projects/4-personas-acrilico.png')] bg-cover bg-center opacity-[0.07] grayscale" />
             <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
             <p className="text-base lg:text-lg leading-relaxed mb-6 relative z-10" style={{ color: '#333333' }}>
               En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.

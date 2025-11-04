@@ -83,18 +83,22 @@ const IA = () => {
         />
         
         {/* Intro */}
-        <div className="max-w-4xl mx-auto mb-20 text-center">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
-            Servicios con Visión Artística
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            En Grupo Dauro IA desarrollamos tecnología con alma. Unimos la precisión de la 
-            inteligencia artificial con la sensibilidad del arte para crear soluciones que 
-            inspiran, emocionan y funcionan.
-          </p>
-          <p className="text-primary font-semibold mt-4">
-            🎯 Todos nuestros servicios son personalizados
-          </p>
+        <div className="max-w-4xl mx-auto mb-20">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/public/projects/dauro-ia.png')] bg-cover bg-center opacity-[0.05]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
+            <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
+              Servicios con Visión Artística
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
+              En Grupo Dauro IA desarrollamos tecnología con alma. Unimos la precisión de la 
+              inteligencia artificial con la sensibilidad del arte para crear soluciones que 
+              inspiran, emocionan y funcionan.
+            </p>
+            <p className="text-primary font-semibold mt-4 text-center relative z-10">
+              🎯 Todos nuestros servicios son personalizados
+            </p>
+          </div>
         </div>
 
         {/* Services Grid */}

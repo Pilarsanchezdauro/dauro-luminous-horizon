@@ -244,9 +244,10 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
         />
         
         <div className="max-w-7xl mx-auto">
-          {/* Intro */}
+          {/* Intro with background image */}
           <div className="max-w-4xl mx-auto mb-12 lg:mb-16">
             <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[url('/public/projects/grupo-dauro.png')] bg-cover bg-center opacity-5" />
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
               <p className="text-base lg:text-lg text-[#333333] leading-relaxed text-center relative z-10">
                 En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 

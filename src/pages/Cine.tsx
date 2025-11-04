@@ -75,15 +75,19 @@ const Cine = () => {
         />
         
         {/* Intro */}
-        <div className="max-w-4xl mx-auto mb-20 text-center">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
-            Narrativas que Emocionan y Transforman
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Dauro Cine produce contenido audiovisual que explora nuevas narrativas y formas de 
-            expresión cinematográfica. Desde cortometrajes experimentales hasta largometrajes 
-            documentales, nuestro compromiso es crear obras que emocionen y hagan reflexionar.
-          </p>
+        <div className="max-w-4xl mx-auto mb-20">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/public/projects/reinas-cortometraje.png')] bg-cover bg-center opacity-[0.08]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+            <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
+              Narrativas que Emocionan y Transforman
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
+              Dauro Cine produce contenido audiovisual que explora nuevas narrativas y formas de 
+              expresión cinematográfica. Desde cortometrajes experimentales hasta largometrajes 
+              documentales, nuestro compromiso es crear obras que emocionen y hagan reflexionar.
+            </p>
+          </div>
         </div>
 
         {/* Stats */}

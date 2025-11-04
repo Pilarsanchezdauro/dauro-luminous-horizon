@@ -237,6 +237,8 @@ const Contacto = () => {
                 {/* Contact Info */}
                 <div className="space-y-6">
                 <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 relative overflow-hidden group">
+                  {/* Background image */}
+                  <div className="absolute inset-0 bg-[url('/public/projects/grupo-dauro.png')] bg-cover bg-center opacity-[0.04]" />
                   {/* Decorative blob */}
                   <div className="absolute bottom-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/20 transition-all duration-500" />
                   

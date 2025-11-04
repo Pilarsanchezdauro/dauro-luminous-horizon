@@ -89,6 +89,7 @@ const Editorial = () => {
         {/* Intro */}
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/public/projects/portadas-libros-1.png')] bg-cover bg-center opacity-[0.06]" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
             <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
               Más de dos décadas de excelencia editorial
