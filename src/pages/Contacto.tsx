@@ -9,27 +9,55 @@ const Contacto = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-32 pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground text-center">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-12 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="inline-block mb-6 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
+              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Hablemos</span>
+            </div>
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-foreground animate-fade-in-up">
               Contacto
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto animate-fade-in-up-delayed">
               ¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros?
+            </p>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto animate-fade-in-up-delayed-more">
               Nos encantaría escucharte.
             </p>
+          </div>
+        </div>
+        
+        {/* Decorative lines */}
+        <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      </section>
+
+      <main className="pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
-                <h2 className="text-2xl font-playfair font-bold mb-6">
-                  Envíanos un mensaje
-                </h2>
+              <div className="relative group">
+                {/* Decorative glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-accent/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative bg-card p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300">
+                  {/* Inner glow */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+                  
+                  <h2 className="text-2xl font-bold mb-6 relative z-10">
+                    Envíanos un mensaje
+                  </h2>
                     <form 
                       action="https://formsubmit.co/info@grupodauro.com" 
                       method="POST"
-                      className="space-y-6"
+                      className="space-y-6 relative z-10"
                     >
                       <div>
                         <label
@@ -96,23 +124,27 @@ const Contacto = () => {
                       </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-primary hover:bg-primary/90 hover:scale-105 transition-all duration-300"
                     size="lg"
                   >
                     Enviar mensaje
                   </Button>
                 </form>
+                </div>
               </div>
 
                 {/* Contact Info */}
-                <div className="space-y-8">
-                <div>
-                  <h2 className="text-2xl font-playfair font-bold mb-6">
+                <div className="space-y-6">
+                <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 relative overflow-hidden group">
+                  {/* Decorative blob */}
+                  <div className="absolute bottom-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/20 transition-all duration-500" />
+                  
+                  <h2 className="text-2xl font-bold mb-6 relative z-10">
                     Información de contacto
                   </h2>
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
+                  <div className="space-y-6 relative z-10">
+                    <div className="flex items-start gap-4 group/item">
+                      <div className="bg-primary/10 p-3 rounded-xl group-hover/item:bg-primary/20 group-hover/item:scale-110 transition-all duration-300">
                         <Mail className="h-6 w-6 text-primary" />
                       </div>
                       <div>
@@ -126,8 +158,8 @@ const Contacto = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
+                    <div className="flex items-start gap-4 group/item">
+                      <div className="bg-primary/10 p-3 rounded-xl group-hover/item:bg-primary/20 group-hover/item:scale-110 transition-all duration-300">
                         <Phone className="h-6 w-6 text-primary" />
                       </div>
                       <div>
@@ -141,8 +173,8 @@ const Contacto = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
+                    <div className="flex items-start gap-4 group/item">
+                      <div className="bg-primary/10 p-3 rounded-xl group-hover/item:bg-primary/20 group-hover/item:scale-110 transition-all duration-300">
                         <MapPin className="h-6 w-6 text-primary" />
                       </div>
                       <div>
@@ -156,25 +188,27 @@ const Contacto = () => {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
-                  <h3 className="text-xl font-playfair font-bold mb-4">
+                <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500" />
+                  <h3 className="text-xl font-bold mb-4 relative z-10">
                     Horario de atención al público
                   </h3>
-                  <div className="text-muted-foreground">
+                  <div className="text-muted-foreground relative z-10">
                     <p className="font-medium">Lunes a Viernes: 10:00 - 14:00</p>
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl border border-primary/10">
-                  <h3 className="text-xl font-playfair font-bold mb-4">
+                <div className="bg-gradient-to-br from-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500" />
+                  <h3 className="text-xl font-bold mb-4 relative z-10">
                     Síguenos en redes sociales
                   </h3>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 relative z-10">
                     <a
                       href="https://www.facebook.com/grupodauro"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"
+                      className="bg-primary/10 p-3 rounded-xl hover:bg-primary/20 hover:scale-110 transition-all duration-300"
                       aria-label="Facebook"
                     >
                       <svg className="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -185,7 +219,7 @@ const Contacto = () => {
                       href="https://www.instagram.com/grupodauro/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"
+                      className="bg-primary/10 p-3 rounded-xl hover:bg-primary/20 hover:scale-110 transition-all duration-300"
                       aria-label="Instagram"
                     >
                       <svg className="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -196,7 +230,7 @@ const Contacto = () => {
                       href="https://x.com/EdicionesDauro"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"
+                      className="bg-primary/10 p-3 rounded-xl hover:bg-primary/20 hover:scale-110 transition-all duration-300"
                       aria-label="Twitter/X"
                     >
                       <svg className="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -207,7 +241,7 @@ const Contacto = () => {
                       href="https://es.pinterest.com/Grupoculturaldauro/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"
+                      className="bg-primary/10 p-3 rounded-xl hover:bg-primary/20 hover:scale-110 transition-all duration-300"
                       aria-label="Pinterest"
                     >
                       <svg className="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -218,7 +252,7 @@ const Contacto = () => {
                       href="https://www.youtube.com/@grupodauro2900"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-3 rounded-lg hover:bg-primary/20 transition-colors"
+                      className="bg-primary/10 p-3 rounded-xl hover:bg-primary/20 hover:scale-110 transition-all duration-300"
                       aria-label="Youtube"
                     >
                       <svg className="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
