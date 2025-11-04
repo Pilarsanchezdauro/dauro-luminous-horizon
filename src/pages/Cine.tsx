@@ -98,15 +98,15 @@ const Cine = () => {
             <p className="text-sm text-muted-foreground">Producciones</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">8</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">12+</p>
             <p className="text-sm text-muted-foreground">Premios</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">20+</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">30+</p>
             <p className="text-sm text-muted-foreground">Festivales</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">30+</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">35+</p>
             <p className="text-sm text-muted-foreground">Colaboradores</p>
           </div>
         </div>
