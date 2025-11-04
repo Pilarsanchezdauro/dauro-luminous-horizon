@@ -23,6 +23,7 @@ const Navigation = () => {
         { name: "Dauro Editorial", path: "/grupo-dauro/editorial" },
         { name: "Dauro Arte", path: "/grupo-dauro/arte" },
         { name: "Dauro Cine", path: "/grupo-dauro/cine" },
+        { name: "Dauro Música", path: "/grupo-dauro/musica" },
         { name: "Dauro IA", path: "/grupo-dauro/ia" },
       ],
     },

@@ -86,6 +86,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/grupo-dauro/musica"
+                  className="text-background/70 hover:text-background transition-colors"
+                >
+                  Dauro Música
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/grupo-dauro/ia"
                   className="text-background/70 hover:text-background transition-colors"
                 >
