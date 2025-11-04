@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -43,6 +43,11 @@ const menuItems = [
     title: 'Solicitudes Portadas',
     url: '/admin/book-cover-requests',
     icon: PenTool,
+  },
+  {
+    title: 'SEO de Imágenes',
+    url: '/admin/image-seo',
+    icon: ImageIcon,
   },
   {
     title: 'Consultas Portafolio',

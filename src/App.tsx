@@ -45,6 +45,7 @@ import SolicitarProyecto from "./pages/SolicitarProyecto";
 import SolicitarPortada from "./pages/SolicitarPortada";
 import GeneradorPortadas from "./pages/GeneradorPortadas";
 import BookCoverRequests from "./pages/admin/BookCoverRequests";
+import ImageSeoManager from "./pages/admin/ImageSeoManager";
 
 const queryClient = new QueryClient();
 
@@ -97,6 +98,7 @@ const App = () => (
               <Route path="booktrailer-requests" element={<BooktrailerRequests />} />
               <Route path="book-cover-requests" element={<BookCoverRequests />} />
               <Route path="portfolio-inquiries" element={<PortfolioInquiries />} />
+              <Route path="image-seo" element={<ImageSeoManager />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
