@@ -56,21 +56,51 @@ export default function PortfolioInquiryForm() {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('portfolio_inquiries')
-        .insert([{
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          empresa: data.empresa || null,
-          categoria: data.categoria,
-          descripcion: data.descripcion,
-          presupuesto: data.presupuesto || null,
-          plazo: data.plazo || null,
-        }]);
+      // Enviar a Formspree y guardar en base de datos en paralelo
+      const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'; // Reemplaza con tu endpoint de Formspree
+      
+      const [formspreeResponse, supabaseResponse] = await Promise.all([
+        // Enviar a Formspree
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            empresa: data.empresa || '',
+            categoria: categories.find(c => c.value === data.categoria)?.label || data.categoria,
+            descripcion: data.descripcion,
+            presupuesto: data.presupuesto || '',
+            plazo: data.plazo || '',
+            _subject: `Nueva consulta de portafolio: ${data.categoria}`,
+          }),
+        }),
+        // Guardar en Supabase
+        supabase
+          .from('portfolio_inquiries')
+          .insert([{
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            empresa: data.empresa || null,
+            categoria: data.categoria,
+            descripcion: data.descripcion,
+            presupuesto: data.presupuesto || null,
+            plazo: data.plazo || null,
+          }]),
+      ]);
 
-      if (error) throw error;
+      // Verificar errores
+      if (!formspreeResponse.ok) {
+        console.error('Error en Formspree:', await formspreeResponse.text());
+      }
+      
+      if (supabaseResponse.error) throw supabaseResponse.error;
 
       toast.success('¡Consulta enviada con éxito!', {
         description: 'Nos pondremos en contacto contigo pronto.',
