@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ACCEPTED_FILE_TYPES = [
   "application/pdf",
   "application/msword",
@@ -75,7 +75,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     if (file.size > MAX_FILE_SIZE) {
       toast({
         title: "Error",
-        description: `${fieldName} no debe superar 10MB`,
+        description: `${fieldName} no debe superar 50MB`,
         variant: "destructive",
       });
       return false;
@@ -337,7 +337,7 @@ Descarga los archivos haciendo clic en los enlaces.
       </div>
 
       <div>
-        <Label htmlFor="obra">Manuscrito de la obra * (PDF o Word, máx. 10MB)</Label>
+        <Label htmlFor="obra">Manuscrito de la obra * (PDF o Word, máx. 50MB)</Label>
         <div className="mt-2">
           <input
             id="obra"
@@ -375,7 +375,7 @@ Descarga los archivos haciendo clic en los enlaces.
       </div>
 
       <div>
-        <Label htmlFor="curriculum">Curriculum vitae * (PDF o Word, máx. 10MB)</Label>
+        <Label htmlFor="curriculum">Curriculum vitae * (PDF o Word, máx. 50MB)</Label>
         <div className="mt-2">
           <input
             id="curriculum"
