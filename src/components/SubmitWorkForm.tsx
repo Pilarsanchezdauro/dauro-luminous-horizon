@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import logoDauroToast from "@/assets/logo-dauro-toast.png";
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ACCEPTED_FILE_TYPES = [
@@ -201,9 +202,26 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       }
 
       toast({
-        title: "¡Propuesta enviada con éxito!",
-        description: "Gracias por confiar en Grupo Dauro. Revisaremos tu obra cuidadosamente y nos pondremos en contacto contigo en las próximas 48 horas.",
-        duration: 5000,
+        description: (
+          <div className="flex flex-col gap-4 p-2">
+            <div className="flex items-center gap-3">
+              <img src={logoDauroToast} alt="Grupo Dauro" className="h-16 w-16" />
+              <div>
+                <h3 className="text-lg font-bold text-foreground">¡Propuesta Recibida con Éxito!</h3>
+                <p className="text-sm text-muted-foreground mt-1">Grupo Dauro</p>
+              </div>
+            </div>
+            <div className="space-y-2 border-t pt-3">
+              <p className="text-base leading-relaxed">
+                💚 <strong>Gracias por confiar en nosotros.</strong> Tu propuesta es muy importante para Grupo Dauro.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Nuestro equipo revisará cuidadosamente tu obra y nos pondremos en contacto contigo en las <strong className="text-primary">próximas 48 horas</strong> a través del email que nos has proporcionado.
+              </p>
+            </div>
+          </div>
+        ),
+        duration: 8000,
       });
 
       reset();
