@@ -269,13 +269,19 @@ const Cine = () => {
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
                   Dirigida por Tao Mijares y producida por Tao Producciones SA de CV en colaboración con Grupo Dauro. 
-                  La historia sigue a Lorena durante un solo día, como metáfora de la vida contemporánea y símbolo de libertad y humanidad. 
-                  A través de un viaje personal, la narrativa explora los miedos, recuerdos, amores perdidos y el desarraigo.
+                  Se proyectó como parte del lanzamiento de Sauro Productions y tuvo su estreno internacional online con Grupo Dauro. 
+                  La historia sigue a Lorena atrapada en un "poema urbano" durante 24 horas, como metáfora de la vida contemporánea 
+                  y símbolo de libertad y humanidad.
                 </p>
                 <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                  Rodada en México con Juliana Guajardo como protagonista. Estrenada el 24 de agosto de 2009 (1h 42min). 
-                  La obra fue publicada también como libro por Dauro Ediciones (ISBN: 9788494783098). 
-                  Seleccionada para varios certámenes internacionales como muestra de cine social y experimental.
+                  Lorena va cerrando olvidos, rememorando recuerdos y enfrentándose a los retos de cada instante, explorando 
+                  los miedos, amores perdidos y el desarraigo. La obra reflexiona sobre cómo la vida se construye a partir de 
+                  lo que amamos y lo que la sociedad nos arrebata. Publicada también como libro por Dauro Ediciones (ISBN: 9788494783098).
+                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                  <strong>Datos técnicos:</strong> Duración 1h 42min | México, 2009 | Protagonista: Juliana Guajardo | 
+                  Seleccionada en festivales internacionales de India, Colombia, EE.UU., Francia y México, ganando múltiples premios 
+                  incluyendo Mejor Edición, Mejor Música y Mejor Película.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
