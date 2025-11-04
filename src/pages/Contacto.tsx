@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
+import logoDauroContact from "@/assets/logo-dauro-contact.png";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
 
@@ -41,9 +42,16 @@ const Contacto = () => {
       }
 
       toast({
-        title: "¡Mensaje enviado! 🐦",
-        description: "Gracias por contactarnos. Te responderemos pronto.",
-        duration: 5000,
+        description: (
+          <div className="flex items-start gap-3">
+            <img src={logoDauroContact} alt="Grupo Dauro" className="w-12 h-12 flex-shrink-0 animate-fade-in" />
+            <div>
+              <p className="font-semibold text-base mb-1">¡Estamos encantados de que te pongas en contacto con nosotros!</p>
+              <p className="text-sm text-muted-foreground">En menos de 48 horas contactaremos contigo.</p>
+            </div>
+          </div>
+        ),
+        duration: 6000,
       });
 
       formRef.current?.reset();
