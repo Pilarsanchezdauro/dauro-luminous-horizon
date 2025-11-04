@@ -171,17 +171,9 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
             tipo_obra: data.tipo_obra,
             tipo_formulario: 'Propuesta Editorial',
             _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
-            obra_url: obraUrl,
-            curriculum_url: cvUrl,
-            archivos_adjuntos: `
-📚 MANUSCRITO:
-${obraUrl}
-
-📄 CURRÍCULUM VITAE:
-${cvUrl}
-
-Descarga los archivos haciendo clic en los enlaces.
-            `.trim(),
+            manuscrito: obraUrl,
+            curriculum: cvUrl,
+            mensaje: `Nueva propuesta editorial recibida. Manuscrito: ${obraUrl} | Curriculum: ${cvUrl}`,
           }),
         }),
         // Guardar en Supabase
