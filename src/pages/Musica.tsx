@@ -141,13 +141,14 @@ const Musica = () => {
           </div>
         </div>
 
-        {/* Proyecto destacado: Una Voz para Dos Tierras */}
+        {/* Proyectos destacados */}
         <div className="mb-24">
           <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-12 text-center">
             Proyectos Destacados
           </h2>
 
-          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+          {/* Una Voz para Dos Tierras */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Imagen */}
               <div className="order-2 lg:order-1">
@@ -207,6 +208,70 @@ const Musica = () => {
                     height="100%"
                     src="https://www.youtube.com/embed/8R2AV-h1Dzg"
                     title="Una Voz para Dos Tierras - Lorena Avelar"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ojos de Blues */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Contenido */}
+              <div className="order-1 space-y-6">
+                <div>
+                  <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                    Colaboración con May Walker
+                  </div>
+                  <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                    Ojos de Blues
+                  </h3>
+                </div>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  Con la inestimable colaboración de <strong>May Walker</strong>, "Ojos de Blues" nos cuenta 
+                  que no hay un lugar mejor donde dejar atrás los momentos amargos que nuestra increíble ciudad, 
+                  <strong> Granada</strong>.
+                </p>
+
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Una pieza musical que celebra el poder sanador de Granada, mezclando el blues con la esencia 
+                  de nuestra tierra. Un tributo sonoro a la capacidad de la ciudad para transformar la melancolía 
+                  en esperanza.
+                </p>
+
+                <div className="flex gap-2 flex-wrap">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Blues</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Granada</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">May Walker</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
+                </div>
+
+                <div className="pt-4">
+                  <a 
+                    href="https://www.youtube.com/watch?v=Fsr64OQOFQg" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    <Play className="h-5 w-5" />
+                    Ver en YouTube
+                  </a>
+                </div>
+              </div>
+
+              {/* Video embed */}
+              <div className="order-2">
+                <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/Fsr64OQOFQg"
+                    title="Ojos de Blues - May Walker y Grupo Dauro"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
