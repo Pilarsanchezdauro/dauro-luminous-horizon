@@ -218,8 +218,8 @@ const Musica = () => {
             </div>
           </div>
 
-          {/* Ojos de Blues */}
-          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+          {/* Ojos de Blues - Sin ti */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Contenido */}
               <div className="order-1 space-y-6">
@@ -277,6 +277,109 @@ const Musica = () => {
                     allowFullScreen
                     className="w-full h-full"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sin ti - Ojos de Blues */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+            <div className="space-y-8">
+              <div className="text-center">
+                <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                  Ojos de Blues
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                  Sin ti
+                </h3>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Video embed */}
+                <div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/J0xzs2bA6CQ"
+                      title="Sin ti - Ojos de Blues"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+
+                {/* Contenido */}
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Granada, conocida ya como <strong>la Liverpool de Andalucía</strong>, es la cuna de innumerables 
+                    y magníficos grupos musicales, de entre los que en 2020 nace la Banda <strong>OJOS DE BLUES</strong>, 
+                    grupo de temas propios, con un estilo que navega con reminiscencias del blues o soul hasta el 
+                    pop-rock y rock más sinfónico.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    Sin caer en ningún recurso fácil, la pasión y el sentimiento están presentes en todas sus obras, 
+                    las cuales, bien estructuradas, no dejan nada al azar, apreciándose en algunas de ellas, sentidas 
+                    referencias y guiños a la ciudad de Granada.
+                  </p>
+
+                  <div className="pt-4">
+                    <a 
+                      href="https://www.youtube.com/watch?v=J0xzs2bA6CQ" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                    >
+                      <Play className="h-5 w-5" />
+                      Ver en YouTube
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Información detallada del grupo */}
+              <div className="border-t-2 border-primary/10 pt-8">
+                <h4 className="text-2xl font-playfair font-bold mb-4 text-center">Sobre Ojos de Blues</h4>
+                
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Detrás de sus composiciones se advierten muchas horas de trabajo y disciplina, letras que 
+                    encajan a la perfección y arreglos musicales cuidadosamente elaborados por todos sus componentes.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    Sus músicos, la mayoría provenientes de otras experimentadas formaciones, aportan variadísimos 
+                    recursos para conseguir unas construcciones musicales redondas, bien terminadas, que cuentan 
+                    historias cercanas.
+                  </p>
+
+                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-6 rounded-xl">
+                    <h5 className="font-semibold mb-3">Formación:</h5>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• <strong>Toño</strong> - Batería (preciosismo y energía)</li>
+                      <li>• <strong>Fernando</strong> - Teclados (experiencia y buen gusto)</li>
+                      <li>• <strong>Manuel</strong> - Bajo (experiencia y mejor hacer)</li>
+                      <li>• <strong>Fegor</strong> - Guitarra (la magia de la guitarra)</li>
+                      <li>• <strong>Gabriel</strong> - Voz (gran trabajo como vocalista)</li>
+                    </ul>
+                  </div>
+
+                  <p className="text-muted-foreground leading-relaxed italic text-center">
+                    El resultado es un heterodoxo cóctel musical donde impera el interés por el buen gusto y la 
+                    preocupación por hacer buena música sin que sea necesario caer en estridencias.
+                  </p>
+                </div>
+
+                <div className="flex gap-2 flex-wrap justify-center mt-6">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Blues</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Soul</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Pop-Rock</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Rock Sinfónico</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Granada</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Temas Propios</span>
                 </div>
               </div>
             </div>
