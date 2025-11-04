@@ -198,124 +198,81 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
+    <div className="min-h-screen">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden mt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/30 to-primary/20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
-        
-        {/* Decorative Shapes */}
-        <div className="absolute top-32 left-20 w-3 h-3 bg-primary rounded-full animate-ping" />
-        <div className="absolute top-40 right-32 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-primary/60 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="mb-8 animate-fade-in">
-            <span className="inline-block px-6 py-2 bg-primary/20 backdrop-blur-sm border-2 border-primary/40 rounded-full text-primary font-bold text-sm tracking-wider">
-              INNOVACIÓN CULTURAL
-            </span>
-          </div>
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold text-foreground mb-6 animate-fade-in-up leading-tight">
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-foreground mb-6">
             Nuestros Servicios
           </h1>
-          <p className="text-xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light animate-fade-in-up-delayed leading-relaxed">
+          <p className="text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto">
             Innovación técnica con visión cultural
           </p>
-          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up-delayed">
-            <div className="w-20 h-1 bg-primary rounded-full" />
-            <div className="w-12 h-1 bg-accent rounded-full" />
-            <div className="w-8 h-1 bg-primary/60 rounded-full" />
-          </div>
         </div>
       </section>
 
-      <main className="container mx-auto px-6 lg:px-10 py-20">
+      <main className="container mx-auto px-6 lg:px-10 py-16">
         <div className="max-w-7xl mx-auto">
           {/* Intro */}
-          <div className="max-w-5xl mx-auto mb-16 lg:mb-20">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
-              <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-                
-                <div className="relative z-10">
-                  <div className="flex justify-center mb-6">
-                    <Zap className="h-14 w-14 text-primary animate-pulse" />
-                  </div>
-                  <p className="text-lg lg:text-2xl text-[#111111] leading-relaxed text-center font-light">
-                    En <span className="font-bold text-primary">Grupo Cultural Dauro</span> combinamos arte, tecnología y pensamiento para desarrollar proyectos 
-                    editoriales, audiovisuales y digitales con <span className="font-semibold text-primary">precisión técnica</span> y <span className="font-semibold text-accent">profundidad estética</span>.
-                    Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
-                  </p>
-                </div>
-              </div>
+          <div className="max-w-4xl mx-auto mb-12 lg:mb-16">
+            <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+              <p className="text-base lg:text-lg text-[#333333] leading-relaxed text-center relative z-10">
+                En Grupo Cultural Dauro combinamos arte, tecnología y pensamiento para desarrollar proyectos 
+                editoriales, audiovisuales y digitales con precisión técnica y profundidad estética.
+                Cada servicio está diseñado para unir la inteligencia técnica con la sensibilidad artística.
+              </p>
             </div>
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-12">
             {services.map((service, index) => {
               const isEven = index % 2 === 0;
               return (
                 <div
                   key={service.id}
-                  className="relative group"
+                  className={`group ${isEven ? 'bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 border-primary/20' : 'bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 border-accent/30'} border-2 hover:border-primary/40 rounded-3xl p-6 md:p-8 shadow-[0_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] flex flex-col max-h-[340px] relative overflow-hidden`}
                 >
-                  {/* Glow Effect */}
-                  <div className={`absolute -inset-0.5 bg-gradient-to-r ${isEven ? 'from-primary to-accent' : 'from-accent to-primary'} rounded-3xl blur opacity-0 group-hover:opacity-30 transition duration-500`} />
-                  
-                  <div
-                    className={`relative ${isEven ? 'bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 border-primary/20' : 'bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 border-accent/30'} border-2 hover:border-primary/50 rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 flex flex-col max-h-[380px] overflow-hidden backdrop-blur-sm`}
-                  >
-                    {/* Animated Background Blobs */}
-                    <div className={`absolute ${isEven ? 'top-0 right-0' : 'bottom-0 left-0'} w-40 h-40 ${isEven ? 'bg-primary/15' : 'bg-accent/25'} rounded-full blur-3xl group-hover:bg-primary/30 group-hover:scale-150 transition-all duration-700`} />
-                    <div className={`absolute ${isEven ? 'bottom-0 left-0' : 'top-0 right-0'} w-32 h-32 ${isEven ? 'bg-accent/20' : 'bg-primary/15'} rounded-full blur-3xl group-hover:bg-accent/30 group-hover:scale-150 transition-all duration-700`} style={{ transitionDelay: '100ms' }} />
-                    
-                    <div className="relative z-10">
-                      <div className="group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 inline-block mb-4">
-                        {service.icon}
-                      </div>
-                      <h2 className="text-[24px] md:text-[28px] font-bold text-[#111111] mb-3 leading-tight group-hover:text-primary transition-colors duration-300">
-                        {service.title}
-                      </h2>
-                      <p className="text-[17px] md:text-[19px] font-semibold text-primary mb-4">
-                        {service.subtitle}
-                      </p>
+                  <div className={`absolute ${isEven ? 'top-0 right-0' : 'bottom-0 left-0'} w-32 h-32 ${isEven ? 'bg-primary/10' : 'bg-accent/20'} rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300`} />
+                  <div className="relative z-10">
+                    <div className="group-hover:scale-110 transition-transform duration-300 inline-block">
+                      {service.icon}
+                    </div>
+                    <h2 className="text-[22px] md:text-[26px] font-bold text-[#111111] mb-2 leading-tight">
+                      {service.title}
+                    </h2>
+                    <p className="text-[16px] md:text-[18px] font-semibold text-primary mb-3">
+                      {service.subtitle}
+                    </p>
 
-                    <div className="space-y-4 mb-4 overflow-hidden flex-1">
-                      <div className="bg-white/40 backdrop-blur-sm p-4 rounded-2xl border border-primary/10">
-                        <h3 className="text-[14px] md:text-[15px] font-bold text-primary mb-2 flex items-center gap-2">
-                          <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    <div className="space-y-[10px] mb-3 overflow-hidden flex-1">
+                      <div>
+                        <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
                           Hacemos:
                         </h3>
-                        <ul className="space-y-2">
+                        <ul className="space-y-[4px]">
                           {service.hacemos.slice(0, 5).map((item, idx) => (
-                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.4] flex items-start gap-2">
-                              <span className="text-primary mt-1">▪</span>
-                              <span>{item}</span>
+                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
+                              • {item}
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="bg-white/40 backdrop-blur-sm p-4 rounded-2xl border border-accent/10">
-                        <h3 className="text-[14px] md:text-[15px] font-bold text-accent mb-2 flex items-center gap-2">
-                          <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                      <div>
+                        <h3 className="text-[13px] md:text-[14px] font-semibold text-[#111111] mb-1">
                           Aplicaciones:
                         </h3>
-                        <ul className="space-y-2">
+                        <ul className="space-y-[4px]">
                           {service.aplicaciones.slice(0, 5).map((item, idx) => (
-                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.4] flex items-start gap-2">
-                              <span className="text-accent mt-1">▪</span>
-                              <span>{item}</span>
+                            <li key={idx} className="text-[14px] md:text-[15px] font-normal text-[#333333] leading-[1.35]">
+                              • {item}
                             </li>
                           ))}
                         </ul>
@@ -326,33 +283,23 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
                       <AccordionItem value={service.id} className="border-0">
                         <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-3">
                           <Button
-                            className="w-full bg-gradient-to-r from-[#E31B23] to-[#C3131A] hover:from-[#C3131A] hover:to-[#E31B23] text-white font-bold text-[16px] rounded-2xl py-6 px-6 shadow-[0_8px_20px_rgba(227,27,35,0.3)] transition-all duration-300 border-0 hover:scale-105 hover:shadow-[0_12px_30px_rgba(227,27,35,0.4)] group-hover:animate-pulse"
+                            className="w-full bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0 hover:scale-105"
                           >
-                            <span className="flex items-center justify-center gap-2">
-                              Más información
-                              <span className="text-xl">→</span>
-                            </span>
+                            Más información
                           </Button>
                         </AccordionTrigger>
                         <AccordionContent className="pt-0 animate-accordion-down">
-                          <div className="relative mt-4">
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-20" />
-                            <div className="relative bg-white/95 p-6 md:p-8 rounded-2xl shadow-2xl border-2 border-primary/20 max-h-[380px] md:max-h-[440px] overflow-y-auto backdrop-blur-sm">
-                              <div className="flex items-center gap-3 mb-4">
-                                <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full" />
-                                <h3 className="text-[22px] md:text-[24px] font-bold text-[#111111]">
-                                  {service.title}
-                                </h3>
-                              </div>
-                              <div className="text-[15px] md:text-[17px] font-normal text-[#333333] leading-[1.7] whitespace-pre-line">
-                                {service.masInfo}
-                              </div>
+                          <div className="bg-white/95 p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9] max-h-[380px] md:max-h-[440px] overflow-y-auto backdrop-blur-sm">
+                            <h3 className="text-[20px] md:text-[22px] font-bold text-[#111111] mb-3">
+                              {service.title}
+                            </h3>
+                            <div className="text-[15px] md:text-[16px] font-normal text-[#333333] leading-[1.5] whitespace-pre-line">
+                              {service.masInfo}
                             </div>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
-                  </div>
                   </div>
                 </div>
               );
@@ -361,32 +308,20 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
         </div>
 
         {/* Formulario de Contacto */}
-        <div className="max-w-5xl mx-auto mb-20">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-700 animate-pulse" />
-            <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-              
-              <div className="relative z-10">
-                <div className="flex justify-center mb-6">
-                  <div className="p-4 bg-primary/20 rounded-full animate-pulse">
-                    <FileText className="h-12 w-12 text-primary" />
-                  </div>
-                </div>
-                <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4 text-[#111111]">
-                  Solicitar información de servicios
-                </h2>
-                <div className="flex justify-center gap-3 mb-6">
-                  <div className="w-16 h-1 bg-primary rounded-full" />
-                  <div className="w-10 h-1 bg-accent rounded-full" />
-                  <div className="w-6 h-1 bg-primary/60 rounded-full" />
-                </div>
-                <p className="text-center text-[#555555] text-lg mb-10 max-w-2xl mx-auto">
-                  Completa el formulario y nos pondremos en contacto contigo lo antes posible
-                </p>
-                <ServicesContactForm />
-              </div>
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <h2 
+              className="text-3xl lg:text-4xl font-playfair font-bold text-center mb-4 relative z-10"
+              style={{ color: '#111111' }}
+            >
+              Solicitar información de servicios
+            </h2>
+            <p className="text-center text-gray-600 mb-8 relative z-10">
+              Completa el formulario y nos pondremos en contacto contigo lo antes posible
+            </p>
+            <div className="relative z-10">
+              <ServicesContactForm />
             </div>
           </div>
         </div>

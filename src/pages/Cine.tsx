@@ -26,8 +26,7 @@ const Cine = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden mt-20">
-        {/* Background Image */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -35,60 +34,29 @@ const Cine = () => {
             filter: "brightness(0.5)",
           }}
         />
-        
-        {/* Animated Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/40 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background" />
-        
-        {/* Decorative Shapes */}
-        <div className="absolute top-32 right-20 w-3 h-3 bg-white rounded-full animate-ping" />
-        <div className="absolute top-40 left-32 w-2 h-2 bg-primary rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-32 right-1/4 w-4 h-4 bg-accent rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="mb-8 animate-fade-in">
-            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-bold text-sm tracking-wider">
-              NARRATIVAS VISUALES
-            </span>
-          </div>
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold text-white mb-6 animate-fade-in-up leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
             Dauro Cine
           </h1>
-          <p className="text-xl lg:text-3xl text-white/90 max-w-4xl mx-auto font-light animate-fade-in-up-delayed leading-relaxed">
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
             Producción audiovisual, narrativas innovadoras y cine de autor
           </p>
-          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up-delayed">
-            <div className="w-20 h-1 bg-white rounded-full" />
-            <div className="w-12 h-1 bg-primary rounded-full" />
-            <div className="w-8 h-1 bg-white/60 rounded-full" />
-          </div>
         </div>
       </section>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Intro */}
-        <div className="max-w-5xl mx-auto mb-20">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
-            <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-              
-              <div className="relative z-10 text-center">
-                <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-6 text-[#111111]">
-                  Narrativas que Emocionan y Transforman
-                </h2>
-                <p className="text-lg lg:text-xl text-[#333333] leading-relaxed">
-                  Dauro Cine produce contenido audiovisual que explora nuevas narrativas y formas de 
-                  expresión cinematográfica. Desde cortometrajes experimentales hasta largometrajes 
-                  documentales, nuestro compromiso es crear obras que emocionen y hagan reflexionar.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto mb-20 text-center">
+          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
+            Narrativas que Emocionan y Transforman
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Dauro Cine produce contenido audiovisual que explora nuevas narrativas y formas de 
+            expresión cinematográfica. Desde cortometrajes experimentales hasta largometrajes 
+            documentales, nuestro compromiso es crear obras que emocionen y hagan reflexionar.
+          </p>
         </div>
 
         {/* Stats */}

@@ -86,69 +86,48 @@ const Arte = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden mt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/30 to-primary/20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
-        
-        {/* Decorative Shapes */}
-        <div className="absolute top-32 left-20 w-3 h-3 bg-primary rounded-full animate-ping" />
-        <div className="absolute top-40 right-32 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-primary/60 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="mb-8 animate-fade-in">
-            <span className="inline-block px-6 py-2 bg-primary/20 backdrop-blur-sm border-2 border-primary/40 rounded-full text-primary font-bold text-sm tracking-wider">
-              ANÁLISIS Y VALORACIÓN
-            </span>
-          </div>
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold text-foreground mb-6 animate-fade-in-up leading-tight">
-            DAURO ARTE
-          </h1>
-          <p className="text-xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light animate-fade-in-up-delayed leading-relaxed">
-            Análisis. Valor. Autenticidad.
-          </p>
-          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up-delayed">
-            <div className="w-20 h-1 bg-primary rounded-full" />
-            <div className="w-12 h-1 bg-accent rounded-full" />
-            <div className="w-8 h-1 bg-primary/60 rounded-full" />
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              style={{ color: '#111111' }}
+            >
+              DAURO ARTE
+            </h1>
+            <p className="text-2xl lg:text-3xl font-semibold mb-8" style={{ color: '#111111' }}>
+              Análisis. Valor. Autenticidad.
+            </p>
           </div>
         </div>
       </section>
 
-      <main className="container mx-auto px-6 lg:px-10 py-20">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Introducción */}
         <div className="max-w-5xl mx-auto mb-16">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
-            <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-              <div className="relative z-10">
-                <p className="text-lg lg:text-xl text-[#333333] leading-relaxed mb-6">
-                  En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.
-                  Trabajamos con coleccionistas, museos, instituciones y artistas de trayectoria consolidada, garantizando rigor técnico, discreción y excelencia profesional.
-                </p>
-                <p className="text-lg lg:text-xl text-[#333333] leading-relaxed">
-                  Nuestro equipo está formado por peritos judiciales, historiadores del arte, analistas documentales e ingenieros en IA, capaces de unir la sensibilidad estética con la objetividad científica.
-                  Cada informe, valoración o proyecto nace con un mismo propósito: preservar la autenticidad del arte y proteger su valor real.
-                </p>
-              </div>
-            </div>
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <p className="text-base lg:text-lg leading-relaxed mb-6 relative z-10" style={{ color: '#333333' }}>
+              En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.
+              Trabajamos con coleccionistas, museos, instituciones y artistas de trayectoria consolidada, garantizando rigor técnico, discreción y excelencia profesional.
+            </p>
+            <p className="text-base lg:text-lg leading-relaxed relative z-10" style={{ color: '#333333' }}>
+              Nuestro equipo está formado por peritos judiciales, historiadores del arte, analistas documentales e ingenieros en IA, capaces de unir la sensibilidad estética con la objetividad científica.
+              Cada informe, valoración o proyecto nace con un mismo propósito: preservar la autenticidad del arte y proteger su valor real.
+            </p>
           </div>
         </div>
 
         {/* Servicios */}
         <div className="max-w-5xl mx-auto mb-16">
-          <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-12 text-[#111111]">
+          <h2 
+            className="text-3xl lg:text-4xl font-bold text-center mb-12"
+            style={{ color: '#111111' }}
+          >
             Nuestros Servicios
           </h2>
           
@@ -158,50 +137,68 @@ const Arte = () => {
               const listItems = service.includes || service.applications || service.services || service.offers || [];
               
               return (
-                <div key={index} className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-3xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
-                  <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-10 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 overflow-hidden">
-                    <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700" />
-                    <div className="absolute top-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/20 transition-all duration-700" style={{ transitionDelay: '100ms' }} />
+                <div
+                  key={index} 
+                  className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-6 lg:p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden"
+                >
+                  <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div 
+                      className="flex-shrink-0 p-3 rounded-lg"
+                      style={{ backgroundColor: 'rgba(227, 27, 35, 0.1)' }}
+                    >
+                      <Icon className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" style={{ color: '#E31B23' }} />
+                    </div>
                     
-                    <div className="flex items-start gap-4 relative z-10">
-                      <div className="flex-shrink-0 p-4 rounded-xl bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                        <Icon className="h-8 w-8 text-primary" />
-                      </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 
+                        className="text-xl lg:text-2xl font-bold mb-3"
+                        style={{ color: '#111111' }}
+                      >
+                        {service.title}
+                      </h3>
+                      <p 
+                        className="text-sm lg:text-base mb-4 leading-relaxed"
+                        style={{ color: '#333333' }}
+                      >
+                        {service.description}
+                      </p>
                       
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-2xl lg:text-3xl font-playfair font-bold mb-3 text-[#111111] group-hover:text-primary transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="text-base lg:text-lg mb-4 leading-relaxed text-[#333333]">
-                          {service.description}
-                        </p>
-                        
-                        {listItems.length > 0 && (
-                          <div className="mb-6">
-                            <p className="text-base lg:text-lg font-bold mb-3 text-primary">
-                              {service.includes ? 'Incluye:' : 
-                               service.applications ? 'Aplicaciones:' : 
-                               service.services ? 'Servicios:' : 
-                               'Ofrecemos:'}
-                            </p>
-                            <ul className="space-y-2 text-sm lg:text-base text-[#333333]">
-                              {listItems.map((item, i) => (
-                                <li key={i} className="flex items-start">
-                                  <span className="mr-2 text-primary font-bold">▪</span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                        
-                        <Link to="/contacto">
-                          <Button className="bg-gradient-to-r from-[#E31B23] to-[#C3131A] hover:from-[#C3131A] hover:to-[#E31B23] text-white font-bold text-base rounded-2xl py-6 px-8 shadow-[0_8px_20px_rgba(227,27,35,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_30px_rgba(227,27,35,0.4)]">
-                            Más información →
-                          </Button>
-                        </Link>
-                      </div>
+                      {listItems.length > 0 && (
+                        <div className="mb-4">
+                          <p 
+                            className="text-sm lg:text-base font-semibold mb-2"
+                            style={{ color: '#E31B23' }}
+                          >
+                            {service.includes ? 'Incluye:' : 
+                             service.applications ? 'Aplicaciones:' : 
+                             service.services ? 'Servicios:' : 
+                             'Ofrecemos:'}
+                          </p>
+                          <ul className="space-y-1 text-sm lg:text-base" style={{ color: '#333333' }}>
+                            {listItems.map((item, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="mr-2" style={{ color: '#E31B23' }}>•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      <Link to="/contacto">
+                        <Button 
+                          className="text-white font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
+                          style={{ 
+                            backgroundColor: '#E31B23',
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+                        >
+                          Más información
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -212,50 +209,42 @@ const Arte = () => {
 
         {/* Visión */}
         <div className="max-w-5xl mx-auto mb-16">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-700 animate-pulse" />
-            <div className="relative bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-10 lg:p-16 rounded-3xl border-2 border-accent/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-              
-              <div className="relative z-10 text-center">
-                <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-8 text-[#111111]">
-                  Nuestra Visión
-                </h2>
-                <p className="text-lg lg:text-xl leading-relaxed mb-6 text-[#333333]">
-                  En Dauro Arte entendemos el arte como patrimonio intelectual, técnico y emocional.
-                  Nuestra misión es garantizar su autenticidad, proteger su legado y ampliar su valor cultural y económico, integrando la historia, la ciencia y la inteligencia artificial.
-                </p>
-                <p className="text-xl lg:text-2xl font-bold text-primary">
-                  Cultura, tecnología y verdad: tres pilares de una misma visión.
-                </p>
-              </div>
-            </div>
+          <div className="bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 lg:p-12 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <h2 
+              className="text-3xl lg:text-4xl font-bold text-center mb-8 relative z-10"
+              style={{ color: '#111111' }}
+            >
+              Nuestra Visión
+            </h2>
+            <p className="text-base lg:text-lg leading-relaxed mb-6 text-center relative z-10" style={{ color: '#333333' }}>
+              En Dauro Arte entendemos el arte como patrimonio intelectual, técnico y emocional.
+              Nuestra misión es garantizar su autenticidad, proteger su legado y ampliar su valor cultural y económico, integrando la historia, la ciencia y la inteligencia artificial.
+            </p>
+            <p 
+              className="text-lg lg:text-xl font-semibold text-center relative z-10"
+              style={{ color: '#E31B23' }}
+            >
+              Cultura, tecnología y verdad: tres pilares de una misma visión.
+            </p>
           </div>
         </div>
 
         {/* Formulario de Contacto */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-700 animate-pulse" />
-            <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-              
-              <div className="relative z-10">
-                <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4 text-[#111111]">
-                  Solicitar informe o valoración
-                </h2>
-                <div className="flex justify-center gap-3 mb-6">
-                  <div className="w-16 h-1 bg-primary rounded-full" />
-                  <div className="w-10 h-1 bg-accent rounded-full" />
-                  <div className="w-6 h-1 bg-primary/60 rounded-full" />
-                </div>
-                <p className="text-center text-[#555555] text-lg mb-10">
-                  Completa el formulario y nos pondremos en contacto contigo lo antes posible
-                </p>
-                <DauroArteContactForm />
-              </div>
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <h2 
+              className="text-3xl lg:text-4xl font-bold text-center mb-4 relative z-10"
+              style={{ color: '#111111' }}
+            >
+              Solicitar informe o valoración
+            </h2>
+            <p className="text-center text-gray-600 mb-8 relative z-10">
+              Completa el formulario y nos pondremos en contacto contigo lo antes posible
+            </p>
+            <div className="relative z-10">
+              <DauroArteContactForm />
             </div>
           </div>
         </div>
