@@ -386,7 +386,7 @@ const Musica = () => {
           </div>
 
           {/* Ausencia - Tres Coma Catorce */}
-          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="space-y-8">
               <div className="text-center">
                 <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
@@ -459,6 +459,93 @@ const Musica = () => {
                 <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Videoclip</span>
                 <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Composición Propia</span>
                 <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Registro SAFECREATIVE</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cous Kush - Tres Coma Catorce */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+            <div className="space-y-8">
+              <div className="text-center">
+                <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                  Tres Coma Catorce - Primer Tema
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                  Cous Kush
+                </h3>
+                <p className="text-lg text-primary font-medium">La Fusión de Dos Almas</p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Contenido */}
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong>"Cous Kush"</strong> es la primera canción del dúo granadino <strong>Tres Coma Catorce</strong>, 
+                    integrado por <strong>Serbio</strong> y <strong>Montabes</strong>. El grupo nació durante el mes de 
+                    enero de 2020 de la mano de Dauro Música.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    Su recorrido vital proviene de la fusión de dos almas de gran sensibilidad que se unieron siendo 
+                    músicos callejeros. Con un estilo desenfadado y a la vez cautivador, nos muestran la canción más 
+                    fresca de su repertorio.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    Un soplo de aire fresco que nos hace olvidar por un momento los malos momentos, con una increíble 
+                    unión de estilos: <strong>Rap conciencia</strong>, <strong>poético</strong> y <strong>pop</strong>, 
+                    mezclados con el clasicismo del violín dominado magistralmente por Serbio y con la potente voz 
+                    de barítono de Montabes.
+                  </p>
+
+                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-6 rounded-xl">
+                    <h5 className="font-semibold mb-3">El Dúo:</h5>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• <strong>Serbio</strong> - Violín magistral y composición</li>
+                      <li>• <strong>Montabes</strong> - Voz de barítono potente</li>
+                      <li>• <strong>Origen:</strong> Granada, músicos callejeros</li>
+                      <li>• <strong>Formación:</strong> Enero 2020 con Dauro Música</li>
+                      <li>• <strong>Estilo:</strong> Rap conciencia, poético y pop con violín</li>
+                    </ul>
+                  </div>
+
+                  <div className="pt-4">
+                    <a 
+                      href="https://www.youtube.com/watch?v=PXr2CWQYgTM" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                    >
+                      <Play className="h-5 w-5" />
+                      Ver en YouTube
+                    </a>
+                  </div>
+                </div>
+
+                {/* Video embed */}
+                <div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/PXr2CWQYgTM"
+                      title="Cous Kush - Tres Coma Catorce"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 flex-wrap justify-center">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Rap Conciencia</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Pop</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Violín</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Callejera</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Granada</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Primer Tema</span>
               </div>
             </div>
           </div>
