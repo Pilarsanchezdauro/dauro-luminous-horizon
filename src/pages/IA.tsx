@@ -19,7 +19,7 @@ const IA = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
       <SEO
         title="Dauro IA - Creatividad e Inteligencia Artificial"
         description="Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos."
@@ -30,7 +30,8 @@ const IA = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden mt-20">
+        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -38,36 +39,67 @@ const IA = () => {
             filter: "brightness(0.5)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
+        
+        {/* Animated Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/40 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background" />
+        
+        {/* Decorative Shapes */}
+        <div className="absolute top-32 right-20 w-3 h-3 bg-white rounded-full animate-ping" />
+        <div className="absolute top-40 left-32 w-2 h-2 bg-primary rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-32 right-1/4 w-4 h-4 bg-accent rounded-full animate-ping" style={{ animationDelay: '1s' }} />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <p className="text-lg lg:text-xl text-white/80 mb-4 uppercase tracking-wider">DAURO IA</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+          <div className="mb-8 animate-fade-in">
+            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-bold text-sm tracking-wider">
+              DAURO IA
+            </span>
+          </div>
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6 animate-fade-in-up leading-tight">
             Visión Artística,<br/>
             <span className="text-primary">Creación IA</span><br/>
             Belleza Inteligente
           </h1>
-          <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-2xl text-white/90 max-w-4xl mx-auto animate-fade-in-up-delayed leading-relaxed">
             No solo creamos portales a nuevas realidades. Tu visión, impulsada por nuestra 
             experticia en inteligencia artificial, tiene el poder de redefinir tu industria.
           </p>
+          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up-delayed">
+            <div className="w-20 h-1 bg-white rounded-full" />
+            <div className="w-12 h-1 bg-primary rounded-full" />
+            <div className="w-8 h-1 bg-white/60 rounded-full" />
+          </div>
         </div>
       </section>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="container mx-auto px-6 lg:px-10 py-20">
         {/* Intro */}
-        <div className="max-w-4xl mx-auto mb-20 text-center">
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6">
-            Servicios con Visión Artística
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            En Grupo Dauro IA desarrollamos tecnología con alma. Unimos la precisión de la 
-            inteligencia artificial con la sensibilidad del arte para crear soluciones que 
-            inspiran, emocionan y funcionan.
-          </p>
-          <p className="text-primary font-semibold mt-4">
-            🎯 Todos nuestros servicios son personalizados
-          </p>
+        <div className="max-w-5xl mx-auto mb-20">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
+            <div className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-10 lg:p-16 rounded-3xl border-2 border-primary/30 hover:border-primary/50 shadow-2xl hover:shadow-[0_30px_90px_-20px_rgba(224,74,92,0.5)] transition-all duration-500 overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+              
+              <div className="relative z-10 text-center">
+                <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-6 text-[#111111]">
+                  Servicios con Visión Artística
+                </h2>
+                <p className="text-lg lg:text-xl text-[#333333] leading-relaxed mb-4">
+                  En Grupo Dauro IA desarrollamos tecnología con alma. Unimos la precisión de la 
+                  inteligencia artificial con la sensibilidad del arte para crear soluciones que 
+                  inspiran, emocionan y funcionan.
+                </p>
+                <p className="text-primary font-bold text-xl">
+                  🎯 Todos nuestros servicios son personalizados
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Services Grid */}
