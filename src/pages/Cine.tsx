@@ -163,8 +163,12 @@ const Cine = () => {
           
           <div className="space-y-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center">
-                <Film className="h-16 w-16 text-primary" />
+              <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/public/projects/reinas-cortometraje.png" 
+                  alt="Proyecto cinematográfico" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <div>
                 <h3 className="text-3xl font-playfair font-bold mb-4">
@@ -185,13 +189,22 @@ const Cine = () => {
                     25 min
                   </span>
                 </div>
-                <Button variant="outline">Ver trailer</Button>
+                <Button 
+                  variant="outline" 
+                  asChild
+                >
+                  <a href="/contacto">Solicitar información</a>
+                </Button>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="lg:order-2 aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center">
-                <Film className="h-16 w-16 text-primary" />
+              <div className="lg:order-2 aspect-video rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/public/latido-presentacion-1.jpg" 
+                  alt="Proyecto cinematográfico documental" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <div className="lg:order-1">
                 <h3 className="text-3xl font-playfair font-bold mb-4">
@@ -212,7 +225,12 @@ const Cine = () => {
                     52 min
                   </span>
                 </div>
-                <Button variant="outline">Ver trailer</Button>
+                <Button 
+                  variant="outline"
+                  asChild
+                >
+                  <a href="/contacto">Solicitar información</a>
+                </Button>
               </div>
             </div>
           </div>
@@ -228,8 +246,12 @@ const Cine = () => {
             Trabajamos con directores, productores y creadores de contenido. 
             Cuéntanos tu idea y exploremos cómo hacerla realidad.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10">
-            Proponer proyecto
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10"
+            asChild
+          >
+            <a href="/contacto">Proponer proyecto</a>
           </Button>
         </div>
       </main>
