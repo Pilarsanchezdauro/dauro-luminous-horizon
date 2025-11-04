@@ -170,6 +170,8 @@ const Cine = () => {
                   src="/projects/reinas-poster.png" 
                   alt="Reinas - Cortometraje" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
               <div>
@@ -207,6 +209,8 @@ const Cine = () => {
                   src="/projects/reinvention-poster.png" 
                   alt="Reinvention - Cortometraje" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
               <div className="lg:order-1">
