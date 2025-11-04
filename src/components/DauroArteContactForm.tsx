@@ -9,8 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Upload, X, Link as LinkIcon } from "lucide-react";
+import { Loader2, Upload, X, Link as LinkIcon, CheckCircle, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import logoDauroMusica from "@/assets/logo-dauro-musica.png";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -170,8 +171,36 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
       }
 
       toast({
-        title: "¡Gracias por confiar en nosotros! 🎨",
-        description: "Tu consulta está en buenas manos. Nuestro equipo la revisará con atención y te responderá muy pronto.",
+        duration: 8000,
+        title: (
+          <div className="flex items-center gap-3">
+            <img 
+              src={logoDauroMusica} 
+              alt="Dauro Música" 
+              className="h-10 w-10"
+            />
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span className="font-bold">¡Mensaje recibido con éxito!</span>
+              </div>
+            </div>
+          </div>
+        ) as any,
+        description: (
+          <div className="mt-3 space-y-2 pl-13">
+            <p className="text-sm">
+              Tu proyecto es muy importante para nosotros. Nuestro equipo de 
+              <strong> Dauro Música</strong> revisará tu consulta con atención.
+            </p>
+            <div className="flex items-center gap-2 mt-3 text-primary">
+              <Clock className="h-4 w-4" />
+              <p className="text-sm font-semibold">
+                Nos pondremos en contacto contigo en menos de 48 horas
+              </p>
+            </div>
+          </div>
+        ) as any,
       });
 
       reset();
