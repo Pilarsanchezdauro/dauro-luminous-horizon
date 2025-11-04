@@ -159,15 +159,15 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       const formspreeData = {
         _replyto: data.email,
         _subject: `📚 Nueva Propuesta Editorial: ${data.titulo_obra}`,
-        Nombre: data.nombre,
-        Apellidos: data.apellidos,
-        Email: data.email,
-        Teléfono: data.telefono,
-        'Título de la Obra': data.titulo_obra,
-        'Tipo de Obra': data.tipo_obra,
-        '📚 Manuscrito': obraUrl,
-        '📄 Currículum Vitae': cvUrl,
-        Mensaje: `Nueva propuesta editorial recibida.\n\nAutor: ${data.nombre} ${data.apellidos}\nEmail: ${data.email}\nTeléfono: ${data.telefono}\nTítulo: ${data.titulo_obra}\nTipo: ${data.tipo_obra}\n\n📥 DESCARGAR ARCHIVOS:\n\nManuscrito: ${obraUrl}\n\nCurrículum: ${cvUrl}\n\nHaz clic en los enlaces para descargar los archivos.`,
+        nombre: data.nombre,
+        apellidos: data.apellidos,
+        email: data.email,
+        telefono: data.telefono,
+        titulo_obra: data.titulo_obra,
+        tipo_obra: data.tipo_obra,
+        manuscrito_url: obraUrl,
+        curriculum_url: cvUrl,
+        mensaje: `🎉 NUEVA PROPUESTA EDITORIAL RECIBIDA\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👤 DATOS DEL AUTOR:\n   • Nombre: ${data.nombre} ${data.apellidos}\n   • Email: ${data.email}\n   • Teléfono: ${data.telefono}\n\n📚 DATOS DE LA OBRA:\n   • Título: ${data.titulo_obra}\n   • Tipo: ${data.tipo_obra}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📥 DESCARGAR ARCHIVOS:\n\n📖 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 Haz clic en los enlaces para descargar los archivos directamente.\n\nGrupo Dauro Editorial`,
       };
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
