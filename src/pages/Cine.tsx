@@ -163,11 +163,11 @@ const Cine = () => {
           </h2>
           
           <div className="space-y-12">
-            {/* Proyecto 1 */}
+            {/* Proyecto 1 - Reinas */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
                 <img 
-                  src="/projects/reinas-cortometraje.png" 
+                  src="/projects/reinas-poster.png" 
                   alt="Reinas - Cortometraje" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -195,81 +195,43 @@ const Cine = () => {
                   variant="outline" 
                   asChild
                 >
-                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                  <a href="https://cortosdemetraje.com/cortometrajes/reinas-2/" target="_blank" rel="noopener noreferrer">Ver más</a>
                 </Button>
               </div>
             </div>
 
-            {/* Proyecto 2 */}
+            {/* Proyecto 2 - Reinvention */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="lg:order-2 aspect-video rounded-xl overflow-hidden shadow-lg">
                 <img 
-                  src="/projects/la-abuela-viajera.png" 
-                  alt="La Abuela Viajera - Documental" 
+                  src="/projects/reinvention-poster.png" 
+                  alt="Reinvention - Cortometraje" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="lg:order-1">
                 <h3 className="text-3xl font-playfair font-bold mb-4">
-                  La Abuela Viajera
+                  Reinvention
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Documental que narra la historia de vida y aventuras de una viajera incansable. 
-                  Premio del público en el Festival de Cine Documental de Granada.
+                  Un arte de Pepe Luis Pareja. Cortometraje que explora la reinvención personal y las segundas oportunidades.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Documental
+                    Ficción
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    2023
+                    2024
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    52 min
+                    Cortometraje
                   </span>
                 </div>
                 <Button 
                   variant="outline"
                   asChild
                 >
-                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
-                </Button>
-              </div>
-            </div>
-
-            {/* Proyecto 3 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  src="/projects/el-dia.png" 
-                  alt="El Día - Cortometraje experimental" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div>
-                <h3 className="text-3xl font-playfair font-bold mb-4">
-                  El Día
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Pieza audiovisual experimental que explora la cotidianidad desde una perspectiva poética. 
-                  Mención especial en el Festival de Cine Experimental.
-                </p>
-                <div className="flex gap-2 flex-wrap mb-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Experimental
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    2023
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    15 min
-                  </span>
-                </div>
-                <Button 
-                  variant="outline" 
-                  asChild
-                >
-                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                  <a href="https://youtu.be/0Slt7Myc4bA" target="_blank" rel="noopener noreferrer">Ver trailer</a>
                 </Button>
               </div>
             </div>
