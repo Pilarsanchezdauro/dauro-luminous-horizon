@@ -179,15 +179,20 @@ const Cine = () => {
                   Reinas
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Cortometraje de ficción que explora las relaciones humanas y el empoderamiento femenino. 
-                  Seleccionado en festivales internacionales de cine independiente.
+                  Tres mujeres que, tras sucesivos fracasos y excesos, terminan "coronadas" por la vida. 
+                  En un ambiente de fiesta permanente donde sus propias miserias brillan incluso más que las luces de neón, 
+                  el cortometraje utiliza la ironía y el drama para retratar la vulnerabilidad y las contradicciones de sus protagonistas, 
+                  explorando temas como el fracaso, los sueños incumplidos y la supervivencia emocional.
+                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                  Con Virtudes Olvera (actriz y guionista). Seleccionado en el Festival de Terror de Sabadell y otros certámenes de cine independiente.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Ficción
+                    Drama
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    2024
+                    Independiente
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
                     Cortometraje
@@ -215,17 +220,24 @@ const Cine = () => {
               </div>
               <div className="lg:order-1">
                 <h3 className="text-3xl font-playfair font-bold mb-4">
-                  Reinvention
+                  Reinvention K365D
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Un arte de Pepe Luis Pareja. Cortometraje que explora la reinvención personal y las segundas oportunidades.
+                  Dirigido por Pepe Luis Pareja y producido por Chichinagranaina Producciones en asociación con Sauro Productions (ahora Grupo Dauro). 
+                  La trama gira en torno a Carmenchu y Emilio, una pareja cuya relación está totalmente acabada, aunque ninguno se atreve a ponerle fin. 
+                  Transitan su día a día en una rutina vacía, marcada por horas frente a la televisión, adicción al móvil y conflictos constantes.
+                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                  Un ruido ensordecedor sacude sus vidas, actuando como detonante de posibles cambios. 
+                  Mezcla drama y humor cotidiano, mostrando la dificultad de afrontar rupturas y el miedo al cambio. 
+                  Nominado a Mejor Actriz en el Festival de Cine de Benagalbón.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Ficción
+                    Drama
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    2024
+                    Humor
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
                     Cortometraje
