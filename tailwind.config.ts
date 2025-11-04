@@ -84,6 +84,27 @@ export default {
           "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(-50px)" },
         },
+        "float-diagonal": {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0deg)" },
+          "25%": { transform: "translate(30px, -30px) rotate(5deg)" },
+          "50%": { transform: "translate(60px, 0) rotate(-5deg)" },
+          "75%": { transform: "translate(30px, 30px) rotate(5deg)" },
+        },
+        "float-horizontal": {
+          "0%, 100%": { transform: "translateX(0) rotate(0deg)" },
+          "50%": { transform: "translateX(100px) rotate(10deg)" },
+        },
+        "float-vertical": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-80px) rotate(-10deg)" },
+        },
+        "float-circle": {
+          "0%": { transform: "translate(0, 0) rotate(0deg)" },
+          "25%": { transform: "translate(50px, -50px) rotate(90deg)" },
+          "50%": { transform: "translate(0, -100px) rotate(180deg)" },
+          "75%": { transform: "translate(-50px, -50px) rotate(270deg)" },
+          "100%": { transform: "translate(0, 0) rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -91,6 +112,10 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "fade-in": "fade-in 0.6s ease-out forwards",
         "parallax-slow": "parallax-slow 20s ease-in-out infinite alternate",
+        "float-diagonal": "float-diagonal 20s ease-in-out infinite",
+        "float-horizontal": "float-horizontal 15s ease-in-out infinite",
+        "float-vertical": "float-vertical 18s ease-in-out infinite",
+        "float-circle": "float-circle 25s linear infinite",
       },
       fontFamily: {
         'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],

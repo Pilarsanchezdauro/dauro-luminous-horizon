@@ -60,26 +60,26 @@ const IA = () => {
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-28 left-12 w-20 h-20 opacity-9 animate-bounce"
-          style={{ animationDuration: '3.8s', animationDelay: '0.2s' }}
+          className="absolute top-28 left-12 w-20 h-20 opacity-[0.035] animate-float-diagonal pointer-events-none"
+          style={{ animationDelay: '3s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-64 right-16 w-16 h-16 opacity-6 animate-bounce"
-          style={{ animationDuration: '4.8s', animationDelay: '1.8s' }}
+          className="absolute top-64 right-16 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '8s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-80 left-1/4 w-24 h-24 opacity-5 animate-bounce"
-          style={{ animationDuration: '5.8s', animationDelay: '0.7s' }}
+          className="absolute bottom-80 left-1/4 w-24 h-24 opacity-[0.03] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '11s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-32 right-1/3 w-20 h-20 opacity-10 animate-bounce"
-          style={{ animationDuration: '6.8s', animationDelay: '2.8s' }}
+          className="absolute bottom-32 right-1/3 w-20 h-20 opacity-[0.045] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '14s' }}
         />
         
         {/* Intro */}

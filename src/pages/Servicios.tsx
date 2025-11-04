@@ -222,26 +222,25 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-20 right-12 w-20 h-20 opacity-7 animate-bounce"
-          style={{ animationDuration: '3.3s', animationDelay: '0.4s' }}
+          className="absolute top-20 right-12 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-96 left-20 w-16 h-16 opacity-5 animate-bounce"
-          style={{ animationDuration: '4.3s', animationDelay: '1.3s' }}
+          className="absolute top-96 left-20 w-16 h-16 opacity-[0.02] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '3s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-64 right-1/4 w-24 h-24 opacity-6 animate-bounce"
-          style={{ animationDuration: '5.3s', animationDelay: '0.9s' }}
+          className="absolute bottom-64 right-1/4 w-24 h-24 opacity-[0.04] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '6s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-20 left-1/3 w-20 h-20 opacity-9 animate-bounce"
-          style={{ animationDuration: '6.3s', animationDelay: '2.3s' }}
+          className="absolute bottom-20 left-1/3 w-20 h-20 opacity-[0.025] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '9s' }}
         />
         
         <div className="max-w-7xl mx-auto">

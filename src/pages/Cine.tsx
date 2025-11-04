@@ -52,26 +52,26 @@ const Cine = () => {
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-24 left-10 w-20 h-20 opacity-7 animate-bounce"
-          style={{ animationDuration: '3.5s', animationDelay: '0s' }}
+          className="absolute top-24 left-10 w-20 h-20 opacity-[0.025] animate-float-diagonal pointer-events-none"
+          style={{ animationDelay: '1s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-72 right-20 w-16 h-16 opacity-5 animate-bounce"
-          style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}
+          className="absolute top-72 right-20 w-16 h-16 opacity-[0.03] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '6s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-60 left-1/4 w-24 h-24 opacity-6 animate-bounce"
-          style={{ animationDuration: '5.5s', animationDelay: '1s' }}
+          className="absolute bottom-60 left-1/4 w-24 h-24 opacity-[0.02] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '9s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-20 right-1/3 w-20 h-20 opacity-8 animate-bounce"
-          style={{ animationDuration: '6.5s', animationDelay: '2.5s' }}
+          className="absolute bottom-20 right-1/3 w-20 h-20 opacity-[0.04] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '12s' }}
         />
         
         {/* Intro */}

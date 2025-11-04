@@ -64,26 +64,26 @@ const Editorial = () => {
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-32 right-16 w-20 h-20 opacity-8 animate-bounce"
-          style={{ animationDuration: '3.2s', animationDelay: '0.3s' }}
+          className="absolute top-32 right-16 w-20 h-20 opacity-[0.04] animate-float-diagonal pointer-events-none"
+          style={{ animationDelay: '2s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute top-80 left-10 w-16 h-16 opacity-6 animate-bounce"
-          style={{ animationDuration: '4.2s', animationDelay: '1.2s' }}
+          className="absolute top-80 left-10 w-16 h-16 opacity-[0.03] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '7s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-72 right-1/4 w-24 h-24 opacity-5 animate-bounce"
-          style={{ animationDuration: '5.2s', animationDelay: '0.8s' }}
+          className="absolute bottom-72 right-1/4 w-24 h-24 opacity-[0.035] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '10s' }}
         />
         <img 
           src={mascotLogo} 
           alt="" 
-          className="absolute bottom-40 left-1/3 w-20 h-20 opacity-10 animate-bounce"
-          style={{ animationDuration: '6.2s', animationDelay: '2.2s' }}
+          className="absolute bottom-40 left-1/3 w-20 h-20 opacity-[0.025] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '13s' }}
         />
         
         {/* Intro */}
