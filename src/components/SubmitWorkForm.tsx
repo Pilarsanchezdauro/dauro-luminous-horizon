@@ -152,29 +152,32 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         .from('editorial-submissions')
         .getPublicUrl(curriculumFilePath);
 
-      // Enviar a Formspree y guardar en base de datos en paralelo
+      // Preparar FormData para enviar archivos a Formspree
       const formspreeEndpoint = 'https://formspree.io/f/mldoyzjb';
+      const formData = new FormData();
+      
+      // Agregar campos de texto
+      formData.append('nombre', data.nombre);
+      formData.append('apellidos', data.apellidos);
+      formData.append('email', data.email);
+      formData.append('telefono', data.telefono);
+      formData.append('titulo_obra', data.titulo_obra);
+      formData.append('tipo_obra', data.tipo_obra);
+      formData.append('_subject', `Nueva propuesta editorial: ${data.titulo_obra}`);
+      
+      // Agregar archivos directamente
+      formData.append('manuscrito', obraFile, obraFile.name);
+      formData.append('curriculum', curriculumFile, curriculumFile.name);
+      
+      // Agregar enlaces de descarga de Supabase como respaldo
+      formData.append('manuscrito_url', obraUrl);
+      formData.append('curriculum_url', cvUrl);
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
-        // Enviar a Formspree
+        // Enviar a Formspree con archivos adjuntos
         fetch(formspreeEndpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            nombre: data.nombre,
-            apellidos: data.apellidos,
-            email: data.email,
-            telefono: data.telefono,
-            titulo_obra: data.titulo_obra,
-            tipo_obra: data.tipo_obra,
-            tipo_formulario: 'Propuesta Editorial',
-            _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
-            manuscrito: obraUrl,
-            curriculum: cvUrl,
-            mensaje: `Nueva propuesta editorial recibida. Manuscrito: ${obraUrl} | Curriculum: ${cvUrl}`,
-          }),
+          body: formData, // Sin Content-Type header, el navegador lo añade automáticamente con boundary
         }),
         // Guardar en Supabase
         supabase
