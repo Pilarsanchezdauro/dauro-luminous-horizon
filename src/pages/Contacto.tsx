@@ -41,8 +41,9 @@ const Contacto = () => {
       }
 
       toast({
-        title: "¡Mensaje enviado!",
+        title: "¡Mensaje enviado! 🐦",
         description: "Gracias por contactarnos. Te responderemos pronto.",
+        duration: 5000,
       });
 
       formRef.current?.reset();
