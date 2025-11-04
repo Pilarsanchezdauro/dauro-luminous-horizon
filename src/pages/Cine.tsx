@@ -251,6 +251,51 @@ const Cine = () => {
                 </Button>
               </div>
             </div>
+
+            {/* Proyecto 3 - El Día */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="aspect-[2/3] w-full max-w-sm mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/projects/el-dia.png" 
+                  alt="El Día - Largometraje" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h3 className="text-3xl font-playfair font-bold mb-4">
+                  El Día
+                </h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Dirigida por Tao Mijares y producida por Tao Producciones SA de CV en colaboración con Grupo Dauro. 
+                  La historia sigue a Lorena durante un solo día, como metáfora de la vida contemporánea y símbolo de libertad y humanidad. 
+                  A través de un viaje personal, la narrativa explora los miedos, recuerdos, amores perdidos y el desarraigo.
+                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                  Rodada en México con Juliana Guajardo como protagonista. Estrenada el 24 de agosto de 2009 (1h 42min). 
+                  La obra fue publicada también como libro por Dauro Ediciones (ISBN: 9788494783098). 
+                  Seleccionada para varios certámenes internacionales como muestra de cine social y experimental.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-4">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    Drama
+                  </span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    Experimental
+                  </span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    Largometraje
+                  </span>
+                </div>
+                <Button 
+                  variant="outline" 
+                  asChild
+                >
+                  <a href="https://youtu.be/4_6CzclR7GU?si=IOoXfCVl-YmczIkD" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
 
