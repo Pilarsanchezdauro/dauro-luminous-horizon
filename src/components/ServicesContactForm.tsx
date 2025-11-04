@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X, Link as LinkIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -41,6 +42,7 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
   const [documentFile, setDocumentFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -174,7 +176,12 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
 
       reset();
       setDocumentFile(null);
-      onSuccess?.();
+      
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate('/gracias');
+      }
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({

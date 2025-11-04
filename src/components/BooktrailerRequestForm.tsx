@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { Loader2, Upload, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -37,6 +38,7 @@ export default function BooktrailerRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
+  const navigate = useNavigate();
 
   const form = useForm<BooktrailerFormData>({
     resolver: zodResolver(booktrailerSchema),
@@ -214,6 +216,7 @@ export default function BooktrailerRequestForm() {
       form.reset();
       setCoverImage(null);
       setAdditionalFiles([]);
+      navigate('/gracias');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Error al procesar la solicitud');

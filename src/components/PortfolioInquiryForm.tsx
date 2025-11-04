@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const portfolioInquirySchema = z.object({
   nombre: z.string().trim().min(2, 'El nombre debe tener al menos 2 caracteres').max(100, 'Máximo 100 caracteres'),
@@ -38,6 +39,7 @@ const categories = [
 
 export default function PortfolioInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   
   const {
     register,
@@ -107,6 +109,7 @@ export default function PortfolioInquiryForm() {
       });
       
       reset();
+      navigate('/gracias');
     } catch (error) {
       console.error('Error submitting inquiry:', error);
       toast.error('Error al enviar la consulta', {

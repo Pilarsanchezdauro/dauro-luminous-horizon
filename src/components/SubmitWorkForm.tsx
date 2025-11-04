@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -37,6 +38,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
   const [curriculumFile, setCurriculumFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -200,7 +202,12 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       reset();
       setObraFile(null);
       setCurriculumFile(null);
-      onSuccess?.();
+      
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate('/gracias');
+      }
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({

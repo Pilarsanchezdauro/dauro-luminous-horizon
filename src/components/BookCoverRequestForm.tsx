@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { toast } from 'sonner';
 import { Loader2, Upload, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -34,6 +35,7 @@ type BookCoverFormData = z.infer<typeof bookCoverSchema>;
 export default function BookCoverRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [referenceImage, setReferenceImage] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   const form = useForm<BookCoverFormData>({
     resolver: zodResolver(bookCoverSchema),
@@ -162,6 +164,7 @@ export default function BookCoverRequestForm() {
       toast.success('¡Solicitud enviada correctamente! Nos pondremos en contacto contigo pronto.');
       form.reset();
       setReferenceImage(null);
+      navigate('/gracias');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Error al procesar la solicitud');
