@@ -5,6 +5,7 @@ import { Film, Video, Award, Users } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import cineBg from "@/assets/cine-bg.jpg";
 import mascotLogo from "@/assets/mascot.png";
+import DauroArteContactForm from "@/components/DauroArteContactForm";
 
 const Cine = () => {
   const structuredData = {
@@ -162,21 +163,22 @@ const Cine = () => {
           </h2>
           
           <div className="space-y-12">
+            {/* Proyecto 1 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
                 <img 
-                  src="/public/projects/reinas-cortometraje.png" 
-                  alt="Proyecto cinematográfico" 
+                  src="/projects/reinas-cortometraje.png" 
+                  alt="Reinas - Cortometraje" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div>
                 <h3 className="text-3xl font-playfair font-bold mb-4">
-                  Título del Proyecto 1
+                  Reinas
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Cortometraje de ficción que explora las relaciones humanas en la era digital. 
-                  Seleccionado en más de 10 festivales internacionales.
+                  Cortometraje de ficción que explora las relaciones humanas y el empoderamiento femenino. 
+                  Seleccionado en festivales internacionales de cine independiente.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
@@ -186,33 +188,34 @@ const Cine = () => {
                     2024
                   </span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    25 min
+                    Cortometraje
                   </span>
                 </div>
                 <Button 
                   variant="outline" 
                   asChild
                 >
-                  <a href="/contacto">Solicitar información</a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
                 </Button>
               </div>
             </div>
 
+            {/* Proyecto 2 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="lg:order-2 aspect-video rounded-xl overflow-hidden shadow-lg">
                 <img 
-                  src="/public/projects/reinas-cortometraje.png" 
-                  alt="Proyecto cinematográfico documental" 
+                  src="/projects/la-abuela-viajera.png" 
+                  alt="La Abuela Viajera - Documental" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="lg:order-1">
                 <h3 className="text-3xl font-playfair font-bold mb-4">
-                  Título del Proyecto 2
+                  La Abuela Viajera
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Documental sobre el proceso creativo de artistas contemporáneos. 
-                  Premiado en el Festival de Cine Documental.
+                  Documental que narra la historia de vida y aventuras de una viajera incansable. 
+                  Premio del público en el Festival de Cine Documental de Granada.
                 </p>
                 <div className="flex gap-2 flex-wrap mb-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
@@ -229,31 +232,65 @@ const Cine = () => {
                   variant="outline"
                   asChild
                 >
-                  <a href="/contacto">Solicitar información</a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Proyecto 3 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/projects/el-dia.png" 
+                  alt="El Día - Cortometraje experimental" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div>
+                <h3 className="text-3xl font-playfair font-bold mb-4">
+                  El Día
+                </h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Pieza audiovisual experimental que explora la cotidianidad desde una perspectiva poética. 
+                  Mención especial en el Festival de Cine Experimental.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-4">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    Experimental
+                  </span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    2023
+                  </span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                    15 min
+                  </span>
+                </div>
+                <Button 
+                  variant="outline" 
+                  asChild
+                >
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Ver trailer</a>
                 </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-          <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
-            ¿Tienes un proyecto audiovisual?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
-            Trabajamos con directores, productores y creadores de contenido. 
-            Cuéntanos tu idea y exploremos cómo hacerla realidad.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10"
-            asChild
-          >
-            <a href="/contacto">Proponer proyecto</a>
-          </Button>
-        </div>
+        {/* Contact Form */}
+        <section className="mb-20">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                ¿Tienes un proyecto audiovisual?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Trabajamos con directores, productores y creadores de contenido. 
+                Cuéntanos tu idea y exploremos cómo hacerla realidad.
+              </p>
+            </div>
+            <DauroArteContactForm />
+          </div>
+        </section>
       </main>
 
       <Footer />
