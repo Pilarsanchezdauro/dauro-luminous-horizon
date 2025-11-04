@@ -201,7 +201,7 @@ const Cine = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="lg:order-2 aspect-video rounded-xl overflow-hidden shadow-lg">
                 <img 
-                  src="/public/latido-presentacion-1.jpg" 
+                  src="/public/projects/reinas-cortometraje.png" 
                   alt="Proyecto cinematográfico documental" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
