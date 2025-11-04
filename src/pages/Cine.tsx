@@ -165,7 +165,7 @@ const Cine = () => {
           <div className="space-y-12">
             {/* Proyecto 1 - Reinas */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+              <div className="aspect-[2/3] max-w-md mx-auto rounded-xl overflow-hidden shadow-lg">
                 <img 
                   src="/projects/reinas-poster.png" 
                   alt="Reinas - Cortometraje" 
@@ -202,7 +202,7 @@ const Cine = () => {
 
             {/* Proyecto 2 - Reinvention */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="lg:order-2 aspect-video rounded-xl overflow-hidden shadow-lg">
+              <div className="lg:order-2 aspect-[2/3] max-w-md mx-auto rounded-xl overflow-hidden shadow-lg">
                 <img 
                   src="/projects/reinvention-poster.png" 
                   alt="Reinvention - Cortometraje" 
