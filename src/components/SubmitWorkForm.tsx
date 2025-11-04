@@ -141,6 +141,15 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
 
       curriculumFilePath = cvPath;
 
+      // Generar URLs públicas de los archivos
+      const { data: { publicUrl: obraUrl } } = supabase.storage
+        .from('editorial-submissions')
+        .getPublicUrl(obraFilePath);
+      
+      const { data: { publicUrl: cvUrl } } = supabase.storage
+        .from('editorial-submissions')
+        .getPublicUrl(curriculumFilePath);
+
       // Enviar a Formspree y guardar en base de datos en paralelo
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
@@ -155,6 +164,9 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
             ...data,
             tipo_formulario: 'Propuesta Editorial',
             _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
+            obra_url: obraUrl,
+            curriculum_url: cvUrl,
+            mensaje_archivos: `Archivos adjuntos:\n- Obra: ${obraUrl}\n- Currículum: ${cvUrl}`,
           }),
         }),
         // Guardar en Supabase
