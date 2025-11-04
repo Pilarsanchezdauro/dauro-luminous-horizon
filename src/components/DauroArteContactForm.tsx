@@ -118,7 +118,7 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
       }
 
       // Enviar a Formspree y guardar en base de datos en paralelo
-      const formspreeEndpoint = 'https://formspree.io/f/YOUR_DAURO_ARTE_FORM_ID';
+      const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
         // Enviar a Formspree

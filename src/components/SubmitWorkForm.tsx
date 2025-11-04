@@ -142,7 +142,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       curriculumFilePath = cvPath;
 
       // Enviar a Formspree y guardar en base de datos en paralelo
-      const formspreeEndpoint = 'https://formspree.io/f/YOUR_EDITORIAL_FORM_ID';
+      const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
         // Enviar a Formspree
