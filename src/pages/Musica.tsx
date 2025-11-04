@@ -283,7 +283,7 @@ const Musica = () => {
           </div>
 
           {/* Sin ti - Ojos de Blues */}
-          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="space-y-8">
               <div className="text-center">
                 <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
@@ -381,6 +381,84 @@ const Musica = () => {
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Granada</span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Temas Propios</span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ausencia - Tres Coma Catorce */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl">
+            <div className="space-y-8">
+              <div className="text-center">
+                <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                  Tres Coma Catorce
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                  Ausencia
+                </h3>
+                <p className="text-lg text-primary font-medium">Tema Impactante</p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Video embed */}
+                <div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/BSKMUAiAez4"
+                      title="Ausencia - Tres Coma Catorce"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+
+                {/* Contenido */}
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong>"Ausencia"</strong> es el segundo tema del dúo <strong>Tres Coma Catorce</strong>, 
+                    una obra que explora temas profundos sobre la vida, la libertad, los sueños y las decisiones 
+                    que marcan nuestro camino. Una composición que no deja indiferente.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    El videoclip, producido por Grupo Dauro, presenta una narrativa visual impactante que 
+                    complementa la intensidad lírica de la canción. Una reflexión sobre la búsqueda de identidad, 
+                    el precio de las decisiones y la ausencia que nos transforma.
+                  </p>
+
+                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-6 rounded-xl">
+                    <h5 className="font-semibold mb-3">Información del Registro:</h5>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• <strong>Título:</strong> Ausencia - Tres Coma Catorce</li>
+                      <li>• <strong>Registro:</strong> SAFECREATIVE</li>
+                      <li>• <strong>Identificador:</strong> 2006174448080</li>
+                      <li>• <strong>Fecha:</strong> 17 de junio de 2020</li>
+                      <li>• <strong>Derechos:</strong> Todos los derechos reservados Grupo Dauro - Dauro Música</li>
+                    </ul>
+                  </div>
+
+                  <div className="pt-4">
+                    <a 
+                      href="https://www.youtube.com/watch?v=BSKMUAiAez4" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                    >
+                      <Play className="h-5 w-5" />
+                      Ver Videoclip en YouTube
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 flex-wrap justify-center">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Videoclip</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Composición Propia</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Registro SAFECREATIVE</span>
               </div>
             </div>
           </div>
