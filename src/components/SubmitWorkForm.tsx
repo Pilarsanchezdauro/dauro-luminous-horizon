@@ -163,12 +163,25 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            ...data,
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            titulo_obra: data.titulo_obra,
+            tipo_obra: data.tipo_obra,
             tipo_formulario: 'Propuesta Editorial',
             _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
             obra_url: obraUrl,
             curriculum_url: cvUrl,
-            mensaje_archivos: `Archivos adjuntos:\n- Obra: ${obraUrl}\n- Currículum: ${cvUrl}`,
+            archivos_adjuntos: `
+📚 MANUSCRITO:
+${obraUrl}
+
+📄 CURRÍCULUM VITAE:
+${cvUrl}
+
+Descarga los archivos haciendo clic en los enlaces.
+            `.trim(),
           }),
         }),
         // Guardar en Supabase
