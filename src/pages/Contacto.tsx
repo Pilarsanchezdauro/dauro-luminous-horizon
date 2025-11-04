@@ -5,8 +5,58 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Contacto = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
+      
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
+      }
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Gracias por contactarnos. Te responderemos pronto.",
+      });
+
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu mensaje. Por favor, intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -96,8 +146,7 @@ const Contacto = () => {
                     Envíanos un mensaje
                   </h2>
                     <form 
-                      action="https://formsubmit.co/info@grupodauro.com" 
-                      method="POST"
+                      onSubmit={handleSubmit}
                       className="space-y-6 relative z-10"
                     >
                       <div>
@@ -165,10 +214,11 @@ const Contacto = () => {
                       </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 hover:scale-105 transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary hover:bg-primary/90 hover:scale-105 transition-all duration-300 disabled:opacity-50"
                     size="lg"
                   >
-                    Enviar mensaje
+                    {isSubmitting ? "Enviando..." : "Enviar mensaje"}
                   </Button>
                 </form>
                 </div>
