@@ -203,9 +203,9 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       }
 
       toast({
-        title: "¡Propuesta recibida con éxito!",
+        title: "¡Propuesta enviada con éxito!",
         description: "Gracias por confiar en Grupo Dauro. Revisaremos tu obra cuidadosamente y nos pondremos en contacto contigo en las próximas 48 horas.",
-        duration: 6000,
+        duration: 5000,
       });
 
       reset();
