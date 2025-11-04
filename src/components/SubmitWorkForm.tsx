@@ -152,32 +152,30 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         .from('editorial-submissions')
         .getPublicUrl(curriculumFilePath);
 
-      // Preparar FormData para enviar archivos a Formspree
+      // Preparar datos para Formspree (sin archivos grandes, solo URLs)
       const formspreeEndpoint = 'https://formspree.io/f/mldoyzjb';
-      const formData = new FormData();
       
-      // Agregar campos de texto
-      formData.append('nombre', data.nombre);
-      formData.append('apellidos', data.apellidos);
-      formData.append('email', data.email);
-      formData.append('telefono', data.telefono);
-      formData.append('titulo_obra', data.titulo_obra);
-      formData.append('tipo_obra', data.tipo_obra);
-      formData.append('_subject', `Nueva propuesta editorial: ${data.titulo_obra}`);
-      
-      // Agregar archivos directamente
-      formData.append('manuscrito', obraFile, obraFile.name);
-      formData.append('curriculum', curriculumFile, curriculumFile.name);
-      
-      // Agregar enlaces de descarga de Supabase como respaldo
-      formData.append('manuscrito_url', obraUrl);
-      formData.append('curriculum_url', cvUrl);
+      const formspreeData = {
+        nombre: data.nombre,
+        apellidos: data.apellidos,
+        email: data.email,
+        telefono: data.telefono,
+        titulo_obra: data.titulo_obra,
+        tipo_obra: data.tipo_obra,
+        _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
+        manuscrito_url: obraUrl,
+        curriculum_url: cvUrl,
+        mensaje: `Nueva propuesta editorial recibida de ${data.nombre} ${data.apellidos}.\n\n📚 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\nDescarga los archivos haciendo clic en los enlaces.`,
+      };
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
-        // Enviar a Formspree con archivos adjuntos
+        // Enviar a Formspree solo con URLs (sin archivos pesados)
         fetch(formspreeEndpoint, {
           method: 'POST',
-          body: formData, // Sin Content-Type header, el navegador lo añade automáticamente con boundary
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formspreeData),
         }),
         // Guardar en Supabase
         supabase
