@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
+import mascotLogo from "@/assets/mascot.png";
 
 const Contacto = () => {
   return (
@@ -14,6 +15,20 @@ const Contacto = () => {
         {/* Decorative background elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute top-40 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-24 right-10 w-20 h-20 opacity-10 animate-bounce"
+          style={{ animationDuration: '3s', animationDelay: '0s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-32 left-16 w-16 h-16 opacity-5 animate-bounce"
+          style={{ animationDuration: '4s', animationDelay: '1s' }}
+        />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
@@ -36,8 +51,34 @@ const Contacto = () => {
         <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       </section>
 
-      <main className="pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pb-16 relative overflow-hidden">
+        {/* More floating mascots through the page */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-20 left-1/4 w-24 h-24 opacity-5 animate-bounce"
+          style={{ animationDuration: '5s', animationDelay: '0.5s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-96 right-1/3 w-20 h-20 opacity-10 animate-bounce"
+          style={{ animationDuration: '6s', animationDelay: '2s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-40 left-1/3 w-28 h-28 opacity-5 animate-bounce"
+          style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-96 right-20 w-16 h-16 opacity-10 animate-bounce"
+          style={{ animationDuration: '5.5s', animationDelay: '0.8s' }}
+        />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto">
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
