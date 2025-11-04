@@ -6,11 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Contacto = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,7 +45,7 @@ const Contacto = () => {
         description: "Gracias por contactarnos. Te responderemos pronto.",
       });
 
-      e.currentTarget.reset();
+      formRef.current?.reset();
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -146,6 +147,7 @@ const Contacto = () => {
                     Envíanos un mensaje
                   </h2>
                     <form 
+                      ref={formRef}
                       onSubmit={handleSubmit}
                       className="space-y-6 relative z-10"
                     >
