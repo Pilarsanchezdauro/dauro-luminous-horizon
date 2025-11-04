@@ -117,22 +117,43 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
         documentFilePath = filePath;
       }
 
-      // Insert data into database
-      const { error: insertError } = await supabase
-        .from('dauro_arte_contacts')
-        .insert({
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          servicio: data.servicio,
-          descripcion: data.descripcion,
-          enlace_web: data.enlace_web || null,
-          documento_file_path: documentFilePath,
-        });
+      // Enviar a Formspree y guardar en base de datos en paralelo
+      const formspreeEndpoint = 'https://formspree.io/f/YOUR_DAURO_ARTE_FORM_ID';
+      
+      const [formspreeResponse, supabaseResponse] = await Promise.all([
+        // Enviar a Formspree
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            tipo_formulario: 'Dauro Arte',
+            _subject: `Nueva consulta Dauro Arte: ${data.servicio}`,
+          }),
+        }),
+        // Guardar en Supabase
+        supabase
+          .from('dauro_arte_contacts')
+          .insert({
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            servicio: data.servicio,
+            descripcion: data.descripcion,
+            enlace_web: data.enlace_web || null,
+            documento_file_path: documentFilePath,
+          }),
+      ]);
 
-      if (insertError) {
-        throw insertError;
+      if (!formspreeResponse.ok) {
+        console.error('Error en Formspree:', await formspreeResponse.text());
+      }
+
+      if (supabaseResponse.error) {
+        throw supabaseResponse.error;
       }
 
       toast({

@@ -101,27 +101,48 @@ export default function BookCoverRequestForm() {
         }
       }
 
-      // Insert into database
-      const { error: dbError } = await supabase
-        .from('book_cover_requests')
-        .insert([{
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          titulo_libro: data.titulo_libro,
-          autor: data.autor,
-          genero: data.genero || null,
-          dimensiones: data.dimensiones || null,
-          estilo_preferido: data.estilo_preferido || null,
-          descripcion: data.descripcion,
-          presupuesto: data.presupuesto || null,
-          plazo: data.plazo || null,
-          referencia_visual_path: referenceImagePath,
-        }]);
+      // Enviar a Formspree y guardar en base de datos en paralelo
+      const formspreeEndpoint = 'https://formspree.io/f/YOUR_BOOK_COVER_FORM_ID';
+      
+      const [formspreeResponse, supabaseResponse] = await Promise.all([
+        // Enviar a Formspree
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            tipo_formulario: 'Portada de Libro',
+            _subject: `Nueva solicitud de portada: ${data.titulo_libro}`,
+          }),
+        }),
+        // Guardar en Supabase
+        supabase
+          .from('book_cover_requests')
+          .insert([{
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            titulo_libro: data.titulo_libro,
+            autor: data.autor,
+            genero: data.genero || null,
+            dimensiones: data.dimensiones || null,
+            estilo_preferido: data.estilo_preferido || null,
+            descripcion: data.descripcion,
+            presupuesto: data.presupuesto || null,
+            plazo: data.plazo || null,
+            referencia_visual_path: referenceImagePath,
+          }]),
+      ]);
 
-      if (dbError) {
-        console.error('Error inserting data:', dbError);
+      if (!formspreeResponse.ok) {
+        console.error('Error en Formspree:', await formspreeResponse.text());
+      }
+
+      if (supabaseResponse.error) {
+        console.error('Error inserting data:', supabaseResponse.error);
         toast.error('Error al enviar la solicitud');
         setIsSubmitting(false);
         return;

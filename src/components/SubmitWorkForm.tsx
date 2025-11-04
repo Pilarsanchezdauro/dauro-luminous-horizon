@@ -141,22 +141,43 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
 
       curriculumFilePath = cvPath;
 
-      // Insert data into database
-      const { error: insertError } = await supabase
-        .from('editorial_submissions')
-        .insert({
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          email: data.email,
-          telefono: data.telefono,
-          titulo_obra: data.titulo_obra,
-          tipo_obra: data.tipo_obra,
-          obra_file_path: obraFilePath,
-          curriculum_file_path: curriculumFilePath,
-        });
+      // Enviar a Formspree y guardar en base de datos en paralelo
+      const formspreeEndpoint = 'https://formspree.io/f/YOUR_EDITORIAL_FORM_ID';
+      
+      const [formspreeResponse, supabaseResponse] = await Promise.all([
+        // Enviar a Formspree
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            tipo_formulario: 'Propuesta Editorial',
+            _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
+          }),
+        }),
+        // Guardar en Supabase
+        supabase
+          .from('editorial_submissions')
+          .insert({
+            nombre: data.nombre,
+            apellidos: data.apellidos,
+            email: data.email,
+            telefono: data.telefono,
+            titulo_obra: data.titulo_obra,
+            tipo_obra: data.tipo_obra,
+            obra_file_path: obraFilePath,
+            curriculum_file_path: curriculumFilePath,
+          }),
+      ]);
 
-      if (insertError) {
-        throw insertError;
+      if (!formspreeResponse.ok) {
+        console.error('Error en Formspree:', await formspreeResponse.text());
+      }
+
+      if (supabaseResponse.error) {
+        throw supabaseResponse.error;
       }
 
       toast({

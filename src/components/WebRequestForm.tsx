@@ -67,23 +67,44 @@ export default function WebRequestForm() {
         documentPath = fileName;
       }
 
-      // Insert the request
-      const { error: insertError } = await supabase.from('web_requests').insert({
-        nombre: data.nombre,
-        apellidos: data.apellidos,
-        email: data.email,
-        telefono: data.telefono,
-        empresa: data.empresa || null,
-        tipo_web: data.tipo_web,
-        descripcion: data.descripcion,
-        funcionalidades: data.funcionalidades || null,
-        referencia_web: data.referencia_web || null,
-        presupuesto: data.presupuesto || null,
-        plazo: data.plazo || null,
-        documento_file_path: documentPath,
-      });
+      // Enviar a Formspree y guardar en base de datos en paralelo
+      const formspreeEndpoint = 'https://formspree.io/f/YOUR_WEB_FORM_ID';
+      
+      const [formspreeResponse, supabaseResponse] = await Promise.all([
+        // Enviar a Formspree
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            tipo_formulario: 'Desarrollo Web',
+            _subject: `Nueva solicitud de desarrollo web: ${data.tipo_web}`,
+          }),
+        }),
+        // Guardar en Supabase
+        supabase.from('web_requests').insert({
+          nombre: data.nombre,
+          apellidos: data.apellidos,
+          email: data.email,
+          telefono: data.telefono,
+          empresa: data.empresa || null,
+          tipo_web: data.tipo_web,
+          descripcion: data.descripcion,
+          funcionalidades: data.funcionalidades || null,
+          referencia_web: data.referencia_web || null,
+          presupuesto: data.presupuesto || null,
+          plazo: data.plazo || null,
+          documento_file_path: documentPath,
+        }),
+      ]);
 
-      if (insertError) throw insertError;
+      if (!formspreeResponse.ok) {
+        console.error('Error en Formspree:', await formspreeResponse.text());
+      }
+
+      if (supabaseResponse.error) throw supabaseResponse.error;
 
       toast.success('¡Solicitud enviada con éxito!');
       navigate('/gracias');
