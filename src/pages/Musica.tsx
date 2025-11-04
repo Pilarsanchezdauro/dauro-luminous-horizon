@@ -149,59 +149,37 @@ const Musica = () => {
 
           {/* Una Voz para Dos Tierras */}
           <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-start">
-              {/* Imagen */}
-              <div className="order-2 lg:order-1">
-                <img 
-                  src="/projects/una-voz-dos-tierras-musica.png" 
-                  alt="Una Voz para Dos Tierras - Canción oficial presentación antología poética Lorena Avelar" 
-                  className="w-full rounded-2xl shadow-2xl border-4 border-primary/20"
-                />
+            <div className="space-y-6">
+              <div className="text-center">
+                <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                  Canción Oficial
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                  Una Voz para Dos Tierras
+                </h3>
               </div>
 
-              {/* Contenido */}
-              <div className="order-1 lg:order-2 space-y-6">
-                <div>
-                  <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                    Canción Oficial
-                  </div>
-                  <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
-                    Una Voz para Dos Tierras
-                  </h3>
-                </div>
+              <p className="text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
+                Canción oficial para la presentación de la antología poética de <strong>Lorena Avelar</strong> 
+                "Una voz para dos tierras". Una composición musical que fusiona las tradiciones de España y 
+                México, celebrando el puente cultural entre ambos países.
+              </p>
 
-                <p className="text-muted-foreground leading-relaxed">
-                  Canción oficial para la presentación de la antología poética de <strong>Lorena Avelar</strong> 
-                  "Una voz para dos tierras". Una composición musical que fusiona las tradiciones de España y 
-                  México, celebrando el puente cultural entre ambos países.
-                </p>
+              <p className="text-muted-foreground leading-relaxed text-sm text-center max-w-3xl mx-auto">
+                Este proyecto musical forma parte de la presentación editorial de la antología poética, 
+                uniendo la palabra escrita con la música en una experiencia artística integral que honra 
+                la riqueza cultural de dos naciones hermanas.
+              </p>
 
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  Este proyecto musical forma parte de la presentación editorial de la antología poética, 
-                  uniendo la palabra escrita con la música en una experiencia artística integral que honra 
-                  la riqueza cultural de dos naciones hermanas.
-                </p>
+              <div className="flex gap-2 flex-wrap justify-center">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">España-México</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Poesía</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Fusión Cultural</span>
+              </div>
 
-                <div className="flex gap-2 flex-wrap">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">España-México</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Poesía</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Fusión Cultural</span>
-                </div>
-
-                <div className="pt-4">
-                  <a 
-                    href="https://www.youtube.com/watch?v=8R2AV-h1Dzg" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-                  >
-                    <Play className="h-5 w-5" />
-                    Ver Videoclip en YouTube
-                  </a>
-                </div>
-
-                {/* Video embed */}
+              {/* Video embed */}
+              <div className="max-w-4xl mx-auto">
                 <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
                   <iframe
                     width="100%"
@@ -214,6 +192,18 @@ const Musica = () => {
                     className="w-full h-full"
                   />
                 </div>
+              </div>
+
+              <div className="text-center pt-4">
+                <a 
+                  href="https://www.youtube.com/watch?v=8R2AV-h1Dzg" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                >
+                  <Play className="h-5 w-5" />
+                  Ver Videoclip en YouTube
+                </a>
               </div>
             </div>
           </div>
