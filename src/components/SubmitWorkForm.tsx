@@ -153,7 +153,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         .getPublicUrl(curriculumFilePath);
 
       // Enviar a Formspree y guardar en base de datos en paralelo
-      const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
+      const formspreeEndpoint = 'https://formspree.io/f/mldoyzjb';
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
         // Enviar a Formspree
@@ -200,8 +200,9 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       }
 
       toast({
-        title: "¡Tu obra está en camino! 📚✨",
-        description: "Gracias por compartir tu creatividad con nosotros. Evaluaremos tu propuesta con el cariño que merece y te contactaremos pronto.",
+        title: "¡Propuesta recibida con éxito!",
+        description: "Gracias por confiar en Grupo Dauro. Revisaremos tu obra cuidadosamente y nos pondremos en contacto contigo en las próximas 48 horas.",
+        duration: 6000,
       });
 
       reset();
@@ -216,9 +217,10 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({
-        title: "Oh no, algo falló 😓",
-        description: "Por favor, intenta enviarnos tu obra nuevamente. Si persiste el error, escríbenos a info@grupodauro.com",
+        title: "Error al enviar la propuesta",
+        description: "Por favor, intenta de nuevo. Si el problema persiste, contáctanos directamente en info@grupodauro.com",
         variant: "destructive",
+        duration: 5000,
       });
     } finally {
       setIsSubmitting(false);
