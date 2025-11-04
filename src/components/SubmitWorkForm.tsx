@@ -157,16 +157,17 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       const formspreeEndpoint = 'https://formspree.io/f/mldoyzjb';
       
       const formspreeData = {
-        nombre: data.nombre,
-        apellidos: data.apellidos,
-        email: data.email,
-        telefono: data.telefono,
-        titulo_obra: data.titulo_obra,
-        tipo_obra: data.tipo_obra,
-        _subject: `Nueva propuesta editorial: ${data.titulo_obra}`,
-        manuscrito_url: obraUrl,
-        curriculum_url: cvUrl,
-        mensaje: `Nueva propuesta editorial recibida de ${data.nombre} ${data.apellidos}.\n\n📚 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\nDescarga los archivos haciendo clic en los enlaces.`,
+        _replyto: data.email,
+        _subject: `📚 Nueva Propuesta Editorial: ${data.titulo_obra}`,
+        Nombre: data.nombre,
+        Apellidos: data.apellidos,
+        Email: data.email,
+        Teléfono: data.telefono,
+        'Título de la Obra': data.titulo_obra,
+        'Tipo de Obra': data.tipo_obra,
+        '📚 Manuscrito': obraUrl,
+        '📄 Currículum Vitae': cvUrl,
+        Mensaje: `Nueva propuesta editorial recibida.\n\nAutor: ${data.nombre} ${data.apellidos}\nEmail: ${data.email}\nTeléfono: ${data.telefono}\nTítulo: ${data.titulo_obra}\nTipo: ${data.tipo_obra}\n\n📥 DESCARGAR ARCHIVOS:\n\nManuscrito: ${obraUrl}\n\nCurrículum: ${cvUrl}\n\nHaz clic en los enlaces para descargar los archivos.`,
       };
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
