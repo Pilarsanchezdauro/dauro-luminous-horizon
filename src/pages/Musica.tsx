@@ -540,6 +540,101 @@ const Musica = () => {
               </div>
             </div>
           </div>
+
+          {/* Eres mi ritmo - Alciades Ferran con IA */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
+            <div className="space-y-8">
+              <div className="text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                  <span>🤖</span>
+                  <span>Creado con Inteligencia Artificial</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                  Eres mi ritmo
+                </h3>
+                <p className="text-lg text-primary font-medium">Alciades Ferran</p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Video embed */}
+                <div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/6r74NU6mQFI"
+                      title="Eres mi ritmo - Alciades Ferran"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+
+                {/* Contenido */}
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong>"Eres mi ritmo"</strong> es una canción de amor, alegría y luz creada con 
+                    <strong> inteligencia artificial y sensibilidad humana</strong>. Bajo la voz de 
+                    <strong> Alciades Ferran</strong>, una creación artística de Dauro IA, esta obra 
+                    une la emoción del arte con la innovación tecnológica.
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    Cada nota, cada palabra y cada imagen surgen de un diálogo entre humanos y máquinas: 
+                    <strong> emoción real guiando la creación digital</strong>. En "Eres mi ritmo", la 
+                    inteligencia artificial no sustituye el alma: la amplifica.
+                  </p>
+
+                  <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-6 rounded-xl">
+                    <h5 className="font-semibold mb-3">Producción con IA:</h5>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• <strong>Voz y composición:</strong> Generadas por IA - Alciades Ferran</li>
+                      <li>• <strong>Producción artística:</strong> Dauro IA</li>
+                      <li>• <strong>Vídeo:</strong> Tecnología IA + dirección humana</li>
+                      <li>• <strong>Concepto:</strong> Fusión de arte y tecnología</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-primary/10">
+                      <p className="text-sm text-muted-foreground">
+                        Si quieres aprender a crear con inteligencia artificial, explorar herramientas 
+                        creativas o formar parte de esta nueva era del arte, visita{" "}
+                        <a 
+                          href="https://www.dauroia.com" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline font-semibold"
+                        >
+                          www.dauroia.com
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <a 
+                      href="https://www.youtube.com/watch?v=6r74NU6mQFI" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                    >
+                      <Play className="h-5 w-5" />
+                      Ver Videoclip en YouTube
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2 flex-wrap justify-center">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Inteligencia Artificial</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Dauro IA</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Pop</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Innovación</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Alciades Ferran</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Arte + Tecnología</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* CTA Section */}
