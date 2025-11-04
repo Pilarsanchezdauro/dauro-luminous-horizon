@@ -101,6 +101,15 @@ export default function BookCoverRequestForm() {
         }
       }
 
+      // Generar URL pública de la imagen
+      let referenceImageUrl = '';
+      if (referenceImagePath) {
+        const { data: { publicUrl } } = supabase.storage
+          .from('booktrailer-files')
+          .getPublicUrl(referenceImagePath);
+        referenceImageUrl = publicUrl;
+      }
+
       // Enviar a Formspree y guardar en base de datos en paralelo
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
@@ -115,6 +124,8 @@ export default function BookCoverRequestForm() {
             ...data,
             tipo_formulario: 'Portada de Libro',
             _subject: `Nueva solicitud de portada: ${data.titulo_libro}`,
+            referencia_url: referenceImageUrl || 'No adjuntada',
+            mensaje_archivos: referenceImageUrl ? `Imagen de referencia: ${referenceImageUrl}` : 'Sin imagen de referencia',
           }),
         }),
         // Guardar en Supabase

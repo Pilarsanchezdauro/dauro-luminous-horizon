@@ -117,6 +117,15 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
         documentFilePath = filePath;
       }
 
+      // Generar URL pública del documento
+      let documentUrl = '';
+      if (documentFilePath) {
+        const { data: { publicUrl } } = supabase.storage
+          .from('dauro-arte-documents')
+          .getPublicUrl(documentFilePath);
+        documentUrl = publicUrl;
+      }
+
       // Enviar a Formspree y guardar en base de datos en paralelo
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
@@ -131,6 +140,8 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
             ...data,
             tipo_formulario: 'Dauro Arte',
             _subject: `Nueva consulta Dauro Arte: ${data.servicio}`,
+            documento_url: documentUrl || 'No adjuntado',
+            mensaje_archivos: documentUrl ? `Documento adjunto: ${documentUrl}` : 'Sin documentos adjuntos',
           }),
         }),
         // Guardar en Supabase

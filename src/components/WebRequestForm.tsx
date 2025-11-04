@@ -67,6 +67,15 @@ export default function WebRequestForm() {
         documentPath = fileName;
       }
 
+      // Generar URL pública del documento
+      let documentUrl = '';
+      if (documentPath) {
+        const { data: { publicUrl } } = supabase.storage
+          .from('dauro-arte-documents')
+          .getPublicUrl(documentPath);
+        documentUrl = publicUrl;
+      }
+
       // Enviar a Formspree y guardar en base de datos en paralelo
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
@@ -81,6 +90,8 @@ export default function WebRequestForm() {
             ...data,
             tipo_formulario: 'Desarrollo Web',
             _subject: `Nueva solicitud de desarrollo web: ${data.tipo_web}`,
+            documento_url: documentUrl || 'No adjuntado',
+            mensaje_archivos: documentUrl ? `Documento adjunto: ${documentUrl}` : 'Sin documentos adjuntos',
           }),
         }),
         // Guardar en Supabase

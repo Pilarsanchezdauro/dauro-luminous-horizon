@@ -140,6 +140,22 @@ export default function BooktrailerRequestForm() {
         }
       }
 
+      // Generar URLs públicas
+      let coverImageUrl = '';
+      if (coverImagePath) {
+        const { data: { publicUrl } } = supabase.storage
+          .from('booktrailer-files')
+          .getPublicUrl(coverImagePath);
+        coverImageUrl = publicUrl;
+      }
+
+      const additionalFileUrls = additionalFilePaths.map(path => {
+        const { data: { publicUrl } } = supabase.storage
+          .from('booktrailer-files')
+          .getPublicUrl(path);
+        return publicUrl;
+      });
+
       // Enviar a Formspree y guardar en base de datos en paralelo
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
@@ -154,6 +170,11 @@ export default function BooktrailerRequestForm() {
             ...data,
             tipo_formulario: 'Booktrailer',
             _subject: `Nueva solicitud de booktrailer: ${data.titulo_libro}`,
+            portada_url: coverImageUrl || 'No adjuntada',
+            archivos_adicionales: additionalFileUrls.length > 0 ? additionalFileUrls.join('\n') : 'No adjuntados',
+            mensaje_archivos: coverImageUrl || additionalFileUrls.length > 0 
+              ? `Archivos adjuntos:\n${coverImageUrl ? `- Portada: ${coverImageUrl}\n` : ''}${additionalFileUrls.length > 0 ? `- Material adicional:\n  ${additionalFileUrls.join('\n  ')}` : ''}`
+              : 'Sin archivos adjuntos',
           }),
         }),
         // Guardar en Supabase
