@@ -208,7 +208,7 @@ const Musica = () => {
             </div>
           </div>
 
-          {/* Ojos de Blues - Sin ti */}
+          {/* Si cuento - Ojos de Blues */}
           <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Contenido */}
@@ -218,12 +218,13 @@ const Musica = () => {
                     Colaboración con May Walker
                   </div>
                   <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
-                    Ojos de Blues
+                    Si cuento
                   </h3>
+                  <p className="text-lg text-muted-foreground font-medium">Ojos de Blues</p>
                 </div>
 
                 <p className="text-muted-foreground leading-relaxed">
-                  Con la inestimable colaboración de <strong>May Walker</strong>, "Ojos de Blues" nos cuenta 
+                  Con la inestimable colaboración de <strong>May Walker</strong>, "Si cuento" nos cuenta 
                   que no hay un lugar mejor donde dejar atrás los momentos amargos que nuestra increíble ciudad, 
                   <strong> Granada</strong>.
                 </p>
@@ -261,7 +262,7 @@ const Musica = () => {
                     width="100%"
                     height="100%"
                     src="https://www.youtube.com/embed/Fsr64OQOFQg"
-                    title="Ojos de Blues - May Walker y Grupo Dauro"
+                    title="Si cuento - Ojos de Blues con May Walker"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
