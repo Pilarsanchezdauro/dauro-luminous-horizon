@@ -27,7 +27,7 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.1-sonar-large-128k-online',
+        model: 'sonar-pro',
         messages: [
           {
             role: 'system',
@@ -39,13 +39,10 @@ serve(async (req) => {
           }
         ],
         temperature: 0.2,
-        top_p: 0.9,
         max_tokens: 1000,
-        return_images: false,
-        return_related_questions: false,
-        search_recency_filter: 'month',
-        frequency_penalty: 1,
-        presence_penalty: 0
+        search_mode: 'web',
+        return_citations: true,
+        return_related_questions: false
       }),
     });
 
@@ -58,15 +55,19 @@ serve(async (req) => {
     const data = await response.json();
     const text = data.choices[0].message.content;
     
-    // Extraer citas si están disponibles
-    const cites = data.citations || [];
+    // Extraer citas de search_results si están disponibles
+    const searchResults = data.search_results || [];
+    const cites = searchResults.map((result: any) => ({
+      url: result.url,
+      title: result.title || result.url
+    }));
 
-    console.log('Respuesta de actualidad generada exitosamente');
+    console.log('Respuesta de actualidad generada exitosamente con', cites.length, 'fuentes');
 
     return new Response(
       JSON.stringify({ 
         text,
-        cites: cites.map((url: string) => ({ url, title: url }))
+        cites
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
