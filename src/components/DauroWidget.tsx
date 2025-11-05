@@ -154,14 +154,12 @@ export const DauroWidget = () => {
             </TooltipProvider>
           </div>
           
-          <p className="text-lg md:text-xl text-muted-foreground italic font-serif max-w-2xl mx-auto mb-4">
-            Tu asistente cultural inteligente
-          </p>
-          
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-            Busca en todo el catálogo, nuestros artículos, o la red cultural actual.
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Tu asistente cultural inteligente.
             <br />
-            Pregunta cualquier cosa sobre libros, autores, eventos o cultura.
+            Explora el catálogo de Grupo Dauro, descubre autores, editoriales, artículos y noticias literarias, o pregunta cualquier cosa sobre cultura, arte y libros.
+            <br />
+            Una búsqueda avanzada que entiende el lenguaje natural y te responde al instante.
           </p>
         </div>
 
