@@ -85,19 +85,30 @@ export const DauroWidget = () => {
     setAudioError(null);
 
     try {
-      const { data, error } = await supabase.functions.invoke("audio-sinopsis", {
-        body: { text: result.text },
-      });
+      // Usar fetch directamente para obtener la respuesta binaria
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/audio-sinopsis`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({ text: result.text }),
+        }
+      );
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Error al generar el audio');
+      }
 
-      // Crear blob y URL
-      const audioBlob = new Blob([data], { type: 'audio/mpeg' });
+      // Obtener el blob directamente de la respuesta
+      const audioBlob = await response.blob();
       const audioUrl = URL.createObjectURL(audioBlob);
 
       if (audioRef.current) {
         audioRef.current.src = audioUrl;
-        audioRef.current.play();
+        await audioRef.current.play();
       }
     } catch (error) {
       console.error("Error al reproducir audio:", error);
