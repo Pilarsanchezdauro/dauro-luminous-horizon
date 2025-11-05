@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Search, BookOpen, Sparkles, Loader2, Play, Pause, Info } from "lucide-react";
+import { Search, BookOpen, Sparkles, Loader2, Play, Pause, Info, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
@@ -68,6 +68,17 @@ export const DauroWidget = () => {
   const handleSearchExample = (example: string) => {
     setQuery(example);
     handleAsk(example);
+  };
+
+  const handleClear = () => {
+    setQuery("");
+    setResult(null);
+    setAudioError(null);
+    setIsPlayingAudio(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = "";
+    }
   };
 
   const handleAudioPlayPause = async () => {
@@ -200,8 +211,17 @@ export const DauroWidget = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               disabled={isLoading}
-              className="pl-10 h-12 text-base transition-all"
+              className="pl-10 pr-10 h-12 text-base transition-all"
             />
+            {query && (
+              <button
+                onClick={handleClear}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Limpiar búsqueda"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
           </div>
           <Button
             onClick={() => handleAsk()}
