@@ -1,6 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, Volume2 } from "lucide-react";
+import { Search, BookOpen, Sparkles, Loader2, Play, Pause, Info } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+
+const SEARCH_EXAMPLES = [
+  "¿Qué libros ha publicado Grupo Dauro sobre poesía?",
+  "Noticias recientes sobre literatura andaluza",
+  "Información sobre los servicios editoriales",
+  "¿Qué autores andaluces tenéis en catálogo?",
+  "Eventos culturales en Granada"
+];
 
 export const DauroWidget = () => {
   const [mode, setMode] = useState<"interno" | "externo">("interno");
@@ -11,12 +22,23 @@ export const DauroWidget = () => {
     sources?: Array<{ url: string; title: string }>;
   } | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % SEARCH_EXAMPLES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAsk = async () => {
     if (!query.trim()) return;
 
     setIsLoading(true);
     setResult(null);
+    setAudioError(null);
 
     try {
       const endpoint = mode === "interno" ? "qa-interno" : "qa-externo";
@@ -41,10 +63,27 @@ export const DauroWidget = () => {
     }
   };
 
-  const handleAudio = async () => {
+  const handleAudioPlayPause = async () => {
     if (!result?.text) return;
 
+    // Si ya estamos reproduciendo, pausar
+    if (isPlayingAudio && audioRef.current) {
+      audioRef.current.pause();
+      setIsPlayingAudio(false);
+      return;
+    }
+
+    // Si ya existe el audio, reproducir
+    if (audioRef.current && audioRef.current.src) {
+      audioRef.current.play();
+      setIsPlayingAudio(true);
+      return;
+    }
+
+    // Generar nuevo audio
     setIsPlayingAudio(true);
+    setAudioError(null);
+
     try {
       const { data, error } = await supabase.functions.invoke("audio-sinopsis", {
         body: { text: result.text },
@@ -52,26 +91,18 @@ export const DauroWidget = () => {
 
       if (error) throw error;
 
-      // El edge function devuelve el audio como blob
-      const blob = await data;
-      const url = URL.createObjectURL(blob);
-      const audio = new Audio(url);
-      
-      audio.onended = () => {
-        setIsPlayingAudio(false);
-        URL.revokeObjectURL(url);
-      };
-      
-      audio.onerror = () => {
-        setIsPlayingAudio(false);
-        URL.revokeObjectURL(url);
-      };
-      
-      await audio.play();
+      // Crear blob y URL
+      const audioBlob = new Blob([data], { type: 'audio/mpeg' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      if (audioRef.current) {
+        audioRef.current.src = audioUrl;
+        audioRef.current.play();
+      }
     } catch (error) {
       console.error("Error al reproducir audio:", error);
+      setAudioError("No se pudo reproducir el audio. Intenta de nuevo.");
       setIsPlayingAudio(false);
-      alert("No se pudo generar el audio. Intenta de nuevo.");
     }
   };
 
@@ -82,242 +113,186 @@ export const DauroWidget = () => {
   };
 
   return (
-    <section
-      className="dauro-widget-wrap"
-      data-mode={mode}
-      aria-label="Asistente cultural Grupo Dauro"
-    >
-      {/* Tabs */}
-      <div className="dauro-widget-tabs" role="tablist" aria-label="Modo de consulta">
-        <button
-          className={`dauro-widget-tab ${mode === "interno" ? "is-active" : ""}`}
-          role="tab"
-          aria-selected={mode === "interno"}
-          onClick={() => setMode("interno")}
-          title="Catálogo (interno)"
-        >
-          Catálogo
-        </button>
-        <button
-          className={`dauro-widget-tab ${mode === "externo" ? "is-active" : ""}`}
-          role="tab"
-          aria-selected={mode === "externo"}
-          onClick={() => setMode("externo")}
-          title="Actualidad con citas"
-        >
-          Actualidad
-        </button>
-      </div>
-
-      {/* Input Bar */}
-      <div className="dauro-widget-bar">
-        <input
-          className="dauro-widget-input"
-          type="search"
-          placeholder="Pregunta sobre libros, autores o eventos…"
-          aria-label="Pregunta a Grupo Dauro"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isLoading}
-        />
-        <button
-          className="dauro-widget-btn"
-          onClick={handleAsk}
-          disabled={isLoading || !query.trim()}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span className="ml-2">Pensando...</span>
-            </>
-          ) : (
-            "Preguntar"
-          )}
-        </button>
-      </div>
-
-      {/* Results */}
-      {result && (
-        <div className="dauro-widget-result" aria-live="polite">
-          <div className="dauro-widget-answer">{result.text}</div>
-
-          {/* Audio button for internal mode */}
-          {mode === "interno" && (
-            <div className="dauro-widget-actions">
-              <button
-                className="dauro-widget-audio-btn"
-                onClick={handleAudio}
-                disabled={isPlayingAudio}
-                title="Escuchar sinopsis"
-              >
-                <Volume2 className="h-4 w-4" />
-                <span className="ml-1.5">
-                  {isPlayingAudio ? "Reproduciendo..." : "Escuchar sinopsis"}
-                </span>
-              </button>
-            </div>
-          )}
-
-          {/* Sources */}
-          {result.sources && result.sources.length > 0 && (
-            <ul className="dauro-widget-sources">
-              {result.sources.map((source, idx) => (
-                <li key={idx}>
-                  <a
-                    href={source.url}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    {source.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+    <section className="w-full max-w-4xl mx-auto py-16 px-4">
+      <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-lg border border-border p-8 md:p-12">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <BookOpen className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Pregunta a Grupo Dauro
+            </h2>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Info className="w-5 h-5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p className="text-sm">
+                    Este asistente usa inteligencia artificial para responder preguntas culturales,
+                    consultar el catálogo y ofrecer información de la web de Grupo Dauro.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          
+          <p className="text-lg md:text-xl text-muted-foreground italic font-serif max-w-2xl mx-auto mb-4">
+            Tu asistente cultural inteligente
+          </p>
+          
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+            Busca en todo el catálogo, nuestros artículos, o la red cultural actual.
+            <br />
+            Pregunta cualquier cosa sobre libros, autores, eventos o cultura.
+          </p>
         </div>
-      )}
 
-      <style>{`
-        .dauro-widget-wrap {
-          font: inherit;
-          color: inherit;
-          display: grid;
-          gap: var(--gap, 0.75rem);
-          padding: 1rem 0;
-        }
-        
-        .dauro-widget-tabs {
-          display: inline-flex;
-          gap: 0.5rem;
-          align-items: center;
-        }
-        
-        .dauro-widget-tab {
-          font: inherit;
-          color: inherit;
-          background: transparent;
-          padding: 0.4rem 0.75rem;
-          border: 1px solid var(--border-color, rgba(0, 0, 0, 0.15));
-          border-radius: var(--radius, 0.5rem);
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        
-        .dauro-widget-tab:hover {
-          border-color: var(--color-primary, currentColor);
-        }
-        
-        .dauro-widget-tab.is-active {
-          border-color: var(--color-primary, currentColor);
-          font-weight: 600;
-        }
-        
-        .dauro-widget-bar {
-          display: flex;
-          gap: 0.5rem;
-          align-items: stretch;
-        }
-        
-        .dauro-widget-input {
-          flex: 1;
-          font: inherit;
-          color: inherit;
-          background: transparent;
-          padding: 0.6rem 0.75rem;
-          border-radius: var(--radius, 0.5rem);
-          border: 1px solid var(--border-color, rgba(0, 0, 0, 0.15));
-          outline-color: var(--color-primary, currentColor);
-        }
-        
-        .dauro-widget-input:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
-        }
-        
-        .dauro-widget-btn {
-          font: inherit;
-          color: white;
-          background: var(--color-primary, hsl(var(--primary, currentColor)));
-          padding: 0.55rem 0.9rem;
-          border: 0;
-          border-radius: var(--radius, 0.5rem);
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          transition: opacity 0.2s;
-        }
-        
-        .dauro-widget-btn:hover:not(:disabled) {
-          opacity: 0.9;
-        }
-        
-        .dauro-widget-btn:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
-        }
-        
-        .dauro-widget-result {
-          font: inherit;
-          color: inherit;
-          display: grid;
-          gap: 0.6rem;
-        }
-        
-        .dauro-widget-answer {
-          white-space: pre-wrap;
-          line-height: inherit;
-        }
-        
-        .dauro-widget-actions {
-          display: flex;
-          gap: 0.5rem;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-        
-        .dauro-widget-audio-btn {
-          font: inherit;
-          color: inherit;
-          background: transparent;
-          border: 1px solid var(--border-color, rgba(0, 0, 0, 0.15));
-          border-radius: var(--radius, 0.5rem);
-          padding: 0.4rem 0.6rem;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          transition: all 0.2s;
-        }
-        
-        .dauro-widget-audio-btn:hover:not(:disabled) {
-          border-color: var(--color-primary, currentColor);
-        }
-        
-        .dauro-widget-audio-btn:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
-        }
-        
-        .dauro-widget-sources {
-          margin: 0.25rem 0 0;
-          padding: 0;
-          list-style: none;
-          display: grid;
-          gap: 0.25rem;
-        }
-        
-        .dauro-widget-sources a {
-          color: inherit;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-          opacity: 0.8;
-        }
-        
-        .dauro-widget-sources a:hover {
-          opacity: 1;
-        }
-      `}</style>
+        {/* Tabs */}
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <Button
+            variant={mode === "interno" ? "default" : "outline"}
+            onClick={() => setMode("interno")}
+            className="gap-2"
+          >
+            <BookOpen className="w-4 h-4" />
+            Catálogo
+          </Button>
+          <Button
+            variant={mode === "externo" ? "default" : "outline"}
+            onClick={() => setMode("externo")}
+            className="gap-2"
+          >
+            <Sparkles className="w-4 h-4" />
+            Actualidad
+          </Button>
+        </div>
+
+        {/* Search Input */}
+        <div className="flex gap-2 mb-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+            <Input
+              type="search"
+              placeholder={SEARCH_EXAMPLES[placeholderIndex]}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={isLoading}
+              className="pl-10 h-12 text-base transition-all"
+            />
+          </div>
+          <Button
+            onClick={handleAsk}
+            disabled={isLoading || !query.trim()}
+            size="lg"
+            className="px-6"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                Pensando...
+              </>
+            ) : (
+              "Preguntar"
+            )}
+          </Button>
+        </div>
+
+        {/* Examples */}
+        <div className="text-xs text-muted-foreground text-center mb-6">
+          <p className="font-semibold mb-1">Ejemplos:</p>
+          <p className="italic">
+            "¿Qué libros ha publicado Grupo Dauro sobre poesía?" •
+            "Noticias recientes sobre literatura andaluza" •
+            "Información sobre los servicios editoriales"
+          </p>
+        </div>
+
+        {/* Results */}
+        {result && (
+          <div className="bg-background/50 rounded-xl border border-border p-6 space-y-4 animate-fade-in">
+            <div className="prose prose-sm max-w-none">
+              <p className="text-base leading-relaxed whitespace-pre-wrap">
+                {result.text}
+              </p>
+            </div>
+
+            {/* Audio Player for internal mode */}
+            {mode === "interno" && (
+              <div className="pt-4 border-t border-border">
+                <div className="flex items-center gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleAudioPlayPause}
+                    disabled={!result.text}
+                    className="gap-2"
+                  >
+                    {isPlayingAudio ? (
+                      <>
+                        <Pause className="w-4 h-4" />
+                        Pausar
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-4 h-4" />
+                        Escuchar sinopsis
+                      </>
+                    )}
+                  </Button>
+                  <audio
+                    ref={audioRef}
+                    onEnded={() => setIsPlayingAudio(false)}
+                    onError={() => {
+                      setIsPlayingAudio(false);
+                      setAudioError("No se pudo reproducir el audio. Intenta de nuevo.");
+                    }}
+                    onPlay={() => setIsPlayingAudio(true)}
+                    onPause={() => setIsPlayingAudio(false)}
+                    className="flex-1 h-8"
+                    controls
+                    style={{ display: audioRef.current?.src ? 'block' : 'none' }}
+                  />
+                </div>
+                {audioError && (
+                  <p className="text-sm text-destructive mt-2">{audioError}</p>
+                )}
+              </div>
+            )}
+
+            {/* Sources */}
+            {result.sources && result.sources.length > 0 && (
+              <div className="pt-4 border-t border-border">
+                <h4 className="text-sm font-semibold mb-2">
+                  {mode === "interno" ? "Fuentes consultadas:" : "Fuentes consultadas:"}
+                </h4>
+                <ul className="space-y-1">
+                  {result.sources.map((source, idx) => (
+                    <li key={idx} className="text-sm">
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        {source.title || source.url}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                {mode === "interno" && (
+                  <p className="text-xs text-muted-foreground mt-2 italic">
+                    Fuente: contenido de grupodauro.com
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   );
 };
