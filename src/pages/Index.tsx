@@ -42,19 +42,9 @@ const Index = () => {
       <Hero />
 
       {/* Widget Section */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <section className="py-8 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-playfair font-bold mb-3">
-              Pregunta a Grupo Dauro
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Consulta sobre nuestro catálogo, autores y servicios, o busca información actualizada sobre cultura y literatura
-            </p>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <DauroWidget />
-          </div>
+          <DauroWidget />
         </div>
       </section>
 
