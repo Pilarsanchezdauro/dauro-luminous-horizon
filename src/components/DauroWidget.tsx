@@ -213,7 +213,7 @@ export const DauroWidget = () => {
 
         {/* Results */}
         {result && (
-          <div className="bg-background/50 rounded-xl border border-border p-6 space-y-4 animate-fade-in">
+          <div className="bg-background/50 rounded-xl border border-border p-6 space-y-4 animate-enter">
             <div className="prose prose-sm max-w-none">
               <p className="text-base leading-relaxed whitespace-pre-wrap">
                 {result.text}
