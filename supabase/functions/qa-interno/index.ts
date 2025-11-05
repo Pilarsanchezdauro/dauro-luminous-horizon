@@ -132,19 +132,106 @@ serve(async (req) => {
     const contexto = `
 Grupo Dauro es una editorial y productora cultural con sede en Granada, España.
 
+INSTRUCCIONES PARA BÚSQUEDAS PARCIALES:
+- Si el usuario menciona parte de un título (ej: "latido", "código H", "migración", "aecio"), identifícalo y pregunta: "¿Te refieres a [TÍTULO COMPLETO] de [AUTOR]?"
+- Si el usuario menciona un apellido de autor (ej: "Alcaide", "Hernández"), identifícalo y pregunta: "¿Te refieres a [NOMBRE COMPLETO]?"
+- Si hay varias coincidencias, menciona todas las opciones disponibles
+- Después de confirmar, proporciona la información completa del libro o autor
+
+INFORMACIÓN DETALLADA DE LIBROS DESTACADOS:
+
+1. "El código H del dinero"
+   - Autor: No especificado en catálogo
+   - Género: Desarrollo Personal / Finanzas
+   - Descripción: Relato autobiográfico de un financiero internacional que desmonta conceptos del dinero, revela fraudes bancarios y enseña a ver el sistema financiero desde una perspectiva personal y disruptiva. Para inconformistas y curiosos sobre el mundo de las finanzas.
+
+2. "La migración como revolución interior"
+   - Autor: No especificado en catálogo
+   - Género: Desarrollo Personal / Testimonio
+   - Descripción: Historia real sobre transformar la migración en una oportunidad de cambio personal profundo. Dirigido a personas en proceso de transición o transformación vital, no solo migratoria.
+
+3. "Latido. Apasionadamente vuestro"
+   - Autor: Carmen Alcaide
+   - Género: Narrativa / Novela contemporánea
+   - Descripción: Un joven exmilitar vive el lado más peligroso y emocional de la España de la Transición, enfrentando pasiones, traiciones y decisiones complejas dentro de un thriller emocional y de acción.
+   - Evento: Presentación el 29 de enero de 2025, 19:00h, Biblioteca de Andalucía, Granada
+
+4. "Elena y la Alpujarra"
+   - Autor: No especificado en catálogo
+   - Género: Narrativa histórica
+   - Descripción: Relato de la vida rural y las dificultades posguerra en la Alpujarra, centrado en Elena y su familia y mezclando hechos reales y ficción para retratar la dureza y belleza de la vida en la montaña.
+
+5. "Aecio"
+   - Autor: No especificado en catálogo
+   - Género: Novela Histórica
+   - Descripción: Ambientada en el siglo V durante los últimos días del Imperio Romano, narra el ascenso de Aecio en medio del caos, luchando por mantener la gloria romana ante la presión bárbara.
+
+6. "Elucubraciones"
+   - Autor: No especificado en catálogo
+   - Género: Narrativa / Autoficción filosófica
+   - Descripción: Obra póstuma de reflexiones, delirios y pensamientos intensos al borde de la muerte, explorando los límites de la mente y la existencia, con una narrativa cruda y visceral.
+
+7. "Mundos Perdidos"
+   - Autor: No especificado en catálogo
+   - Género: Ensayo / Narrativa filosófica
+   - Descripción: Recopilación de relatos y escritos sobre mundos míticos y exóticos, que mezcla ficción histórica, filosofía y exploración literaria de civilizaciones antiguas, arte y pensamiento.
+
+8. "No volverán las oscuras golondrinas..."
+   - Autor: No especificado en catálogo
+   - Género: Relatos
+   - Descripción: Cinco relatos sobre pasión, crudeza y ternura, abordando temas como el amor perdido, derrotas históricas y la profunda reflexión literaria con fuerte crítica social y estilística propia.
+
+9. "Una voz para dos tierras"
+   - Autor: No especificado en catálogo
+   - Género: Narrativa (histórica/social)
+   - Descripción: Explora raíces, pertenencia y la relación entre diferentes culturas o lugares.
+
+10. "El arte de brindar. Poesía líquida para el alma"
+    - Autor: No especificado en catálogo
+    - Género: Poesía
+    - Descripción: Libro de poemas para el crecimiento personal y la contemplación, centrado en el brindis como celebración del alma.
+
+11. "Del Palmar de Troya al Instituto Cervantes. Crónicas irreverentes"
+    - Autor: No especificado en catálogo
+    - Género: Crónica / Ensayo
+    - Descripción: Recoge crónicas de tono irreverente que van desde el fenómeno del Palmar de Troya hasta reflexiones sobre la cultura y lengua española, usando el humor y la crítica.
+
+12. "Miguel Hernández a contraluz"
+    - Autor: No especificado en catálogo
+    - Género: Biografía / Estudio literario
+    - Descripción: Análisis vital y literario de Miguel Hernández, centrado en los temas de amor y dolor en su poesía, y el contexto ideológico y social que lo rodeó.
+
+13. "El hidalgo don Rodrigo de Cervantes"
+    - Autor: No especificado en catálogo
+    - Género: Narrativa histórica
+    - Descripción: Explora la figura histórica de don Rodrigo de Cervantes (padre de Miguel de Cervantes) y la época en la que vivió. Profundiza en las raíces familiares y contexto sociopolítico.
+
+14. "La alborada del ruiseñor"
+    - Autor: No especificado en catálogo
+    - Género: Narrativa
+    - Descripción: Novela centrada en la superación y el optimismo, ambientada posiblemente en algún periodo histórico español.
+
+15. "20 mujeres inolvidables"
+    - Autor: No especificado en catálogo
+    - Género: Ensayo biográfico / Social
+    - Descripción: Recopilación de biografías de 20 mujeres que dejaron huella; enfoque divulgativo y social, resaltando el impacto femenino en la historia y la cultura.
+
 ${catalogoTexto}
 
 SERVICIOS:
 - Editorial: publicación de libros físicos y digitales
-- Dauro Arte: diseño gráfico, branding, portadas de libros
-- Dauro Cine: producción audiovisual, booktrailers
+- Dauro Arte: diseño gráfico, branding, portadas de libros con IA
+- Dauro Cine: producción audiovisual, booktrailers, documentales
 - Dauro Música: producción musical, canciones con IA
-- Dauro IA: servicios creativos con inteligencia artificial
+- Dauro IA: servicios creativos con inteligencia artificial, arte generativo, NFTs
 
-EVENTOS:
-- Presentaciones de libros en Granada
-- Eventos culturales y literarios
-- Talleres de escritura y creatividad
+CONTACTO:
+- Email: info@grupodauro.com
+- Teléfono: +34 958 22 46 82
+- Dirección: Calle Tendillas de Santa Paula, 5, 18009 Granada, España
+
+EVENTOS PRÓXIMOS:
+- Presentación "Latido. Apasionadamente vuestro" de Carmen Alcaide: 29 de enero de 2025, 19:00h, Biblioteca de Andalucía, Granada (Acceso libre hasta completar aforo)
 `;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -158,7 +245,14 @@ EVENTOS:
         messages: [
           {
             role: 'system',
-            content: `Eres el asistente cultural de Grupo Dauro. Responde en español de España, de forma clara y concisa (máximo 700 tokens). Usa el siguiente contexto para responder preguntas sobre el catálogo, autores y servicios:\n\n${contexto}\n\nSi la pregunta no está relacionada con Grupo Dauro, invita amablemente al usuario a usar el modo "Actualidad" para consultas generales.`
+            content: `Eres el asistente cultural de Grupo Dauro. Responde en español de España, de forma clara y concisa (máximo 700 tokens).
+
+IMPORTANTE - BÚSQUEDAS PARCIALES:
+- Cuando el usuario mencione parte de un título o apellido de autor, SIEMPRE pregunta primero para confirmar: "¿Te refieres a [título completo] de [autor completo]?" antes de dar información
+- Usa el contexto para identificar coincidencias parciales
+- Si hay varias opciones, menciónalas todas
+
+Usa el siguiente contexto para responder:\n\n${contexto}\n\nSi la pregunta no está relacionada con Grupo Dauro, invita amablemente al usuario a usar el modo "Actualidad" para consultas generales.`
           },
           {
             role: 'user',
