@@ -1,36 +1,40 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Search, BookOpen, Sparkles, Loader2, Play, Pause, Info, X } from "lucide-react";
+import { Search, BookOpen, Sparkles, Loader2, Play, Pause, Info, X, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { toast } from "sonner";
+
+interface Message {
+  role: "user" | "assistant";
+  content: string;
+  metadata?: {
+    fromCache: boolean;
+    catalogUpdatedAt: string;
+    totalProducts: number;
+  };
+  sources?: Array<{ url: string; title: string }>;
+}
 
 const SEARCH_EXAMPLES = [
-  "¿Qué libros ha publicado Grupo Dauro sobre poesía?",
-  "Noticias recientes sobre literatura andaluza",
-  "Información sobre los servicios editoriales",
-  "¿Qué autores andaluces tenéis en catálogo?",
-  "Eventos culturales en Granada"
+  "¿Qué libros tenéis de historia?",
+  "¿Hacéis diseño de portadas?",
+  "¿Qué servicios ofrecéis?",
+  "¿Cuándo es la próxima presentación?"
 ];
 
 export const DauroWidget = () => {
   const [mode, setMode] = useState<"interno" | "externo">("interno");
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<{
-    text: string;
-    sources?: Array<{ url: string; title: string }>;
-    metadata?: {
-      fromCache: boolean;
-      catalogUpdatedAt: string;
-      totalProducts: number;
-    };
-  } | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
   const [isLoadingAudio, setIsLoadingAudio] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,32 +44,48 @@ export const DauroWidget = () => {
   }, []);
 
   const handleAsk = async (searchQuery?: string) => {
-    const queryToSearch = searchQuery || query.trim();
-    if (!queryToSearch) return;
+    const queryToUse = searchQuery || query;
+    if (!queryToUse.trim()) return;
 
+    // Agregar mensaje del usuario
+    const userMessage: Message = {
+      role: "user",
+      content: queryToUse
+    };
+    setMessages(prev => [...prev, userMessage]);
+    setQuery("");
     setIsLoading(true);
-    setResult(null);
     setAudioError(null);
 
     try {
       const endpoint = mode === "interno" ? "qa-interno" : "qa-externo";
+      
+      // Enviar historial completo de mensajes
       const { data, error } = await supabase.functions.invoke(endpoint, {
-        body: { query: queryToSearch },
+        body: { 
+          query: queryToUse,
+          messages: [...messages, userMessage] // Incluir historial
+        },
       });
 
       if (error) throw error;
 
-      setResult({
-        text: data.text,
+      // Agregar respuesta del asistente
+      const assistantMessage: Message = {
+        role: "assistant",
+        content: data.text,
         sources: data.cites || data.fuentesInternas || [],
         metadata: data.metadata,
-      });
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+      
+      // Scroll al final
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } catch (error) {
       console.error("Error:", error);
-      setResult({
-        text: "Ha ocurrido un error. Por favor, intenta de nuevo.",
-        sources: [],
-      });
+      toast.error("Error al procesar la consulta");
     } finally {
       setIsLoading(false);
     }
@@ -78,7 +98,7 @@ export const DauroWidget = () => {
 
   const handleClear = () => {
     setQuery("");
-    setResult(null);
+    setMessages([]);
     setAudioError(null);
     setIsPlayingAudio(false);
     if (audioRef.current) {
@@ -87,8 +107,11 @@ export const DauroWidget = () => {
     }
   };
 
-  const handleAudioPlayPause = async () => {
-    if (!result?.text) return;
+  const handleAudioPlayPause = async (messageIndex: number) => {
+    if (mode !== "interno") return;
+    
+    const message = messages[messageIndex];
+    if (!message || message.role !== "assistant") return;
 
     // Si ya estamos reproduciendo, pausar
     if (isPlayingAudio && audioRef.current) {
@@ -118,7 +141,7 @@ export const DauroWidget = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
           },
-          body: JSON.stringify({ text: result.text }),
+          body: JSON.stringify({ text: message.content }),
         }
       );
 
@@ -178,11 +201,7 @@ export const DauroWidget = () => {
           </div>
           
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Tu asistente cultural inteligente.
-            <br />
-            Explora el catálogo de Grupo Dauro, descubre autores, editoriales, artículos y noticias literarias, o pregunta cualquier cosa sobre cultura, arte y libros.
-            <br />
-            Una búsqueda avanzada que entiende el lenguaje natural y te responde al instante.
+            Tu asistente cultural inteligente. Mantén una conversación natural sobre nuestro catálogo y servicios.
           </p>
         </div>
 
@@ -190,7 +209,10 @@ export const DauroWidget = () => {
         <div className="flex items-center justify-center gap-3 mb-6">
           <Button
             variant={mode === "interno" ? "default" : "outline"}
-            onClick={() => setMode("interno")}
+            onClick={() => {
+              setMode("interno");
+              setMessages([]);
+            }}
             className="gap-2"
           >
             <BookOpen className="w-4 h-4" />
@@ -198,7 +220,10 @@ export const DauroWidget = () => {
           </Button>
           <Button
             variant={mode === "externo" ? "default" : "outline"}
-            onClick={() => setMode("externo")}
+            onClick={() => {
+              setMode("externo");
+              setMessages([]);
+            }}
             className="gap-2"
           >
             <Sparkles className="w-4 h-4" />
@@ -206,24 +231,134 @@ export const DauroWidget = () => {
           </Button>
         </div>
 
+        {/* Conversación */}
+        {messages.length > 0 && (
+          <div className="space-y-4 max-h-[500px] overflow-y-auto mb-6 pr-2">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`rounded-xl border p-4 animate-enter ${
+                  message.role === "user"
+                    ? "bg-primary/5 border-primary/20 ml-8"
+                    : "bg-background/50 border-border mr-8"
+                }`}
+              >
+                {/* Metadata indicator for assistant messages */}
+                {message.role === "assistant" && mode === "interno" && message.metadata && (
+                  <div className="flex items-center justify-between text-xs bg-muted/50 rounded-lg px-3 py-2 mb-3 border border-border/50">
+                    <div className="flex items-center gap-2">
+                      {message.metadata.fromCache ? (
+                        <>
+                          <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                          <span className="text-muted-foreground">
+                            Datos en caché ({message.metadata.totalProducts} productos)
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <div className="w-2 h-2 rounded-full bg-green-500" />
+                          <span className="text-muted-foreground">
+                            Datos frescos de Shopify ({message.metadata.totalProducts} productos)
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <span className="text-muted-foreground">
+                      {new Date(message.metadata.catalogUpdatedAt).toLocaleString('es-ES', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        day: '2-digit',
+                        month: 'short'
+                      })}
+                    </span>
+                  </div>
+                )}
+
+                <div className="prose prose-sm max-w-none">
+                  <p className="text-base leading-relaxed whitespace-pre-wrap">
+                    {message.content}
+                  </p>
+                </div>
+
+                {/* Audio player for assistant messages in internal mode */}
+                {message.role === "assistant" && mode === "interno" && (
+                  <div className="flex items-center gap-3 pt-3 mt-3 border-t border-border/50">
+                    <Button
+                      onClick={() => handleAudioPlayPause(index)}
+                      disabled={isLoadingAudio}
+                      size="sm"
+                      variant="outline"
+                      className="gap-2"
+                    >
+                      {isLoadingAudio ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Generando audio...
+                        </>
+                      ) : isPlayingAudio ? (
+                        <>
+                          <Pause className="h-4 w-4" />
+                          Pausar
+                        </>
+                      ) : (
+                        <>
+                          <Play className="h-4 w-4" />
+                          Escuchar respuesta
+                        </>
+                      )}
+                    </Button>
+                    {audioError && (
+                      <span className="text-sm text-destructive">{audioError}</span>
+                    )}
+                  </div>
+                )}
+
+                {/* Sources for assistant messages */}
+                {message.role === "assistant" && message.sources && message.sources.length > 0 && (
+                  <div className="pt-3 mt-3 border-t border-border/50">
+                    <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                      Fuentes consultadas:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {message.sources.map((source, sourceIndex) => (
+                        <a
+                          key={sourceIndex}
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-muted/50 hover:bg-muted rounded-full text-xs transition-colors"
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          {source.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+        )}
+
         {/* Search Input */}
         <div className="flex gap-2 mb-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
             <Input
               type="search"
-              placeholder={SEARCH_EXAMPLES[placeholderIndex]}
+              placeholder={messages.length > 0 ? "Escribe tu respuesta..." : SEARCH_EXAMPLES[placeholderIndex]}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               disabled={isLoading}
               className="pl-10 pr-10 h-12 text-base transition-all"
             />
-            {query && (
+            {(query || messages.length > 0) && (
               <button
                 onClick={handleClear}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Limpiar búsqueda"
+                aria-label="Limpiar conversación"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -241,147 +376,44 @@ export const DauroWidget = () => {
                 Pensando...
               </>
             ) : (
-              "Preguntar"
+              "Enviar"
             )}
           </Button>
         </div>
 
-        {/* Popular Searches */}
-        <div className="mb-6">
-          <p className="text-xs font-semibold text-muted-foreground text-center mb-3">
-            Búsquedas populares:
-          </p>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {SEARCH_EXAMPLES.slice(0, 4).map((example, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleSearchExample(example)}
-                disabled={isLoading}
-                className="px-3 py-1.5 text-xs bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-full transition-all hover-scale cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {example}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Results */}
-        {result && (
-          <div className="bg-background/50 rounded-xl border border-border p-6 space-y-4 animate-enter">
-            {/* Metadata indicator for cache status */}
-            {mode === "interno" && result.metadata && (
-              <div className="flex items-center justify-between text-xs bg-muted/50 rounded-lg px-3 py-2 border border-border/50">
-                <div className="flex items-center gap-2">
-                  {result.metadata.fromCache ? (
-                    <>
-                      <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                      <span className="text-muted-foreground">
-                        Datos en caché ({result.metadata.totalProducts} productos)
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <div className="w-2 h-2 rounded-full bg-green-500" />
-                      <span className="text-muted-foreground">
-                        Datos frescos de Shopify ({result.metadata.totalProducts} productos)
-                      </span>
-                    </>
-                  )}
-                </div>
-                <span className="text-muted-foreground">
-                  {new Date(result.metadata.catalogUpdatedAt).toLocaleString('es-ES', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    day: '2-digit',
-                    month: 'short'
-                  })}
-                </span>
-              </div>
-            )}
-
-            <div className="prose prose-sm max-w-none">
-              <p className="text-base leading-relaxed whitespace-pre-wrap">
-                {result.text}
-              </p>
+        {/* Popular Searches - solo mostrar si no hay conversación */}
+        {messages.length === 0 && (
+          <div className="mb-6">
+            <p className="text-xs font-semibold text-muted-foreground text-center mb-3">
+              Búsquedas populares:
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {SEARCH_EXAMPLES.slice(0, 4).map((example, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSearchExample(example)}
+                  disabled={isLoading}
+                  className="px-3 py-1.5 text-xs bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-full transition-all hover-scale cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {example}
+                </button>
+              ))}
             </div>
-
-            {/* Audio Player for internal mode */}
-            {mode === "interno" && (
-              <div className="pt-4 border-t border-border">
-                <div className="flex items-center gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleAudioPlayPause}
-                    disabled={!result.text || isLoadingAudio}
-                    className="gap-2"
-                  >
-                    {isLoadingAudio ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Generando audio...
-                      </>
-                    ) : isPlayingAudio ? (
-                      <>
-                        <Pause className="w-4 h-4" />
-                        Pausar
-                      </>
-                    ) : (
-                      <>
-                        <Play className="w-4 h-4" />
-                        Escuchar sinopsis
-                      </>
-                    )}
-                  </Button>
-                  <audio
-                    ref={audioRef}
-                    onEnded={() => setIsPlayingAudio(false)}
-                    onError={() => {
-                      setIsPlayingAudio(false);
-                      setAudioError("No se pudo reproducir el audio. Intenta de nuevo.");
-                    }}
-                    onPlay={() => setIsPlayingAudio(true)}
-                    onPause={() => setIsPlayingAudio(false)}
-                    className="flex-1 h-8"
-                    controls
-                    style={{ display: audioRef.current?.src ? 'block' : 'none' }}
-                  />
-                </div>
-                {audioError && (
-                  <p className="text-sm text-destructive mt-2">{audioError}</p>
-                )}
-              </div>
-            )}
-
-            {/* Sources */}
-            {result.sources && result.sources.length > 0 && (
-              <div className="pt-4 border-t border-border">
-                <h4 className="text-sm font-semibold mb-2">
-                  {mode === "interno" ? "Fuentes consultadas:" : "Fuentes consultadas:"}
-                </h4>
-                <ul className="space-y-1">
-                  {result.sources.map((source, idx) => (
-                    <li key={idx} className="text-sm">
-                      <a
-                        href={source.url}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="text-primary hover:underline"
-                      >
-                        {source.title || source.url}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                {mode === "interno" && (
-                  <p className="text-xs text-muted-foreground mt-2 italic">
-                    Fuente: contenido de grupodauro.com
-                  </p>
-                )}
-              </div>
-            )}
           </div>
         )}
+
+        {/* Audio element oculto */}
+        <audio
+          ref={audioRef}
+          onEnded={() => setIsPlayingAudio(false)}
+          onError={() => {
+            setIsPlayingAudio(false);
+            setAudioError("No se pudo reproducir el audio. Intenta de nuevo.");
+          }}
+          onPlay={() => setIsPlayingAudio(true)}
+          onPause={() => setIsPlayingAudio(false)}
+          className="hidden"
+        />
       </div>
     </section>
   );

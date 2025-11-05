@@ -82,8 +82,9 @@ serve(async (req) => {
   }
 
   try {
-    const { query } = await req.json();
+    const { query, messages = [] } = await req.json();
     console.log('Consulta interna recibida:', query);
+    console.log('Historial de mensajes:', messages.length);
 
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
     if (!OPENAI_API_KEY) {
@@ -251,13 +252,15 @@ IMPORTANTE - BÚSQUEDAS PARCIALES:
 - Cuando el usuario mencione parte de un título o apellido de autor, SIEMPRE pregunta primero para confirmar: "¿Te refieres a [título completo] de [autor completo]?" antes de dar información
 - Usa el contexto para identificar coincidencias parciales
 - Si hay varias opciones, menciónalas todas
+- ESPERA la confirmación del usuario antes de proporcionar información detallada
 
 Usa el siguiente contexto para responder:\n\n${contexto}\n\nSi la pregunta no está relacionada con Grupo Dauro, invita amablemente al usuario a usar el modo "Actualidad" para consultas generales.`
           },
-          {
-            role: 'user',
-            content: query
-          }
+          // Incluir historial de mensajes anteriores (solo los últimos 5 para no exceder límites)
+          ...messages.slice(-10).map((msg: any) => ({
+            role: msg.role,
+            content: msg.content
+          }))
         ],
         temperature: 0.2,
         max_tokens: 700
