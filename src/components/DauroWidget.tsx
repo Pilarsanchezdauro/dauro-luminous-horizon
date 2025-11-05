@@ -23,6 +23,7 @@ export const DauroWidget = () => {
   } | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
+  const [isLoadingAudio, setIsLoadingAudio] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -81,7 +82,7 @@ export const DauroWidget = () => {
     }
 
     // Generar nuevo audio
-    setIsPlayingAudio(true);
+    setIsLoadingAudio(true);
     setAudioError(null);
 
     try {
@@ -109,11 +110,14 @@ export const DauroWidget = () => {
       if (audioRef.current) {
         audioRef.current.src = audioUrl;
         await audioRef.current.play();
+        setIsPlayingAudio(true);
       }
     } catch (error) {
       console.error("Error al reproducir audio:", error);
       setAudioError("No se pudo reproducir el audio. Intenta de nuevo.");
       setIsPlayingAudio(false);
+    } finally {
+      setIsLoadingAudio(false);
     }
   };
 
@@ -239,10 +243,15 @@ export const DauroWidget = () => {
                     variant="outline"
                     size="sm"
                     onClick={handleAudioPlayPause}
-                    disabled={!result.text}
+                    disabled={!result.text || isLoadingAudio}
                     className="gap-2"
                   >
-                    {isPlayingAudio ? (
+                    {isLoadingAudio ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Generando audio...
+                      </>
+                    ) : isPlayingAudio ? (
                       <>
                         <Pause className="w-4 h-4" />
                         Pausar
