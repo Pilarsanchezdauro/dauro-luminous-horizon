@@ -6,6 +6,50 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const SHOPIFY_STOREFRONT_TOKEN = Deno.env.get('SHOPIFY_STOREFRONT_ACCESS_TOKEN');
+const SHOPIFY_STORE_DOMAIN = 'grupo-dauro.myshopify.com';
+const SHOPIFY_API_VERSION = '2025-07';
+
+// Función para obtener productos de Shopify
+async function fetchShopifyProducts() {
+  const query = `
+    query GetProducts {
+      products(first: 100) {
+        edges {
+          node {
+            id
+            title
+            description
+            productType
+            vendor
+            tags
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(
+    `https://${SHOPIFY_STORE_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN || '',
+      },
+      body: JSON.stringify({ query }),
+    }
+  );
+
+  if (!response.ok) {
+    console.error('Error fetching Shopify products:', response.status);
+    return [];
+  }
+
+  const data = await response.json();
+  return data.data?.products?.edges || [];
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -20,53 +64,49 @@ serve(async (req) => {
       throw new Error('OPENAI_API_KEY no configurada');
     }
 
-    // Contexto sobre Grupo Dauro con información precisa del catálogo
+    // Obtener productos actualizados de Shopify
+    console.log('Obteniendo productos de Shopify...');
+    const shopifyProducts = await fetchShopifyProducts();
+    console.log(`Productos obtenidos: ${shopifyProducts.length}`);
+
+    // Organizar productos por categoría/tipo
+    const productosPorCategoria: Record<string, any[]> = {};
+    shopifyProducts.forEach((edge: any) => {
+      const product = edge.node;
+      const tipo = product.productType || 'Sin categoría';
+      if (!productosPorCategoria[tipo]) {
+        productosPorCategoria[tipo] = [];
+      }
+      productosPorCategoria[tipo].push(product);
+    });
+
+    // Construir el catálogo dinámicamente
+    let catalogoTexto = 'CATÁLOGO COMPLETO (actualizado en tiempo real):\n\n';
+    
+    for (const [categoria, productos] of Object.entries(productosPorCategoria)) {
+      catalogoTexto += `${categoria.toUpperCase()}:\n`;
+      productos.forEach((product: any) => {
+        catalogoTexto += `- "${product.title}"`;
+        if (product.description) {
+          const descCorta = product.description.substring(0, 100);
+          catalogoTexto += ` - ${descCorta}`;
+        }
+        if (product.vendor) {
+          catalogoTexto += ` (${product.vendor})`;
+        }
+        if (product.tags && product.tags.length > 0) {
+          catalogoTexto += ` [${product.tags.join(', ')}]`;
+        }
+        catalogoTexto += '\n';
+      });
+      catalogoTexto += '\n';
+    }
+
+    // Contexto sobre Grupo Dauro con catálogo dinámico de Shopify
     const contexto = `
 Grupo Dauro es una editorial y productora cultural con sede en Granada, España.
 
-CATÁLOGO COMPLETO POR GÉNEROS:
-
-NARRATIVA HISTÓRICA Y BIOGRAFÍA:
-- "El Hidalgo Don Rodrigo" - Novela histórica sobre Rodrigo Díaz de Vivar
-- "Boabdil, el Perdedor" - Novela histórica sobre el último rey nazarí
-- "La Última Condena" - Novela histórica
-- "Miguel Hernández a Contraluz" - Biografía y análisis literario del poeta
-- "Antonio Gil Carrasco" - Biografía
-- "La Abadesa Santa Isabel" - Biografía histórica
-
-NARRATIVA CONTEMPORÁNEA:
-- "Una Voz, Dos Tierras" - Novela sobre migración y dualidad cultural (Lorena Avelar)
-- "Del Palmar de Troya a la Iglesia de Roma" - Narrativa testimonial
-- "La Caza, Captura y Muerte de la Abuelita" - Narrativa contemporánea
-- "Mundos Perdidos" - Narrativa
-- "Una Vida Redonda" - Narrativa autobiográfica
-
-POESÍA:
-- "Yo Soy Todos Los Besos Que Nunca Pude Darte" - Poesía amorosa
-- "No Volverán las Oscuras Golondrindas" - Poesía
-- "El Sonido del Agua en las Acequias" - Poesía naturalista
-
-ENSAYO Y REFLEXIÓN:
-- "Latido: Apasionadamente Vuestro" - Ensayo sobre arte, cultura y creatividad (NO ES POESÍA)
-- "Horizonte Interior" - Reflexiones filosóficas y espirituales
-- "El Impulso Integral" - Ensayo de desarrollo personal
-- "Migración Revolución Interior" - Ensayo sobre transformación personal
-- "Código H: El Dinero de la Felicidad" - Ensayo sobre finanzas y bienestar
-
-LITERATURA INFANTIL Y JUVENIL:
-- "Tiempos de Candil" - Literatura infantil
-- "La Jungla" - Literatura infantil/juvenil
-- "Elucubraciones" - Literatura juvenil
-
-MISCELÁNEA:
-- "El Arte de Brindar" - Libro gastronómico/cultural
-- "Elena de la Alpujarra" - Narrativa regional
-- "Aecio" - Ficción histórica
-
-AUTORES DESTACADOS:
-- Lorena Avelar - "Una Voz, Dos Tierras"
-- Diversos autores andaluces de narrativa histórica
-- Poetas contemporáneos locales y nacionales
+${catalogoTexto}
 
 SERVICIOS:
 - Editorial: publicación de libros físicos y digitales
