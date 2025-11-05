@@ -20,22 +20,53 @@ serve(async (req) => {
       throw new Error('OPENAI_API_KEY no configurada');
     }
 
-    // Contexto sobre Grupo Dauro (simulación de RAG - en producción usar embeddings)
+    // Contexto sobre Grupo Dauro con información precisa del catálogo
     const contexto = `
 Grupo Dauro es una editorial y productora cultural con sede en Granada, España.
 
-CATÁLOGO DESTACADO:
-- "Una Voz, Dos Tierras" - Novela contemporánea sobre migración y identidad
-- "El Hidalgo Don Rodrigo" - Narrativa histórica ambientada en Granada
-- "Latido: Apasionadamente Vuestro" - Poesía y arte contemporáneo
+CATÁLOGO COMPLETO POR GÉNEROS:
+
+NARRATIVA HISTÓRICA Y BIOGRAFÍA:
+- "El Hidalgo Don Rodrigo" - Novela histórica sobre Rodrigo Díaz de Vivar
+- "Boabdil, el Perdedor" - Novela histórica sobre el último rey nazarí
+- "La Última Condena" - Novela histórica
+- "Miguel Hernández a Contraluz" - Biografía y análisis literario del poeta
+- "Antonio Gil Carrasco" - Biografía
+- "La Abadesa Santa Isabel" - Biografía histórica
+
+NARRATIVA CONTEMPORÁNEA:
+- "Una Voz, Dos Tierras" - Novela sobre migración y dualidad cultural (Lorena Avelar)
+- "Del Palmar de Troya a la Iglesia de Roma" - Narrativa testimonial
+- "La Caza, Captura y Muerte de la Abuelita" - Narrativa contemporánea
+- "Mundos Perdidos" - Narrativa
+- "Una Vida Redonda" - Narrativa autobiográfica
+
+POESÍA:
+- "Yo Soy Todos Los Besos Que Nunca Pude Darte" - Poesía amorosa
+- "No Volverán las Oscuras Golondrindas" - Poesía
+- "El Sonido del Agua en las Acequias" - Poesía naturalista
+
+ENSAYO Y REFLEXIÓN:
+- "Latido: Apasionadamente Vuestro" - Ensayo sobre arte, cultura y creatividad (NO ES POESÍA)
 - "Horizonte Interior" - Reflexiones filosóficas y espirituales
-- "Yo Soy Todos Los Besos" - Poesía amorosa
-- "Miguel Hernández a Contraluz" - Biografía y análisis literario
+- "El Impulso Integral" - Ensayo de desarrollo personal
+- "Migración Revolución Interior" - Ensayo sobre transformación personal
+- "Código H: El Dinero de la Felicidad" - Ensayo sobre finanzas y bienestar
+
+LITERATURA INFANTIL Y JUVENIL:
+- "Tiempos de Candil" - Literatura infantil
+- "La Jungla" - Literatura infantil/juvenil
+- "Elucubraciones" - Literatura juvenil
+
+MISCELÁNEA:
+- "El Arte de Brindar" - Libro gastronómico/cultural
+- "Elena de la Alpujarra" - Narrativa regional
+- "Aecio" - Ficción histórica
 
 AUTORES DESTACADOS:
-- Lorena Avelar - Autora de "Una Voz, Dos Tierras"
-- Diversos autores de narrativa histórica y contemporánea
-- Poetas locales y nacionales
+- Lorena Avelar - "Una Voz, Dos Tierras"
+- Diversos autores andaluces de narrativa histórica
+- Poetas contemporáneos locales y nacionales
 
 SERVICIOS:
 - Editorial: publicación de libros físicos y digitales
@@ -44,8 +75,8 @@ SERVICIOS:
 - Dauro Música: producción musical, canciones con IA
 - Dauro IA: servicios creativos con inteligencia artificial
 
-EVENTOS Y PRESENTACIONES:
-- Presentaciones de libros en Granada y otras ciudades
+EVENTOS:
+- Presentaciones de libros en Granada
 - Eventos culturales y literarios
 - Talleres de escritura y creatividad
 `;
