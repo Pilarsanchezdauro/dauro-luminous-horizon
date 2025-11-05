@@ -10,8 +10,22 @@ const SHOPIFY_STOREFRONT_TOKEN = Deno.env.get('SHOPIFY_STOREFRONT_ACCESS_TOKEN')
 const SHOPIFY_STORE_DOMAIN = 'grupo-dauro.myshopify.com';
 const SHOPIFY_API_VERSION = '2025-07';
 
-// Función para obtener productos de Shopify
+// Configuración de caché
+const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutos
+let productsCache: any = null;
+let cacheTimestamp = 0;
+
+// Función para obtener productos de Shopify (con caché)
 async function fetchShopifyProducts() {
+  const now = Date.now();
+  
+  // Verificar si el caché es válido
+  if (productsCache && (now - cacheTimestamp) < CACHE_DURATION_MS) {
+    console.log('Usando productos en caché');
+    return productsCache;
+  }
+  
+  console.log('Obteniendo productos frescos de Shopify...');
   const query = `
     query GetProducts {
       products(first: 100) {
@@ -43,11 +57,23 @@ async function fetchShopifyProducts() {
 
   if (!response.ok) {
     console.error('Error fetching Shopify products:', response.status);
+    // Si hay error pero existe caché antiguo, usarlo
+    if (productsCache) {
+      console.log('Error en Shopify, usando caché antiguo como fallback');
+      return productsCache;
+    }
     return [];
   }
 
   const data = await response.json();
-  return data.data?.products?.edges || [];
+  const products = data.data?.products?.edges || [];
+  
+  // Actualizar caché
+  productsCache = products;
+  cacheTimestamp = now;
+  console.log(`Caché actualizado con ${products.length} productos`);
+  
+  return products;
 }
 
 serve(async (req) => {
