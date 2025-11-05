@@ -214,14 +214,22 @@ export const DauroWidget = () => {
           </Button>
         </div>
 
-        {/* Examples */}
-        <div className="text-xs text-muted-foreground text-center mb-6">
-          <p className="font-semibold mb-1">Ejemplos:</p>
-          <p className="italic">
-            "¿Qué libros ha publicado Grupo Dauro sobre poesía?" •
-            "Noticias recientes sobre literatura andaluza" •
-            "Información sobre los servicios editoriales"
+        {/* Popular Searches */}
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-muted-foreground text-center mb-3">
+            Búsquedas populares:
           </p>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {SEARCH_EXAMPLES.slice(0, 4).map((example, idx) => (
+              <button
+                key={idx}
+                onClick={() => setQuery(example)}
+                className="px-3 py-1.5 text-xs bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-full transition-all hover-scale cursor-pointer"
+              >
+                {example}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Results */}
