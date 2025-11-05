@@ -34,8 +34,9 @@ export const DauroWidget = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleAsk = async () => {
-    if (!query.trim()) return;
+  const handleAsk = async (searchQuery?: string) => {
+    const queryToSearch = searchQuery || query.trim();
+    if (!queryToSearch) return;
 
     setIsLoading(true);
     setResult(null);
@@ -44,7 +45,7 @@ export const DauroWidget = () => {
     try {
       const endpoint = mode === "interno" ? "qa-interno" : "qa-externo";
       const { data, error } = await supabase.functions.invoke(endpoint, {
-        body: { query: query.trim() },
+        body: { query: queryToSearch },
       });
 
       if (error) throw error;
@@ -62,6 +63,11 @@ export const DauroWidget = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSearchExample = (example: string) => {
+    setQuery(example);
+    handleAsk(example);
   };
 
   const handleAudioPlayPause = async () => {
@@ -198,7 +204,7 @@ export const DauroWidget = () => {
             />
           </div>
           <Button
-            onClick={handleAsk}
+            onClick={() => handleAsk()}
             disabled={isLoading || !query.trim()}
             size="lg"
             className="px-6"
@@ -223,8 +229,9 @@ export const DauroWidget = () => {
             {SEARCH_EXAMPLES.slice(0, 4).map((example, idx) => (
               <button
                 key={idx}
-                onClick={() => setQuery(example)}
-                className="px-3 py-1.5 text-xs bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-full transition-all hover-scale cursor-pointer"
+                onClick={() => handleSearchExample(example)}
+                disabled={isLoading}
+                className="px-3 py-1.5 text-xs bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-full transition-all hover-scale cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {example}
               </button>
