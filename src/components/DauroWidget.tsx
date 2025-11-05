@@ -20,6 +20,11 @@ export const DauroWidget = () => {
   const [result, setResult] = useState<{
     text: string;
     sources?: Array<{ url: string; title: string }>;
+    metadata?: {
+      fromCache: boolean;
+      catalogUpdatedAt: string;
+      totalProducts: number;
+    };
   } | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
@@ -53,6 +58,7 @@ export const DauroWidget = () => {
       setResult({
         text: data.text,
         sources: data.cites || data.fuentesInternas || [],
+        metadata: data.metadata,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -262,6 +268,37 @@ export const DauroWidget = () => {
         {/* Results */}
         {result && (
           <div className="bg-background/50 rounded-xl border border-border p-6 space-y-4 animate-enter">
+            {/* Metadata indicator for cache status */}
+            {mode === "interno" && result.metadata && (
+              <div className="flex items-center justify-between text-xs bg-muted/50 rounded-lg px-3 py-2 border border-border/50">
+                <div className="flex items-center gap-2">
+                  {result.metadata.fromCache ? (
+                    <>
+                      <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                      <span className="text-muted-foreground">
+                        Datos en caché ({result.metadata.totalProducts} productos)
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-2 h-2 rounded-full bg-green-500" />
+                      <span className="text-muted-foreground">
+                        Datos frescos de Shopify ({result.metadata.totalProducts} productos)
+                      </span>
+                    </>
+                  )}
+                </div>
+                <span className="text-muted-foreground">
+                  {new Date(result.metadata.catalogUpdatedAt).toLocaleString('es-ES', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    day: '2-digit',
+                    month: 'short'
+                  })}
+                </span>
+              </div>
+            )}
+
             <div className="prose prose-sm max-w-none">
               <p className="text-base leading-relaxed whitespace-pre-wrap">
                 {result.text}

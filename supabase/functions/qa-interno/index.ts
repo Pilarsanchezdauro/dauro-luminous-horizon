@@ -16,13 +16,13 @@ let productsCache: any = null;
 let cacheTimestamp = 0;
 
 // Función para obtener productos de Shopify (con caché)
-async function fetchShopifyProducts() {
+async function fetchShopifyProducts(): Promise<{ products: any[], fromCache: boolean }> {
   const now = Date.now();
   
   // Verificar si el caché es válido
   if (productsCache && (now - cacheTimestamp) < CACHE_DURATION_MS) {
     console.log('Usando productos en caché');
-    return productsCache;
+    return { products: productsCache, fromCache: true };
   }
   
   console.log('Obteniendo productos frescos de Shopify...');
@@ -60,9 +60,9 @@ async function fetchShopifyProducts() {
     // Si hay error pero existe caché antiguo, usarlo
     if (productsCache) {
       console.log('Error en Shopify, usando caché antiguo como fallback');
-      return productsCache;
+      return { products: productsCache, fromCache: true };
     }
-    return [];
+    return { products: [], fromCache: false };
   }
 
   const data = await response.json();
@@ -73,7 +73,7 @@ async function fetchShopifyProducts() {
   cacheTimestamp = now;
   console.log(`Caché actualizado con ${products.length} productos`);
   
-  return products;
+  return { products, fromCache: false };
 }
 
 serve(async (req) => {
@@ -92,8 +92,8 @@ serve(async (req) => {
 
     // Obtener productos actualizados de Shopify
     console.log('Obteniendo productos de Shopify...');
-    const shopifyProducts = await fetchShopifyProducts();
-    console.log(`Productos obtenidos: ${shopifyProducts.length}`);
+    const { products: shopifyProducts, fromCache } = await fetchShopifyProducts();
+    console.log(`Productos obtenidos: ${shopifyProducts.length} (${fromCache ? 'caché' : 'frescos'})`);
 
     // Organizar productos por categoría/tipo
     const productosPorCategoria: Record<string, any[]> = {};
@@ -196,7 +196,12 @@ EVENTOS:
     return new Response(
       JSON.stringify({ 
         text, 
-        fuentesInternas 
+        fuentesInternas,
+        metadata: {
+          fromCache,
+          catalogUpdatedAt: fromCache ? new Date(cacheTimestamp).toISOString() : new Date().toISOString(),
+          totalProducts: shopifyProducts.length
+        }
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
