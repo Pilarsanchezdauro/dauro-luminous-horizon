@@ -8,3 +8,12 @@ verify_jwt = false
 
 [functions.shopify-webhook]
 verify_jwt = false
+
+[functions.qa-interno]
+verify_jwt = false
+
+[functions.qa-externo]
+verify_jwt = false
+
+[functions.audio-sinopsis]
+verify_jwt = false
