@@ -5,6 +5,7 @@ import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase, CheckCircle2 } from 'lucide-react';
+import mascotLogo from '@/assets/mascot.png';
 
 export default function SolicitarProyecto() {
   return (
@@ -18,8 +19,22 @@ export default function SolicitarProyecto() {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-24 pb-16">
-          <div className="max-w-4xl mx-auto">
+        <main className="container mx-auto px-4 pt-32 pb-16 relative overflow-hidden">
+          {/* Floating mascot logos */}
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-20 right-10 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+            style={{ animationDelay: '1s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-80 left-16 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+            style={{ animationDelay: '4s' }}
+          />
+          
+          <div className="max-w-4xl mx-auto relative z-10">
             {/* Header */}
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 mb-4">
@@ -28,10 +43,10 @@ export default function SolicitarProyecto() {
                   Servicios Profesionales
                 </Badge>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
                 Solicita tu Proyecto
               </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Completa el formulario y cuéntanos tu idea. Estudiaremos tu proyecto y te enviaremos un presupuesto personalizado sin compromiso.
               </p>
             </div>
