@@ -24,6 +24,7 @@ import BlogStats from "./pages/BlogStats";
 import Privacidad from "./pages/Privacidad";
 import Terminos from "./pages/Terminos";
 import CompromisoEtico from "./pages/CompromisoEtico";
+import ArchivoHistorico from "./pages/ArchivoHistorico";
 import Gracias from "./pages/Gracias";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
@@ -90,6 +91,7 @@ const App = () => (
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/compromiso-etico" element={<CompromisoEtico />} />
+            <Route path="/archivo-historico" element={<ArchivoHistorico />} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminDashboard />} />
               <Route path="dauro-arte" element={<DauroArteContacts />} />

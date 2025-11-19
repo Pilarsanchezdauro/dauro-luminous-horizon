@@ -179,14 +179,9 @@ const Footer = () => {
               <Link to="/compromiso-etico" className="hover:text-background transition-colors">
                 Compromiso Ético y Transparencia
               </Link>
-              <a
-                href="https://grupodauro.wpcomstaging.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-background transition-colors"
-              >
+              <Link to="/archivo-historico" className="hover:text-background transition-colors">
                 Archivo histórico
-              </a>
+              </Link>
             </div>
           </div>
         </div>
