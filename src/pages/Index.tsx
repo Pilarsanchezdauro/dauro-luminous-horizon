@@ -8,6 +8,7 @@ import { BookOpen, Calendar, User, Upload } from "lucide-react";
 import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
+import { LatestWorks } from "@/components/LatestWorks";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -83,6 +84,9 @@ const Index = () => {
           link="/grupo-dauro/ia"
           reversed
         />
+
+        {/* Latest Works Section */}
+        <LatestWorks />
 
         {/* Portfolio CTA Section - SEO Optimized */}
         <section className="my-32">
