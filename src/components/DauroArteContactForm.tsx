@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X, Link as LinkIcon, CheckCircle, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import logoDauroMusica from "@/assets/logo-dauro-musica.png";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -44,6 +45,7 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { trackFormSubmission } = useAnalytics();
 
   const {
     register,
@@ -203,6 +205,13 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
         ) as any,
       });
 
+      // Track successful form submission
+      trackFormSubmission('dauro_arte_contact', {
+        service: data.servicio,
+        has_document: !!documentFile,
+        has_website: !!data.enlace_web
+      });
+
       reset();
       setDocumentFile(null);
       
@@ -213,6 +222,12 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
       }
     } catch (error: any) {
       console.error("Error submitting form:", error);
+      
+      // Track form error
+      trackFormSubmission('dauro_arte_contact_error', {
+        error: error.message
+      });
+      
       toast({
         title: "Ups, algo no salió bien 😔",
         description: "Por favor, inténtalo de nuevo en unos momentos. Si el problema persiste, contáctanos directamente.",
