@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, User, ExternalLink, Share2, Facebook, Twitter, Linkedin, Link2, Check } from "lucide-react";
+import { Calendar, User, ExternalLink, Share2, Facebook, Twitter, Linkedin, Link2, Check, BarChart3 } from "lucide-react";
 import { blogPosts, getPostsByCategory, categoryLabels, type BlogCategory } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -114,10 +114,16 @@ const Blog = () => {
               <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground">
                 Blog
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
                 Presentaciones, reflexiones, novedades y análisis sobre arte, cultura,
                 literatura y tecnología
               </p>
+              <Link to="/blog/stats">
+                <Button variant="outline" size="sm" className="gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Ver Estadísticas
+                </Button>
+              </Link>
             </div>
 
             {/* Category Tabs */}
