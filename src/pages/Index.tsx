@@ -138,6 +138,62 @@ const Index = () => {
                 </div>
               </div>
 
+              {/* Premios y Reconocimientos */}
+              <div className="mt-12 mb-10">
+                <h3 className="text-xl font-semibold text-center mb-6 text-muted-foreground">
+                  Premios y Reconocimientos
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="flex items-center gap-3 bg-gradient-to-br from-amber-500/10 to-amber-600/5 p-4 rounded-xl border border-amber-500/20 hover:border-amber-500/40 transition-all">
+                    <div className="bg-amber-500/20 p-3 rounded-lg">
+                      <svg className="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">Premio Andalucía</p>
+                      <p className="text-xs text-muted-foreground">Crítica Literaria</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-4 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                    <div className="bg-blue-500/20 p-3 rounded-lg">
+                      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">Certificación</p>
+                      <p className="text-xs text-muted-foreground">Calidad Editorial</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-gradient-to-br from-purple-500/10 to-purple-600/5 p-4 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                    <div className="bg-purple-500/20 p-3 rounded-lg">
+                      <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">Producción</p>
+                      <p className="text-xs text-muted-foreground">Audiovisual Premiada</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-gradient-to-br from-green-500/10 to-green-600/5 p-4 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all">
+                    <div className="bg-green-500/20 p-3 rounded-lg">
+                      <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">+25 Años</p>
+                      <p className="text-xs text-muted-foreground">Excelencia Cultural</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link to="/portafolio">
                   <Button 
