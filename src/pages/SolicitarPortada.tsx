@@ -4,6 +4,7 @@ import { SEO } from '@/components/SEO';
 import BookCoverRequestForm from '@/components/BookCoverRequestForm';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BookOpen, Palette, Sparkles } from 'lucide-react';
+import mascotLogo from '@/assets/mascot.png';
 
 export default function SolicitarPortada() {
   return (
@@ -16,8 +17,22 @@ export default function SolicitarPortada() {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-24 pb-16">
-          <div className="max-w-4xl mx-auto">
+        <main className="container mx-auto px-4 pt-32 pb-16 relative overflow-hidden">
+          {/* Floating mascot logos */}
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-20 right-10 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+            style={{ animationDelay: '1s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-80 left-16 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+            style={{ animationDelay: '4s' }}
+          />
+          
+          <div className="max-w-4xl mx-auto relative z-10">
             {/* Header */}
             <div className="text-center mb-12">
               <div className="flex justify-center mb-4">
@@ -25,10 +40,10 @@ export default function SolicitarPortada() {
                   <BookOpen className="w-12 h-12 text-primary" />
                 </div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
                 Solicitar Portada Personalizada
               </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Crea una portada única y profesional para tu libro con nuestro equipo de diseñadores expertos
               </p>
             </div>

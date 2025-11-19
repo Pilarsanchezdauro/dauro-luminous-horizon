@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Archive, Clock, BookOpen, Image, FileText } from "lucide-react";
+import mascotLogo from "@/assets/mascot.png";
 
 const ArchivoHistorico = () => {
   return (
@@ -16,8 +17,34 @@ const ArchivoHistorico = () => {
       <div className="min-h-screen flex flex-col bg-background">
         <Navigation />
         
-        <main className="flex-grow">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <main className="flex-grow relative overflow-hidden">
+          {/* Floating mascot logos */}
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-24 right-16 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+            style={{ animationDelay: '2s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-80 left-12 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+            style={{ animationDelay: '5s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-72 right-1/4 w-24 h-24 opacity-[0.04] animate-float-vertical pointer-events-none"
+            style={{ animationDelay: '8s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-40 left-1/3 w-20 h-20 opacity-[0.035] animate-float-circle pointer-events-none"
+            style={{ animationDelay: '11s' }}
+          />
+          
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-3 mb-6">
                 <Archive className="h-12 w-12 text-primary" />

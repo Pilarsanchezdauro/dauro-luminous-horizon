@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
+import mascotLogo from '@/assets/mascot.png';
 
 interface Project {
   id: string;
@@ -89,10 +90,36 @@ export default function Portafolio() {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-24 pb-16">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Nuestro Portafolio</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <main className="container mx-auto px-4 pt-32 pb-16 relative overflow-hidden">
+          {/* Floating mascot logos */}
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-20 right-12 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+            style={{ animationDelay: '2s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute top-64 left-16 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+            style={{ animationDelay: '5s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-80 right-1/4 w-24 h-24 opacity-[0.04] animate-float-vertical pointer-events-none"
+            style={{ animationDelay: '8s' }}
+          />
+          <img 
+            src={mascotLogo} 
+            alt="" 
+            className="absolute bottom-40 left-1/3 w-20 h-20 opacity-[0.035] animate-float-circle pointer-events-none"
+            style={{ animationDelay: '11s' }}
+          />
+          
+          <div className="text-center mb-12 relative z-10">
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">Nuestro Portafolio</h1>
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Explora algunos de nuestros proyectos y trabajos realizados
             </p>
           </div>

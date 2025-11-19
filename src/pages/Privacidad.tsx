@@ -1,13 +1,40 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
+import mascotLogo from "@/assets/mascot.png";
 
 const Privacidad = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-32 pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pt-32 pb-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-24 right-12 w-20 h-20 opacity-[0.025] animate-float-diagonal pointer-events-none"
+          style={{ animationDelay: '1s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-96 left-8 w-16 h-16 opacity-[0.03] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '4s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-96 right-1/4 w-24 h-24 opacity-[0.035] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '7s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-48 left-1/3 w-20 h-20 opacity-[0.04] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '10s' }}
+        />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground">
               Política de Privacidad

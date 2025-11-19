@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
 import presentacionLatido from "@/assets/presentacion-latido.jpg";
 import libroLatido from "@/assets/libro-latido.png";
+import mascotLogo from "@/assets/mascot.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -107,8 +108,35 @@ const Blog = () => {
         structuredData={structuredData}
       />
       <Navigation />
-      <main className="pt-32 pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <main className="pt-32 pb-16 relative overflow-hidden">
+        {/* Floating mascot logos */}
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-20 right-10 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+          style={{ animationDelay: '1s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute top-80 left-16 w-16 h-16 opacity-[0.025] animate-float-horizontal pointer-events-none"
+          style={{ animationDelay: '4s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-60 right-1/4 w-24 h-24 opacity-[0.04] animate-float-vertical pointer-events-none"
+          style={{ animationDelay: '7s' }}
+        />
+        <img 
+          src={mascotLogo} 
+          alt="" 
+          className="absolute bottom-20 left-1/3 w-20 h-20 opacity-[0.035] animate-float-circle pointer-events-none"
+          style={{ animationDelay: '10s' }}
+        />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground">
