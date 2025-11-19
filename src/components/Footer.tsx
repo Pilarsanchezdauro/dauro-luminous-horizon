@@ -180,7 +180,7 @@ const Footer = () => {
                 Compromiso Ético y Transparencia
               </Link>
               <a
-                href="https://archivo.grupodauro.com"
+                href="https://grupodauro.wpcomstaging.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-background transition-colors"
