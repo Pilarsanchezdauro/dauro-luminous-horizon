@@ -20,6 +20,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import BlogStats from "./pages/BlogStats";
 import Privacidad from "./pages/Privacidad";
 import Terminos from "./pages/Terminos";
 import Gracias from "./pages/Gracias";
@@ -71,8 +72,9 @@ const App = () => (
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/tienda" element={<Shop />} />
             <Route path="/producto/:handle" element={<ProductDetail />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/stats" element={<BlogStats />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/feed.xml" element={<RssFeed />} />
             <Route path="/rss.xml" element={<RssFeed />} />
             <Route path="/portafolio" element={<Portafolio />} />
