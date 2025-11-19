@@ -56,6 +56,56 @@ const CompromisoEtico = () => {
                 </div>
 
                 <h2 className="font-playfair text-2xl font-bold text-foreground mt-12 mb-4">
+                  Nuestra trayectoria nos avala
+                </h2>
+
+                <div className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg my-8 border border-primary/10">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          <strong>Desde el año 2000</strong> en el mercado editorial y cultural
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          Más de <strong>1.000 obras literarias publicadas</strong>
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          <strong>Miles de diseños creados</strong> para autores y empresas
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          <strong>Miles de informes técnicos y culturales</strong> realizados para distintas entidades y empresas
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          <strong>Autores premiados por la crítica</strong>
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-foreground/80 leading-relaxed">
+                          <strong>CEO premiados</strong> por su trayectoria y profesionalidad
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 className="font-playfair text-2xl font-bold text-foreground mt-12 mb-4">
                   Nuestra misión
                 </h2>
 
