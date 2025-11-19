@@ -23,6 +23,7 @@ import BlogPost from "./pages/BlogPost";
 import BlogStats from "./pages/BlogStats";
 import Privacidad from "./pages/Privacidad";
 import Terminos from "./pages/Terminos";
+import CompromisoEtico from "./pages/CompromisoEtico";
 import Gracias from "./pages/Gracias";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
@@ -88,6 +89,7 @@ const App = () => (
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
+            <Route path="/compromiso-etico" element={<CompromisoEtico />} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminDashboard />} />
               <Route path="dauro-arte" element={<DauroArteContacts />} />

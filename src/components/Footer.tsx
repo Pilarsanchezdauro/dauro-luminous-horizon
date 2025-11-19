@@ -165,16 +165,28 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Ethical commitment statement */}
+        <div className="pt-6 border-t border-background/20">
+          <p className="text-sm text-background/70 leading-relaxed max-w-4xl mx-auto text-center">
+            En Grupo Dauro mantenemos un compromiso absoluto con la ética profesional.
+            Algunas reseñas negativas publicadas en plataformas externas —procedentes de antiguos empleados o de autores con expectativas no realistas sobre los resultados comerciales de sus obras— no representan la realidad de nuestro trabajo. 
+            Ante cualquier duda, recomendamos siempre contrastar la información directamente con nosotros.
+          </p>
+        </div>
+
         {/* Bottom bar */}
         <div className="pt-8 border-t border-background/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/70">
             <p>© 2025 Grupo Cultural Dauro. Todos los derechos reservados.</p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
               <Link to="/privacidad" className="hover:text-background transition-colors">
                 Política de privacidad
               </Link>
               <Link to="/terminos" className="hover:text-background transition-colors">
                 Términos y condiciones
+              </Link>
+              <Link to="/compromiso-etico" className="hover:text-background transition-colors">
+                Compromiso Ético y Transparencia
               </Link>
               <a
                 href="https://archivo.grupodauro.com"
