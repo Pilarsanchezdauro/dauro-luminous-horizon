@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
 import mascotLogo from "@/assets/mascot.png";
+import arteBg from "@/assets/arte-bg.jpg";
 
 const Arte = () => {
   const structuredData = {
@@ -87,23 +88,34 @@ const Arte = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
+      <SEO
+        title="Dauro Arte - Análisis, Valoración y Autenticidad de Obras de Arte"
+        description="Servicios profesionales de tasación, peritaje, autenticación y gestión de obras de arte. Informes periciales y análisis técnico con IA para coleccionistas, museos e instituciones."
+        keywords="tasación arte, peritaje obras arte, autenticación arte, análisis obras arte, valoración arte Granada"
+        url="https://grupodauro.com/grupo-dauro/arte"
+        structuredData={structuredData}
+      />
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-              style={{ color: '#111111' }}
-            >
-              DAURO ARTE
-            </h1>
-            <p className="text-2xl lg:text-3xl font-semibold mb-8" style={{ color: '#111111' }}>
-              Análisis. Valor. Autenticidad.
-            </p>
-          </div>
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${arteBg})`,
+            filter: "brightness(0.5)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+            Dauro Arte
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+            Análisis. Valor. Autenticidad.
+          </p>
         </div>
       </section>
 
