@@ -100,33 +100,40 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">1000+</div>
+                  <h3 className="font-semibold mb-1">Libros Editados</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Obras literarias publicadas
+                  </p>
+                </div>
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">200+</div>
                   <h3 className="font-semibold mb-1">Proyectos Web</h3>
                   <p className="text-sm text-muted-foreground">
                     Sitios profesionales y aplicaciones
                   </p>
                 </div>
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">100+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">300+</div>
                   <h3 className="font-semibold mb-1">Booktrailers</h3>
                   <p className="text-sm text-muted-foreground">
                     Videos promocionales creativos
                   </p>
                 </div>
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                  <h3 className="font-semibold mb-1">Producción Audiovisual</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Cine, documentales y contenido
-                  </p>
-                </div>
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">20+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">400+</div>
                   <h3 className="font-semibold mb-1">Avatares & Branding</h3>
                   <p className="text-sm text-muted-foreground">
                     Identidad visual corporativa
+                  </p>
+                </div>
+                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
+                  <div className="text-4xl font-bold text-primary mb-2">5000+</div>
+                  <h3 className="font-semibold mb-1">Informes Técnicos</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Análisis y documentación
                   </p>
                 </div>
               </div>
