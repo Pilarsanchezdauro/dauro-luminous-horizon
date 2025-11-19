@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { toast } from "sonner";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface Message {
   role: "user" | "assistant";
@@ -25,6 +26,7 @@ const SEARCH_EXAMPLES = [
 ];
 
 export const DauroWidget = () => {
+  const { trackAIInteraction } = useAnalytics();
   const [mode, setMode] = useState<"interno" | "externo">("interno");
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +48,13 @@ export const DauroWidget = () => {
   const handleAsk = async (searchQuery?: string) => {
     const queryToUse = searchQuery || query;
     if (!queryToUse.trim()) return;
+
+    // Track query start
+    trackAIInteraction('query_started', {
+      mode,
+      query_length: queryToUse.length,
+      has_context: messages.length > 0
+    });
 
     // Agregar mensaje del usuario
     const userMessage: Message = {
@@ -79,6 +88,15 @@ export const DauroWidget = () => {
       };
       setMessages(prev => [...prev, assistantMessage]);
       
+      // Track successful response
+      trackAIInteraction('query_completed', {
+        mode,
+        query_length: queryToUse.length,
+        response_length: data.text.length,
+        has_sources: (data.cites?.length || data.fuentesInternas?.length || 0) > 0,
+        from_cache: data.metadata?.fromCache || false
+      });
+      
       // Scroll al final
       setTimeout(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -86,6 +104,13 @@ export const DauroWidget = () => {
     } catch (error) {
       console.error("Error:", error);
       toast.error("Error al procesar la consulta");
+      
+      // Track error
+      trackAIInteraction('query_error', {
+        mode,
+        query_length: queryToUse.length,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
     } finally {
       setIsLoading(false);
     }
@@ -117,6 +142,7 @@ export const DauroWidget = () => {
     if (isPlayingAudio && audioRef.current) {
       audioRef.current.pause();
       setIsPlayingAudio(false);
+      trackAIInteraction('audio_paused', { message_length: message.content.length });
       return;
     }
 

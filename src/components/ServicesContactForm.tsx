@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload, X, Link as LinkIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -43,6 +44,7 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { trackFormSubmission } = useAnalytics();
 
   const {
     register,
@@ -169,6 +171,13 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
         throw supabaseResponse.error;
       }
 
+      // Track successful form submission
+      trackFormSubmission('services_contact', {
+        service: data.servicio,
+        has_document: !!documentFile,
+        has_website: !!data.enlace_web
+      });
+
       toast({
         title: "¡Mensaje recibido con éxito! ✨",
         description: "Estamos deseando conocer más sobre tu proyecto. Te responderemos a la mayor brevedad posible.",
@@ -184,6 +193,12 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
       }
     } catch (error: any) {
       console.error("Error submitting form:", error);
+      
+      // Track form error
+      trackFormSubmission('services_contact_error', {
+        error: error.message
+      });
+      
       toast({
         title: "Vaya, ha ocurrido un problema 😔",
         description: "Por favor, inténtalo nuevamente. Si continúa fallando, escríbenos directamente a info@grupodauro.com",

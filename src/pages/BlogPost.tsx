@@ -6,9 +6,10 @@ import { blogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import NotFound from "./NotFound";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet-async";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -17,6 +18,36 @@ const BlogPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+  const { trackBlogEngagement } = useAnalytics();
+  const [readingTime, setReadingTime] = useState(0);
+
+  // Track page view and reading time
+  useEffect(() => {
+    if (!post) return;
+
+    trackBlogEngagement('post_viewed', {
+      post_slug: post.slug,
+      post_title: post.title,
+      post_category: post.category
+    });
+
+    const startTime = Date.now();
+    const interval = setInterval(() => {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      setReadingTime(elapsed);
+    }, 5000); // Update every 5 seconds
+
+    return () => {
+      clearInterval(interval);
+      // Track reading time on unmount
+      if (readingTime > 10) {
+        trackBlogEngagement('post_read', {
+          post_slug: post.slug,
+          reading_time_seconds: readingTime
+        });
+      }
+    };
+  }, [post, slug, trackBlogEngagement]);
 
   if (!post) {
     return <NotFound />;
@@ -68,6 +99,13 @@ const BlogPost = () => {
     
     if (url) {
       window.open(url, '_blank', 'width=600,height=400');
+      
+      // Track social share
+      trackBlogEngagement('post_shared', {
+        post_slug: post.slug,
+        platform,
+        reading_time_seconds: readingTime
+      });
     }
   };
 

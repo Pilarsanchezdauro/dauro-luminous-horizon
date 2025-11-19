@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 const portfolioInquirySchema = z.object({
   nombre: z.string().trim().min(2, 'El nombre debe tener al menos 2 caracteres').max(100, 'Máximo 100 caracteres'),
@@ -40,6 +41,7 @@ const categories = [
 export default function PortfolioInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const { trackFormSubmission } = useAnalytics();
   
   const {
     register,
@@ -104,6 +106,14 @@ export default function PortfolioInquiryForm() {
       
       if (supabaseResponse.error) throw supabaseResponse.error;
 
+      // Track successful form submission
+      trackFormSubmission('portfolio_inquiry', {
+        category: data.categoria,
+        has_budget: !!data.presupuesto,
+        has_deadline: !!data.plazo,
+        has_company: !!data.empresa
+      });
+
       toast.success('¡Consulta enviada con éxito!', {
         description: 'Nos pondremos en contacto contigo pronto.',
       });
@@ -112,6 +122,12 @@ export default function PortfolioInquiryForm() {
       navigate('/gracias');
     } catch (error) {
       console.error('Error submitting inquiry:', error);
+      
+      // Track form error
+      trackFormSubmission('portfolio_inquiry_error', {
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+      
       toast.error('Error al enviar la consulta', {
         description: 'Por favor, inténtalo de nuevo más tarde.',
       });

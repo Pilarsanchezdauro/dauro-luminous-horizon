@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3 } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +18,11 @@ const menuItems = [
     title: 'Panel Principal',
     url: '/admin',
     icon: LayoutDashboard,
+  },
+  {
+    title: 'Analytics',
+    url: '/admin/analytics',
+    icon: BarChart3,
   },
   {
     title: 'Posts del Blog',
