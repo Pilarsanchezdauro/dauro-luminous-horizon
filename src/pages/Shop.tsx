@@ -11,7 +11,7 @@ import { getProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
-import editorialBg from "@/assets/editorial-bg.jpg";
+import heroCultureBg from "@/assets/hero-culture-bg.png";
 
 export default function Shop() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -144,7 +144,7 @@ export default function Shop() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${editorialBg})`,
+              backgroundImage: `url(${heroCultureBg})`,
               filter: "brightness(0.6)",
             }}
           />
