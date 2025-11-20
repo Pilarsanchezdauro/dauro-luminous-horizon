@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
 import mascotLogo from '@/assets/mascot.png';
-import editorialBg from '@/assets/editorial-bg.jpg';
+import heroExceptionalBg from '@/assets/hero-exceptional-bg.jpg';
 
 interface Project {
   id: string;
@@ -96,7 +96,7 @@ export default function Portafolio() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${editorialBg})`,
+              backgroundImage: `url(${heroExceptionalBg})`,
               filter: "brightness(0.6)",
             }}
           />
