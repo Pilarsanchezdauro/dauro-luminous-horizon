@@ -8,7 +8,7 @@ import { SEO } from "@/components/SEO";
 import presentacionLatido from "@/assets/presentacion-latido.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import mascotLogo from "@/assets/mascot.png";
-import editorialBg from "@/assets/editorial-bg.jpg";
+import heroCulturalBg from "@/assets/hero-cultural-bg.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -115,7 +115,7 @@ const Blog = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${editorialBg})`,
+            backgroundImage: `url(${heroCulturalBg})`,
             filter: "brightness(0.6)",
           }}
         />
