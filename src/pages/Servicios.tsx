@@ -10,7 +10,7 @@ import {
 import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
 import ServicesContactForm from "@/components/ServicesContactForm";
 import mascotLogo from "@/assets/mascot.png";
-import editorialBg from "@/assets/editorial-bg.jpg";
+import heroDauro from "@/assets/hero-dauro.jpg";
 import { SEO } from "@/components/SEO";
 
 const Servicios = () => {
@@ -215,7 +215,7 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${editorialBg})`,
+            backgroundImage: `url(${heroDauro})`,
             filter: "brightness(0.6)",
           }}
         />
