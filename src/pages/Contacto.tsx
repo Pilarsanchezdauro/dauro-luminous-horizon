@@ -70,45 +70,39 @@ const Contacto = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Contacto - Grupo Cultural Dauro"
+        description="¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros? Ponte en contacto con Grupo Cultural Dauro. Nos encantaría escucharte."
+        keywords="contacto Grupo Dauro, contactar editorial Granada, proyectos culturales Granada"
+        url="https://grupodauro.com/contacto"
+      />
       <Navigation />
+      
       {/* Hero Section */}
-      <section className="relative pt-32 pb-12 overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-40 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        
-        {/* Floating mascot logos */}
-        <img 
-          src={mascotLogo} 
-          alt="" 
-          className="absolute top-24 right-10 w-20 h-20 opacity-[0.03] animate-float-diagonal pointer-events-none"
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${logoDauroContact})`,
+            filter: "brightness(0.3)",
+          }}
         />
-        <img 
-          src={mascotLogo} 
-          alt="" 
-          className="absolute bottom-32 left-16 w-16 h-16 opacity-[0.02] animate-float-horizontal pointer-events-none"
-          style={{ animationDelay: '4s' }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-background" />
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-block mb-6 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Hablemos</span>
-            </div>
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-foreground animate-fade-in-up">
-              Contacto
-            </h1>
-            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto animate-fade-in-up-delayed">
-              ¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros?
-            </p>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto animate-fade-in-up-delayed-more">
-              Nos encantaría escucharte.
-            </p>
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="inline-block mb-6 px-4 py-2 bg-white/10 rounded-full border border-white/20 backdrop-blur-sm">
+            <span className="text-sm font-semibold text-white uppercase tracking-wider">Hablemos</span>
           </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+            Contacto
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
+            ¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros?
+          </p>
+          <p className="text-lg lg:text-xl text-white/80 max-w-2xl mx-auto">
+            Nos encantaría escucharte.
+          </p>
         </div>
-        
-        {/* Decorative lines */}
-        <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       </section>
 
       <main className="pb-16 relative overflow-hidden">
