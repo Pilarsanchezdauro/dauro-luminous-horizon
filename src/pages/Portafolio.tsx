@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
 import mascotLogo from '@/assets/mascot.png';
+import editorialBg from '@/assets/editorial-bg.jpg';
 
 interface Project {
   id: string;
@@ -87,10 +88,31 @@ export default function Portafolio() {
         description="Descubre nuestros proyectos creativos en YouTube, web, diseño gráfico y guiones. Un portafolio completo de trabajos realizados para diferentes clientes."
         keywords="portafolio, proyectos, trabajos, youtube, web, diseño, guiones, creatividad"
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-32 pb-16 relative overflow-hidden">
+        {/* Hero Section */}
+        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${editorialBg})`,
+              filter: "brightness(0.6)",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
+          
+          <div className="relative z-10 container mx-auto px-4 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+              Nuestro Portafolio
+            </h1>
+            <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+              Explora algunos de nuestros proyectos y trabajos realizados
+            </p>
+          </div>
+        </section>
+
+        <main className="container mx-auto px-4 py-16 relative overflow-hidden">
           {/* Floating mascot logos */}
           <img 
             src={mascotLogo} 
@@ -117,15 +139,8 @@ export default function Portafolio() {
             style={{ animationDelay: '11s' }}
           />
           
-          <div className="text-center mb-12 relative z-10">
-            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">Nuestro Portafolio</h1>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Explora algunos de nuestros proyectos y trabajos realizados
-            </p>
-          </div>
-
           {/* Filters */}
-          <div className="flex flex-wrap gap-4 mb-8 justify-center">
+          <div className="flex flex-wrap gap-4 mb-8 justify-center relative z-10">
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Categoría" />
