@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import presentacionLatido from "@/assets/presentacion-latido.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import mascotLogo from "@/assets/mascot.png";
+import editorialBg from "@/assets/editorial-bg.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -109,7 +110,34 @@ const Blog = () => {
       />
       <Navigation />
       
-      <main className="pt-32 pb-16 relative overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${editorialBg})`,
+            filter: "brightness(0.6)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+            Blog
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6">
+            Presentaciones, reflexiones, novedades y análisis sobre arte, cultura, literatura y tecnología
+          </p>
+          <Link to="/blog/stats">
+            <Button variant="secondary" size="lg" className="gap-2">
+              <BarChart3 className="h-4 w-4" />
+              Ver Estadísticas
+            </Button>
+          </Link>
+        </div>
+      </section>
+      
+      <main className="pb-16 relative overflow-hidden">
         {/* Floating mascot logos */}
         <img 
           src={mascotLogo} 
@@ -136,24 +164,8 @@ const Blog = () => {
           style={{ animationDelay: '10s' }}
         />
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-foreground">
-                Blog
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
-                Presentaciones, reflexiones, novedades y análisis sobre arte, cultura,
-                literatura y tecnología
-              </p>
-              <Link to="/blog/stats">
-                <Button variant="outline" size="sm" className="gap-2">
-                  <BarChart3 className="h-4 w-4" />
-                  Ver Estadísticas
-                </Button>
-              </Link>
-            </div>
-
             {/* Category Tabs */}
             <Tabs defaultValue="todas" className="mb-12" onValueChange={(value) => setActiveCategory(value as BlogCategory | "todas")}>
               <TabsList className="grid w-full grid-cols-5 max-w-3xl mx-auto h-auto">
