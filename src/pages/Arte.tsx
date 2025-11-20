@@ -184,10 +184,9 @@ const Arte = () => {
                   
                   <div className="flex items-start gap-4 relative z-10">
                     <div 
-                      className="flex-shrink-0 p-3 rounded-lg"
-                      style={{ backgroundColor: 'rgba(227, 27, 35, 0.1)' }}
+                      className="flex-shrink-0 p-3 bg-primary/10 rounded-lg"
                     >
-                      <Icon className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" style={{ color: '#E31B23' }} />
+                      <Icon className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     
                     <div className="flex-1 min-w-0">
@@ -207,8 +206,7 @@ const Arte = () => {
                       {listItems.length > 0 && (
                         <div className="mb-4">
                           <p 
-                            className="text-sm lg:text-base font-semibold mb-2"
-                            style={{ color: '#E31B23' }}
+                            className="text-sm lg:text-base font-semibold mb-2 text-primary"
                           >
                             {service.includes ? 'Incluye:' : 
                              service.applications ? 'Aplicaciones:' : 
@@ -218,7 +216,7 @@ const Arte = () => {
                           <ul className="space-y-1 text-sm lg:text-base" style={{ color: '#333333' }}>
                             {listItems.map((item, i) => (
                               <li key={i} className="flex items-start">
-                                <span className="mr-2" style={{ color: '#E31B23' }}>•</span>
+                                <span className="mr-2 text-primary">•</span>
                                 <span>{item}</span>
                               </li>
                             ))}
@@ -228,12 +226,8 @@ const Arte = () => {
                       
                       <Link to="/contacto">
                         <Button 
-                          className="text-white font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
-                          style={{ 
-                            backgroundColor: '#E31B23',
-                          }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C3131A'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E31B23'}
+                          variant="default"
+                          className="font-medium px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300"
                         >
                           Más información
                         </Button>
