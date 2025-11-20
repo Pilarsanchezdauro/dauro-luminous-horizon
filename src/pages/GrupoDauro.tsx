@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -17,6 +18,7 @@ import gallery11 from "@/assets/gallery-11.jpeg";
 import gallery12 from "@/assets/gallery-12.jpeg";
 import gallery13 from "@/assets/gallery-13.webp";
 import mascotLogo from "@/assets/mascot.png";
+import logoDauroHero from "@/assets/logo-dauro-hero.png";
 
 const GrupoDauro = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -26,8 +28,36 @@ const GrupoDauro = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Grupo Cultural Dauro - Arte, Tecnología y Pensamiento desde 2000"
+        description="Desde el año 2000, Grupo Cultural Dauro impulsa la creación, la edición y la innovación cultural uniendo la herencia artística con la tecnología del futuro."
+        keywords="Grupo Cultural Dauro, editorial Granada, producción audiovisual, inteligencia artificial cultura, proyectos culturales"
+        url="https://grupodauro.com/grupo-dauro"
+      />
       <Navigation />
-      <main className="pt-32 pb-16 relative overflow-hidden">
+      
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${logoDauroHero})`,
+            filter: "brightness(0.3)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-background" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
+            Grupo Cultural Dauro
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+            Arte, tecnología y pensamiento desde el año 2000
+          </p>
+        </div>
+      </section>
+      
+      <main className="pb-16 relative overflow-hidden">
         {/* Floating mascot logos */}
         <img 
           src={mascotLogo} 
@@ -54,11 +84,8 @@ const GrupoDauro = () => {
           style={{ animationDelay: '10s' }}
         />
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-8 text-foreground">
-              Grupo Cultural Dauro
-            </h1>
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-muted-foreground leading-relaxed mb-6">
                 Desde el año 2000, Grupo Cultural Dauro impulsa la creación, la edición y la innovación cultural desde una vocación clara: unir la herencia artística con la tecnología del futuro.
