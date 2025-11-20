@@ -8,6 +8,7 @@ import mascotLogo from "@/assets/mascot.png";
 import logoDauroContact from "@/assets/logo-dauro-contact.png";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
+import { SEO } from "@/components/SEO";
 
 const Contacto = () => {
   const { toast } = useToast();
