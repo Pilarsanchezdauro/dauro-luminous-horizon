@@ -10,6 +10,8 @@ import {
 import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
 import ServicesContactForm from "@/components/ServicesContactForm";
 import mascotLogo from "@/assets/mascot.png";
+import editorialBg from "@/assets/editorial-bg.jpg";
+import { SEO } from "@/components/SEO";
 
 const Servicios = () => {
   const services = [
@@ -200,18 +202,30 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Nuestros Servicios - Innovación Técnica con Visión Cultural"
+        description="Servicios profesionales de edición, publicación, adaptación de guiones, producción audiovisual con IA, diseño gráfico y desarrollo web. Arte, tecnología y pensamiento para proyectos culturales."
+        keywords="servicios editoriales, producción audiovisual IA, diseño gráfico, desarrollo web, adaptación guiones, publicación libros Granada"
+        url="https://grupodauro.com/servicios"
+      />
       <Navigation />
       
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-background" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${editorialBg})`,
+            filter: "brightness(0.6)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-foreground mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
             Nuestros Servicios
           </h1>
-          <p className="text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto">
+          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
             Innovación técnica con visión cultural
           </p>
         </div>
