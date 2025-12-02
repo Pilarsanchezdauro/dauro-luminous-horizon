@@ -3,12 +3,26 @@ import { Music, Pause } from "lucide-react";
 
 const ChristmasMusicButton = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/audio/navidad-en-el-arte.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
+    const audio = new Audio("/audio/navidad-en-el-arte.mp3");
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.preload = "auto";
+    
+    audio.addEventListener('canplaythrough', () => {
+      console.log("Audio loaded and ready to play");
+      setIsLoaded(true);
+    });
+    
+    audio.addEventListener('error', (e) => {
+      console.error("Audio error:", e);
+      console.error("Audio src:", audio.src);
+    });
+
+    audioRef.current = audio;
 
     return () => {
       if (audioRef.current) {
@@ -18,15 +32,25 @@ const ChristmasMusicButton = () => {
     };
   }, []);
 
-  const toggleMusic = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+  const toggleMusic = async () => {
+    if (!audioRef.current) {
+      console.log("No audio ref");
+      return;
     }
-    setIsPlaying(!isPlaying);
+
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        console.log("Attempting to play audio...");
+        await audioRef.current.play();
+        console.log("Audio playing successfully");
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error("Error playing audio:", error);
+    }
   };
 
   return (
@@ -36,7 +60,7 @@ const ChristmasMusicButton = () => {
       aria-label={isPlaying ? "Pausar música navideña" : "Reproducir música navideña"}
     >
       {/* Decorative ring */}
-      <div className="absolute inset-0 rounded-full border-2 border-yellow-400/50 animate-pulse" />
+      <div className={`absolute inset-0 rounded-full border-2 border-yellow-400/50 ${isPlaying ? 'animate-spin' : 'animate-pulse'}`} style={{ animationDuration: isPlaying ? '3s' : '2s' }} />
       
       {/* Snowflake decorations */}
       <span className="absolute -top-1 -right-1 text-xs">❄️</span>
