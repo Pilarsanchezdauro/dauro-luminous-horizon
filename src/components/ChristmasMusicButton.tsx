@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Music, Pause } from "lucide-react";
+import christmasBg from "@/assets/christmas-music-bg.jpg";
 
 const ChristmasMusicButton = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -56,22 +57,24 @@ const ChristmasMusicButton = () => {
   return (
     <button
       onClick={toggleMusic}
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-[#C41E3A] to-[#8B0000] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+      className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center group overflow-hidden"
+      style={{ backgroundImage: `url(${christmasBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       aria-label={isPlaying ? "Pausar música navideña" : "Reproducir música navideña"}
     >
+      {/* Overlay for better icon visibility */}
+      <div className="absolute inset-0 bg-black/30 rounded-full" />
+      
       {/* Decorative ring */}
       <div className={`absolute inset-0 rounded-full border-2 border-yellow-400/50 ${isPlaying ? 'animate-spin' : 'animate-pulse'}`} style={{ animationDuration: isPlaying ? '3s' : '2s' }} />
       
-      {/* Snowflake decorations */}
-      <span className="absolute -top-1 -right-1 text-xs">❄️</span>
-      <span className="absolute -bottom-1 -left-1 text-xs">🎄</span>
-      
       {/* Icon */}
-      {isPlaying ? (
-        <Pause className="w-6 h-6" />
-      ) : (
-        <Music className="w-6 h-6" />
-      )}
+      <div className="relative z-10 text-white">
+        {isPlaying ? (
+          <Pause className="w-6 h-6" />
+        ) : (
+          <Music className="w-6 h-6" />
+        )}
+      </div>
       
       {/* Tooltip */}
       <span className="absolute right-full mr-3 px-3 py-1 bg-black/80 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
