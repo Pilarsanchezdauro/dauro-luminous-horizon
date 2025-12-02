@@ -9,6 +9,7 @@ import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
 import { LatestWorks } from "@/components/LatestWorks";
+import ChristmasEffects from "@/components/ChristmasEffects";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -39,6 +40,7 @@ const Index = () => {
         url="https://grupodauro.com"
         structuredData={homeStructuredData}
       />
+      <ChristmasEffects />
       <Navigation />
       <Hero />
 
