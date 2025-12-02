@@ -51,7 +51,7 @@ const ChristmasMusicButton = () => {
       
       {/* Tooltip */}
       <span className="absolute right-full mr-3 px-3 py-1 bg-black/80 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-        {isPlaying ? "Pausar música" : "🎵 Música navideña"}
+        {isPlaying ? "Pausar música" : "🎵 El arte de la navidad"}
       </span>
     </button>
   );
