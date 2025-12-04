@@ -13,14 +13,6 @@
       "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://grupodauro.wpcomstaging.com/:path*",
-      "permanent": false,
-      "has": []
-    }
-  ],
   "headers": [
     {
       "source": "/og-(.*)",
