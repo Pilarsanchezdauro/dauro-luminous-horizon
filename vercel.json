@@ -17,7 +17,8 @@
     {
       "source": "/:path*",
       "destination": "https://grupodauro.wpcomstaging.com/:path*",
-      "permanent": false
+      "permanent": false,
+      "has": []
     }
   ],
   "headers": [
