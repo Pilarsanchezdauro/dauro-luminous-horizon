@@ -15,6 +15,30 @@ const __dirname = dirname(__filename);
 
 const blogPosts = [
   {
+    slug: 'generador-portadas-gratis-ia',
+    title: 'Crea Portadas Gratis con IA: Visualiza tu libro antes de publicar',
+    excerpt: 'Descubre nuestro generador gratuito de portadas con inteligencia artificial. Crea diseños profesionales para tu libro en segundos y visualiza cómo quedará antes de dar el paso definitivo.',
+    image: '/og-generador-portadas-gratis.png',
+    date: '7 Diciembre 2025',
+    author: 'Grupo Dauro'
+  },
+  {
+    slug: 'el-arte-es-navidad-cancion',
+    title: 'El Arte es Navidad: nuestra canción original para estas fiestas',
+    excerpt: 'Grupo Dauro presenta El Arte es Navidad, una composición original que celebra la creatividad y el espíritu navideño.',
+    image: '/og-el-arte-es-navidad.png',
+    date: '7 Diciembre 2025',
+    author: 'Grupo Dauro'
+  },
+  {
+    slug: 'guia-editorial-para-autores',
+    title: 'Guía Editorial para Autores: lo esencial que debes saber antes de publicar',
+    excerpt: 'Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores.',
+    image: '/og-consejos-autores.png',
+    date: '7 Diciembre 2025',
+    author: 'Equipo Dauro'
+  },
+  {
     slug: 'una-voz-para-dos-tierras-presentaciones',
     title: 'Una voz para dos tierras: un viaje poético entre continentes',
     excerpt: 'El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas.',
