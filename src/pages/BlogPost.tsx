@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet-async";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import GuideDownloadForm from "@/components/GuideDownloadForm";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -353,6 +354,14 @@ const BlogPost = () => {
                 <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
                   {post.content ? renderContent(post.content) : <p>{post.excerpt}</p>}
                 </div>
+
+                {/* Formulario de descarga para el artículo de consejos para autores */}
+                {post.category === "consejos" && (
+                  <GuideDownloadForm 
+                    pdfUrl="/docs/guia-editorial-autores.pdf"
+                    guideTitle="Guía Editorial para Autores"
+                  />
+                )}
 
                 {/* Imágenes adicionales (image2, image3) */}
                 {(post.image2 || post.image3) && (
