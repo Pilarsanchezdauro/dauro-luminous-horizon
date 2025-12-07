@@ -128,6 +128,32 @@ const BlogPost = () => {
     }
   };
 
+  // Helper to parse inline markdown (bold, italic, links)
+  const parseInlineMarkdown = (text: string) => {
+    const parts: (string | JSX.Element)[] = [];
+    let remaining = text;
+    let keyIndex = 0;
+
+    while (remaining.length > 0) {
+      // Bold **text**
+      const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
+      if (boldMatch && boldMatch.index !== undefined) {
+        if (boldMatch.index > 0) {
+          parts.push(remaining.slice(0, boldMatch.index));
+        }
+        parts.push(<strong key={keyIndex++}>{boldMatch[1]}</strong>);
+        remaining = remaining.slice(boldMatch.index + boldMatch[0].length);
+        continue;
+      }
+      
+      // No more matches, add remaining text
+      parts.push(remaining);
+      break;
+    }
+
+    return parts.length > 0 ? parts : text;
+  };
+
   const renderContent = (content: string) => {
     return content.split('\n').map((paragraph, idx) => {
       // Imágenes en markdown: ![alt](url)
@@ -152,23 +178,37 @@ const BlogPost = () => {
         );
       }
 
+      // Horizontal rule ---
+      if (paragraph.trim() === '---') {
+        return <hr key={idx} className="my-8 border-border" />;
+      }
+
+      // List items - and *
+      if (paragraph.match(/^[-*] /)) {
+        return (
+          <li key={idx} className="mb-2 ml-6 list-disc text-muted-foreground">
+            {parseInlineMarkdown(paragraph.replace(/^[-*] /, ''))}
+          </li>
+        );
+      }
+
       if (paragraph.startsWith('### ')) {
         return (
           <h3 key={idx} className="text-xl font-playfair font-semibold mt-6 mb-3 text-foreground">
-            {paragraph.replace('### ', '')}
+            {parseInlineMarkdown(paragraph.replace('### ', ''))}
           </h3>
         );
       }
       if (paragraph.startsWith('## ')) {
         return (
           <h2 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
-            {paragraph.replace('## ', '')}
+            {parseInlineMarkdown(paragraph.replace('## ', ''))}
           </h2>
         );
       }
       if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
         return (
-          <p key={idx} className="font-semibold mb-2">
+          <p key={idx} className="font-semibold mb-2 text-foreground">
             {paragraph.replace(/\*\*/g, '')}
           </p>
         );
@@ -176,7 +216,7 @@ const BlogPost = () => {
       if (paragraph.trim()) {
         return (
           <p key={idx} className="mb-4">
-            {paragraph}
+            {parseInlineMarkdown(paragraph)}
           </p>
         );
       }
