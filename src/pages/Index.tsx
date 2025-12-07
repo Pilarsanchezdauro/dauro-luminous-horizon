@@ -11,6 +11,7 @@ import { DauroWidget } from "@/components/DauroWidget";
 import { LatestWorks } from "@/components/LatestWorks";
 import ChristmasEffects from "@/components/ChristmasEffects";
 import ChristmasBanner from "@/components/ChristmasBanner";
+import ChristmasSongAnnouncement from "@/components/ChristmasSongAnnouncement";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -45,6 +46,9 @@ const Index = () => {
       <ChristmasBanner />
       <Navigation />
       <Hero />
+
+      {/* Christmas Song Announcement */}
+      <ChristmasSongAnnouncement />
 
       {/* Widget Section */}
       <section className="py-8 bg-gradient-to-br from-primary/5 via-background to-accent/5">
