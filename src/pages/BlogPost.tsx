@@ -152,6 +152,13 @@ const BlogPost = () => {
         );
       }
 
+      if (paragraph.startsWith('### ')) {
+        return (
+          <h3 key={idx} className="text-xl font-playfair font-semibold mt-6 mb-3 text-foreground">
+            {paragraph.replace('### ', '')}
+          </h3>
+        );
+      }
       if (paragraph.startsWith('## ')) {
         return (
           <h2 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
