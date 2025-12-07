@@ -10,7 +10,7 @@ import libroLatido from "@/assets/libro-latido.png";
 import lorenaAvelar from "@/assets/lorena-avelar.jpg";
 import unaVozDosTierrasPortada from "@/assets/una-voz-dos-tierras-portada.png";
 
-export type BlogCategory = "literatura" | "arte" | "cine" | "ia" | "consejos";
+export type BlogCategory = "literatura" | "arte" | "cine" | "ia" | "consejos" | "musica";
 
 export interface BlogPost {
   title: string;
@@ -354,6 +354,43 @@ En Grupo Dauro IA no enseñamos a usar herramientas. Enseñamos a usarlas con cr
 
 Si quieres usar la inteligencia artificial sin perder estilo, sin renunciar a tu esencia creativa, sin caer en el contenido genérico… estás en el lugar adecuado.`
   },
+  {
+    title: "El Arte es Navidad: nuestra canción original para estas fiestas",
+    excerpt: "Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.",
+    date: "7 Diciembre 2025",
+    author: "Grupo Dauro",
+    image: "/og-arte.jpg",
+    ogImage: "/og-arte.jpg",
+    category: "musica",
+    slug: "el-arte-es-navidad-cancion",
+    content: `## El Arte es Navidad
+
+Desde Grupo Dauro queremos compartir con todos vosotros nuestra producción musical navideña: **El Arte es Navidad**.
+
+Esta canción original representa nuestro compromiso con la cultura y la creatividad, llevado a un nuevo formato. Porque el arte no solo se lee, también se escucha, se siente y se comparte.
+
+## Una producción 100% Dauro
+
+*El Arte es Navidad* ha sido compuesta, producida y editada íntegramente por nuestro equipo. Desde la letra hasta los arreglos musicales, cada detalle refleja la identidad artística que nos caracteriza desde hace más de dos décadas.
+
+## Escúchala ahora
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/mKHhpGMBVcI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## El espíritu navideño en clave cultural
+
+La Navidad es tiempo de compartir, de reunirse y de celebrar. Para nosotros, también es momento de recordar que el arte nos une, nos inspira y nos acompaña en los momentos más especiales.
+
+Con esta canción queremos transmitir un mensaje de esperanza, creatividad y celebración. Porque donde hay arte, hay vida. Y donde hay vida, hay motivos para celebrar.
+
+## Comparte la magia
+
+Te invitamos a escuchar *El Arte es Navidad*, a compartirla con quienes más quieres y a dejarte llevar por el espíritu creativo de estas fiestas.
+
+---
+
+*¡Feliz Navidad de parte de todo el equipo de Grupo Dauro!*`
+  },
 ];
 
 export const getLatestPosts = (count: number = 3): BlogPost[] => {
@@ -369,5 +406,6 @@ export const categoryLabels: Record<BlogCategory, string> = {
   arte: "Arte",
   cine: "Cine",
   ia: "Inteligencia Artificial",
-  consejos: "Consejos para Autores"
+  consejos: "Consejos para Autores",
+  musica: "Música"
 };
