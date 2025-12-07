@@ -10,7 +10,7 @@ import libroLatido from "@/assets/libro-latido.png";
 import lorenaAvelar from "@/assets/lorena-avelar.jpg";
 import unaVozDosTierrasPortada from "@/assets/una-voz-dos-tierras-portada.png";
 
-export type BlogCategory = "literatura" | "arte" | "cine" | "ia";
+export type BlogCategory = "literatura" | "arte" | "cine" | "ia" | "consejos";
 
 export interface BlogPost {
   title: string;
@@ -31,6 +31,82 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Guía Editorial para Autores: lo esencial que debes saber antes de publicar",
+    excerpt: "Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores. Hemos creado una guía práctica de 23 páginas para ayudarte.",
+    date: "7 Diciembre 2025",
+    author: "Equipo Dauro",
+    image: "/og-consejos-autores.png",
+    ogImage: "/og-consejos-autores.png",
+    category: "consejos",
+    slug: "guia-editorial-para-autores",
+    content: `Publicar un libro es emocionante, pero también exige preparación.
+
+En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores: repeticiones, falta de capítulos, exceso de datos, diálogos artificiales, incoherencias, títulos débiles y expectativas irreales sobre las ventas o el trabajo editorial.
+
+Para ayudar a nuestros autores a evitar estos problemas sin abrumarlos, hemos creado una **guía práctica de 23 páginas**, directa y fácil de aplicar, donde reunimos lo más importante que debe saber un escritor antes de publicar.
+
+Una herramienta pensada para que el proceso editorial sea más rápido, más claro y más profesional.
+
+## Lo que encontrarás en esta guía
+
+No es un manual interminable. No es teoría académica. Es información concreta, con ejemplos y recomendaciones claras:
+
+### ✔️ Cómo entregar un manuscrito bien preparado
+Formato, revisión básica, uso de estilos, coherencia y capítulos.
+
+### ✔️ Los errores de estilo más comunes
+Repeticiones, verbos débiles, diálogos inverosímiles, párrafos eternos.
+
+### ✔️ Datos y documentación: cuánto es suficiente
+¿Por qué una novela no puede convertirse en Wikipedia?
+
+### ✔️ Lo que hace una editorial… y lo que no
+La realidad del trabajo editorial que muchos autores desconocen.
+
+### ✔️ Mitos que debemos desterrar
+Incluido el mítico "la editorial se queda todo menos mi 10%".
+
+### ✔️ Aspectos legales y técnicos
+ISBN, citas, derechos, imágenes, etc.
+
+### ✔️ Consejos de promoción realistas
+Porque sí: la visibilidad también depende del autor.
+
+## Ejemplos que verás dentro de la guía
+
+### 🔸 El inicio que no engancha
+"María se despertó, se duchó, desayunó…" — Esto hunde una novela antes de empezar.
+
+### 🔸 El diálogo que nadie usaría en la vida real
+"—Como ya sabes, hermano, papá murió en 1987…" — Los lectores no hablan como manuales de instrucciones.
+
+### 🔸 El exceso de datos
+"Aleación del 0,2%… guerra de 1873…" — Una novela no debe convertirse en un ensayo técnico.
+
+### 🔸 El mito de que "la editorial no hace nada"
+Sin movimiento del autor, ningún libro se impulsa solo.
+
+## ¿Por qué hemos creado esta guía?
+
+Porque lo que muchos autores necesitan no es un tratado teórico, sino una orientación clara y honesta que les permita:
+
+- Entregar un texto más profesional
+- Comprender mejor el proceso editorial
+- Evitar retrasos innecesarios
+- Tener expectativas realistas
+- Participar activamente en la vida de su obra
+
+Con 23 páginas bien aprovechadas, se consigue.
+
+## Mensaje final
+
+Un libro nace del autor, pero crece gracias a la colaboración con la editorial. Esta guía existe para que ambos hablemos el mismo idioma desde el principio.
+
+---
+
+*¿Te gustaría recibir la guía completa en PDF? Contáctanos a través de nuestro formulario y te la enviaremos.*`
+  },
   {
     title: "Una voz para dos tierras: un viaje poético entre continentes",
     excerpt: "El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas. Hemos tenido el privilegio de acompañar a la autora en un recorrido lleno de emoción, poesía y encuentros significativos a ambos lados del Atlántico.",
@@ -292,5 +368,6 @@ export const categoryLabels: Record<BlogCategory, string> = {
   literatura: "Literatura",
   arte: "Arte",
   cine: "Cine",
-  ia: "Inteligencia Artificial"
+  ia: "Inteligencia Artificial",
+  consejos: "Consejos para Autores"
 };
