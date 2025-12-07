@@ -12,6 +12,7 @@ import { LatestWorks } from "@/components/LatestWorks";
 import ChristmasEffects from "@/components/ChristmasEffects";
 import ChristmasBanner from "@/components/ChristmasBanner";
 import ChristmasSongAnnouncement from "@/components/ChristmasSongAnnouncement";
+import GuideDownloadForm from "@/components/GuideDownloadForm";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -408,6 +409,16 @@ const Index = () => {
                 </Button>
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* Guide Download Form */}
+        <section className="my-32">
+          <div className="max-w-3xl mx-auto">
+            <GuideDownloadForm 
+              pdfUrl="/docs/guia-editorial-autores.pdf"
+              guideTitle="Guía Editorial para Autores"
+            />
           </div>
         </section>
 

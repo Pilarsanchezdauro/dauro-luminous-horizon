@@ -355,13 +355,6 @@ const BlogPost = () => {
                   {post.content ? renderContent(post.content) : <p>{post.excerpt}</p>}
                 </div>
 
-                {/* Formulario de descarga para el artículo de consejos para autores */}
-                {post.category === "consejos" && (
-                  <GuideDownloadForm 
-                    pdfUrl="/docs/guia-editorial-autores.pdf"
-                    guideTitle="Guía Editorial para Autores"
-                  />
-                )}
 
                 {/* Imágenes adicionales (image2, image3) */}
                 {(post.image2 || post.image3) && (
@@ -540,6 +533,14 @@ const BlogPost = () => {
                     </div>
                   </div>
                 )}
+
+                {/* Formulario de descarga de la guía - al final de todos los posts */}
+                <div className="mt-12">
+                  <GuideDownloadForm 
+                    pdfUrl="/docs/guia-editorial-autores.pdf"
+                    guideTitle="Guía Editorial para Autores"
+                  />
+                </div>
               </div>
             </article>
           </div>
