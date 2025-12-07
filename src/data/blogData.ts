@@ -9,6 +9,7 @@ import latidoPresentacion from "@/assets/latido-presentacion-principal.jpg";
 import libroLatido from "@/assets/libro-latido.png";
 import lorenaAvelar from "@/assets/lorena-avelar.jpg";
 import unaVozDosTierrasPortada from "@/assets/una-voz-dos-tierras-portada.png";
+import elArteEsNavidad from "@/assets/el-arte-es-navidad.png";
 
 export type BlogCategory = "literatura" | "arte" | "cine" | "ia" | "consejos" | "musica";
 
@@ -36,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.",
     date: "7 Diciembre 2025",
     author: "Grupo Dauro",
-    image: "/og-el-arte-es-navidad.png",
+    image: elArteEsNavidad,
     ogImage: "/og-el-arte-es-navidad.png",
     category: "musica",
     slug: "el-arte-es-navidad-cancion",
