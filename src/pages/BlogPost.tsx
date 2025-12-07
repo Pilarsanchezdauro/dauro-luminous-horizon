@@ -267,13 +267,13 @@ const BlogPost = () => {
             </Link>
 
             <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl">
-              <div className="relative h-96 overflow-hidden">
+<div className="relative h-96 overflow-hidden">
                 <img
                   src={post.image}
                   alt={`${post.title} - Artículo completo del blog Grupo Cultural Dauro`}
                   width="1200"
                   height="630"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
               </div>

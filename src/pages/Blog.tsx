@@ -193,13 +193,13 @@ const Blog = () => {
             {/* Featured Post - First post with full content (only on "todas" view) */}
             {featuredPost && featuredPost.content && (
               <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl mb-16">
-                <div className="relative h-96 overflow-hidden">
+<div className="relative h-96 overflow-hidden">
                   <img
                     src={featuredPost.image}
                     alt={`${featuredPost.title} - Evento cultural en Granada`}
                     width="1200"
                     height="630"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
