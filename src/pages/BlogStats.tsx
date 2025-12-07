@@ -70,7 +70,7 @@ export default function BlogStats() {
       
       events?.forEach(event => {
         const metadata = event.metadata as Record<string, any> | null;
-        const slug = metadata?.slug;
+        const slug = metadata?.post_slug; // Fixed: was 'slug', should be 'post_slug'
         if (!slug) return;
         
         if (!postMetrics.has(slug)) {
@@ -118,7 +118,7 @@ export default function BlogStats() {
       
       events?.forEach(event => {
         const metadata = event.metadata as Record<string, any> | null;
-        const category = metadata?.category;
+        const category = metadata?.post_category; // Fixed: was 'category', should be 'post_category'
         if (category && event.event_name === "post_viewed") {
           categoryMap.set(category, (categoryMap.get(category) || 0) + 1);
         }
