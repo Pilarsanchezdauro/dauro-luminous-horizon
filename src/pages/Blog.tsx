@@ -167,10 +167,13 @@ const Blog = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
           <div className="max-w-6xl mx-auto">
             {/* Category Tabs */}
-            <Tabs defaultValue="todas" className="mb-12" onValueChange={(value) => setActiveCategory(value as BlogCategory | "todas")}>
-              <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 max-w-4xl mx-auto h-auto gap-1">
+<Tabs defaultValue="todas" className="mb-12" onValueChange={(value) => setActiveCategory(value as BlogCategory | "todas")}>
+              <TabsList className="grid w-full grid-cols-4 sm:grid-cols-7 max-w-4xl mx-auto h-auto gap-1">
                 <TabsTrigger value="todas" className="text-xs sm:text-sm py-2 sm:py-3">
                   Todas
+                </TabsTrigger>
+                <TabsTrigger value="musica" className="text-xs sm:text-sm py-2 sm:py-3">
+                  Música
                 </TabsTrigger>
                 <TabsTrigger value="consejos" className="text-xs sm:text-sm py-2 sm:py-3">
                   Consejos
