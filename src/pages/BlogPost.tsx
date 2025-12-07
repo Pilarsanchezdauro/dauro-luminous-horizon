@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, User, ExternalLink, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Link2, Check } from "lucide-react";
+import { Calendar, User, ExternalLink, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Link2, Check, BookOpen } from "lucide-react";
 import { blogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -436,6 +436,43 @@ const BlogPost = () => {
                         ))}
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {/* CTA for posts with just bookLink (no bookImage) - like the cover generator */}
+                {post.bookLink && !post.bookImage && (
+                  <div className="bg-gradient-to-br from-primary/20 via-primary/10 to-background p-8 rounded-xl border-2 border-primary/30 mt-8 text-center">
+                    <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
+                      🚀 ¡Pruébalo ahora!
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+                      Crea tu portada gratuita en segundos. Sin registro, sin costos ocultos.
+                    </p>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 h-auto"
+                    >
+                      {post.bookLink.startsWith('/') || post.bookLink.startsWith('#') ? (
+                        <Link to={post.bookLink} className="flex items-center gap-2">
+                          <BookOpen className="h-5 w-5" />
+                          Crear mi portada gratis
+                        </Link>
+                      ) : (
+                        <a
+                          href={post.bookLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <ExternalLink className="h-5 w-5" />
+                          Ver más
+                        </a>
+                      )}
+                    </Button>
+                    <p className="text-sm text-muted-foreground mt-4">
+                      Sin registro • Sin costos ocultos • Resultados instantáneos
+                    </p>
                   </div>
                 )}
 

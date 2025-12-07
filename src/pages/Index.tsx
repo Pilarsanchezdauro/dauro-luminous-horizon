@@ -230,7 +230,7 @@ const Index = () => {
         </section>
 
         {/* AI Tool CTA Section */}
-        <section className="my-32">
+        <section id="generador-portadas-gratis" className="my-32">
           <div className="max-w-5xl mx-auto">
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-background border-2 border-primary/30 shadow-2xl hover:shadow-[0_25px_80px_-15px_rgba(224,74,92,0.5)] transition-all duration-500">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(224,74,92,0.15),transparent_70%)]" />
