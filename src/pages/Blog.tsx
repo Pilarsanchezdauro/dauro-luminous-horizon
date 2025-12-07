@@ -168,20 +168,23 @@ const Blog = () => {
           <div className="max-w-6xl mx-auto">
             {/* Category Tabs */}
             <Tabs defaultValue="todas" className="mb-12" onValueChange={(value) => setActiveCategory(value as BlogCategory | "todas")}>
-              <TabsList className="grid w-full grid-cols-5 max-w-3xl mx-auto h-auto">
-                <TabsTrigger value="todas" className="text-sm sm:text-base py-3">
+              <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 max-w-4xl mx-auto h-auto gap-1">
+                <TabsTrigger value="todas" className="text-xs sm:text-sm py-2 sm:py-3">
                   Todas
                 </TabsTrigger>
-                <TabsTrigger value="literatura" className="text-sm sm:text-base py-3">
+                <TabsTrigger value="consejos" className="text-xs sm:text-sm py-2 sm:py-3">
+                  Consejos
+                </TabsTrigger>
+                <TabsTrigger value="literatura" className="text-xs sm:text-sm py-2 sm:py-3">
                   Literatura
                 </TabsTrigger>
-                <TabsTrigger value="arte" className="text-sm sm:text-base py-3">
+                <TabsTrigger value="arte" className="text-xs sm:text-sm py-2 sm:py-3">
                   Arte
                 </TabsTrigger>
-                <TabsTrigger value="cine" className="text-sm sm:text-base py-3">
+                <TabsTrigger value="cine" className="text-xs sm:text-sm py-2 sm:py-3">
                   Cine
                 </TabsTrigger>
-                <TabsTrigger value="ia" className="text-sm sm:text-base py-3">
+                <TabsTrigger value="ia" className="text-xs sm:text-sm py-2 sm:py-3">
                   IA
                 </TabsTrigger>
               </TabsList>
@@ -274,6 +277,23 @@ const Blog = () => {
 
                   <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
                     {featuredPost.content.split('\n').map((paragraph, idx) => {
+                      if (paragraph.trim() === '---') {
+                        return <hr key={idx} className="my-8 border-border" />;
+                      }
+                      if (paragraph.match(/^[-*] /)) {
+                        return (
+                          <li key={idx} className="mb-2 ml-6 list-disc text-muted-foreground">
+                            {paragraph.replace(/^[-*] /, '')}
+                          </li>
+                        );
+                      }
+                      if (paragraph.startsWith('### ')) {
+                        return (
+                          <h4 key={idx} className="text-xl font-playfair font-semibold mt-6 mb-3 text-foreground">
+                            {paragraph.replace('### ', '')}
+                          </h4>
+                        );
+                      }
                       if (paragraph.startsWith('## ')) {
                         return (
                           <h3 key={idx} className="text-2xl font-playfair font-bold mt-8 mb-4 text-foreground">
@@ -289,9 +309,16 @@ const Blog = () => {
                         );
                       }
                       if (paragraph.trim()) {
+                        // Parse inline bold text
+                        const parts = paragraph.split(/(\*\*.*?\*\*)/g);
                         return (
                           <p key={idx} className="mb-4">
-                            {paragraph}
+                            {parts.map((part, partIdx) => {
+                              if (part.startsWith('**') && part.endsWith('**')) {
+                                return <strong key={partIdx}>{part.slice(2, -2)}</strong>;
+                              }
+                              return part;
+                            })}
                           </p>
                         );
                       }
