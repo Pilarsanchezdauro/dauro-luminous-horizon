@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/og-generador-portadas-gratis.png",
     category: "consejos",
     slug: "generador-portadas-gratis-ia",
-    bookLink: "/generador-portadas",
+    bookLink: "/#generador-portadas-gratis",
     content: `## Visualiza tu libro antes de publicar
 
 ¿Alguna vez has imaginado cómo quedaría la portada de tu libro? Ahora puedes verlo en segundos, totalmente **gratis**, gracias a nuestro generador de portadas con inteligencia artificial.
