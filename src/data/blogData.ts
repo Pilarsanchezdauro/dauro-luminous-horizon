@@ -36,10 +36,11 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.",
     date: "7 Diciembre 2025",
     author: "Grupo Dauro",
-    image: "/og-arte.jpg",
-    ogImage: "/og-arte.jpg",
+    image: "/og-el-arte-es-navidad.png",
+    ogImage: "/og-el-arte-es-navidad.png",
     category: "musica",
     slug: "el-arte-es-navidad-cancion",
+    bookLink: "https://youtu.be/mKHhpGMBVcI",
     content: `## El Arte es Navidad
 
 Desde Grupo Dauro queremos compartir con todos vosotros nuestra producción musical navideña: **El Arte es Navidad**.
