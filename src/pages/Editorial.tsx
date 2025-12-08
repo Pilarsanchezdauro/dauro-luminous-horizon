@@ -11,6 +11,7 @@ import libroHorizonte from "@/assets/libro-horizonte-interior.png";
 import libroBesos from "@/assets/libro-besos.png";
 import libroBoabdil from "@/assets/libro-boabdil.png";
 import SubmitWorkForm from "@/components/SubmitWorkForm";
+import GuideDownloadForm from "@/components/GuideDownloadForm";
 import mascotLogo from "@/assets/mascot.png";
 
 const Editorial = () => {
@@ -359,6 +360,26 @@ const Editorial = () => {
                 </a>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Guía Editorial para Autores */}
+        <section className="mb-20">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                Guía Editorial para Autores
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                ¿Estás pensando en publicar tu libro? Descarga nuestra guía gratuita 
+                con consejos prácticos sobre preparación de manuscritos, errores comunes, 
+                aspectos legales (ISBN, derechos) y estrategias de promoción.
+              </p>
+            </div>
+            <GuideDownloadForm 
+              pdfUrl="/docs/guia-editorial-autores.pdf"
+              guideTitle="Guía Editorial para Autores"
+            />
           </div>
         </section>
 
