@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import SectionCard from "@/components/SectionCard";
@@ -20,6 +22,21 @@ import iaBg from "@/assets/ia-bg.jpg";
 
 const Index = () => {
   const latestPosts = getLatestPosts(3);
+  const location = useLocation();
+
+  // Scroll to anchor when navigating from another page
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      // Small delay to ensure the DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   const homeStructuredData = {
     "@context": "https://schema.org",
