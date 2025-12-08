@@ -437,7 +437,7 @@ const Index = () => {
                 Guía Editorial para Autores
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                ¿Estás pensando en publicar tu libro? Descarga nuestra guía gratuita de 23 páginas 
+                ¿Estás pensando en publicar tu libro? Descarga nuestra guía gratuita 
                 con consejos prácticos sobre preparación de manuscritos, errores comunes, 
                 aspectos legales (ISBN, derechos) y estrategias de promoción.
               </p>

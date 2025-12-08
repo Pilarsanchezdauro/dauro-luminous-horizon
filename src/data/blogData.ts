@@ -127,7 +127,7 @@ Te invitamos a escuchar *El Arte es Navidad*, a compartirla con quienes más qui
   },
   {
     title: "Guía Editorial para Autores: lo esencial que debes saber antes de publicar",
-    excerpt: "Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores. Hemos creado una guía práctica de 23 páginas para ayudarte.",
+    excerpt: "Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores. Hemos creado una guía práctica para ayudarte.",
     date: "7 Diciembre 2025",
     author: "Equipo Dauro",
     image: "/og-consejos-autores.png",
@@ -138,7 +138,7 @@ Te invitamos a escuchar *El Arte es Navidad*, a compartirla con quienes más qui
 
 En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores: repeticiones, falta de capítulos, exceso de datos, diálogos artificiales, incoherencias, títulos débiles y expectativas irreales sobre las ventas o el trabajo editorial.
 
-Para ayudar a nuestros autores a evitar estos problemas sin abrumarlos, hemos creado una **guía práctica de 23 páginas**, directa y fácil de aplicar, donde reunimos lo más importante que debe saber un escritor antes de publicar.
+Para ayudar a nuestros autores a evitar estos problemas sin abrumarlos, hemos creado una **guía práctica**, directa y fácil de aplicar, donde reunimos lo más importante que debe saber un escritor antes de publicar.
 
 Una herramienta pensada para que el proceso editorial sea más rápido, más claro y más profesional.
 
@@ -191,7 +191,7 @@ Porque lo que muchos autores necesitan no es un tratado teórico, sino una orien
 - Tener expectativas realistas
 - Participar activamente en la vida de su obra
 
-Con 23 páginas bien aprovechadas, se consigue.
+Con esta guía bien aprovechada, se consigue.
 
 ## Mensaje final
 
