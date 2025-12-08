@@ -36,7 +36,8 @@ serve(async (req) => {
       'fotografico': 'photographic style, realistic imagery',
       'abstracto': 'abstract art style, creative and modern',
       'vintage': 'vintage retro style, classic book cover aesthetic',
-      'dark-gotico': 'dark gothic style, mysterious and dramatic'
+      'dark-gotico': 'dark gothic style, mysterious and dramatic',
+      'bauhaus': 'Bauhaus design style, geometric shapes, bold primary colors, modernist typography, clean lines, constructivist aesthetic'
     };
     
     if (estilo && estiloDescriptions[estilo]) {
