@@ -415,6 +415,16 @@ const Index = () => {
         {/* Guide Download Form */}
         <section className="my-32">
           <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair font-bold mb-4">
+                Guía Editorial para Autores
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                ¿Estás pensando en publicar tu libro? Descarga nuestra guía gratuita de 23 páginas 
+                con consejos prácticos sobre preparación de manuscritos, errores comunes, 
+                aspectos legales (ISBN, derechos) y estrategias de promoción.
+              </p>
+            </div>
             <GuideDownloadForm 
               pdfUrl="/docs/guia-editorial-autores.pdf"
               guideTitle="Guía Editorial para Autores"
