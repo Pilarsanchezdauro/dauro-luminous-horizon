@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, Save, Eye, Share2, Copy, Check } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Share2, Copy, Check, Upload, X, Image } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const formSchema = z.object({
@@ -37,6 +37,9 @@ export default function BlogPostForm() {
   const [loading, setLoading] = useState(false);
   const [showSocialDialog, setShowSocialDialog] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const isEditing = !!id;
 
   const {
@@ -76,6 +79,9 @@ export default function BlogPostForm() {
       Object.keys(data).forEach((key) => {
         if (key === 'tags') {
           setValue('tags', data[key]?.join(', ') || '');
+        } else if (key === 'image_url' && data[key]) {
+          setValue('image_url', data[key]);
+          setImagePreview(data[key]);
         } else if (key in formSchema.shape) {
           setValue(key as keyof FormData, data[key] || '');
         }
@@ -97,6 +103,73 @@ export default function BlogPostForm() {
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'Error',
+        description: 'Solo se permiten archivos de imagen',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: 'Error',
+        description: 'La imagen no puede superar 5MB',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `blog-${Date.now()}.${fileExt}`;
+      const filePath = `blog-images/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('project-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('project-images')
+        .getPublicUrl(filePath);
+
+      setValue('image_url', publicUrl);
+      setImagePreview(publicUrl);
+
+      toast({
+        title: 'Imagen subida',
+        description: 'La imagen se ha subido correctamente',
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Error',
+        description: error.message || 'No se pudo subir la imagen',
+        variant: 'destructive',
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setValue('image_url', '');
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -347,15 +420,75 @@ ${hashtags}`;
             </div>
 
             <div>
-              <Label htmlFor="image_url">URL de Imagen</Label>
-              <Input
-                id="image_url"
-                {...register('image_url')}
-                placeholder="https://ejemplo.com/imagen.jpg"
-              />
-              {errors.image_url && (
-                <p className="text-sm text-destructive mt-1">{errors.image_url.message}</p>
-              )}
+              <Label>Imagen de Portada</Label>
+              <div className="mt-2 space-y-4">
+                {/* Image preview */}
+                {imagePreview && (
+                  <div className="relative inline-block">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="max-w-xs h-40 object-cover rounded-lg border"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute -top-2 -right-2 h-6 w-6"
+                      onClick={handleRemoveImage}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+
+                {/* Upload button */}
+                <div className="flex gap-3">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                    id="image-upload"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? (
+                      <>Subiendo...</>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 mr-2" />
+                        Subir imagen
+                      </>
+                    )}
+                  </Button>
+                  
+                  {!imagePreview && (
+                    <div className="flex-1">
+                      <Input
+                        id="image_url"
+                        {...register('image_url')}
+                        placeholder="O pega una URL: https://ejemplo.com/imagen.jpg"
+                        onChange={(e) => {
+                          setValue('image_url', e.target.value);
+                          if (e.target.value) {
+                            setImagePreview(e.target.value);
+                          }
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {errors.image_url && (
+                  <p className="text-sm text-destructive">{errors.image_url.message}</p>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>
