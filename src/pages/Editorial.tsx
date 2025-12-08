@@ -354,10 +354,9 @@ const Editorial = () => {
                 className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                <Link to="/tienda" className="inline-flex items-center gap-2">
                   Descubrir nuestro catálogo
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
