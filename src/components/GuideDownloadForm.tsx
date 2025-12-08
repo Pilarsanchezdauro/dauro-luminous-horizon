@@ -115,7 +115,7 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
         </h3>
       </div>
       <p className="text-muted-foreground mb-6">
-        Introduce tu nombre y email para recibir la guía de 23 páginas con todos los consejos.
+        Introduce tu nombre y email para recibir la guía completa con todos los consejos.
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
