@@ -22,7 +22,8 @@ const estilos = [
   { id: 'fotografico', label: 'Fotográfico', icon: '📷' },
   { id: 'abstracto', label: 'Abstracto', icon: '🌀' },
   { id: 'vintage', label: 'Vintage', icon: '📚' },
-  { id: 'dark-gotico', label: 'Dark/Gótico', icon: '🦇' }
+  { id: 'dark-gotico', label: 'Dark/Gótico', icon: '🦇' },
+  { id: 'bauhaus', label: 'Bauhaus', icon: '🔷' }
 ];
 
 const generos = [
