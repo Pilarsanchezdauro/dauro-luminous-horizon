@@ -461,7 +461,7 @@ const Index = () => {
             <Link to="/servicios">
               <Button 
                 size="lg" 
-                className="text-sm uppercase tracking-wider px-12 py-6 bg-accent text-white hover:bg-accent/90 transition-all"
+                className="text-sm uppercase tracking-wider px-12 py-6 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
               >
                 Contáctanos
               </Button>
