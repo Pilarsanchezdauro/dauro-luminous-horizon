@@ -202,7 +202,7 @@ const Blog = () => {
                     alt={`${featuredPost.title} - Evento cultural en Granada`}
                     width="1200"
                     height="630"
-                    className="w-full h-full object-cover object-top"
+                    className={`w-full h-full object-cover ${featuredPost.slug === 'generador-portadas-gratis-ia' ? 'object-left' : 'object-top'}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
