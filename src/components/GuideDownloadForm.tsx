@@ -44,8 +44,17 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
     setIsSubmitting(true);
 
     try {
-      // Track the download request in analytics
-      await supabase.from("analytics_events").insert({
+      // Trigger download first (most important action)
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = guideTitle.replace(/\s+/g, "-").toLowerCase() + ".pdf";
+      link.target = "_self";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Track the download request in analytics (non-blocking, fire and forget)
+      supabase.from("analytics_events").insert({
         event_type: "guide_download",
         event_name: "guide_download_request",
         event_category: "lead_generation",
@@ -56,14 +65,6 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
           guide_title: guideTitle,
         },
       });
-
-      // Trigger download
-      const link = document.createElement("a");
-      link.href = pdfUrl;
-      link.download = guideTitle.replace(/\s+/g, "-").toLowerCase() + ".pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
 
       setIsDownloaded(true);
       toast({
