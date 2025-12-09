@@ -44,7 +44,27 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
     setIsSubmitting(true);
 
     try {
-      // Trigger download using window.open to avoid navigation issues
+      // Submit to Formspree
+      const formspreeResponse = await fetch("https://formspree.io/f/xdkqwndg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          nombre,
+          email,
+          guide_title: guideTitle,
+          page_url: window.location.href,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (!formspreeResponse.ok) {
+        throw new Error("Error al enviar el formulario");
+      }
+
+      // Trigger download after successful form submission
       window.open(pdfUrl, "_blank");
 
       // Track the download request in analytics (non-blocking, fire and forget)
