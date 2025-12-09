@@ -64,8 +64,13 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
         throw new Error("Error al enviar el formulario");
       }
 
-      // Trigger download after successful form submission
-      window.open(pdfUrl, "_blank");
+      // Trigger direct download after successful form submission
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = guideTitle.replace(/\s+/g, "-").toLowerCase() + ".pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
       // Track the download request in analytics (non-blocking, fire and forget)
       supabase.from("analytics_events").insert({
