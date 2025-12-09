@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, BookOpen, Film, Brain, Palette, Users, Target, Sparkles, TrendingUp } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
@@ -85,26 +85,143 @@ const GrupoDauro = () => {
         />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
-          <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                Desde el año 2000, Grupo Cultural Dauro impulsa la creación, la edición y la innovación cultural desde una vocación clara: unir la herencia artística con la tecnología del futuro.
+          <div className="max-w-5xl mx-auto">
+            
+            {/* Introducción destacada */}
+            <div className="text-center mb-16">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Desde el año 2000, <span className="text-primary font-semibold">Grupo Cultural Dauro</span> impulsa la creación, la edición y la innovación cultural desde una vocación clara: unir la herencia artística con la tecnología del futuro.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Nacimos como una editorial independiente con una mirada abierta al arte, la literatura y el pensamiento contemporáneo. Con el tiempo, nos hemos convertido en un grupo creativo multidisciplinar que abarca la edición literaria, la producción audiovisual, la dirección técnica de guion y el desarrollo de proyectos basados en inteligencia artificial.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Con más de 1.000 obras publicadas, nuestra labor editorial ha consolidado un catálogo diverso y exigente que incluye narrativa, poesía, ensayo, investigación y colecciones especializadas. Hemos realizado más de 200 proyectos web, producido más de 300 booktrailers, desarrollado más de 400 avatares y proyectos de branding, y elaborado más de 5.000 informes técnicos. A lo largo de estas dos décadas, las publicaciones de Dauro y sus autores han sido reconocidos con numerosos galardones, entre ellos el Premio Andalucía de la Crítica en sus distintas modalidades, reafirmando nuestro compromiso con la excelencia literaria.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                El grupo está liderado por profesionales de prestigio internacional, creadores y editores premiados y reconocidos por su aportación al pensamiento y la cultura, que combinan sensibilidad artística, conocimiento técnico y visión innovadora.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Hoy, Dauro continúa expandiendo su alcance: producimos obras audiovisuales generadas mediante IA, desarrollamos sistemas de análisis y catalogación cultural, y diseñamos soluciones de comunicación que combinan creatividad, precisión y belleza.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
-                Nuestro propósito no ha cambiado: dar forma a las ideas, elevar la palabra y convertir la cultura en una experiencia viva, inteligente y transformadora.
-              </p>
+            </div>
+
+            {/* Sección: Nuestra Historia */}
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-2xl border border-primary/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-primary/20 rounded-xl">
+                    <BookOpen className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-playfair font-bold text-foreground">Nuestros Orígenes</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Nacimos como una editorial independiente con una mirada abierta al arte, la literatura y el pensamiento contemporáneo. Con el tiempo, nos hemos convertido en un grupo creativo multidisciplinar.
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-accent/5 to-accent/10 p-8 rounded-2xl border border-accent/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-accent/20 rounded-xl">
+                    <TrendingUp className="w-6 h-6 text-accent-foreground" />
+                  </div>
+                  <h3 className="text-xl font-playfair font-bold text-foreground">Evolución Constante</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Abarcamos la edición literaria, la producción audiovisual, la dirección técnica de guion y el desarrollo de proyectos basados en inteligencia artificial.
+                </p>
+              </div>
+            </div>
+
+            {/* Sección: Lo que hacemos - 4 pilares */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-playfair font-bold text-center mb-10 text-foreground">
+                Nuestras Áreas de Actividad
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="group p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <BookOpen className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Edición Literaria</h4>
+                  <p className="text-sm text-muted-foreground">Narrativa, poesía, ensayo, investigación y colecciones especializadas.</p>
+                </div>
+                
+                <div className="group p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Film className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Producción Audiovisual</h4>
+                  <p className="text-sm text-muted-foreground">Booktrailers, cortometrajes y contenido multimedia de alta calidad.</p>
+                </div>
+                
+                <div className="group p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Palette className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Diseño & Branding</h4>
+                  <p className="text-sm text-muted-foreground">Identidad visual, portadas de libros y proyectos creativos.</p>
+                </div>
+                
+                <div className="group p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Brain className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Inteligencia Artificial</h4>
+                  <p className="text-sm text-muted-foreground">Sistemas de análisis, catalogación cultural y soluciones innovadoras.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Cifras destacadas */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+              <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
+                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+1.000</p>
+                <p className="text-sm text-muted-foreground mt-1">Obras Publicadas</p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
+                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+200</p>
+                <p className="text-sm text-muted-foreground mt-1">Proyectos Web</p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
+                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+300</p>
+                <p className="text-sm text-muted-foreground mt-1">Booktrailers</p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
+                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+5.000</p>
+                <p className="text-sm text-muted-foreground mt-1">Informes Técnicos</p>
+              </div>
+            </div>
+
+            {/* Sección: Liderazgo y reconocimiento */}
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-primary/10 rounded-xl">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-playfair font-bold text-foreground">Liderazgo Reconocido</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  El grupo está liderado por profesionales de prestigio internacional, creadores y editores premiados y reconocidos por su aportación al pensamiento y la cultura, que combinan sensibilidad artística, conocimiento técnico y visión innovadora.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Las publicaciones de Dauro y sus autores han sido reconocidos con numerosos galardones, entre ellos el <span className="text-primary font-medium">Premio Andalucía de la Crítica</span> en sus distintas modalidades.
+                </p>
+              </div>
+              
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-primary/10 rounded-xl">
+                    <Sparkles className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-playfair font-bold text-foreground">Mirando al Futuro</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Hoy, Dauro continúa expandiendo su alcance: producimos obras audiovisuales generadas mediante IA, desarrollamos sistemas de análisis y catalogación cultural, y diseñamos soluciones de comunicación que combinan creatividad, precisión y belleza.
+                </p>
+              </div>
+            </div>
+
+            {/* Propósito */}
+            <div className="relative mb-16 py-12 px-8 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl border border-primary/20 overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+              <div className="relative text-center max-w-3xl mx-auto">
+                <Target className="w-10 h-10 text-primary mx-auto mb-4" />
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">Nuestro Propósito</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed italic">
+                  "Dar forma a las ideas, elevar la palabra y convertir la cultura en una experiencia viva, inteligente y transformadora."
+                </p>
+              </div>
             </div>
 
             {/* Destacado de trayectoria */}
