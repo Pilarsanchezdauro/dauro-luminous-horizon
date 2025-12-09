@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Video, FileText, Edit, Image, Zap, BookOpen } from "lucide-react";
+import { Video, FileText, Edit, Image, Zap, BookOpen, Music, Palette, BadgeDollarSign, Clapperboard } from "lucide-react";
 import ServicesContactForm from "@/components/ServicesContactForm";
 import mascotLogo from "@/assets/mascot.png";
 import heroDauro from "@/assets/hero-dauro.jpg";
@@ -197,6 +197,126 @@ Incluye:
 — Desarrollo de metodologías híbridas entre arte y ciencia de datos.
 
 Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expanda.`,
+    },
+    {
+      id: "tasacion-arte",
+      icon: <BadgeDollarSign className="h-12 w-12 text-primary mb-4" />,
+      title: "Tasación y Valoración de Obras de Arte",
+      subtitle: "El valor justo de cada obra.",
+      hacemos: [
+        "Tasación pericial de obras",
+        "Valoración de colecciones",
+        "Informes técnicos certificados",
+        "Autenticación de piezas",
+        "Asesoría en adquisiciones",
+      ],
+      aplicaciones: [
+        "Seguros y herencias",
+        "Compraventa de arte",
+        "Colecciones privadas",
+        "Instituciones culturales",
+      ],
+      masInfo: `Ofrecemos servicios profesionales de tasación y valoración de obras de arte con rigor técnico y conocimiento del mercado.
+Nuestros peritos cualificados emiten informes certificados reconocidos por aseguradoras, entidades financieras y organismos oficiales.
+
+Incluye:
+— Tasación pericial de pintura, escultura y obra gráfica.
+— Valoración integral de colecciones artísticas.
+— Informes técnicos para seguros, herencias y donaciones.
+— Autenticación y certificación de obras.
+— Asesoramiento en compraventa y adquisición de arte.
+
+Cada valoración combina análisis técnico, conocimiento histórico y visión de mercado para establecer el valor justo de cada pieza.`,
+    },
+    {
+      id: "produccion-musical",
+      icon: <Music className="h-12 w-12 text-primary mb-4" />,
+      title: "Producción Musical",
+      subtitle: "Del concepto al sonido final.",
+      hacemos: [
+        "Producción de álbumes y singles",
+        "Composición y arreglos",
+        "Grabación profesional",
+        "Mezcla y masterización",
+        "Distribución digital",
+      ],
+      aplicaciones: [
+        "Artistas emergentes",
+        "Bandas sonoras",
+        "Proyectos culturales",
+        "Música para audiovisual",
+      ],
+      masInfo: `En Free Dauro Productions desarrollamos proyectos musicales completos, desde la idea inicial hasta la distribución final.
+Trabajamos con artistas y proyectos culturales que buscan una producción profesional con identidad propia.
+
+Incluye:
+— Producción integral de álbumes, EP y singles.
+— Composición original y arreglos musicales.
+— Grabación en estudio profesional.
+— Mezcla, masterización y postproducción de audio.
+— Gestión de distribución en plataformas digitales.
+
+Cada proyecto musical recibe un tratamiento artístico y técnico que respeta la visión del artista mientras alcanza los estándares de calidad profesional.`,
+    },
+    {
+      id: "gestion-arte",
+      icon: <Palette className="h-12 w-12 text-primary mb-4" />,
+      title: "Gestión y Venta de Obras de Arte",
+      subtitle: "Conectamos arte y coleccionistas.",
+      hacemos: [
+        "Intermediación artística",
+        "Gestión de ventas",
+        "Consignación de obras",
+        "Asesoría a coleccionistas",
+        "Promoción de artistas",
+      ],
+      aplicaciones: [
+        "Galerías y marchantes",
+        "Coleccionistas privados",
+        "Artistas contemporáneos",
+        "Subastas y ferias",
+      ],
+      masInfo: `Facilitamos la conexión entre artistas, coleccionistas y el mercado del arte con un enfoque profesional y transparente.
+Gestionamos la venta de obras con criterio estético, conocimiento del mercado y ética profesional.
+
+Incluye:
+— Intermediación en compraventa de obras de arte.
+— Gestión de consignaciones y depósitos.
+— Asesoramiento a coleccionistas en adquisiciones.
+— Promoción y posicionamiento de artistas.
+— Participación en ferias, subastas y eventos del sector.
+
+Nuestro objetivo es generar valor para artistas y coleccionistas, construyendo relaciones duraderas basadas en la confianza y el conocimiento.`,
+    },
+    {
+      id: "produccion-audiovisual",
+      icon: <Clapperboard className="h-12 w-12 text-primary mb-4" />,
+      title: "Producción Audiovisual",
+      subtitle: "Historias que cobran vida.",
+      hacemos: [
+        "Producción de cortometrajes",
+        "Documentales culturales",
+        "Videoclips musicales",
+        "Contenido corporativo",
+        "Postproducción profesional",
+      ],
+      aplicaciones: [
+        "Festivales de cine",
+        "Proyectos culturales",
+        "Instituciones y empresas",
+        "Artistas y músicos",
+      ],
+      masInfo: `En Free Dauro Productions desarrollamos proyectos audiovisuales con visión artística y rigor técnico.
+Desde la preproducción hasta la entrega final, cada proyecto recibe un tratamiento cinematográfico profesional.
+
+Incluye:
+— Producción de cortometrajes de ficción y documental.
+— Realización de documentales culturales e históricos.
+— Videoclips y contenido visual para artistas.
+— Vídeos corporativos e institucionales.
+— Postproducción, colorimetría y efectos visuales.
+
+Cada producción combina narrativa visual, dirección artística y técnica profesional para crear piezas audiovisuales con identidad y calidad.`,
     },
   ];
 
