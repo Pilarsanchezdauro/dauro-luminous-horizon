@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -128,85 +127,85 @@ const GrupoDauro = () => {
                 Nuestras Áreas de Actividad
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-                <Link to="/editorial" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <BookOpen className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Edición Literaria</h4>
                   <p className="text-xs text-muted-foreground">Narrativa, poesía, ensayo e investigación.</p>
-                </Link>
+                </div>
                 
-                <Link to="/servicios" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <PenTool className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Servicios Editoriales</h4>
                   <p className="text-xs text-muted-foreground">Corrección, maquetación y diseño editorial.</p>
-                </Link>
+                </div>
                 
-                <Link to="/cine" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Film className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Producción Audiovisual</h4>
                   <p className="text-xs text-muted-foreground">Booktrailers, cortometrajes y multimedia.</p>
-                </Link>
+                </div>
                 
-                <Link to="/musica" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Music className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Producción Musical</h4>
                   <p className="text-xs text-muted-foreground">Composición, grabación y producción musical.</p>
-                </Link>
+                </div>
                 
-                <Link to="/servicios" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Palette className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Diseño & Branding</h4>
                   <p className="text-xs text-muted-foreground">Identidad visual y proyectos creativos.</p>
-                </Link>
+                </div>
                 
-                <Link to="/arte" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Frame className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Representación Artística</h4>
                   <p className="text-xs text-muted-foreground">Gestión y representación de obras de arte.</p>
-                </Link>
+                </div>
                 
-                <Link to="/servicios" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <FileText className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Informes Técnicos</h4>
                   <p className="text-xs text-muted-foreground">Documentación técnica de alto nivel.</p>
-                </Link>
+                </div>
                 
-                <Link to="/arte" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Search className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Peritaje de Arte</h4>
                   <p className="text-xs text-muted-foreground">Autenticación y valoración de obras.</p>
-                </Link>
+                </div>
                 
-                <Link to="/arte" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Gem className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Tasación de Arte</h4>
                   <p className="text-xs text-muted-foreground">Valoración económica de obras de arte.</p>
-                </Link>
+                </div>
                 
-                <Link to="/ia" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer">
+                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Brain className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Inteligencia Artificial</h4>
                   <p className="text-xs text-muted-foreground">Análisis y catalogación cultural con IA.</p>
-                </Link>
+                </div>
               </div>
             </div>
 
