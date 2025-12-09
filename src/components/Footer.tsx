@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Facebook, Instagram, Twitter, Youtube, Pin } from "lucide-react";
+import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -159,6 +159,16 @@ const Footer = () => {
                   aria-label="Youtube"
                 >
                   <Youtube className="h-5 w-5" />
+                </a>
+                <a
+                  href="/feed.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/70 hover:text-primary transition-colors"
+                  aria-label="RSS Feed"
+                  title="Suscríbete vía RSS"
+                >
+                  <Rss className="h-5 w-5" />
                 </a>
               </div>
             </div>
