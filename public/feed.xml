@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" 
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Grupo Cultural Dauro - Blog</title>
+    <link>https://grupodauro.com</link>
+    <description>Arte, Literatura, Cine e Inteligencia Artificial - Últimas publicaciones del blog de Grupo Cultural Dauro</description>
+    <language>es-ES</language>
+    <lastBuildDate>Mon, 09 Dec 2025 00:00:00 GMT</lastBuildDate>
+    <pubDate>Mon, 09 Dec 2025 00:00:00 GMT</pubDate>
+    <ttl>60</ttl>
+    <atom:link href="https://grupodauro.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://grupodauro.com/favicon.png</url>
+      <title>Grupo Cultural Dauro</title>
+      <link>https://grupodauro.com</link>
+      <width>32</width>
+      <height>32</height>
+    </image>
+    <copyright>© 2025 Grupo Cultural Dauro. Todos los derechos reservados.</copyright>
+    <managingEditor>info@grupodauro.com (Grupo Cultural Dauro)</managingEditor>
+    <webMaster>info@grupodauro.com (Grupo Cultural Dauro)</webMaster>
+    <category>Cultura</category>
+    <category>Literatura</category>
+    <category>Arte</category>
+    <docs>https://www.rssboard.org/rss-specification</docs>
+    <item>
+      <title>Crea Portadas Gratis con IA: Visualiza tu libro antes de publicar</title>
+      <link>https://grupodauro.com/blog/generador-portadas-gratis-ia</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/generador-portadas-gratis-ia</guid>
+      <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Grupo Dauro)</author>
+      <category>Consejos para Autores</category>
+      <description>Descubre nuestro generador gratuito de portadas con inteligencia artificial. Crea diseños profesionales para tu libro en segundos y visualiza cómo quedará antes de dar el paso definitivo.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-generador-portadas-gratis.png" alt="Crea Portadas Gratis con IA: Visualiza tu libro antes de publicar" style="max-width:100%;height:auto;" />
+        <p>Descubre nuestro generador gratuito de portadas con inteligencia artificial. Crea diseños profesionales para tu libro en segundos y visualiza cómo quedará antes de dar el paso definitivo.</p>
+        <p><a href="https://grupodauro.com/blog/generador-portadas-gratis-ia">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-generador-portadas-gratis.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-generador-portadas-gratis.png" />
+    </item>
+    <item>
+      <title>El Arte es Navidad: nuestra canción original para estas fiestas</title>
+      <link>https://grupodauro.com/blog/el-arte-es-navidad-cancion</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/el-arte-es-navidad-cancion</guid>
+      <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Grupo Dauro)</author>
+      <category>Música</category>
+      <description>Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-el-arte-es-navidad.png" alt="El Arte es Navidad: nuestra canción original para estas fiestas" style="max-width:100%;height:auto;" />
+        <p>Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.</p>
+        <p><a href="https://grupodauro.com/blog/el-arte-es-navidad-cancion">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-el-arte-es-navidad.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-el-arte-es-navidad.png" />
+    </item>
+    <item>
+      <title>Guía Editorial para Autores: lo esencial que debes saber antes de publicar</title>
+      <link>https://grupodauro.com/blog/guia-editorial-para-autores</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/guia-editorial-para-autores</guid>
+      <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Equipo Dauro)</author>
+      <category>Consejos para Autores</category>
+      <description>Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-consejos-autores.png" alt="Guía Editorial para Autores: lo esencial que debes saber antes de publicar" style="max-width:100%;height:auto;" />
+        <p>Publicar un libro es emocionante, pero también exige preparación. En Grupo Dauro recibimos cada año decenas de manuscritos… y casi todos comparten los mismos errores.</p>
+        <p><a href="https://grupodauro.com/blog/guia-editorial-para-autores">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-consejos-autores.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-consejos-autores.png" />
+    </item>
+    <item>
+      <title>Una voz para dos tierras: un viaje poético entre continentes</title>
+      <link>https://grupodauro.com/blog/una-voz-para-dos-tierras-presentaciones</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/una-voz-para-dos-tierras-presentaciones</guid>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Equipo Dauro)</author>
+      <category>Literatura</category>
+      <description>El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-una-voz-dos-tierras.png" alt="Una voz para dos tierras: un viaje poético entre continentes" style="max-width:100%;height:auto;" />
+        <p>El periplo de presentaciones del libro Una voz para dos tierras, de Lorena Avelar, ha sido un auténtico puente entre culturas.</p>
+        <p><a href="https://grupodauro.com/blog/una-voz-para-dos-tierras-presentaciones">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-una-voz-dos-tierras.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-una-voz-dos-tierras.png" />
+    </item>
+    <item>
+      <title>Presentación de Latido. Apasionadamente vuestro en el Cuarto Real de Santo Domingo</title>
+      <link>https://grupodauro.com/blog/presentacion-latido-carmen-alcaide</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/presentacion-latido-carmen-alcaide</guid>
+      <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Equipo Dauro)</author>
+      <category>Literatura</category>
+      <description>Granada, 28 de octubre de 2025. Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-latido-presentacion.jpg" alt="Presentación de Latido. Apasionadamente vuestro en el Cuarto Real de Santo Domingo" style="max-width:100%;height:auto;" />
+        <p>Granada, 28 de octubre de 2025. Ayer presentamos en el Cuarto Real de Santo Domingo Latido. Apasionadamente vuestro, la nueva novela de Carmen Alcaide.</p>
+        <p><a href="https://grupodauro.com/blog/presentacion-latido-carmen-alcaide">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-latido-presentacion.jpg" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-latido-presentacion.jpg" />
+    </item>
+    <item>
+      <title>El Hidalgo Don Rodrigo de Cervantes: de las páginas al guion</title>
+      <link>https://grupodauro.com/blog/el-hidalgo-don-rodrigo-guion</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/el-hidalgo-don-rodrigo-guion</guid>
+      <pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Grupo Dauro)</author>
+      <category>Cine</category>
+      <description>Después de más de un año de escritura, documentación y desarrollo creativo, Grupo Dauro se complace en anunciar que el guion de la serie está casi terminado.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-don-rodrigo.png" alt="El Hidalgo Don Rodrigo de Cervantes: de las páginas al guion" style="max-width:100%;height:auto;" />
+        <p>Después de más de un año de escritura, documentación y desarrollo creativo, Grupo Dauro se complace en anunciar que el guion de la serie está casi terminado.</p>
+        <p><a href="https://grupodauro.com/blog/el-hidalgo-don-rodrigo-guion">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-don-rodrigo.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-don-rodrigo.png" />
+    </item>
+    <item>
+      <title>Grupo Dauro crea los NFTs oficiales de los últimos partidos de la Selección Argentina</title>
+      <link>https://grupodauro.com/blog/nfts-oficiales-seleccion-argentina</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/nfts-oficiales-seleccion-argentina</guid>
+      <pubDate>Thu, 30 Oct 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Grupo Dauro)</author>
+      <category>Arte</category>
+      <description>El arte, la innovación y el fútbol argentino se unen en un proyecto sin precedentes.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-nft-argentina.png" alt="Grupo Dauro crea los NFTs oficiales de los últimos partidos de la Selección Argentina" style="max-width:100%;height:auto;" />
+        <p>El arte, la innovación y el fútbol argentino se unen en un proyecto sin precedentes.</p>
+        <p><a href="https://grupodauro.com/blog/nfts-oficiales-seleccion-argentina">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-nft-argentina.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-nft-argentina.png" />
+    </item>
+    <item>
+      <title>IA con identidad estética: la apuesta de Grupo Dauro IA</title>
+      <link>https://grupodauro.com/blog/ia-con-identidad-estetica</link>
+      <guid isPermaLink="true">https://grupodauro.com/blog/ia-con-identidad-estetica</guid>
+      <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
+      <author>info@grupodauro.com (Grupo Dauro)</author>
+      <category>Inteligencia Artificial</category>
+      <description>En un momento donde todo se acelera, apostamos por crear con intención, con belleza, con estructura.</description>
+      <content:encoded><![CDATA[
+        <img src="https://grupodauro.com/og-ia-con-arte.png" alt="IA con identidad estética: la apuesta de Grupo Dauro IA" style="max-width:100%;height:auto;" />
+        <p>En un momento donde todo se acelera, apostamos por crear con intención, con belleza, con estructura.</p>
+        <p><a href="https://grupodauro.com/blog/ia-con-identidad-estetica">Leer artículo completo en Grupo Cultural Dauro</a></p>
+      ]]></content:encoded>
+      <media:content url="https://grupodauro.com/og-ia-con-arte.png" medium="image" />
+      <media:thumbnail url="https://grupodauro.com/og-ia-con-arte.png" />
+    </item>
+  </channel>
+</rss>

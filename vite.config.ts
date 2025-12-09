@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { sitemapPlugin } from "./scripts/vite-plugin-sitemap";
+import { rssFeedPlugin } from "./scripts/vite-plugin-rss";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -14,6 +15,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     mode === "production" && sitemapPlugin(),
+    mode === "production" && rssFeedPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
