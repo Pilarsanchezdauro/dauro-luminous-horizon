@@ -195,8 +195,8 @@ const GrupoDauro = () => {
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Gem className="w-5 h-5 text-primary" />
                   </div>
-                  <h4 className="font-semibold text-foreground mb-1 text-sm">Peritaje de Joyas</h4>
-                  <p className="text-xs text-muted-foreground">Tasación y certificación de joyería.</p>
+                  <h4 className="font-semibold text-foreground mb-1 text-sm">Tasación de Arte</h4>
+                  <p className="text-xs text-muted-foreground">Valoración económica de obras de arte.</p>
                 </div>
                 
                 <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
