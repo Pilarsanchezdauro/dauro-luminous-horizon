@@ -54,6 +54,18 @@ const BlogPost = () => {
     return <NotFound />;
   }
 
+  const getCategoryLabel = (category: string) => {
+    const categoryMap: Record<string, string> = {
+      'literatura': 'Literatura',
+      'arte': 'Arte',
+      'cine': 'Cine',
+      'ia': 'Inteligencia Artificial',
+      'consejos': 'Consejos para Autores',
+      'musica': 'Música'
+    };
+    return categoryMap[category] || category;
+  };
+
   const getShareUrl = () => {
     // Use the production domain or current origin if in production
     const baseUrl = window.location.hostname.includes('lovableproject.com') 
@@ -230,6 +242,8 @@ const BlogPost = () => {
       <Helmet>
         <title>{post.title} | Grupo Dauro</title>
         <meta name="description" content={post.excerpt} />
+        <meta name="author" content={post.author} />
+        <link rel="canonical" href={getShareUrl()} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
@@ -245,6 +259,7 @@ const BlogPost = () => {
         <meta property="og:site_name" content="Grupo Cultural Dauro" />
         <meta property="article:published_time" content={post.date} />
         <meta property="article:author" content={post.author} />
+        <meta property="article:section" content={getCategoryLabel(post.category)} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -253,6 +268,37 @@ const BlogPost = () => {
         <meta name="twitter:description" content={post.excerpt} />
         <meta name="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
         <meta name="twitter:image:alt" content={post.title} />
+        
+        {/* Structured Data / JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": getAbsoluteImageUrl(post.ogImage || post.image),
+            "author": {
+              "@type": "Organization",
+              "name": post.author,
+              "url": "https://grupodauro.com"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Grupo Cultural Dauro",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://grupodauro.com/og-logo.png"
+              }
+            },
+            "datePublished": post.date,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": getShareUrl()
+            },
+            "articleSection": getCategoryLabel(post.category),
+            "inLanguage": "es-ES"
+          })}
+        </script>
       </Helmet>
       <Navigation />
       <main className="pt-32 pb-16">
