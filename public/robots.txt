@@ -1,27 +1,145 @@
+# ============================================
 # Grupo Cultural Dauro - Robots.txt
-# Configuración para buscadores
+# https://grupodauro.com
+# Última actualización: Diciembre 2025
+# ============================================
 
+# Directivas para todos los crawlers
 User-agent: *
 Allow: /
 
-# Páginas principales
+# Páginas principales (contenido prioritario)
 Allow: /grupo-dauro/
+Allow: /grupo-dauro/editorial
+Allow: /grupo-dauro/arte
+Allow: /grupo-dauro/cine
+Allow: /grupo-dauro/ia
 Allow: /blog/
 Allow: /shop/
+Allow: /tienda/
+Allow: /servicios/
+Allow: /portafolio/
+Allow: /contacto/
 
-# No indexar páginas de administración
+# Recursos estáticos
+Allow: /assets/
+Allow: /products/
+Allow: /projects/
+Allow: /og-*.png
+Allow: /og-*.jpg
+
+# Páginas a no indexar
 Disallow: /admin/
 Disallow: /auth/
-
-# No indexar páginas privadas
 Disallow: /gracias/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*
 
-# Sitemaps
-Sitemap: https://grupodauro.com/sitemap.xml
-Sitemap: https://grupodauro.com/feed.xml
+# Delay de rastreo (cortesía para el servidor)
+Crawl-delay: 1
 
-# Rastreo específico para imágenes
+# ============================================
+# Directivas específicas para Google
+# ============================================
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
 User-agent: Googlebot-Image
 Allow: /assets/
 Allow: /products/
+Allow: /projects/
+Allow: /og-*.png
+Allow: /og-*.jpg
 Allow: /public/
+
+User-agent: Googlebot-News
+Allow: /blog/
+
+# ============================================
+# Directivas para Bing
+# ============================================
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: MSNBot
+Allow: /
+Crawl-delay: 1
+
+# ============================================
+# Directivas para redes sociales
+# ============================================
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ============================================
+# Bloquear bots no deseados / scrapers
+# ============================================
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SearchmetricsBot
+Disallow: /
+
+# ============================================
+# Bloquear bots de IA que extraen contenido
+# ============================================
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ============================================
+# Sitemaps
+# ============================================
+Sitemap: https://grupodauro.com/sitemap.xml
+
+# ============================================
+# Host canónico
+# ============================================
+Host: https://grupodauro.com
