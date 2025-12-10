@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss } from "lucide-react";
+import logoNega from "@/assets/logo-nega.png";
+import logoBpwMadrid from "@/assets/logo-bpw-madrid.png";
+import logoIwfSpain from "@/assets/logo-iwf-spain.png";
 
 const Footer = () => {
   return (
@@ -193,6 +196,34 @@ const Footer = () => {
                 Archivo histórico
               </Link>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Institutional Strip */}
+      <div className="bg-background border-t border-border/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            <div className="flex items-center gap-6 md:gap-8">
+              <img 
+                src={logoNega} 
+                alt="NEGA - Análisis forenses" 
+                className="h-10 md:h-12 w-auto object-contain"
+              />
+              <img 
+                src={logoBpwMadrid} 
+                alt="BPW Madrid - Asociación de Empresarias y Profesionales" 
+                className="h-10 md:h-12 w-auto object-contain"
+              />
+              <img 
+                src={logoIwfSpain} 
+                alt="IWF Spain - International Women's Forum" 
+                className="h-10 md:h-12 w-auto object-contain"
+              />
+            </div>
+            <p className="text-xs md:text-sm text-muted-foreground text-center md:text-left max-w-md">
+              Grupo Dauro utiliza NEGA® para sus análisis forenses y pertenece a BPW Madrid e IWF Spain.
+            </p>
           </div>
         </div>
       </div>
