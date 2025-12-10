@@ -201,7 +201,7 @@ const Footer = () => {
       </div>
 
       {/* Institutional Strip */}
-      <div className="bg-background border-t border-border/30">
+      <div className="bg-card border-t border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
             <div className="flex items-center gap-6 md:gap-8">
@@ -221,7 +221,7 @@ const Footer = () => {
                 className="h-10 md:h-12 w-auto object-contain"
               />
             </div>
-            <p className="text-xs md:text-sm text-muted-foreground text-center md:text-left max-w-md">
+            <p className="text-xs md:text-sm text-card-foreground/80 text-center md:text-left max-w-md">
               Grupo Dauro utiliza NEGA® para sus análisis forenses y pertenece a BPW Madrid e IWF Spain.
             </p>
           </div>
