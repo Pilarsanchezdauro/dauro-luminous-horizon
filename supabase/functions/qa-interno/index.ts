@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -10,10 +11,86 @@ const SHOPIFY_STOREFRONT_TOKEN = Deno.env.get('SHOPIFY_STOREFRONT_ACCESS_TOKEN')
 const SHOPIFY_STORE_DOMAIN = 'grupo-dauro.myshopify.com';
 const SHOPIFY_API_VERSION = '2025-07';
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 10; // 10 requests per minute
+
 // Configuración de caché
 const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutos
 let productsCache: any = null;
 let cacheTimestamp = 0;
+
+// Rate limiting function
+async function checkRateLimit(ip: string, functionName: string): Promise<{ allowed: boolean; remaining: number }> {
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+  const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const now = new Date();
+  const windowStart = new Date(now.getTime() - RATE_LIMIT_WINDOW_MS);
+
+  // Get or create rate limit record
+  const { data: existing, error: fetchError } = await supabase
+    .from('ai_rate_limits')
+    .select('*')
+    .eq('ip_address', ip)
+    .eq('function_name', functionName)
+    .maybeSingle();
+
+  if (fetchError) {
+    console.error('Error fetching rate limit:', fetchError);
+    return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW }; // Allow on error
+  }
+
+  if (!existing) {
+    // Create new record
+    await supabase.from('ai_rate_limits').insert({
+      ip_address: ip,
+      function_name: functionName,
+      request_count: 1,
+      window_start: now.toISOString()
+    });
+    return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - 1 };
+  }
+
+  const recordWindowStart = new Date(existing.window_start);
+
+  // Check if window has expired
+  if (recordWindowStart < windowStart) {
+    // Reset window
+    await supabase
+      .from('ai_rate_limits')
+      .update({ request_count: 1, window_start: now.toISOString() })
+      .eq('id', existing.id);
+    return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - 1 };
+  }
+
+  // Check if limit exceeded
+  if (existing.request_count >= MAX_REQUESTS_PER_WINDOW) {
+    return { allowed: false, remaining: 0 };
+  }
+
+  // Increment counter
+  await supabase
+    .from('ai_rate_limits')
+    .update({ request_count: existing.request_count + 1 })
+    .eq('id', existing.id);
+
+  return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - existing.request_count - 1 };
+}
+
+// Get client IP from request
+function getClientIP(req: Request): string {
+  const forwarded = req.headers.get('x-forwarded-for');
+  if (forwarded) {
+    return forwarded.split(',')[0].trim();
+  }
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp;
+  }
+  return 'unknown';
+}
 
 // Función para obtener productos de Shopify (con caché)
 async function fetchShopifyProducts(): Promise<{ products: any[], fromCache: boolean }> {
@@ -82,6 +159,31 @@ serve(async (req) => {
   }
 
   try {
+    // Check rate limit
+    const clientIP = getClientIP(req);
+    console.log('Client IP:', clientIP);
+    
+    const { allowed, remaining } = await checkRateLimit(clientIP, 'qa-interno');
+    
+    if (!allowed) {
+      console.log('Rate limit exceeded for IP:', clientIP);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Límite de consultas excedido. Por favor, espera un momento antes de intentar de nuevo.',
+          rateLimited: true
+        }),
+        {
+          status: 429,
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json',
+            'X-RateLimit-Remaining': '0',
+            'Retry-After': '60'
+          },
+        },
+      );
+    }
+
     const { query, messages = [] } = await req.json();
     console.log('Consulta interna recibida:', query);
     console.log('Historial de mensajes:', messages.length);
@@ -315,7 +417,11 @@ Usa el siguiente contexto para responder:\n\n${contexto}\n\nSi la pregunta no es
         }
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'X-RateLimit-Remaining': remaining.toString()
+        },
       },
     );
   } catch (error) {
