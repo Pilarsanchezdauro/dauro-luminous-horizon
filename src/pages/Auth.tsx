@@ -10,6 +10,35 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { Check, X } from 'lucide-react';
+
+// Password validation schema
+const validatePassword = (password: string) => {
+  return {
+    minLength: password.length >= 8,
+    hasUppercase: /[A-Z]/.test(password),
+    hasLowercase: /[a-z]/.test(password),
+    hasNumber: /[0-9]/.test(password),
+    hasSymbol: /[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\;'/`~]/.test(password),
+  };
+};
+
+const isPasswordValid = (password: string) => {
+  const validation = validatePassword(password);
+  return Object.values(validation).every(Boolean);
+};
+
+interface PasswordRequirementProps {
+  met: boolean;
+  text: string;
+}
+
+const PasswordRequirement = ({ met, text }: PasswordRequirementProps) => (
+  <div className={`flex items-center gap-2 text-sm ${met ? 'text-green-600' : 'text-muted-foreground'}`}>
+    {met ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+    <span>{text}</span>
+  </div>
+);
 
 export default function Auth() {
   const [email, setEmail] = useState('');
@@ -19,9 +48,13 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [isRecoveryMode, setIsRecoveryMode] = useState(false);
+  const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
   const { signIn, signUp, resetPassword, user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const passwordValidation = validatePassword(password);
+  const newPasswordValidation = validatePassword(newPassword);
 
   useEffect(() => {
     // Check if we're in password recovery mode
@@ -54,6 +87,16 @@ export default function Auth() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isPasswordValid(password)) {
+      toast({
+        title: "Contraseña débil",
+        description: "La contraseña debe cumplir todos los requisitos de seguridad",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setLoading(true);
     const { error } = await signUp(email, password);
     if (!error) {
@@ -84,10 +127,10 @@ export default function Auth() {
       return;
     }
 
-    if (newPassword.length < 6) {
+    if (!isPasswordValid(newPassword)) {
       toast({
-        title: "Error",
-        description: "La contraseña debe tener al menos 6 caracteres",
+        title: "Contraseña débil",
+        description: "La contraseña debe cumplir todos los requisitos de seguridad",
         variant: "destructive",
       });
       return;
@@ -142,8 +185,16 @@ export default function Auth() {
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       required
-                      minLength={6}
                     />
+                    {newPassword && (
+                      <div className="mt-2 p-3 bg-muted rounded-lg space-y-1">
+                        <PasswordRequirement met={newPasswordValidation.minLength} text="Mínimo 8 caracteres" />
+                        <PasswordRequirement met={newPasswordValidation.hasUppercase} text="Una letra mayúscula" />
+                        <PasswordRequirement met={newPasswordValidation.hasLowercase} text="Una letra minúscula" />
+                        <PasswordRequirement met={newPasswordValidation.hasNumber} text="Un número" />
+                        <PasswordRequirement met={newPasswordValidation.hasSymbol} text="Un símbolo (!@#$%...)" />
+                      </div>
+                    )}
                   </div>
                   
                   <div className="space-y-2">
@@ -154,11 +205,13 @@ export default function Auth() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       required
-                      minLength={6}
                     />
+                    {confirmPassword && newPassword !== confirmPassword && (
+                      <p className="text-sm text-destructive">Las contraseñas no coinciden</p>
+                    )}
                   </div>
                   
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={loading || !isPasswordValid(newPassword) || newPassword !== confirmPassword}>
                     {loading ? 'Actualizando...' : 'Actualizar Contraseña'}
                   </Button>
                 </form>
@@ -261,12 +314,21 @@ export default function Auth() {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onFocus={() => setShowPasswordRequirements(true)}
                         required
-                        minLength={6}
                       />
+                      {showPasswordRequirements && password && (
+                        <div className="mt-2 p-3 bg-muted rounded-lg space-y-1">
+                          <PasswordRequirement met={passwordValidation.minLength} text="Mínimo 8 caracteres" />
+                          <PasswordRequirement met={passwordValidation.hasUppercase} text="Una letra mayúscula" />
+                          <PasswordRequirement met={passwordValidation.hasLowercase} text="Una letra minúscula" />
+                          <PasswordRequirement met={passwordValidation.hasNumber} text="Un número" />
+                          <PasswordRequirement met={passwordValidation.hasSymbol} text="Un símbolo (!@#$%...)" />
+                        </div>
+                      )}
                     </div>
                     
-                    <Button type="submit" className="w-full" disabled={loading}>
+                    <Button type="submit" className="w-full" disabled={loading || !isPasswordValid(password)}>
                       {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
                     </Button>
                   </form>
