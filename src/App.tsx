@@ -51,6 +51,7 @@ import GeneradorPortadas from "./pages/GeneradorPortadas";
 import BookCoverRequests from "./pages/admin/BookCoverRequests";
 import ImageSeoManager from "./pages/admin/ImageSeoManager";
 import Analytics from "./pages/admin/Analytics";
+import AIMonitoring from "./pages/admin/AIMonitoring";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +110,7 @@ const App = () => (
               <Route path="portfolio-inquiries" element={<PortfolioInquiries />} />
               <Route path="image-seo" element={<ImageSeoManager />} />
               <Route path="analytics" element={<Analytics />} />
+              <Route path="ai-monitoring" element={<AIMonitoring />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
