@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3 } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -23,6 +23,11 @@ const menuItems = [
     title: 'Analytics',
     url: '/admin/analytics',
     icon: BarChart3,
+  },
+  {
+    title: 'Monitoreo IA',
+    url: '/admin/ai-monitoring',
+    icon: Bot,
   },
   {
     title: 'Posts del Blog',
