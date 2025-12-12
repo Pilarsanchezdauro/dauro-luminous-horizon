@@ -49,13 +49,15 @@ const pages = [
     description: 'Últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos y novedades sobre IA creativa.',
     image: '/og-logo.png'
   },
+  },
   {
-    path: 'contacto',
-    title: 'Contacto - Grupo Cultural Dauro',
-    description: 'Ponte en contacto con el Grupo Cultural Dauro para proyectos editoriales, artísticos o audiovisuales.',
-    image: '/og-logo.png'
+    path: 'portafolio/jose-carrera',
+    title: 'José Carrera - Cantante | Grupo Cultural Dauro',
+    description: 'Cantante con voz serena y contenida que acompaña y potencia proyectos empresariales mediante canciones y videoclips de alta calidad.',
+    image: '/og-jose-carrera.jpg'
   }
 ];
+
 
 const baseUrl = 'https://grupodauro.com';
 
@@ -79,6 +81,7 @@ function generatePageHTML(page) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${safeTitle} | Grupo Dauro</title>
   <meta name="description" content="${safeDescription}" />
+  <link rel="canonical" href="${baseUrl}/${page.path}" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
