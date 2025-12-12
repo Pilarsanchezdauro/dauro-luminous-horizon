@@ -37,14 +37,14 @@ const categoryLabels = {
   'artistas-pintores': 'Pintores',
 };
 
-// Artist-specific layout component
+// Artist booking agency layout component
 function ArtistLayout({ project, links, galleryImages }: { 
   project: any; 
   links: Array<{ url: string; text: string }>; 
   galleryImages: Array<{ url: string; caption?: string }>;
 }) {
   const Icon = categoryIcons[project.category];
-  const isYoutubeLink = links.length > 0 && links[0].url.includes('youtube');
+  const youtubeLink = links.find(l => l.url.includes('youtube'));
 
   return (
     <>
@@ -57,72 +57,105 @@ function ArtistLayout({ project, links, galleryImages }: {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        {/* Hero Section */}
-        <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-          {/* Background with gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-background z-10" />
-          {project.main_image_url && (
-            <div 
-              className="absolute inset-0 bg-cover bg-center opacity-40"
-              style={{ backgroundImage: `url(${project.main_image_url})` }}
-            />
-          )}
-          
-          <div className="container mx-auto px-4 pt-24 pb-16 relative z-20">
-            <Link to="/portafolio">
-              <Button variant="ghost" className="mb-6 text-white/80 hover:text-white hover:bg-white/10">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Volver al portafolio
-              </Button>
-            </Link>
+        <main className="container mx-auto px-4 pt-24 pb-16">
+          <Link to="/portafolio">
+            <Button variant="ghost" className="mb-8">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Volver al portafolio
+            </Button>
+          </Link>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-              {/* Artist Photo */}
-              <div className="flex justify-center order-1 md:order-2">
+          {/* Artist Header - Clean professional layout */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 mb-12">
+              {/* Photo Column */}
+              <div className="flex flex-col items-center lg:items-start">
                 {project.main_image_url && (
-                  <div className="relative">
-                    <div className="absolute -inset-4 bg-gradient-to-br from-primary/30 to-transparent rounded-2xl blur-2xl" />
+                  <div className="w-full max-w-[400px]">
                     <img
                       src={project.main_image_url}
                       alt={project.title}
-                      className="relative max-h-[500px] w-auto object-contain rounded-xl shadow-2xl animate-fade-in"
+                      className="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
                     />
                   </div>
                 )}
+                
+                {/* Quick contact button mobile */}
+                <div className="lg:hidden mt-6 w-full max-w-[400px]">
+                  <Button size="lg" className="w-full" asChild>
+                    <a href="#contacto">
+                      <Mail className="mr-2 h-5 w-5" />
+                      Solicitar contratación
+                    </a>
+                  </Button>
+                </div>
               </div>
 
-              {/* Artist Info */}
-              <div className="text-center md:text-left order-2 md:order-1 space-y-6">
-                <div className="flex items-center justify-center md:justify-start gap-2">
-                  <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+              {/* Info Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary">
                     <Icon className="w-3 h-3 mr-1" />
                     {categoryLabels[project.category]}
                   </Badge>
-                  {project.featured && <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">Destacado</Badge>}
+                  {project.featured && <Badge>Artista destacado</Badge>}
                 </div>
-                
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
-                  {project.title}
-                </h1>
-                
-                {project.client && (
-                  <p className="text-xl text-white/70 font-medium">{project.client}</p>
-                )}
-                
-                <p className="text-lg text-white/80 leading-relaxed max-w-xl">
-                  {project.summary}
-                </p>
 
-                {/* Quick Links */}
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-2">{project.title}</h1>
+                  {project.client && (
+                    <p className="text-xl text-muted-foreground">{project.client}</p>
+                  )}
+                </div>
+
+                {/* Bio summary */}
+                <div className="border-l-4 border-primary pl-4">
+                  <p className="text-lg leading-relaxed">{project.summary}</p>
+                </div>
+
+                {/* Full description */}
+                {project.description && (
+                  <div className="prose prose-lg max-w-none">
+                    <h3 className="text-xl font-semibold mb-3">Biografía</h3>
+                    <p className="text-muted-foreground whitespace-pre-wrap">{project.description}</p>
+                  </div>
+                )}
+
+                {/* Services/Skills */}
+                {project.services && project.services.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3">Especialidades</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.services.map((service) => (
+                        <Badge key={service} variant="outline" className="text-sm px-3 py-1">
+                          {service}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Tags */}
+                {project.tags && project.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="text-sm text-muted-foreground">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Links */}
                 {links.length > 0 && (
-                  <div className="flex flex-wrap gap-3 justify-center md:justify-start pt-4">
+                  <div className="flex flex-wrap gap-3 pt-2">
                     {links.map((link, index) => {
                       const isExternal = link.url.startsWith('http');
                       const isYoutube = link.url.includes('youtube');
                       return (
                         <Button 
                           key={index} 
-                          size="lg" 
+                          variant={isYoutube ? "default" : "outline"}
                           className={isYoutube ? 'bg-red-600 hover:bg-red-700' : ''}
                           asChild
                         >
@@ -139,21 +172,26 @@ function ArtistLayout({ project, links, galleryImages }: {
                     })}
                   </div>
                 )}
+
+                {/* Desktop contact button */}
+                <div className="hidden lg:block pt-4">
+                  <Button size="lg" asChild>
+                    <a href="#contacto">
+                      <Mail className="mr-2 h-5 w-5" />
+                      Solicitar contratación
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <main className="container mx-auto px-4 py-16">
-          <div className="max-w-6xl mx-auto space-y-16">
-            
             {/* Video Section */}
-            {isYoutubeLink && (
-              <section className="space-y-6">
-                <h2 className="text-3xl font-bold text-center">Escucha su música</h2>
-                <div className="aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl">
+            {youtubeLink && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold mb-6">Material audiovisual</h2>
+                <div className="aspect-video max-w-4xl rounded-lg overflow-hidden shadow-lg">
                   <iframe
-                    src={links[0].url.replace('watch?v=', 'embed/')}
+                    src={youtubeLink.url.replace('watch?v=', 'embed/')}
                     className="w-full h-full"
                     allowFullScreen
                     title={project.title}
@@ -162,89 +200,47 @@ function ArtistLayout({ project, links, galleryImages }: {
               </section>
             )}
 
-            {/* Description */}
-            {project.description && (
-              <section className="space-y-6">
-                <h2 className="text-3xl font-bold text-center">Biografía</h2>
-                <Card className="max-w-3xl mx-auto bg-card/50 backdrop-blur border-border/50">
-                  <CardContent className="pt-8 pb-8">
-                    <p className="text-lg leading-relaxed whitespace-pre-wrap text-center">
-                      {project.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </section>
-            )}
-
             {/* Photo Gallery */}
             {galleryImages.length > 0 && (
-              <section className="space-y-8">
-                <h2 className="text-3xl font-bold text-center">Galería</h2>
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold mb-6">Galería de fotos</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {galleryImages.map((img, index) => (
                     <div 
                       key={index} 
-                      className="group relative overflow-hidden rounded-xl aspect-[3/4] shadow-lg transition-transform duration-300 hover:scale-[1.02]"
+                      className="relative overflow-hidden rounded-lg aspect-[3/4] group"
                     >
                       <img
                         src={img.url}
                         alt={img.caption || `${project.title} - Foto ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {img.caption && (
-                        <p className="absolute bottom-4 left-4 right-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {img.caption}
-                        </p>
-                      )}
                     </div>
                   ))}
                 </div>
               </section>
             )}
 
-            {/* Services/Skills */}
-            {project.services && project.services.length > 0 && (
-              <section className="space-y-6">
-                <h2 className="text-3xl font-bold text-center">Especialidades</h2>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {project.services.map((service) => (
-                    <Badge 
-                      key={service} 
-                      variant="outline" 
-                      className="text-base px-6 py-3 bg-primary/5 border-primary/20 hover:bg-primary/10 transition-colors"
-                    >
-                      {service}
-                    </Badge>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Tags */}
-            {project.tags && project.tags.length > 0 && (
-              <section className="space-y-6">
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-sm">
-                      #{tag}
-                    </Badge>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Contact / Booking */}
-            <section className="space-y-6">
-              <div className="text-center space-y-4">
-                <h2 className="text-3xl font-bold">¿Interesado en contratar a {project.title}?</h2>
-                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Contáctanos para eventos, colaboraciones o proyectos musicales
-                </p>
-              </div>
-              <Card className="max-w-2xl mx-auto">
-                <CardContent className="pt-6">
-                  <PortfolioInquiryForm />
+            {/* Contact / Booking Section */}
+            <section id="contacto" className="scroll-mt-24">
+              <Card className="border-2 border-primary/20 bg-primary/5">
+                <CardContent className="pt-8 pb-8">
+                  <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 items-start">
+                    <div className="space-y-4">
+                      <h2 className="text-2xl font-bold">Contratación</h2>
+                      <p className="text-muted-foreground">
+                        ¿Interesado en contratar a <strong>{project.title}</strong> para un evento, 
+                        colaboración o proyecto? Completa el formulario y nos pondremos en contacto contigo.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Music className="h-4 w-4" />
+                        <span>Representado por Grupo Dauro</span>
+                      </div>
+                    </div>
+                    <div>
+                      <PortfolioInquiryForm />
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </section>
