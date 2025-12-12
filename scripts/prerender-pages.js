@@ -49,6 +49,11 @@ const pages = [
     description: 'Últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos y novedades sobre IA creativa.',
     image: '/og-logo.png'
   },
+  {
+    path: 'contacto',
+    title: 'Contacto - Grupo Cultural Dauro',
+    description: 'Ponte en contacto con el Grupo Cultural Dauro para proyectos editoriales, artísticos o audiovisuales.',
+    image: '/og-logo.png'
   },
   {
     path: 'portafolio/jose-carrera',
