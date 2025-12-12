@@ -5,6 +5,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/portafolio/jose-carrera",
+      "destination": "/portafolio/jose-carrera/index.html"
+    },
+    {
       "source": "/feed.xml",
       "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     },
