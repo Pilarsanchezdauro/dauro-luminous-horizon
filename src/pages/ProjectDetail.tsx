@@ -124,7 +124,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                 {/* Services/Skills */}
                 {project.services && project.services.length > 0 && (
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Especialidades</h3>
+                    <h3 className="text-lg font-semibold mb-3">Servicios disponibles</h3>
                     <div className="flex flex-wrap gap-2">
                       {project.services.map((service) => (
                         <Badge key={service} variant="outline" className="text-sm px-3 py-1">
@@ -132,6 +132,19 @@ function ArtistLayout({ project, links, galleryImages }: {
                         </Badge>
                       ))}
                     </div>
+                  </div>
+                )}
+
+                {/* Booking conditions for artists */}
+                {project.category.startsWith('artistas') && (
+                  <div className="p-4 bg-muted/30 rounded-lg border border-border/50">
+                    <h3 className="text-lg font-semibold mb-2">Condiciones de contratación</h3>
+                    <p className="text-muted-foreground text-sm">
+                      <strong>Disponible para:</strong> Proyectos empresariales con grabación de canciones, producción musical y colaboraciones discográficas.
+                    </p>
+                    <p className="text-muted-foreground text-sm mt-2">
+                      <strong>No disponible para:</strong> Actuaciones en directo.
+                    </p>
                   </div>
                 )}
 
