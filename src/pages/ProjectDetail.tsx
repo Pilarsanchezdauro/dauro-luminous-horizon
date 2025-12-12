@@ -242,9 +242,19 @@ function ArtistLayout({ project, links, galleryImages }: {
                     <div className="space-y-4">
                       <h2 className="text-2xl font-bold">Contratación</h2>
                       <p className="text-muted-foreground">
-                        ¿Interesado en contratar a <strong>{project.title}</strong> para un evento, 
-                        colaboración o proyecto? Completa el formulario y nos pondremos en contacto contigo.
+                        ¿Interesado en contratar a <strong>{project.title}</strong>? Completa el formulario y nos pondremos en contacto contigo.
                       </p>
+                      <div className="p-3 bg-background/50 rounded-md border border-border/50 text-sm space-y-2">
+                        <p className="font-medium">Servicios disponibles:</p>
+                        <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                          <li>Contratación de su voz para proyectos</li>
+                          <li>Grabación de canciones personalizadas</li>
+                          <li>Videoclips musicales con su imagen para expansión de marca</li>
+                        </ul>
+                        <p className="text-muted-foreground/80 italic mt-2">
+                          * No disponible para actuaciones en directo
+                        </p>
+                      </div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Music className="h-4 w-4" />
                         <span>Representado por Grupo Dauro</span>
