@@ -140,7 +140,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                   <div className="p-4 bg-muted/30 rounded-lg border border-border/50">
                     <h3 className="text-lg font-semibold mb-2">Condiciones de contratación</h3>
                     <p className="text-muted-foreground text-sm">
-                      <strong>Disponible para:</strong> Proyectos empresariales con grabación de canciones, producción musical y colaboraciones discográficas.
+                      <strong>Disponible para:</strong> Contratación de su voz para proyectos empresariales, grabación de canciones y videoclips musicales con su imagen para expansión de marca.
                     </p>
                     <p className="text-muted-foreground text-sm mt-2">
                       <strong>No disponible para:</strong> Actuaciones en directo.
