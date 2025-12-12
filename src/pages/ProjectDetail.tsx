@@ -142,11 +142,17 @@ export default function ProjectDetail() {
                 />
               </div>
             ) : project.main_image_url ? (
-              <img
-                src={project.main_image_url}
-                alt={project.title}
-                className="w-full aspect-video object-cover rounded-lg"
-              />
+              <div className={`flex justify-center ${project.category.startsWith('artistas-') ? '' : 'w-full'}`}>
+                <img
+                  src={project.main_image_url}
+                  alt={project.title}
+                  className={`rounded-lg ${
+                    project.category.startsWith('artistas-') 
+                      ? 'max-h-[600px] w-auto object-contain' 
+                      : 'w-full aspect-video object-cover'
+                  }`}
+                />
+              </div>
             ) : null}
 
             {/* Summary */}
@@ -194,14 +200,18 @@ export default function ProjectDetail() {
                 <Carousel className="w-full">
                   <CarouselContent>
                     {galleryImages.map((img, index) => (
-                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <CarouselItem key={index} className={project.category.startsWith('artistas-') ? 'basis-1/2 md:basis-1/3 lg:basis-1/4' : 'md:basis-1/2 lg:basis-1/3'}>
                         <div className="p-1">
                           <Card>
                             <CardContent className="p-2">
                               <img
                                 src={img.url}
                                 alt={img.caption || `Imagen ${index + 1}`}
-                                className="w-full aspect-video object-cover rounded"
+                                className={`w-full rounded ${
+                                  project.category.startsWith('artistas-') 
+                                    ? 'aspect-[3/4] object-cover' 
+                                    : 'aspect-video object-cover'
+                                }`}
                               />
                               {img.caption && (
                                 <p className="text-sm text-muted-foreground mt-2 px-2">
