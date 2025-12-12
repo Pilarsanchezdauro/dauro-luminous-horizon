@@ -28,7 +28,24 @@ const Navigation = () => {
       ],
     },
     { name: "Servicios", path: "/servicios" },
-    { name: "Portafolio", path: "/portafolio" },
+    {
+      name: "Portafolio",
+      path: "/portafolio",
+      submenu: [
+        { name: "Ver Todo", path: "/portafolio" },
+        { name: "Webs", path: "/portafolio?categoria=webs" },
+        { name: "Booktrailers", path: "/portafolio?categoria=booktrailers" },
+        { name: "Imagen Corporativa", path: "/portafolio?categoria=imagen-corporativa" },
+      ],
+    },
+    {
+      name: "Artistas",
+      path: "/portafolio?categoria=artistas",
+      submenu: [
+        { name: "Cantantes", path: "/portafolio?categoria=artistas-cantantes" },
+        { name: "Pintores", path: "/portafolio?categoria=artistas-pintores" },
+      ],
+    },
     { name: "Tienda", path: "/tienda" },
     {
       name: "Blog",

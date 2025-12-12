@@ -7,7 +7,7 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Star } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 
@@ -20,7 +20,8 @@ const categoryIcons = {
   cine: Film,
   musica: Music,
   avatares: Users,
-  artistas: Star,
+  'artistas-cantantes': Mic,
+  'artistas-pintores': PaintBucket,
 };
 
 const categoryLabels = {
@@ -32,7 +33,8 @@ const categoryLabels = {
   cine: 'Cine',
   musica: 'Música',
   avatares: 'Avatares',
-  artistas: 'Artistas',
+  'artistas-cantantes': 'Cantantes',
+  'artistas-pintores': 'Pintores',
 };
 
 export default function ProjectDetail() {

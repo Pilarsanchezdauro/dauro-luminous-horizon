@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -9,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen } from 'lucide-react';
+import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
 import mascotLogo from '@/assets/mascot.png';
 import heroExceptionalBg from '@/assets/hero-exceptional-bg.jpg';
 
@@ -17,7 +18,7 @@ interface Project {
   id: string;
   title: string;
   slug: string;
-  category: 'webs' | 'booktrailers' | 'pintura' | 'imagen-corporativa' | 'cine' | 'musica' | 'avatares' | 'portadas-libros';
+  category: string;
   client: string | null;
   year: number | null;
   summary: string;
@@ -26,7 +27,7 @@ interface Project {
   featured: boolean;
 }
 
-const categoryIcons = {
+const categoryIcons: Record<string, any> = {
   webs: Globe,
   booktrailers: Video,
   pintura: Palette,
@@ -35,9 +36,11 @@ const categoryIcons = {
   musica: Music,
   avatares: Users,
   'portadas-libros': BookOpen,
+  'artistas-cantantes': Mic,
+  'artistas-pintores': PaintBucket,
 };
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   webs: 'Webs',
   booktrailers: 'Booktrailers',
   pintura: 'Pintura',
@@ -46,11 +49,29 @@ const categoryLabels = {
   musica: 'Música',
   avatares: 'Avatares',
   'portadas-libros': 'Portadas de Libros',
+  'artistas-cantantes': 'Cantantes',
+  'artistas-pintores': 'Pintores',
 };
 
 export default function Portafolio() {
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [searchParams] = useSearchParams();
+  const urlCategory = searchParams.get('categoria');
+  const [categoryFilter, setCategoryFilter] = useState<string>(urlCategory || 'all');
   const [yearFilter, setYearFilter] = useState<string>('all');
+
+  // Update filter when URL changes
+  useEffect(() => {
+    if (urlCategory) {
+      // Handle "artistas" as showing both artist categories
+      if (urlCategory === 'artistas') {
+        setCategoryFilter('artistas');
+      } else {
+        setCategoryFilter(urlCategory);
+      }
+    } else {
+      setCategoryFilter('all');
+    }
+  }, [urlCategory]);
 
   const { data: projects, isLoading } = useQuery({
     queryKey: ['projects', categoryFilter, yearFilter],
@@ -63,7 +84,12 @@ export default function Portafolio() {
         .order('year', { ascending: false });
 
       if (categoryFilter !== 'all') {
-        query = query.eq('category', categoryFilter);
+        if (categoryFilter === 'artistas') {
+          // Show both artist categories
+          query = query.or('category.eq.artistas-cantantes,category.eq.artistas-pintores');
+        } else {
+          query = query.eq('category', categoryFilter);
+        }
       }
 
       if (yearFilter !== 'all') {
@@ -80,6 +106,11 @@ export default function Portafolio() {
   const years = Array.from(
     new Set(projects?.map((p) => p.year).filter(Boolean) as number[])
   ).sort((a, b) => b - a);
+
+  // Check if viewing artists category
+  const isArtistsCategory = categoryFilter === 'artistas' || 
+    categoryFilter === 'artistas-cantantes' || 
+    categoryFilter === 'artistas-pintores';
 
   return (
     <>
@@ -155,6 +186,9 @@ export default function Portafolio() {
                 <SelectItem value="cine">Cine</SelectItem>
                 <SelectItem value="musica">Música</SelectItem>
                 <SelectItem value="avatares">Avatares</SelectItem>
+                <SelectItem value="artistas">Todos los Artistas</SelectItem>
+                <SelectItem value="artistas-cantantes">Cantantes</SelectItem>
+                <SelectItem value="artistas-pintores">Pintores</SelectItem>
               </SelectContent>
             </Select>
 
@@ -189,7 +223,7 @@ export default function Portafolio() {
           ) : projects && projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project) => {
-                const Icon = categoryIcons[project.category];
+                const Icon = categoryIcons[project.category] || Globe;
                 return (
                   <Link key={project.id} to={`/portafolio/${project.slug}`}>
                     <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden group">
@@ -212,7 +246,7 @@ export default function Portafolio() {
                         )}
                         <Badge className="absolute top-2 left-2 bg-secondary">
                           <Icon className="w-3 h-3 mr-1" />
-                          {categoryLabels[project.category]}
+                          {categoryLabels[project.category] || project.category}
                         </Badge>
                       </div>
                       <CardHeader>
