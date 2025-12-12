@@ -33,7 +33,8 @@ const categoryLabels = {
   cine: 'Cine',
   musica: 'Música',
   avatares: 'Avatares',
-  artistas: 'Artistas',
+  'artistas-cantantes': 'Artistas - Cantantes',
+  'artistas-pintores': 'Artistas - Pintores',
 };
 
 export default function Projects() {
