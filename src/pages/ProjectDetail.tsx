@@ -49,9 +49,10 @@ function ArtistLayout({ project, links, galleryImages }: {
   return (
     <>
       <SEO
-        title={project.title}
+        title={`${project.title} | Artista representado por Grupo Dauro`}
         description={project.summary}
-        image={project.main_image_url || undefined}
+        image={project.main_image_url ? (project.main_image_url.startsWith('http') ? project.main_image_url : `https://grupodauro.com${project.main_image_url}`) : undefined}
+        url={`https://grupodauro.com/portafolio/${project.slug}`}
         type="article"
       />
       <div className="min-h-screen bg-background">
