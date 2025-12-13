@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
+import { Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket, UserPlus } from 'lucide-react';
 import mascotLogo from '@/assets/mascot.png';
 import heroExceptionalBg from '@/assets/hero-exceptional-bg.jpg';
 
@@ -425,6 +425,49 @@ export default function Portafolio() {
                       <Link to="/contacto" className="flex items-center gap-2">
                         <Mail className="w-5 h-5" />
                         Solicita tu portada
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Artists CTA Section */}
+          {isArtistsCategory && projects && projects.length > 0 && (
+            <div className="mt-16 mb-8">
+              <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-2xl p-8 md:p-12">
+                <div className="text-center space-y-8">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                      ¿Eres artista y buscas representación?
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                      Envíanos tu portfolio y currículum. Buscamos talento para impulsar carreras artísticas.
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Button 
+                      size="lg" 
+                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
+                      asChild
+                    >
+                      <Link to="/artistas/solicitud" className="flex items-center gap-2">
+                        <UserPlus className="w-5 h-5" />
+                        Quiero ser representado
+                      </Link>
+                    </Button>
+                    
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
+                      asChild
+                    >
+                      <Link to="/contacto" className="flex items-center gap-2">
+                        <Mail className="w-5 h-5" />
+                        Más información
                       </Link>
                     </Button>
                   </div>

@@ -83,6 +83,57 @@ export type Database = {
         }
         Relationships: []
       }
+      artist_submissions: {
+        Row: {
+          apellidos: string
+          categoria_artistica: string
+          created_at: string
+          curriculum_file_path: string | null
+          descripcion: string
+          email: string
+          experiencia_profesional: string | null
+          id: string
+          nombre: string
+          portfolio_file_path: string | null
+          redes_sociales: Json | null
+          referencias: string | null
+          telefono: string
+          web_personal: string | null
+        }
+        Insert: {
+          apellidos: string
+          categoria_artistica: string
+          created_at?: string
+          curriculum_file_path?: string | null
+          descripcion: string
+          email: string
+          experiencia_profesional?: string | null
+          id?: string
+          nombre: string
+          portfolio_file_path?: string | null
+          redes_sociales?: Json | null
+          referencias?: string | null
+          telefono: string
+          web_personal?: string | null
+        }
+        Update: {
+          apellidos?: string
+          categoria_artistica?: string
+          created_at?: string
+          curriculum_file_path?: string | null
+          descripcion?: string
+          email?: string
+          experiencia_profesional?: string | null
+          id?: string
+          nombre?: string
+          portfolio_file_path?: string | null
+          redes_sociales?: Json | null
+          referencias?: string | null
+          telefono?: string
+          web_personal?: string | null
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string

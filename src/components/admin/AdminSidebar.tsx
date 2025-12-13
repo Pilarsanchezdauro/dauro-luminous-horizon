@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -63,6 +63,11 @@ const menuItems = [
     title: 'Consultas Portafolio',
     url: '/admin/portfolio-inquiries',
     icon: FolderKanban,
+  },
+  {
+    title: 'Solicitudes Artistas',
+    url: '/admin/artist-submissions',
+    icon: UserPlus,
   },
   {
     title: 'Contactos DauroArte',
