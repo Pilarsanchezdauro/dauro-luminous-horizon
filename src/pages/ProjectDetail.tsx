@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 import { MusicProjectsCTA } from '@/components/MusicProjectsCTA';
 
@@ -230,24 +231,72 @@ function ArtistLayout({ project, links, galleryImages }: {
               </section>
             )}
 
-            {/* Photo Gallery */}
+            {/* Photo Gallery by Category */}
             {galleryImages.length > 0 && (
               <section className="mb-12">
-                <h2 className="text-2xl font-bold mb-6">Galería de fotos</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {galleryImages.map((img, index) => (
-                    <div 
-                      key={index} 
-                      className="relative overflow-hidden rounded-lg aspect-[3/4] group"
-                    >
-                      <img
-                        src={img.url}
-                        alt={img.caption || `${project.title} - Foto ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <h2 className="text-2xl font-bold mb-6">Galería de obras</h2>
+                {(() => {
+                  // Group images by category
+                  const imagesByCategory = galleryImages.reduce((acc, img) => {
+                    const cat = (img as any).category || 'Otras obras';
+                    if (!acc[cat]) acc[cat] = [];
+                    acc[cat].push(img);
+                    return acc;
+                  }, {} as Record<string, typeof galleryImages>);
+                  
+                  const categories = Object.keys(imagesByCategory);
+                  
+                  // If only one category, show without tabs
+                  if (categories.length <= 1) {
+                    return (
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {galleryImages.map((img, index) => (
+                          <div 
+                            key={index} 
+                            className="relative overflow-hidden rounded-lg aspect-[3/4] group"
+                          >
+                            <img
+                              src={img.url}
+                              alt={(img as any).alt || `${project.title} - Obra ${index + 1}`}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+                  
+                  // Multiple categories - show with tabs
+                  return (
+                    <Tabs defaultValue={categories[0]} className="w-full">
+                      <TabsList className="mb-6 flex-wrap h-auto gap-2">
+                        {categories.map((cat) => (
+                          <TabsTrigger key={cat} value={cat} className="text-sm">
+                            {cat} ({imagesByCategory[cat].length})
+                          </TabsTrigger>
+                        ))}
+                      </TabsList>
+                      {categories.map((cat) => (
+                        <TabsContent key={cat} value={cat}>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {imagesByCategory[cat].map((img, index) => (
+                              <div 
+                                key={index} 
+                                className="relative overflow-hidden rounded-lg aspect-[3/4] group"
+                              >
+                                <img
+                                  src={img.url}
+                                  alt={(img as any).alt || `${project.title} - ${cat} ${index + 1}`}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </TabsContent>
+                      ))}
+                    </Tabs>
+                  );
+                })()}
               </section>
             )}
 
