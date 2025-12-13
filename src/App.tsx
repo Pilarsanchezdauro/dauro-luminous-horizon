@@ -54,6 +54,7 @@ import ImageSeoManager from "./pages/admin/ImageSeoManager";
 import Analytics from "./pages/admin/Analytics";
 import AIMonitoring from "./pages/admin/AIMonitoring";
 import ArtistSubmissions from "./pages/admin/ArtistSubmissions";
+import LeBrunCollection from "./pages/LeBrunCollection";
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const App = () => (
             <Route path="/feed.xml" element={<RssFeed />} />
             <Route path="/rss.xml" element={<RssFeed />} />
             <Route path="/portafolio" element={<Portafolio />} />
+            <Route path="/portafolio/lebrun-collection" element={<LeBrunCollection />} />
             <Route path="/portafolio/:slug" element={<ProjectDetail />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/solicitar-booktrailer" element={<SolicitarBooktrailer />} />
