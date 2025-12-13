@@ -44,6 +44,7 @@ const Navigation = () => {
       submenu: [
         { name: "Cantantes", path: "/portafolio?categoria=artistas-cantantes" },
         { name: "Pintores", path: "/portafolio?categoria=artistas-pintores" },
+        { name: "Quiero ser representado", path: "/artistas/solicitud" },
       ],
     },
     { name: "Tienda", path: "/tienda" },
