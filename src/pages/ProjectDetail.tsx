@@ -261,8 +261,19 @@ function ArtistLayout({ project, links, galleryImages }: {
                           * No disponible para actuaciones en directo
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Music className="h-4 w-4" />
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                        {project.slug === 'jose-carrera' ? (
+                          <video
+                            src="/videos/logo-free-dauro-productions.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-10 h-10 object-contain"
+                          />
+                        ) : (
+                          <Music className="h-4 w-4" />
+                        )}
                         <span>Representado por Grupo Dauro</span>
                       </div>
                     </div>
@@ -273,22 +284,6 @@ function ArtistLayout({ project, links, galleryImages }: {
                 </CardContent>
               </Card>
             </section>
-
-            {/* Free Dauro Productions Logo - Solo para José Carrera */}
-            {project.slug === 'jose-carrera' && (
-              <div className="mt-8 flex justify-end">
-                <div className="w-24 opacity-70 hover:opacity-100 transition-opacity">
-                  <video
-                    src="/videos/logo-free-dauro-productions.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-auto rounded"
-                  />
-                </div>
-              </div>
-            )}
           </div>
         </main>
 
