@@ -445,10 +445,10 @@ export default function Portafolio() {
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      Representación de Obras de Arte
+                      Representación y Gestión de Obras de Arte
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Representamos obras de arte de alto nivel para la compra-venta de las mismas. Descubre LeBrun Collection, nuestra colección exclusiva.
+                      Especializados en la intermediación y gestión de obras de arte de alto valor. Ofrecemos asesoramiento experto, peritaje y acompañamiento integral en procesos de adquisición y venta.
                     </p>
                   </div>
                   
