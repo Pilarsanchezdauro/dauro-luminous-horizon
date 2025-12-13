@@ -14,25 +14,25 @@ const pages = [
     image: '/og-grupo-dauro.jpg'
   },
   {
-    path: 'editorial',
+    path: 'grupo-dauro/editorial',
     title: 'Editorial Dauro - Publicación de Obras Literarias',
     description: 'Editorial independiente especializada en literatura de calidad. Publicamos novela, poesía y ensayo.',
     image: '/og-editorial.jpg'
   },
   {
-    path: 'arte',
+    path: 'grupo-dauro/arte',
     title: 'Dauro Arte - Galería y Servicios Artísticos',
     description: 'Galería de arte contemporáneo y servicios de consultoría artística en Granada.',
     image: '/og-arte.jpg'
   },
   {
-    path: 'cine',
+    path: 'grupo-dauro/cine',
     title: 'Dauro Cine - Producción Audiovisual',
     description: 'Producción cinematográfica independiente y servicios audiovisuales de calidad.',
     image: '/og-cine.jpg'
   },
   {
-    path: 'ia',
+    path: 'grupo-dauro/ia',
     title: 'Dauro IA - Inteligencia Artificial con Identidad Estética',
     description: 'Servicios creativos con IA: generación de contenido, diseño y estrategia digital.',
     image: '/og-ia.jpg'
