@@ -36,6 +36,7 @@ const Navigation = () => {
         { name: "Webs", path: "/portafolio?categoria=webs" },
         { name: "Booktrailers", path: "/portafolio?categoria=booktrailers" },
         { name: "Imagen Corporativa", path: "/portafolio?categoria=imagen-corporativa" },
+        { name: "Obras de Arte", path: "/portafolio?categoria=obras-arte" },
       ],
     },
     {
