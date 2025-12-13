@@ -75,6 +75,7 @@ const categoryIcons = {
   avatares: Users,
   'artistas-cantantes': Mic,
   'artistas-pintores': PaintBucket,
+  'produccion-musical': Music,
 };
 
 const categoryLabels = {
@@ -88,6 +89,7 @@ const categoryLabels = {
   avatares: 'Avatares',
   'artistas-cantantes': 'Cantantes',
   'artistas-pintores': 'Pintores',
+  'produccion-musical': 'Producción Musical',
 };
 
 // Artist booking agency layout component
