@@ -32,11 +32,18 @@ const SolicitarRepresentacion = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                 ¿Quieres que te representemos?
               </h1>
-              <p className="text-lg text-muted-foreground mb-8">
-                En Grupo Dauro buscamos talento artístico para impulsar carreras.
+              <p className="text-lg text-muted-foreground mb-6">
+                En Grupo Dauro buscamos talento artístico para proyectos empresariales y artísticos.
                 Si eres cantante, pintor, fotógrafo o cualquier otro tipo de artista,
                 envíanos tu portfolio y te contactaremos.
               </p>
+              <div className="bg-muted/50 border border-border rounded-lg p-4 max-w-2xl mx-auto">
+                <p className="text-sm text-muted-foreground">
+                  <strong className="text-foreground">Importante:</strong> Nuestra representación se centra en el uso de tu voz e imagen para 
+                  proyectos empresariales, grabaciones, producciones audiovisuales y colaboraciones artísticas. 
+                  <span className="text-primary font-medium"> No gestionamos directos ni conciertos.</span>
+                </p>
+              </div>
             </div>
           </div>
         </section>
