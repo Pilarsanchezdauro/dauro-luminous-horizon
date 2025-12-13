@@ -438,17 +438,17 @@ export default function Portafolio() {
             </div>
           )}
 
-          {/* Obras de Arte CTA Section */}
-          {categoryFilter === 'obras-arte' && projects && projects.length > 0 && (
+          {/* Obras de Arte CTA Section - Always show when category is selected */}
+          {categoryFilter === 'obras-arte' && (
             <div className="mt-16 mb-8">
               <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-2xl p-8 md:p-12">
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      ¿Interesado en adquirir arte?
+                      Descubre LeBrun Collection
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Ofrecemos servicios de peritaje, tasación y gestión de obras de arte
+                      Explora nuestra colección exclusiva de obras de arte. Ofrecemos servicios de peritaje, tasación y gestión.
                     </p>
                   </div>
                   
