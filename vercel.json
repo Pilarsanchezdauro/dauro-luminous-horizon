@@ -3,94 +3,19 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "routes": [
+    { "handle": "filesystem" },
     {
-      "source": "/grupo-dauro",
-      "destination": "/grupo-dauro/index.html"
+      "src": "/feed.xml",
+      "dest": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     },
     {
-      "source": "/grupo-dauro/editorial",
-      "destination": "/grupo-dauro/editorial/index.html"
+      "src": "/rss.xml",
+      "dest": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     },
     {
-      "source": "/grupo-dauro/arte",
-      "destination": "/grupo-dauro/arte/index.html"
-    },
-    {
-      "source": "/grupo-dauro/cine",
-      "destination": "/grupo-dauro/cine/index.html"
-    },
-    {
-      "source": "/grupo-dauro/ia",
-      "destination": "/grupo-dauro/ia/index.html"
-    },
-    {
-      "source": "/servicios",
-      "destination": "/servicios/index.html"
-    },
-    {
-      "source": "/blog",
-      "destination": "/blog/index.html"
-    },
-    {
-      "source": "/contacto",
-      "destination": "/contacto/index.html"
-    },
-    {
-      "source": "/portafolio/jose-carrera",
-      "destination": "/portafolio/jose-carrera/index.html"
-    },
-    {
-      "source": "/tienda",
-      "destination": "/tienda/index.html"
-    },
-    {
-      "source": "/portafolio",
-      "destination": "/portafolio/index.html"
-    },
-    {
-      "source": "/grupo-dauro/musica",
-      "destination": "/grupo-dauro/musica/index.html"
-    },
-    {
-      "source": "/blog/generador-portadas-gratis-ia",
-      "destination": "/blog/generador-portadas-gratis-ia/index.html"
-    },
-    {
-      "source": "/blog/el-arte-es-navidad-cancion",
-      "destination": "/blog/el-arte-es-navidad-cancion/index.html"
-    },
-    {
-      "source": "/blog/guia-editorial-para-autores",
-      "destination": "/blog/guia-editorial-para-autores/index.html"
-    },
-    {
-      "source": "/blog/una-voz-para-dos-tierras-presentaciones",
-      "destination": "/blog/una-voz-para-dos-tierras-presentaciones/index.html"
-    },
-    {
-      "source": "/blog/presentacion-latido-carmen-alcaide",
-      "destination": "/blog/presentacion-latido-carmen-alcaide/index.html"
-    },
-    {
-      "source": "/blog/el-hidalgo-don-rodrigo-guion",
-      "destination": "/blog/el-hidalgo-don-rodrigo-guion/index.html"
-    },
-    {
-      "source": "/blog/nfts-oficiales-seleccion-argentina",
-      "destination": "/blog/nfts-oficiales-seleccion-argentina/index.html"
-    },
-    {
-      "source": "/blog/ia-con-identidad-estetica",
-      "destination": "/blog/ia-con-identidad-estetica/index.html"
-    },
-    {
-      "source": "/feed.xml",
-      "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
-    },
-    {
-      "source": "/rss.xml",
-      "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
   "headers": [
