@@ -51,6 +51,13 @@ function ArtistLayout({ project, links, galleryImages }: {
   // Use the main_image_url from database
   const mainImageUrl = project.main_image_url;
 
+  console.log('ArtistLayout debug - slug, category, galleryImages length, sample', {
+    slug: project.slug,
+    category: project.category,
+    galleryLength: galleryImages?.length,
+    firstImage: galleryImages && galleryImages[0],
+  });
+
   return (
     <>
       <SEO
