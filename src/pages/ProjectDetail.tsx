@@ -301,9 +301,14 @@ function ArtistLayout({ project, links, galleryImages }: {
                             />
                             <span>Representado por Dauro Free Productions</span>
                           </>
+                        ) : project.category === 'artistas-pintores' ? (
+                          <>
+                            <PaintBucket className="h-4 w-4" />
+                            <span>Representado por Grupo Dauro</span>
+                          </>
                         ) : (
                           <>
-                            <Music className="h-4 w-4" />
+                            <Briefcase className="h-4 w-4" />
                             <span>Representado por Grupo Dauro</span>
                           </>
                         )}
