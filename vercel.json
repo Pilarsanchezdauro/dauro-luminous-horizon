@@ -41,6 +41,38 @@
       "destination": "/portafolio/jose-carrera/index.html"
     },
     {
+      "source": "/blog/generador-portadas-gratis-ia",
+      "destination": "/blog/generador-portadas-gratis-ia/index.html"
+    },
+    {
+      "source": "/blog/el-arte-es-navidad-cancion",
+      "destination": "/blog/el-arte-es-navidad-cancion/index.html"
+    },
+    {
+      "source": "/blog/guia-editorial-para-autores",
+      "destination": "/blog/guia-editorial-para-autores/index.html"
+    },
+    {
+      "source": "/blog/una-voz-para-dos-tierras-presentaciones",
+      "destination": "/blog/una-voz-para-dos-tierras-presentaciones/index.html"
+    },
+    {
+      "source": "/blog/presentacion-latido-carmen-alcaide",
+      "destination": "/blog/presentacion-latido-carmen-alcaide/index.html"
+    },
+    {
+      "source": "/blog/el-hidalgo-don-rodrigo-guion",
+      "destination": "/blog/el-hidalgo-don-rodrigo-guion/index.html"
+    },
+    {
+      "source": "/blog/nfts-oficiales-seleccion-argentina",
+      "destination": "/blog/nfts-oficiales-seleccion-argentina/index.html"
+    },
+    {
+      "source": "/blog/ia-con-identidad-estetica",
+      "destination": "/blog/ia-con-identidad-estetica/index.html"
+    },
+    {
       "source": "/feed.xml",
       "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
     },
