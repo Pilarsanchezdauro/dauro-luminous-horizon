@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
+import { MusicProjectsCTA } from '@/components/MusicProjectsCTA';
 
 const categoryIcons = {
   webs: Globe,
@@ -286,13 +287,16 @@ function ArtistLayout({ project, links, galleryImages }: {
                       <PortfolioInquiryForm />
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-          </div>
-        </main>
+              </CardContent>
+            </Card>
+          </section>
 
-        <Footer />
+          {/* Music Projects CTA */}
+          <MusicProjectsCTA />
+        </div>
+      </main>
+
+      <Footer />
       </div>
     </>
   );
