@@ -152,6 +152,57 @@ export function ArtistSubmissionForm() {
         otras: data.otras_redes || null,
       };
 
+      // Get public URLs for uploaded files
+      let portfolioUrl = "";
+      let curriculumUrl = "";
+      
+      if (portfolioPath) {
+        const { data: urlData } = supabase.storage
+          .from("artist-submissions")
+          .getPublicUrl(portfolioPath);
+        portfolioUrl = urlData.publicUrl;
+      }
+      
+      if (curriculumPath) {
+        const { data: urlData } = supabase.storage
+          .from("artist-submissions")
+          .getPublicUrl(curriculumPath);
+        curriculumUrl = urlData.publicUrl;
+      }
+
+      // Send to Formspree for email notification
+      const formspreeData = {
+        nombre: data.nombre,
+        apellidos: data.apellidos,
+        email: data.email,
+        telefono: data.telefono,
+        categoria_artistica: data.categoria_artistica,
+        descripcion: data.descripcion,
+        experiencia_profesional: data.experiencia_profesional || "No indicada",
+        web_personal: data.web_personal || "No indicada",
+        instagram: data.instagram || "No indicado",
+        youtube: data.youtube || "No indicado",
+        spotify: data.spotify || "No indicado",
+        otras_redes: data.otras_redes || "No indicadas",
+        referencias: data.referencias || "No indicadas",
+        portfolio_url: portfolioUrl || "No adjunto",
+        curriculum_url: curriculumUrl || "No adjunto",
+        _subject: `Nueva solicitud de representación artística: ${data.nombre} ${data.apellidos}`,
+      };
+
+      const formspreeResponse = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formspreeData),
+      });
+
+      if (!formspreeResponse.ok) {
+        console.error("Formspree error:", await formspreeResponse.text());
+      }
+
+      // Save to Supabase
       const { error } = await supabase.from("artist_submissions").insert({
         nombre: data.nombre,
         apellidos: data.apellidos,
