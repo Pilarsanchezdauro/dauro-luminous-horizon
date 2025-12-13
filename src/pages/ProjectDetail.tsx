@@ -47,10 +47,8 @@ function ArtistLayout({ project, links, galleryImages }: {
   const Icon = categoryIcons[project.category];
   const youtubeLink = links.find(l => l.url.includes('youtube'));
 
-  // For José Carrera we forzamos explícitamente la nueva imagen principal
-  const mainImageUrl = project.slug === 'jose-carrera'
-    ? '/projects/jose-carrera.png'
-    : project.main_image_url;
+  // Use the main_image_url from database
+  const mainImageUrl = project.main_image_url;
 
   return (
     <>
