@@ -176,11 +176,13 @@ function generateBlogPostHTML(post) {
 
   let html = blogTemplateHtml;
  
-  // Remove any existing canonical and URL meta tags so each article has a single, correct source of truth
+  // Remove any existing meta tags that we'll override so each article has a single, correct source of truth
   html = html
     .replace(/<link rel="canonical"[^>]*>\s*/g, '')
     .replace(/<meta property="og:url"[^>]*>\s*/g, '')
-    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '');
+    .replace(/<meta property="og:image[^"]*"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:image"[^>]*>\s*/g, '');
  
   // Primary title and description
   html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle} | Grupo Dauro</title>`);

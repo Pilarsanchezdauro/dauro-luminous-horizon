@@ -114,11 +114,13 @@ function generatePageHTML(page) {
 
   let html = templateHtml;
  
-  // Remove any existing canonical and URL meta tags so each route has a single, correct source of truth
+  // Remove any existing meta tags that we'll override so each route has a single, correct source of truth
   html = html
     .replace(/<link rel="canonical"[^>]*>\s*/g, '')
     .replace(/<meta property="og:url"[^>]*>\s*/g, '')
-    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '');
+    .replace(/<meta property="og:image[^"]*"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:image"[^>]*>\s*/g, '');
  
   // Primary title and description
   html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`);
