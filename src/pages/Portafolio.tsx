@@ -27,6 +27,8 @@ interface Project {
   featured: boolean;
 }
 
+import { Frame } from 'lucide-react';
+
 const categoryIcons: Record<string, any> = {
   webs: Globe,
   booktrailers: Video,
@@ -38,6 +40,7 @@ const categoryIcons: Record<string, any> = {
   'portadas-libros': BookOpen,
   'artistas-cantantes': Mic,
   'artistas-pintores': PaintBucket,
+  'obras-arte': Frame,
 };
 
 const categoryLabels: Record<string, string> = {
@@ -51,6 +54,7 @@ const categoryLabels: Record<string, string> = {
   'portadas-libros': 'Portadas de Libros',
   'artistas-cantantes': 'Cantantes',
   'artistas-pintores': 'Pintores',
+  'obras-arte': 'Obras de Arte',
 };
 
 export default function Portafolio() {
@@ -186,6 +190,7 @@ export default function Portafolio() {
                 <SelectItem value="cine">Cine</SelectItem>
                 <SelectItem value="musica">Música</SelectItem>
                 <SelectItem value="avatares">Avatares</SelectItem>
+                <SelectItem value="obras-arte">Obras de Arte</SelectItem>
                 <SelectItem value="artistas">Todos los Artistas</SelectItem>
                 <SelectItem value="artistas-cantantes">Cantantes</SelectItem>
                 <SelectItem value="artistas-pintores">Pintores</SelectItem>
