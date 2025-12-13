@@ -273,6 +273,22 @@ function ArtistLayout({ project, links, galleryImages }: {
                 </CardContent>
               </Card>
             </section>
+
+            {/* Free Dauro Productions Logo - Solo para José Carrera */}
+            {project.slug === 'jose-carrera' && (
+              <div className="mt-8 flex justify-end">
+                <div className="w-24 opacity-70 hover:opacity-100 transition-opacity">
+                  <video
+                    src="/videos/logo-free-dauro-productions.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-auto rounded"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </main>
 
