@@ -41,6 +41,18 @@
       "destination": "/portafolio/jose-carrera/index.html"
     },
     {
+      "source": "/tienda",
+      "destination": "/tienda/index.html"
+    },
+    {
+      "source": "/portafolio",
+      "destination": "/portafolio/index.html"
+    },
+    {
+      "source": "/musica",
+      "destination": "/musica/index.html"
+    },
+    {
       "source": "/blog/generador-portadas-gratis-ia",
       "destination": "/blog/generador-portadas-gratis-ia/index.html"
     },
