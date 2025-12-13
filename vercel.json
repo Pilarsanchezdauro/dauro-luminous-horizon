@@ -5,6 +5,38 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/grupo-dauro",
+      "destination": "/grupo-dauro/index.html"
+    },
+    {
+      "source": "/grupo-dauro/editorial",
+      "destination": "/grupo-dauro/editorial/index.html"
+    },
+    {
+      "source": "/grupo-dauro/arte",
+      "destination": "/grupo-dauro/arte/index.html"
+    },
+    {
+      "source": "/grupo-dauro/cine",
+      "destination": "/grupo-dauro/cine/index.html"
+    },
+    {
+      "source": "/grupo-dauro/ia",
+      "destination": "/grupo-dauro/ia/index.html"
+    },
+    {
+      "source": "/servicios",
+      "destination": "/servicios/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/contacto",
+      "destination": "/contacto/index.html"
+    },
+    {
       "source": "/portafolio/jose-carrera",
       "destination": "/portafolio/jose-carrera/index.html"
     },
