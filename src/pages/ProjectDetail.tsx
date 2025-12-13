@@ -446,8 +446,26 @@ function ArtistLayout({ project, links, galleryImages }: {
             </Card>
           </section>
 
-          {/* Music Projects CTA */}
-          <MusicProjectsCTA />
+          {/* Conditional CTA based on artist type */}
+          {project.category === 'artistas-pintores' ? (
+            <section className="mt-12 py-12 border-t border-border/50">
+              <div className="text-center max-w-2xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">¿Eres artista visual?</h2>
+                <p className="text-muted-foreground mb-6">
+                  Si eres pintor, ilustrador o artista plástico y te interesa que representemos tu obra, 
+                  envíanos tu portfolio. Buscamos talento auténtico para ampliar nuestra galería.
+                </p>
+                <Button size="lg" asChild>
+                  <Link to="/artistas/solicitud">
+                    <Palette className="mr-2 h-5 w-5" />
+                    Enviar mi obra
+                  </Link>
+                </Button>
+              </div>
+            </section>
+          ) : (
+            <MusicProjectsCTA />
+          )}
         </div>
       </main>
 
