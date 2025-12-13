@@ -46,6 +46,11 @@ function ArtistLayout({ project, links, galleryImages }: {
   const Icon = categoryIcons[project.category];
   const youtubeLink = links.find(l => l.url.includes('youtube'));
 
+  // For José Carrera we forzamos explícitamente la nueva imagen principal
+  const mainImageUrl = project.slug === 'jose-carrera'
+    ? '/projects/jose-carrera.png'
+    : project.main_image_url;
+
   return (
     <>
       <SEO
@@ -71,10 +76,10 @@ function ArtistLayout({ project, links, galleryImages }: {
             <div className="grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 mb-12">
               {/* Photo Column */}
               <div className="flex flex-col items-center lg:items-start">
-                {project.main_image_url && (
+                {mainImageUrl && (
                   <div className="w-full max-w-[400px]">
                     <img
-                      src={project.main_image_url}
+                      src={mainImageUrl}
                       alt={project.title}
                       className="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
                     />
