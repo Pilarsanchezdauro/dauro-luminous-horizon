@@ -262,15 +262,31 @@ function ArtistLayout({ project, links, galleryImages }: {
                         ¿Interesado en contratar a <strong>{project.title}</strong>? Completa el formulario y nos pondremos en contacto contigo.
                       </p>
                       <div className="p-3 bg-background/50 rounded-md border border-border/50 text-sm space-y-2">
-                        <p className="font-medium">Servicios disponibles:</p>
-                        <ul className="text-muted-foreground space-y-1 list-disc list-inside">
-                          <li>Contratación de su voz para proyectos</li>
-                          <li>Grabación de canciones personalizadas</li>
-                          <li>Videoclips musicales con su imagen para expansión de marca</li>
-                        </ul>
-                        <p className="text-muted-foreground/80 italic mt-2">
-                          * No disponible para actuaciones en directo
-                        </p>
+                        <p className="font-medium">Servicios disponibles orientativos:</p>
+                        {project.category === 'artistas-cantantes' ? (
+                          <>
+                            <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                              <li>Contratación de su voz para proyectos</li>
+                              <li>Grabación de canciones personalizadas</li>
+                              <li>Videoclips musicales con su imagen para expansión de marca</li>
+                            </ul>
+                            <p className="text-muted-foreground/80 italic mt-2">
+                              * No disponible para actuaciones en directo
+                            </p>
+                          </>
+                        ) : project.category === 'artistas-pintores' ? (
+                          <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                            <li>Encargos de obra original y series limitadas</li>
+                            <li>Licencias de uso de imagen para proyectos editoriales y empresariales</li>
+                            <li>Exposición y venta de obras a través de Grupo Dauro</li>
+                          </ul>
+                        ) : (
+                          <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                            <li>Proyectos artísticos y comerciales a medida</li>
+                            <li>Colaboraciones con marcas y entidades</li>
+                            <li>Acciones especiales bajo propuesta</li>
+                          </ul>
+                        )}
                       </div>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         {project.slug === 'jose-carrera' ? (
