@@ -263,18 +263,23 @@ function ArtistLayout({ project, links, galleryImages }: {
                       </div>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         {project.slug === 'jose-carrera' ? (
-                          <video
-                            src="/videos/logo-free-dauro-productions.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-10 h-10 object-contain"
-                          />
+                          <>
+                            <video
+                              src="/videos/logo-free-dauro-productions.mp4"
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-10 h-10 object-contain"
+                            />
+                            <span>Representado por Free Dauro Productions</span>
+                          </>
                         ) : (
-                          <Music className="h-4 w-4" />
+                          <>
+                            <Music className="h-4 w-4" />
+                            <span>Representado por Grupo Dauro</span>
+                          </>
                         )}
-                        <span>Representado por Grupo Dauro</span>
                       </div>
                     </div>
                     <div>
