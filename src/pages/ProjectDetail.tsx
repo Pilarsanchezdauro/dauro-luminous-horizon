@@ -529,10 +529,13 @@ function DefaultProjectLayout({ project, links, galleryImages }: {
             </div>
 
             {/* Main Image or Video */}
-            {links.length > 0 && links[0].url.includes('youtube') ? (
+            {links.length > 0 && (links[0].url.includes('youtube') || links[0].url.includes('youtu.be')) ? (
               <div className="aspect-video">
                 <iframe
-                  src={links[0].url.replace('watch?v=', 'embed/')}
+                  src={links[0].url
+                    .replace('watch?v=', 'embed/')
+                    .replace('youtu.be/', 'www.youtube.com/embed/')
+                    .split('?')[0]}
                   className="w-full h-full rounded-lg"
                   allowFullScreen
                   title={project.title}
