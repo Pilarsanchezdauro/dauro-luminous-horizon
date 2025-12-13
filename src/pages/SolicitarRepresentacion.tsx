@@ -39,10 +39,11 @@ const SolicitarRepresentacion = () => {
                 envíanos tu portfolio y te contactaremos.
               </p>
               <div className="bg-muted/50 border border-border rounded-lg p-4 max-w-2xl mx-auto">
-                <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                   <strong className="text-foreground">Importante:</strong> Nuestra representación se centra en el uso de tu voz e imagen para 
                   proyectos empresariales, grabaciones, producciones audiovisuales y colaboraciones artísticas. 
-                  <span className="text-primary font-medium"> No gestionamos directos ni conciertos.</span>
+                  Las exposiciones que gestionamos son exclusivamente virtuales.
+                  <span className="text-primary font-medium"> No gestionamos directos, conciertos ni exposiciones físicas.</span>
                 </p>
               </div>
             </div>
