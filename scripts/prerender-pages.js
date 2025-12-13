@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -93,58 +93,63 @@ function escapeHtml(text) {
     .replace(/'/g, '&#039;');
 }
 
+// Use the built SPA index.html as template so each route
+// returns the full app shell with route-specific SEO meta tags
+const distPath = resolve(__dirname, '../dist');
+const templatePath = resolve(distPath, 'index.html');
+let templateHtml = '';
+
+try {
+  templateHtml = readFileSync(templatePath, 'utf-8');
+} catch (error) {
+  console.error('❌ Error reading base template index.html for prerender-pages:', error);
+  process.exit(1);
+}
+
 function generatePageHTML(page) {
   const safeTitle = escapeHtml(page.title);
   const safeDescription = escapeHtml(page.description);
-  
-  return `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${safeTitle} | Grupo Dauro</title>
-  <meta name="description" content="${safeDescription}" />
-  <link rel="canonical" href="${baseUrl}/${page.path}" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="${baseUrl}/${page.path}" />
-  <meta property="og:title" content="${safeTitle}" />
-  <meta property="og:description" content="${safeDescription}" />
-  <meta property="og:image" content="${baseUrl}${page.image}" />
-  <meta property="og:image:secure_url" content="${baseUrl}${page.image}" />
+  const url = `${baseUrl}/${page.path}`;
+  const imageUrl = `${baseUrl}${page.image}`;
+
+  let html = templateHtml;
+
+  // Primary title and description
+  html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`);
+  html = html.replace(/<meta name="title"[^>]*>/, `<meta name="title" content="${safeTitle}" />`);
+  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeDescription}" />`);
+
+  // Open Graph basics
+  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${safeTitle}" />`);
+  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${safeDescription}" />`);
+
+  // Twitter basics
+  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${safeTitle}" />`);
+  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${safeDescription}" />`);
+
+  const extraMeta = `
+  <link rel="canonical" href="${url}" />
+  <meta property="og:url" content="${url}" />
+  <meta property="og:image" content="${imageUrl}" />
+  <meta property="og:image:secure_url" content="${imageUrl}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="Grupo Cultural Dauro" />
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="${baseUrl}/${page.path}" />
-  <meta name="twitter:title" content="${safeTitle}" />
-  <meta name="twitter:description" content="${safeDescription}" />
-  <meta name="twitter:image" content="${baseUrl}${page.image}" />
-  <meta name="twitter:image:alt" content="${safeTitle}" />
-  
-  <!-- WhatsApp specific -->
   <meta property="og:image:alt" content="${safeTitle}" />
-  
-  <meta http-equiv="refresh" content="0;url=/${page.path}" />
-  <script>window.location.href = '/${page.path}';</script>
-</head>
-<body>
-  <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 100px auto; text-align: center; padding: 20px;">
-    <h1>${safeTitle}</h1>
-    <p>Redirigiendo...</p>
-    <p><a href="/${page.path}" style="color: #0066cc;">Haz clic aquí si no eres redirigido automáticamente</a></p>
-  </div>
-</body>
-</html>`;
+  <meta name="twitter:url" content="${url}" />
+  <meta name="twitter:image" content="${imageUrl}" />
+  `;
+
+  if (html.includes('<!-- SEO_DYNAMIC_META -->')) {
+    html = html.replace('<!-- SEO_DYNAMIC_META -->', extraMeta);
+  } else {
+    html = html.replace('</head>', `${extraMeta}\n  </head>`);
+  }
+
+  return html;
 }
 
 // Generate HTML files for each page
-const distPath = resolve(__dirname, '../dist');
 
 try {
   mkdirSync(distPath, { recursive: true });

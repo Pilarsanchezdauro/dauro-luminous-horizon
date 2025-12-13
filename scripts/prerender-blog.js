@@ -153,65 +153,76 @@ function generateArticleStructuredData(post) {
   };
 }
 
+// Use SPA index.html as template so each blog post
+// returns full app shell plus article-specific SEO meta
+const blogTemplatePath = resolve(__dirname, '../dist/index.html');
+let blogTemplateHtml = '';
+
+try {
+  blogTemplateHtml = readFileSync(blogTemplatePath, 'utf-8');
+} catch (error) {
+  console.error('❌ Error reading base template index.html for prerender-blog:', error);
+  process.exit(1);
+}
+
 function generateBlogPostHTML(post) {
   const safeTitle = escapeHtml(post.title);
   const safeExcerpt = escapeHtml(post.excerpt);
   const safeAuthor = escapeHtml(post.author || 'Grupo Dauro');
   const isoDate = parseSpanishDate(post.date);
   const structuredData = generateArticleStructuredData(post);
-  
-  return `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${safeTitle} | Grupo Dauro</title>
-  <meta name="description" content="${safeExcerpt}" />
-  <meta name="author" content="${safeAuthor}" />
-  <link rel="canonical" href="${baseUrl}/blog/${post.slug}" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="${baseUrl}/blog/${post.slug}" />
-  <meta property="og:title" content="${safeTitle}" />
-  <meta property="og:description" content="${safeExcerpt}" />
-  <meta property="og:image" content="${baseUrl}${post.image}" />
-  <meta property="og:image:secure_url" content="${baseUrl}${post.image}" />
+  const url = `${baseUrl}/blog/${post.slug}`;
+  const imageUrl = `${baseUrl}${post.image}`;
+
+  let html = blogTemplateHtml;
+
+  // Primary title and description
+  html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle} | Grupo Dauro</title>`);
+  html = html.replace(/<meta name="title"[^>]*>/, `<meta name="title" content="${safeTitle}" />`);
+  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeExcerpt}" />`);
+  html = html.replace(/<meta name="author"[^>]*>/, `<meta name="author" content="${safeAuthor}" />`);
+
+  // Open Graph
+  html = html.replace(/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="article" />`);
+  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${safeTitle}" />`);
+  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${safeExcerpt}" />`);
+
+  // Twitter
+  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${safeTitle}" />`);
+  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${safeExcerpt}" />`);
+
+  const extraMeta = `
+  <link rel="canonical" href="${url}" />
+  <meta property="og:url" content="${url}" />
+  <meta property="og:image" content="${imageUrl}" />
+  <meta property="og:image:secure_url" content="${imageUrl}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/${post.image.endsWith('.png') ? 'png' : 'jpeg'}" />
   <meta property="og:image:alt" content="${safeTitle}" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="Grupo Cultural Dauro" />
   <meta property="article:published_time" content="${isoDate}" />
   <meta property="article:modified_time" content="${isoDate}" />
   <meta property="article:author" content="${safeAuthor}" />
   <meta property="article:section" content="${getCategoryInSpanish(post.category)}" />
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="${baseUrl}/blog/${post.slug}" />
-  <meta name="twitter:title" content="${safeTitle}" />
-  <meta name="twitter:description" content="${safeExcerpt}" />
-  <meta name="twitter:image" content="${baseUrl}${post.image}" />
+  <meta name="twitter:url" content="${url}" />
+  <meta name="twitter:image" content="${imageUrl}" />
   <meta name="twitter:image:alt" content="${safeTitle}" />
-  
-  <!-- Structured Data / JSON-LD -->
+  `;
+
+  const structuredDataScript = `
   <script type="application/ld+json">
 ${JSON.stringify(structuredData, null, 2)}
-  </script>
-  
-  <meta http-equiv="refresh" content="0;url=/blog/${post.slug}" />
-  <script>window.location.href = '/blog/${post.slug}';</script>
-</head>
-<body>
-  <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 100px auto; text-align: center; padding: 20px;">
-    <h1>${safeTitle}</h1>
-    <p>Redirigiendo al artículo...</p>
-    <p><a href="/blog/${post.slug}" style="color: #0066cc;">Haz clic aquí si no eres redirigido automáticamente</a></p>
-  </div>
-</body>
-</html>`;
+  </script>`;
+
+  const metaBlock = `${extraMeta}\n${structuredDataScript}`;
+
+  if (html.includes('<!-- SEO_DYNAMIC_META_BLOG -->')) {
+    html = html.replace('<!-- SEO_DYNAMIC_META_BLOG -->', metaBlock);
+  } else {
+    html = html.replace('</head>', `${metaBlock}\n  </head>`);
+  }
+
+  return html;
 }
 
 // Main execution
