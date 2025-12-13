@@ -260,13 +260,14 @@ function ArtistLayout({ project, links, galleryImages }: {
                         {galleryImages.map((img, index) => (
                           <div 
                             key={index} 
-                            className="relative overflow-hidden rounded-lg aspect-[3/4] group"
+                            className="relative overflow-hidden rounded-lg aspect-[3/4] group cursor-pointer"
                           >
                             <img
                               src={img.url}
                               alt={(img as any).alt || `${project.title} - Obra ${index + 1}`}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              className="w-full h-full object-cover transition-all duration-500 group-hover:object-contain group-hover:scale-100 group-hover:bg-black/90"
                             />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/80 transition-colors duration-300 -z-10" />
                           </div>
                         ))}
                       </div>
@@ -289,13 +290,14 @@ function ArtistLayout({ project, links, galleryImages }: {
                             {imagesByCategory[cat].map((img, index) => (
                               <div 
                                 key={index} 
-                                className="relative overflow-hidden rounded-lg aspect-[3/4] group"
+                                className="relative overflow-hidden rounded-lg aspect-[3/4] group cursor-pointer"
                               >
                                 <img
                                   src={img.url}
                                   alt={(img as any).alt || `${project.title} - ${cat} ${index + 1}`}
-                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                  className="w-full h-full object-cover transition-all duration-500 group-hover:object-contain group-hover:scale-100"
                                 />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/80 transition-colors duration-300 -z-10" />
                               </div>
                             ))}
                           </div>
