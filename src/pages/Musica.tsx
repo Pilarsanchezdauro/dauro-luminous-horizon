@@ -89,20 +89,20 @@ const Musica = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10">
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">10+</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">30+</p>
             <p className="text-sm text-muted-foreground">Proyectos Musicales</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">2</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">10</p>
             <p className="text-sm text-muted-foreground">Países Unidos</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">5+</p>
+            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">30+</p>
             <p className="text-sm text-muted-foreground">Videoclips</p>
           </div>
           <div className="text-center">
             <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">100%</p>
-            <p className="text-sm text-muted-foreground">Producción Original</p>
+            <p className="text-sm text-muted-foreground">Producto Original</p>
           </div>
         </div>
 
