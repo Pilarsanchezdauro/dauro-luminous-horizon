@@ -445,10 +445,10 @@ export default function Portafolio() {
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      Descubre LeBrun Collection
+                      Representación de Obras de Arte
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Explora nuestra colección exclusiva de obras de arte. Ofrecemos servicios de peritaje, tasación y gestión.
+                      Representamos obras de arte de alto nivel para la compra-venta de las mismas. Descubre LeBrun Collection, nuestra colección exclusiva.
                     </p>
                   </div>
                   
