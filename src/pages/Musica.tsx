@@ -5,6 +5,7 @@ import { Music, Play, Award, Users } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import mascotLogo from "@/assets/mascot.png";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
+import musicaBg from "@/assets/musica-bg.jpg";
 
 const Musica = () => {
   const structuredData = {
@@ -27,8 +28,12 @@ const Musica = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/30">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-background" />
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mt-20">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${musicaBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
