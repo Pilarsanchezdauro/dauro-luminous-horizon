@@ -246,7 +246,7 @@ Cada valoración combina análisis técnico, conocimiento histórico y visión d
         "Proyectos culturales",
         "Música para audiovisual",
       ],
-      masInfo: `En Free Dauro Productions desarrollamos proyectos musicales completos, desde la idea inicial hasta la distribución final.
+      masInfo: `En Dauro Free Productions desarrollamos proyectos musicales completos, desde la idea inicial hasta la distribución final.
 Trabajamos con artistas y proyectos culturales que buscan una producción profesional con identidad propia.
 
 Incluye:
@@ -306,7 +306,7 @@ Nuestro objetivo es generar valor para artistas y coleccionistas, construyendo r
         "Instituciones y empresas",
         "Artistas y músicos",
       ],
-      masInfo: `En Free Dauro Productions desarrollamos proyectos audiovisuales con visión artística y rigor técnico.
+      masInfo: `En Dauro Free Productions desarrollamos proyectos audiovisuales con visión artística y rigor técnico.
 Desde la preproducción hasta la entrega final, cada proyecto recibe un tratamiento cinematográfico profesional.
 
 Incluye:
