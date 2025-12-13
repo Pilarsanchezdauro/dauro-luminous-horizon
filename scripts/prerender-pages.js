@@ -74,7 +74,7 @@ const pages = [
     image: '/og-grupo-dauro.jpg'
   },
   {
-    path: 'musica',
+    path: 'grupo-dauro/musica',
     title: 'Dauro Música - Producción Musical y Artistas',
     description: 'Descubre nuestra división musical: producción, representación de artistas y proyectos sonoros de calidad.',
     image: '/og-el-arte-es-navidad.png'

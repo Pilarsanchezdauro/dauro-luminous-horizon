@@ -49,8 +49,8 @@
       "destination": "/portafolio/index.html"
     },
     {
-      "source": "/musica",
-      "destination": "/musica/index.html"
+      "source": "/grupo-dauro/musica",
+      "destination": "/grupo-dauro/musica/index.html"
     },
     {
       "source": "/blog/generador-portadas-gratis-ia",
