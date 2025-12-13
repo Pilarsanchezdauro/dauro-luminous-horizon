@@ -60,6 +60,24 @@ const pages = [
     title: 'José Carrera - Cantante | Grupo Cultural Dauro',
     description: 'Cantante con voz serena y contenida que acompaña y potencia proyectos empresariales mediante canciones y videoclips de alta calidad.',
     image: '/og-jose-carrera-2025.jpg'
+  },
+  {
+    path: 'tienda',
+    title: 'Tienda Cultural - Libros y Productos Exclusivos',
+    description: 'Descubre nuestra selección de libros, obras de arte y productos culturales exclusivos del Grupo Dauro.',
+    image: '/og-editorial.jpg'
+  },
+  {
+    path: 'portafolio',
+    title: 'Portafolio - Proyectos y Trabajos Destacados',
+    description: 'Explora nuestro portafolio de proyectos: diseño editorial, branding, producción audiovisual y creaciones con IA.',
+    image: '/og-grupo-dauro.jpg'
+  },
+  {
+    path: 'musica',
+    title: 'Dauro Música - Producción Musical y Artistas',
+    description: 'Descubre nuestra división musical: producción, representación de artistas y proyectos sonoros de calidad.',
+    image: '/og-el-arte-es-navidad.png'
   }
 ];
 
