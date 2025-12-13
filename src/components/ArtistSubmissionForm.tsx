@@ -190,7 +190,7 @@ export function ArtistSubmissionForm() {
         _subject: `Nueva solicitud de representación artística: ${data.nombre} ${data.apellidos}`,
       };
 
-      const formspreeResponse = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+      const formspreeResponse = await fetch("https://formspree.io/f/mpwvbyyr", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
