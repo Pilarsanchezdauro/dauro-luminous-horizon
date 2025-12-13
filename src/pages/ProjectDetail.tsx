@@ -272,7 +272,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                               playsInline
                               className="w-10 h-10 object-contain"
                             />
-                            <span>Representado por Free Dauro Productions</span>
+                            <span>Representado por Dauro Free Productions</span>
                           </>
                         ) : (
                           <>
