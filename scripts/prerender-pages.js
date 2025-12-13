@@ -41,19 +41,19 @@ const pages = [
     path: 'servicios',
     title: 'Servicios Culturales y Creativos',
     description: 'Consultoría cultural, diseño editorial, producción audiovisual y servicios creativos con IA.',
-    image: '/og-logo.png'
+    image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'blog',
     title: 'Blog - Noticias Culturales y Eventos',
     description: 'Últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos y novedades sobre IA creativa.',
-    image: '/og-logo.png'
+    image: '/og-editorial.jpg'
   },
   {
     path: 'contacto',
     title: 'Contacto - Grupo Cultural Dauro',
     description: 'Ponte en contacto con el Grupo Cultural Dauro para proyectos editoriales, artísticos o audiovisuales.',
-    image: '/og-logo.png'
+    image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'portafolio/jose-carrera',
