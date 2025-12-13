@@ -458,10 +458,15 @@ export default function Portafolio() {
                       className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
                       asChild
                     >
-                      <Link to="/servicios" className="flex items-center gap-2">
+                      <a 
+                        href="https://lebruncollection.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
                         <Frame className="w-5 h-5" />
-                        Ver servicios de arte
-                      </Link>
+                        Visitar LeBrun Collection
+                      </a>
                     </Button>
                     
                     <Button 
