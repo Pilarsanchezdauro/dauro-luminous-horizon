@@ -47,11 +47,13 @@ import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
 import SolicitarWeb from "./pages/SolicitarWeb";
 import SolicitarProyecto from "./pages/SolicitarProyecto";
 import SolicitarPortada from "./pages/SolicitarPortada";
+import SolicitarRepresentacion from "./pages/SolicitarRepresentacion";
 import GeneradorPortadas from "./pages/GeneradorPortadas";
 import BookCoverRequests from "./pages/admin/BookCoverRequests";
 import ImageSeoManager from "./pages/admin/ImageSeoManager";
 import Analytics from "./pages/admin/Analytics";
 import AIMonitoring from "./pages/admin/AIMonitoring";
+import ArtistSubmissions from "./pages/admin/ArtistSubmissions";
 
 const queryClient = new QueryClient();
 
@@ -88,6 +90,7 @@ const App = () => (
             <Route path="/solicitar-proyecto" element={<SolicitarProyecto />} />
             <Route path="/solicitar-portada" element={<SolicitarPortada />} />
             <Route path="/generador-portadas" element={<GeneradorPortadas />} />
+            <Route path="/artistas/solicitud" element={<SolicitarRepresentacion />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
@@ -111,6 +114,7 @@ const App = () => (
               <Route path="image-seo" element={<ImageSeoManager />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="ai-monitoring" element={<AIMonitoring />} />
+              <Route path="artist-submissions" element={<ArtistSubmissions />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
