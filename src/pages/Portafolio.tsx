@@ -41,6 +41,7 @@ const categoryIcons: Record<string, any> = {
   'artistas-cantantes': Mic,
   'artistas-pintores': PaintBucket,
   'obras-arte': Frame,
+  'produccion-musical': Music,
 };
 
 const categoryLabels: Record<string, string> = {
@@ -55,6 +56,7 @@ const categoryLabels: Record<string, string> = {
   'artistas-cantantes': 'Cantantes',
   'artistas-pintores': 'Pintores',
   'obras-arte': 'Obras de Arte',
+  'produccion-musical': 'Producción Musical',
 };
 
 export default function Portafolio() {
@@ -191,6 +193,7 @@ export default function Portafolio() {
                 <SelectItem value="musica">Música</SelectItem>
                 <SelectItem value="avatares">Avatares</SelectItem>
                 <SelectItem value="obras-arte">Obras de Arte</SelectItem>
+                <SelectItem value="produccion-musical">Producción Musical</SelectItem>
                 <SelectItem value="artistas">Todos los Artistas</SelectItem>
                 <SelectItem value="artistas-cantantes">Cantantes</SelectItem>
                 <SelectItem value="artistas-pintores">Pintores</SelectItem>
