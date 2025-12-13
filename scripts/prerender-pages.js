@@ -113,11 +113,18 @@ function generatePageHTML(page) {
   const imageUrl = `${baseUrl}${page.image}`;
 
   let html = templateHtml;
-
+ 
+  // Remove any existing canonical and URL meta tags so each route has a single, correct source of truth
+  html = html
+    .replace(/<link rel="canonical"[^>]*>\s*/g, '')
+    .replace(/<meta property="og:url"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '');
+ 
   // Primary title and description
   html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`);
   html = html.replace(/<meta name="title"[^>]*>/, `<meta name="title" content="${safeTitle}" />`);
   html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeDescription}" />`);
+
 
   // Open Graph basics
   html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${safeTitle}" />`);

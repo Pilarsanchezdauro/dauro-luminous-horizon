@@ -175,12 +175,19 @@ function generateBlogPostHTML(post) {
   const imageUrl = `${baseUrl}${post.image}`;
 
   let html = blogTemplateHtml;
-
+ 
+  // Remove any existing canonical and URL meta tags so each article has a single, correct source of truth
+  html = html
+    .replace(/<link rel="canonical"[^>]*>\s*/g, '')
+    .replace(/<meta property="og:url"[^>]*>\s*/g, '')
+    .replace(/<meta name="twitter:url"[^>]*>\s*/g, '');
+ 
   // Primary title and description
   html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle} | Grupo Dauro</title>`);
   html = html.replace(/<meta name="title"[^>]*>/, `<meta name="title" content="${safeTitle}" />`);
   html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeExcerpt}" />`);
   html = html.replace(/<meta name="author"[^>]*>/, `<meta name="author" content="${safeAuthor}" />`);
+
 
   // Open Graph
   html = html.replace(/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="article" />`);
