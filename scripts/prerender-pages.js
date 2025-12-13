@@ -59,7 +59,7 @@ const pages = [
     path: 'portafolio/jose-carrera',
     title: 'José Carrera - Cantante | Grupo Cultural Dauro',
     description: 'Cantante con voz serena y contenida que acompaña y potencia proyectos empresariales mediante canciones y videoclips de alta calidad.',
-    image: '/og-jose-carrera.jpg'
+    image: '/og-jose-carrera-2025.jpg'
   }
 ];
 
