@@ -19,7 +19,7 @@ const ChristmasSongAnnouncement = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full">
               <Music className="w-4 h-4" />
-              <span className="text-sm font-medium">Free Dauro Productions</span>
+              <span className="text-sm font-medium">Dauro Free Productions</span>
             </div>
           </div>
 
@@ -49,7 +49,7 @@ const ChristmasSongAnnouncement = () => {
 
               <div className="space-y-4 text-muted-foreground leading-relaxed mb-6">
                 <p>
-                  Producida por <strong className="text-foreground">Free Dauro Productions</strong>, la nueva línea de música y cine de Grupo Dauro.
+                  Producida por <strong className="text-foreground">Dauro Free Productions</strong>, la nueva línea de música y cine de Grupo Dauro.
                 </p>
                 
                 <p className="text-sm md:text-base">
