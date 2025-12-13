@@ -637,6 +637,30 @@ const Musica = () => {
           </div>
         </div>
 
+        {/* Más proyectos en el archivo */}
+        <div className="mb-24">
+          <div className="bg-gradient-to-br from-muted/50 via-background to-muted/30 p-8 lg:p-12 rounded-3xl border-2 border-border hover:border-primary/30 transition-all duration-300">
+            <div className="text-center space-y-6">
+              <h3 className="text-2xl lg:text-3xl font-playfair font-bold">
+                Más Proyectos Musicales en Nuestro Archivo
+              </h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Explora más producciones, colaboraciones y proyectos musicales en nuestro archivo histórico. 
+                Años de música, artistas y creaciones que han marcado nuestra trayectoria.
+              </p>
+              <a 
+                href="https://grupodauro.wpcomstaging.com/category/musica/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors font-medium"
+              >
+                <Music className="h-5 w-5" />
+                Ver archivo de música
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="mb-16">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-12 rounded-3xl border-2 border-primary/20 text-center">
