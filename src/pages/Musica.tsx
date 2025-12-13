@@ -208,6 +208,78 @@ const Musica = () => {
             </div>
           </div>
 
+          {/* El Arte es Navidad - José Carrera */}
+          <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Video embed */}
+              <div className="order-2 lg:order-1">
+                <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/mKHhpGMBVcI"
+                    title="El Arte es Navidad - José Carrera"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+              </div>
+
+              {/* Contenido */}
+              <div className="order-1 lg:order-2 space-y-6">
+                <div>
+                  <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                    Dauro Free Productions · Navidad 2024
+                  </div>
+                  <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                    El Arte es Navidad
+                  </h3>
+                  <p className="text-lg text-muted-foreground font-medium">José Carrera</p>
+                </div>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  Una canción navideña original que celebra el arte como regalo y la creatividad como 
+                  expresión de los mejores deseos. <strong>José Carrera</strong>, cantante representado 
+                  por Dauro Free Productions, nos regala esta pieza musical llena de emoción y espíritu festivo.
+                </p>
+
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Esta producción representa el compromiso de Dauro Música con el talento emergente y 
+                  la creación de contenido original que conecte con el público a través de la emoción 
+                  y la autenticidad.
+                </p>
+
+                <div className="flex gap-2 flex-wrap">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Navidad</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Dauro Free Productions</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">José Carrera</span>
+                </div>
+
+                <div className="flex flex-wrap gap-4 pt-4">
+                  <a 
+                    href="https://www.youtube.com/watch?v=mKHhpGMBVcI" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    <Play className="h-5 w-5" />
+                    Ver en YouTube
+                  </a>
+                  <a 
+                    href="/portafolio/jose-carrera" 
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground/10 text-foreground rounded-lg hover:bg-foreground/20 transition-colors font-medium border border-foreground/20"
+                  >
+                    <Users className="h-5 w-5" />
+                    Ver Artista
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Si cuento - Ojos de Blues */}
           <div className="bg-gradient-to-br from-card via-card/95 to-card p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 shadow-xl mb-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
