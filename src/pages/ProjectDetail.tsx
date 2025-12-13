@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -7,11 +8,61 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Globe, Users, Video, Palette, Briefcase, Film, Music, Youtube, Mail, BookOpen, Mic, PaintBucket, X } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 import { MusicProjectsCTA } from '@/components/MusicProjectsCTA';
+
+// Lightbox component for artwork display
+function ArtworkLightbox({ 
+  isOpen, 
+  onClose, 
+  imageUrl, 
+  title, 
+  artistName 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  imageUrl: string; 
+  title: string; 
+  artistName: string;
+}) {
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <button 
+        onClick={onClose}
+        className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+      >
+        <X className="w-8 h-8" />
+      </button>
+      <div 
+        className="max-w-4xl max-h-[90vh] flex flex-col items-center"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img 
+          src={imageUrl} 
+          alt={title}
+          className="max-w-full max-h-[75vh] object-contain rounded-lg"
+        />
+        <div className="mt-4 text-center text-white">
+          <h3 className="text-xl font-semibold">{title}</h3>
+          <p className="text-white/70 text-sm mt-2">
+            © {artistName}. Todos los derechos reservados.
+          </p>
+          <p className="text-white/50 text-xs mt-1">
+            Solo usar con permiso y nombrando al propietario legítimo.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const categoryIcons = {
   webs: Globe,
@@ -47,9 +98,21 @@ function ArtistLayout({ project, links, galleryImages }: {
 }) {
   const Icon = categoryIcons[project.category];
   const youtubeLink = links.find(l => l.url.includes('youtube'));
+  
+  // Lightbox state
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
 
   // Use the main_image_url from database
   const mainImageUrl = project.main_image_url;
+
+  const openLightbox = (url: string, category: string, index: number) => {
+    const title = category === 'Fluid Art' 
+      ? `Fluid ${index + 1}` 
+      : `Abstracción ${index + 1}`;
+    setSelectedImage({ url, title });
+    setLightboxOpen(true);
+  };
 
   console.log('ArtistLayout debug - slug, category, galleryImages length, sample', {
     slug: project.slug,
@@ -255,12 +318,14 @@ function ArtistLayout({ project, links, galleryImages }: {
                   
                   // If only one category, show without tabs
                   if (categories.length <= 1) {
+                    const cat = categories[0] || 'Otras obras';
                     return (
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {galleryImages.map((img, index) => (
                           <div 
                             key={index} 
                             className="relative overflow-hidden rounded-lg aspect-[3/4] group cursor-pointer"
+                            onClick={() => openLightbox(img.url, cat, index)}
                           >
                             <img
                               src={img.url}
@@ -291,6 +356,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                               <div 
                                 key={index} 
                                 className="relative overflow-hidden rounded-lg aspect-[3/4] group cursor-pointer"
+                                onClick={() => openLightbox(img.url, cat, index)}
                               >
                                 <img
                                   src={img.url}
@@ -387,6 +453,15 @@ function ArtistLayout({ project, links, galleryImages }: {
 
       <Footer />
       </div>
+      
+      {/* Artwork Lightbox */}
+      <ArtworkLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        imageUrl={selectedImage?.url || ''}
+        title={selectedImage?.title || ''}
+        artistName={project.title}
+      />
     </>
   );
 }
