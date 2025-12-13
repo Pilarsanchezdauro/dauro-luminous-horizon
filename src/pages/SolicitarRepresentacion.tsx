@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArtistSubmissionForm } from "@/components/ArtistSubmissionForm";
+import { MusicProjectsCTA } from "@/components/MusicProjectsCTA";
 import { Users, Star, TrendingUp, Shield } from "lucide-react";
 
 const SolicitarRepresentacion = () => {
@@ -97,6 +98,15 @@ const SolicitarRepresentacion = () => {
                 </p>
                 <ArtistSubmissionForm />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Music Projects CTA */}
+        <section className="pb-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <MusicProjectsCTA />
             </div>
           </div>
         </section>
