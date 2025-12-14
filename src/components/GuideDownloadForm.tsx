@@ -136,11 +136,14 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
       <div className="flex items-center gap-3 mb-4">
         <Download className="h-8 w-8 text-primary" />
         <h3 className="text-xl font-playfair font-bold text-foreground">
-          Descarga la guía completa en PDF
+          Guía Editorial para Autores
         </h3>
       </div>
-      <p className="text-muted-foreground mb-6">
-        Introduce tu nombre y email para recibir la guía completa con todos los consejos.
+      <p className="text-muted-foreground mb-4">
+        Una guía práctica para autores que quieren publicar su libro. Incluye consejos sobre preparación del manuscrito, errores comunes, aspectos legales (ISBN, derechos), y estrategias de promoción.
+      </p>
+      <p className="text-sm text-muted-foreground mb-6">
+        Introduce tu nombre y email para descargarla gratis.
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
