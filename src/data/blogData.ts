@@ -41,6 +41,11 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/blog/antonio-dominguez-de-haro.webp",
     category: "arte",
     slug: "antonio-dominguez-de-haro-pintor-almunecar",
+    gallery: [
+      "/blog/dominguez-de-haro-obra-1.jpeg",
+      "/blog/dominguez-de-haro-obra-2.jpeg",
+      "/blog/dominguez-de-haro-obra-3.webp"
+    ],
     content: `## Un creador constante hasta el final
 
 Anoche falleció en Almuñécar Antonio Domínguez de Haro, uno de los artistas españoles que con mayor coherencia y fidelidad construyó una obra propia a lo largo de toda una vida. Hoy, a las 16:30, será despedido en su ciudad natal, junto a su familia y a quienes le acompañaron en su trayectoria personal y artística.

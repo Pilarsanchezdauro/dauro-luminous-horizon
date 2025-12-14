@@ -580,6 +580,32 @@ const BlogPost = () => {
                   </div>
                 )}
 
+                {/* CTA discreto para artistas en posts de categoría arte */}
+                {post.category === "arte" && (
+                  <div className="mt-12 p-6 bg-muted/30 border border-border/50 rounded-xl">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-foreground mb-1">
+                          ¿Eres artista visual?
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Grupo Dauro representa a artistas plásticos para la gestión y difusión de su obra.
+                        </p>
+                      </div>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="shrink-0"
+                      >
+                        <Link to="/artistas/solicitud" className="flex items-center gap-2">
+                          Solicitar representación
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
                 {/* Formulario de descarga de la guía - al final de todos los posts */}
                 <div className="mt-12">
                   <GuideDownloadForm 
