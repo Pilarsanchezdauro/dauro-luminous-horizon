@@ -33,6 +33,58 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Muere Antonio Domínguez de Haro en su Almuñécar natal, el pintor que no abandonó el mar ni el arte hasta el final",
+    excerpt: "Anoche falleció en Almuñécar Antonio Domínguez de Haro, uno de los artistas españoles que con mayor coherencia y fidelidad construyó una obra propia a lo largo de toda una vida. Desde Grupo Dauro queremos rendirle homenaje desde el respeto y la admiración.",
+    date: "14 Diciembre 2024",
+    author: "Familia Dauro",
+    image: "/blog/antonio-dominguez-de-haro.webp",
+    ogImage: "/blog/antonio-dominguez-de-haro.webp",
+    category: "arte",
+    slug: "antonio-dominguez-de-haro-pintor-almunecar",
+    content: `## Un creador constante hasta el final
+
+Anoche falleció en Almuñécar Antonio Domínguez de Haro, uno de los artistas españoles que con mayor coherencia y fidelidad construyó una obra propia a lo largo de toda una vida. Hoy, a las 16:30, será despedido en su ciudad natal, junto a su familia y a quienes le acompañaron en su trayectoria personal y artística.
+
+Desde Grupo Dauro queremos rendirle homenaje desde el respeto y la admiración. No hablamos desde la convivencia diaria, sino desde el conocimiento profundo de su obra, desde el trato personal mantenido a lo largo de los años y desde el reconocimiento sincero a un artista cuya dimensión trascendió ampliamente nuestras fronteras.
+
+**Antonio Domínguez de Haro fue, ante todo, un creador constante.**
+**Un pintor que nunca dejó de pintar, ni siquiera al final.**
+
+## El mar como estructura vital
+
+Nacido en Almuñécar en 1928, desarrolló una carrera que se extendió durante más de siete décadas. Su vínculo con el mar no fue circunstancial ni temático: fue estructural. Buceador, observador paciente y estudioso del mundo submarino, convirtió ese universo oculto en el eje central de una obra profundamente personal, reconocible y ajena a modas.
+
+## Reconocimiento internacional
+
+Mientras en España su nombre fue, en demasiadas ocasiones, tratado con discreción, fuera de nuestras fronteras su trabajo alcanzó un reconocimiento sólido y sostenido. Su obra fue valorada, expuesta y coleccionada especialmente en el ámbito internacional, donde se entendió con claridad la singularidad de su lenguaje plástico y la profundidad de su propuesta artística.
+
+## Una visión única del mundo submarino
+
+Antonio Domínguez de Haro no pintaba paisajes marinos: interpretaba la vida submarina. Sus cuadros no buscan el impacto inmediato, sino una relación más lenta y profunda con el espectador. Hay en ellos color, movimiento, formas orgánicas y una sensibilidad que conecta arte y naturaleza sin artificio ni grandilocuencia.
+
+## Un legado protegido
+
+Durante los últimos años, su hijo Tony Domínguez de Haro, como representante, acompañó y protegió su obra con rigor y dedicación, asegurando la continuidad y el cuidado de un legado que hoy adquiere aún mayor valor. Antonio siguió pintando hasta el final, no por disciplina ni obligación, sino porque crear era, sencillamente, su manera natural de estar en el mundo.
+
+## Parte de una estirpe silenciosa
+
+Hoy no es momento de balances ni de reivindicaciones forzadas, pero sí de señalar una realidad: la historia del arte español está llena de creadores que fueron antes reconocidos fuera que dentro, y Antonio Domínguez de Haro forma parte de esa estirpe silenciosa y coherente.
+
+Desde Grupo Dauro acompañaremos hoy a su familia en su despedida, con respeto y gratitud, conscientes de que su obra permanece y seguirá encontrando nuevas miradas, dentro y fuera de España.
+
+---
+
+**El mar de Almuñécar, al que dedicó su vida, no pierde a uno de sus intérpretes.**
+**Lo conserva.**
+
+*Gracias, Antonio.*
+*Por la constancia.*
+*Por la fidelidad a tu mirada.*
+*Y por una obra que seguirá hablando por ti.*
+
+— Familia Dauro`
+  },
+  {
     title: "Crea Portadas Gratis con IA: Visualiza tu libro antes de publicar",
     excerpt: "Descubre nuestro generador gratuito de portadas con inteligencia artificial. Crea diseños profesionales para tu libro en segundos y visualiza cómo quedará antes de dar el paso definitivo.",
     date: "7 Diciembre 2025",
