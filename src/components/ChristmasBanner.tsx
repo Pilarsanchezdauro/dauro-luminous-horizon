@@ -9,7 +9,7 @@ const ChristmasBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="relative bg-gradient-to-r from-[#1a472a] via-[#2d5a3d] to-[#1a472a] text-white py-3 px-4 overflow-hidden z-[60]">
+    <div className="fixed top-28 left-0 right-0 bg-gradient-to-r from-[#1a472a] via-[#2d5a3d] to-[#1a472a] text-white py-3 px-4 overflow-hidden z-[60]">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-10 w-2 h-2 bg-yellow-300 rounded-full animate-pulse opacity-80" />
