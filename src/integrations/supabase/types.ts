@@ -449,6 +449,45 @@ export type Database = {
         }
         Relationships: []
       }
+      mirlo_key_purchases: {
+        Row: {
+          amount_paid: number
+          certificate_id: string
+          created_at: string
+          currency: string
+          email: string
+          id: string
+          status: string
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
+          tier: string
+        }
+        Insert: {
+          amount_paid: number
+          certificate_id?: string
+          created_at?: string
+          currency?: string
+          email: string
+          id?: string
+          status?: string
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          tier: string
+        }
+        Update: {
+          amount_paid?: number
+          certificate_id?: string
+          created_at?: string
+          currency?: string
+          email?: string
+          id?: string
+          status?: string
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          tier?: string
+        }
+        Relationships: []
+      }
       portfolio_inquiries: {
         Row: {
           apellidos: string
