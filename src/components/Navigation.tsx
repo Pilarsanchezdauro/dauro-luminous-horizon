@@ -49,6 +49,7 @@ const Navigation = () => {
       ],
     },
     { name: "Tienda", path: "/tienda" },
+    { name: "Mirlo Key", path: "/mirlo-key" },
     {
       name: "Blog",
       path: "/blog",
