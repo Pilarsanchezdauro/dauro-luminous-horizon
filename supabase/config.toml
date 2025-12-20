@@ -20,3 +20,6 @@ verify_jwt = false
 
 [functions.create-mirlo-key-checkout]
 verify_jwt = false
+
+[functions.mirlo-key-webhook]
+verify_jwt = false
