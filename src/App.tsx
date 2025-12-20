@@ -55,6 +55,7 @@ import Analytics from "./pages/admin/Analytics";
 import AIMonitoring from "./pages/admin/AIMonitoring";
 import ArtistSubmissions from "./pages/admin/ArtistSubmissions";
 import LeBrunCollection from "./pages/LeBrunCollection";
+import DauroMirloKey from "./pages/DauroMirloKey";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +99,7 @@ const App = () => (
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/compromiso-etico" element={<CompromisoEtico />} />
             <Route path="/archivo-historico" element={<ArchivoHistorico />} />
+            <Route path="/mirlo-key" element={<DauroMirloKey />} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminDashboard />} />
               <Route path="dauro-arte" element={<DauroArteContacts />} />

@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.audio-sinopsis]
 verify_jwt = false
+
+[functions.create-mirlo-key-checkout]
+verify_jwt = false
