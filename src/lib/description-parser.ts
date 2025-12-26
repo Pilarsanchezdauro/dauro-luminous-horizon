@@ -36,6 +36,7 @@ export function parseProductDescription(description: string): ParsedDescription 
   // Eliminar referencias a previsualización/primeras páginas
   const previewPatterns = [
     /ACCEDE A LA LECTURA DE LAS PRIMERAS PÁGINAS[^\n]*/gi,
+    /ACCEDE A LECTURA DE LAS PRIMERAS PÁGINAS[^\n]*/gi,
     /ACCEDE A LAS PRIMERAS PÁGINAS DE [^\n]+/gi,
     /ACCEDE A LAS PRIMERAS PÁGINAS[^\n]*/gi,
     /LEER PRIMERAS PÁGINAS[^.]*\.?/gi,
