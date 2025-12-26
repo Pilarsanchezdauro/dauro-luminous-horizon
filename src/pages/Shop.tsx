@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown } from "lucide-react";
 import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -20,6 +21,7 @@ export default function Shop() {
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState<string>("titulo-asc");
   const addItem = useCartStore(state => state.addItem);
 
   // For now, all products are books. Arte and NFT sections will be populated later
@@ -56,7 +58,7 @@ export default function Shop() {
     : bookProducts;
 
   // Then filter by selected category using tags
-  const filteredBooks = bookCategory === "todos" 
+  const categoryFilteredBooks = bookCategory === "todos" 
     ? searchFilteredBooks 
     : searchFilteredBooks.filter(p => {
         const tags = p.node.tags || [];
@@ -64,6 +66,26 @@ export default function Shop() {
         return tagsLower.includes(bookCategory.toLowerCase()) || 
                (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
+
+  // Sort the filtered books
+  const filteredBooks = [...categoryFilteredBooks].sort((a, b) => {
+    switch (sortBy) {
+      case "titulo-asc":
+        return a.node.title.localeCompare(b.node.title);
+      case "titulo-desc":
+        return b.node.title.localeCompare(a.node.title);
+      case "precio-asc":
+        return parseFloat(a.node.priceRange.minVariantPrice.amount) - parseFloat(b.node.priceRange.minVariantPrice.amount);
+      case "precio-desc":
+        return parseFloat(b.node.priceRange.minVariantPrice.amount) - parseFloat(a.node.priceRange.minVariantPrice.amount);
+      case "reciente":
+        return b.node.id.localeCompare(a.node.id);
+      case "antiguo":
+        return a.node.id.localeCompare(b.node.id);
+      default:
+        return 0;
+    }
+  });
 
   // Count books per category (based on search-filtered books)
   const getCategoryCount = (categoryId: string) => {
@@ -221,18 +243,38 @@ export default function Shop() {
                     </div>
                   ) : (
                     <>
-                      {/* Search bar */}
-                      <div className="relative mb-6">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          type="text"
-                          placeholder="Buscar por título o autor..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="pl-10 max-w-md"
-                        />
+                      {/* Search and sort controls */}
+                      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div className="relative flex-1 max-w-md">
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            type="text"
+                            placeholder="Buscar por título o autor..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="pl-10"
+                          />
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                          <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+                          <Select value={sortBy} onValueChange={setSortBy}>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Ordenar por..." />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="titulo-asc">Título A-Z</SelectItem>
+                              <SelectItem value="titulo-desc">Título Z-A</SelectItem>
+                              <SelectItem value="precio-asc">Precio: menor a mayor</SelectItem>
+                              <SelectItem value="precio-desc">Precio: mayor a menor</SelectItem>
+                              <SelectItem value="reciente">Más recientes</SelectItem>
+                              <SelectItem value="antiguo">Más antiguos</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
                         {searchQuery && (
-                          <span className="ml-4 text-sm text-muted-foreground">
+                          <span className="text-sm text-muted-foreground self-center">
                             {searchFilteredBooks.length} resultado{searchFilteredBooks.length !== 1 ? 's' : ''}
                           </span>
                         )}
