@@ -311,6 +311,63 @@ export type Database = {
         }
         Relationships: []
       }
+      catalog_products: {
+        Row: {
+          activo: boolean | null
+          codigo: string | null
+          created_at: string
+          descripcion: string | null
+          editorial: string | null
+          familia: string | null
+          fecha_edicion: string | null
+          id: string
+          imagen_url: string | null
+          isbn: string | null
+          paginas: number | null
+          pvp: number | null
+          segunda_mano: boolean | null
+          shopify_id: string | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          activo?: boolean | null
+          codigo?: string | null
+          created_at?: string
+          descripcion?: string | null
+          editorial?: string | null
+          familia?: string | null
+          fecha_edicion?: string | null
+          id?: string
+          imagen_url?: string | null
+          isbn?: string | null
+          paginas?: number | null
+          pvp?: number | null
+          segunda_mano?: boolean | null
+          shopify_id?: string | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          activo?: boolean | null
+          codigo?: string | null
+          created_at?: string
+          descripcion?: string | null
+          editorial?: string | null
+          familia?: string | null
+          fecha_edicion?: string | null
+          id?: string
+          imagen_url?: string | null
+          isbn?: string | null
+          paginas?: number | null
+          pvp?: number | null
+          segunda_mano?: boolean | null
+          shopify_id?: string | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cover_credits: {
         Row: {
           created_at: string
