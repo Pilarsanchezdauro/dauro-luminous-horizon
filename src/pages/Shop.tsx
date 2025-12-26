@@ -6,7 +6,8 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search } from "lucide-react";
 import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -18,6 +19,7 @@ export default function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
+  const [searchQuery, setSearchQuery] = useState("");
   const addItem = useCartStore(state => state.addItem);
 
   // For now, all products are books. Arte and NFT sections will be populated later
@@ -43,22 +45,32 @@ export default function Shop() {
     { id: "crónica", label: "Crónica" },
   ];
 
-  // Filter books by selected category using tags
+  // Filter books by search query first
+  const searchFilteredBooks = searchQuery.trim() 
+    ? bookProducts.filter(p => {
+        const query = searchQuery.toLowerCase();
+        const title = p.node.title?.toLowerCase() || '';
+        const description = p.node.description?.toLowerCase() || '';
+        return title.includes(query) || description.includes(query);
+      })
+    : bookProducts;
+
+  // Then filter by selected category using tags
   const filteredBooks = bookCategory === "todos" 
-    ? bookProducts 
-    : bookProducts.filter(p => {
+    ? searchFilteredBooks 
+    : searchFilteredBooks.filter(p => {
         const tags = p.node.tags || [];
-        const tagsLower = tags.map(t => t.toLowerCase());
+        const tagsLower = tags.map((t: string) => t.toLowerCase());
         return tagsLower.includes(bookCategory.toLowerCase()) || 
                (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
 
-  // Count books per category
+  // Count books per category (based on search-filtered books)
   const getCategoryCount = (categoryId: string) => {
-    if (categoryId === "todos") return bookProducts.length;
-    return bookProducts.filter(p => {
+    if (categoryId === "todos") return searchFilteredBooks.length;
+    return searchFilteredBooks.filter(p => {
       const tags = p.node.tags || [];
-      const tagsLower = tags.map(t => t.toLowerCase());
+      const tagsLower = tags.map((t: string) => t.toLowerCase());
       return tagsLower.includes(categoryId.toLowerCase()) ||
              (categoryId === "desarrollo personal" && tagsLower.includes("autoayuda"));
     }).length;
@@ -209,6 +221,24 @@ export default function Shop() {
                     </div>
                   ) : (
                     <>
+                      {/* Search bar */}
+                      <div className="relative mb-6">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          type="text"
+                          placeholder="Buscar por título o autor..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="pl-10 max-w-md"
+                        />
+                        {searchQuery && (
+                          <span className="ml-4 text-sm text-muted-foreground">
+                            {searchFilteredBooks.length} resultado{searchFilteredBooks.length !== 1 ? 's' : ''}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Category filters */}
                       <div className="flex gap-2 mb-6 flex-wrap">
                         {bookCategories.map(category => (
                           <Button
