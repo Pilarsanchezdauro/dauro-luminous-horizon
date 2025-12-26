@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck } from "lucide-react";
-import { getProducts } from "@/lib/shopify";
+import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
@@ -71,7 +71,7 @@ export default function Shop() {
   const loadProducts = async () => {
     try {
       setIsLoading(true);
-      const data = await getProducts(250);
+      const data = await getAllProducts();
       setProducts(data);
     } catch (error) {
       console.error('Error loading products:', error);
