@@ -71,7 +71,7 @@ export default function Shop() {
   const loadProducts = async () => {
     try {
       setIsLoading(true);
-      const data = await getProducts(50);
+      const data = await getProducts(250);
       setProducts(data);
     } catch (error) {
       console.error('Error loading products:', error);
