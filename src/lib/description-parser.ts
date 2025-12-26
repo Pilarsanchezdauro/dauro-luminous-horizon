@@ -18,6 +18,21 @@ export function parseProductDescription(description: string): ParsedDescription 
 
   let text = description;
   
+  // Extraer metadatos ANTES de limpiar el texto (pueden estar pegados a otras palabras)
+  // Formato con emojis (nuevo de Shopify)
+  const paginasMatchEmoji = text.match(/📄\s*Páginas:\s*(\d+)/i);
+  const isbnMatchEmoji = text.match(/📘\s*ISBN:\s*([\d\-X]+)/i);
+  const editorialMatchEmoji = text.match(/📚\s*Editorial:\s*([^\n📖📄🌐📘📅]+)/i);
+  const autorMatchEmoji = text.match(/Autor(?:a)?:\s*([^\n📚📖📄🌐📘📅]+)/i);
+  
+  // Formato sin emojis (antiguo) - puede estar pegado a texto anterior
+  const paginasMatch = text.match(/Páginas:\s*(\d+)/i);
+  const isbnMatch = text.match(/ISBN:\s*([\d\-X]+)/i);
+  
+  const paginas = paginasMatchEmoji?.[1] || paginasMatch?.[1] || null;
+  const isbn = isbnMatchEmoji?.[1] || isbnMatch?.[1] || null;
+  const editorial = editorialMatchEmoji?.[1]?.trim() || null;
+  
   // Eliminar referencias a previsualización/primeras páginas
   const previewPatterns = [
     /ACCEDE A LA LECTURA DE LAS PRIMERAS PÁGINAS[^\n]*/gi,
@@ -36,20 +51,6 @@ export function parseProductDescription(description: string): ParsedDescription 
   previewPatterns.forEach(pattern => {
     text = text.replace(pattern, '');
   });
-
-  // Extraer metadatos con emojis (formato nuevo de Shopify)
-  const paginasMatchEmoji = text.match(/📄\s*Páginas:\s*(\d+)/i);
-  const isbnMatchEmoji = text.match(/📘\s*ISBN:\s*([\d\-X]+)/i);
-  const editorialMatchEmoji = text.match(/📚\s*Editorial:\s*([^\n📖📄🌐📘📅]+)/i);
-  const autorMatchEmoji = text.match(/Autor(?:a)?:\s*([^\n📚📖📄🌐📘📅]+)/i);
-  
-  // Extraer metadatos sin emojis (formato antiguo)
-  const paginasMatch = text.match(/Páginas:\s*(\d+)/i);
-  const isbnMatch = text.match(/ISBN:\s*([\d\-X]+)/i);
-  
-  const paginas = paginasMatchEmoji?.[1] || paginasMatch?.[1] || null;
-  const isbn = isbnMatchEmoji?.[1] || isbnMatch?.[1] || null;
-  const editorial = editorialMatchEmoji?.[1]?.trim() || null;
   
   // Eliminar líneas de metadatos del texto
   const metadataPatterns = [
