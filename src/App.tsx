@@ -56,6 +56,8 @@ import AIMonitoring from "./pages/admin/AIMonitoring";
 import ArtistSubmissions from "./pages/admin/ArtistSubmissions";
 import LeBrunCollection from "./pages/LeBrunCollection";
 import DauroMirloKey from "./pages/DauroMirloKey";
+import Catalogo from "./pages/Catalogo";
+import CatalogProducts from "./pages/admin/CatalogProducts";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +80,7 @@ const App = () => (
             <Route path="/grupo-dauro/ia" element={<IA />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/tienda" element={<Shop />} />
+            <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/producto/:handle" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/stats" element={<BlogStats />} />
@@ -119,6 +122,7 @@ const App = () => (
               <Route path="analytics" element={<Analytics />} />
               <Route path="ai-monitoring" element={<AIMonitoring />} />
               <Route path="artist-submissions" element={<ArtistSubmissions />} />
+              <Route path="catalog-products" element={<CatalogProducts />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
