@@ -6,11 +6,12 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck } from "lucide-react";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User } from "lucide-react";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
+import { parseProductDescription } from "@/lib/description-parser";
 
 export default function ProductDetail() {
   const { handle } = useParams();
@@ -236,14 +237,43 @@ export default function ProductDetail() {
                   </p>
                 </div>
 
-                {product.description && (
-                  <div>
-                    <h2 className="text-xl font-semibold mb-2">Descripción</h2>
-                    <p className="text-muted-foreground whitespace-pre-wrap">
-                      {product.description}
-                    </p>
-                  </div>
-                )}
+                {product.description && (() => {
+                  const { sinopsis, autor, paginas } = parseProductDescription(product.description);
+                  return (
+                    <div className="space-y-6">
+                      {sinopsis && (
+                        <div>
+                          <div className="flex items-center gap-2 mb-3">
+                            <BookOpen className="w-5 h-5 text-primary" />
+                            <h2 className="text-xl font-semibold">Sinopsis</h2>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {sinopsis}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {autor && (
+                        <div className="border-t pt-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <User className="w-5 h-5 text-primary" />
+                            <h2 className="text-xl font-semibold">Sobre el autor</h2>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {autor.replace(/^(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS)\s*/i, '')}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {paginas && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground border-t pt-4">
+                          <BookOpen className="w-4 h-4" />
+                          <span><strong>Páginas:</strong> {paginas}</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {product.options && product.options.length > 0 && (
                   <div className="space-y-4">
