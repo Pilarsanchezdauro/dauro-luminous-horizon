@@ -13,6 +13,7 @@ import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
+import { getSynopsisOnly } from "@/lib/description-parser";
 import heroCultureBg from "@/assets/hero-culture-bg.png";
 
 export default function Shop() {
@@ -359,8 +360,8 @@ export default function Shop() {
                                 {product.node.title}
                               </CardTitle>
                             </Link>
-                            <CardDescription className="line-clamp-2">
-                              {product.node.description}
+                            <CardDescription className="line-clamp-3">
+                              {getSynopsisOnly(product.node.description, 150)}
                             </CardDescription>
                           </CardHeader>
                           
