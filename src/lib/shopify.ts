@@ -40,8 +40,12 @@ export async function storefrontApiRequest(query: string, variables: any = {}) {
 }
 
 const STOREFRONT_QUERY = `
-  query GetProducts($first: Int!) {
-    products(first: $first) {
+  query GetProducts($first: Int!, $after: String) {
+    products(first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -180,9 +184,28 @@ const CART_CREATE_MUTATION = `
   }
 `;
 
-export async function getProducts(first: number = 20) {
-  const data = await storefrontApiRequest(STOREFRONT_QUERY, { first });
-  return data?.data?.products?.edges || [];
+export async function getProducts(first: number = 20, after?: string) {
+  const data = await storefrontApiRequest(STOREFRONT_QUERY, { first, after });
+  return {
+    products: data?.data?.products?.edges || [],
+    pageInfo: data?.data?.products?.pageInfo || { hasNextPage: false, endCursor: null }
+  };
+}
+
+// Fetch all products with pagination
+export async function getAllProducts(): Promise<any[]> {
+  const allProducts: any[] = [];
+  let hasNextPage = true;
+  let cursor: string | undefined = undefined;
+  
+  while (hasNextPage) {
+    const { products, pageInfo } = await getProducts(250, cursor);
+    allProducts.push(...products);
+    hasNextPage = pageInfo.hasNextPage;
+    cursor = pageInfo.endCursor;
+  }
+  
+  return allProducts;
 }
 
 export async function getProductByHandle(handle: string) {
