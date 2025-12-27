@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag } from "lucide-react";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag, BookMarked } from "lucide-react";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -227,6 +227,12 @@ export default function ProductDetail() {
                       <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
                         <Film className="w-4 h-4" />
                         Llevada al Cine
+                      </div>
+                    )}
+                    {product.tags?.some((tag: string) => ['segunda mano', 'segunda-mano', 'descatalogado'].includes(tag.toLowerCase())) && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <BookMarked className="w-4 h-4" />
+                        Segunda Mano
                       </div>
                     )}
                   </div>
