@@ -14,10 +14,26 @@ interface ShopifyProduct {
   image: { src?: string } | null;
 }
 
-// Normalize ISBN: remove dashes, spaces, and BC prefix
-function normalizeISBN(isbn: string | null): string | null {
-  if (!isbn) return null;
-  return isbn.replace(/[-\s]/g, '').replace(/^BC/i, '').trim();
+// Get ISBN variations: with and without BC prefix
+function getISBNVariations(isbn: string | null): string[] {
+  if (!isbn) return [];
+  
+  const cleaned = isbn.replace(/[-\s]/g, '').trim();
+  const withoutBC = cleaned.replace(/^BC/i, '');
+  const withBC = cleaned.startsWith('BC') || cleaned.startsWith('bc') ? cleaned : `BC${cleaned}`;
+  
+  const variations: string[] = [];
+  
+  // Add without BC prefix (most common for images)
+  if (withoutBC.length > 0) variations.push(withoutBC);
+  
+  // Add with BC prefix
+  if (withBC !== withoutBC) variations.push(withBC);
+  
+  // Add original cleaned version if different
+  if (!variations.includes(cleaned)) variations.push(cleaned);
+  
+  return variations;
 }
 
 // Normalize title for image matching - multiple variations
@@ -164,24 +180,27 @@ serve(async (req) => {
       let matchedUrl: string | null = null;
       let matchType: string = '';
       
-      // First try by barcode/ISBN
+      // First try by barcode/ISBN with all variations
       if (barcode) {
-        const normalizedISBN = normalizeISBN(barcode);
+        const isbnVariations = getISBNVariations(barcode);
         
-        if (normalizedISBN) {
-          for (const ext of extensions) {
-            const testUrl = `${baseImageUrl}${normalizedISBN}.${ext}`;
-            try {
-              const checkResponse = await fetch(testUrl, { method: 'HEAD' });
-              if (checkResponse.ok) {
-                matchedUrl = testUrl;
-                matchType = 'barcode';
-                foundByBarcode++;
-                console.log(`Found image for ${product.title} by barcode: ${testUrl}`);
-                break;
+        if (isbnVariations.length > 0) {
+          for (const isbnVar of isbnVariations) {
+            if (matchedUrl) break;
+            for (const ext of extensions) {
+              const testUrl = `${baseImageUrl}${isbnVar}.${ext}`;
+              try {
+                const checkResponse = await fetch(testUrl, { method: 'HEAD' });
+                if (checkResponse.ok) {
+                  matchedUrl = testUrl;
+                  matchType = 'barcode';
+                  foundByBarcode++;
+                  console.log(`Found image for ${product.title} by barcode variation "${isbnVar}": ${testUrl}`);
+                  break;
+                }
+              } catch {
+                // URL not found
               }
-            } catch {
-              // URL not found
             }
           }
         }
