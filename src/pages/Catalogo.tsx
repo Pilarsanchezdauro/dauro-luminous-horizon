@@ -67,6 +67,12 @@ const Catalogo = () => {
     const matchesFamilia = familiaFilter === "all" || product.familia === familiaFilter;
     
     return matchesSearch && matchesFamilia;
+  }).sort((a, b) => {
+    // Products with images first, then by title
+    const aHasImage = a.imagen_url ? 0 : 1;
+    const bHasImage = b.imagen_url ? 0 : 1;
+    if (aHasImage !== bHasImage) return aHasImage - bHasImage;
+    return a.titulo.localeCompare(b.titulo);
   });
 
   const cleanFamiliaName = (familia: string) => {
