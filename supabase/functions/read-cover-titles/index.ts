@@ -43,9 +43,46 @@ function calculateSimilarity(str1: string, str2: string): number {
   return matches / Math.max(words1.length, words2.length);
 }
 
-// Read title from cover image using AI vision
-async function readCoverTitle(imageUrl: string): Promise<string | null> {
+// Fetch image and convert to base64
+async function fetchImageAsBase64(imageUrl: string): Promise<string | null> {
   try {
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      console.error(`Failed to fetch image ${imageUrl}: ${response.status}`);
+      return null;
+    }
+    
+    const arrayBuffer = await response.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
+    let binary = '';
+    for (let i = 0; i < uint8Array.length; i++) {
+      binary += String.fromCharCode(uint8Array[i]);
+    }
+    const base64 = btoa(binary);
+    
+    // Determine mime type from URL
+    const ext = imageUrl.split('.').pop()?.toLowerCase() || 'jpg';
+    const mimeType = ext === 'png' ? 'image/png' : 'image/jpeg';
+    
+    return `data:${mimeType};base64,${base64}`;
+  } catch (error) {
+    console.error(`Error fetching image ${imageUrl}:`, error);
+    return null;
+  }
+}
+
+// Read title from cover image using AI vision
+async function readCoverTitle(imageUrl: string, filename: string): Promise<string | null> {
+  try {
+    // First, fetch the image and convert to base64
+    console.log(`  Fetching image...`);
+    const base64Image = await fetchImageAsBase64(imageUrl);
+    if (!base64Image) {
+      console.error(`  Could not fetch image`);
+      return null;
+    }
+    
+    console.log(`  Sending to AI...`);
     const response = await fetch(AI_GATEWAY_URL, {
       method: 'POST',
       headers: {
@@ -60,31 +97,31 @@ async function readCoverTitle(imageUrl: string): Promise<string | null> {
             content: [
               {
                 type: 'text',
-                text: 'Lee el título del libro que aparece en esta portada. Responde SOLO con el título exacto del libro, sin autor ni editorial. Si no puedes leer el título, responde "NO_TITLE".'
+                text: 'Lee el título del libro que aparece en esta portada. Responde SOLO con el título exacto del libro, sin autor ni editorial ni subtítulo. Si no puedes leer el título claramente, responde exactamente "NO_TITLE".'
               },
               {
                 type: 'image_url',
                 image_url: {
-                  url: imageUrl
+                  url: base64Image
                 }
               }
             ]
           }
         ],
-        max_tokens: 100,
-        temperature: 0.1
+        max_tokens: 100
       }),
     });
 
     if (!response.ok) {
-      console.error(`AI API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`AI API error: ${response.status} - ${errorText}`);
       return null;
     }
 
     const data = await response.json();
     const title = data.choices?.[0]?.message?.content?.trim();
     
-    if (!title || title === 'NO_TITLE') {
+    if (!title || title === 'NO_TITLE' || title.includes('NO_TITLE')) {
       return null;
     }
     
@@ -96,12 +133,11 @@ async function readCoverTitle(imageUrl: string): Promise<string | null> {
 }
 
 // Get products without images from Shopify
-async function getProductsWithoutImages(limit: number = 50, sinceId?: string): Promise<any[]> {
-  let url = `https://${SHOPIFY_STORE}/admin/api/2024-01/products.json?limit=${limit}&fields=id,title,images`;
-  if (sinceId) {
-    url += `&since_id=${sinceId}`;
-  }
+async function getProductsWithoutImages(limit: number = 50): Promise<any[]> {
+  const url = `https://${SHOPIFY_STORE}/admin/api/2024-10/products.json?limit=${limit}&fields=id,title,images`;
 
+  console.log(`Fetching products from Shopify: ${url}`);
+  
   const response = await fetch(url, {
     headers: {
       'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN!,
@@ -110,18 +146,22 @@ async function getProductsWithoutImages(limit: number = 50, sinceId?: string): P
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Shopify API error: ${response.status} - ${errorText}`);
     throw new Error(`Shopify API error: ${response.status}`);
   }
 
   const data = await response.json();
   // Filter products without images
-  return data.products.filter((p: any) => !p.images || p.images.length === 0);
+  const productsWithoutImages = data.products.filter((p: any) => !p.images || p.images.length === 0);
+  console.log(`Found ${productsWithoutImages.length} products without images out of ${data.products.length} total`);
+  return productsWithoutImages;
 }
 
-// Get all available cover images
-async function getAvailableCovers(): Promise<{ filename: string; url: string }[]> {
-  // These are the images in public/products that we can use
-  const baseUrl = 'https://fddadfec-6377-4dcb-816f-d999f87842db.lovableproject.com/products/';
+// Get all available cover images from CDN (already uploaded to Shopify Files)
+function getAvailableCovers(): { filename: string; url: string }[] {
+  // Use the production URL which is publicly accessible
+  const baseUrl = 'https://www.grupodauro.com/products/';
   
   const files = [
     'aecio.jpg',
@@ -157,7 +197,7 @@ async function getAvailableCovers(): Promise<{ filename: string; url: string }[]
 async function uploadImageToProduct(productId: string, imageUrl: string): Promise<boolean> {
   try {
     const response = await fetch(
-      `https://${SHOPIFY_STORE}/admin/api/2024-01/products/${productId}/images.json`,
+      `https://${SHOPIFY_STORE}/admin/api/2024-10/products/${productId}/images.json`,
       {
         method: 'POST',
         headers: {
@@ -187,7 +227,7 @@ Deno.serve(async (req) => {
     console.log(`Starting cover reading (dryRun: ${dryRun}, limit: ${limit})...`);
 
     // Get available covers
-    const covers = await getAvailableCovers();
+    const covers = getAvailableCovers();
     console.log(`Found ${covers.length} cover images to analyze`);
 
     // Read titles from covers using AI vision
@@ -195,7 +235,7 @@ Deno.serve(async (req) => {
     
     for (const cover of covers.slice(0, limit)) {
       console.log(`Reading cover: ${cover.filename}...`);
-      const title = await readCoverTitle(cover.url);
+      const title = await readCoverTitle(cover.url, cover.filename);
       if (title) {
         console.log(`  -> Title found: "${title}"`);
         coverTitles.push({ ...cover, title });
@@ -207,7 +247,13 @@ Deno.serve(async (req) => {
     console.log(`Successfully read ${coverTitles.length} titles from covers`);
 
     // Get products without images
-    const productsWithoutImages = await getProductsWithoutImages(250);
+    let productsWithoutImages: any[] = [];
+    try {
+      productsWithoutImages = await getProductsWithoutImages(250);
+    } catch (shopifyError) {
+      console.error('Shopify error, continuing with empty products list:', shopifyError);
+    }
+    
     console.log(`Found ${productsWithoutImages.length} products without images`);
 
     // Try to match covers to products
@@ -221,7 +267,7 @@ Deno.serve(async (req) => {
         if (used.has(product.id)) continue;
         
         const similarity = calculateSimilarity(ct.title, product.title);
-        if (similarity > 0.5 && (!bestMatch || similarity > bestMatch.similarity)) {
+        if (similarity > 0.4 && (!bestMatch || similarity > bestMatch.similarity)) {
           bestMatch = { product, similarity };
         }
       }
