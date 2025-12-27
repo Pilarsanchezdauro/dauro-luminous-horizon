@@ -41,11 +41,19 @@ export default function Shop() {
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
-  // Extract unique genres (productType) from products
+  // Normalize genre names (merge similar ones like "Libro" and "Libros")
+  const normalizeGenre = (genre: string): string => {
+    const lower = genre.toLowerCase().trim();
+    // Normalize "libro" and "libros" to "Libro"
+    if (lower === 'libro' || lower === 'libros') return 'Libro';
+    return genre;
+  };
+
+  // Extract unique genres (productType) from products, normalized
   const availableGenres = Array.from(
     new Set(
       bookProducts
-        .map(p => p.node.productType)
+        .map(p => p.node.productType ? normalizeGenre(p.node.productType) : null)
         .filter((type): type is string => !!type && type.trim() !== '')
     )
   ).sort((a, b) => a.localeCompare(b));
@@ -78,11 +86,11 @@ export default function Shop() {
       })
     : bookProducts;
 
-  // Filter by genre (productType)
+  // Filter by genre (productType) - using normalized comparison
   const genreFilteredBooks = selectedGenre === "todos"
     ? searchFilteredBooks
     : searchFilteredBooks.filter(p => 
-        p.node.productType?.toLowerCase() === selectedGenre.toLowerCase()
+        p.node.productType && normalizeGenre(p.node.productType) === selectedGenre
       );
 
   // Then filter by selected category using tags
@@ -115,11 +123,11 @@ export default function Shop() {
     }
   });
 
-  // Count books per genre (based on search-filtered books)
+  // Count books per genre (based on search-filtered books) - using normalized comparison
   const getGenreCount = (genre: string) => {
     if (genre === "todos") return searchFilteredBooks.length;
     return searchFilteredBooks.filter(p => 
-      p.node.productType?.toLowerCase() === genre.toLowerCase()
+      p.node.productType && normalizeGenre(p.node.productType) === genre
     ).length;
   };
 
