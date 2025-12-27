@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked } from "lucide-react";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -38,8 +38,17 @@ export default function Shop() {
   const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
   const addItem = useCartStore(state => state.addItem);
 
-  // For now, all products are books. Arte and NFT sections will be populated later
-  const bookProducts = products;
+  // Filter products by type
+  // Segunda Mano: products with "segunda mano" or "descatalogado" tag
+  const segundaManoProducts = products.filter(p => {
+    const tags = p.node.tags || [];
+    const tagsLower = tags.map((t: string) => t.toLowerCase());
+    return tagsLower.includes('segunda mano') || tagsLower.includes('descatalogado') || tagsLower.includes('segunda-mano');
+  });
+  
+  // Regular books exclude segunda mano products
+  const segundaManoIds = new Set(segundaManoProducts.map(p => p.node.id));
+  const bookProducts = products.filter(p => !segundaManoIds.has(p.node.id));
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
@@ -324,18 +333,22 @@ export default function Shop() {
               </div>
             ) : (
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8">
+                <TabsList className="grid w-full grid-cols-4 mb-8">
                   <TabsTrigger value="libros" className="flex items-center gap-2">
                     <Book className="h-4 w-4" />
-                    Libros ({bookProducts.length})
+                    <span className="hidden sm:inline">Libros</span> ({bookProducts.length})
+                  </TabsTrigger>
+                  <TabsTrigger value="segunda-mano" className="flex items-center gap-2">
+                    <BookMarked className="h-4 w-4" />
+                    <span className="hidden sm:inline">Segunda Mano</span> ({segundaManoProducts.length})
                   </TabsTrigger>
                   <TabsTrigger value="arte" className="flex items-center gap-2">
                     <Palette className="h-4 w-4" />
-                    Arte ({artProducts.length})
+                    <span className="hidden sm:inline">Arte</span> ({artProducts.length})
                   </TabsTrigger>
                   <TabsTrigger value="nfts" className="flex items-center gap-2">
                     <Image className="h-4 w-4" />
-                    NFTs ({nftProducts.length})
+                    <span className="hidden sm:inline">NFTs</span> ({nftProducts.length})
                   </TabsTrigger>
                 </TabsList>
 
@@ -561,6 +574,81 @@ export default function Shop() {
                           ))}
                         </div>
                       )}
+                    </>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="segunda-mano">
+                  {segundaManoProducts.length === 0 ? (
+                    <div className="text-center py-20">
+                      <BookMarked className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                      <h2 className="text-2xl font-semibold mb-2">No hay libros de segunda mano</h2>
+                      <p className="text-muted-foreground">
+                        Pronto agregaremos libros descatalogados y de segunda mano
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="mb-6 text-center">
+                        <p className="text-muted-foreground">
+                          Libros descatalogados disponibles en segunda mano. Ejemplares únicos en buen estado.
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                        {segundaManoProducts.map((product) => (
+                          <Card key={product.node.id} className="group overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full border-amber-500/30 bg-gradient-to-b from-amber-50/10 to-transparent dark:from-amber-950/20">
+                            <Link to={`/producto/${product.node.handle}`} className="block">
+                              {product.node.images.edges[0]?.node && (
+                                <div className="aspect-[3/4] overflow-hidden relative">
+                                  <img
+                                    src={product.node.images.edges[0].node.url}
+                                    alt={product.node.images.edges[0].node.altText || product.node.title}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                  />
+                                  {/* Segunda Mano Badge */}
+                                  <div className="absolute top-2 right-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <BookMarked className="w-3 h-3" />
+                                    Segunda Mano
+                                  </div>
+                                  {/* Ebook Badge */}
+                                  {hasEbook(product.node.id) && (
+                                    <div className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                      <Tablet className="w-3 h-3" />
+                                      Ebook
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </Link>
+                            
+                            <CardContent className="flex-1 flex flex-col justify-between pt-4">
+                              <Link to={`/producto/${product.node.handle}`} className="block hover:text-primary transition-colors">
+                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2">
+                                  {product.node.title}
+                                </h3>
+                              </Link>
+                              <p className="text-primary font-bold text-base md:text-xl">
+                                {product.node.priceRange.minVariantPrice.currencyCode}{' '}
+                                {parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)}
+                              </p>
+                            </CardContent>
+                            
+                            <CardFooter>
+                              <Button 
+                                onClick={() => handleAddToCart(product)}
+                                className="w-full"
+                                variant="outline"
+                                disabled={!product.node.variants.edges[0]?.node.availableForSale}
+                              >
+                                <ShoppingCart className="w-4 h-4 mr-2" />
+                                {product.node.variants.edges[0]?.node.availableForSale 
+                                  ? 'Agregar al Carrito' 
+                                  : 'Agotado'}
+                              </Button>
+                            </CardFooter>
+                          </Card>
+                        ))}
+                      </div>
                     </>
                   )}
                 </TabsContent>
