@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.mirlo-key-webhook]
 verify_jwt = false
+
+[functions.associate-shopify-images]
+verify_jwt = false

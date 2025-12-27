@@ -14,40 +14,10 @@ interface ShopifyProduct {
   image: { src?: string } | null;
 }
 
-// Normalize ISBN: remove dashes and spaces
+// Normalize ISBN: remove dashes, spaces, and BC prefix
 function normalizeISBN(isbn: string | null): string | null {
   if (!isbn) return null;
-  return isbn.replace(/[-\s]/g, '').trim();
-}
-
-// Try different ISBN formats to find matching image URL
-function findMatchingImageUrl(
-  barcode: string, 
-  baseUrl: string, 
-  extension: string = 'jpg'
-): string[] {
-  const normalized = normalizeISBN(barcode);
-  if (!normalized) return [];
-  
-  // Try various formats
-  const formats = [
-    normalized, // Plain: 9788417458270
-    barcode, // Original with dashes: 978-84-17458-27-0
-    barcode.replace(/-/g, ''), // Without dashes
-    `BC${normalized}`, // With BC prefix
-    `BC${barcode.replace(/-/g, '')}`,
-  ];
-  
-  const urls: string[] = [];
-  const extensions = [extension, 'jpg', 'jpeg', 'png', 'webp'];
-  
-  for (const format of formats) {
-    for (const ext of extensions) {
-      urls.push(`${baseUrl}${format}.${ext}`);
-    }
-  }
-  
-  return [...new Set(urls)]; // Remove duplicates
+  return isbn.replace(/[-\s]/g, '').replace(/^BC/i, '').trim();
 }
 
 serve(async (req) => {
@@ -56,54 +26,43 @@ serve(async (req) => {
   }
 
   try {
-    const { baseImageUrl, dryRun = true, extension = 'jpg' } = await req.json();
+    const { baseImageUrl, dryRun = true, limit = 50, offset = 0 } = await req.json();
     
     if (!baseImageUrl) {
       return new Response(
-        JSON.stringify({ error: 'baseImageUrl is required. Example: https://cdn.shopify.com/s/files/1/xxxx/xxxx/files/' }),
+        JSON.stringify({ error: 'baseImageUrl is required' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const shopifyDomain = Deno.env.get('SHOPIFY_STORE_DOMAIN');
+    const shopifyDomain = 'dauro-luminous-horizon-6vj19.myshopify.com';
     const accessToken = Deno.env.get('SHOPIFY_ACCESS_TOKEN');
     
-    if (!shopifyDomain || !accessToken) {
-      throw new Error('Shopify credentials not configured');
+    if (!accessToken) {
+      throw new Error('Shopify access token not configured');
     }
 
-    console.log('Fetching all products from Shopify...');
+    console.log(`Fetching products (limit: ${limit}, offset: ${offset})...`);
     
-    // Fetch all products
-    let allProducts: ShopifyProduct[] = [];
-    let nextPageUrl: string | null = `https://${shopifyDomain}/admin/api/2024-01/products.json?limit=250`;
-    
-    while (nextPageUrl) {
-      const fetchResponse: Response = await fetch(nextPageUrl, {
+    // Fetch products without images only
+    const fetchResponse: Response = await fetch(
+      `https://${shopifyDomain}/admin/api/2024-01/products.json?limit=${limit}&fields=id,title,variants,image`,
+      {
         headers: {
           'X-Shopify-Access-Token': accessToken,
           'Content-Type': 'application/json',
         },
-      });
-      
-      if (!fetchResponse.ok) {
-        throw new Error(`Failed to fetch products: ${fetchResponse.status}`);
       }
-      
-      const data = await fetchResponse.json();
-      allProducts = allProducts.concat(data.products);
-      
-      // Check for pagination
-      const linkHeader: string | null = fetchResponse.headers.get('Link');
-      if (linkHeader && linkHeader.includes('rel="next"')) {
-        const matchResult: RegExpMatchArray | null = linkHeader.match(/<([^>]+)>;\s*rel="next"/);
-        nextPageUrl = matchResult ? matchResult[1] : null;
-      } else {
-        nextPageUrl = null;
-      }
+    );
+    
+    if (!fetchResponse.ok) {
+      throw new Error(`Failed to fetch products: ${fetchResponse.status}`);
     }
     
-    console.log(`Found ${allProducts.length} products`);
+    const data = await fetchResponse.json();
+    const products: ShopifyProduct[] = data.products;
+    
+    console.log(`Processing ${products.length} products`);
     
     const results: Array<{
       productId: number;
@@ -119,7 +78,10 @@ serve(async (req) => {
     let skippedCount = 0;
     let errorCount = 0;
     
-    for (const product of allProducts) {
+    // Extensions to try
+    const extensions = ['png', 'jpg', 'jpeg', 'webp'];
+    
+    for (const product of products) {
       const barcode = product.variants[0]?.barcode;
       const hasImage = product.image?.src;
       
@@ -147,19 +109,23 @@ serve(async (req) => {
         continue;
       }
       
-      // Try to find matching image
-      const possibleUrls = findMatchingImageUrl(barcode, baseImageUrl, extension);
+      // Try to find matching image with normalized ISBN
+      const normalizedISBN = normalizeISBN(barcode);
       let matchedUrl: string | null = null;
       
-      for (const url of possibleUrls) {
-        try {
-          const checkResponse = await fetch(url, { method: 'HEAD' });
-          if (checkResponse.ok) {
-            matchedUrl = url;
-            break;
+      if (normalizedISBN) {
+        for (const ext of extensions) {
+          const url = `${baseImageUrl}${normalizedISBN}.${ext}`;
+          try {
+            const checkResponse = await fetch(url, { method: 'HEAD' });
+            if (checkResponse.ok) {
+              matchedUrl = url;
+              console.log(`Found image for ${product.title}: ${url}`);
+              break;
+            }
+          } catch {
+            // URL not found
           }
-        } catch (e) {
-          // URL not found, continue
         }
       }
       
@@ -206,6 +172,7 @@ serve(async (req) => {
           
           if (updateResponse.ok) {
             updatedCount++;
+            console.log(`Updated ${product.title}`);
             results.push({
               productId: product.id,
               title: product.title,
@@ -226,8 +193,8 @@ serve(async (req) => {
             });
           }
           
-          // Rate limiting
-          await new Promise(resolve => setTimeout(resolve, 300));
+          // Rate limiting - 2 requests per second
+          await new Promise(resolve => setTimeout(resolve, 500));
         } catch (e: unknown) {
           errorCount++;
           const errorMessage = e instanceof Error ? e.message : String(e);
@@ -246,14 +213,14 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         summary: {
-          totalProducts: allProducts.length,
+          totalProducts: products.length,
           matched: matchedCount,
           updated: updatedCount,
           skipped: skippedCount,
           errors: errorCount,
           dryRun,
         },
-        results: results.slice(0, 100), // Limit results for response size
+        results,
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
