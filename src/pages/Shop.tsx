@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag } from "lucide-react";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -31,6 +31,7 @@ export default function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
+  const [selectedGenre, setSelectedGenre] = useState<string>("todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("titulo-asc");
   const addItem = useCartStore(state => state.addItem);
@@ -39,6 +40,15 @@ export default function Shop() {
   const bookProducts = products;
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
+
+  // Extract unique genres (productType) from products
+  const availableGenres = Array.from(
+    new Set(
+      bookProducts
+        .map(p => p.node.productType)
+        .filter((type): type is string => !!type && type.trim() !== '')
+    )
+  ).sort((a, b) => a.localeCompare(b));
 
   // All book categories
   const bookCategories = [
@@ -68,10 +78,17 @@ export default function Shop() {
       })
     : bookProducts;
 
+  // Filter by genre (productType)
+  const genreFilteredBooks = selectedGenre === "todos"
+    ? searchFilteredBooks
+    : searchFilteredBooks.filter(p => 
+        p.node.productType?.toLowerCase() === selectedGenre.toLowerCase()
+      );
+
   // Then filter by selected category using tags
   const categoryFilteredBooks = bookCategory === "todos" 
-    ? searchFilteredBooks 
-    : searchFilteredBooks.filter(p => {
+    ? genreFilteredBooks 
+    : genreFilteredBooks.filter(p => {
         const tags = p.node.tags || [];
         const tagsLower = tags.map((t: string) => t.toLowerCase());
         return tagsLower.includes(bookCategory.toLowerCase()) || 
@@ -98,10 +115,18 @@ export default function Shop() {
     }
   });
 
-  // Count books per category (based on search-filtered books)
+  // Count books per genre (based on search-filtered books)
+  const getGenreCount = (genre: string) => {
+    if (genre === "todos") return searchFilteredBooks.length;
+    return searchFilteredBooks.filter(p => 
+      p.node.productType?.toLowerCase() === genre.toLowerCase()
+    ).length;
+  };
+
+  // Count books per category (based on genre-filtered books)
   const getCategoryCount = (categoryId: string) => {
-    if (categoryId === "todos") return searchFilteredBooks.length;
-    return searchFilteredBooks.filter(p => {
+    if (categoryId === "todos") return genreFilteredBooks.length;
+    return genreFilteredBooks.filter(p => {
       const tags = p.node.tags || [];
       const tagsLower = tags.map((t: string) => t.toLowerCase());
       return tagsLower.includes(categoryId.toLowerCase()) ||
@@ -352,7 +377,36 @@ export default function Shop() {
                         )}
                       </div>
 
-                      {/* Category filters */}
+                      {/* Genre filter (productType) */}
+                      {availableGenres.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Tag className="h-4 w-4 text-muted-foreground" />
+                            <span className="text-sm font-medium text-muted-foreground">Filtrar por género:</span>
+                          </div>
+                          <div className="flex gap-2 flex-wrap">
+                            <Button
+                              variant={selectedGenre === "todos" ? "default" : "outline"}
+                              onClick={() => setSelectedGenre("todos")}
+                              size="sm"
+                            >
+                              Todos ({getGenreCount("todos")})
+                            </Button>
+                            {availableGenres.map(genre => (
+                              <Button
+                                key={genre}
+                                variant={selectedGenre === genre ? "default" : "outline"}
+                                onClick={() => setSelectedGenre(genre)}
+                                size="sm"
+                              >
+                                {genre} ({getGenreCount(genre)})
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Category filters (tags) */}
                       <div className="flex gap-2 mb-6 flex-wrap">
                         {bookCategories.map(category => (
                           <Button
