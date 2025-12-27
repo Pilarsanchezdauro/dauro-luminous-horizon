@@ -21,8 +21,6 @@ interface ShopifyCollection {
     id: string;
     title: string;
     handle: string;
-    description: string;
-    productsCount: { count: number };
   };
 }
 
@@ -125,6 +123,7 @@ export default function Shop() {
       setCollections(data);
     } catch (error) {
       console.error('Error loading collections:', error);
+      toast.error("No se pudieron cargar las colecciones");
     }
   };
 
@@ -293,7 +292,7 @@ export default function Shop() {
                               onClick={() => setSelectedCollection(col.node.handle)}
                               size="sm"
                             >
-                              {col.node.title} ({col.node.productsCount?.count || 0})
+                              {col.node.title}
                             </Button>
                           ))}
                         </div>
