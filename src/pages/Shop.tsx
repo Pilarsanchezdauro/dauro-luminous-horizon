@@ -495,6 +495,12 @@ export default function Shop() {
                               {product.node.priceRange.minVariantPrice.currencyCode}{' '}
                               {parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)}
                             </p>
+                            {product.node.productType && (
+                              <div className="flex items-center gap-1.5 mt-2 text-sm text-muted-foreground">
+                                <Tag className="w-3 h-3" />
+                                <span>{product.node.productType}</span>
+                              </div>
+                            )}
                           </CardContent>
                           
                           <CardFooter>
