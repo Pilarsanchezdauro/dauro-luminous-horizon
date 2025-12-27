@@ -290,28 +290,41 @@ serve(async (req) => {
           matchType,
         });
       } else {
-        // Update product with image
+        // Create product image (Shopify does NOT reliably accept images via product PUT)
         try {
-          const updateResponse = await fetch(
-            `https://${shopifyDomain}/admin/api/2024-01/products/${product.id}.json`,
+          const createImageResponse = await fetch(
+            `https://${shopifyDomain}/admin/api/2024-01/products/${product.id}/images.json`,
             {
-              method: 'PUT',
+              method: 'POST',
               headers: {
                 'X-Shopify-Access-Token': accessToken,
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                product: {
-                  id: product.id,
-                  images: [{ src: matchedUrl }],
+                image: {
+                  src: matchedUrl,
+                  alt: product.title,
                 },
               }),
             }
           );
-          
-          if (updateResponse.ok) {
+
+          const responseText = await createImageResponse.text();
+
+          if (createImageResponse.ok) {
             updatedCount++;
-            console.log(`Updated ${product.title}`);
+            let createdImageId: number | null = null;
+            try {
+              const json = JSON.parse(responseText);
+              createdImageId = json?.image?.id ?? null;
+            } catch {
+              // ignore JSON parse failures
+            }
+
+            console.log(
+              `Attached image to ${product.title} (productId=${product.id}, imageId=${createdImageId ?? 'n/a'})`
+            );
+
             results.push({
               productId: product.id,
               title: product.title,
@@ -321,7 +334,6 @@ serve(async (req) => {
               matchType,
             });
           } else {
-            const errorText = await updateResponse.text();
             errorCount++;
             results.push({
               productId: product.id,
@@ -330,12 +342,12 @@ serve(async (req) => {
               imageUrl: matchedUrl,
               status: 'update_failed',
               matchType,
-              error: errorText,
+              error: responseText,
             });
           }
-          
+
           // Rate limiting - 2 requests per second
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 500));
         } catch (e: unknown) {
           errorCount++;
           const errorMessage = e instanceof Error ? e.message : String(e);
