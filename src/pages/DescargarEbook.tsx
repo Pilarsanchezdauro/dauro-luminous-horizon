@@ -84,13 +84,13 @@ export default function DescargarEbook() {
   const handleDownload = async () => {
     if (!ebookUrl || !token) return;
 
-    // Increment download count
-    const { error } = await supabase.rpc("increment_ebook_download", {
-      p_token: token,
-    });
-
-    if (error) {
-      console.error("Error incrementing download count:", error);
+    try {
+      // Increment download count using edge function
+      await supabase.functions.invoke("increment-ebook-download", {
+        body: { token },
+      });
+    } catch (err) {
+      console.error("Error incrementing download count:", err);
     }
 
     // Decrease remaining downloads in UI
