@@ -102,10 +102,6 @@ const COLLECTIONS_QUERY = `
           id
           title
           handle
-          description
-          productsCount {
-            count
-          }
         }
       }
     }
