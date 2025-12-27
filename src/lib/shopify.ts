@@ -40,8 +40,8 @@ export async function storefrontApiRequest(query: string, variables: any = {}) {
 }
 
 const STOREFRONT_QUERY = `
-  query GetProducts($first: Int!, $after: String) {
-    products(first: $first, after: $after) {
+  query GetProducts($first: Int!, $after: String, $query: String) {
+    products(first: $first, after: $after, query: $query) {
       pageInfo {
         hasNextPage
         endCursor
@@ -87,6 +87,85 @@ const STOREFRONT_QUERY = `
           options {
             name
             values
+          }
+        }
+      }
+    }
+  }
+`;
+
+const COLLECTIONS_QUERY = `
+  query GetCollections($first: Int!) {
+    collections(first: $first) {
+      edges {
+        node {
+          id
+          title
+          handle
+          description
+          productsCount {
+            count
+          }
+        }
+      }
+    }
+  }
+`;
+
+const COLLECTION_PRODUCTS_QUERY = `
+  query GetCollectionProducts($handle: String!, $first: Int!, $after: String) {
+    collectionByHandle(handle: $handle) {
+      id
+      title
+      handle
+      description
+      products(first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            description
+            handle
+            tags
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 5) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  availableForSale
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
+              }
+            }
+            options {
+              name
+              values
+            }
           }
         }
       }
@@ -184,8 +263,8 @@ const CART_CREATE_MUTATION = `
   }
 `;
 
-export async function getProducts(first: number = 20, after?: string) {
-  const data = await storefrontApiRequest(STOREFRONT_QUERY, { first, after });
+export async function getProducts(first: number = 20, after?: string, query?: string) {
+  const data = await storefrontApiRequest(STOREFRONT_QUERY, { first, after, query });
   return {
     products: data?.data?.products?.edges || [],
     pageInfo: data?.data?.products?.pageInfo || { hasNextPage: false, endCursor: null }
@@ -206,6 +285,48 @@ export async function getAllProducts(): Promise<any[]> {
   }
   
   return allProducts;
+}
+
+// Fetch all collections
+export async function getCollections() {
+  const data = await storefrontApiRequest(COLLECTIONS_QUERY, { first: 50 });
+  return data?.data?.collections?.edges || [];
+}
+
+// Fetch products from a specific collection by handle
+export async function getCollectionProducts(handle: string, first: number = 250, after?: string) {
+  const data = await storefrontApiRequest(COLLECTION_PRODUCTS_QUERY, { handle, first, after });
+  const collection = data?.data?.collectionByHandle;
+  if (!collection) return { products: [], pageInfo: { hasNextPage: false, endCursor: null }, collection: null };
+  
+  return {
+    products: collection.products?.edges || [],
+    pageInfo: collection.products?.pageInfo || { hasNextPage: false, endCursor: null },
+    collection: {
+      id: collection.id,
+      title: collection.title,
+      handle: collection.handle,
+      description: collection.description
+    }
+  };
+}
+
+// Fetch all products from a collection with pagination
+export async function getAllCollectionProducts(handle: string): Promise<{ products: any[], collection: any }> {
+  const allProducts: any[] = [];
+  let hasNextPage = true;
+  let cursor: string | undefined = undefined;
+  let collectionInfo: any = null;
+  
+  while (hasNextPage) {
+    const { products, pageInfo, collection } = await getCollectionProducts(handle, 250, cursor);
+    if (collection) collectionInfo = collection;
+    allProducts.push(...products);
+    hasNextPage = pageInfo.hasNextPage;
+    cursor = pageInfo.endCursor;
+  }
+  
+  return { products: allProducts, collection: collectionInfo };
 }
 
 export async function getProductByHandle(handle: string) {

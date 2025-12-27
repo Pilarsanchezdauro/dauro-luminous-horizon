@@ -8,16 +8,28 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown } from "lucide-react";
-import { getAllProducts } from "@/lib/shopify";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library } from "lucide-react";
+import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { getSynopsisOnly } from "@/lib/description-parser";
 import heroCultureBg from "@/assets/hero-culture-bg.png";
 
+interface ShopifyCollection {
+  node: {
+    id: string;
+    title: string;
+    handle: string;
+    description: string;
+    productsCount: { count: number };
+  };
+}
+
 export default function Shop() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const [collections, setCollections] = useState<ShopifyCollection[]>([]);
+  const [selectedCollection, setSelectedCollection] = useState<string>("todos");
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
@@ -100,14 +112,32 @@ export default function Shop() {
   };
 
   useEffect(() => {
-    loadProducts();
+    loadCollections();
   }, []);
+
+  useEffect(() => {
+    loadProducts();
+  }, [selectedCollection]);
+
+  const loadCollections = async () => {
+    try {
+      const data = await getCollections();
+      setCollections(data);
+    } catch (error) {
+      console.error('Error loading collections:', error);
+    }
+  };
 
   const loadProducts = async () => {
     try {
       setIsLoading(true);
-      const data = await getAllProducts();
-      setProducts(data);
+      if (selectedCollection === "todos") {
+        const data = await getAllProducts();
+        setProducts(data);
+      } else {
+        const { products: collectionProducts } = await getAllCollectionProducts(selectedCollection);
+        setProducts(collectionProducts);
+      }
     } catch (error) {
       console.error('Error loading products:', error);
       toast.error("Error al cargar productos");
@@ -244,6 +274,31 @@ export default function Shop() {
                     </div>
                   ) : (
                     <>
+                      {/* Collection selector */}
+                      {collections.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          <Button
+                            variant={selectedCollection === "todos" ? "default" : "outline"}
+                            onClick={() => setSelectedCollection("todos")}
+                            size="sm"
+                            className="flex items-center gap-1"
+                          >
+                            <Library className="h-4 w-4" />
+                            Todas las obras
+                          </Button>
+                          {collections.map(col => (
+                            <Button
+                              key={col.node.id}
+                              variant={selectedCollection === col.node.handle ? "default" : "outline"}
+                              onClick={() => setSelectedCollection(col.node.handle)}
+                              size="sm"
+                            >
+                              {col.node.title} ({col.node.productsCount?.count || 0})
+                            </Button>
+                          ))}
+                        </div>
+                      )}
+
                       {/* Search and sort controls */}
                       <div className="flex flex-col sm:flex-row gap-4 mb-6">
                         <div className="relative flex-1 max-w-md">
