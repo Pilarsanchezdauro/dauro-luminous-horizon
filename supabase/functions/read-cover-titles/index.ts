@@ -5,7 +5,17 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const SHOPIFY_STORE = Deno.env.get('SHOPIFY_STORE_URL') || 'dauro-libros.myshopify.com';
+function normalizeShopDomain(input: string): string {
+  return input.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+}
+
+const SHOPIFY_STORE = normalizeShopDomain(
+  Deno.env.get('SHOPIFY_STORE_URL') ||
+    Deno.env.get('SHOPIFY_STORE_DOMAIN') ||
+    Deno.env.get('SHOPIFY_ADMIN_DOMAIN') ||
+    'dauro-luminous-horizon-6vj19.myshopify.com'
+);
+
 const SHOPIFY_ACCESS_TOKEN = Deno.env.get('SHOPIFY_ACCESS_TOKEN');
 const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
 const AI_GATEWAY_URL = 'https://ai.gateway.lovable.dev/v1/chat/completions';
