@@ -116,8 +116,14 @@ export default function Shop() {
                (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
 
-  // Sort the filtered books
+  // Sort the filtered books - products without images go to the end
   const filteredBooks = [...categoryFilteredBooks].sort((a, b) => {
+    // First: products with images come before products without images
+    const aHasImage = a.node.images.edges.length > 0 ? 0 : 1;
+    const bHasImage = b.node.images.edges.length > 0 ? 0 : 1;
+    if (aHasImage !== bHasImage) return aHasImage - bHasImage;
+    
+    // Then apply the selected sort order
     switch (sortBy) {
       case "titulo-asc":
         return a.node.title.localeCompare(b.node.title);
