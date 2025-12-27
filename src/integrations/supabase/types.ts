@@ -845,6 +845,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_ebook_download: {
+        Args: { p_token: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "staff" | "user"
