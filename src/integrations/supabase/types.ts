@@ -467,6 +467,42 @@ export type Database = {
         }
         Relationships: []
       }
+      ebook_purchases: {
+        Row: {
+          created_at: string
+          download_count: number | null
+          download_token: string
+          email: string
+          expires_at: string | null
+          id: string
+          max_downloads: number | null
+          shopify_order_id: string
+          shopify_product_id: string
+        }
+        Insert: {
+          created_at?: string
+          download_count?: number | null
+          download_token?: string
+          email: string
+          expires_at?: string | null
+          id?: string
+          max_downloads?: number | null
+          shopify_order_id: string
+          shopify_product_id: string
+        }
+        Update: {
+          created_at?: string
+          download_count?: number | null
+          download_token?: string
+          email?: string
+          expires_at?: string | null
+          id?: string
+          max_downloads?: number | null
+          shopify_order_id?: string
+          shopify_product_id?: string
+        }
+        Relationships: []
+      }
       editorial_submissions: {
         Row: {
           apellidos: string
@@ -584,6 +620,45 @@ export type Database = {
           plazo?: string | null
           presupuesto?: string | null
           telefono?: string
+        }
+        Relationships: []
+      }
+      product_ebooks: {
+        Row: {
+          created_at: string
+          download_count: number | null
+          ebook_url: string
+          file_name: string | null
+          file_type: string | null
+          id: string
+          is_active: boolean | null
+          product_title: string
+          shopify_product_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          download_count?: number | null
+          ebook_url: string
+          file_name?: string | null
+          file_type?: string | null
+          id?: string
+          is_active?: boolean | null
+          product_title: string
+          shopify_product_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          download_count?: number | null
+          ebook_url?: string
+          file_name?: string | null
+          file_type?: string | null
+          id?: string
+          is_active?: boolean | null
+          product_title?: string
+          shopify_product_id?: string
+          updated_at?: string
         }
         Relationships: []
       }

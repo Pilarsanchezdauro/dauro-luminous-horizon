@@ -60,6 +60,7 @@ import Catalogo from "./pages/Catalogo";
 import CatalogProducts from "./pages/admin/CatalogProducts";
 import ShopifySync from "./pages/admin/ShopifySync";
 import ShopifyImages from "./pages/admin/ShopifyImages";
+import ProductEbooks from "./pages/admin/ProductEbooks";
 
 const queryClient = new QueryClient();
 
@@ -125,6 +126,7 @@ const App = () => (
               <Route path="ai-monitoring" element={<AIMonitoring />} />
               <Route path="artist-submissions" element={<ArtistSubmissions />} />
               <Route path="catalog-products" element={<CatalogProducts />} />
+              <Route path="ebooks" element={<ProductEbooks />} />
               <Route path="shopify-sync" element={<ShopifySync />} />
               <Route path="shopify-images" element={<ShopifyImages />} />
             </Route>

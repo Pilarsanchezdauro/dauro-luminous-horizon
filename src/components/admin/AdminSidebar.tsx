@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw, Download } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -43,6 +43,11 @@ const menuItems = [
     title: 'Catálogo Productos',
     url: '/admin/catalog-products',
     icon: Library,
+  },
+  {
+    title: 'Ebooks',
+    url: '/admin/ebooks',
+    icon: Download,
   },
   {
     title: 'Sync Shopify',

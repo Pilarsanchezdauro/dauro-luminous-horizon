@@ -46,6 +46,8 @@ export default function Shop() {
     const lower = genre.toLowerCase().trim();
     // Normalize "libro" and "libros" to "Libro"
     if (lower === 'libro' || lower === 'libros') return 'Libro';
+    // Normalize ebook variations
+    if (lower === 'ebook' || lower === 'ebooks' || lower === 'e-book' || lower === 'e-books') return 'Ebook';
     return genre;
   };
 
