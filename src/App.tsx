@@ -59,6 +59,7 @@ import DauroMirloKey from "./pages/DauroMirloKey";
 import Catalogo from "./pages/Catalogo";
 import CatalogProducts from "./pages/admin/CatalogProducts";
 import ShopifySync from "./pages/admin/ShopifySync";
+import ShopifyImages from "./pages/admin/ShopifyImages";
 
 const queryClient = new QueryClient();
 
@@ -125,6 +126,7 @@ const App = () => (
               <Route path="artist-submissions" element={<ArtistSubmissions />} />
               <Route path="catalog-products" element={<CatalogProducts />} />
               <Route path="shopify-sync" element={<ShopifySync />} />
+              <Route path="shopify-images" element={<ShopifyImages />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

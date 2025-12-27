@@ -26,7 +26,7 @@ serve(async (req) => {
   }
 
   try {
-    const { baseImageUrl, dryRun = true, limit = 50, offset = 0 } = await req.json();
+    const { baseImageUrl, dryRun = true, limit = 50, sinceId = 0 } = await req.json();
     
     if (!baseImageUrl) {
       return new Response(
@@ -42,18 +42,19 @@ serve(async (req) => {
       throw new Error('Shopify access token not configured');
     }
 
-    console.log(`Fetching products (limit: ${limit}, offset: ${offset})...`);
+    console.log(`Fetching products (limit: ${limit}, since_id: ${sinceId})...`);
     
-    // Fetch products without images only
-    const fetchResponse: Response = await fetch(
-      `https://${shopifyDomain}/admin/api/2024-01/products.json?limit=${limit}&fields=id,title,variants,image`,
-      {
-        headers: {
-          'X-Shopify-Access-Token': accessToken,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    // Fetch products using since_id for pagination
+    const url = sinceId > 0 
+      ? `https://${shopifyDomain}/admin/api/2024-01/products.json?limit=${limit}&since_id=${sinceId}&fields=id,title,variants,image`
+      : `https://${shopifyDomain}/admin/api/2024-01/products.json?limit=${limit}&fields=id,title,variants,image`;
+    
+    const fetchResponse: Response = await fetch(url, {
+      headers: {
+        'X-Shopify-Access-Token': accessToken,
+        'Content-Type': 'application/json',
+      },
+    });
     
     if (!fetchResponse.ok) {
       throw new Error(`Failed to fetch products: ${fetchResponse.status}`);
@@ -210,6 +211,9 @@ serve(async (req) => {
       }
     }
     
+    // Get the last product ID for pagination
+    const lastProductId = products.length > 0 ? products[products.length - 1].id : 0;
+    
     return new Response(
       JSON.stringify({
         summary: {
@@ -219,6 +223,8 @@ serve(async (req) => {
           skipped: skippedCount,
           errors: errorCount,
           dryRun,
+          lastProductId,
+          hasMore: products.length === limit,
         },
         results,
       }),
