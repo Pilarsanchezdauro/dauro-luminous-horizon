@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
-import { ImageIcon, Loader2, CheckCircle2, XCircle, AlertCircle, ArrowRight } from "lucide-react";
+import { ImageIcon, Loader2, CheckCircle2, XCircle, AlertCircle, ArrowRight, Search, BookOpen } from "lucide-react";
 
 interface SyncResult {
   productId: number;
@@ -17,6 +17,8 @@ interface SyncResult {
   barcode: string | null;
   imageUrl: string | null;
   status: string;
+  matchType?: string;
+  titleVariations?: string[];
   error?: string;
 }
 
@@ -30,6 +32,11 @@ interface SyncResponse {
     dryRun: boolean;
     lastProductId: number;
     hasMore: boolean;
+    foundByBarcode: number;
+    foundByTitle: number;
+    noBarcode: number;
+    noImageFound: number;
+    alreadyHasImage: number;
   };
   results: SyncResult[];
 }
@@ -38,20 +45,29 @@ const BASE_IMAGE_URL = "https://cdn.shopify.com/s/files/1/0737/2190/5317/files/"
 
 export default function ShopifyImages() {
   const [dryRun, setDryRun] = useState(true);
+  const [tryByTitle, setTryByTitle] = useState(true);
   const [limit, setLimit] = useState(30);
   const [sinceId, setSinceId] = useState(0);
   const [response, setResponse] = useState<SyncResponse | null>(null);
   const [totalUpdated, setTotalUpdated] = useState(0);
-  const [isAutoRunning, setIsAutoRunning] = useState(false);
+  const [accumulatedStats, setAccumulatedStats] = useState({
+    totalProducts: 0,
+    foundByBarcode: 0,
+    foundByTitle: 0,
+    noBarcode: 0,
+    noImageFound: 0,
+    alreadyHasImage: 0,
+  });
 
   const syncMutation = useMutation({
-    mutationFn: async ({ dryRun, limit, sinceId }: { dryRun: boolean; limit: number; sinceId: number }) => {
+    mutationFn: async ({ dryRun, limit, sinceId, tryByTitle }: { dryRun: boolean; limit: number; sinceId: number; tryByTitle: boolean }) => {
       const { data, error } = await supabase.functions.invoke('associate-shopify-images', {
         body: {
           baseImageUrl: BASE_IMAGE_URL,
           dryRun,
           limit,
           sinceId,
+          tryByTitle,
         },
       });
 
@@ -60,6 +76,17 @@ export default function ShopifyImages() {
     },
     onSuccess: (data) => {
       setResponse(data);
+      
+      // Accumulate stats
+      setAccumulatedStats(prev => ({
+        totalProducts: prev.totalProducts + data.summary.totalProducts,
+        foundByBarcode: prev.foundByBarcode + data.summary.foundByBarcode,
+        foundByTitle: prev.foundByTitle + data.summary.foundByTitle,
+        noBarcode: prev.noBarcode + data.summary.noBarcode,
+        noImageFound: prev.noImageFound + data.summary.noImageFound,
+        alreadyHasImage: prev.alreadyHasImage + data.summary.alreadyHasImage,
+      }));
+      
       if (!data.summary.dryRun) {
         setTotalUpdated(prev => prev + data.summary.updated);
       }
@@ -69,7 +96,7 @@ export default function ShopifyImages() {
       }
       
       toast.success(`Procesados ${data.summary.totalProducts} productos`, {
-        description: `${data.summary.matched} coincidencias, ${data.summary.updated} actualizados`,
+        description: `${data.summary.matched} coincidencias (${data.summary.foundByBarcode} por ISBN, ${data.summary.foundByTitle} por título)`,
       });
     },
     onError: (error) => {
@@ -80,12 +107,12 @@ export default function ShopifyImages() {
   });
 
   const handleSync = () => {
-    syncMutation.mutate({ dryRun, limit, sinceId });
+    syncMutation.mutate({ dryRun, limit, sinceId, tryByTitle });
   };
 
   const handleContinue = () => {
     if (response?.summary.lastProductId) {
-      syncMutation.mutate({ dryRun, limit, sinceId: response.summary.lastProductId });
+      syncMutation.mutate({ dryRun, limit, sinceId: response.summary.lastProductId, tryByTitle });
     }
   };
 
@@ -93,20 +120,37 @@ export default function ShopifyImages() {
     setSinceId(0);
     setResponse(null);
     setTotalUpdated(0);
+    setAccumulatedStats({
+      totalProducts: 0,
+      foundByBarcode: 0,
+      foundByTitle: 0,
+      noBarcode: 0,
+      noImageFound: 0,
+      alreadyHasImage: 0,
+    });
   };
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status: string, matchType?: string) => {
     switch (status) {
       case 'updated':
-        return <Badge className="bg-green-500"><CheckCircle2 className="w-3 h-3 mr-1" />Actualizado</Badge>;
+        return (
+          <Badge className="bg-green-500">
+            <CheckCircle2 className="w-3 h-3 mr-1" />
+            {matchType === 'title' ? 'Por título' : 'Por ISBN'}
+          </Badge>
+        );
       case 'would_update':
-        return <Badge variant="outline" className="border-green-500 text-green-500">Coincide</Badge>;
+        return (
+          <Badge variant="outline" className="border-green-500 text-green-500">
+            {matchType === 'title' ? 'Por título' : 'Por ISBN'}
+          </Badge>
+        );
       case 'skipped_has_image':
         return <Badge variant="secondary">Ya tiene imagen</Badge>;
       case 'skipped_no_barcode':
-        return <Badge variant="secondary">Sin código</Badge>;
+        return <Badge variant="outline" className="text-orange-500 border-orange-500">Sin ISBN</Badge>;
       case 'no_image_found':
-        return <Badge variant="outline"><XCircle className="w-3 h-3 mr-1" />Sin imagen</Badge>;
+        return <Badge variant="outline"><XCircle className="w-3 h-3 mr-1" />No encontrada</Badge>;
       case 'update_failed':
       case 'update_error':
         return <Badge variant="destructive"><AlertCircle className="w-3 h-3 mr-1" />Error</Badge>;
@@ -120,7 +164,7 @@ export default function ShopifyImages() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Asociar Imágenes de Shopify</h1>
         <p className="text-muted-foreground">
-          Asocia automáticamente las imágenes subidas a Shopify Files con los productos usando el ISBN.
+          Asocia automáticamente las imágenes subidas a Shopify Files con los productos usando el ISBN o el título.
         </p>
       </div>
 
@@ -147,6 +191,20 @@ export default function ShopifyImages() {
                 id="dry-run"
                 checked={dryRun}
                 onCheckedChange={setDryRun}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="try-title">Buscar por título</Label>
+                <p className="text-sm text-muted-foreground">
+                  Si no encuentra por ISBN, intenta por título
+                </p>
+              </div>
+              <Switch
+                id="try-title"
+                checked={tryByTitle}
+                onCheckedChange={setTryByTitle}
               />
             </div>
 
@@ -191,8 +249,8 @@ export default function ShopifyImages() {
                   </>
                 ) : (
                   <>
-                    <ImageIcon className="w-4 h-4 mr-2" />
-                    {dryRun ? 'Ver coincidencias' : 'Ejecutar sincronización'}
+                    <Search className="w-4 h-4 mr-2" />
+                    {dryRun ? 'Analizar' : 'Ejecutar'}
                   </>
                 )}
               </Button>
@@ -218,28 +276,38 @@ export default function ShopifyImages() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Resumen</CardTitle>
-            <CardDescription>Resultados de la última ejecución</CardDescription>
+            <CardTitle>Resumen Acumulado</CardTitle>
+            <CardDescription>Estadísticas de todos los lotes procesados</CardDescription>
           </CardHeader>
           <CardContent>
-            {response ? (
+            {accumulatedStats.totalProducts > 0 ? (
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="text-center p-3 bg-secondary/50 rounded-lg">
-                    <div className="text-2xl font-bold">{response.summary.totalProducts}</div>
-                    <div className="text-xs text-muted-foreground">Procesados</div>
-                  </div>
-                  <div className="text-center p-3 bg-green-500/10 rounded-lg">
-                    <div className="text-2xl font-bold text-green-600">{response.summary.matched}</div>
-                    <div className="text-xs text-muted-foreground">Coincidencias</div>
+                    <div className="text-2xl font-bold">{accumulatedStats.totalProducts}</div>
+                    <div className="text-xs text-muted-foreground">Total procesados</div>
                   </div>
                   <div className="text-center p-3 bg-blue-500/10 rounded-lg">
-                    <div className="text-2xl font-bold text-blue-600">{response.summary.updated}</div>
-                    <div className="text-xs text-muted-foreground">Actualizados</div>
+                    <div className="text-2xl font-bold text-blue-600">{accumulatedStats.alreadyHasImage}</div>
+                    <div className="text-xs text-muted-foreground">Ya tienen imagen</div>
+                  </div>
+                  <div className="text-center p-3 bg-green-500/10 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">{accumulatedStats.foundByBarcode}</div>
+                    <div className="text-xs text-muted-foreground flex items-center justify-center gap-1">
+                      <BookOpen className="w-3 h-3" /> Por ISBN
+                    </div>
+                  </div>
+                  <div className="text-center p-3 bg-purple-500/10 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-600">{accumulatedStats.foundByTitle}</div>
+                    <div className="text-xs text-muted-foreground">Por título</div>
                   </div>
                   <div className="text-center p-3 bg-orange-500/10 rounded-lg">
-                    <div className="text-2xl font-bold text-orange-600">{response.summary.skipped}</div>
-                    <div className="text-xs text-muted-foreground">Omitidos</div>
+                    <div className="text-2xl font-bold text-orange-600">{accumulatedStats.noBarcode}</div>
+                    <div className="text-xs text-muted-foreground">Sin ISBN</div>
+                  </div>
+                  <div className="text-center p-3 bg-red-500/10 rounded-lg">
+                    <div className="text-2xl font-bold text-red-600">{accumulatedStats.noImageFound}</div>
+                    <div className="text-xs text-muted-foreground">Sin imagen</div>
                   </div>
                 </div>
 
@@ -251,19 +319,19 @@ export default function ShopifyImages() {
                   </div>
                 )}
 
-                {response.summary.hasMore && (
+                {response?.summary.hasMore && (
                   <div className="p-2 bg-yellow-500/10 rounded text-center text-sm">
                     Hay más productos. Último ID: {response.summary.lastProductId}
                   </div>
                 )}
 
                 <div className="text-xs text-muted-foreground">
-                  Modo: {response.summary.dryRun ? 'Prueba' : 'Real'}
+                  Modo: {response?.summary.dryRun ? 'Análisis' : 'Ejecución real'}
                 </div>
               </div>
             ) : (
               <div className="text-center text-muted-foreground py-8">
-                Ejecuta la sincronización para ver resultados
+                Ejecuta el análisis para ver resultados
               </div>
             )}
           </CardContent>
@@ -273,7 +341,7 @@ export default function ShopifyImages() {
       {response && response.results.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>Detalle de productos</CardTitle>
+            <CardTitle>Detalle de productos (último lote)</CardTitle>
             <CardDescription>
               {response.results.length} productos en este lote
             </CardDescription>
@@ -303,9 +371,14 @@ export default function ShopifyImages() {
                           {result.imageUrl.split('/').pop()}
                         </a>
                       )}
+                      {result.titleVariations && result.titleVariations.length > 0 && (
+                        <div className="text-xs text-muted-foreground mt-1">
+                          Variaciones: {result.titleVariations.slice(0, 2).join(', ')}
+                        </div>
+                      )}
                     </div>
                     <div className="flex-shrink-0 ml-2">
-                      {getStatusBadge(result.status)}
+                      {getStatusBadge(result.status, result.matchType)}
                     </div>
                   </div>
                 ))}
