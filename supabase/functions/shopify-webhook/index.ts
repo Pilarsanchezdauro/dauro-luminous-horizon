@@ -13,6 +13,43 @@ const SKU_TO_CREDITS: Record<string, number> = {
   "COVER-CREDITS-30": 30,
 };
 
+// Send ebook download email via Formspree
+async function sendEbookEmail(
+  email: string, 
+  productTitle: string, 
+  downloadLink: string,
+  formspreeFormId: string
+): Promise<boolean> {
+  try {
+    const response = await fetch(`https://formspree.io/f/${formspreeFormId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        _replyto: email,
+        _subject: `Tu ebook "${productTitle}" está listo para descargar`,
+        product_title: productTitle,
+        download_link: downloadLink,
+        message: `¡Gracias por tu compra! Tu ebook "${productTitle}" está listo para descargar. Haz clic en el siguiente enlace para descargarlo: ${downloadLink}`,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Formspree error:", await response.text());
+      return false;
+    }
+
+    console.log(`Email sent successfully to ${email} for product ${productTitle}`);
+    return true;
+  } catch (error) {
+    console.error("Error sending email via Formspree:", error);
+    return false;
+  }
+}
+
 // Verify Shopify webhook signature
 async function verifyShopifyWebhook(body: string, hmacHeader: string, secret: string): Promise<boolean> {
   const encoder = new TextEncoder();
@@ -106,6 +143,7 @@ serve(async (req) => {
 
     // Process each line item in the order
     let totalCreditsAdded = 0;
+    const ebookProductIds: { productId: string; title: string; quantity: number }[] = [];
     
     for (const item of order.line_items) {
       const sku = item.sku;
@@ -117,16 +155,110 @@ serve(async (req) => {
         console.log(`Found credit product: ${sku}, adding ${creditsToAdd} credits (${credits} x ${quantity})`);
         totalCreditsAdded += creditsToAdd;
       } else {
-        console.log(`Item ${item.title} (SKU: ${sku}) is not a credit product, skipping`);
+        // Check if this is an ebook product
+        const productId = item.product_id?.toString();
+        if (productId) {
+          ebookProductIds.push({ 
+            productId: `gid://shopify/Product/${productId}`, 
+            title: item.title,
+            quantity: item.quantity 
+          });
+        }
+        console.log(`Item ${item.title} (SKU: ${sku}) - checking for ebook`);
       }
     }
 
-    if (totalCreditsAdded === 0) {
-      console.log("No credit products found in order");
-      return new Response(JSON.stringify({ message: "No credit products in order" }), {
+    // Process ebooks
+    const formspreeFormId = Deno.env.get("FORMSPREE_EBOOK_FORM_ID");
+    const siteUrl = Deno.env.get("SUPABASE_URL")?.replace(".supabase.co", "").replace("https://", "") || "";
+    const baseDownloadUrl = `https://grupodauro.lovable.app/descargar-ebook`;
+    
+    for (const ebookItem of ebookProductIds) {
+      // Check if this product has an ebook associated
+      const { data: productEbook } = await supabase
+        .from("product_ebooks")
+        .select()
+        .eq("shopify_product_id", ebookItem.productId)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (productEbook) {
+        console.log(`Found ebook for product: ${ebookItem.title}`);
+        
+        // Check if purchase already exists for this order/product
+        const { data: existingPurchase } = await supabase
+          .from("ebook_purchases")
+          .select()
+          .eq("shopify_order_id", order.id.toString())
+          .eq("shopify_product_id", ebookItem.productId)
+          .maybeSingle();
+
+        if (existingPurchase) {
+          console.log(`Ebook purchase already exists for order ${order.id}, product ${ebookItem.productId}`);
+          continue;
+        }
+
+        // Create ebook purchase record
+        const { data: newPurchase, error: purchaseError } = await supabase
+          .from("ebook_purchases")
+          .insert({
+            email: order.email,
+            shopify_order_id: order.id.toString(),
+            shopify_product_id: ebookItem.productId,
+          })
+          .select()
+          .single();
+
+        if (purchaseError) {
+          console.error("Error creating ebook purchase:", purchaseError);
+          continue;
+        }
+
+        console.log(`Created ebook purchase with token: ${newPurchase.download_token}`);
+
+        // Send email with download link via Formspree
+        if (formspreeFormId) {
+          const downloadLink = `${baseDownloadUrl}?token=${newPurchase.download_token}`;
+          const emailSent = await sendEbookEmail(
+            order.email,
+            ebookItem.title,
+            downloadLink,
+            formspreeFormId
+          );
+          
+          if (emailSent) {
+            console.log(`Download email sent to ${order.email} for ${ebookItem.title}`);
+          } else {
+            console.error(`Failed to send email to ${order.email} for ${ebookItem.title}`);
+          }
+        } else {
+          console.warn("FORMSPREE_EBOOK_FORM_ID not configured, skipping email");
+        }
+      }
+    }
+
+    // If no credits and no ebooks, return early
+    if (totalCreditsAdded === 0 && ebookProductIds.length === 0) {
+      console.log("No credit products or ebooks found in order");
+      return new Response(JSON.stringify({ message: "No special products in order" }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
+    }
+
+    // Skip credit processing if no credits to add
+    if (totalCreditsAdded === 0) {
+      return new Response(
+        JSON.stringify({ 
+          message: "Ebooks processed successfully",
+          ebooksProcessed: ebookProductIds.length,
+          email: order.email 
+        }),
+        {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     // Check if credits for this order already exist
