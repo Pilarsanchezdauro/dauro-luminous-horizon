@@ -6,7 +6,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User } from "lucide-react";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag } from "lucide-react";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -265,10 +265,20 @@ export default function ProductDetail() {
                         </div>
                       )}
                       
-                      {paginas && (
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground border-t pt-4">
-                          <BookOpen className="w-4 h-4" />
-                          <span><strong>Páginas:</strong> {paginas}</span>
+                      {(product.productType || paginas) && (
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-t pt-4">
+                          {product.productType && (
+                            <div className="flex items-center gap-2">
+                              <Tag className="w-4 h-4" />
+                              <span><strong>Género:</strong> {product.productType}</span>
+                            </div>
+                          )}
+                          {paginas && (
+                            <div className="flex items-center gap-2">
+                              <BookOpen className="w-4 h-4" />
+                              <span><strong>Páginas:</strong> {paginas}</span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
