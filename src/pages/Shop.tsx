@@ -116,16 +116,28 @@ export default function Shop() {
                (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
 
+  // Helper to check if product is a "novedad" (new arrival)
+  const isNovedad = (product: ShopifyProduct) => {
+    const tags = product.node.tags || [];
+    const tagsLower = tags.map((t: string) => t.toLowerCase());
+    return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+  };
+
   // Sort the filtered books - products without images go to the end
   const filteredBooks = [...categoryFilteredBooks].sort((a, b) => {
     // First: products with images come before products without images
-    // Check both if images array exists AND if the first image has a valid URL
     const aHasImage = (a.node.images.edges.length > 0 && a.node.images.edges[0]?.node?.url) ? 0 : 1;
     const bHasImage = (b.node.images.edges.length > 0 && b.node.images.edges[0]?.node?.url) ? 0 : 1;
     if (aHasImage !== bHasImage) return aHasImage - bHasImage;
     
     // Then apply the selected sort order
     switch (sortBy) {
+      case "novedades":
+        // Novedades (products with novedad tag) first, then by title
+        const aIsNovedad = isNovedad(a) ? 0 : 1;
+        const bIsNovedad = isNovedad(b) ? 0 : 1;
+        if (aIsNovedad !== bIsNovedad) return aIsNovedad - bIsNovedad;
+        return a.node.title.localeCompare(b.node.title);
       case "titulo-asc":
         return a.node.title.localeCompare(b.node.title);
       case "titulo-desc":
@@ -415,6 +427,7 @@ export default function Shop() {
                               <SelectValue placeholder="Ordenar por..." />
                             </SelectTrigger>
                             <SelectContent>
+                              <SelectItem value="novedades">Novedades primero</SelectItem>
                               <SelectItem value="titulo-asc">Título A-Z</SelectItem>
                               <SelectItem value="titulo-desc">Título Z-A</SelectItem>
                               <SelectItem value="precio-asc">Precio: menor a mayor</SelectItem>
