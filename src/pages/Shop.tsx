@@ -8,13 +8,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet } from "lucide-react";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { getSynopsisOnly } from "@/lib/description-parser";
 import heroCultureBg from "@/assets/hero-culture-bg.png";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ShopifyCollection {
   node: {
@@ -34,6 +35,7 @@ export default function Shop() {
   const [selectedGenre, setSelectedGenre] = useState<string>("todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("titulo-asc");
+  const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
   const addItem = useCartStore(state => state.addItem);
 
   // For now, all products are books. Arte and NFT sections will be populated later
@@ -146,7 +148,30 @@ export default function Shop() {
 
   useEffect(() => {
     loadCollections();
+    loadEbookProductIds();
   }, []);
+
+  const loadEbookProductIds = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('product_ebooks')
+        .select('shopify_product_id')
+        .eq('is_active', true);
+      
+      if (error) throw error;
+      
+      const ids = new Set(data?.map(e => e.shopify_product_id) || []);
+      setEbookProductIds(ids);
+    } catch (error) {
+      console.error('Error loading ebook product IDs:', error);
+    }
+  };
+
+  const hasEbook = (productId: string): boolean => {
+    // Extract numeric ID from Shopify GID format
+    const numericId = productId.replace('gid://shopify/Product/', '');
+    return ebookProductIds.has(numericId) || ebookProductIds.has(productId);
+  };
 
   useEffect(() => {
     loadProducts();
@@ -483,6 +508,13 @@ export default function Shop() {
                                   <div className="absolute top-[8.5rem] right-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
                                     <Film className="w-3 h-3" />
                                     Cine
+                                  </div>
+                                )}
+                                {/* Ebook Badge */}
+                                {hasEbook(product.node.id) && (
+                                  <div className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Tablet className="w-3 h-3" />
+                                    Ebook
                                   </div>
                                 )}
                               </div>
