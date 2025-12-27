@@ -10,17 +10,17 @@ interface ShopifyProduct {
   title: string;
   variants: Array<{
     barcode: string | null;
+    sku: string | null;
   }>;
   image: { src?: string } | null;
 }
 
-// Get ISBN variations: with and without BC prefix
+// Get ISBN variations: with and without BC prefix, with and without dashes
 function getISBNVariations(isbn: string | null): string[] {
   if (!isbn) return [];
   
   const cleaned = isbn.replace(/[-\s]/g, '').trim();
   const withoutBC = cleaned.replace(/^BC/i, '');
-  const withBC = cleaned.startsWith('BC') || cleaned.startsWith('bc') ? cleaned : `BC${cleaned}`;
   
   const variations: string[] = [];
   
@@ -28,10 +28,25 @@ function getISBNVariations(isbn: string | null): string[] {
   if (withoutBC.length > 0) variations.push(withoutBC);
   
   // Add with BC prefix
+  const withBC = cleaned.startsWith('BC') || cleaned.startsWith('bc') ? cleaned : `BC${cleaned}`;
   if (withBC !== withoutBC) variations.push(withBC);
   
-  // Add original cleaned version if different
-  if (!variations.includes(cleaned)) variations.push(cleaned);
+  // Add ISBN-13 formatted versions with dashes (978-XX-XXXXXX-X-X pattern)
+  if (withoutBC.length === 13 && withoutBC.startsWith('978')) {
+    // Standard ISBN-13 format: 978-84-XXXXXX-X-X
+    const formatted1 = `${withoutBC.slice(0, 3)}-${withoutBC.slice(3, 5)}-${withoutBC.slice(5, 11)}-${withoutBC.slice(11, 12)}-${withoutBC.slice(12)}`;
+    variations.push(formatted1);
+    
+    // Alternative format: 978-84-XXXXX-XX-X
+    const formatted2 = `${withoutBC.slice(0, 3)}-${withoutBC.slice(3, 5)}-${withoutBC.slice(5, 10)}-${withoutBC.slice(10, 12)}-${withoutBC.slice(12)}`;
+    if (formatted2 !== formatted1) variations.push(formatted2);
+  }
+  
+  // Also try the SKU format if it looks like an ISBN with dashes (from SKU field)
+  if (isbn.includes('-')) {
+    const skuWithoutBC = isbn.replace(/^BC/i, '').trim();
+    if (!variations.includes(skuWithoutBC)) variations.push(skuWithoutBC);
+  }
   
   return variations;
 }
@@ -161,6 +176,7 @@ serve(async (req) => {
     
     for (const product of products) {
       const barcode = product.variants[0]?.barcode;
+      const sku = product.variants[0]?.sku;
       const hasImage = product.image?.src;
       
       // Track products that already have image
@@ -180,31 +196,47 @@ serve(async (req) => {
       let matchedUrl: string | null = null;
       let matchType: string = '';
       
-      // First try by barcode/ISBN with all variations
+      // Collect all ISBN variations from both barcode and SKU
+      const allVariations: string[] = [];
+      
+      // Add variations from barcode
       if (barcode) {
-        const isbnVariations = getISBNVariations(barcode);
-        
-        if (isbnVariations.length > 0) {
-          for (const isbnVar of isbnVariations) {
-            if (matchedUrl) break;
-            for (const ext of extensions) {
-              const testUrl = `${baseImageUrl}${isbnVar}.${ext}`;
-              try {
-                const checkResponse = await fetch(testUrl, { method: 'HEAD' });
-                if (checkResponse.ok) {
-                  matchedUrl = testUrl;
-                  matchType = 'barcode';
-                  foundByBarcode++;
-                  console.log(`Found image for ${product.title} by barcode variation "${isbnVar}": ${testUrl}`);
-                  break;
-                }
-              } catch {
-                // URL not found
+        allVariations.push(...getISBNVariations(barcode));
+      }
+      
+      // Add variations from SKU (often has the ISBN with dashes)
+      if (sku) {
+        const skuVariations = getISBNVariations(sku);
+        for (const v of skuVariations) {
+          if (!allVariations.includes(v)) {
+            allVariations.push(v);
+          }
+        }
+      }
+      
+      // Try all ISBN/SKU variations
+      if (allVariations.length > 0) {
+        for (const isbnVar of allVariations) {
+          if (matchedUrl) break;
+          for (const ext of extensions) {
+            const testUrl = `${baseImageUrl}${isbnVar}.${ext}`;
+            try {
+              const checkResponse = await fetch(testUrl, { method: 'HEAD' });
+              if (checkResponse.ok) {
+                matchedUrl = testUrl;
+                matchType = 'barcode';
+                foundByBarcode++;
+                console.log(`Found image for ${product.title} by ISBN/SKU variation "${isbnVar}": ${testUrl}`);
+                break;
               }
+            } catch {
+              // URL not found
             }
           }
         }
-      } else {
+      }
+      
+      if (!barcode && !sku) {
         noBarcode++;
       }
       
