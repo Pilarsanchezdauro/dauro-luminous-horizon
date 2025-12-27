@@ -127,12 +127,29 @@ export default function Shop() {
     }
   };
 
+  // Collections to exclude from the main "todos" view
+  const EXCLUDED_COLLECTIONS = ['libros-antiguos'];
+
   const loadProducts = async () => {
     try {
       setIsLoading(true);
       if (selectedCollection === "todos") {
-        const data = await getAllProducts();
-        setProducts(data);
+        // Load all products and filter out those from excluded collections
+        const [allData, ...excludedCollectionsData] = await Promise.all([
+          getAllProducts(),
+          ...EXCLUDED_COLLECTIONS.map(handle => getAllCollectionProducts(handle).catch(() => ({ products: [] })))
+        ]);
+        
+        // Get IDs of products to exclude
+        const excludedProductIds = new Set(
+          excludedCollectionsData.flatMap(({ products }) => 
+            products.map((p: any) => p.node.id)
+          )
+        );
+        
+        // Filter out excluded products
+        const filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
+        setProducts(filteredProducts);
       } else {
         const { products: collectionProducts } = await getAllCollectionProducts(selectedCollection);
         setProducts(collectionProducts);
