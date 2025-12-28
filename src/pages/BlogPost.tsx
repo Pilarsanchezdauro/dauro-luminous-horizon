@@ -410,12 +410,21 @@ const BlogPost = () => {
                     <p className="text-muted-foreground mb-4">
                       Adquiérelo ahora en nuestra tienda online
                     </p>
-                    <Link to={post.bookLink}>
-                      <Button size="lg" className="gap-2">
-                        <BookOpen className="h-5 w-5" />
-                        Comprar ahora
-                      </Button>
-                    </Link>
+                    {post.bookLink.startsWith('http') ? (
+                      <a href={post.bookLink} target="_blank" rel="noopener noreferrer">
+                        <Button size="lg" className="gap-2">
+                          <BookOpen className="h-5 w-5" />
+                          Comprar ahora
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link to={post.bookLink}>
+                        <Button size="lg" className="gap-2">
+                          <BookOpen className="h-5 w-5" />
+                          Comprar ahora
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 )}
 
