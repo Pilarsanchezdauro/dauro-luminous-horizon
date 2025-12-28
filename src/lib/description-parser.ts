@@ -17,7 +17,7 @@ interface ParsedDescription {
  * Patrones para encontrar la sección del autor
  */
 const AUTOR_PATTERNS = [
-  /(<[^>]*>)*\s*(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR:)\s*(<[^>]*>)*/i,
+  /(<[^>]*>)*\s*(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR\s*[:\*]+)\s*(<[^>]*>)*/i,
 ];
 
 /**
@@ -39,7 +39,7 @@ function extractMetadata(text: string): { paginas: string | null; isbn: string |
  * Limpia el encabezado del autor del HTML
  */
 function cleanAuthorHeader(html: string): string {
-  return html.replace(/^(<[^>]*>)*\s*(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|AUTOR:)\s*(<[^>]*>)*/i, '').trim();
+  return html.replace(/^(<[^>]*>)*\s*(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|AUTOR\s*[:\*]+)\s*(<[^>]*>)*/i, '').trim();
 }
 
 export function parseProductDescription(description: string, descriptionHtml?: string): ParsedDescription {
@@ -76,16 +76,14 @@ export function parseProductDescription(description: string, descriptionHtml?: s
   let autor = '';
   
   const textPatterns = [
-    /\b(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR:)\b/i
+    /\b(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR\s*[:\*]+)\s*/i
   ];
   
   for (const pattern of textPatterns) {
     const match = text.match(pattern);
     if (match && match.index !== undefined) {
       sinopsis = text.substring(0, match.index).trim();
-      autor = text.substring(match.index).trim();
-      // Limpiar encabezado
-      autor = autor.replace(/^(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|AUTOR:)\s*/i, '').trim();
+      autor = text.substring(match.index + match[0].length).trim();
       break;
     }
   }
