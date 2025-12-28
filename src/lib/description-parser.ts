@@ -76,7 +76,7 @@ export function parseProductDescription(description: string, descriptionHtml?: s
   let autor = '';
   
   const textPatterns = [
-    /\b(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR\s*[:\*]+)\s*/i
+    /(EL AUTOR|LA AUTORA|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA|LOS AUTORES|LAS AUTORAS|AUTOR\s*:)/i
   ];
   
   for (const pattern of textPatterns) {
