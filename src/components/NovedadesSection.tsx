@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, ArrowRight, ShoppingCart, Loader2 } from "lucide-react";
+import { Sparkles, ArrowRight, ShoppingCart, Loader2, BookOpen } from "lucide-react";
 import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ import { toast } from "sonner";
 export const NovedadesSection = () => {
   const [novedades, setNovedades] = useState<ShopifyProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const addItem = useCartStore((state) => state.addItem);
 
   useEffect(() => {
@@ -17,15 +18,12 @@ export const NovedadesSection = () => {
       try {
         const allProducts = await getAllProducts();
         
-        // Filter products with "novedad" tag
         const novedadProducts = allProducts.filter((p: ShopifyProduct) => {
           const tags = p.node.tags || [];
           const tagsLower = tags.map((t: string) => t.toLowerCase());
           return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
         });
 
-        // Sort by id (products created later usually have higher IDs)
-        // Since publishedAt/createdAt aren't in the type, we just use the order from the API
         setNovedades(novedadProducts.slice(0, 4));
       } catch (error) {
         console.error('Error loading novedades:', error);
@@ -37,7 +35,9 @@ export const NovedadesSection = () => {
     loadNovedades();
   }, []);
 
-  const handleAddToCart = (product: ShopifyProduct) => {
+  const handleAddToCart = (e: React.MouseEvent, product: ShopifyProduct) => {
+    e.preventDefault();
+    e.stopPropagation();
     const variant = product.node.variants.edges[0]?.node;
     if (!variant) return;
 
@@ -56,9 +56,11 @@ export const NovedadesSection = () => {
 
   if (isLoading) {
     return (
-      <section className="my-20">
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <section className="py-24 bg-gradient-to-b from-background via-card/50 to-background">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center py-16">
+            <Loader2 className="h-10 w-10 animate-spin text-primary" />
+          </div>
         </div>
       </section>
     );
@@ -69,79 +71,145 @@ export const NovedadesSection = () => {
   }
 
   return (
-    <section className="my-20">
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-          <Sparkles className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold text-primary">Recién llegados</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4">
-          Novedades Editoriales
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Descubre las últimas publicaciones de Ediciones Dauro
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        {novedades.map((product) => {
-          const price = product.node.priceRange.minVariantPrice;
-          const image = product.node.images?.edges?.[0]?.node;
+    <section className="py-24 relative overflow-hidden">
+      {/* Background decorativo */}
+      <div className="absolute inset-0 bg-gradient-to-b from-card/30 via-transparent to-card/30" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header con estilo editorial */}
+        <div className="text-center mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary" />
+            <div className="flex items-center gap-2 bg-primary/10 backdrop-blur-sm px-5 py-2.5 rounded-full border border-primary/20">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span className="text-sm font-semibold text-primary tracking-wide uppercase">Recién llegados</span>
+            </div>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary" />
+          </div>
           
-          return (
-            <div 
-              key={product.node.id} 
-              className="group bg-card rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-xl transition-all duration-300 overflow-hidden"
-            >
-              <Link to={`/tienda/producto/${product.node.handle}`}>
-                <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                  {image ? (
-                    <img
-                      src={image.url}
-                      alt={image.altText || product.node.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-secondary/20">
-                      <span className="text-muted-foreground">Sin imagen</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-6 tracking-tight">
+            Novedades <span className="text-primary">Editoriales</span>
+          </h2>
+          
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Las últimas publicaciones que están marcando tendencia en el mundo literario
+          </p>
+        </div>
+
+        {/* Grid de productos con diseño asimétrico */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {novedades.map((product, index) => {
+            const price = product.node.priceRange.minVariantPrice;
+            const image = product.node.images?.edges?.[0]?.node;
+            const isHovered = hoveredIndex === index;
+            
+            return (
+              <Link 
+                to={`/tienda/producto/${product.node.handle}`}
+                key={product.node.id}
+                className="group relative animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div className={`
+                  relative bg-card rounded-3xl overflow-hidden
+                  border-2 transition-all duration-500 ease-out
+                  ${isHovered ? 'border-primary shadow-2xl shadow-primary/20 -translate-y-2' : 'border-border/50 shadow-lg'}
+                `}>
+                  {/* Imagen con overlay */}
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    {image ? (
+                      <>
+                        <img
+                          src={image.url}
+                          alt={image.altText || product.node.title}
+                          className={`
+                            w-full h-full object-cover transition-all duration-700
+                            ${isHovered ? 'scale-110' : 'scale-100'}
+                          `}
+                        />
+                        <div className={`
+                          absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent
+                          transition-opacity duration-300
+                          ${isHovered ? 'opacity-80' : 'opacity-40'}
+                        `} />
+                      </>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-muted">
+                        <BookOpen className="h-16 w-16 text-muted-foreground/50" />
+                      </div>
+                    )}
+                    
+                    {/* Badge de novedad */}
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-primary text-primary-foreground font-semibold px-3 py-1.5 shadow-lg">
+                        <Sparkles className="h-3 w-3 mr-1.5" />
+                        Novedad
+                      </Badge>
                     </div>
-                  )}
-                  <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
-                    Novedad
-                  </Badge>
+
+                    {/* Precio flotante */}
+                    <div className={`
+                      absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-4 py-2
+                      shadow-lg transition-all duration-300
+                      ${isHovered ? 'scale-110' : 'scale-100'}
+                    `}>
+                      <span className="font-bold text-primary">
+                        {parseFloat(price.amount).toFixed(2)}€
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Contenido */}
+                  <div className="p-6">
+                    <h3 className={`
+                      font-serif font-bold text-xl mb-3 line-clamp-2 transition-colors duration-300
+                      ${isHovered ? 'text-primary' : 'text-foreground'}
+                    `}>
+                      {product.node.title}
+                    </h3>
+                    
+                    {product.node.description && (
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                        {product.node.description}
+                      </p>
+                    )}
+                    
+                    {/* Botón añadir al carrito */}
+                    <Button 
+                      onClick={(e) => handleAddToCart(e, product)}
+                      className={`
+                        w-full transition-all duration-300 group/btn
+                        ${isHovered ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}
+                      `}
+                      size="lg"
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:animate-pulse" />
+                      Añadir al carrito
+                    </Button>
+                  </div>
                 </div>
               </Link>
-              
-              <div className="p-4">
-                <Link to={`/tienda/producto/${product.node.handle}`}>
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                    {product.node.title}
-                  </h3>
-                </Link>
-                <p className="text-xl font-bold text-primary mb-3">
-                  {parseFloat(price.amount).toFixed(2)} {price.currencyCode}
-                </p>
-                <Button 
-                  onClick={() => handleAddToCart(product)}
-                  className="w-full"
-                  size="sm"
-                >
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Añadir al carrito
-                </Button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      <div className="text-center">
-        <Link to="/tienda">
-          <Button size="lg" variant="outline" className="group">
-            Ver todas las novedades
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </Link>
+        {/* CTA final con diseño destacado */}
+        <div className="text-center">
+          <Link to="/tienda">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="group px-8 py-6 text-lg border-2 border-primary/30 hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              <span>Explorar todas las novedades</span>
+              <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
