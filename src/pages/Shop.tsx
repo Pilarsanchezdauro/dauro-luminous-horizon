@@ -36,6 +36,7 @@ export default function Shop() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("novedades");
   const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
+  const [visibleBooksCount, setVisibleBooksCount] = useState(20);
   const addItem = useCartStore(state => state.addItem);
 
   // Filter products by type
@@ -97,6 +98,11 @@ export default function Shop() {
     { id: "miscelánea", label: "Miscelánea" },
     { id: "crónica", label: "Crónica" },
   ];
+
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleBooksCount(20);
+  }, [searchQuery, selectedGenre, bookCategory, selectedCollection, sortBy]);
 
   // Filter books by search query first
   const searchFilteredBooks = searchQuery.trim() 
@@ -556,8 +562,9 @@ export default function Shop() {
                           <h2 className="text-2xl font-semibold mb-2">No hay libros en esta categoría</h2>
                         </div>
                       ) : (
+                        <>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                          {filteredBooks.map((product) => (
+                          {filteredBooks.slice(0, visibleBooksCount).map((product) => (
                         <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                           <Link to={`/producto/${product.node.handle}`} className="block relative">
                             {product.node.images.edges[0]?.node && (
@@ -669,6 +676,21 @@ export default function Shop() {
                         </Card>
                           ))}
                         </div>
+                        
+                        {/* Ver más button */}
+                        {visibleBooksCount < filteredBooks.length && (
+                          <div className="flex justify-center mt-8">
+                            <Button
+                              variant="outline"
+                              size="lg"
+                              onClick={() => setVisibleBooksCount(prev => prev + 20)}
+                              className="min-w-[200px]"
+                            >
+                              Ver más ({filteredBooks.length - visibleBooksCount} restantes)
+                            </Button>
+                          </div>
+                        )}
+                        </>
                       )}
                     </>
                   )}
