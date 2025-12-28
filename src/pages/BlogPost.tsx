@@ -401,6 +401,23 @@ const BlogPost = () => {
                   {post.content ? renderContent(post.content) : <p>{post.excerpt}</p>}
                 </div>
 
+                {/* Botón de compra del libro */}
+                {post.bookLink && (
+                  <div className="my-8 p-6 bg-primary/5 border border-primary/20 rounded-xl text-center">
+                    <h3 className="text-xl font-playfair font-bold mb-3 text-foreground">
+                      ¿Te interesa este libro?
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      Adquiérelo ahora en nuestra tienda online
+                    </p>
+                    <Link to={post.bookLink}>
+                      <Button size="lg" className="gap-2">
+                        <BookOpen className="h-5 w-5" />
+                        Comprar ahora
+                      </Button>
+                    </Link>
+                  </div>
+                )}
 
                 {/* Imágenes adicionales (image2, image3) */}
                 {(post.image2 || post.image3) && (
