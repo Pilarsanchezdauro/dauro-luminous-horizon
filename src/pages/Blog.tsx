@@ -196,15 +196,14 @@ const Blog = () => {
             {/* Featured Post - First post with full content (only on "todas" view) */}
             {featuredPost && featuredPost.content && (
               <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl mb-16">
-<div className="relative h-96 overflow-hidden">
+<div className="relative w-full overflow-hidden bg-card">
                   <img
                     src={featuredPost.image}
                     alt={`${featuredPost.title} - Evento cultural en Granada`}
                     width="1200"
                     height="630"
-                    className={`w-full h-full object-cover ${featuredPost.slug === 'generador-portadas-gratis-ia' ? 'object-left' : 'object-top'}`}
+                    className="w-full h-auto object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
                 <div className="p-8 lg:p-12">
                   <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
