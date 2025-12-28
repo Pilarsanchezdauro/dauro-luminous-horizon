@@ -128,7 +128,7 @@ export const NovedadesSection = () => {
                           alt={image.altText || product.node.title}
                           className={`
                             w-full h-full object-cover transition-all duration-700
-                            ${isHovered ? 'scale-110' : 'scale-100'}
+                            ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale'}
                           `}
                         />
                         <div className={`
