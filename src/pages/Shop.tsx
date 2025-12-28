@@ -370,17 +370,6 @@ export default function Shop() {
             <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
               Aquí encontrarás una selección de nuestras obras más destacadas: libros, arte y NFTs culturales
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-              <p className="text-lg text-white/80">
-                Catálogo editorial completo en:
-              </p>
-              <Button asChild variant="secondary" size="lg">
-                <a href="https://www.edicionesdauro.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4" />
-                  www.edicionesdauro.com
-                </a>
-              </Button>
-            </div>
           </div>
         </section>
 

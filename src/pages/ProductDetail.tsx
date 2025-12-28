@@ -199,6 +199,18 @@ export default function ProductDetail() {
               <div className="space-y-6">
                 <div>
                   <div className="flex flex-wrap gap-2 mb-4">
+                    {product.tags?.some((tag: string) => ['novedad', 'novedades', 'nuevo', 'new'].includes(tag.toLowerCase())) && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <Tag className="w-4 h-4" />
+                        Novedad
+                      </div>
+                    )}
+                    {product.tags?.some((tag: string) => ['segunda edicion', 'segunda edición', '2a edicion', '2a edición', '2ª edición', '2ª edicion'].includes(tag.toLowerCase())) && (
+                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
+                        <BookOpen className="w-4 h-4" />
+                        2ª Edición
+                      </div>
+                    )}
                     {product.tags?.some((tag: string) => tag.toLowerCase() === 'bestseller') && (
                       <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
                         <Award className="w-4 h-4" />
