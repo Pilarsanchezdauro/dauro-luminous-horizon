@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/blog/la-espana-quebrantada.jpg",
     category: "literatura",
     slug: "la-espana-quebrantada-manuel-orozco",
-    bookLink: "/tienda",
+    bookLink: "https://grupodauro.com/producto/la-espana-quebrantada",
     content: `En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos **"La España Quebrantada"**, el nuevo ensayo de **Manuel E. Orozco Redondo**, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país desde una perspectiva personal y sin concesiones.
 
 ## Sobre el libro
