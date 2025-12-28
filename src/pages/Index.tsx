@@ -11,6 +11,7 @@ import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
 import { LatestWorks } from "@/components/LatestWorks";
+import { NovedadesSection } from "@/components/NovedadesSection";
 import ChristmasEffects from "@/components/ChristmasEffects";
 import ChristmasBanner from "@/components/ChristmasBanner";
 import ChristmasSongAnnouncement from "@/components/ChristmasSongAnnouncement";
@@ -77,6 +78,9 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
+        {/* Novedades Editoriales Section */}
+        <NovedadesSection />
+
         {/* Editorial Section */}
         <SectionCard
           title="Editorial"
