@@ -2,10 +2,26 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, ArrowRight, ShoppingCart, Loader2, BookOpen, RotateCcw } from "lucide-react";
+import { Sparkles, ArrowRight, ShoppingCart, Loader2, BookOpen, RotateCcw, Trophy } from "lucide-react";
 import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
+
+// Libros premiados específicos (por título)
+const LIBROS_PREMIADOS = [
+  'yo soy todos los besos que nunca pude darte',
+  'horizonte interior',
+  'boabdil el príncipe del día y de la noche',
+  'boabdil el principe del dia y de la noche',
+  'boabdil, el príncipe del día y de la noche',
+  'boabdil, el principe del dia y de la noche',
+];
+
+// Helper to check if product is "premiado" (awarded book)
+const isPremiado = (product: ShopifyProduct) => {
+  const titleLower = product.node.title.toLowerCase().trim();
+  return LIBROS_PREMIADOS.some(titulo => titleLower.includes(titulo) || titulo.includes(titleLower));
+};
 
 export const NovedadesSection = () => {
   const [novedades, setNovedades] = useState<ShopifyProduct[]>([]);
@@ -18,14 +34,21 @@ export const NovedadesSection = () => {
       try {
         const allProducts = await getAllProducts();
         
+        // Filtrar productos premiados y novedades
         const novedadProducts = allProducts.filter((p: ShopifyProduct) => {
           const tags = p.node.tags || [];
           const tagsLower = tags.map((t: string) => t.toLowerCase());
-          return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new') || tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
+          const esNovedad = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new') || tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
+          const esPremiado = isPremiado(p);
+          return esNovedad || esPremiado;
         });
 
-        // Ordenar por fecha de creación (más recientes primero)
+        // Ordenar: premiados primero, luego por fecha
         const sortedNovedades = novedadProducts.sort((a, b) => {
+          const aIsPremiado = isPremiado(a) ? 0 : 1;
+          const bIsPremiado = isPremiado(b) ? 0 : 1;
+          if (aIsPremiado !== bIsPremiado) return aIsPremiado - bIsPremiado;
+          
           const dateA = new Date(a.node.createdAt || 0).getTime();
           const dateB = new Date(b.node.createdAt || 0).getTime();
           return dateB - dateA;
@@ -157,9 +180,16 @@ export const NovedadesSection = () => {
                         const tagsLower = tags.map((t: string) => t.toLowerCase());
                         const isSegundaEdicion = tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
                         const isNovedad = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+                        const esPremiado = isPremiado(product);
                         
                         return (
                           <>
+                            {esPremiado && (
+                              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-semibold px-3 py-1.5 shadow-lg animate-pulse">
+                                <Trophy className="h-3 w-3 mr-1.5" />
+                                Premio
+                              </Badge>
+                            )}
                             {isNovedad && (
                               <Badge className="bg-primary text-primary-foreground font-semibold px-3 py-1.5 shadow-lg">
                                 <Sparkles className="h-3 w-3 mr-1.5" />
