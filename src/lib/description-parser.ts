@@ -1,31 +1,90 @@
 /**
  * Parsea la descripción del producto para separar la sinopsis del autor
  * y eliminar referencias a previsualización de la obra
+ * Soporta tanto texto plano como HTML
  */
 
 interface ParsedDescription {
   sinopsis: string;
+  sinopsisHtml: string;
   autor: string;
+  autorHtml: string;
   paginas: string | null;
   isbn: string | null;
   editorial: string | null;
 }
 
-export function parseProductDescription(description: string): ParsedDescription {
-  if (!description) {
-    return { sinopsis: '', autor: '', paginas: null, isbn: null, editorial: null };
+/**
+ * Convierte texto plano a HTML preservando saltos de línea
+ */
+function textToHtml(text: string): string {
+  if (!text) return '';
+  return text
+    .split(/\n\n+/)
+    .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br/>')}</p>`)
+    .join('');
+}
+
+/**
+ * Limpia el HTML de patrones no deseados
+ */
+function cleanHtml(html: string): string {
+  if (!html) return '';
+  
+  let cleaned = html;
+  
+  // Eliminar referencias a previsualización/primeras páginas
+  const previewPatterns = [
+    /ACCEDE A LA LECTURA DE LAS PRIMERAS PÁGINAS[^<]*/gi,
+    /ACCEDE A LECTURA DE LAS PRIMERAS PÁGINAS[^<]*/gi,
+    /ACCEDE A LAS PRIMERAS PÁGINAS DE [^<]+/gi,
+    /ACCEDE A LAS PRIMERAS PÁGINAS[^<]*/gi,
+    /LEER PRIMERAS PÁGINAS[^<]*\.?/gi,
+    /VER PREVISUALIZACIÓN[^<]*\.?/gi,
+    /PREVISUALIZAR OBRA[^<]*\.?/gi,
+    /DESCARGAR MUESTRA[^<]*\.?/gi,
+    /HAGA CLIC AQUÍ PARA[^<]*\.?/gi,
+    /PINCHE AQUÍ PARA[^<]*\.?/gi,
+    /PULSE AQUÍ PARA[^<]*\.?/gi,
+    /📖\s*Ver primeras páginas\s*📖/gi,
+  ];
+  
+  previewPatterns.forEach(pattern => {
+    cleaned = cleaned.replace(pattern, '');
+  });
+  
+  // Eliminar líneas de metadatos del texto
+  const metadataPatterns = [
+    /📄\s*Páginas:\s*\d+/gi,
+    /📘\s*ISBN:\s*[\d\-X]+/gi,
+    /📚\s*Editorial:\s*[^<\n📖📄🌐📘📅]+/gi,
+    /🌐\s*Idioma:\s*[^<\n📖📄📘📅]+/gi,
+    /📅\s*Fecha de edición:\s*[^<\n📖📄🌐📘]+/gi,
+  ];
+  
+  metadataPatterns.forEach(pattern => {
+    cleaned = cleaned.replace(pattern, '');
+  });
+  
+  // Limpiar párrafos vacíos
+  cleaned = cleaned.replace(/<p>\s*<\/p>/gi, '');
+  cleaned = cleaned.replace(/<br\s*\/?>\s*<br\s*\/?>/gi, '<br/>');
+  
+  return cleaned.trim();
+}
+
+export function parseProductDescription(description: string, descriptionHtml?: string): ParsedDescription {
+  if (!description && !descriptionHtml) {
+    return { sinopsis: '', sinopsisHtml: '', autor: '', autorHtml: '', paginas: null, isbn: null, editorial: null };
   }
 
-  let text = description;
+  const text = description || '';
+  const html = descriptionHtml || '';
   
-  // Extraer metadatos ANTES de limpiar el texto (pueden estar pegados a otras palabras)
-  // Formato con emojis (nuevo de Shopify)
+  // Extraer metadatos
   const paginasMatchEmoji = text.match(/📄\s*Páginas:\s*(\d+)/i);
   const isbnMatchEmoji = text.match(/📘\s*ISBN:\s*([\d\-X]+)/i);
   const editorialMatchEmoji = text.match(/📚\s*Editorial:\s*([^\n📖📄🌐📘📅]+)/i);
-  const autorMatchEmoji = text.match(/Autor(?:a)?:\s*([^\n📚📖📄🌐📘📅]+)/i);
-  
-  // Formato sin emojis (antiguo) - puede estar pegado a texto anterior
   const paginasMatch = text.match(/Páginas:\s*(\d+)/i);
   const isbnMatch = text.match(/ISBN:\s*([\d\-X]+)/i);
   
@@ -33,42 +92,7 @@ export function parseProductDescription(description: string): ParsedDescription 
   const isbn = isbnMatchEmoji?.[1] || isbnMatch?.[1] || null;
   const editorial = editorialMatchEmoji?.[1]?.trim() || null;
   
-  // Eliminar referencias a previsualización/primeras páginas
-  const previewPatterns = [
-    /ACCEDE A LA LECTURA DE LAS PRIMERAS PÁGINAS[^\n]*/gi,
-    /ACCEDE A LECTURA DE LAS PRIMERAS PÁGINAS[^\n]*/gi,
-    /ACCEDE A LAS PRIMERAS PÁGINAS DE [^\n]+/gi,
-    /ACCEDE A LAS PRIMERAS PÁGINAS[^\n]*/gi,
-    /LEER PRIMERAS PÁGINAS[^.]*\.?/gi,
-    /VER PREVISUALIZACIÓN[^.]*\.?/gi,
-    /PREVISUALIZAR OBRA[^.]*\.?/gi,
-    /DESCARGAR MUESTRA[^.]*\.?/gi,
-    /HAGA CLIC AQUÍ PARA[^.]*\.?/gi,
-    /PINCHE AQUÍ PARA[^.]*\.?/gi,
-    /PULSE AQUÍ PARA[^.]*\.?/gi,
-    /📖\s*Ver primeras páginas\s*📖/gi,
-  ];
-  
-  previewPatterns.forEach(pattern => {
-    text = text.replace(pattern, '');
-  });
-  
-  // Eliminar líneas de metadatos del texto
-  const metadataPatterns = [
-    /📄\s*Páginas:\s*\d+/gi,
-    /📘\s*ISBN:\s*[\d\-X]+/gi,
-    /📚\s*Editorial:\s*[^\n📖📄🌐📘📅]+/gi,
-    /🌐\s*Idioma:\s*[^\n📖📄📘📅]+/gi,
-    /📅\s*Fecha de edición:\s*[^\n📖📄🌐📘]+/gi,
-    /Autor(?:a)?:\s*[^\n📚📖📄🌐📘📅]+/gi,
-    /Páginas:\s*\d+/gi,
-  ];
-  
-  metadataPatterns.forEach(pattern => {
-    text = text.replace(pattern, '');
-  });
-
-  // Buscar la sección del autor (formato largo con biografía)
+  // Patrones para encontrar la sección del autor
   const autorPatterns = [
     /\bEL AUTOR\b/i,
     /\bLA AUTORA\b/i,
@@ -80,6 +104,7 @@ export function parseProductDescription(description: string): ParsedDescription 
     /\bLAS AUTORAS\b/i,
   ];
 
+  // Procesar texto plano
   let sinopsis = text;
   let autor = '';
 
@@ -92,19 +117,49 @@ export function parseProductDescription(description: string): ParsedDescription 
     }
   }
 
-  // Si no encontramos sección de autor larga, usar el nombre del autor de metadatos
-  if (!autor && autorMatchEmoji?.[1]) {
-    autor = autorMatchEmoji[1].trim();
-  }
-
-  // Limpiar "LA OBRA" del inicio de la sinopsis si existe
+  // Limpiar "LA OBRA" del inicio
   sinopsis = sinopsis.replace(/^LA OBRA\s*/i, '').trim();
   
-  // Limpiar espacios extra
-  sinopsis = sinopsis.replace(/\s+/g, ' ').trim();
-  autor = autor.replace(/\s+/g, ' ').trim();
+  // Procesar HTML si está disponible
+  let sinopsisHtml = html;
+  let autorHtml = '';
+  
+  if (html) {
+    // Buscar separadores en HTML para autor
+    for (const pattern of autorPatterns) {
+      const regex = new RegExp(`(<[^>]*>)?(${pattern.source})`, 'i');
+      const match = html.match(regex);
+      if (match && match.index !== undefined) {
+        sinopsisHtml = html.substring(0, match.index).trim();
+        autorHtml = html.substring(match.index).trim();
+        break;
+      }
+    }
+    
+    // Limpiar "LA OBRA" del HTML
+    sinopsisHtml = sinopsisHtml.replace(/^(<[^>]*>)*\s*LA OBRA\s*/i, '$1');
+    
+    // Limpiar encabezados de autor del HTML
+    autorHtml = autorHtml.replace(/^(<[^>]*>)*(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA)\s*/i, '$1');
+  }
+  
+  // Limpiar contenido
+  sinopsisHtml = cleanHtml(sinopsisHtml);
+  autorHtml = cleanHtml(autorHtml);
+  
+  // Si no hay HTML, generar desde texto plano
+  if (!sinopsisHtml && sinopsis) {
+    sinopsisHtml = textToHtml(sinopsis);
+  }
+  if (!autorHtml && autor) {
+    autorHtml = textToHtml(autor.replace(/^(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS|SOBRE EL AUTOR|SOBRE LA AUTORA|BIOGRAFÍA DEL AUTOR|BIOGRAFÍA DE LA AUTORA)\s*/i, ''));
+  }
 
-  return { sinopsis, autor, paginas, isbn, editorial };
+  // Limpiar espacios del texto plano
+  sinopsis = sinopsis.replace(/\s+/g, ' ').trim();
+  autor = autor.replace(/^(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS)\s*/i, '').replace(/\s+/g, ' ').trim();
+
+  return { sinopsis, sinopsisHtml, autor, autorHtml, paginas, isbn, editorial };
 }
 
 /**
