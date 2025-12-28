@@ -293,31 +293,49 @@ export default function ProductDetail() {
                   </p>
                 </div>
 
-                {product.description && (() => {
-                  const { sinopsis, autor, paginas } = parseProductDescription(product.description);
+                {(product.description || product.descriptionHtml) && (() => {
+                  const { sinopsisHtml, autorHtml, paginas } = parseProductDescription(product.description, product.descriptionHtml);
                   return (
                     <div className="space-y-6">
-                      {sinopsis && (
+                      {sinopsisHtml && (
                         <div>
                           <div className="flex items-center gap-2 mb-3">
                             <BookOpen className="w-5 h-5 text-primary" />
                             <h2 className="text-xl font-semibold">Sinopsis</h2>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {sinopsis}
-                          </p>
+                          <div 
+                            className="text-muted-foreground leading-relaxed prose prose-sm max-w-none dark:prose-invert
+                              [&>p]:mb-4 [&>p:last-child]:mb-0 
+                              [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4
+                              [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4
+                              [&>h1]:text-xl [&>h1]:font-bold [&>h1]:mb-3
+                              [&>h2]:text-lg [&>h2]:font-semibold [&>h2]:mb-2
+                              [&>h3]:text-base [&>h3]:font-medium [&>h3]:mb-2
+                              [&>strong]:font-semibold [&>b]:font-semibold
+                              [&>em]:italic [&>i]:italic"
+                            dangerouslySetInnerHTML={{ __html: sinopsisHtml }}
+                          />
                         </div>
                       )}
                       
-                      {autor && (
+                      {autorHtml && (
                         <div className="border-t pt-6">
                           <div className="flex items-center gap-2 mb-3">
                             <User className="w-5 h-5 text-primary" />
                             <h2 className="text-xl font-semibold">Sobre el autor</h2>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {autor.replace(/^(EL AUTOR|LA AUTORA|LOS AUTORES|LAS AUTORAS)\s*/i, '')}
-                          </p>
+                          <div 
+                            className="text-muted-foreground leading-relaxed prose prose-sm max-w-none dark:prose-invert
+                              [&>p]:mb-4 [&>p:last-child]:mb-0 
+                              [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4
+                              [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4
+                              [&>h1]:text-xl [&>h1]:font-bold [&>h1]:mb-3
+                              [&>h2]:text-lg [&>h2]:font-semibold [&>h2]:mb-2
+                              [&>h3]:text-base [&>h3]:font-medium [&>h3]:mb-2
+                              [&>strong]:font-semibold [&>b]:font-semibold
+                              [&>em]:italic [&>i]:italic"
+                            dangerouslySetInnerHTML={{ __html: autorHtml }}
+                          />
                         </div>
                       )}
                       
