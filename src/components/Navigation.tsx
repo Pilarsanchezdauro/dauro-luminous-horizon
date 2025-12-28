@@ -2,10 +2,15 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ArrowLeft, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/logo.png";
 import mascot from "@/assets/mascot.png";
-
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -187,55 +192,66 @@ const Navigation = () => {
                 Cerrar Sesión
               </Button>
             )}
-            {menuItems.map((item) => (
-              <div key={item.name} className="mb-2">
-                {'external' in item && item.external ? (
-                  <a
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                  >
-                    {item.name}
-                  </a>
+            <Accordion type="single" collapsible className="w-full">
+              {menuItems.map((item, index) => (
+                item.submenu ? (
+                  <AccordionItem key={item.name} value={`item-${index}`} className="border-none">
+                    <AccordionTrigger className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg hover:no-underline [&[data-state=open]>svg]:rotate-180">
+                      {item.name}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-0">
+                      <div className="pl-4 space-y-1">
+                        {item.submenu.map((subitem) => (
+                          subitem.external ? (
+                            <a
+                              key={subitem.name}
+                              href={subitem.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {subitem.name}
+                            </a>
+                          ) : (
+                            <Link
+                              key={subitem.name}
+                              to={subitem.path}
+                              className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {subitem.name}
+                            </Link>
+                          )
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 ) : (
-                  <Link
-                    to={item.path}
-                    className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                    onClick={() => !item.submenu && setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )}
-                {item.submenu && (
-                  <div className="pl-4 mt-1 space-y-1">
-                    {item.submenu.map((subitem) => (
-                      subitem.external ? (
-                        <a
-                          key={subitem.name}
-                          href={subitem.path}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {subitem.name}
-                        </a>
-                      ) : (
-                        <Link
-                          key={subitem.name}
-                          to={subitem.path}
-                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {subitem.name}
-                        </Link>
-                      )
-                    ))}
+                  <div key={item.name} className="mb-1">
+                    {'external' in item && item.external ? (
+                      <a
+                        href={item.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.path}
+                        className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+                )
+              ))}
+            </Accordion>
           </div>
         )}
       </div>
