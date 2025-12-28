@@ -550,9 +550,16 @@ export default function Shop() {
                                   height="533"
                                   className="w-full h-full object-contain hover:scale-105 transition-all duration-300 drop-shadow-2xl grayscale hover:grayscale-0"
                                 />
+                                {/* Novedad Badge */}
+                                {isNovedad(product) && (
+                                  <div className="absolute top-2 right-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Tag className="w-3 h-3" />
+                                    Novedad
+                                  </div>
+                                )}
                                 {/* Bestseller Badge */}
                                 {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
-                                  <div className="absolute top-2 right-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                  <div className={`absolute ${isNovedad(product) ? 'top-10' : 'top-2'} right-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide`}>
                                     <Award className="w-3 h-3" />
                                     Éxito
                                   </div>
