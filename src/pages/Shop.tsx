@@ -125,6 +125,22 @@ export default function Shop() {
                (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
       });
 
+  // Libros premiados específicos (por título)
+  const LIBROS_PREMIADOS = [
+    'yo soy todos los besos que nunca pude darte',
+    'horizonte interior',
+    'boabdil el príncipe del día y de la noche',
+    'boabdil el principe del dia y de la noche',
+    'boabdil, el príncipe del día y de la noche',
+    'boabdil, el principe del dia y de la noche',
+  ];
+
+  // Helper to check if product is "premiado" (awarded book)
+  const isPremiado = (product: ShopifyProduct) => {
+    const titleLower = product.node.title.toLowerCase().trim();
+    return LIBROS_PREMIADOS.some(titulo => titleLower.includes(titulo) || titulo.includes(titleLower));
+  };
+
   // Helper to check if product is a "novedad" (new arrival)
   const isNovedad = (product: ShopifyProduct) => {
     const tags = product.node.tags || [];
@@ -142,7 +158,11 @@ export default function Shop() {
     // Then apply the selected sort order
     switch (sortBy) {
       case "novedades":
-        // Novedades (products with novedad tag) first, then by creation date (most recent first)
+        // Premiados primero, luego novedades, luego por fecha
+        const aIsPremiado = isPremiado(a) ? 0 : 1;
+        const bIsPremiado = isPremiado(b) ? 0 : 1;
+        if (aIsPremiado !== bIsPremiado) return aIsPremiado - bIsPremiado;
+        
         const aIsNovedad = isNovedad(a) ? 0 : 1;
         const bIsNovedad = isNovedad(b) ? 0 : 1;
         if (aIsNovedad !== bIsNovedad) return aIsNovedad - bIsNovedad;
@@ -571,8 +591,15 @@ export default function Shop() {
                                     Joya
                                   </div>
                                 )}
+                                {/* Premio Badge - Libros premiados */}
+                                {isPremiado(product) && (
+                                  <div className="absolute top-[4.5rem] right-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide animate-pulse">
+                                    <Trophy className="w-3 h-3" />
+                                    Premio
+                                  </div>
+                                )}
                                 {/* Premio Andalucía de la Crítica Badge */}
-                                {product.node.tags?.some(tag => tag.toLowerCase() === 'premio andalucía de la crítica') && (
+                                {!isPremiado(product) && product.node.tags?.some(tag => tag.toLowerCase() === 'premio andalucía de la crítica') && (
                                   <div className="absolute top-[4.5rem] right-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
                                     <Trophy className="w-3 h-3" />
                                     Premio
