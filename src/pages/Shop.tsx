@@ -606,7 +606,7 @@ export default function Shop() {
                           
                           <CardHeader>
                             <Link to={`/producto/${product.node.handle}`}>
-                              <CardTitle className="hover:text-primary transition-colors line-clamp-2">
+                              <CardTitle className="hover:text-primary transition-colors line-clamp-2 uppercase">
                                 {product.node.title}
                               </CardTitle>
                             </Link>
@@ -693,7 +693,7 @@ export default function Shop() {
                             
                             <CardContent className="flex-1 flex flex-col justify-between pt-4">
                               <Link to={`/producto/${product.node.handle}`} className="block hover:text-primary transition-colors">
-                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2">
+                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2 uppercase">
                                   {product.node.title}
                                 </h3>
                               </Link>
@@ -761,7 +761,7 @@ export default function Shop() {
                             
                             <CardContent className="flex-1 flex flex-col justify-between pt-4">
                               <Link to={`/producto/${product.node.handle}`} className="block hover:text-primary transition-colors">
-                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2">
+                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2 uppercase">
                                   {product.node.title}
                                 </h3>
                               </Link>

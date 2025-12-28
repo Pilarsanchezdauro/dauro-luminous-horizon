@@ -256,7 +256,7 @@ export default function ProductDetail() {
                     </div>
                   )}
                   
-                  <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
+                  <h1 className="text-4xl font-bold mb-4 uppercase">{product.title}</h1>
                   <p className="text-3xl font-bold text-primary mb-6">
                     {selectedVariant.price.currencyCode}{' '}
                     {parseFloat(selectedVariant.price.amount).toFixed(2)}
