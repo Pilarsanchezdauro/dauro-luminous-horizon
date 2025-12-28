@@ -33,6 +33,37 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "La España Quebrantada: Manuel Orozco presenta su nuevo ensayo",
+    excerpt: "Un ensayo que invita al debate. Manuel Orozco analiza con rigor y profundidad los desafíos actuales de la sociedad española en esta obra imprescindible que ya está disponible en Grupo Dauro.",
+    date: "28 Diciembre 2024",
+    author: "Grupo Dauro",
+    image: "/blog/la-espana-quebrantada.jpg",
+    ogImage: "/blog/la-espana-quebrantada.jpg",
+    category: "literatura",
+    slug: "la-espana-quebrantada-manuel-orozco",
+    content: `## Un ensayo que invita al debate
+
+**Manuel Orozco** presenta *La España Quebrantada*, un ensayo profundo y necesario que analiza los retos y contradicciones de la España contemporánea.
+
+## Sobre la obra
+
+En un momento histórico de profundas transformaciones, Manuel Orozco ofrece una mirada lúcida y valiente sobre las fracturas que atraviesan la sociedad española. Con una prosa accesible pero rigurosa, el autor invita a la reflexión y al debate sobre cuestiones fundamentales de nuestra convivencia.
+
+## El autor
+
+Manuel Orozco demuestra en esta obra su capacidad para analizar la realidad social y política con equilibrio, documentación exhaustiva y una visión crítica pero constructiva.
+
+## Ya disponible
+
+*La España Quebrantada* ya está disponible en Grupo Dauro por **20,00 €**.
+
+Una lectura imprescindible para quienes buscan comprender mejor el presente y contribuir a un futuro más cohesionado.
+
+---
+
+*Grupo Dauro - Novedad Editorial*`
+  },
+  {
     title: "Muere Antonio Domínguez de Haro en su Almuñécar natal, el pintor que no abandonó el mar ni el arte hasta el final",
     excerpt: "Anoche falleció en Almuñécar Antonio Domínguez de Haro, uno de los artistas españoles que con mayor coherencia y fidelidad construyó una obra propia a lo largo de toda una vida. Desde Grupo Dauro queremos rendirle homenaje desde el respeto y la admiración.",
     date: "14 Diciembre 2024",
