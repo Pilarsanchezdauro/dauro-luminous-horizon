@@ -24,7 +24,14 @@ export const NovedadesSection = () => {
           return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new') || tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
         });
 
-        setNovedades(novedadProducts.slice(0, 4));
+        // Ordenar por fecha de creación (más recientes primero)
+        const sortedNovedades = novedadProducts.sort((a, b) => {
+          const dateA = new Date(a.node.createdAt || 0).getTime();
+          const dateB = new Date(b.node.createdAt || 0).getTime();
+          return dateB - dateA;
+        });
+
+        setNovedades(sortedNovedades.slice(0, 4));
       } catch (error) {
         console.error('Error loading novedades:', error);
       } finally {
