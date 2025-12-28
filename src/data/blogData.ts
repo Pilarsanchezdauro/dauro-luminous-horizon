@@ -34,34 +34,58 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     title: "La España Quebrantada: Manuel Orozco presenta su nuevo ensayo",
-    excerpt: "Un ensayo que invita al debate. Manuel Orozco analiza con rigor y profundidad los desafíos actuales de la sociedad española en esta obra imprescindible que ya está disponible en Grupo Dauro.",
-    date: "28 Diciembre 2024",
+    excerpt: "En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos 'La España Quebrantada', el nuevo ensayo de Manuel E. Orozco Redondo, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país.",
+    date: "28 Diciembre 2025",
     author: "Grupo Dauro",
     image: "/blog/la-espana-quebrantada.jpg",
     ogImage: "/blog/la-espana-quebrantada.jpg",
     category: "literatura",
     slug: "la-espana-quebrantada-manuel-orozco",
-    content: `## Un ensayo que invita al debate
+    bookLink: "/tienda",
+    content: `En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos **"La España Quebrantada"**, el nuevo ensayo de **Manuel E. Orozco Redondo**, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país desde una perspectiva personal y sin concesiones.
 
-**Manuel Orozco** presenta *La España Quebrantada*, un ensayo profundo y necesario que analiza los retos y contradicciones de la España contemporánea.
+## Sobre el libro
 
-## Sobre la obra
+*La España Quebrantada* es un ensayo político en el que el autor realiza un recorrido crítico por algunos de los episodios más relevantes de nuestra historia reciente: la Primera y la Segunda República, la Guerra Civil y el periodo democrático actual.
 
-En un momento histórico de profundas transformaciones, Manuel Orozco ofrece una mirada lúcida y valiente sobre las fracturas que atraviesan la sociedad española. Con una prosa accesible pero rigurosa, el autor invita a la reflexión y al debate sobre cuestiones fundamentales de nuestra convivencia.
+Su mirada se extiende también a cuestiones de plena actualidad como las ideologías contemporáneas, el control cultural, los nacionalismos, la inmigración y lo que el autor denomina "la decadencia europea".
 
-## El autor
+Se trata de una obra que, sin duda, generará debate. **Y eso es precisamente lo que buscamos.**
 
-Manuel Orozco demuestra en esta obra su capacidad para analizar la realidad social y política con equilibrio, documentación exhaustiva y una visión crítica pero constructiva.
+## Nuestra filosofía editorial
 
-## Ya disponible
+En Grupo Dauro creemos que el intercambio de ideas es fundamental para el crecimiento de una sociedad. Por ello, damos espacio a todas las opiniones y perspectivas, vengan de donde vengan, siempre que se expresen desde el respeto y no incurran en apología de ningún tipo.
 
-*La España Quebrantada* ya está disponible en Grupo Dauro por **20,00 €**.
+No es necesario compartir las tesis de un autor para reconocer el valor de su aportación al debate público. La pluralidad de voces enriquece, y el lector es siempre lo suficientemente inteligente para sacar sus propias conclusiones.
 
-Una lectura imprescindible para quienes buscan comprender mejor el presente y contribuir a un futuro más cohesionado.
+## Sobre el autor
+
+**Manuel E. Orozco Redondo** es Doctor en Filosofía y Letras por la Universidad de Granada, Catedrático de Instituto y fue Inspector de Educación en Jaén. Hijo del humanista Manuel Orozco Díaz, ha dedicado su carrera al análisis de la sociedad, la educación y la cultura occidental.
+
+Entre sus obras anteriores destacan *Ganivet, crítico de la modernidad y la postmodernidad* (2014), *Figuras de la Granada de Lorca* (2018) y *Con Granada en el alma* (2022).
+
+## Ficha técnica
+
+| | |
+|---|---|
+| **Título** | La España Quebrantada |
+| **Autor** | Manuel E. Orozco Redondo |
+| **Editorial** | Grupo Dauro |
+| **Páginas** | 346 |
+| **Formato** | 15 × 21 cm, tapa blanda con solapas |
+| **ISBN** | 978-84-128496-7-7 |
+| **PVP** | 20,00 € |
+| **Fecha de publicación** | 28 de diciembre de 2025 |
+
+## Disponible ahora
+
+El libro ya está disponible en nuestra tienda online y en las principales plataformas de distribución.
+
+**¿Te atreves a formar tu propia opinión?**
 
 ---
 
-*Grupo Dauro - Novedad Editorial*`
+*Grupo Dauro - Porque las ideas merecen ser escuchadas*`
   },
   {
     title: "Muere Antonio Domínguez de Haro en su Almuñécar natal, el pintor que no abandonó el mar ni el arte hasta el final",
