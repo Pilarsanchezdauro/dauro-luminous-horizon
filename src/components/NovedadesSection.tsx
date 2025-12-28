@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, ArrowRight, ShoppingCart, Loader2, BookOpen } from "lucide-react";
+import { Sparkles, ArrowRight, ShoppingCart, Loader2, BookOpen, RotateCcw } from "lucide-react";
 import { getAllProducts } from "@/lib/shopify";
 import { useCartStore, ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -21,7 +21,7 @@ export const NovedadesSection = () => {
         const novedadProducts = allProducts.filter((p: ShopifyProduct) => {
           const tags = p.node.tags || [];
           const tagsLower = tags.map((t: string) => t.toLowerCase());
-          return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+          return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new') || tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
         });
 
         setNovedades(novedadProducts.slice(0, 4));
@@ -143,12 +143,31 @@ export const NovedadesSection = () => {
                       </div>
                     )}
                     
-                    {/* Badge de novedad */}
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-primary text-primary-foreground font-semibold px-3 py-1.5 shadow-lg">
-                        <Sparkles className="h-3 w-3 mr-1.5" />
-                        Novedad
-                      </Badge>
+                    {/* Badges */}
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      {(() => {
+                        const tags = product.node.tags || [];
+                        const tagsLower = tags.map((t: string) => t.toLowerCase());
+                        const isSegundaEdicion = tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
+                        const isNovedad = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+                        
+                        return (
+                          <>
+                            {isNovedad && (
+                              <Badge className="bg-primary text-primary-foreground font-semibold px-3 py-1.5 shadow-lg">
+                                <Sparkles className="h-3 w-3 mr-1.5" />
+                                Novedad
+                              </Badge>
+                            )}
+                            {isSegundaEdicion && (
+                              <Badge className="bg-secondary text-secondary-foreground font-semibold px-3 py-1.5 shadow-lg">
+                                <RotateCcw className="h-3 w-3 mr-1.5" />
+                                2ª Edición
+                              </Badge>
+                            )}
+                          </>
+                        );
+                      })()}
                     </div>
 
                     {/* Precio flotante */}
