@@ -247,13 +247,35 @@ export default function Shop() {
         // Filter out excluded products
         let filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
         
+        // Helper to check if product is a novedad
+        const isNovedad = (p: any) => {
+          const tags = p.node.tags || [];
+          const tagsLower = tags.map((t: string) => t.toLowerCase());
+          return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+        };
+        
         // If "novedades" is selected, filter to only products with novedad tag
         if (selectedCollection === "novedades") {
-          filteredProducts = filteredProducts.filter((p: any) => {
-            const tags = p.node.tags || [];
-            const tagsLower = tags.map((t: string) => t.toLowerCase());
-            return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+          filteredProducts = filteredProducts.filter(isNovedad);
+          // Sort by published date (most recent first)
+          filteredProducts.sort((a: any, b: any) => {
+            const dateA = new Date(a.node.publishedAt || a.node.createdAt || 0);
+            const dateB = new Date(b.node.publishedAt || b.node.createdAt || 0);
+            return dateB.getTime() - dateA.getTime();
           });
+        } else if (selectedCollection === "todos") {
+          // For "todos", put novedades first sorted by date, then the rest
+          const novedades = filteredProducts.filter(isNovedad);
+          const otros = filteredProducts.filter((p: any) => !isNovedad(p));
+          
+          // Sort novedades by published date (most recent first)
+          novedades.sort((a: any, b: any) => {
+            const dateA = new Date(a.node.publishedAt || a.node.createdAt || 0);
+            const dateB = new Date(b.node.publishedAt || b.node.createdAt || 0);
+            return dateB.getTime() - dateA.getTime();
+          });
+          
+          filteredProducts = [...novedades, ...otros];
         }
         
         setProducts(filteredProducts);
