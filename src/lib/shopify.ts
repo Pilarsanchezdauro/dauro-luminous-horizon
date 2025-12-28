@@ -6,14 +6,21 @@ const SHOPIFY_STORE_PERMANENT_DOMAIN = 'dauro-luminous-horizon-6vj19.myshopify.c
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 const SHOPIFY_STOREFRONT_TOKEN = '8765bcd785f87943aa829ab10985ffde';
 export async function storefrontApiRequest(query: string, variables: any = {}) {
+  // Bypass any intermediate caching so Shopify edits reflect immediately.
+  const queryWithBuster = `${query}\n# cache-buster:${Date.now()}`;
+
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: 'POST',
+    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN
+      'Accept': 'application/json',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN,
     },
     body: JSON.stringify({
-      query,
+      query: queryWithBuster,
       variables,
     }),
   });
@@ -128,6 +135,7 @@ const COLLECTION_PRODUCTS_QUERY = `
             id
             title
             description
+            descriptionHtml
             handle
             tags
             priceRange {
