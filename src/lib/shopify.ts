@@ -54,6 +54,7 @@ const STOREFRONT_QUERY = `
           productType
           vendor
           tags
+          createdAt
           priceRange {
             minVariantPrice {
               amount

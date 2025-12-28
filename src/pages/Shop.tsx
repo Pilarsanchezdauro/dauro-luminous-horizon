@@ -34,7 +34,7 @@ export default function Shop() {
   const [bookCategory, setBookCategory] = useState<string>("todos");
   const [selectedGenre, setSelectedGenre] = useState<string>("todos");
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState<string>("titulo-asc");
+  const [sortBy, setSortBy] = useState<string>("novedades");
   const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
   const addItem = useCartStore(state => state.addItem);
 
@@ -142,11 +142,14 @@ export default function Shop() {
     // Then apply the selected sort order
     switch (sortBy) {
       case "novedades":
-        // Novedades (products with novedad tag) first, then by title
+        // Novedades (products with novedad tag) first, then by creation date (most recent first)
         const aIsNovedad = isNovedad(a) ? 0 : 1;
         const bIsNovedad = isNovedad(b) ? 0 : 1;
         if (aIsNovedad !== bIsNovedad) return aIsNovedad - bIsNovedad;
-        return a.node.title.localeCompare(b.node.title);
+        // Within novedades, sort by creation date (most recent first)
+        const dateA = new Date(a.node.createdAt || 0).getTime();
+        const dateB = new Date(b.node.createdAt || 0).getTime();
+        return dateB - dateA;
       case "titulo-asc":
         return a.node.title.localeCompare(b.node.title);
       case "titulo-desc":
