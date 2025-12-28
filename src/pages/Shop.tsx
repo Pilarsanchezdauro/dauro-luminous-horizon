@@ -230,7 +230,7 @@ export default function Shop() {
   const loadProducts = async () => {
     try {
       setIsLoading(true);
-      if (selectedCollection === "todos") {
+      if (selectedCollection === "todos" || selectedCollection === "novedades") {
         // Load all products and filter out those from excluded collections
         const [allData, ...excludedCollectionsData] = await Promise.all([
           getAllProducts(),
@@ -245,7 +245,17 @@ export default function Shop() {
         );
         
         // Filter out excluded products
-        const filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
+        let filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
+        
+        // If "novedades" is selected, filter to only products with novedad tag
+        if (selectedCollection === "novedades") {
+          filteredProducts = filteredProducts.filter((p: any) => {
+            const tags = p.node.tags || [];
+            const tagsLower = tags.map((t: string) => t.toLowerCase());
+            return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+          });
+        }
+        
         setProducts(filteredProducts);
       } else {
         const { products: collectionProducts } = await getAllCollectionProducts(selectedCollection);
@@ -396,29 +406,34 @@ export default function Shop() {
                   ) : (
                     <>
                       {/* Collection selector */}
-                      {collections.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        <Button
+                          variant={selectedCollection === "todos" ? "default" : "outline"}
+                          onClick={() => setSelectedCollection("todos")}
+                          size="sm"
+                          className="flex items-center gap-1"
+                        >
+                          <Library className="h-4 w-4" />
+                          Todas las obras
+                        </Button>
+                        <Button
+                          variant={selectedCollection === "novedades" ? "default" : "outline"}
+                          onClick={() => setSelectedCollection("novedades")}
+                          size="sm"
+                        >
+                          Novedades
+                        </Button>
+                        {collections.map(col => (
                           <Button
-                            variant={selectedCollection === "todos" ? "default" : "outline"}
-                            onClick={() => setSelectedCollection("todos")}
+                            key={col.node.id}
+                            variant={selectedCollection === col.node.handle ? "default" : "outline"}
+                            onClick={() => setSelectedCollection(col.node.handle)}
                             size="sm"
-                            className="flex items-center gap-1"
                           >
-                            <Library className="h-4 w-4" />
-                            Todas las obras
+                            {col.node.title}
                           </Button>
-                          {collections.map(col => (
-                            <Button
-                              key={col.node.id}
-                              variant={selectedCollection === col.node.handle ? "default" : "outline"}
-                              onClick={() => setSelectedCollection(col.node.handle)}
-                              size="sm"
-                            >
-                              {col.node.title}
-                            </Button>
-                          ))}
-                        </div>
-                      )}
+                        ))}
+                      </div>
 
                       {/* Search and sort controls */}
                       <div className="flex flex-col sm:flex-row gap-4 mb-6">
