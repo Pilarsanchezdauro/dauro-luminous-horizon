@@ -172,7 +172,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden py-6 animate-fade-in">
+          <div className="lg:hidden py-4 animate-fade-in max-h-[calc(100vh-7rem)] overflow-y-auto">
             {user && (
               <Button
                 variant="ghost"
@@ -188,27 +188,27 @@ const Navigation = () => {
               </Button>
             )}
             {menuItems.map((item) => (
-              <div key={item.name} className="mb-3">
+              <div key={item.name} className="mb-2">
                 {'external' in item && item.external ? (
                   <a
                     href={item.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                    className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
                   >
                     {item.name}
                   </a>
                 ) : (
                   <Link
                     to={item.path}
-                    className="block px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                    className="block px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
                     onClick={() => !item.submenu && setIsOpen(false)}
                   >
                     {item.name}
                   </Link>
                 )}
                 {item.submenu && (
-                  <div className="pl-4 mt-2 space-y-2">
+                  <div className="pl-4 mt-1 space-y-1">
                     {item.submenu.map((subitem) => (
                       subitem.external ? (
                         <a
@@ -216,7 +216,7 @@ const Navigation = () => {
                           href={subitem.path}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
                           onClick={() => setIsOpen(false)}
                         >
                           {subitem.name}
@@ -225,7 +225,7 @@ const Navigation = () => {
                         <Link
                           key={subitem.name}
                           to={subitem.path}
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
                           onClick={() => setIsOpen(false)}
                         >
                           {subitem.name}
