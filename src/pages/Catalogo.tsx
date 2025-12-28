@@ -177,7 +177,7 @@ const Catalogo = () => {
                       )}
                     </div>
                     <CardContent className="p-4">
-                      <h3 className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-primary transition-colors uppercase">
                         {product.titulo}
                       </h3>
                       {product.familia && (

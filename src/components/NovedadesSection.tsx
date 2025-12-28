@@ -185,7 +185,7 @@ export const NovedadesSection = () => {
                   {/* Contenido */}
                   <div className="p-6">
                     <h3 className={`
-                      font-serif font-bold text-xl mb-3 line-clamp-2 transition-colors duration-300
+                      font-serif font-bold text-xl mb-3 line-clamp-2 transition-colors duration-300 uppercase
                       ${isHovered ? 'text-primary' : 'text-foreground'}
                     `}>
                       {product.node.title}
