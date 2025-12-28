@@ -6,8 +6,8 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag, BookMarked } from "lucide-react";
-import { getProductByHandle } from "@/lib/shopify";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag, BookMarked, CreditCard } from "lucide-react";
+import { getProductByHandle, createCheckoutForProduct } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
@@ -18,6 +18,7 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const [product, setProduct] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const addItem = useCartStore(state => state.addItem);
@@ -91,6 +92,23 @@ export default function ProductDetail() {
     toast.success("Producto agregado al carrito", {
       position: "top-center",
     });
+  };
+
+  const handleBuyNow = async () => {
+    if (!handle) return;
+    
+    setIsCheckoutLoading(true);
+    try {
+      const checkoutUrl = await createCheckoutForProduct(handle);
+      window.open(checkoutUrl, '_blank');
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      toast.error("Error al procesar la compra", {
+        description: "Por favor intenta nuevamente"
+      });
+    } finally {
+      setIsCheckoutLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -350,17 +368,36 @@ export default function ProductDetail() {
                   </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-3">
+                  <Button 
+                    onClick={handleBuyNow}
+                    className="w-full bg-primary hover:bg-primary/90"
+                    size="lg"
+                    disabled={!selectedVariant?.availableForSale || isCheckoutLoading}
+                  >
+                    {isCheckoutLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Procesando...
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="w-5 h-5 mr-2" />
+                        {selectedVariant?.availableForSale 
+                          ? 'Comprar Ahora' 
+                          : 'Agotado'}
+                      </>
+                    )}
+                  </Button>
                   <Button 
                     onClick={handleAddToCart}
                     className="w-full"
                     size="lg"
+                    variant="outline"
                     disabled={!selectedVariant?.availableForSale}
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
-                    {selectedVariant?.availableForSale 
-                      ? 'Agregar al Carrito' 
-                      : 'Agotado'}
+                    Agregar al Carrito
                   </Button>
                 </div>
               </div>
