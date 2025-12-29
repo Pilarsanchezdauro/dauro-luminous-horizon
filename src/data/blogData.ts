@@ -154,7 +154,13 @@ Ha sido reconocida con la Medalla de Oro al Mérito Profesional y el premio de E
 
 **La Singularidad Esencial ya está disponible.**
 
-Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.`
+Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.
+
+---
+
+📖 **[Lee una muestra gratuita en Amazon](https://leer.amazon.es/sample/B0GCWFLTBV?clientId=share)**
+
+*También puedes comprarlo allí si lo prefieres.*`
   },
   {
     title: "La España Quebrantada: Manuel Orozco presenta su nuevo ensayo",
