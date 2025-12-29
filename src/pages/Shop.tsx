@@ -542,6 +542,17 @@ export default function Shop() {
                         </div>
                       )} */}
 
+                      {/* Nota sobre política de envíos */}
+                      <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
+                        <p className="text-sm text-amber-800 dark:text-amber-200">
+                          <strong>📦 Importante:</strong> Antes de realizar tu compra, te recomendamos consultar nuestra{' '}
+                          <Link to="/terminos#politica-envios" className="underline hover:text-amber-600 dark:hover:text-amber-300 font-medium">
+                            política de gastos de envío
+                          </Link>
+                          . Los libros menores de 15€ tienen coste de transporte. Los envíos a Canarias, Baleares e internacionales siempre llevan gastos de envío a cargo del cliente.
+                        </p>
+                      </div>
+
                       {/* Category filters (tags) - TEMPORALMENTE OCULTO hasta clasificar productos (dejamos solo "Todos") */}
                       <div className="flex gap-2 mb-6 flex-wrap">
                         <Button

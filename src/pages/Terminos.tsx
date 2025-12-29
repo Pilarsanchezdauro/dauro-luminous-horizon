@@ -199,9 +199,27 @@ const Terminos = () => {
                 </p>
               </section>
 
+              {/* Política comercial y envíos */}
+              <section className="bg-amber-50 dark:bg-amber-950/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
+                <h2 className="text-2xl font-playfair font-bold mb-4">12. Política comercial y gastos de envío</h2>
+                <p className="text-muted-foreground mb-4">
+                  En Ediciones Dauro aplicamos las siguientes condiciones para el envío de libros:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+                  <li><strong>Libros con precio inferior a 15€:</strong> Se aplicará un cargo adicional en concepto de gastos de envío.</li>
+                  <li><strong>Libros con precio igual o superior a 15€:</strong> Envío gratuito a España peninsular.</li>
+                  <li><strong>Envíos a Canarias e Islas Baleares:</strong> Los gastos de transporte corren a cargo del cliente, independientemente del importe del pedido.</li>
+                  <li><strong>Envíos internacionales:</strong> Realizamos envíos a todo el mundo. Los gastos de transporte para pedidos fuera de España siempre corren a cargo del cliente.</li>
+                </ul>
+                <p className="text-muted-foreground text-sm">
+                  Los gastos de envío se calcularán y mostrarán durante el proceso de compra antes de confirmar el pedido. 
+                  Para cualquier consulta sobre envíos, no dude en contactarnos.
+                </p>
+              </section>
+
               {/* Contacto */}
               <section className="bg-gradient-to-br from-primary/5 to-accent/5 p-6 rounded-xl border border-primary/20">
-                <h2 className="text-2xl font-playfair font-bold mb-4">12. Contacto</h2>
+                <h2 className="text-2xl font-playfair font-bold mb-4">13. Contacto</h2>
                 <p className="mb-4 text-muted-foreground">
                   Si tiene alguna pregunta sobre estos Términos y Condiciones, puede contactarnos a través de:
                 </p>
