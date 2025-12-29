@@ -28,8 +28,10 @@ interface ShopifyProduct {
   };
 }
 
+const NONE_CATEGORY = "__none__";
+
 const CATEGORIES = [
-  { id: "", label: "Sin categoría" },
+  { id: NONE_CATEGORY, label: "Sin categoría" },
   { id: "Narrativa", label: "Narrativa" },
   { id: "Novela Histórica", label: "Novela Histórica" },
   { id: "Relato", label: "Relato" },
@@ -72,9 +74,11 @@ export default function ProductClassifier() {
   };
 
   const handleCategoryChange = (productHandle: string, newCategory: string) => {
+    // Convert placeholder back to empty string for actual storage
+    const actualCategory = newCategory === NONE_CATEGORY ? "" : newCategory;
     setPendingChanges(prev => ({
       ...prev,
-      [productHandle]: newCategory
+      [productHandle]: actualCategory
     }));
   };
 
@@ -347,7 +351,7 @@ export default function ProductClassifier() {
                               </TableCell>
                               <TableCell>
                                 <Select
-                                  value={pendingCategory ?? currentCategory}
+                                  value={(pendingCategory ?? currentCategory) || NONE_CATEGORY}
                                   onValueChange={(value) => handleCategoryChange(product.node.handle, value)}
                                 >
                                   <SelectTrigger className={hasChanges ? "border-yellow-500" : ""}>
