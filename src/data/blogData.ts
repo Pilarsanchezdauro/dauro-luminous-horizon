@@ -42,7 +42,6 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/blog/la-singularidad-esencial.png",
     category: "literatura",
     slug: "la-singularidad-esencial-pilar-sanchez",
-    hidden: true, // Ocultar temporalmente de la lista del blog
     bookLink: "https://grupodauro.com/producto/la-singularidad-esencial",
     content: `## Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno.
 
