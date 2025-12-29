@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw, Download, Tags } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw, Download, Tags, ListChecks } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -55,7 +55,12 @@ const menuItems = [
     icon: RefreshCw,
   },
   {
-    title: 'Géneros Shopify',
+    title: 'Clasificador Productos',
+    url: '/admin/product-classifier',
+    icon: ListChecks,
+  },
+  {
+    title: 'Géneros CSV',
     url: '/admin/shopify-genres',
     icon: Tags,
   },
