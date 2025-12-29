@@ -43,6 +43,7 @@ export const blogPosts: BlogPost[] = [
     category: "literatura",
     slug: "la-singularidad-esencial-pilar-sanchez",
     bookLink: "https://grupodauro.com/producto/la-singularidad-esencial",
+    amazonLink: "https://leer.amazon.es/sample/B0GCWFLTBV?clientId=share",
     content: `## Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno.
 
 ## Un libro que nace de la experiencia, no de la teoría
@@ -155,13 +156,7 @@ Ha sido reconocida con la Medalla de Oro al Mérito Profesional y el premio de E
 
 **La Singularidad Esencial ya está disponible.**
 
-Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.
-
----
-
-📖 **[Lee una muestra gratuita en Amazon](https://leer.amazon.es/sample/B0GCWFLTBV?clientId=share)**
-
-*También puedes comprarlo allí si lo prefieres.*`
+Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.`
   },
   {
     title: "La España Quebrantada: Manuel Orozco presenta su nuevo ensayo",
