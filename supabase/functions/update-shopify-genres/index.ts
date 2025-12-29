@@ -32,8 +32,10 @@ serve(async (req) => {
       throw new Error('No products provided');
     }
 
-    const shopifyAccessToken = Deno.env.get('SHOPIFY_ACCESS_TOKEN');
+const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.env.get('SHOPIFY_ACCESS_TOKEN');
     const shopifyStoreDomain = 'dauro-luminous-horizon-6vj19.myshopify.com';
+    
+    console.log('Using token starting with:', shopifyAccessToken?.substring(0, 10) + '...');
     
     if (!shopifyAccessToken) {
       throw new Error('SHOPIFY_ACCESS_TOKEN not configured');
