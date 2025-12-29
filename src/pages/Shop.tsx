@@ -542,18 +542,15 @@ export default function Shop() {
                         </div>
                       )} */}
 
-                      {/* Category filters (tags) */}
+                      {/* Category filters (tags) - TEMPORALMENTE OCULTO hasta clasificar productos (dejamos solo "Todos") */}
                       <div className="flex gap-2 mb-6 flex-wrap">
-                        {bookCategories.map(category => (
-                          <Button
-                            key={category.id}
-                            variant={bookCategory === category.id ? "default" : "outline"}
-                            onClick={() => setBookCategory(category.id)}
-                            size="sm"
-                          >
-                            {category.label} ({getCategoryCount(category.id)})
-                          </Button>
-                        ))}
+                        <Button
+                          variant={bookCategory === "todos" ? "default" : "outline"}
+                          onClick={() => setBookCategory("todos")}
+                          size="sm"
+                        >
+                          Todos ({getCategoryCount("todos")})
+                        </Button>
                       </div>
 
                       {filteredBooks.length === 0 ? (
