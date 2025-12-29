@@ -52,7 +52,7 @@ Pilar Sánchez tiene 61 años y ha pasado toda su vida saltando al vacío.
 
 No es una metáfora. Es literal. Empresaria, escritora, productora de cine, presidenta de Grupo Dauro, fundadora de más de una docena de empresas, superviviente de tres crisis financieras importantes. Ha tocado el éxito y lo ha perdido. Ha construido y ha destruido. Ha caído tan hondo que no veía la superficie, y ha vuelto a subir.
 
-> «Mi realidad supera muchas veces la ficción. No lo digo para impresionarte. Lo digo para que entiendas que lo que vas a leer en este libro no viene de la teoría. No viene de estudiar lo que otros hicieron. Viene de haberlo vivido. Cada concepto, cada advertencia que encontrarás aquí tiene detrás una cicatriz mía.»
+*«Mi realidad supera muchas veces la ficción. No lo digo para impresionarte. Lo digo para que entiendas que lo que vas a leer en este libro no viene de la teoría. No viene de estudiar lo que otros hicieron. Viene de haberlo vivido. Cada concepto, cada advertencia que encontrarás aquí tiene detrás una cicatriz mía.»*
 
 Después de cuatro libros sobre desarrollo personal, Pilar sentía que faltaba algo. Una pieza más grande que no había logrado capturar. Fragmentos de algo más amplio que no conseguía ver completo.
 
@@ -129,11 +129,11 @@ Integrar lo nuevo con lo valioso del pasado. Diseñar un entorno que sostenga el
 
 ## Una cita del libro
 
-> «Hay algo que necesitas saber antes de continuar: ignorar tu Punto de Ruptura no hace que desaparezca. Solo garantiza que reaparecerá con mayor intensidad más adelante.
->
-> Cada vez que sientes la señal y eliges anestesiarla —con más trabajo, más distracciones, más racionalización— no estás resolviendo nada. Estás acumulando presión en un sistema que eventualmente colapsará, pero sin tu participación consciente en el proceso.
->
-> La diferencia entre atravesar tu Punto de Ruptura conscientemente versus esperar a que el sistema colapse por sí solo es la diferencia entre demoler intencionalmente una estructura obsoleta para construir algo nuevo, y esperar a que se derrumbe sobre ti.»
+*«Hay algo que necesitas saber antes de continuar: ignorar tu Punto de Ruptura no hace que desaparezca. Solo garantiza que reaparecerá con mayor intensidad más adelante.*
+
+*Cada vez que sientes la señal y eliges anestesiarla —con más trabajo, más distracciones, más racionalización— no estás resolviendo nada. Estás acumulando presión en un sistema que eventualmente colapsará, pero sin tu participación consciente en el proceso.*
+
+*La diferencia entre atravesar tu Punto de Ruptura conscientemente versus esperar a que el sistema colapse por sí solo es la diferencia entre demoler intencionalmente una estructura obsoleta para construir algo nuevo, y esperar a que se derrumbe sobre ti.»*
 
 ## Sobre la autora
 
