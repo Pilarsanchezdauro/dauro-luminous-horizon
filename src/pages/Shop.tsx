@@ -8,7 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music, Calculator } from "lucide-react";
+import { ShippingCalculator } from "@/components/ShippingCalculator";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -542,15 +543,18 @@ export default function Shop() {
                         </div>
                       )} */}
 
-                      {/* Nota sobre política de envíos */}
+                      {/* Nota sobre política de envíos con calculador */}
                       <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
-                        <p className="text-sm text-amber-800 dark:text-amber-200">
-                          <strong>📦 Importante:</strong> Antes de realizar tu compra, te recomendamos consultar nuestra{' '}
-                          <Link to="/terminos#politica-envios" className="underline hover:text-amber-600 dark:hover:text-amber-300 font-medium">
-                            política de gastos de envío
-                          </Link>
-                          . Los libros menores de 15€ tienen coste de transporte. Los envíos a Canarias, Baleares e internacionales siempre llevan gastos de envío a cargo del cliente.
-                        </p>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                          <p className="text-sm text-amber-800 dark:text-amber-200">
+                            <strong>📦 Importante:</strong> Antes de realizar tu compra, consulta nuestra{' '}
+                            <Link to="/terminos#politica-envios" className="underline hover:text-amber-600 dark:hover:text-amber-300 font-medium">
+                              política de gastos de envío
+                            </Link>
+                            . Los libros menores de 15€ tienen coste de transporte.
+                          </p>
+                          <ShippingCalculator />
+                        </div>
                       </div>
 
                       {/* Category filters (tags) - TEMPORALMENTE OCULTO hasta clasificar productos (dejamos solo "Todos") */}
