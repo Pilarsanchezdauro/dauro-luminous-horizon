@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 
-type Destination = "peninsula" | "canarias" | "baleares" | "europa" | "mundial";
+type Destination = "peninsula" | "canarias" | "baleares" | "europa" | "uk" | "mundial";
 
 interface ShippingRate {
   label: string;
@@ -49,18 +49,27 @@ const SHIPPING_RATES: Record<Destination, ShippingRate> = {
     freeThreshold: null, // Always paid
   },
   europa: {
-    label: "Europa",
+    label: "Unión Europea",
     baseCost: 12.00,
     perBookExtra: 3.00,
     freeThreshold: null, // Always paid
   },
-  mundial: {
-    label: "Resto del mundo",
+  uk: {
+    label: "Reino Unido",
     baseCost: 18.00,
     perBookExtra: 5.00,
-    freeThreshold: null, // Always paid
+    freeThreshold: null, // Always paid + customs
+  },
+  mundial: {
+    label: "Resto del mundo",
+    baseCost: 20.00,
+    perBookExtra: 6.00,
+    freeThreshold: null, // Always paid + customs
   },
 };
+
+// Countries with customs requirements
+const CUSTOMS_DESTINATIONS: Destination[] = ["uk", "mundial"];
 
 export const ShippingCalculator = () => {
   const [destination, setDestination] = useState<Destination>("peninsula");
@@ -157,13 +166,19 @@ export const ShippingCalculator = () => {
                 <SelectItem value="europa">
                   <span className="flex items-center gap-2">
                     <Truck className="h-4 w-4" />
-                    Europa
+                    Unión Europea
+                  </span>
+                </SelectItem>
+                <SelectItem value="uk">
+                  <span className="flex items-center gap-2">
+                    <Globe className="h-4 w-4" />
+                    Reino Unido ⚠️
                   </span>
                 </SelectItem>
                 <SelectItem value="mundial">
                   <span className="flex items-center gap-2">
                     <Globe className="h-4 w-4" />
-                    Resto del mundo
+                    Resto del mundo ⚠️
                   </span>
                 </SelectItem>
               </SelectContent>
@@ -210,27 +225,39 @@ export const ShippingCalculator = () => {
 
           {/* Result */}
           {calculatedCost !== null && (
-            <Card className={isFreeShipping ? "border-green-500 bg-green-50 dark:bg-green-950/30" : "border-amber-500 bg-amber-50 dark:bg-amber-950/30"}>
-              <CardContent className="pt-4">
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground mb-1">
-                    Gastos de envío estimados a {SHIPPING_RATES[destination].label}
-                  </p>
-                  {isFreeShipping ? (
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-2xl font-bold text-green-600 dark:text-green-400">
-                        ¡GRATIS!
-                      </span>
-                      <Package className="h-6 w-6 text-green-600 dark:text-green-400" />
-                    </div>
-                  ) : (
-                    <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">
-                      {calculatedCost.toFixed(2)} €
+            <>
+              <Card className={isFreeShipping ? "border-green-500 bg-green-50 dark:bg-green-950/30" : "border-amber-500 bg-amber-50 dark:bg-amber-950/30"}>
+                <CardContent className="pt-4">
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground mb-1">
+                      Gastos de envío estimados a {SHIPPING_RATES[destination].label}
                     </p>
-                  )}
+                    {isFreeShipping ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-2xl font-bold text-green-600 dark:text-green-400">
+                          ¡GRATIS!
+                        </span>
+                        <Package className="h-6 w-6 text-green-600 dark:text-green-400" />
+                      </div>
+                    ) : (
+                      <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                        {calculatedCost.toFixed(2)} €
+                      </p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Customs warning for UK and international */}
+              {CUSTOMS_DESTINATIONS.includes(destination) && (
+                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                  <p className="text-xs text-red-800 dark:text-red-200">
+                    <strong>⚠️ Atención:</strong> Este precio <strong>NO incluye</strong> aranceles, impuestos de importación ni costes de tramitación aduanera, que varían según el país y son responsabilidad del comprador.
+                    {destination === "uk" && " Los envíos a Reino Unido tienen costes aduaneros especialmente elevados debido al Brexit."}
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </>
           )}
 
           {/* Info note */}
@@ -239,6 +266,7 @@ export const ShippingCalculator = () => {
             <ul className="list-disc list-inside space-y-0.5">
               <li>Envío gratuito a España peninsular para pedidos ≥ 15€</li>
               <li>Canarias, Baleares e internacional siempre con gastos de envío</li>
+              <li>Reino Unido y otros países: costes aduaneros adicionales</li>
               <li>El coste definitivo se mostrará en el proceso de compra</li>
             </ul>
           </div>
