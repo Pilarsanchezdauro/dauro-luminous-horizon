@@ -93,7 +93,7 @@ export default function ProductClassifier() {
     try {
       const { data, error } = await supabase.functions.invoke('update-shopify-genres', {
         body: {
-          updates: [{
+          products: [{
             handle: product.node.handle,
             title: product.node.title,
             genre: newCategory
