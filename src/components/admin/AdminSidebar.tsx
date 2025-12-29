@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw, Download } from 'lucide-react';
+import { FileText, Mail, BookOpen, LayoutDashboard, Newspaper, Briefcase, Video, Globe, FolderKanban, PenTool, ImageIcon, BarChart3, Bot, UserPlus, Library, RefreshCw, Download, Tags } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -53,6 +53,11 @@ const menuItems = [
     title: 'Sync Shopify',
     url: '/admin/shopify-sync',
     icon: RefreshCw,
+  },
+  {
+    title: 'Géneros Shopify',
+    url: '/admin/shopify-genres',
+    icon: Tags,
   },
   {
     title: 'Solicitudes Web',

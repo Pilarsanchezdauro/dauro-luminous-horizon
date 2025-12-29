@@ -62,6 +62,7 @@ import ShopifySync from "./pages/admin/ShopifySync";
 import ShopifyImages from "./pages/admin/ShopifyImages";
 import ProductEbooks from "./pages/admin/ProductEbooks";
 import DescargarEbook from "./pages/DescargarEbook";
+import ShopifyGenres from "./pages/admin/ShopifyGenres";
 
 const queryClient = new QueryClient();
 
@@ -132,6 +133,7 @@ const App = () => (
               <Route path="ebooks" element={<ProductEbooks />} />
               <Route path="shopify-sync" element={<ShopifySync />} />
               <Route path="shopify-images" element={<ShopifyImages />} />
+              <Route path="shopify-genres" element={<ShopifyGenres />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
