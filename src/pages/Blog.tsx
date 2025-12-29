@@ -203,11 +203,11 @@ const Blog = () => {
                 )}
                 {activeCategory === "todas" && (
                   <h2 className="text-3xl font-playfair font-bold mb-8 text-foreground">
-                    Más artículos
+                    Todos los artículos
                   </h2>
                 )}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {(activeCategory === "todas" ? filteredPosts.slice(1) : filteredPosts).map((post, index) => (
+                  {filteredPosts.map((post, index) => (
                 <article
                   key={index}
                   className="bg-card rounded-xl overflow-hidden border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 group"
