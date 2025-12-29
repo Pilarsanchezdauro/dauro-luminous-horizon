@@ -143,20 +143,23 @@ export default function ProductClassifier() {
     const handles = Object.keys(pendingChanges);
     if (handles.length === 0) return;
 
-    const updates = handles.map(handle => {
-      const product = products.find(p => p.node.handle === handle);
-      return {
-        handle,
-        title: product?.node.title || '',
-        genre: pendingChanges[handle]
-      };
-    });
+    const productsPayload = handles
+      .map(handle => {
+        const product = products.find(p => p.node.handle === handle);
+        return {
+          handle,
+          title: product?.node.title || '',
+          genre: pendingChanges[handle]
+        };
+      })
+      // Avoid sending undefined genres
+      .filter(p => p.genre !== undefined);
 
     setSavingProducts(new Set(handles));
 
     try {
       const { data, error } = await supabase.functions.invoke('update-shopify-genres', {
-        body: { updates, dryRun: false }
+        body: { products: productsPayload, dryRun: false }
       });
 
       if (error) throw error;
@@ -170,7 +173,15 @@ export default function ProductClassifier() {
       }));
 
       setPendingChanges({});
-      toast.success(`${handles.length} productos actualizados`);
+
+      const errorsCount = data?.summary?.errors ?? 0;
+      if (errorsCount > 0) {
+        toast.error("Algunos productos no se pudieron actualizar", {
+          description: `Errores: ${errorsCount} · Actualizados: ${data?.summary?.updated ?? 0}`,
+        });
+      } else {
+        toast.success(`${handles.length} productos actualizados`);
+      }
     } catch (error) {
       console.error("Error saving products:", error);
       toast.error("Error al guardar productos");
@@ -178,6 +189,7 @@ export default function ProductClassifier() {
       setSavingProducts(new Set());
     }
   };
+
 
   // Filter products
   const filteredProducts = products.filter(product => {
