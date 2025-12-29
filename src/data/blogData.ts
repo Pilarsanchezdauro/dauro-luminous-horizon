@@ -33,6 +33,130 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "La Singularidad Esencial: el libro que desafía todo lo que creías saber sobre el cambio personal",
+    excerpt: "Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno. El nuevo libro de Pilar Sánchez propone un sistema probabilístico de 90 días para romper con tu vida anterior.",
+    date: "29 Diciembre 2025",
+    author: "Grupo Dauro",
+    image: "/blog/la-singularidad-esencial.png",
+    ogImage: "/blog/la-singularidad-esencial.png",
+    category: "literatura",
+    slug: "la-singularidad-esencial-pilar-sanchez",
+    bookLink: "https://grupodauro.com/producto/la-singularidad-esencial",
+    content: `## Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno.
+
+## Un libro que nace de la experiencia, no de la teoría
+
+Pilar Sánchez tiene 61 años y ha pasado toda su vida saltando al vacío.
+
+No es una metáfora. Es literal. Empresaria, escritora, productora de cine, presidenta de Grupo Dauro, fundadora de más de una docena de empresas, superviviente de tres crisis financieras importantes. Ha tocado el éxito y lo ha perdido. Ha construido y ha destruido. Ha caído tan hondo que no veía la superficie, y ha vuelto a subir.
+
+> «Mi realidad supera muchas veces la ficción. No lo digo para impresionarte. Lo digo para que entiendas que lo que vas a leer en este libro no viene de la teoría. No viene de estudiar lo que otros hicieron. Viene de haberlo vivido. Cada concepto, cada advertencia que encontrarás aquí tiene detrás una cicatriz mía.»
+
+Después de cuatro libros sobre desarrollo personal, Pilar sentía que faltaba algo. Una pieza más grande que no había logrado capturar. Fragmentos de algo más amplio que no conseguía ver completo.
+
+**La Singularidad Esencial es esa pieza.**
+
+## ¿Qué es la Singularidad Esencial?
+
+En física, una singularidad es un punto donde las reglas conocidas dejan de aplicarse. Un momento donde el sistema anterior colapsa y emerge algo completamente nuevo.
+
+Este libro propone que en la vida personal existe un equivalente: **el punto de no retorno que lo cambia todo**.
+
+No se trata de mejorar hábitos. No se trata de optimizar rutinas. No se trata de pequeños ajustes incrementales. Se trata de reconocer cuándo tu sistema de vida actual ha llegado a su límite estadístico y necesitas cruzar un umbral irreversible hacia algo genuinamente diferente.
+
+**La diferencia con otros enfoques es radical: este libro está basado en probabilidad y sistemas, no en pensamiento mágico.**
+
+## Lo que NO encontrarás en este libro
+
+- «Confía en el proceso»
+- «Todo pasa por algo»
+- «Vibra alto»
+- «Visualiza tu futuro ideal»
+- Afirmaciones vacías
+- Promesas de transformación instantánea
+
+## Lo que SÍ encontrarás
+
+- **Un sistema probabilístico de 90 días** fundamentado en cómo funciona realmente el cambio neurobiológico
+- **Herramientas para identificar tu Punto de Ruptura**: el momento exacto donde el costo de seguir igual supera el costo de cambiar
+- **El concepto del Vacío Productivo**: esa fase de incertidumbre necesaria que la mayoría de la gente interpreta erróneamente como fracaso
+- **La diferencia entre cambiar resultados y cambiar sistemas**: por qué los pequeños ajustes nunca funcionan a largo plazo
+- **Cómo leer los indicadores adelantados**: señales que te dicen si vas por buen camino antes de que los resultados sean visibles
+- **La aritmética de lo invisible**: entender que la transformación real es acumulativa y estadística, no mágica ni instantánea
+
+## La estructura: cuatro fases de la travesía
+
+El libro se organiza en cuatro partes que reflejan el viaje completo de transformación:
+
+### PARTE I — EL DERRUMBE
+*El Punto de Ruptura • El Vacío Productivo*
+
+Reconocer que tu sistema actual ha llegado a su límite. Atravesar la incertidumbre sin anestesiarla.
+
+### PARTE II — LA CONSTRUCCIÓN
+*El Laboratorio de Prototipos • La Arquitectura del Nuevo Sistema • La Consolidación*
+
+Diseñar conscientemente un nuevo sistema de vida. Experimentar, ajustar, consolidar.
+
+### PARTE III — LA RESISTENCIA
+*El Campo de Fuerza Invisible • La Nostalgia del Abismo*
+
+Todo lo que intentará devolverte al sistema anterior: el entorno, las personas cercanas, tú mismo. Y la extraña tentación de volver a lo que no funcionaba.
+
+### PARTE IV — DESPUÉS DE LA TRAVESÍA
+*La Reconquista de lo Abandonado • La Ingeniería del Entorno • La Aritmética de lo Invisible • La Economía de las Renuncias*
+
+Integrar lo nuevo con lo valioso del pasado. Diseñar un entorno que sostenga el cambio. Entender los números invisibles del progreso. Decidir qué dejar ir definitivamente.
+
+## Para quién es este libro
+
+**Este libro es para ti si:**
+
+- Sientes que has llegado a un techo que ninguna mejora incremental va a romper
+- Has probado múltiples enfoques de desarrollo personal y ninguno ha producido cambios duraderos
+- Intuyes que necesitas algo más radical que «mejores hábitos»
+- Estás dispuesto a cuestionar el sistema completo de tu vida, no solo los síntomas
+- Prefieres la honestidad brutal a las promesas reconfortantes
+- Quieres entender la mecánica real del cambio, no su versión romantizada
+
+**No es para ti si:**
+
+- Buscas soluciones rápidas o fórmulas mágicas
+- Prefieres que te digan lo que quieres oír
+- No estás dispuesto a atravesar un período de incertidumbre real
+
+## Una cita del libro
+
+> «Hay algo que necesitas saber antes de continuar: ignorar tu Punto de Ruptura no hace que desaparezca. Solo garantiza que reaparecerá con mayor intensidad más adelante.
+>
+> Cada vez que sientes la señal y eliges anestesiarla —con más trabajo, más distracciones, más racionalización— no estás resolviendo nada. Estás acumulando presión en un sistema que eventualmente colapsará, pero sin tu participación consciente en el proceso.
+>
+> La diferencia entre atravesar tu Punto de Ruptura conscientemente versus esperar a que el sistema colapse por sí solo es la diferencia entre demoler intencionalmente una estructura obsoleta para construir algo nuevo, y esperar a que se derrumbe sobre ti.»
+
+## Sobre la autora
+
+**Pilar Sánchez** es empresaria, escritora, editora y productora de cine. Presidenta de Grupo Dauro, ha fundado y dirigido más de una docena de empresas a lo largo de su carrera. Su formación abarca Finanzas Internacionales, Derecho Internacional y Psicología, lo que le otorga una perspectiva única que integra la visión empresarial con la comprensión profunda del comportamiento humano.
+
+Ha sido reconocida con la Medalla de Oro al Mérito Profesional y el premio de Empresaria Asociada de BPW Madrid. *La Singularidad Esencial* es su quinto libro.
+
+## Ficha técnica
+
+| | |
+|---|---|
+| **Título** | La Singularidad Esencial |
+| **Subtítulo** | El sistema probabilístico de 90 días para romper con tu vida anterior y construir una que se parezca más a ti |
+| **Autora** | Pilar Sánchez |
+| **Editorial** | Grupo Dauro |
+| **Páginas** | 232 |
+| **ISBN** | 979-13-991166-3-2 |
+
+## Consigue tu ejemplar
+
+**La Singularidad Esencial ya está disponible.**
+
+Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.`
+  },
+  {
     title: "La España Quebrantada: Manuel Orozco presenta su nuevo ensayo",
     excerpt: "En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos 'La España Quebrantada', el nuevo ensayo de Manuel E. Orozco Redondo, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país.",
     date: "28 Diciembre 2025",
