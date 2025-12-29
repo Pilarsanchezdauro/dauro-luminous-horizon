@@ -123,14 +123,12 @@ export default function Shop() {
         p.node.productType && normalizeGenre(p.node.productType) === selectedGenre
       );
 
-  // Then filter by selected category using tags
+  // Then filter by selected category using productType
   const categoryFilteredBooks = bookCategory === "todos" 
     ? genreFilteredBooks 
     : genreFilteredBooks.filter(p => {
-        const tags = p.node.tags || [];
-        const tagsLower = tags.map((t: string) => t.toLowerCase());
-        return tagsLower.includes(bookCategory.toLowerCase()) || 
-               (bookCategory === "desarrollo personal" && tagsLower.includes("autoayuda"));
+        const productType = (p.node.productType || '').toLowerCase().trim();
+        return productType === bookCategory.toLowerCase();
       });
 
   // Libros premiados específicos (por título)
@@ -203,14 +201,12 @@ export default function Shop() {
     ).length;
   };
 
-  // Count books per category (based on genre-filtered books)
+  // Count books per category (based on productType)
   const getCategoryCount = (categoryId: string) => {
     if (categoryId === "todos") return genreFilteredBooks.length;
     return genreFilteredBooks.filter(p => {
-      const tags = p.node.tags || [];
-      const tagsLower = tags.map((t: string) => t.toLowerCase());
-      return tagsLower.includes(categoryId.toLowerCase()) ||
-             (categoryId === "desarrollo personal" && tagsLower.includes("autoayuda"));
+      const productType = (p.node.productType || '').toLowerCase().trim();
+      return productType === categoryId.toLowerCase();
     }).length;
   };
 
