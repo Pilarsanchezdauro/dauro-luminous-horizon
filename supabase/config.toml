@@ -26,3 +26,6 @@ verify_jwt = false
 
 [functions.associate-shopify-images]
 verify_jwt = false
+
+[functions.update-shopify-genres]
+verify_jwt = false
