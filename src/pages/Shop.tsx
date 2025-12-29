@@ -513,8 +513,8 @@ export default function Shop() {
                         )}
                       </div>
 
-                      {/* Genre filter (productType) */}
-                      {availableGenres.length > 0 && (
+                      {/* Genre filter - TEMPORALMENTE OCULTO hasta clasificar productos */}
+                      {/* {availableGenres.length > 0 && (
                         <div className="mb-6">
                           <div className="flex items-center gap-2 mb-3">
                             <Tag className="h-4 w-4 text-muted-foreground" />
@@ -540,7 +540,7 @@ export default function Shop() {
                             ))}
                           </div>
                         </div>
-                      )}
+                      )} */}
 
                       {/* Category filters (tags) */}
                       <div className="flex gap-2 mb-6 flex-wrap">
