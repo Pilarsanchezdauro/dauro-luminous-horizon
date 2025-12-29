@@ -17,6 +17,7 @@ import { SEO } from "@/components/SEO";
 import { getSynopsisOnly } from "@/lib/description-parser";
 import heroCultureBg from "@/assets/hero-culture-bg.png";
 import { supabase } from "@/integrations/supabase/client";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 interface ShopifyCollection {
   node: {
@@ -254,8 +255,8 @@ export default function Shop() {
     }
   };
 
-  // Collections to exclude from the main "todos" view
-  const EXCLUDED_COLLECTIONS = ['libros-antiguos'];
+  // Collections to exclude from the main "todos" view - now empty to include all books
+  const EXCLUDED_COLLECTIONS: string[] = [];
 
   const loadProducts = async () => {
     try {
@@ -557,16 +558,34 @@ export default function Shop() {
                         </div>
                       </div>
 
-                      {/* Category filters (tags) - TEMPORALMENTE OCULTO hasta clasificar productos (dejamos solo "Todos") */}
-                      <div className="flex gap-2 mb-6 flex-wrap">
-                        <Button
-                          variant={bookCategory === "todos" ? "default" : "outline"}
-                          onClick={() => setBookCategory("todos")}
-                          size="sm"
-                        >
-                          Todos ({getCategoryCount("todos")})
-                        </Button>
-                      </div>
+                      {/* Category filters with accordion */}
+                      <Accordion type="single" collapsible className="mb-6">
+                        <AccordionItem value="categories" className="border rounded-lg px-4">
+                          <AccordionTrigger className="hover:no-underline">
+                            <div className="flex items-center gap-2">
+                              <Tag className="h-4 w-4" />
+                              <span className="font-medium">
+                                Filtrar por categoría: {bookCategory === "todos" ? "Todas" : bookCategories.find(c => c.id === bookCategory)?.label || bookCategory}
+                              </span>
+                              <span className="text-muted-foreground text-sm">({getCategoryCount(bookCategory)})</span>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="flex gap-2 flex-wrap pt-2">
+                              {bookCategories.map(cat => (
+                                <Button
+                                  key={cat.id}
+                                  variant={bookCategory === cat.id ? "default" : "outline"}
+                                  onClick={() => setBookCategory(cat.id)}
+                                  size="sm"
+                                >
+                                  {cat.label} ({getCategoryCount(cat.id)})
+                                </Button>
+                              ))}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
 
                       {filteredBooks.length === 0 ? (
                         <div className="text-center py-20">
