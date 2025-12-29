@@ -168,6 +168,7 @@ Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.`
     category: "literatura",
     slug: "la-espana-quebrantada-manuel-orozco",
     bookLink: "https://grupodauro.com/producto/la-espana-quebrantada",
+    amazonLink: "https://leer.amazon.es/sample/8412849671?clientId=share",
     content: `En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos **"La España Quebrantada"**, el nuevo ensayo de **Manuel E. Orozco Redondo**, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país desde una perspectiva personal y sin concesiones.
 
 ## Sobre el libro
