@@ -29,6 +29,7 @@ export interface BlogPost {
   image2?: string;
   image3?: string;
   gallery?: string[];
+  hidden?: boolean; // Hide from blog listing (still accessible via direct URL)
 }
 
 export const blogPosts: BlogPost[] = [
@@ -41,6 +42,7 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/blog/la-singularidad-esencial.png",
     category: "literatura",
     slug: "la-singularidad-esencial-pilar-sanchez",
+    hidden: true, // Ocultar temporalmente de la lista del blog
     bookLink: "https://grupodauro.com/producto/la-singularidad-esencial",
     content: `## Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno.
 

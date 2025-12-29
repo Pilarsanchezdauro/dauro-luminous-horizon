@@ -25,12 +25,13 @@ const Blog = () => {
   const { toast } = useToast();
   
   const getFilteredPosts = () => {
-    if (activeCategory === "todas") return blogPosts;
-    return getPostsByCategory(activeCategory);
+    const visiblePosts = blogPosts.filter(post => !post.hidden);
+    if (activeCategory === "todas") return visiblePosts;
+    return visiblePosts.filter(post => post.category === activeCategory);
   };
   
   const filteredPosts = getFilteredPosts();
-  const featuredPost = activeCategory === "todas" ? blogPosts[0] : null;
+  const featuredPost = activeCategory === "todas" ? filteredPosts[0] : null;
 
   const getShareUrl = (postSlug?: string) => {
     const baseUrl = window.location.hostname.includes('lovableproject.com') 
