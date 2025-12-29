@@ -200,19 +200,34 @@ const Terminos = () => {
               </section>
 
               {/* Política comercial y envíos */}
-              <section className="bg-amber-50 dark:bg-amber-950/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
+              <section id="politica-envios" className="bg-amber-50 dark:bg-amber-950/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
                 <h2 className="text-2xl font-playfair font-bold mb-4">12. Política comercial y gastos de envío</h2>
                 <p className="text-muted-foreground mb-4">
                   En Ediciones Dauro aplicamos las siguientes condiciones para el envío de libros:
                 </p>
+                
+                <h3 className="font-semibold text-lg mb-2 mt-4">Envíos nacionales</h3>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
                   <li><strong>Libros con precio inferior a 15€:</strong> Se aplicará un cargo adicional en concepto de gastos de envío.</li>
                   <li><strong>Libros con precio igual o superior a 15€:</strong> Envío gratuito a España peninsular.</li>
                   <li><strong>Envíos a Canarias e Islas Baleares:</strong> Los gastos de transporte corren a cargo del cliente, independientemente del importe del pedido.</li>
-                  <li><strong>Envíos internacionales:</strong> Realizamos envíos a todo el mundo. Los gastos de transporte para pedidos fuera de España siempre corren a cargo del cliente.</li>
                 </ul>
+
+                <h3 className="font-semibold text-lg mb-2 mt-4">Envíos internacionales</h3>
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+                  <li><strong>Unión Europea:</strong> Realizamos envíos a todos los países de la UE. Los gastos de transporte corren a cargo del cliente.</li>
+                  <li><strong>Reino Unido:</strong> Debido al Brexit, los envíos a Reino Unido están sujetos a <strong>costes aduaneros elevados</strong> y aranceles de importación que deberá abonar el destinatario en destino. Estos costes adicionales son responsabilidad exclusiva del cliente.</li>
+                  <li><strong>Resto del mundo:</strong> Realizamos envíos a todo el mundo. Los gastos de transporte siempre corren a cargo del cliente. En destinos con requisitos aduaneros (EE.UU., Latinoamérica, Asia, etc.), el cliente será responsable de abonar los <strong>aranceles, impuestos de importación y costes de tramitación aduanera</strong> que aplique el país de destino.</li>
+                </ul>
+
+                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-red-800 dark:text-red-200">
+                    <strong>⚠️ Importante sobre envíos internacionales:</strong> Los costes de aduanas, aranceles e impuestos de importación varían según el país de destino y son <strong>responsabilidad exclusiva del comprador</strong>. Ediciones Dauro no tiene control sobre estos costes ni puede estimarlos de antemano. Recomendamos consultar con las autoridades aduaneras de su país antes de realizar el pedido.
+                  </p>
+                </div>
+
                 <p className="text-muted-foreground text-sm">
-                  Los gastos de envío se calcularán y mostrarán durante el proceso de compra antes de confirmar el pedido. 
+                  Los gastos de envío (sin incluir aduanas) se calcularán y mostrarán durante el proceso de compra antes de confirmar el pedido. 
                   Para cualquier consulta sobre envíos, no dude en contactarnos.
                 </p>
               </section>
