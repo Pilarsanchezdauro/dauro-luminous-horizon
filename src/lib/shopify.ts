@@ -8,6 +8,7 @@ const SHOPIFY_STOREFRONT_TOKEN = '8765bcd785f87943aa829ab10985ffde';
 export async function storefrontApiRequest(query: string, variables: any = {}) {
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: 'POST',
+    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
       'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN

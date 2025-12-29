@@ -50,12 +50,12 @@ const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.en
     for (const product of products as GenreUpdate[]) {
       const { handle, title, genre } = product;
 
-      if (!handle || !genre) {
+      if (!handle || genre === undefined || genre === null) {
         results.push({
           success: false,
           handle: handle || 'unknown',
           title: title || 'unknown',
-          genre: genre || 'unknown',
+          genre: genre ?? 'unknown',
           error: 'Missing handle or genre',
         });
         errorCount++;

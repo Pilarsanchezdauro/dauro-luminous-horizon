@@ -91,37 +91,47 @@ export default function ProductClassifier() {
     setSavingProducts(prev => new Set(prev).add(product.node.handle));
     
     try {
-      const { data, error } = await supabase.functions.invoke('update-shopify-genres', {
+      const { data, error } = await supabase.functions.invoke("update-shopify-genres", {
         body: {
-          products: [{
-            handle: product.node.handle,
-            title: product.node.title,
-            genre: newCategory
-          }],
-          dryRun: false
-        }
+          products: [
+            {
+              handle: product.node.handle,
+              title: product.node.title,
+              genre: newCategory,
+            },
+          ],
+          dryRun: false,
+        },
       });
 
       if (error) throw error;
 
+      const result = data?.results?.[0];
+      if (!result?.success) {
+        throw new Error(result?.error || "Actualización fallida");
+      }
+
       // Update local state
-      setProducts(prev => prev.map(p => 
-        p.node.handle === product.node.handle 
-          ? { ...p, node: { ...p.node, productType: newCategory } }
-          : p
-      ));
+      setProducts((prev) =>
+        prev.map((p) =>
+          p.node.handle === product.node.handle
+            ? { ...p, node: { ...p.node, productType: newCategory } }
+            : p
+        )
+      );
 
       // Remove from pending changes
-      setPendingChanges(prev => {
+      setPendingChanges((prev) => {
         const next = { ...prev };
         delete next[product.node.handle];
         return next;
       });
 
-      toast.success(`"${product.node.title}" actualizado a ${newCategory || 'Sin categoría'}`);
+      toast.success(`"${product.node.title}" actualizado a ${newCategory || "Sin categoría"}`);
     } catch (error) {
+      const message = error instanceof Error ? error.message : "Error desconocido";
       console.error("Error saving product:", error);
-      toast.error("Error al guardar");
+      toast.error("No se pudo guardar", { description: message });
     } finally {
       setSavingProducts(prev => {
         const next = new Set(prev);
@@ -164,20 +174,38 @@ export default function ProductClassifier() {
 
       if (error) throw error;
 
-      // Update local state
-      setProducts(prev => prev.map(p => {
-        if (pendingChanges[p.node.handle] !== undefined) {
-          return { ...p, node: { ...p.node, productType: pendingChanges[p.node.handle] } };
+      const results = (data?.results ?? []) as Array<{
+        success: boolean;
+        handle: string;
+        error?: string;
+      }>;
+
+      const succeededHandles = new Set(results.filter((r) => r.success).map((r) => r.handle));
+      const failed = results.filter((r) => !r.success);
+
+      // Update local state only for succeeded
+      setProducts((prev) =>
+        prev.map((p) => {
+          if (succeededHandles.has(p.node.handle)) {
+            return { ...p, node: { ...p.node, productType: pendingChanges[p.node.handle] } };
+          }
+          return p;
+        })
+      );
+
+      // Keep pending changes that failed (so user can retry)
+      setPendingChanges((prev) => {
+        const next: Record<string, string> = {};
+        for (const handle of Object.keys(prev)) {
+          if (!succeededHandles.has(handle)) next[handle] = prev[handle];
         }
-        return p;
-      }));
+        return next;
+      });
 
-      setPendingChanges({});
-
-      const errorsCount = data?.summary?.errors ?? 0;
-      if (errorsCount > 0) {
+      if (failed.length > 0) {
+        const firstMsg = failed[0]?.error || "Error desconocido";
         toast.error("Algunos productos no se pudieron actualizar", {
-          description: `Errores: ${errorsCount} · Actualizados: ${data?.summary?.updated ?? 0}`,
+          description: `Errores: ${failed.length}. Ej: ${firstMsg}`,
         });
       } else {
         toast.success(`${handles.length} productos actualizados`);
