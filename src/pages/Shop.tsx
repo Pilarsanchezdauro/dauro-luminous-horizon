@@ -705,6 +705,15 @@ export default function Shop() {
                                     Ebook
                                   </div>
                                 )}
+                                {/* Segunda Edición Stamp */}
+                                {product.node.tags?.some((tag: string) => ['segunda edicion', 'segunda edición', '2a edicion', '2a edición', '2ª edición', '2ª edicion'].includes(tag.toLowerCase())) && (
+                                  <div className="absolute bottom-4 left-4 flex items-center justify-center w-12 h-12 rounded-full border-[3px] border-blue-600 bg-white/90 backdrop-blur-sm transform -rotate-12 shadow-lg">
+                                    <div className="text-center">
+                                      <span className="block text-blue-600 font-black text-[9px] uppercase tracking-tight leading-none">2ª</span>
+                                      <span className="block text-blue-600 font-bold text-[7px] uppercase tracking-wide leading-tight">Edición</span>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             )}
                           </Link>

@@ -197,10 +197,12 @@ export const NovedadesSection = () => {
                               </Badge>
                             )}
                             {isSegundaEdicion && (
-                              <Badge className="bg-secondary text-secondary-foreground font-semibold px-3 py-1.5 shadow-lg">
-                                <RotateCcw className="h-3 w-3 mr-1.5" />
-                                2ª Edición
-                              </Badge>
+                              <div className="flex items-center justify-center w-14 h-14 rounded-full border-[3px] border-blue-600 bg-white/90 backdrop-blur-sm transform -rotate-12 shadow-lg">
+                                <div className="text-center">
+                                  <span className="block text-blue-600 font-black text-[10px] uppercase tracking-tight leading-none">2ª</span>
+                                  <span className="block text-blue-600 font-bold text-[8px] uppercase tracking-wide leading-tight">Edición</span>
+                                </div>
+                              </div>
                             )}
                           </>
                         );
