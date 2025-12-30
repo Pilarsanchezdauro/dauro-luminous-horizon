@@ -225,9 +225,11 @@ export default function ProductDetail() {
                       </div>
                     )}
                     {product.tags?.some((tag: string) => ['segunda edicion', 'segunda edición', '2a edicion', '2a edición', '2ª edición', '2ª edicion'].includes(tag.toLowerCase())) && (
-                      <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm uppercase tracking-wide">
-                        <BookOpen className="w-4 h-4" />
-                        2ª Edición
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 border-blue-600 bg-transparent transform -rotate-12 shadow-lg">
+                        <div className="text-center">
+                          <span className="block text-blue-600 font-black text-xs uppercase tracking-tight leading-none">2ª</span>
+                          <span className="block text-blue-600 font-bold text-[10px] uppercase tracking-wide leading-tight">Edición</span>
+                        </div>
                       </div>
                     )}
                     {product.tags?.some((tag: string) => tag.toLowerCase() === 'bestseller') && (
