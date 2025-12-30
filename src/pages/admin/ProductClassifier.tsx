@@ -233,7 +233,9 @@ export default function ProductClassifier() {
 
   const filterableCategories = CATEGORIES.filter((c) => c.id !== NONE_CATEGORY);
 
-  // Filter products
+  // Filter products - excluir "Libro antiguo" de la vista principal (salvo que se filtre explícitamente por esa categoría)
+  const LIBRO_ANTIGUO_KEY = normalizeKey("Libro antiguo");
+
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       searchQuery.trim() === "" ||
@@ -243,9 +245,13 @@ export default function ProductClassifier() {
     const currentCategory = pendingChanges[product.node.handle] ?? product.node.productType ?? "";
     const currentKey = getCategoryKey(currentCategory);
 
+    // Ocultar "Libro antiguo" en vista "all" pero mostrar si se filtra explícitamente
+    const isLibroAntiguo = currentKey === LIBRO_ANTIGUO_KEY;
+    const hideLibroAntiguo = filterCategory === "all" && isLibroAntiguo;
+
     const matchesFilter = filterCategory === "all" ? true : currentKey === filterCategory;
 
-    return matchesSearch && matchesFilter;
+    return matchesSearch && matchesFilter && !hideLibroAntiguo;
   });
 
   // Count by category (normalized)
