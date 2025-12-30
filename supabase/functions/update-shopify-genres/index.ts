@@ -1,8 +1,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
 interface GenreUpdate {
@@ -19,29 +19,84 @@ interface UpdateResult {
   error?: string;
 }
 
+const SHOPIFY_ADMIN_API_VERSION = "2025-07";
+const SHOPIFY_STORE_DOMAIN = "dauro-luminous-horizon-6vj19.myshopify.com";
+
+async function adminGraphqlRequest(query: string, variables: Record<string, unknown>) {
+  const shopifyAccessToken =
+    Deno.env.get("SHOPIFY_ADMIN_ACCESS_TOKEN") || Deno.env.get("SHOPIFY_ACCESS_TOKEN");
+
+  if (!shopifyAccessToken) {
+    throw new Error("SHOPIFY_ACCESS_TOKEN not configured");
+  }
+
+  const res = await fetch(
+    `https://${SHOPIFY_STORE_DOMAIN}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": shopifyAccessToken,
+      },
+      body: JSON.stringify({ query, variables }),
+    },
+  );
+
+  const text = await res.text();
+  if (!res.ok) {
+    throw new Error(`Admin GraphQL HTTP ${res.status}: ${text}`);
+  }
+
+  const json = JSON.parse(text);
+  if (json.errors?.length) {
+    throw new Error(
+      `Admin GraphQL errors: ${json.errors.map((e: any) => e.message).join(", ")}`,
+    );
+  }
+
+  return json.data;
+}
+
+const PRODUCT_BY_HANDLE_QUERY = `
+  query ProductByHandle($handle: String!) {
+    productByHandle(handle: $handle) {
+      id
+      title
+      productType
+    }
+  }
+`;
+
+const PRODUCT_UPDATE_MUTATION = `
+  mutation ProductUpdate($input: ProductInput!) {
+    productUpdate(input: $input) {
+      product {
+        id
+        productType
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 serve(async (req) => {
-  // Handle CORS preflight
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     const { products, dryRun = true } = await req.json();
-    
+
     if (!Array.isArray(products) || products.length === 0) {
-      throw new Error('No products provided');
+      throw new Error("No products provided");
     }
 
-const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.env.get('SHOPIFY_ACCESS_TOKEN');
-    const shopifyStoreDomain = 'dauro-luminous-horizon-6vj19.myshopify.com';
-    
-    console.log('Using token starting with:', shopifyAccessToken?.substring(0, 10) + '...');
-    
-    if (!shopifyAccessToken) {
-      throw new Error('SHOPIFY_ACCESS_TOKEN not configured');
-    }
-
-    console.log(`Processing ${products.length} products for genre update (dryRun: ${dryRun})`);
+    console.log(
+      `update-shopify-genres: processing ${products.length} products (dryRun: ${dryRun})`,
+    );
 
     const results: UpdateResult[] = [];
     let updatedCount = 0;
@@ -50,13 +105,14 @@ const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.en
     for (const product of products as GenreUpdate[]) {
       const { handle, title, genre } = product;
 
+      // Permitir "Sin categoría" (""), pero no undefined/null
       if (!handle || genre === undefined || genre === null) {
         results.push({
           success: false,
-          handle: handle || 'unknown',
-          title: title || 'unknown',
-          genre: genre ?? 'unknown',
-          error: 'Missing handle or genre',
+          handle: handle || "unknown",
+          title: title || "unknown",
+          genre: (genre as any) ?? "unknown",
+          error: "Missing handle or genre",
         });
         errorCount++;
         continue;
@@ -68,96 +124,59 @@ const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.en
           handle,
           title,
           genre,
-          error: `Would update product_type to: "${genre}"`,
+          error: `Would update productType to: "${genre}"`,
         });
         updatedCount++;
         continue;
       }
 
       try {
-        // First, get the product ID by handle
-        const getProductResponse = await fetch(
-          `https://${shopifyStoreDomain}/admin/api/2024-01/products.json?handle=${encodeURIComponent(handle)}`,
-          {
-            headers: {
-              'X-Shopify-Access-Token': shopifyAccessToken,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        // 1) Obtener el ID real por handle (evita actualizar productos equivocados)
+        const data = await adminGraphqlRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
+        const productNode = data?.productByHandle;
 
-        if (!getProductResponse.ok) {
-          const errorText = await getProductResponse.text();
+        if (!productNode?.id) {
           results.push({
             success: false,
             handle,
             title,
             genre,
-            error: `Failed to fetch product: ${getProductResponse.status} - ${errorText}`,
+            error: "Product not found by handle",
           });
           errorCount++;
           continue;
         }
 
-        const productData = await getProductResponse.json();
-        
-        if (!productData.products || productData.products.length === 0) {
+        // 2) Actualizar "Tipo de producto" (productType)
+        const upd = await adminGraphqlRequest(PRODUCT_UPDATE_MUTATION, {
+          input: {
+            id: productNode.id,
+            productType: genre,
+          },
+        });
+
+        const userErrors = upd?.productUpdate?.userErrors ?? [];
+        if (userErrors.length > 0) {
+          const msg = userErrors.map((e: any) => e.message).join(", ");
           results.push({
             success: false,
             handle,
             title,
             genre,
-            error: 'Product not found',
+            error: `Update failed: ${msg}`,
           });
           errorCount++;
           continue;
         }
 
-        const shopifyProduct = productData.products[0];
+        results.push({ success: true, handle, title, genre });
+        updatedCount++;
+        console.log(`Updated productType: ${handle} -> ${genre}`);
 
-        // Update the product with the genre as product_type
-        const updateResponse = await fetch(
-          `https://${shopifyStoreDomain}/admin/api/2024-01/products/${shopifyProduct.id}.json`,
-          {
-            method: 'PUT',
-            headers: {
-              'X-Shopify-Access-Token': shopifyAccessToken,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              product: {
-                id: shopifyProduct.id,
-                product_type: genre,
-              },
-            }),
-          }
-        );
-
-        if (!updateResponse.ok) {
-          const errorText = await updateResponse.text();
-          results.push({
-            success: false,
-            handle,
-            title,
-            genre,
-            error: `Update failed: ${updateResponse.status} - ${errorText}`,
-          });
-          errorCount++;
-        } else {
-          updatedCount++;
-          results.push({
-            success: true,
-            handle,
-            title,
-            genre,
-          });
-          console.log(`Updated: ${handle} -> ${genre}`);
-        }
-
-        // Rate limiting - Shopify allows ~2 requests/second
-        await new Promise(resolve => setTimeout(resolve, 600));
+        // Rate limiting suave
+        await new Promise((r) => setTimeout(r, 350));
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        const errorMessage = err instanceof Error ? err.message : "Unknown error";
         results.push({
           success: false,
           handle,
@@ -176,30 +195,24 @@ const shopifyAccessToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') || Deno.en
       dryRun,
     };
 
-    console.log('Summary:', summary);
+    console.log("Summary:", summary);
 
     return new Response(
       JSON.stringify({
         success: true,
         summary,
-        results: results.slice(0, 100), // Limit results for response size
+        results: results.slice(0, 100),
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-    console.error('Error:', err);
-    return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: errorMessage 
-      }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
-    );
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    console.error("Error:", err);
+    return new Response(JSON.stringify({ success: false, error: errorMessage }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });
