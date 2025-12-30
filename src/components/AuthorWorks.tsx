@@ -11,25 +11,20 @@ interface AuthorWorksProps {
 // Extraer el autor del título del producto
 // Formato típico: "TÍTULO – Autor" o "TÍTULO - Autor"
 function extractAuthorFromTitle(title: string): string | null {
-  // Buscar separadores comunes: – (en dash), — (em dash), - (guion), ,
-  // Usar regex para capturar cualquier tipo de guión
-  const separatorRegex = /\s[–—-]\s|,\s*/;
-  
-  const parts = title.split(separatorRegex);
+  // Separador típico con espacios alrededor del guión
+  const parts = title.split(/\s[–—-]\s/);
+
   if (parts.length >= 2) {
-    // El autor suele estar después del separador
     const potentialAuthor = parts[parts.length - 1].trim();
-    // Verificar que no sea "nan", muy corto, o que contenga "EBOOK"
     if (
-      potentialAuthor && 
-      potentialAuthor.toLowerCase() !== "nan" && 
-      potentialAuthor.length > 2 &&
-      !potentialAuthor.toUpperCase().includes("EBOOK")
+      potentialAuthor &&
+      potentialAuthor.toLowerCase() !== "nan" &&
+      potentialAuthor.length > 2
     ) {
       return potentialAuthor;
     }
   }
-  
+
   return null;
 }
 
@@ -61,31 +56,34 @@ export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksP
       try {
         // Obtener productos buscando por el nombre del autor
         const response = await getProducts(50, undefined, author);
-        
-        if (response?.products?.edges) {
+        const edges = response?.products ?? [];
+
+        if (Array.isArray(edges) && edges.length > 0) {
           const normalizedAuthor = normalizeAuthorName(author);
-          
+
           // Filtrar productos del mismo autor, excluyendo el actual
-          const authorProducts = response.products.edges.filter((edge: any) => {
+          const authorProducts = edges.filter((edge: any) => {
             const product = edge.node;
-            
+
             // Excluir el producto actual
             if (product.handle === currentProductHandle) {
               return false;
             }
-            
+
             // Verificar que el título contenga el nombre del autor
             const productAuthor = extractAuthorFromTitle(product.title);
             if (!productAuthor) return false;
-            
+
             const normalizedProductAuthor = normalizeAuthorName(productAuthor);
-            
+
             // Comparar autores normalizados
-            return normalizedProductAuthor === normalizedAuthor ||
-                   normalizedProductAuthor.includes(normalizedAuthor) ||
-                   normalizedAuthor.includes(normalizedProductAuthor);
+            return (
+              normalizedProductAuthor === normalizedAuthor ||
+              normalizedProductAuthor.includes(normalizedAuthor) ||
+              normalizedAuthor.includes(normalizedProductAuthor)
+            );
           });
-          
+
           setOtherWorks(authorProducts.slice(0, 4)); // Máximo 4 obras
         }
       } catch (error) {
