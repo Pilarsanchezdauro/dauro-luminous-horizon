@@ -218,25 +218,40 @@ export default function ProductClassifier() {
     }
   };
 
+  // Helpers (comparación sin acentos / sin mayúsculas)
+  const normalizeKey = (value: string) =>
+    value
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+
+  const getCategoryKey = (raw: string | null | undefined) => {
+    const v = (raw ?? "").trim();
+    return v ? normalizeKey(v) : "sin-categoria";
+  };
+
+  const filterableCategories = CATEGORIES.filter((c) => c.id !== NONE_CATEGORY);
 
   // Filter products
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = searchQuery.trim() === "" || 
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch =
+      searchQuery.trim() === "" ||
       product.node.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.node.handle.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const currentCategory = pendingChanges[product.node.handle] ?? product.node.productType ?? "";
-    const matchesFilter = filterCategory === "all" || 
-      (filterCategory === "sin-categoria" && currentCategory === "") ||
-      currentCategory.toLowerCase() === filterCategory.toLowerCase();
+    const currentKey = getCategoryKey(currentCategory);
+
+    const matchesFilter = filterCategory === "all" ? true : currentKey === filterCategory;
 
     return matchesSearch && matchesFilter;
   });
 
-  // Count by category
+  // Count by category (normalized)
   const categoryCounts = products.reduce((acc, product) => {
     const category = pendingChanges[product.node.handle] ?? product.node.productType ?? "";
-    const key = category || "sin-categoria";
+    const key = getCategoryKey(category);
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
@@ -270,7 +285,7 @@ export default function ProductClassifier() {
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-6">
-              <Card 
+              <Card
                 className={`cursor-pointer transition-colors ${filterCategory === "all" ? "border-primary" : ""}`}
                 onClick={() => setFilterCategory("all")}
               >
@@ -279,7 +294,7 @@ export default function ProductClassifier() {
                   <p className="text-xs text-muted-foreground">Total</p>
                 </CardContent>
               </Card>
-              <Card 
+              <Card
                 className={`cursor-pointer transition-colors ${filterCategory === "sin-categoria" ? "border-primary" : ""}`}
                 onClick={() => setFilterCategory("sin-categoria")}
               >
@@ -288,18 +303,24 @@ export default function ProductClassifier() {
                   <p className="text-xs text-muted-foreground">Sin categoría</p>
                 </CardContent>
               </Card>
-              {CATEGORIES.filter(c => c.id && categoryCounts[c.id]).slice(0, 4).map(cat => (
-                <Card 
-                  key={cat.id}
-                  className={`cursor-pointer transition-colors ${filterCategory === cat.id.toLowerCase() ? "border-primary" : ""}`}
-                  onClick={() => setFilterCategory(cat.id.toLowerCase())}
-                >
-                  <CardContent className="p-3 text-center">
-                    <p className="text-2xl font-bold">{categoryCounts[cat.id] || 0}</p>
-                    <p className="text-xs text-muted-foreground truncate">{cat.label}</p>
-                  </CardContent>
-                </Card>
-              ))}
+              {filterableCategories
+                .filter((cat) => (categoryCounts[normalizeKey(cat.id)] || 0) > 0)
+                .slice(0, 4)
+                .map((cat) => {
+                  const key = normalizeKey(cat.id);
+                  return (
+                    <Card
+                      key={cat.id}
+                      className={`cursor-pointer transition-colors ${filterCategory === key ? "border-primary" : ""}`}
+                      onClick={() => setFilterCategory(key)}
+                    >
+                      <CardContent className="p-3 text-center">
+                        <p className="text-2xl font-bold">{categoryCounts[key] || 0}</p>
+                        <p className="text-xs text-muted-foreground truncate">{cat.label}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
             </div>
 
             {/* Filters */}
@@ -321,11 +342,14 @@ export default function ProductClassifier() {
                 <SelectContent>
                   <SelectItem value="all">Todas las categorías</SelectItem>
                   <SelectItem value="sin-categoria">Sin categoría</SelectItem>
-                  {CATEGORIES.filter(c => c.id).map(cat => (
-                    <SelectItem key={cat.id} value={cat.id.toLowerCase()}>
-                      {cat.label} ({categoryCounts[cat.id] || 0})
-                    </SelectItem>
-                  ))}
+                  {filterableCategories.map((cat) => {
+                    const key = normalizeKey(cat.id);
+                    return (
+                      <SelectItem key={cat.id} value={key}>
+                        {cat.label} ({categoryCounts[key] || 0})
+                      </SelectItem>
+                    );
+                  })}
                 </SelectContent>
               </Select>
             </div>
