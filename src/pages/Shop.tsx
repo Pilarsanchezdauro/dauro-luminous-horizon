@@ -35,6 +35,7 @@ export default function Shop() {
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
   const [selectedGenre, setSelectedGenre] = useState<string>("todos");
+  const [booksScope, setBooksScope] = useState<"todas" | "antiguos">("todas");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("novedades");
   const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
@@ -58,15 +59,26 @@ export default function Shop() {
   });
   const musicIds = new Set(musicProducts.map(p => p.node.id));
 
-  // Regular books exclude segunda mano, music products, and "Libro antiguo"
+  // Regular books exclude segunda mano and music products
   const segundaManoIds = new Set(segundaManoProducts.map(p => p.node.id));
-  const bookProducts = products.filter(p => {
-    if (segundaManoIds.has(p.node.id) || musicIds.has(p.node.id)) return false;
-    // Excluir "Libro antiguo" de la vista principal
-    const productType = (p.node.productType || '').toLowerCase().trim();
-    if (productType === 'libro antiguo') return false;
-    return true;
-  });
+
+  const isLibroAntiguo = (p: ShopifyProduct) => {
+    const productType = (p.node.productType || "").toLowerCase().trim();
+    const tags = (p.node.tags || []).map((t: string) => t.toLowerCase().trim());
+
+    return (
+      productType.includes("libro antiguo") ||
+      productType.includes("libros antiguos") ||
+      tags.includes("libro antiguo") ||
+      tags.includes("libros antiguos") ||
+      tags.includes("antiguo") ||
+      tags.includes("antiguos")
+    );
+  };
+
+  const bookProducts = products.filter(
+    p => !segundaManoIds.has(p.node.id) && !musicIds.has(p.node.id)
+  );
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
@@ -110,7 +122,7 @@ export default function Shop() {
   // Reset visible count when filters change
   useEffect(() => {
     setVisibleBooksCount(20);
-  }, [searchQuery, selectedGenre, bookCategory, selectedCollection, sortBy]);
+  }, [searchQuery, selectedGenre, bookCategory, selectedCollection, sortBy, booksScope]);
 
   // Filter books by search query first
   const searchFilteredBooks = searchQuery.trim() 
@@ -160,8 +172,14 @@ export default function Shop() {
     return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
   };
 
+  // Aplicar “Libros antiguos”: ocultar por defecto y mostrar solo en su vista
+  const scopedBooks =
+    booksScope === "antiguos"
+      ? categoryFilteredBooks.filter(isLibroAntiguo)
+      : categoryFilteredBooks.filter(p => !isLibroAntiguo(p));
+
   // Sort the filtered books - products without images go to the end
-  const filteredBooks = [...categoryFilteredBooks].sort((a, b) => {
+  const filteredBooks = [...scopedBooks].sort((a, b) => {
     // First: products with images come before products without images
     const aHasImage = (a.node.images.edges.length > 0 && a.node.images.edges[0]?.node?.url) ? 0 : 1;
     const bHasImage = (b.node.images.edges.length > 0 && b.node.images.edges[0]?.node?.url) ? 0 : 1;
@@ -452,8 +470,11 @@ export default function Shop() {
                       {/* Collection selector */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         <Button
-                          variant={selectedCollection === "todos" ? "default" : "outline"}
-                          onClick={() => setSelectedCollection("todos")}
+                          variant={booksScope === "todas" && selectedCollection === "todos" ? "default" : "outline"}
+                          onClick={() => {
+                            setBooksScope("todas");
+                            setSelectedCollection("todos");
+                          }}
                           size="sm"
                           className="flex items-center gap-1"
                         >
@@ -461,17 +482,35 @@ export default function Shop() {
                           Todas las obras
                         </Button>
                         <Button
-                          variant={selectedCollection === "novedades" ? "default" : "outline"}
-                          onClick={() => setSelectedCollection("novedades")}
+                          variant={booksScope === "todas" && selectedCollection === "novedades" ? "default" : "outline"}
+                          onClick={() => {
+                            setBooksScope("todas");
+                            setSelectedCollection("novedades");
+                          }}
                           size="sm"
                         >
                           Novedades
                         </Button>
+                        <Button
+                          variant={booksScope === "antiguos" ? "default" : "outline"}
+                          onClick={() => {
+                            setBooksScope("antiguos");
+                            setSelectedCollection("todos");
+                            setBookCategory("todos");
+                            setSelectedGenre("todos");
+                          }}
+                          size="sm"
+                        >
+                          Libros antiguos
+                        </Button>
                         {collections.map(col => (
                           <Button
                             key={col.node.id}
-                            variant={selectedCollection === col.node.handle ? "default" : "outline"}
-                            onClick={() => setSelectedCollection(col.node.handle)}
+                            variant={booksScope === "todas" && selectedCollection === col.node.handle ? "default" : "outline"}
+                            onClick={() => {
+                              setBooksScope("todas");
+                              setSelectedCollection(col.node.handle);
+                            }}
                             size="sm"
                           >
                             {col.node.title}
