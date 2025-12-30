@@ -11,18 +11,22 @@ interface AuthorWorksProps {
 // Extraer el autor del título del producto
 // Formato típico: "TÍTULO – Autor" o "TÍTULO - Autor"
 function extractAuthorFromTitle(title: string): string | null {
-  // Buscar separadores comunes: – (en dash), — (em dash), - (guion)
-  const separators = [" – ", " — ", " - "];
+  // Buscar separadores comunes: – (en dash), — (em dash), - (guion), ,
+  // Usar regex para capturar cualquier tipo de guión
+  const separatorRegex = /\s[–—-]\s|,\s*/;
   
-  for (const sep of separators) {
-    const parts = title.split(sep);
-    if (parts.length >= 2) {
-      // El autor suele estar después del separador
-      const potentialAuthor = parts[parts.length - 1].trim();
-      // Verificar que no sea "nan" o muy corto
-      if (potentialAuthor && potentialAuthor.toLowerCase() !== "nan" && potentialAuthor.length > 2) {
-        return potentialAuthor;
-      }
+  const parts = title.split(separatorRegex);
+  if (parts.length >= 2) {
+    // El autor suele estar después del separador
+    const potentialAuthor = parts[parts.length - 1].trim();
+    // Verificar que no sea "nan", muy corto, o que contenga "EBOOK"
+    if (
+      potentialAuthor && 
+      potentialAuthor.toLowerCase() !== "nan" && 
+      potentialAuthor.length > 2 &&
+      !potentialAuthor.toUpperCase().includes("EBOOK")
+    ) {
+      return potentialAuthor;
     }
   }
   

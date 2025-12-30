@@ -58,9 +58,15 @@ export default function Shop() {
   });
   const musicIds = new Set(musicProducts.map(p => p.node.id));
 
-  // Regular books exclude segunda mano and music products
+  // Regular books exclude segunda mano, music products, and "Libro antiguo"
   const segundaManoIds = new Set(segundaManoProducts.map(p => p.node.id));
-  const bookProducts = products.filter(p => !segundaManoIds.has(p.node.id) && !musicIds.has(p.node.id));
+  const bookProducts = products.filter(p => {
+    if (segundaManoIds.has(p.node.id) || musicIds.has(p.node.id)) return false;
+    // Excluir "Libro antiguo" de la vista principal
+    const productType = (p.node.productType || '').toLowerCase().trim();
+    if (productType === 'libro antiguo') return false;
+    return true;
+  });
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
