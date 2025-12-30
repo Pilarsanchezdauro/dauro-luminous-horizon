@@ -12,6 +12,7 @@ import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { parseProductDescription } from "@/lib/description-parser";
+import { AuthorWorks } from "@/components/AuthorWorks";
 
 export default function ProductDetail() {
   const { handle } = useParams();
@@ -420,6 +421,12 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
+            
+            {/* Otras obras del autor */}
+            <AuthorWorks 
+              currentProductHandle={product.handle} 
+              productTitle={product.title} 
+            />
           </div>
         </main>
         
