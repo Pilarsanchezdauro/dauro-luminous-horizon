@@ -297,59 +297,28 @@ export default function Shop() {
     try {
       setIsLoading(true);
       if (selectedCollection === "todos" || selectedCollection === "novedades") {
-        // Ensure we can identify the "Libros Antiguos" collection even on first load
+        // Load collections if needed
         const collectionsData =
           collections.length > 0 ? collections : await getCollections().catch(() => []);
         if (collections.length === 0 && collectionsData.length > 0) {
           setCollections(collectionsData);
         }
 
-        // Exclude products that belong to the "Libros Antiguos" collection from "Todos" and "Novedades"
-        const antiqueCollectionHandles = collectionsData
-          .map((c) => ({
-            title: (c.node.title || "").toLowerCase().trim(),
-            handle: (c.node.handle || "").toLowerCase().trim(),
-          }))
-          .filter(
-            (c) =>
-              c.title === "libros antiguos" ||
-              c.title === "libro antiguo" ||
-              c.handle.includes("libros-antiguos") ||
-              c.handle.includes("libro-antiguo")
-          )
-          .map((c) => c.handle);
-
-        // Load all products and filter out those from excluded collections (including Libros Antiguos)
-        const [allData, ...excludedCollectionsData] = await Promise.all([
-          getAllProducts(),
-          ...antiqueCollectionHandles.map((handle) =>
-            getAllCollectionProducts(handle).catch(() => ({ products: [] }))
-          ),
-          ...EXCLUDED_COLLECTIONS.map((handle) =>
-            getAllCollectionProducts(handle).catch(() => ({ products: [] }))
-          ),
-        ]);
-
-        // Get IDs of products to exclude
-        const excludedProductIds = new Set(
-          excludedCollectionsData.flatMap(({ products }) =>
-            products.map((p: any) => p.node.id)
-          )
-        );
-
-        // Filter out excluded products
-        let filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
+        // Load ALL products - filtering for "Libros Antiguos" happens in the display logic
+        const allData = await getAllProducts();
 
         // Helper to check if product is a novedad
-        const isNovedad = (p: any) => {
+        const isNovedadCheck = (p: any) => {
           const tags = p.node.tags || [];
           const tagsLower = tags.map((t: string) => t.toLowerCase());
           return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
         };
 
+        let filteredProducts = [...allData];
+
         // If "novedades" is selected, filter to only products with novedad tag
         if (selectedCollection === "novedades") {
-          filteredProducts = filteredProducts.filter(isNovedad);
+          filteredProducts = filteredProducts.filter(isNovedadCheck);
           // Sort by published date (most recent first)
           filteredProducts.sort((a: any, b: any) => {
             const dateA = new Date(a.node.publishedAt || a.node.createdAt || 0);
@@ -358,8 +327,8 @@ export default function Shop() {
           });
         } else if (selectedCollection === "todos") {
           // For "todos", put novedades first sorted by date, then the rest
-          const novedades = filteredProducts.filter(isNovedad);
-          const otros = filteredProducts.filter((p: any) => !isNovedad(p));
+          const novedades = filteredProducts.filter(isNovedadCheck);
+          const otros = filteredProducts.filter((p: any) => !isNovedadCheck(p));
 
           // Sort novedades by published date (most recent first)
           novedades.sort((a: any, b: any) => {
