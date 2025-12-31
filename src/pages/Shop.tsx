@@ -66,13 +66,20 @@ export default function Shop() {
     const productType = (p.node.productType || "").toLowerCase().trim();
     const tags = (p.node.tags || []).map((t: string) => t.toLowerCase().trim());
 
+    const ANTIQUO_TAGS = new Set([
+      "libro antiguo",
+      "libros antiguos",
+      "libro-antiguo",
+      "libros-antiguos",
+      "antiguo",
+      "antiguos",
+    ]);
+
     return (
       productType.includes("libro antiguo") ||
       productType.includes("libros antiguos") ||
-      tags.includes("libro antiguo") ||
-      tags.includes("libros antiguos") ||
-      tags.includes("antiguo") ||
-      tags.includes("antiguos")
+      productType.includes("antiguo") ||
+      tags.some((t) => ANTIQUO_TAGS.has(t))
     );
   };
 
@@ -290,29 +297,56 @@ export default function Shop() {
     try {
       setIsLoading(true);
       if (selectedCollection === "todos" || selectedCollection === "novedades") {
-        // Load all products and filter out those from excluded collections
+        // Ensure we can identify the "Libros Antiguos" collection even on first load
+        const collectionsData =
+          collections.length > 0 ? collections : await getCollections().catch(() => []);
+        if (collections.length === 0 && collectionsData.length > 0) {
+          setCollections(collectionsData);
+        }
+
+        // Exclude products that belong to the "Libros Antiguos" collection from "Todos" and "Novedades"
+        const antiqueCollectionHandles = collectionsData
+          .map((c) => ({
+            title: (c.node.title || "").toLowerCase().trim(),
+            handle: (c.node.handle || "").toLowerCase().trim(),
+          }))
+          .filter(
+            (c) =>
+              c.title === "libros antiguos" ||
+              c.title === "libro antiguo" ||
+              c.handle.includes("libros-antiguos") ||
+              c.handle.includes("libro-antiguo")
+          )
+          .map((c) => c.handle);
+
+        // Load all products and filter out those from excluded collections (including Libros Antiguos)
         const [allData, ...excludedCollectionsData] = await Promise.all([
           getAllProducts(),
-          ...EXCLUDED_COLLECTIONS.map(handle => getAllCollectionProducts(handle).catch(() => ({ products: [] })))
+          ...antiqueCollectionHandles.map((handle) =>
+            getAllCollectionProducts(handle).catch(() => ({ products: [] }))
+          ),
+          ...EXCLUDED_COLLECTIONS.map((handle) =>
+            getAllCollectionProducts(handle).catch(() => ({ products: [] }))
+          ),
         ]);
-        
+
         // Get IDs of products to exclude
         const excludedProductIds = new Set(
-          excludedCollectionsData.flatMap(({ products }) => 
+          excludedCollectionsData.flatMap(({ products }) =>
             products.map((p: any) => p.node.id)
           )
         );
-        
+
         // Filter out excluded products
         let filteredProducts = allData.filter((p: any) => !excludedProductIds.has(p.node.id));
-        
+
         // Helper to check if product is a novedad
         const isNovedad = (p: any) => {
           const tags = p.node.tags || [];
           const tagsLower = tags.map((t: string) => t.toLowerCase());
           return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
         };
-        
+
         // If "novedades" is selected, filter to only products with novedad tag
         if (selectedCollection === "novedades") {
           filteredProducts = filteredProducts.filter(isNovedad);
@@ -326,17 +360,17 @@ export default function Shop() {
           // For "todos", put novedades first sorted by date, then the rest
           const novedades = filteredProducts.filter(isNovedad);
           const otros = filteredProducts.filter((p: any) => !isNovedad(p));
-          
+
           // Sort novedades by published date (most recent first)
           novedades.sort((a: any, b: any) => {
             const dateA = new Date(a.node.publishedAt || a.node.createdAt || 0);
             const dateB = new Date(b.node.publishedAt || b.node.createdAt || 0);
             return dateB.getTime() - dateA.getTime();
           });
-          
+
           filteredProducts = [...novedades, ...otros];
         }
-        
+
         setProducts(filteredProducts);
       } else {
         const { products: collectionProducts } = await getAllCollectionProducts(selectedCollection);
