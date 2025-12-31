@@ -12,6 +12,7 @@ import {
   Link2,
   Check,
   BookOpen,
+  ExternalLink,
 } from "lucide-react";
 import { blogPosts as staticBlogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
