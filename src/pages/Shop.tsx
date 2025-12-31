@@ -76,9 +76,17 @@ export default function Shop() {
     );
   };
 
-  const bookProducts = products.filter(
+  // bookProductsBase: exclude segunda mano and music
+  const bookProductsBase = products.filter(
     p => !segundaManoIds.has(p.node.id) && !musicIds.has(p.node.id)
   );
+
+  // bookProducts: for "Todas las obras", exclude libros antiguos
+  // Libros antiguos only visible in their dedicated section
+  const bookProducts = bookProductsBase.filter(p => !isLibroAntiguo(p));
+  
+  // Libros antiguos (separate collection)
+  const librosAntiguos = bookProductsBase.filter(isLibroAntiguo);
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
 
@@ -175,8 +183,8 @@ export default function Shop() {
   // Aplicar “Libros antiguos”: ocultar por defecto y mostrar solo en su vista
   const scopedBooks =
     booksScope === "antiguos"
-      ? categoryFilteredBooks.filter(isLibroAntiguo)
-      : categoryFilteredBooks.filter(p => !isLibroAntiguo(p));
+      ? librosAntiguos
+      : categoryFilteredBooks;
 
   // Sort the filtered books - products without images go to the end
   const filteredBooks = [...scopedBooks].sort((a, b) => {
