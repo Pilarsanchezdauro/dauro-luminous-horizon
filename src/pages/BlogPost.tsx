@@ -464,10 +464,11 @@ const BlogPost = () => {
                   </Button>
                 </div>
 
-                <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
+                <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-headings:font-playfair prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-primary prose-blockquote:italic prose-blockquote:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:mb-2 mb-8">
                   {post.content ? (
                     /<\/?[a-z][\s\S]*>/i.test(post.content) ? (
                       <div
+                        className="space-y-6 [&>p]:mb-6 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>h2]:text-2xl [&>h2]:font-playfair [&>h2]:font-bold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-foreground [&>h3]:text-xl [&>h3]:font-playfair [&>h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-foreground [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>blockquote]:border-l-4 [&>blockquote]:border-primary [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:my-6 [&>hr]:my-8 [&>hr]:border-border"
                         dangerouslySetInnerHTML={{
                           __html: sanitizeHtmlBasic(post.content),
                         }}
