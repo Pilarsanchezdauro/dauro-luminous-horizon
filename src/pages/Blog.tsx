@@ -1,15 +1,27 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, User, ExternalLink, Share2, Facebook, Twitter, Linkedin, Link2, Check, BarChart3 } from "lucide-react";
-import { blogPosts, getPostsByCategory, categoryLabels, type BlogCategory } from "@/data/blogData";
+import {
+  Calendar,
+  User,
+  Share2,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Link2,
+  Check,
+  BarChart3,
+} from "lucide-react";
+import {
+  blogPosts as staticBlogPosts,
+  categoryLabels,
+  type BlogCategory,
+} from "@/data/blogData";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
-import presentacionLatido from "@/assets/presentacion-latido.jpg";
-import libroLatido from "@/assets/libro-latido.png";
 import mascotLogo from "@/assets/mascot.png";
 import heroCulturalBg from "@/assets/hero-cultural-bg.jpg";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -18,29 +30,39 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { usePublishedBlogPosts } from "@/hooks/usePublishedBlogPosts";
+import type { UiBlogPost } from "@/lib/blog";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | "todas">("todas");
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
-  
-  const getFilteredPosts = () => {
-    if (activeCategory === "todas") return blogPosts;
-    return getPostsByCategory(activeCategory);
-  };
-  
-  const filteredPosts = getFilteredPosts();
+
+  const { data: dbPosts = [] } = usePublishedBlogPosts();
+
+  const allPosts = useMemo(() => {
+    const dbSlugs = new Set(dbPosts.map((p) => p.slug).filter(Boolean));
+    return [
+      ...dbPosts,
+      ...(staticBlogPosts.filter((p) => !p.slug || !dbSlugs.has(p.slug)) as UiBlogPost[]),
+    ];
+  }, [dbPosts]);
+
+  const filteredPosts = useMemo(() => {
+    if (activeCategory === "todas") return allPosts;
+    return allPosts.filter((p) => p.category === activeCategory);
+  }, [activeCategory, allPosts]);
 
   const getShareUrl = (postSlug?: string) => {
-    const baseUrl = window.location.hostname.includes('lovableproject.com') 
-      ? 'https://grupodauro.com' 
+    const baseUrl = window.location.hostname.includes("lovableproject.com")
+      ? "https://grupodauro.com"
       : window.location.origin;
     return postSlug ? `${baseUrl}/blog/${postSlug}` : baseUrl;
   };
 
-  const copyToClipboard = async (post: typeof blogPosts[0]) => {
+  const copyToClipboard = async (post: UiBlogPost) => {
     if (!post.slug) return;
-    
+
     const shareUrl = getShareUrl(post.slug);
     try {
       await navigator.clipboard.writeText(shareUrl);
@@ -50,7 +72,7 @@ const Blog = () => {
         description: "El enlace ha sido copiado al portapapeles",
       });
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast({
         title: "Error",
         description: "No se pudo copiar el enlace",
@@ -59,30 +81,30 @@ const Blog = () => {
     }
   };
 
-  const handleShare = (platform: string, post: typeof blogPosts[0]) => {
+  const handleShare = (platform: string, post: UiBlogPost) => {
     if (!post.slug) return;
-    
+
     const shareUrl = getShareUrl(post.slug);
     const shareTitle = post.title;
-    let url = '';
-    
+    let url = "";
+
     switch (platform) {
-      case 'facebook':
+      case "facebook":
         url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
         break;
-      case 'twitter':
+      case "twitter":
         url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
         break;
-      case 'linkedin':
+      case "linkedin":
         url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
         break;
-      case 'whatsapp':
-        url = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' ' + shareUrl)}`;
+      case "whatsapp":
+        url = `https://wa.me/?text=${encodeURIComponent(shareTitle + " " + shareUrl)}`;
         break;
     }
-    
+
     if (url) {
-      window.open(url, '_blank', 'width=600,height=400');
+      window.open(url, "_blank", "width=600,height=400");
     }
   };
 
@@ -166,7 +188,13 @@ const Blog = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
           <div className="max-w-6xl mx-auto">
             {/* Category Tabs */}
-<Tabs defaultValue="todas" className="mb-12" onValueChange={(value) => setActiveCategory(value as BlogCategory | "todas")}>
+            <Tabs
+              defaultValue="todas"
+              className="mb-12"
+              onValueChange={(value) =>
+                setActiveCategory(value as BlogCategory | "todas")
+              }
+            >
               <TabsList className="grid w-full grid-cols-4 sm:grid-cols-7 max-w-4xl mx-auto h-auto gap-1">
                 <TabsTrigger value="todas" className="text-xs sm:text-sm py-2 sm:py-3">
                   Todas
@@ -191,8 +219,6 @@ const Blog = () => {
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-
-
             {/* Posts grid */}
             {filteredPosts.length > 0 ? (
               <>

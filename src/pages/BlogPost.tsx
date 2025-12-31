@@ -1,8 +1,19 @@
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, User, ExternalLink, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Link2, Check, BookOpen } from "lucide-react";
-import { blogPosts } from "@/data/blogData";
+import {
+  Calendar,
+  User,
+  ArrowLeft,
+  Share2,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Link2,
+  Check,
+  BookOpen,
+} from "lucide-react";
+import { blogPosts as staticBlogPosts } from "@/data/blogData";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import NotFound from "./NotFound";
@@ -11,25 +22,61 @@ import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet-async";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { mapDbPostToUiPost, type DbBlogPostRow, type UiBlogPost } from "@/lib/blog";
+
+const sanitizeHtmlBasic = (html: string) => {
+  return html
+    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, "")
+    .replace(/<iframe[\s\S]*?>[\s\S]*?<\/iframe>/gi, "")
+    .replace(/\son\w+="[^"]*"/gi, "")
+    .replace(/\son\w+='[^']*'/gi, "")
+    .replace(/(href|src)\s*=\s*(['"])\s*javascript:[^'"]*\2/gi, "$1=$2#$2");
+};
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = blogPosts.find(p => p.slug === slug);
+  const { trackBlogEngagement } = useAnalytics();
+  const { toast } = useToast();
+
+  const { data: dbPost, isLoading: isLoadingDbPost } = useQuery({
+    queryKey: ["blog-post", slug],
+    enabled: !!slug,
+    queryFn: async (): Promise<UiBlogPost | null> => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select(
+          "id, created_at, published_at, title, slug, excerpt, content, author, category, tags, image_url, meta_title, meta_description"
+        )
+        .eq("slug", slug)
+        .maybeSingle();
+
+      if (error) throw error;
+      if (!data) return null;
+      return mapDbPostToUiPost(data as unknown as DbBlogPostRow);
+    },
+    staleTime: 60_000,
+  });
+
+  const post =
+    dbPost ||
+    (staticBlogPosts.find((p) => p.slug === slug) as UiBlogPost | undefined);
+
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-  const { trackBlogEngagement } = useAnalytics();
   const [readingTime, setReadingTime] = useState(0);
 
   // Track page view and reading time
   useEffect(() => {
     if (!post) return;
 
-    trackBlogEngagement('post_viewed', {
+    trackBlogEngagement("post_viewed", {
       post_slug: post.slug,
       post_title: post.title,
-      post_category: post.category
+      post_category: post.category,
     });
 
     const startTime = Date.now();
@@ -42,17 +89,36 @@ const BlogPost = () => {
       clearInterval(interval);
       // Track reading time on unmount
       if (readingTime > 10) {
-        trackBlogEngagement('post_read', {
+        trackBlogEngagement("post_read", {
           post_slug: post.slug,
-          reading_time_seconds: readingTime
+          reading_time_seconds: readingTime,
         });
       }
     };
-  }, [post, slug, trackBlogEngagement]);
+  }, [post, slug, trackBlogEngagement, readingTime]);
+
+  if (isLoadingDbPost) {
+    return (
+      <div className="min-h-screen">
+        <Navigation />
+        <main className="pt-32 pb-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center text-muted-foreground">
+              Cargando artículo...
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!post) {
     return <NotFound />;
   }
+
+  const metaTitle = post.metaTitle || post.title;
+  const metaDescription = post.metaDescription || post.excerpt;
 
   const getCategoryLabel = (category: string) => {
     const categoryMap: Record<string, string> = {
@@ -240,16 +306,16 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>{post.title} | Grupo Dauro</title>
-        <meta name="description" content={post.excerpt} />
+        <title>{metaTitle} | Grupo Dauro</title>
+        <meta name="description" content={metaDescription} />
         <meta name="author" content={post.author} />
         <link rel="canonical" href={getShareUrl()} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
         <meta property="og:url" content={getShareUrl()} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
         <meta property="og:image:secure_url" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
         <meta property="og:image:width" content="1200" />
@@ -264,40 +330,40 @@ const BlogPost = () => {
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={getShareUrl()} />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
         <meta name="twitter:image:alt" content={post.title} />
         
         {/* Structured Data / JSON-LD */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": post.title,
-            "description": post.excerpt,
-            "image": getAbsoluteImageUrl(post.ogImage || post.image),
-            "author": {
-              "@type": "Organization",
-              "name": post.author,
-              "url": "https://grupodauro.com"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "Grupo Cultural Dauro",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://grupodauro.com/og-logo.png"
-              }
-            },
-            "datePublished": post.date,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": getShareUrl()
-            },
-            "articleSection": getCategoryLabel(post.category),
-            "inLanguage": "es-ES"
-          })}
+           {JSON.stringify({
+             "@context": "https://schema.org",
+             "@type": "Article",
+             "headline": metaTitle,
+             "description": metaDescription,
+             "image": getAbsoluteImageUrl(post.ogImage || post.image),
+             "author": {
+               "@type": "Organization",
+               "name": post.author,
+               "url": "https://grupodauro.com",
+             },
+             "publisher": {
+               "@type": "Organization",
+               "name": "Grupo Cultural Dauro",
+               "logo": {
+                 "@type": "ImageObject",
+                 "url": "https://grupodauro.com/og-logo.png",
+               },
+             },
+             "datePublished": post.date,
+             "mainEntityOfPage": {
+               "@type": "WebPage",
+               "@id": getShareUrl(),
+             },
+             "articleSection": getCategoryLabel(post.category),
+             "inLanguage": "es-ES",
+           })}
         </script>
       </Helmet>
       <Navigation />
@@ -398,7 +464,19 @@ const BlogPost = () => {
                 </div>
 
                 <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
-                  {post.content ? renderContent(post.content) : <p>{post.excerpt}</p>}
+                  {post.content ? (
+                    /<\/?[a-z][\s\S]*>/i.test(post.content) ? (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: sanitizeHtmlBasic(post.content),
+                        }}
+                      />
+                    ) : (
+                      renderContent(post.content)
+                    )
+                  ) : (
+                    <p>{post.excerpt}</p>
+                  )}
                 </div>
 
                 {/* Botón de compra del libro */}
