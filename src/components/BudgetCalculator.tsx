@@ -77,7 +77,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
   }, [pages, deadline, correction, includeSalesPanel]);
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-8 shadow-xl">
+    <div className="bg-card border border-border rounded-2xl p-8 shadow-xl h-full flex flex-col">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-3 bg-primary/10 rounded-xl">
           <Calculator className="w-6 h-6 text-primary" />
@@ -88,7 +88,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         </div>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-8 flex-1 flex flex-col">
         {/* Pages Slider */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -170,7 +170,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         </div>
 
         {/* Price Breakdown */}
-        <div className="border-t border-border pt-6 space-y-3">
+        <div className="border-t border-border pt-6 space-y-3 mt-auto">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Precio base ({pages} páginas)</span>
             <span>{calculation.basePrice.toLocaleString()} €</span>

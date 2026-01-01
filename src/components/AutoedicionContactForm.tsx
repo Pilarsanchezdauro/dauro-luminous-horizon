@@ -84,12 +84,12 @@ export const AutoedicionContactForm = () => {
   };
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl h-fit">
+    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl h-full flex flex-col">
       <h3 className="text-2xl font-bold text-foreground mb-2">Cuéntanos tu proyecto</h3>
       <p className="text-muted-foreground mb-6">Te enviaremos un presupuesto personalizado sin compromiso</p>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex-1 flex flex-col">
           <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
@@ -259,7 +259,7 @@ export const AutoedicionContactForm = () => {
             )}
           />
 
-          <Button type="submit" size="lg" className="w-full text-base py-5" disabled={isSubmitting}>
+          <Button type="submit" size="lg" className="w-full text-base py-5 mt-auto" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
