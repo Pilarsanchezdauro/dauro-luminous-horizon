@@ -69,7 +69,7 @@ const WHY_DAURO = [
   'Ebook gratis con cada publicación',
   'Descuento permanente de autor para tus ejemplares',
   'Servicio de traducción profesional a múltiples idiomas',
-  'Tú mantienes todos los derechos de tu obra',
+  'Contrato temporal y transparente',
 ];
 
 const structuredData = {
@@ -149,7 +149,7 @@ export default function Autoedicion() {
             </p>
             
             <p className="text-lg text-primary font-medium mb-8">
-              "Tu libro, con calidad de bestseller. Si tu calidad es excepcional, no te cuesta editar."
+              "Tu libro, con calidad de bestseller. Si nos enamora tu obra, la editamos sin coste para ti."
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
