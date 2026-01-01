@@ -8,8 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjnjlgd';
 
 const formSchema = z.object({
   nombre: z.string().min(2, 'El nombre es obligatorio'),
@@ -46,23 +47,27 @@ export const AutoedicionContactForm = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from('services_contacts').insert({
-        nombre: data.nombre,
-        apellidos: '',
-        email: data.email,
-        telefono: data.telefono || '',
-        servicio: 'Autoedición',
-        descripcion: `
-Título: ${data.titulo_libro}
-Páginas: ${data.paginas}
-Corrección: ${data.correccion}
-Traducción: ${data.traduccion}
-Plazo deseado: ${data.plazo} días
-${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
-        `.trim(),
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: data.nombre,
+          email: data.email,
+          telefono: data.telefono || 'No proporcionado',
+          titulo_libro: data.titulo_libro,
+          paginas: data.paginas,
+          correccion: data.correccion,
+          traduccion: data.traduccion,
+          plazo: `${data.plazo} días`,
+          mensaje: data.mensaje || 'Sin mensaje adicional',
+          _subject: `Nueva solicitud de autoedición: ${data.titulo_libro}`,
+        }),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Error en el envío');
 
       toast.success('¡Solicitud enviada!', {
         description: 'Te contactaremos pronto con tu presupuesto personalizado.',
@@ -79,21 +84,21 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
   };
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-8 shadow-xl">
+    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl h-fit">
       <h3 className="text-2xl font-bold text-foreground mb-2">Cuéntanos tu proyecto</h3>
-      <p className="text-muted-foreground mb-8">Te enviaremos un presupuesto personalizado sin compromiso</p>
+      <p className="text-muted-foreground mb-6">Te enviaremos un presupuesto personalizado sin compromiso</p>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="nombre"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nombre *</FormLabel>
+                  <FormLabel className="text-sm">Nombre *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Tu nombre" {...field} />
+                    <Input placeholder="Tu nombre" {...field} className="h-10" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -105,9 +110,9 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email *</FormLabel>
+                  <FormLabel className="text-sm">Email *</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="tu@email.com" {...field} />
+                    <Input type="email" placeholder="tu@email.com" {...field} className="h-10" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,15 +120,15 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="telefono"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Teléfono (opcional)</FormLabel>
+                  <FormLabel className="text-sm">Teléfono</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="+34 600 000 000" {...field} />
+                    <Input type="tel" placeholder="+34 600 000 000" {...field} className="h-10" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -135,9 +140,9 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
               name="titulo_libro"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Título provisional del libro *</FormLabel>
+                  <FormLabel className="text-sm">Título del libro *</FormLabel>
                   <FormControl>
-                    <Input placeholder="El título de tu obra" {...field} />
+                    <Input placeholder="El título de tu obra" {...field} className="h-10" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -145,15 +150,15 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="paginas"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Número aproximado de páginas *</FormLabel>
+                  <FormLabel className="text-sm">Nº de páginas *</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="150" {...field} />
+                    <Input type="number" placeholder="150" {...field} className="h-10" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -165,10 +170,10 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
               name="plazo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿En cuánto tiempo quieres publicar?</FormLabel>
+                  <FormLabel className="text-sm">Plazo de publicación</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="h-10">
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
@@ -186,24 +191,24 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="correccion"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Necesitas corrección?</FormLabel>
+                  <FormLabel className="text-sm">¿Corrección?</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="h-10">
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="no">No necesito corrección</SelectItem>
+                      <SelectItem value="no">No necesito</SelectItem>
                       <SelectItem value="ortho">Ortotipográfica</SelectItem>
                       <SelectItem value="style">De estilo</SelectItem>
-                      <SelectItem value="complete">Completa (orto + estilo)</SelectItem>
+                      <SelectItem value="complete">Completa</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -216,21 +221,17 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
               name="traduccion"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Te interesa traducción?</FormLabel>
+                  <FormLabel className="text-sm">¿Traducción?</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="h-10">
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="no">No</SelectItem>
-                      <SelectItem value="ingles">Sí, al inglés</SelectItem>
-                      <SelectItem value="frances">Sí, al francés</SelectItem>
-                      <SelectItem value="italiano">Sí, al italiano</SelectItem>
-                      <SelectItem value="portugues">Sí, al portugués</SelectItem>
-                      <SelectItem value="aleman">Sí, al alemán</SelectItem>
-                      <SelectItem value="catalan">Sí, al catalán</SelectItem>
+                      <SelectItem value="ingles">Inglés</SelectItem>
+                      <SelectItem value="frances">Francés</SelectItem>
                       <SelectItem value="otro">Otro idioma</SelectItem>
                     </SelectContent>
                   </Select>
@@ -245,11 +246,11 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
             name="mensaje"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Mensaje o comentarios (opcional)</FormLabel>
+                <FormLabel className="text-sm">Mensaje (opcional)</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Cuéntanos más sobre tu proyecto, género literario, dudas..."
-                    rows={4}
+                    placeholder="Cuéntanos más sobre tu proyecto..."
+                    rows={3}
                     {...field}
                   />
                 </FormControl>
@@ -258,7 +259,7 @@ ${data.mensaje ? `Mensaje: ${data.mensaje}` : ''}
             )}
           />
 
-          <Button type="submit" size="lg" className="w-full text-lg py-6" disabled={isSubmitting}>
+          <Button type="submit" size="lg" className="w-full text-base py-5" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
