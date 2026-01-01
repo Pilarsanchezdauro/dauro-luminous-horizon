@@ -19,10 +19,14 @@ interface Message {
 }
 
 const SEARCH_EXAMPLES = [
-  "¿Qué libros tenéis de historia?",
-  "¿Hacéis diseño de portadas?",
-  "¿Qué servicios ofrecéis?",
-  "¿Cuándo es la próxima presentación?"
+  "¿Cómo funciona el generador de portadas gratis?",
+  "¿Qué servicios de autoedición ofrecéis?",
+  "¿Hacéis booktrailers para libros?",
+  "¿Cómo puedo unirme a vuestro canal de WhatsApp?",
+  "¿Qué libros tenéis de poesía?",
+  "¿Ofrecéis representación artística?",
+  "¿Qué servicios de diseño web tenéis?",
+  "¿Tenéis servicio de corrección de textos?"
 ];
 
 export const DauroWidget = () => {
