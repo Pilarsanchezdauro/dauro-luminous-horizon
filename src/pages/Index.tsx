@@ -44,7 +44,7 @@ const Index = () => {
     "@type": "WebSite",
     "name": "Grupo Cultural Dauro",
     "url": "https://grupodauro.com",
-    "description": "Grupo cultural dedicado al arte, literatura, cine e inteligencia artificial",
+    "description": "Editorial independiente y servicios para autores. Publicamos tu libro con distribución nacional. Más de 1000 obras publicadas.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://grupodauro.com/blog?q={search_term_string}",
@@ -52,15 +52,66 @@ const Index = () => {
     }
   };
 
+  const publisherStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Grupo Cultural Dauro",
+    "alternateName": "Ediciones Dauro",
+    "url": "https://grupodauro.com",
+    "logo": "https://grupodauro.com/og-logo.png",
+    "description": "Editorial independiente española. Publicamos libros de narrativa, poesía, ensayo e historia. Servicios de edición, maquetación y diseño de portadas para autores.",
+    "foundingDate": "2000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Granada",
+      "addressRegion": "Andalucía",
+      "addressCountry": "ES"
+    },
+    "sameAs": [
+      "https://www.edicionesdauro.com"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios Editoriales",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Publicación de libros",
+            "description": "Edición y publicación profesional con ISBN y distribución en librerías"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Autoedición profesional",
+            "description": "Servicios de autoedición con maquetación, corrección y diseño de portada"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Diseño de portadas",
+            "description": "Diseño profesional de portadas de libros"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden w-full">
       <SEO
-        title="Grupo Cultural Dauro - Arte, Literatura, Cine e Inteligencia Artificial"
-        description="Descubre el Grupo Cultural Dauro: editorial de calidad, galería de arte contemporáneo, producción cinematográfica y servicios creativos con IA en Granada. Promovemos la cultura y el talento."
-        keywords="editorial Granada, galería arte Granada, producción audiovisual, servicios IA, cultura Granada, literatura contemporánea, arte moderno, cine independiente"
+        title="Editorial Dauro | Publica tu Libro - Edición y Autoedición Profesional"
+        description="¿Quieres publicar tu libro? Grupo Cultural Dauro es una editorial independiente con más de 1000 obras publicadas. Ofrecemos edición, autoedición, maquetación y diseño de portadas. Distribución en 4000 librerías."
+        keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, maquetación libros, diseño portadas, ISBN, autopublicación, editorial independiente, servicios editoriales, publicar novela, publicar poesía"
         url="https://grupodauro.com"
         structuredData={homeStructuredData}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publisherStructuredData) }} />
       <ChristmasEffects />
       <ChristmasBanner />
       <Navigation />
@@ -83,8 +134,8 @@ const Index = () => {
 
         {/* Editorial Section */}
         <SectionCard
-          title="Editorial"
-          description="Publicamos literatura de calidad que trasciende el tiempo. Damos voz a autores contemporáneos y rescatamos obras fundamentales."
+          title="Publica tu Libro"
+          description="¿Eres escritor? Publicamos tu libro con distribución en 4000 librerías. Edición profesional, autoedición, maquetación y diseño de portadas. Más de 1000 autores confían en nosotros."
           image={editorialBg}
           link="/grupo-dauro/editorial"
         />

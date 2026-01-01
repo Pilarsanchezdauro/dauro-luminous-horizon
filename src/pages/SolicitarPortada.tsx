@@ -10,9 +10,9 @@ export default function SolicitarPortada() {
   return (
     <>
       <SEO
-        title="Solicitar Diseño de Portada Personalizada"
-        description="Solicita el diseño profesional de la portada de tu libro. Nuestro equipo creará una portada única que capture la esencia de tu obra."
-        keywords="diseño portada libro, portada personalizada, diseño editorial, portada profesional"
+        title="Diseño de Portadas de Libros Profesional | Solicita Presupuesto Gratis"
+        description="Diseño profesional de portadas para tu libro. Portadas personalizadas, atractivas y optimizadas para venta en Amazon, Casa del Libro y librerías. Presupuesto sin compromiso."
+        keywords="diseño portada libro, portada personalizada, diseño editorial profesional, portada Amazon, portada profesional, diseñador portadas, cover design, portada novela, portada poesía"
       />
       <div className="min-h-screen bg-background">
         <Navigation />
