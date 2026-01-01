@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { HelmetProvider } from "react-helmet-async";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import Index from "./pages/Index";
 import GrupoDauro from "./pages/GrupoDauro";
 import Editorial from "./pages/Editorial";
@@ -78,6 +79,7 @@ const App = () => (
           <Sonner />
         <BrowserRouter>
           <ExitIntentPopup />
+          <WhatsAppFloatingButton />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
