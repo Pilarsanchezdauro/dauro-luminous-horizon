@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { HelmetProvider } from "react-helmet-async";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import Index from "./pages/Index";
 import GrupoDauro from "./pages/GrupoDauro";
 import Editorial from "./pages/Editorial";
@@ -75,7 +76,8 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+        <BrowserRouter>
+          <ExitIntentPopup />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
