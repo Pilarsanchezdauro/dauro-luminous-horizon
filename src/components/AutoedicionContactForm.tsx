@@ -84,9 +84,16 @@ export const AutoedicionContactForm = () => {
   };
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl h-full flex flex-col">
-      <h3 className="text-2xl font-bold text-foreground mb-2">Cuéntanos tu proyecto</h3>
-      <p className="text-muted-foreground mb-6">Te enviaremos un presupuesto personalizado sin compromiso</p>
+    <div id="contact-form" className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-xl h-full flex flex-col">
+      <div className="flex items-center gap-3 mb-8">
+        <div className="p-3 bg-primary/10 rounded-xl">
+          <Send className="w-6 h-6 text-primary" />
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold text-foreground">Cuéntanos tu proyecto</h3>
+          <p className="text-muted-foreground">Te enviaremos un presupuesto personalizado sin compromiso</p>
+        </div>
+      </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex-1 flex flex-col">
@@ -259,7 +266,11 @@ export const AutoedicionContactForm = () => {
             )}
           />
 
-          <Button type="submit" size="lg" className="w-full text-base py-5 mt-auto" disabled={isSubmitting}>
+          <p className="text-center text-sm text-muted-foreground mt-auto">
+            * Sin compromiso. Respuesta en menos de 24 horas.
+          </p>
+
+          <Button type="submit" size="lg" className="w-full text-lg py-6" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
