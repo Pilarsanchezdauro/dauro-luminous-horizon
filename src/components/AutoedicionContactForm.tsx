@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { toast } from 'sonner';
+import type { BudgetQuoteRequest } from '@/components/BudgetCalculator';
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjnjlgd';
 
@@ -26,7 +27,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export const AutoedicionContactForm = () => {
+export const AutoedicionContactForm = ({ preset }: { preset?: BudgetQuoteRequest | null }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormData>({
@@ -43,6 +44,36 @@ export const AutoedicionContactForm = () => {
       mensaje: '',
     },
   });
+
+  useEffect(() => {
+    if (!preset) return;
+
+    const correctionMap: Record<string, FormData['correccion']> = {
+      none: 'no',
+      ortho: 'ortho',
+      style: 'style',
+      complete: 'complete',
+    };
+
+    form.setValue('paginas', String(preset.pages));
+    form.setValue('plazo', preset.deadline);
+    form.setValue('correccion', correctionMap[preset.correction] ?? 'no');
+
+    const lines = [
+      `Presupuesto orientativo: ${preset.estimatedTotal.toLocaleString()} €`,
+      `Páginas: ${preset.pages}`,
+      `Plazo: ${preset.deadline} días`,
+      `Corrección: ${preset.correction}`,
+      `Panel de ventas: ${preset.includeSalesPanel ? 'Sí' : 'No'}`,
+    ];
+
+    const currentMessage = (form.getValues('mensaje') ?? '').trim();
+    if (!currentMessage) {
+      form.setValue('mensaje', lines.join('\n'));
+    }
+
+    form.setFocus('nombre');
+  }, [preset, form]);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -178,7 +209,7 @@ export const AutoedicionContactForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm">Plazo de publicación</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger className="h-10">
                         <SelectValue />
@@ -205,7 +236,7 @@ export const AutoedicionContactForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm">¿Corrección?</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                   <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger className="h-10">
                         <SelectValue />
@@ -229,7 +260,7 @@ export const AutoedicionContactForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm">¿Traducción?</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger className="h-10">
                         <SelectValue />

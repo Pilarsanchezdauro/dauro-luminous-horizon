@@ -30,8 +30,17 @@ const CORRECTION_OPTIONS = [
   { id: 'complete', label: 'Corrección completa', pricePerWord: 0.018 },
 ];
 
+export type BudgetQuoteRequest = {
+  pages: number;
+  deadline: string;
+  correction: string;
+  includeSalesPanel: boolean;
+  estimatedTotal: number;
+  isConsultation: boolean;
+};
+
 interface BudgetCalculatorProps {
-  onRequestQuote: () => void;
+  onRequestQuote: (data: BudgetQuoteRequest) => void;
 }
 
 export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
@@ -211,15 +220,18 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
           </div>
         </div>
 
-        <Button 
-          onClick={() => {
-            const formElement = document.getElementById('contact-form');
-            if (formElement) {
-              formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            onRequestQuote();
-          }} 
-          size="lg" 
+        <Button
+          onClick={() =>
+            onRequestQuote({
+              pages,
+              deadline,
+              correction,
+              includeSalesPanel,
+              estimatedTotal: Math.round(calculation.total),
+              isConsultation: calculation.isConsultation,
+            })
+          }
+          size="lg"
           className="w-full text-lg py-6"
         >
           Solicitar presupuesto definitivo
