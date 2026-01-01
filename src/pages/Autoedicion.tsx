@@ -614,7 +614,7 @@ export default function Autoedicion() {
 
             {/* Guía Editorial */}
             <a 
-              href="/public/docs/guia-editorial-autores.pdf" 
+              href="/docs/guia-editorial-autores.pdf" 
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
