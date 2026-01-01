@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { usePublishedBlogPosts } from "@/hooks/usePublishedBlogPosts";
 import type { UiBlogPost } from "@/lib/blog";
+import { BlogCardImage } from "@/components/BlogCardImage";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | "todas">("todas");
@@ -238,17 +239,11 @@ const Blog = () => {
                   key={index}
                   className="bg-card rounded-xl overflow-hidden border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 group"
                 >
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={`${post.title} - Artículo del blog Grupo Dauro`}
-                      loading="lazy"
-                      width="600"
-                      height="400"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  </div>
+                  <BlogCardImage
+                    src={post.image}
+                    alt={`${post.title} - Artículo del blog Grupo Dauro`}
+                    className="h-64"
+                  />
                     <div className="p-6">
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                         <span className="flex items-center gap-1">
