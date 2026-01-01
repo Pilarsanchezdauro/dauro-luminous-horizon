@@ -19,14 +19,23 @@ interface Message {
 }
 
 const SEARCH_EXAMPLES = [
+  // Servicios
   "¿Cómo funciona el generador de portadas gratis?",
   "¿Qué servicios de autoedición ofrecéis?",
   "¿Hacéis booktrailers para libros?",
   "¿Cómo puedo unirme a vuestro canal de WhatsApp?",
-  "¿Qué libros tenéis de poesía?",
   "¿Ofrecéis representación artística?",
   "¿Qué servicios de diseño web tenéis?",
-  "¿Tenéis servicio de corrección de textos?"
+  "¿Tenéis servicio de corrección de textos?",
+  // Catálogo por géneros
+  "¿Qué libros tenéis de poesía?",
+  "¿Tenéis novelas históricas?",
+  "¿Qué libros de narrativa contemporánea hay?",
+  "¿Tenéis ensayos o libros de no ficción?",
+  "¿Qué libros infantiles o juveniles tenéis?",
+  "¿Tenéis libros de autoayuda o desarrollo personal?",
+  "¿Qué biografías o memorias hay disponibles?",
+  "¿Tenéis libros sobre arte o cultura?"
 ];
 
 export const DauroWidget = () => {
@@ -222,8 +231,9 @@ export const DauroWidget = () => {
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
                   <p className="text-sm">
-                    Este asistente usa inteligencia artificial para responder preguntas culturales,
-                    consultar el catálogo y ofrecer información de la web de Grupo Dauro.
+                    Asistente con IA para consultar nuestro catálogo de libros por género, 
+                    servicios de autoedición, diseño de portadas, booktrailers, diseño web, 
+                    representación artística y más. ¡Únete a nuestro canal de WhatsApp!
                   </p>
                 </TooltipContent>
               </Tooltip>
