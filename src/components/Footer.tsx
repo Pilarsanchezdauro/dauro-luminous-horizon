@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss } from "lucide-react";
+import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss, MessageCircle } from "lucide-react";
 import logoNega from "@/assets/logo-nega.png";
 import logoBpwMadrid from "@/assets/logo-bpw-madrid.png";
 import logoIwfSpain from "@/assets/logo-iwf-spain.png";
@@ -106,7 +106,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contacto */}
+          {/* Contacto y WhatsApp */}
           <div>
             <h4 className="font-semibold text-sm mb-4">Contacto</h4>
             <div className="space-y-3">
@@ -117,7 +117,31 @@ const Footer = () => {
                 <Mail className="h-4 w-4" />
                 info@grupodauro.com
               </a>
+              
+              {/* WhatsApp Channel CTA */}
+              <a
+                href="https://whatsapp.com/channel/0029Vb7T73a2v1Iv9rL0U33K"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-[#25D366] text-white px-3 py-2 rounded-lg hover:bg-[#128C7E] transition-colors text-sm font-medium"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Únete a nuestro canal
+              </a>
+              <p className="text-xs text-background/50">
+                Noticias, empleo, castings y comunicados
+              </p>
+              
               <div className="flex gap-3 pt-2">
+                <a
+                  href="https://whatsapp.com/channel/0029Vb7T73a2v1Iv9rL0U33K"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/70 hover:text-[#25D366] transition-colors"
+                  aria-label="WhatsApp Channel"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </a>
                 <a
                   href="https://www.facebook.com/grupodauro"
                   target="_blank"
