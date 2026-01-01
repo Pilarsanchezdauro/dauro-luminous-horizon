@@ -132,7 +132,7 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
   }
 
   return (
-    <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20">
+    <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20 flex flex-col">
       <div className="flex items-center gap-3 mb-4">
         <Download className="h-8 w-8 text-primary" />
         <h3 className="text-xl font-playfair font-bold text-foreground">
@@ -145,7 +145,7 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
       <p className="text-sm text-muted-foreground mb-6">
         Introduce tu nombre y email para descargarla gratis.
       </p>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 mt-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="nombre">Nombre *</Label>

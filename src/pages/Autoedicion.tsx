@@ -632,9 +632,9 @@ export default function Autoedicion() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
             {/* Tienda */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20">
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20 flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <ShoppingBag className="h-8 w-8 text-primary" />
                 <h3 className="text-xl font-playfair font-bold text-foreground">
@@ -644,10 +644,10 @@ export default function Autoedicion() {
               <p className="text-muted-foreground mb-4">
                 Explora nuestro catálogo completo de libros publicados. Novelas, ensayos, poesía y más géneros de autores nacionales e internacionales. Envío a toda España y compra segura.
               </p>
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm text-muted-foreground mb-6 flex-grow">
                 Más de 500 títulos disponibles con envío gratuito en pedidos superiores a 20€.
               </p>
-              <Button asChild className="w-full md:w-auto gap-2">
+              <Button asChild className="w-full gap-2 mt-auto">
                 <Link to="/tienda">
                   <ShoppingBag className="h-4 w-4" />
                   Visitar tienda
@@ -659,7 +659,7 @@ export default function Autoedicion() {
             <GuideDownloadForm pdfUrl="/docs/guia-editorial-autores.pdf" />
 
             {/* Generador de portadas */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20">
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20 flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <Palette className="h-8 w-8 text-primary" />
                 <h3 className="text-xl font-playfair font-bold text-foreground">
@@ -669,10 +669,10 @@ export default function Autoedicion() {
               <p className="text-muted-foreground mb-4">
                 Diseña la portada de tu libro con inteligencia artificial. Introduce el título, autor y género, y genera diseños profesionales en segundos. Sin conocimientos de diseño.
               </p>
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm text-muted-foreground mb-6 flex-grow">
                 Herramienta 100% gratuita. Descarga tu portada en alta resolución lista para imprimir.
               </p>
-              <Button asChild className="w-full md:w-auto gap-2">
+              <Button asChild className="w-full gap-2 mt-auto">
                 <Link to="/generador-portadas">
                   <Palette className="h-4 w-4" />
                   Crear portada gratis
