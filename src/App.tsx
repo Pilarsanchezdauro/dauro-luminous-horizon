@@ -64,6 +64,7 @@ import ProductEbooks from "./pages/admin/ProductEbooks";
 import DescargarEbook from "./pages/DescargarEbook";
 import ShopifyGenres from "./pages/admin/ShopifyGenres";
 import ProductClassifier from "./pages/admin/ProductClassifier";
+import Autoedicion from "./pages/Autoedicion";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +81,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/grupo-dauro" element={<GrupoDauro />} />
             <Route path="/grupo-dauro/editorial" element={<Editorial />} />
+            <Route path="/autoedicion" element={<Autoedicion />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
             <Route path="/grupo-dauro/musica" element={<Musica />} />
