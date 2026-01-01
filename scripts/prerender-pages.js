@@ -20,6 +20,12 @@ const pages = [
     image: '/og-editorial.jpg'
   },
   {
+    path: 'autoedicion',
+    title: 'Autoedición de Calidad | Publica tu Libro desde 690€',
+    description: 'Publica tu libro con calidad profesional: maquetación, portada, ISBN, ebook y distribución. Precios desde 690€ y financiación sin intereses.',
+    image: '/og-editorial.jpg'
+  },
+  {
     path: 'grupo-dauro/arte',
     title: 'Dauro Arte - Galería y Servicios Artísticos',
     description: 'Galería de arte contemporáneo y servicios de consultoría artística en Granada.',
