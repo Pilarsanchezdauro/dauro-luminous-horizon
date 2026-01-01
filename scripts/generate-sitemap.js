@@ -12,21 +12,23 @@ const baseUrl = 'https://grupodauro.com';
 // Static pages configuration
 const staticPages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/grupo-dauro', priority: '0.8', changefreq: 'monthly' },
-  { path: '/grupo-dauro/editorial', priority: '0.9', changefreq: 'monthly' },
-  { path: '/grupo-dauro/arte', priority: '0.9', changefreq: 'monthly' },
-  { path: '/grupo-dauro/cine', priority: '0.9', changefreq: 'monthly' },
-  { path: '/grupo-dauro/ia', priority: '0.9', changefreq: 'monthly' },
+  { path: '/grupo-dauro', priority: '0.9', changefreq: 'monthly' },
+  { path: '/grupo-dauro/editorial', priority: '1.0', changefreq: 'weekly' }, // Alta prioridad para autores
+  { path: '/grupo-dauro/arte', priority: '0.8', changefreq: 'monthly' },
+  { path: '/grupo-dauro/cine', priority: '0.8', changefreq: 'monthly' },
+  { path: '/grupo-dauro/ia', priority: '0.8', changefreq: 'monthly' },
   { path: '/blog', priority: '0.9', changefreq: 'daily' },
   { path: '/shop', priority: '0.8', changefreq: 'weekly' },
-  { path: '/tienda', priority: '0.8', changefreq: 'weekly' },
-  { path: '/servicios', priority: '0.8', changefreq: 'monthly' },
+  { path: '/tienda', priority: '0.9', changefreq: 'weekly' },
+  { path: '/catalogo', priority: '0.9', changefreq: 'weekly' },
+  { path: '/servicios', priority: '1.0', changefreq: 'monthly' }, // Alta prioridad para autores
   { path: '/portafolio', priority: '0.8', changefreq: 'weekly' },
-  { path: '/contacto', priority: '0.7', changefreq: 'monthly' },
+  { path: '/contacto', priority: '0.8', changefreq: 'monthly' },
   { path: '/solicitar-proyecto', priority: '0.7', changefreq: 'monthly' },
   { path: '/solicitar-web', priority: '0.7', changefreq: 'monthly' },
-  { path: '/solicitar-booktrailer', priority: '0.7', changefreq: 'monthly' },
-  { path: '/solicitar-portada', priority: '0.7', changefreq: 'monthly' },
+  { path: '/solicitar-booktrailer', priority: '0.8', changefreq: 'monthly' },
+  { path: '/solicitar-portada', priority: '0.9', changefreq: 'monthly' }, // Alta prioridad para autores
+  { path: '/generador-portadas', priority: '0.9', changefreq: 'monthly' }, // Herramienta gratuita
   { path: '/compromiso-etico', priority: '0.6', changefreq: 'yearly' },
   { path: '/archivo-historico', priority: '0.5', changefreq: 'yearly' },
   { path: '/privacidad', priority: '0.3', changefreq: 'yearly' },

@@ -323,9 +323,9 @@ Cada producción combina narrativa visual, dirección artística y técnica prof
   return (
     <div className="min-h-screen">
       <SEO
-        title="Nuestros Servicios - Innovación Técnica con Visión Cultural"
-        description="Servicios profesionales de edición, publicación, adaptación de guiones, producción audiovisual con IA, diseño gráfico y desarrollo web. Arte, tecnología y pensamiento para proyectos culturales."
-        keywords="servicios editoriales, producción audiovisual IA, diseño gráfico, desarrollo web, adaptación guiones, publicación libros Granada"
+        title="Servicios Editoriales para Autores | Edición, Maquetación y Publicación"
+        description="Servicios profesionales para autores: edición de libros, maquetación, diseño de portadas, corrección de estilo, ISBN y publicación. Publica tu libro con distribución nacional."
+        keywords="servicios editoriales, edición de libros, maquetación libros, diseño portadas libros, corrección estilo, ISBN, publicar libro, autoedición profesional, editorial para autores, publicar manuscrito"
         url="https://grupodauro.com/servicios"
       />
       <Navigation />

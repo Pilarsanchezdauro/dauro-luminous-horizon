@@ -34,18 +34,79 @@ const Editorial = () => {
     "@type": "Publisher",
     "name": "Ediciones Dauro",
     "url": "https://grupodauro.com/grupo-dauro/editorial",
-    "description": "Editorial de calidad que publica literatura contemporánea y rescata obras fundamentales"
+    "description": "Editorial independiente con más de 1000 obras publicadas. Publicamos tu libro con distribución en 4000 librerías. Envía tu manuscrito.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Granada",
+      "addressRegion": "Andalucía",
+      "addressCountry": "ES"
+    },
+    "foundingDate": "2000",
+    "numberOfEmployees": "10-50",
+    "sameAs": [
+      "https://www.edicionesdauro.com"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Publicación de libros",
+          "description": "Servicio completo de edición y publicación de libros con ISBN, distribución nacional e internacional"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Autoedición profesional",
+          "description": "Servicios de autoedición con acompañamiento editorial profesional"
+        }
+      }
+    ]
+  };
+
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cómo puedo publicar mi libro con Ediciones Dauro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Envía tu manuscrito a través de nuestro formulario de contacto. Nuestro comité editorial evaluará tu obra y te contactará en un plazo de 2-4 semanas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta publicar un libro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ofrecemos diferentes modalidades de publicación. Contacta con nosotros para recibir un presupuesto personalizado según las características de tu obra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En qué librerías estarán disponibles mis libros?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal, además de Amazon, Casa del Libro, FNAC y El Corte Inglés."
+        }
+      }
+    ]
   };
 
   return (
     <div className="min-h-screen">
       <SEO
-        title="Editorial Dauro - Literatura de Calidad y Autores Contemporáneos"
-        description="Descubre Ediciones Dauro: publicamos literatura de calidad, damos voz a autores contemporáneos y rescatamos obras fundamentales. Envía tu manuscrito y forma parte de nuestro catálogo."
-        keywords="editorial España, publicar libro, editorial literatura, autores contemporáneos, editorial Granada, enviar manuscrito, publicar novela"
+        title="Publicar Libro | Editorial Dauro - Edición de Libros en España"
+        description="¿Quieres publicar tu libro? Editorial Dauro ofrece edición profesional, autoedición y publicación con distribución en 4000 librerías. Envía tu manuscrito gratis. Más de 1000 obras publicadas."
+        keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, enviar manuscrito, publicar novela, autopublicación, editar libro, editorial independiente, publicar libro gratis, coste publicar libro, ISBN libro"
         url="https://grupodauro.com/grupo-dauro/editorial"
         structuredData={structuredData}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
       <Navigation />
       
       {/* Hero Section */}
@@ -61,13 +122,13 @@ const Editorial = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
-            Dauro Editorial
+            Publica tu Libro con Nosotros
           </h1>
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
-            Cuna de autores de éxito
+            Editorial profesional para autores exigentes
           </p>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Más de 1.000 obras publicadas. Presencia en 4.000 librerías de España y Portugal. Distribución global y un compromiso firme con la excelencia literaria.
+            Más de 1.000 obras publicadas. Distribución en 4.000 librerías de España y Portugal. Tu libro en Amazon, Casa del Libro, FNAC y El Corte Inglés.
           </p>
         </div>
       </section>

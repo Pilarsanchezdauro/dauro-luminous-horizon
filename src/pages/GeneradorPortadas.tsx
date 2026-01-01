@@ -342,9 +342,9 @@ export default function GeneradorPortadas() {
   return (
     <>
       <SEO
-        title="Generador de Portadas con IA - Grupo Dauro"
-        description="Crea portadas profesionales para tus libros usando inteligencia artificial. Genera diseños únicos en segundos."
-        keywords="generador de portadas, diseño de portadas, IA, inteligencia artificial, portadas de libros"
+        title="Generador de Portadas de Libros Gratis con IA | Crea tu Portada Online"
+        description="Genera portadas de libros gratis con inteligencia artificial. Herramienta online para crear portadas profesionales para tu novela, poesía, ensayo o autoedición. Sin registro."
+        keywords="generador portadas gratis, crear portada libro, portada con IA, diseño portada online, portada libro gratis, herramienta portadas, generador covers, diseño editorial gratis, autoedición portada"
       />
       <div className="min-h-screen bg-background">
         <Navigation />

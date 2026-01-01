@@ -9,14 +9,14 @@ const __dirname = dirname(__filename);
 const pages = [
   {
     path: 'grupo-dauro',
-    title: 'Grupo Dauro - Quiénes Somos',
-    description: 'Conoce al Grupo Cultural Dauro: editorial, galería de arte y producción cinematográfica en Granada.',
+    title: 'Grupo Cultural Dauro | Editorial y Servicios para Autores',
+    description: 'Grupo Cultural Dauro: editorial independiente con más de 1000 obras publicadas. Servicios de edición, autoedición, maquetación y publicación de libros en Granada.',
     image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'grupo-dauro/editorial',
-    title: 'Editorial Dauro - Publicación de Obras Literarias',
-    description: 'Editorial independiente especializada en literatura de calidad. Publicamos novela, poesía y ensayo.',
+    title: 'Publicar Libro | Editorial Dauro - Edición de Libros en España',
+    description: '¿Quieres publicar tu libro? Editorial Dauro ofrece edición profesional, autoedición y publicación con distribución en 4000 librerías. Envía tu manuscrito gratis.',
     image: '/og-editorial.jpg'
   },
   {
@@ -27,32 +27,32 @@ const pages = [
   },
   {
     path: 'grupo-dauro/cine',
-    title: 'Dauro Cine - Producción Audiovisual',
-    description: 'Producción cinematográfica independiente y servicios audiovisuales de calidad.',
+    title: 'Dauro Cine - Producción Audiovisual y Booktrailers',
+    description: 'Producción cinematográfica independiente, booktrailers profesionales y servicios audiovisuales para autores y editoriales.',
     image: '/og-cine.jpg'
   },
   {
     path: 'grupo-dauro/ia',
-    title: 'Dauro IA - Inteligencia Artificial con Identidad Estética',
-    description: 'Servicios creativos con IA: generación de contenido, diseño y estrategia digital.',
+    title: 'Dauro IA - Inteligencia Artificial para Escritores',
+    description: 'Servicios creativos con IA para autores: generación de portadas, booktrailers y contenido promocional para tu libro.',
     image: '/og-ia.jpg'
   },
   {
     path: 'servicios',
-    title: 'Servicios Culturales y Creativos',
-    description: 'Consultoría cultural, diseño editorial, producción audiovisual y servicios creativos con IA.',
+    title: 'Servicios Editoriales para Autores | Edición, Maquetación y Publicación',
+    description: 'Servicios profesionales para autores: edición de libros, maquetación, diseño de portadas, corrección de estilo, ISBN y publicación con distribución nacional.',
     image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'blog',
-    title: 'Blog - Noticias Culturales y Eventos',
-    description: 'Últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos y novedades sobre IA creativa.',
+    title: 'Blog - Noticias Culturales y Consejos para Autores',
+    description: 'Noticias del mundo editorial, consejos para escritores, presentaciones de libros y novedades sobre publicación y autoedición.',
     image: '/og-editorial.jpg'
   },
   {
     path: 'contacto',
-    title: 'Contacto - Grupo Cultural Dauro',
-    description: 'Ponte en contacto con el Grupo Cultural Dauro para proyectos editoriales, artísticos o audiovisuales.',
+    title: 'Contacto - Envía tu Manuscrito | Grupo Cultural Dauro',
+    description: 'Contacta con el Grupo Cultural Dauro para publicar tu libro, solicitar servicios editoriales o enviar tu manuscrito para valoración gratuita.',
     image: '/og-grupo-dauro.jpg'
   },
   {
@@ -63,14 +63,20 @@ const pages = [
   },
   {
     path: 'tienda',
-    title: 'Tienda Cultural - Libros y Productos Exclusivos',
-    description: 'Descubre nuestra selección de libros, obras de arte y productos culturales exclusivos del Grupo Dauro.',
+    title: 'Tienda de Libros | Editorial Dauro - Más de 1000 Títulos',
+    description: 'Compra libros de narrativa, poesía, ensayo e historia. Envío a toda España. Catálogo completo de Ediciones Dauro.',
+    image: '/og-editorial.jpg'
+  },
+  {
+    path: 'catalogo',
+    title: 'Catálogo de Libros | Editorial Dauro - Literatura de Calidad',
+    description: 'Explora nuestro catálogo de más de 1000 libros publicados. Narrativa, poesía, ensayo, historia y pensamiento contemporáneo.',
     image: '/og-editorial.jpg'
   },
   {
     path: 'portafolio',
-    title: 'Portafolio - Proyectos y Trabajos Destacados',
-    description: 'Explora nuestro portafolio de proyectos: diseño editorial, branding, producción audiovisual y creaciones con IA.',
+    title: 'Portafolio - Proyectos Editoriales y Creativos',
+    description: 'Portafolio de proyectos: diseño de portadas, maquetación editorial, booktrailers y branding para autores.',
     image: '/og-grupo-dauro.jpg'
   },
   {
@@ -78,6 +84,24 @@ const pages = [
     title: 'Dauro Música - Producción Musical y Artistas',
     description: 'Descubre nuestra división musical: producción, representación de artistas y proyectos sonoros de calidad.',
     image: '/og-el-arte-es-navidad.png'
+  },
+  {
+    path: 'solicitar-portada',
+    title: 'Diseño de Portadas de Libros | Solicita Presupuesto Gratis',
+    description: 'Diseño profesional de portadas para tu libro. Portadas personalizadas, atractivas y optimizadas para venta. Solicita presupuesto sin compromiso.',
+    image: '/og-generador-portadas-gratis.png'
+  },
+  {
+    path: 'generador-portadas',
+    title: 'Generador de Portadas con IA Gratis | Crea tu Portada de Libro',
+    description: 'Genera portadas de libros gratis con inteligencia artificial. Herramienta online para crear portadas profesionales para tu novela, poesía o ensayo.',
+    image: '/og-generador-portadas-gratis.png'
+  },
+  {
+    path: 'solicitar-booktrailer',
+    title: 'Booktrailers Profesionales | Promociona tu Libro con Vídeo',
+    description: 'Creamos booktrailers cinematográficos para promocionar tu libro. Vídeos profesionales que captan la esencia de tu obra.',
+    image: '/og-cine.jpg'
   }
 ];
 

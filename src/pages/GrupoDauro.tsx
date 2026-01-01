@@ -29,9 +29,9 @@ const GrupoDauro = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Grupo Cultural Dauro - Arte, Tecnología y Pensamiento desde 2000"
-        description="Desde el año 2000, Grupo Cultural Dauro impulsa la creación, la edición y la innovación cultural uniendo la herencia artística con la tecnología del futuro."
-        keywords="Grupo Cultural Dauro, editorial Granada, producción audiovisual, inteligencia artificial cultura, proyectos culturales"
+        title="Grupo Cultural Dauro | Editorial y Servicios para Autores en Granada"
+        description="Grupo Cultural Dauro: editorial independiente, servicios de autoedición, maquetación, diseño de portadas y publicación de libros. Más de 1000 obras publicadas desde el año 2000."
+        keywords="Grupo Cultural Dauro, editorial Granada, publicar libro Granada, autoedición Granada, servicios editoriales, maquetación libros, diseño portadas, publicar mi libro, editorial independiente España"
         url="https://grupodauro.com/grupo-dauro"
       />
       <Navigation />

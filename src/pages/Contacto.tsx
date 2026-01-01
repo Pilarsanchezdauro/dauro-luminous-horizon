@@ -71,9 +71,9 @@ const Contacto = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Contacto - Grupo Cultural Dauro"
-        description="¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros? Ponte en contacto con Grupo Cultural Dauro. Nos encantaría escucharte."
-        keywords="contacto Grupo Dauro, contactar editorial Granada, proyectos culturales Granada"
+        title="Contacto | Envía tu Manuscrito - Editorial Dauro Granada"
+        description="¿Quieres publicar tu libro? Contacta con Editorial Dauro para enviar tu manuscrito, solicitar presupuesto de edición o información sobre autoedición. Respuesta en 48h."
+        keywords="contacto editorial, enviar manuscrito, publicar libro Granada, editorial Granada contacto, consulta publicación, presupuesto edición libro, autoedición contacto"
         url="https://grupodauro.com/contacto"
       />
       <Navigation />
@@ -94,13 +94,13 @@ const Contacto = () => {
             <span className="text-sm font-semibold text-white uppercase tracking-wider">Hablemos</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
-            Contacto
+            Publica tu Libro
           </h1>
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
-            ¿Tienes un proyecto en mente? ¿Quieres colaborar con nosotros?
+            ¿Tienes un manuscrito? ¿Quieres publicar tu libro?
           </p>
           <p className="text-lg lg:text-xl text-white/80 max-w-2xl mx-auto">
-            Nos encantaría escucharte.
+            Envíanos tu proyecto y te respondemos en 48 horas.
           </p>
         </div>
       </section>
