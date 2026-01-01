@@ -10,6 +10,7 @@ import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { BudgetCalculator, type BudgetQuoteRequest } from '@/components/BudgetCalculator';
 import { AutoedicionContactForm } from '@/components/AutoedicionContactForm';
+import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
@@ -612,24 +613,8 @@ export default function Autoedicion() {
               </span>
             </a>
 
-            {/* Guía Editorial */}
-            <a 
-              href="/docs/guia-editorial-autores.pdf" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                <FileText className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Guía Editorial Gratis</h3>
-              <p className="text-muted-foreground mb-4">
-                Descarga nuestra guía con consejos para publicar tu libro
-              </p>
-              <span className="text-primary font-medium group-hover:underline">
-                Descargar PDF →
-              </span>
-            </a>
+            {/* Guía Editorial con formulario */}
+            <GuideDownloadForm pdfUrl="/docs/guia-editorial-autores.pdf" />
 
             {/* Generador de portadas */}
             <a 
