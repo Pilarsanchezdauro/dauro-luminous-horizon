@@ -612,20 +612,22 @@ export default function Autoedicion() {
               </span>
             </a>
 
-            {/* Catálogo */}
+            {/* Guía Editorial */}
             <a 
-              href="/catalogo" 
+              href="/public/docs/guia-editorial-autores.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                <Library className="w-8 h-8 text-primary" />
+                <FileText className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Catálogo de Obras</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Guía Editorial Gratis</h3>
               <p className="text-muted-foreground mb-4">
-                Explora nuestras obras más representativas publicadas
+                Descarga nuestra guía con consejos para publicar tu libro
               </p>
               <span className="text-primary font-medium group-hover:underline">
-                Ver catálogo →
+                Descargar PDF →
               </span>
             </a>
 
