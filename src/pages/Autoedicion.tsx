@@ -77,24 +77,61 @@ const WHY_DAURO = [
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Autoedición de Calidad - Dauro Editorial",
-  "description": "Servicio de autoedición profesional para autores. Maquetación, portada, ISBN, distribución global y ebook incluido. 26 años de experiencia editorial.",
+  "name": "Autoedición de Libros Profesional - Dauro Editorial",
+  "description": "Servicio de autoedición y autopublicación profesional para autores. Incluye maquetación, diseño de portada personalizada, ISBN oficial, ebook gratis y distribución global en Amazon, Casa del Libro, Fnac, El Corte Inglés y más. 26 años de experiencia editorial en Granada.",
   "provider": {
     "@type": "Organization",
     "name": "Dauro Editorial",
     "url": "https://grupodauro.com",
-    "foundingDate": "1999"
+    "foundingDate": "1999",
+    "logo": "https://grupodauro.com/og-logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Granada",
+      "addressRegion": "Andalucía",
+      "addressCountry": "ES"
+    },
+    "sameAs": [
+      "https://www.edicionesdauro.com"
+    ]
   },
-  "areaServed": "ES",
-  "serviceType": "Editorial Services",
-  "offers": {
-    "@type": "Offer",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": "690",
-      "priceCurrency": "EUR",
-      "minPrice": "690"
-    }
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  },
+  "serviceType": "Autoedición y Publicación de Libros",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Autoedición",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Autoedición Básica",
+        "description": "Maquetación interior, portada personalizada, ISBN y alta legal, ebook incluido",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "690",
+          "priceCurrency": "EUR",
+          "minPrice": "690"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Autoedición con Distribución",
+        "description": "Incluye distribución global en Amazon, Casa del Libro, Fnac, El Corte Inglés y más plataformas",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "990",
+          "priceCurrency": "EUR"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "150",
+    "bestRating": "5"
   }
 };
 
@@ -116,9 +153,9 @@ export default function Autoedicion() {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Autoedición de Calidad | Publica tu Libro desde 690€ - Dauro Editorial"
-        description="Publica tu primer libro con calidad profesional. Maquetación, portada, ISBN, ebook gratis y distribución en Amazon, Casa del Libro y más. Precios desde 690€. Financiación sin intereses."
-        keywords="autoedición, publicar libro, editar libro, autopublicación, ISBN, editorial España, publicar primer libro, edición profesional, maquetación libros, portada libro, ebook, distribución libros"
+        title="Autoedición de Libros | Publica tu Libro desde 690€ con ISBN y Distribución - Dauro Editorial"
+        description="Publica tu libro con calidad editorial profesional desde 690€. Incluye maquetación, portada personalizada, ISBN, ebook gratis y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Financiación sin intereses en 2 plazos."
+        keywords="autoedición libros, publicar libro España, editorial autoedición, autopublicación profesional, editar mi libro, ISBN libro, maquetación libros, diseño portada libro, ebook incluido, distribución Amazon, publicar novela, publicar poesía, imprimir libro bajo demanda, editorial Granada, autopublicar libro barato, publicar libro online"
         image="/og-editorial.jpg"
         url="https://grupodauro.com/autoedicion"
         structuredData={structuredData}
