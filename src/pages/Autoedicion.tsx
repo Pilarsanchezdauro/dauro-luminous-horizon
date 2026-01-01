@@ -56,9 +56,9 @@ const TRANSLATION_PRICES = [
 
 const FEATURED_AUTHORS = [
   { name: 'Autores premiados con el Premio Andalucía de la Crítica', highlight: true },
-  { name: 'Ganadores del Premio de Novela Fernando Quiñones', highlight: true },
-  { name: 'Finalistas del Premio Nadal', highlight: false },
-  { name: 'Escritores reconocidos por la Real Academia Española', highlight: false },
+  { name: 'Escritores con obras traducidas a múltiples idiomas', highlight: true },
+  { name: 'Autores con presencia en ferias internacionales', highlight: false },
+  { name: 'Escritores con trayectoria literaria consolidada', highlight: false },
 ];
 
 const WHY_DAURO = [
