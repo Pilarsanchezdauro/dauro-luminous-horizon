@@ -502,18 +502,6 @@ export default function Shop() {
                         >
                           Novedades
                         </Button>
-                        <Button
-                          variant={booksScope === "antiguos" ? "default" : "outline"}
-                          onClick={() => {
-                            setBooksScope("antiguos");
-                            setSelectedCollection("todos");
-                            setBookCategory("todos");
-                            setSelectedGenre("todos");
-                          }}
-                          size="sm"
-                        >
-                          Libros antiguos
-                        </Button>
                         {collections.map(col => (
                           <Button
                             key={col.node.id}
