@@ -68,7 +68,7 @@ export const ExitIntentPopup = () => {
             </div>
             <div>
               <p className="text-sm opacity-90">¡Espera!</p>
-              <h2 className="text-2xl font-bold">¿Tienes un libro en mente?</h2>
+              <h2 className="text-2xl font-bold">¿Ya tienes tu libro listo?</h2>
             </div>
           </div>
         </div>
