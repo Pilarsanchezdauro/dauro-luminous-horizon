@@ -597,41 +597,51 @@ export default function Autoedicion() {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Tienda */}
-            <a 
-              href="/tienda" 
-              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                <ShoppingBag className="w-8 h-8 text-primary" />
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20">
+              <div className="flex items-center gap-3 mb-4">
+                <ShoppingBag className="h-8 w-8 text-primary" />
+                <h3 className="text-xl font-playfair font-bold text-foreground">
+                  Tienda Online
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Tienda Online</h3>
               <p className="text-muted-foreground mb-4">
-                Descubre todos nuestros libros disponibles para compra
+                Explora nuestro catálogo completo de libros publicados. Novelas, ensayos, poesía y más géneros de autores nacionales e internacionales. Envío a toda España y compra segura.
               </p>
-              <span className="text-primary font-medium group-hover:underline">
-                Visitar tienda →
-              </span>
-            </a>
+              <p className="text-sm text-muted-foreground mb-6">
+                Más de 500 títulos disponibles con envío gratuito en pedidos superiores a 20€.
+              </p>
+              <Button asChild className="w-full md:w-auto gap-2">
+                <Link to="/tienda">
+                  <ShoppingBag className="h-4 w-4" />
+                  Visitar tienda
+                </Link>
+              </Button>
+            </div>
 
             {/* Guía Editorial con formulario */}
             <GuideDownloadForm pdfUrl="/docs/guia-editorial-autores.pdf" />
 
             {/* Generador de portadas */}
-            <a 
-              href="/generador-portadas" 
-              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                <Palette className="w-8 h-8 text-primary" />
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Palette className="h-8 w-8 text-primary" />
+                <h3 className="text-xl font-playfair font-bold text-foreground">
+                  Crea tu Portada Gratis
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Crea tu Portada Gratis</h3>
               <p className="text-muted-foreground mb-4">
-                Diseña la portada de tu libro con inteligencia artificial
+                Diseña la portada de tu libro con inteligencia artificial. Introduce el título, autor y género, y genera diseños profesionales en segundos. Sin conocimientos de diseño.
               </p>
-              <span className="text-primary font-medium group-hover:underline">
-                Crear portada →
-              </span>
-            </a>
+              <p className="text-sm text-muted-foreground mb-6">
+                Herramienta 100% gratuita. Descarga tu portada en alta resolución lista para imprimir.
+              </p>
+              <Button asChild className="w-full md:w-auto gap-2">
+                <Link to="/generador-portadas">
+                  <Palette className="h-4 w-4" />
+                  Crear portada gratis
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
