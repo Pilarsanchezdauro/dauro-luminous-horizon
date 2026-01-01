@@ -383,17 +383,19 @@ const Editorial = () => {
         </section>
 
         {/* CTA */}
-        <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
+        <div
+          id="enviar-obra"
+          className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden"
+        >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
           <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
             ¿Eres autor? ¿Tienes un manuscrito?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
-            Estamos siempre buscando nuevas propuestas editoriales. 
-            Envíanos tu proyecto y lo evaluaremos con atención.
+            Estamos siempre buscando nuevas propuestas editoriales. Envíanos tu proyecto y lo evaluaremos con atención.
           </p>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 relative z-10"
             onClick={() => setIsFormOpen(true)}
           >
