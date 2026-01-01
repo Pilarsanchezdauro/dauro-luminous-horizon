@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { 
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
   Globe, CreditCard, FileText, Palette, Package, 
-  BarChart3, Languages, ChevronRight, Award, Users, Trophy, Calendar
+  BarChart3, Languages, ChevronRight, Award, Users, Trophy, Calendar,
+  Video, Megaphone, Monitor, Share2
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -371,6 +372,112 @@ export default function Autoedicion() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Marketing Services */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Megaphone className="w-4 h-4" />
+                Servicios de promoción
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Te ayudamos a dar a conocer tu libro
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Servicios de marketing y promoción para impulsar tu obra
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Free service */}
+              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-8 relative overflow-hidden">
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
+                  GRATIS
+                </div>
+                <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                  <Megaphone className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Publicidad para presentaciones
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Creamos todo el material publicitario para las presentaciones de tu libro sin ningún coste adicional.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    'Carteles y diseños promocionales',
+                    'Material para redes sociales',
+                    'Notas de prensa',
+                    'Invitaciones digitales'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-foreground">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Paid services */}
+              <div className="bg-card border border-border rounded-2xl p-8">
+                <div className="absolute top-4 right-4 bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm font-medium">
+                  PRECIOS ECONÓMICOS
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-6">
+                  Servicios adicionales
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Video className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Booktrailer</h4>
+                      <p className="text-sm text-muted-foreground">Vídeo promocional profesional para dar a conocer tu libro</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Star className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Marca de autor</h4>
+                      <p className="text-sm text-muted-foreground">Identidad visual personal: logo, colores y estilo propio</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Monitor className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Página web de autor</h4>
+                      <p className="text-sm text-muted-foreground">Tu espacio online profesional para mostrar tu obra</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Share2 className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Plan de marketing digital</h4>
+                      <p className="text-sm text-muted-foreground">Estrategia completa para redes sociales y promoción online</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-center text-sm text-muted-foreground mt-6 pt-6 border-t border-border">
+                  Consulta precios personalizados según tus necesidades
+                </p>
               </div>
             </div>
           </div>
