@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,18 @@ import mascotLogo from "@/assets/mascot.png";
 
 const Editorial = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#enviar-obra") {
+      setIsFormOpen(true);
+      requestAnimationFrame(() => {
+        document
+          .getElementById("enviar-obra")
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+  }, [location.hash]);
 
   const structuredData = {
     "@context": "https://schema.org",
