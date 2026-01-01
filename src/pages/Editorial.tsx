@@ -414,6 +414,34 @@ const Editorial = () => {
             Enviar propuesta editorial
           </Button>
         </div>
+        {/* CTA Tienda */}
+        <section className="mt-20">
+          <div className="bg-gradient-to-r from-primary/5 via-accent/10 to-primary/5 p-10 lg:p-14 rounded-3xl border border-primary/10 relative overflow-hidden group hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/15 transition-all duration-500" />
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/15 transition-all duration-500" />
+            
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="text-center lg:text-left">
+                <h2 className="text-2xl lg:text-3xl font-playfair font-bold mb-3 text-foreground">
+                  Explora nuestro catálogo completo
+                </h2>
+                <p className="text-muted-foreground text-lg max-w-xl">
+                  Más de mil obras de narrativa, poesía, ensayo e historia te esperan en nuestra tienda online.
+                </p>
+              </div>
+              
+              <Link
+                to="/tienda"
+                className="group/btn inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-full font-medium text-lg shadow-lg hover:shadow-[0_15px_40px_-10px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 whitespace-nowrap"
+              >
+                <BookOpen className="h-5 w-5 group-hover/btn:rotate-12 transition-transform duration-300" />
+                Ver todos nuestros libros
+                <ExternalLink className="h-4 w-4 opacity-70 group-hover/btn:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
