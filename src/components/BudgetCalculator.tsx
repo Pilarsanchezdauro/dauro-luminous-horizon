@@ -211,7 +211,17 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
           </div>
         </div>
 
-        <Button onClick={onRequestQuote} size="lg" className="w-full text-lg py-6">
+        <Button 
+          onClick={() => {
+            const formElement = document.getElementById('contact-form');
+            if (formElement) {
+              formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            onRequestQuote();
+          }} 
+          size="lg" 
+          className="w-full text-lg py-6"
+        >
           Solicitar presupuesto definitivo
         </Button>
 
