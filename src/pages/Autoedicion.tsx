@@ -4,7 +4,7 @@ import {
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
   Globe, CreditCard, FileText, Palette, Package, 
   BarChart3, Languages, ChevronRight, Award, Users, Trophy, Calendar,
-  Video, Megaphone, Monitor, Share2
+  Video, Megaphone, Monitor, Share2, ShoppingBag, Library
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -578,6 +578,73 @@ export default function Autoedicion() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore More Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Explora más
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Descubre nuestro catálogo y herramientas para autores
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Tienda */}
+            <a 
+              href="/tienda" 
+              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                <ShoppingBag className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Tienda Online</h3>
+              <p className="text-muted-foreground mb-4">
+                Descubre todos nuestros libros disponibles para compra
+              </p>
+              <span className="text-primary font-medium group-hover:underline">
+                Visitar tienda →
+              </span>
+            </a>
+
+            {/* Catálogo */}
+            <a 
+              href="/catalogo" 
+              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                <Library className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Catálogo de Obras</h3>
+              <p className="text-muted-foreground mb-4">
+                Explora nuestras obras más representativas publicadas
+              </p>
+              <span className="text-primary font-medium group-hover:underline">
+                Ver catálogo →
+              </span>
+            </a>
+
+            {/* Generador de portadas */}
+            <a 
+              href="/generador-portadas" 
+              className="group bg-card border border-border rounded-2xl p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                <Palette className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Crea tu Portada Gratis</h3>
+              <p className="text-muted-foreground mb-4">
+                Diseña la portada de tu libro con inteligencia artificial
+              </p>
+              <span className="text-primary font-medium group-hover:underline">
+                Crear portada →
+              </span>
+            </a>
           </div>
         </div>
       </section>
