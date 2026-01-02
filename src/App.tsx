@@ -64,6 +64,7 @@ import ShopifySync from "./pages/admin/ShopifySync";
 import ShopifyImages from "./pages/admin/ShopifyImages";
 import ProductEbooks from "./pages/admin/ProductEbooks";
 import DescargarEbook from "./pages/DescargarEbook";
+import MisEbooks from "./pages/MisEbooks";
 import ShopifyGenres from "./pages/admin/ShopifyGenres";
 import ProductClassifier from "./pages/admin/ProductClassifier";
 import Autoedicion from "./pages/Autoedicion";
@@ -117,6 +118,7 @@ const App = () => (
             <Route path="/archivo-historico" element={<ArchivoHistorico />} />
             <Route path="/mirlo-key" element={<DauroMirloKey />} />
             <Route path="/descargar-ebook" element={<DescargarEbook />} />
+            <Route path="/mis-ebooks" element={<MisEbooks />} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminDashboard />} />
               <Route path="dauro-arte" element={<DauroArteContacts />} />

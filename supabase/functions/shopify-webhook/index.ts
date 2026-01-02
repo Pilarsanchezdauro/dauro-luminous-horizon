@@ -13,11 +13,11 @@ const SKU_TO_CREDITS: Record<string, number> = {
   "COVER-CREDITS-30": 30,
 };
 
-// Send ebook download email via Formspree
-async function sendEbookEmail(
-  email: string, 
+// Send notification to admin about ebook purchase via Formspree
+async function sendAdminNotification(
+  customerEmail: string, 
   productTitle: string, 
-  downloadLink: string,
+  orderNumber: string,
   formspreeFormId: string
 ): Promise<boolean> {
   try {
@@ -28,12 +28,14 @@ async function sendEbookEmail(
         "Accept": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        _replyto: email,
-        _subject: `Tu ebook "${productTitle}" está listo para descargar`,
-        product_title: productTitle,
-        download_link: downloadLink,
-        message: `¡Gracias por tu compra! Tu ebook "${productTitle}" está listo para descargar. Haz clic en el siguiente enlace para descargarlo: ${downloadLink}`,
+        _replyto: customerEmail,
+        _subject: `🎉 Nueva venta de ebook: ${productTitle}`,
+        email: "info@grupodauro.com",
+        tipo: "Venta de Ebook",
+        producto: productTitle,
+        cliente_email: customerEmail,
+        numero_pedido: orderNumber,
+        message: `Se ha realizado una nueva compra de ebook.\n\nProducto: ${productTitle}\nCliente: ${customerEmail}\nNúmero de pedido: ${orderNumber}\n\nEl cliente puede descargar su ebook en: https://grupodauro.com/mis-ebooks`,
       }),
     });
 
@@ -42,10 +44,10 @@ async function sendEbookEmail(
       return false;
     }
 
-    console.log(`Email sent successfully to ${email} for product ${productTitle}`);
+    console.log(`Admin notification sent for ebook purchase: ${productTitle}`);
     return true;
   } catch (error) {
-    console.error("Error sending email via Formspree:", error);
+    console.error("Error sending admin notification via Formspree:", error);
     return false;
   }
 }
@@ -129,7 +131,7 @@ serve(async (req) => {
 
     // Check if order is paid
     if (order.financial_status !== "paid") {
-      console.log("Order not paid yet, skipping credit assignment");
+      console.log("Order not paid yet, skipping processing");
       return new Response(JSON.stringify({ message: "Order not paid" }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -170,8 +172,7 @@ serve(async (req) => {
 
     // Process ebooks
     const formspreeFormId = Deno.env.get("FORMSPREE_EBOOK_FORM_ID");
-    const siteUrl = Deno.env.get("SUPABASE_URL")?.replace(".supabase.co", "").replace("https://", "") || "";
-    const baseDownloadUrl = `https://grupodauro.lovable.app/descargar-ebook`;
+    let ebooksProcessed = 0;
     
     for (const ebookItem of ebookProductIds) {
       // Check if this product has an ebook associated
@@ -215,30 +216,24 @@ serve(async (req) => {
         }
 
         console.log(`Created ebook purchase with token: ${newPurchase.download_token}`);
+        ebooksProcessed++;
 
-        // Send email with download link via Formspree
+        // Send notification to admin via Formspree
         if (formspreeFormId) {
-          const downloadLink = `${baseDownloadUrl}?token=${newPurchase.download_token}`;
-          const emailSent = await sendEbookEmail(
+          await sendAdminNotification(
             order.email,
             ebookItem.title,
-            downloadLink,
+            order.order_number?.toString() || order.id.toString(),
             formspreeFormId
           );
-          
-          if (emailSent) {
-            console.log(`Download email sent to ${order.email} for ${ebookItem.title}`);
-          } else {
-            console.error(`Failed to send email to ${order.email} for ${ebookItem.title}`);
-          }
         } else {
-          console.warn("FORMSPREE_EBOOK_FORM_ID not configured, skipping email");
+          console.warn("FORMSPREE_EBOOK_FORM_ID not configured, skipping admin notification");
         }
       }
     }
 
     // If no credits and no ebooks, return early
-    if (totalCreditsAdded === 0 && ebookProductIds.length === 0) {
+    if (totalCreditsAdded === 0 && ebooksProcessed === 0) {
       console.log("No credit products or ebooks found in order");
       return new Response(JSON.stringify({ message: "No special products in order" }), {
         status: 200,
@@ -251,7 +246,7 @@ serve(async (req) => {
       return new Response(
         JSON.stringify({ 
           message: "Ebooks processed successfully",
-          ebooksProcessed: ebookProductIds.length,
+          ebooksProcessed: ebooksProcessed,
           email: order.email 
         }),
         {
@@ -334,8 +329,9 @@ serve(async (req) => {
 
     return new Response(
       JSON.stringify({ 
-        message: "Credits assigned successfully",
+        message: "Order processed successfully",
         credits: totalCreditsAdded,
+        ebooksProcessed: ebooksProcessed,
         email: order.email 
       }),
       {
