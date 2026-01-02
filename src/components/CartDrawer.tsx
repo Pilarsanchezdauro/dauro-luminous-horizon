@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -77,6 +77,7 @@ const SHIPPING_RATES: Record<ShippingDestination, ShippingRate> = {
 };
 
 export const CartDrawer = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [shippingDestination, setShippingDestination] = useState<ShippingDestination>("peninsula");
   const { 
@@ -115,8 +116,11 @@ export const CartDrawer = () => {
       await createCheckout();
       const checkoutUrl = useCartStore.getState().checkoutUrl;
       if (checkoutUrl) {
+        // Open checkout in new tab
         window.open(checkoutUrl, '_blank');
         setIsOpen(false);
+        // Navigate to thank you page so user sees it when they return
+        navigate('/gracias-compra');
       }
     } catch (error) {
       console.error('Checkout failed:', error);
