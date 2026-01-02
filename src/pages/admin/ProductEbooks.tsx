@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { Plus, Trash2, Download, Edit, ExternalLink, BookOpen, Upload, Loader2, FileText, Check, Copy, Link } from "lucide-react";
+import { Plus, Trash2, Download, Edit, ExternalLink, BookOpen, Upload, Loader2, FileText, Check, Copy, Link, Search } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { getProducts } from "@/lib/shopify";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProductEbook {
   id: string;
@@ -39,6 +41,12 @@ export default function ProductEbooks() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Shopify product search state
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [shopifyProducts, setShopifyProducts] = useState<any[]>([]);
+  const [showProductSearch, setShowProductSearch] = useState(false);
 
   const { data: ebooks, isLoading } = useQuery({
     queryKey: ["product-ebooks"],
@@ -117,6 +125,50 @@ export default function ProductEbooks() {
     setIsDialogOpen(false);
     setUploadedFileName(null);
     setUploadProgress(0);
+    setSearchQuery("");
+    setShopifyProducts([]);
+    setShowProductSearch(false);
+  };
+
+  // Search Shopify products
+  const searchShopifyProducts = async (query: string) => {
+    if (!query || query.length < 2) {
+      setShopifyProducts([]);
+      return;
+    }
+    
+    setIsSearching(true);
+    try {
+      const { products } = await getProducts(20, undefined, `title:*${query}*`);
+      setShopifyProducts(products);
+    } catch (error) {
+      console.error("Error searching products:", error);
+      toast.error("Error al buscar productos en Shopify");
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Debounced search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (showProductSearch && searchQuery) {
+        searchShopifyProducts(searchQuery);
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery, showProductSearch]);
+
+  const selectShopifyProduct = (product: any) => {
+    setFormData({
+      ...formData,
+      shopify_product_id: product.node.id,
+      product_title: product.node.title,
+    });
+    setShowProductSearch(false);
+    setSearchQuery("");
+    setShopifyProducts([]);
+    toast.success("Producto seleccionado: " + product.node.title);
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -311,29 +363,93 @@ export default function ProductEbooks() {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Shopify Product Search */}
               <div className="space-y-2">
-                <Label htmlFor="shopify_product_id">ID del Producto en Shopify *</Label>
-                <Input
-                  id="shopify_product_id"
-                  placeholder="gid://shopify/Product/123456789"
-                  value={formData.shopify_product_id}
-                  onChange={(e) => setFormData({ ...formData, shopify_product_id: e.target.value })}
-                  required
-                />
-                <p className="text-xs text-muted-foreground">
-                  Puedes encontrar este ID en la URL del producto en Shopify
-                </p>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="product_title">Título del Producto *</Label>
-                <Input
-                  id="product_title"
-                  placeholder="Mi Libro en Ebook"
-                  value={formData.product_title}
-                  onChange={(e) => setFormData({ ...formData, product_title: e.target.value })}
-                  required
-                />
+                <Label>Buscar Producto en Shopify *</Label>
+                {formData.shopify_product_id ? (
+                  <div className="border rounded-lg p-3 bg-green-500/10 border-green-500/30">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-green-500" />
+                        <div>
+                          <p className="font-medium text-sm">{formData.product_title}</p>
+                          <p className="text-xs text-muted-foreground">{formData.shopify_product_id}</p>
+                        </div>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setFormData({ ...formData, shopify_product_id: "", product_title: "" });
+                          setShowProductSearch(true);
+                        }}
+                      >
+                        Cambiar
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Buscar por título del producto..."
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value);
+                          setShowProductSearch(true);
+                        }}
+                        onFocus={() => setShowProductSearch(true)}
+                        className="pl-9"
+                      />
+                      {isSearching && (
+                        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin" />
+                      )}
+                    </div>
+                    
+                    {showProductSearch && shopifyProducts.length > 0 && (
+                      <ScrollArea className="h-48 border rounded-lg">
+                        <div className="p-2 space-y-1">
+                          {shopifyProducts.map((product) => (
+                            <button
+                              key={product.node.id}
+                              type="button"
+                              onClick={() => selectShopifyProduct(product)}
+                              className="w-full flex items-center gap-3 p-2 rounded-md hover:bg-muted text-left transition-colors"
+                            >
+                              {product.node.images?.edges?.[0]?.node?.url && (
+                                <img 
+                                  src={product.node.images.edges[0].node.url} 
+                                  alt={product.node.title}
+                                  className="w-10 h-10 object-cover rounded"
+                                />
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <p className="font-medium text-sm truncate">{product.node.title}</p>
+                                <p className="text-xs text-muted-foreground">
+                                  {parseFloat(product.node.priceRange?.minVariantPrice?.amount || 0).toFixed(2)} €
+                                </p>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    )}
+                    
+                    {showProductSearch && searchQuery.length >= 2 && !isSearching && shopifyProducts.length === 0 && (
+                      <p className="text-sm text-muted-foreground text-center py-2">
+                        No se encontraron productos
+                      </p>
+                    )}
+                    
+                    {showProductSearch && searchQuery.length < 2 && (
+                      <p className="text-xs text-muted-foreground">
+                        Escribe al menos 2 caracteres para buscar
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* File Upload Section */}
