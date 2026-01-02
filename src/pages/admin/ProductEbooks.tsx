@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { Plus, Trash2, Download, Edit, ExternalLink, BookOpen, Upload, Loader2, FileText, Check } from "lucide-react";
+import { Plus, Trash2, Download, Edit, ExternalLink, BookOpen, Upload, Loader2, FileText, Check, Copy, Link } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 interface ProductEbook {
@@ -236,6 +236,57 @@ export default function ProductEbooks() {
     });
   };
 
+  const copyDownloadLink = async (ebook: ProductEbook) => {
+    try {
+      // Check if there's an existing purchase token for this product
+      const { data: existingPurchase, error: fetchError } = await supabase
+        .from("ebook_purchases")
+        .select("download_token, expires_at, download_count, max_downloads")
+        .eq("shopify_product_id", ebook.shopify_product_id)
+        .gt("expires_at", new Date().toISOString())
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (fetchError) throw fetchError;
+
+      let token: string;
+
+      if (existingPurchase && existingPurchase.download_count < existingPurchase.max_downloads) {
+        // Use existing valid token
+        token = existingPurchase.download_token;
+      } else {
+        // Create a new test purchase token
+        const { data: newPurchase, error: insertError } = await supabase
+          .from("ebook_purchases")
+          .insert({
+            email: "admin@dauro.es",
+            shopify_order_id: `admin-test-${Date.now()}`,
+            shopify_product_id: ebook.shopify_product_id,
+            max_downloads: 10,
+          })
+          .select("download_token")
+          .single();
+
+        if (insertError) throw insertError;
+        token = newPurchase.download_token;
+      }
+
+      // Generate the download URL
+      const baseUrl = window.location.origin;
+      const downloadUrl = `${baseUrl}/descargar-ebook?token=${token}`;
+
+      // Copy to clipboard
+      await navigator.clipboard.writeText(downloadUrl);
+      toast.success("Enlace copiado al portapapeles", {
+        description: "El enlace de descarga de prueba está listo para compartir"
+      });
+    } catch (error: any) {
+      console.error("Error generating download link:", error);
+      toast.error("Error al generar enlace: " + error.message);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -457,7 +508,16 @@ export default function ProductEbooks() {
                         <Button
                           variant="ghost"
                           size="icon"
+                          onClick={() => copyDownloadLink(ebook)}
+                          title="Copiar enlace de descarga"
+                        >
+                          <Link className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           onClick={() => window.open(ebook.ebook_url, "_blank")}
+                          title="Ver archivo"
                         >
                           <ExternalLink className="h-4 w-4" />
                         </Button>
@@ -465,6 +525,7 @@ export default function ProductEbooks() {
                           variant="ghost"
                           size="icon"
                           onClick={() => handleEdit(ebook)}
+                          title="Editar"
                         >
                           <Edit className="h-4 w-4" />
                         </Button>
@@ -476,6 +537,7 @@ export default function ProductEbooks() {
                               deleteMutation.mutate(ebook.id);
                             }
                           }}
+                          title="Eliminar"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
