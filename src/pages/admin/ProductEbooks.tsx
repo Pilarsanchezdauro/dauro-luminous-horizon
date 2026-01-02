@@ -433,6 +433,28 @@ export default function ProductEbooks() {
                 </div>
               </div>
               
+              {/* Botón de copiar enlace de descarga - solo visible al editar */}
+              {editingEbook && (
+                <div className="border rounded-lg p-4 bg-muted/30 space-y-2">
+                  <Label className="text-sm font-medium flex items-center gap-2">
+                    <Link className="h-4 w-4" />
+                    Enlace de Descarga
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Genera un enlace de descarga de prueba para compartir con el cliente o verificar el funcionamiento.
+                  </p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => copyDownloadLink(editingEbook)}
+                  >
+                    <Copy className="h-4 w-4 mr-2" />
+                    Copiar Enlace de Descarga
+                  </Button>
+                </div>
+              )}
+              
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={resetForm}>
                   Cancelar
