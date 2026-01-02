@@ -28,53 +28,44 @@ export default function DescargarEbook() {
   }, [token]);
 
   const verifyDownload = async () => {
-    try {
-      // Check purchase record
-      const { data: purchase, error: purchaseError } = await supabase
-        .from("ebook_purchases")
-        .select("*")
-        .eq("download_token", token)
-        .single();
+    if (!token) return;
 
-      if (purchaseError || !purchase) {
+    try {
+      const { data, error: invokeError } = await supabase.functions.invoke(
+        "verify-ebook-download",
+        { body: { token } },
+      );
+
+      if (invokeError || !data) {
+        console.error("Error verifying download:", invokeError);
         setStatus("invalid");
-        setError("Token de descarga no válido o no encontrado");
+        setError("Error al verificar la descarga");
         return;
       }
 
-      // Check if expired
-      if (new Date(purchase.expires_at) < new Date()) {
+      if (data.status === "valid") {
+        setEbookUrl(data.ebookUrl);
+        setProductTitle(data.productTitle);
+        setRemainingDownloads(data.remainingDownloads ?? 0);
+        setStatus("valid");
+        setError(null);
+        return;
+      }
+
+      if (data.status === "expired") {
         setStatus("expired");
         setError("Este enlace de descarga ha expirado");
         return;
       }
 
-      // Check download limit
-      if (purchase.download_count >= purchase.max_downloads) {
+      if (data.status === "limit") {
         setStatus("limit");
-        setError(`Has alcanzado el límite de ${purchase.max_downloads} descargas`);
+        setError(`Has alcanzado el límite de ${data.maxDownloads ?? 5} descargas`);
         return;
       }
 
-      // Get ebook info
-      const { data: ebook, error: ebookError } = await supabase
-        .from("product_ebooks")
-        .select("*")
-        .eq("shopify_product_id", purchase.shopify_product_id)
-        .eq("is_active", true)
-        .single();
-
-      if (ebookError || !ebook) {
-        setStatus("invalid");
-        setError("El ebook no está disponible actualmente");
-        return;
-      }
-
-      // Use public file URL directly
-      setEbookUrl(ebook.ebook_url);
-      setProductTitle(ebook.product_title);
-      setRemainingDownloads(purchase.max_downloads - purchase.download_count);
-      setStatus("valid");
+      setStatus("invalid");
+      setError("Token de descarga no válido o no encontrado");
     } catch (err) {
       console.error("Error verifying download:", err);
       setStatus("invalid");
