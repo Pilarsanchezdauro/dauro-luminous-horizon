@@ -39,6 +39,7 @@ export default function Shop() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("novedades");
   const [ebookProductIds, setEbookProductIds] = useState<Set<string>>(new Set());
+  const [ebookProducts, setEbookProducts] = useState<ShopifyProduct[]>([]);
   const [visibleBooksCount, setVisibleBooksCount] = useState(20);
   const addItem = useCartStore(state => state.addItem);
 
@@ -270,6 +271,17 @@ export default function Shop() {
     }
   };
 
+  // Update ebook products when products or ebookProductIds change
+  useEffect(() => {
+    if (products.length > 0 && ebookProductIds.size > 0) {
+      const ebooksFiltered = products.filter(p => {
+        const numericId = p.node.id.replace('gid://shopify/Product/', '');
+        return ebookProductIds.has(numericId) || ebookProductIds.has(p.node.id);
+      });
+      setEbookProducts(ebooksFiltered);
+    }
+  }, [products, ebookProductIds]);
+
   const hasEbook = (productId: string): boolean => {
     // Extract numeric ID from Shopify GID format
     const numericId = productId.replace('gid://shopify/Product/', '');
@@ -444,10 +456,14 @@ export default function Shop() {
               </div>
             ) : (
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-5 mb-8">
+                <TabsList className="grid w-full grid-cols-6 mb-8">
                   <TabsTrigger value="libros" className="flex items-center gap-2">
                     <Book className="h-4 w-4" />
                     <span className="hidden sm:inline">Libros</span> ({bookProducts.length})
+                  </TabsTrigger>
+                  <TabsTrigger value="ebooks" className="flex items-center gap-2">
+                    <Tablet className="h-4 w-4" />
+                    <span className="hidden sm:inline">Ebooks</span> ({ebookProducts.length})
                   </TabsTrigger>
                   <TabsTrigger value="musica" className="flex items-center gap-2">
                     <Music className="h-4 w-4" />
@@ -455,7 +471,7 @@ export default function Shop() {
                   </TabsTrigger>
                   <TabsTrigger value="segunda-mano" className="flex items-center gap-2">
                     <BookMarked className="h-4 w-4" />
-                    <span className="hidden sm:inline">Segunda Mano</span> ({segundaManoProducts.length})
+                    <span className="hidden sm:inline">2ª Mano</span> ({segundaManoProducts.length})
                   </TabsTrigger>
                   <TabsTrigger value="arte" className="flex items-center gap-2">
                     <Palette className="h-4 w-4" />
@@ -772,6 +788,105 @@ export default function Shop() {
                         )}
                         </>
                       )}
+                    </>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="ebooks">
+                  {ebookProducts.length === 0 ? (
+                    <div className="text-center py-20">
+                      <Tablet className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                      <h2 className="text-2xl font-semibold mb-2">Ebooks próximamente</h2>
+                      <p className="text-muted-foreground">
+                        Estamos preparando versiones digitales de nuestros libros. ¡Vuelve pronto!
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="mb-6 text-center">
+                        <p className="text-muted-foreground">
+                          Versiones digitales de nuestros libros. Descarga inmediata en formato EPUB.
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                        {ebookProducts.map((product) => (
+                          <Card key={product.node.id} className="group overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full border-cyan-500/30 bg-gradient-to-b from-cyan-50/10 to-transparent dark:from-cyan-950/20">
+                            <Link to={`/producto/${product.node.handle}`} className="block">
+                              {product.node.images.edges[0]?.node && (
+                                <div className="aspect-[3/4] overflow-hidden relative">
+                                  <img
+                                    src={product.node.images.edges[0].node.url}
+                                    alt={product.node.images.edges[0].node.altText || product.node.title}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                  />
+                                  {/* Ebook Badge */}
+                                  <div className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <Tablet className="w-3 h-3" />
+                                    Ebook
+                                  </div>
+                                  {/* Descarga Inmediata */}
+                                  <div className="absolute bottom-2 left-2 bg-black/60 text-white px-2 py-1 rounded-full text-[10px] font-medium backdrop-blur-sm">
+                                    📥 Descarga inmediata
+                                  </div>
+                                </div>
+                              )}
+                            </Link>
+                            
+                            <CardContent className="flex-1 flex flex-col justify-between pt-4">
+                              <Link to={`/producto/${product.node.handle}`} className="block hover:text-primary transition-colors">
+                                <h3 className="font-playfair font-semibold text-sm md:text-lg line-clamp-2 mb-2 uppercase">
+                                  {product.node.title}
+                                </h3>
+                              </Link>
+                              <div>
+                                <p className="text-cyan-600 dark:text-cyan-400 font-bold text-base md:text-xl">
+                                  {/* Mostrar precio de variante ebook si existe, sino el mínimo */}
+                                  {product.node.variants.edges.find(v => 
+                                    v.node.title.toLowerCase().includes('ebook')
+                                  )?.node.price.currencyCode || product.node.priceRange.minVariantPrice.currencyCode}{' '}
+                                  {parseFloat(
+                                    product.node.variants.edges.find(v => 
+                                      v.node.title.toLowerCase().includes('ebook')
+                                    )?.node.price.amount || product.node.priceRange.minVariantPrice.amount
+                                  ).toFixed(2)}
+                                </p>
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  Formato EPUB
+                                </p>
+                              </div>
+                            </CardContent>
+                            
+                            <CardFooter>
+                              <Button 
+                                onClick={() => {
+                                  // Encontrar la variante ebook
+                                  const ebookVariant = product.node.variants.edges.find(v => 
+                                    v.node.title.toLowerCase().includes('ebook')
+                                  );
+                                  if (ebookVariant) {
+                                    const cartItem = {
+                                      product,
+                                      variantId: ebookVariant.node.id,
+                                      variantTitle: ebookVariant.node.title,
+                                      price: ebookVariant.node.price,
+                                      quantity: 1,
+                                      selectedOptions: ebookVariant.node.selectedOptions || []
+                                    };
+                                    addItem(cartItem);
+                                    toast.success("Ebook agregado al carrito", { position: "top-center" });
+                                  } else {
+                                    handleAddToCart(product);
+                                  }
+                                }}
+                                className="w-full bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700"
+                              >
+                                <ShoppingCart className="w-4 h-4 mr-2" />
+                                Comprar Ebook
+                              </Button>
+                            </CardFooter>
+                          </Card>
+                        ))}
+                      </div>
                     </>
                   )}
                 </TabsContent>
