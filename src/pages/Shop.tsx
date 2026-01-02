@@ -745,23 +745,42 @@ export default function Shop() {
                           </CardHeader>
                           
                           <CardContent className="flex-1">
-                            <p className="text-2xl font-bold">
-                              {product.node.priceRange.minVariantPrice.currencyCode}{' '}
-                              {parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)}
-                            </p>
-                            
-                            {/* Formatos disponibles */}
-                            <div className="flex items-center gap-2 mt-3">
-                              <div className="flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-md text-xs font-medium">
-                                <Book className="w-3 h-3" />
-                                <span>Papel</span>
-                              </div>
-                              {hasEbook(product.node.id) && (
-                                <div className="flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 rounded-md text-xs font-medium">
-                                  <Tablet className="w-3 h-3" />
-                                  <span>Ebook</span>
-                                </div>
-                              )}
+                            {/* Formatos disponibles con precios */}
+                            <div className="space-y-2">
+                              {/* Precio libro físico (variante principal) */}
+                              {(() => {
+                                const physicalVariant = product.node.variants.edges.find(
+                                  v => !v.node.title.toLowerCase().includes('ebook')
+                                );
+                                const ebookVariant = product.node.variants.edges.find(
+                                  v => v.node.title.toLowerCase().includes('ebook')
+                                );
+                                
+                                return (
+                                  <>
+                                    <div className="flex items-center gap-2">
+                                      <div className="flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-md text-xs font-medium">
+                                        <Book className="w-3 h-3" />
+                                        <span>Papel</span>
+                                      </div>
+                                      <span className="text-lg font-bold">
+                                        {physicalVariant ? `${parseFloat(physicalVariant.node.price.amount).toFixed(2)} €` : `${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)} €`}
+                                      </span>
+                                    </div>
+                                    {hasEbook(product.node.id) && ebookVariant && (
+                                      <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 rounded-md text-xs font-medium">
+                                          <Tablet className="w-3 h-3" />
+                                          <span>Ebook</span>
+                                        </div>
+                                        <span className="text-lg font-bold text-cyan-700 dark:text-cyan-300">
+                                          {parseFloat(ebookVariant.node.price.amount).toFixed(2)} €
+                                        </span>
+                                      </div>
+                                    )}
+                                  </>
+                                );
+                              })()}
                             </div>
                             
                             {product.node.productType && (
