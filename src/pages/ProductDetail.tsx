@@ -6,8 +6,8 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag, BookMarked, CreditCard } from "lucide-react";
-import { getProductByHandle, createCheckoutForProduct } from "@/lib/shopify";
+import { ShoppingCart, Loader2, ArrowLeft, Award, Gem, Film, Trophy, FileCheck, BookOpen, User, Tag, BookMarked, CreditCard, Tablet, BookText } from "lucide-react";
+import { getProductByHandle, createStorefrontCheckout } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
@@ -96,11 +96,20 @@ export default function ProductDetail() {
   };
 
   const handleBuyNow = async () => {
-    if (!handle) return;
+    if (!selectedVariant) return;
     
     setIsCheckoutLoading(true);
     try {
-      const checkoutUrl = await createCheckoutForProduct(handle);
+      const cartItem = {
+        product: { node: product } as ShopifyProduct,
+        variantId: selectedVariant.id,
+        variantTitle: selectedVariant.title,
+        price: selectedVariant.price,
+        quantity: 1,
+        selectedOptions: selectedVariant.selectedOptions || []
+      };
+      
+      const checkoutUrl = await createStorefrontCheckout([cartItem]);
       window.open(checkoutUrl, '_blank');
     } catch (error) {
       console.error('Error creating checkout:', error);
@@ -111,6 +120,14 @@ export default function ProductDetail() {
       setIsCheckoutLoading(false);
     }
   };
+
+  // Check if product has format options (Ebook vs Physical)
+  const formatOption = product?.options?.find((opt: any) => 
+    opt.name.toLowerCase() === 'formato' || opt.name.toLowerCase() === 'format'
+  );
+  const hasFormatOptions = formatOption && formatOption.values.length > 1;
+  const isEbook = selectedOptions['Formato']?.toLowerCase().includes('ebook') || 
+                  selectedOptions['Format']?.toLowerCase().includes('ebook');
 
   if (isLoading) {
     return (
@@ -362,9 +379,73 @@ export default function ProductDetail() {
                   );
                 })()}
 
-                {product.options && product.options.length > 0 && (
+                {/* Format selector - Prominent visual buttons */}
+                {hasFormatOptions && (
+                  <div className="bg-secondary/30 rounded-xl p-6 border-2 border-primary/20">
+                    <label className="text-lg font-semibold mb-4 block flex items-center gap-2">
+                      <BookText className="w-5 h-5 text-primary" />
+                      Selecciona el formato
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                      {formatOption.values.map((value: string) => {
+                        const isSelected = selectedOptions['Formato'] === value || selectedOptions['Format'] === value;
+                        const isEbookOption = value.toLowerCase().includes('ebook');
+                        const variant = product.variants.edges.find((edge: any) => 
+                          edge.node.selectedOptions.some((opt: any) => opt.value === value)
+                        )?.node;
+                        const price = variant?.price?.amount ? parseFloat(variant.price.amount).toFixed(2) : null;
+                        
+                        return (
+                          <button
+                            key={value}
+                            onClick={() => handleOptionChange(formatOption.name, value)}
+                            className={`
+                              relative p-4 rounded-lg border-2 transition-all duration-200
+                              flex flex-col items-center gap-2 text-center
+                              ${isSelected 
+                                ? 'border-primary bg-primary/10 shadow-lg scale-[1.02]' 
+                                : 'border-border hover:border-primary/50 hover:bg-secondary/50'
+                              }
+                            `}
+                          >
+                            {isSelected && (
+                              <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full font-semibold">
+                                Seleccionado
+                              </div>
+                            )}
+                            {isEbookOption ? (
+                              <Tablet className={`w-8 h-8 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
+                            ) : (
+                              <BookText className={`w-8 h-8 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
+                            )}
+                            <span className={`font-semibold ${isSelected ? 'text-primary' : 'text-foreground'}`}>
+                              {value}
+                            </span>
+                            {price && (
+                              <span className={`text-lg font-bold ${isSelected ? 'text-primary' : 'text-muted-foreground'}`}>
+                                €{price}
+                              </span>
+                            )}
+                            {isEbookOption && (
+                              <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                📥 Descarga inmediata
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Other options (non-format) */}
+                {product.options && product.options.filter((opt: any) => 
+                  opt.name.toLowerCase() !== 'formato' && opt.name.toLowerCase() !== 'format'
+                ).length > 0 && (
                   <div className="space-y-4">
-                    {product.options.map((option: any) => (
+                    {product.options.filter((opt: any) => 
+                      opt.name.toLowerCase() !== 'formato' && opt.name.toLowerCase() !== 'format'
+                    ).map((option: any) => (
                       <div key={option.name}>
                         <label className="text-sm font-medium mb-2 block">
                           {option.name}
