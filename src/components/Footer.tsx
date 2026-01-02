@@ -56,6 +56,14 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/mis-ebooks"
+                  className="text-background/70 hover:text-background transition-colors"
+                >
+                  Mis Ebooks
+                </Link>
+              </li>
             </ul>
           </div>
 
