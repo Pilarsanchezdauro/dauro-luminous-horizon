@@ -70,7 +70,19 @@ export default function DescargarEbook() {
         return;
       }
 
-      setEbookUrl(ebook.ebook_url);
+      // Generate signed URL from private bucket (valid for 1 hour)
+      const { data: signedUrlData, error: signedUrlError } = await supabase.storage
+        .from("ebooks")
+        .createSignedUrl(ebook.ebook_url, 3600);
+
+      if (signedUrlError || !signedUrlData?.signedUrl) {
+        console.error("Error generating signed URL:", signedUrlError);
+        setStatus("invalid");
+        setError("Error al generar el enlace de descarga");
+        return;
+      }
+
+      setEbookUrl(signedUrlData.signedUrl);
       setProductTitle(ebook.product_title);
       setRemainingDownloads(purchase.max_downloads - purchase.download_count);
       setStatus("valid");
