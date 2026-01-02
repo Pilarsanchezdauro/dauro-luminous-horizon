@@ -13,6 +13,15 @@ const SKU_TO_CREDITS: Record<string, number> = {
   "COVER-CREDITS-30": 30,
 };
 
+// Extract numeric ID from GID or return as-is if already numeric
+function extractNumericId(id: string): string {
+  if (id.startsWith('gid://')) {
+    const parts = id.split('/');
+    return parts[parts.length - 1];
+  }
+  return id;
+}
+
 // Send notification to admin about ebook purchase via Formspree
 async function sendAdminNotification(
   customerEmail: string, 
@@ -175,23 +184,26 @@ serve(async (req) => {
     let ebooksProcessed = 0;
     
     for (const ebookItem of ebookProductIds) {
-      // Check if this product has an ebook associated
+      // Extract numeric ID for comparison (product_ebooks stores numeric IDs)
+      const numericProductId = extractNumericId(ebookItem.productId);
+      
+      // Check if this product has an ebook associated (try both formats)
       const { data: productEbook } = await supabase
         .from("product_ebooks")
         .select()
-        .eq("shopify_product_id", ebookItem.productId)
+        .or(`shopify_product_id.eq.${numericProductId},shopify_product_id.eq.${ebookItem.productId}`)
         .eq("is_active", true)
         .maybeSingle();
 
       if (productEbook) {
-        console.log(`Found ebook for product: ${ebookItem.title}`);
+        console.log(`Found ebook for product: ${ebookItem.title} (ID: ${numericProductId})`);
         
-        // Check if purchase already exists for this order/product
+        // Check if purchase already exists for this order/product (check both formats)
         const { data: existingPurchase } = await supabase
           .from("ebook_purchases")
           .select()
           .eq("shopify_order_id", order.id.toString())
-          .eq("shopify_product_id", ebookItem.productId)
+          .or(`shopify_product_id.eq.${numericProductId},shopify_product_id.eq.${ebookItem.productId}`)
           .maybeSingle();
 
         if (existingPurchase) {
@@ -199,13 +211,13 @@ serve(async (req) => {
           continue;
         }
 
-        // Create ebook purchase record
+        // Create ebook purchase record (store numeric ID for consistency)
         const { data: newPurchase, error: purchaseError } = await supabase
           .from("ebook_purchases")
           .insert({
             email: order.email,
             shopify_order_id: order.id.toString(),
-            shopify_product_id: ebookItem.productId,
+            shopify_product_id: numericProductId,
           })
           .select()
           .single();
@@ -215,7 +227,7 @@ serve(async (req) => {
           continue;
         }
 
-        console.log(`Created ebook purchase with token: ${newPurchase.download_token}`);
+        console.log(`Created ebook purchase for ${order.email} with token: ${newPurchase.download_token}`);
         ebooksProcessed++;
 
         // Send notification to admin via Formspree

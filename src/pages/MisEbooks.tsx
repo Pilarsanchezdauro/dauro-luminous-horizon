@@ -42,33 +42,47 @@ const MisEbooks = () => {
     setHasSearched(true);
 
     try {
-      const { data, error } = await supabase
+      // First get user's ebook purchases
+      const { data: purchasesData, error: purchasesError } = await supabase
         .from("ebook_purchases")
-        .select(`
-          id,
-          download_token,
-          created_at,
-          download_count,
-          max_downloads,
-          shopify_product_id,
-          product_ebooks!inner (
-            product_title,
-            ebook_url,
-            file_type
-          )
-        `)
+        .select("*")
         .eq("email", email.toLowerCase().trim())
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
+      if (purchasesError) throw purchasesError;
 
-      // Transform data to handle the joined table
-      const transformedData = (data || []).map(item => ({
-        ...item,
-        product_ebooks: Array.isArray(item.product_ebooks) 
-          ? item.product_ebooks[0] 
-          : item.product_ebooks
-      }));
+      if (!purchasesData || purchasesData.length === 0) {
+        setPurchases([]);
+        toast.info("No se encontraron ebooks asociados a este email");
+        return;
+      }
+
+      // Get all product_ebooks to match by ID (handles both numeric and GID formats)
+      const { data: ebooksData, error: ebooksError } = await supabase
+        .from("product_ebooks")
+        .select("*")
+        .eq("is_active", true);
+
+      if (ebooksError) throw ebooksError;
+
+      // Match purchases with ebooks (normalize IDs for comparison)
+      const transformedData = purchasesData.map(purchase => {
+        const numericPurchaseId = purchase.shopify_product_id.replace(/^gid:\/\/shopify\/Product\//, '');
+        
+        const matchingEbook = ebooksData?.find(ebook => {
+          const numericEbookId = ebook.shopify_product_id.replace(/^gid:\/\/shopify\/Product\//, '');
+          return numericEbookId === numericPurchaseId;
+        });
+
+        return {
+          ...purchase,
+          product_ebooks: matchingEbook ? {
+            product_title: matchingEbook.product_title,
+            ebook_url: matchingEbook.ebook_url,
+            file_type: matchingEbook.file_type
+          } : null
+        };
+      }).filter(p => p.product_ebooks !== null); // Only show purchases with valid ebook files
 
       setPurchases(transformedData);
 
