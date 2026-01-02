@@ -749,6 +749,21 @@ export default function Shop() {
                               {product.node.priceRange.minVariantPrice.currencyCode}{' '}
                               {parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)}
                             </p>
+                            
+                            {/* Formatos disponibles */}
+                            <div className="flex items-center gap-2 mt-3">
+                              <div className="flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-md text-xs font-medium">
+                                <Book className="w-3 h-3" />
+                                <span>Papel</span>
+                              </div>
+                              {hasEbook(product.node.id) && (
+                                <div className="flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 rounded-md text-xs font-medium">
+                                  <Tablet className="w-3 h-3" />
+                                  <span>Ebook</span>
+                                </div>
+                              )}
+                            </div>
+                            
                             {product.node.productType && (
                               <div className="flex items-center gap-1.5 mt-2 text-sm text-muted-foreground">
                                 <Tag className="w-3 h-3" />
