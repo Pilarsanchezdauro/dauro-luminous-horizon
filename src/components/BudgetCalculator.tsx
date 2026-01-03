@@ -86,49 +86,51 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
   }, [pages, deadline, correction, includeSalesPanel]);
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-8 shadow-xl h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-primary/10 rounded-xl">
-          <Calculator className="w-6 h-6 text-primary" />
+    <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl h-full flex flex-col">
+      <div className="flex items-center gap-3 mb-6 sm:mb-8">
+        <div className="p-2 sm:p-3 bg-primary/10 rounded-xl shrink-0">
+          <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
         </div>
-        <div>
-          <h3 className="text-2xl font-bold text-foreground">Calcula tu presupuesto</h3>
-          <p className="text-muted-foreground">Precio orientativo en tiempo real</p>
+        <div className="min-w-0">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">Calcula tu presupuesto</h3>
+          <p className="text-sm sm:text-base text-muted-foreground">Precio orientativo en tiempo real</p>
         </div>
       </div>
 
-      <div className="space-y-8 flex-1 flex flex-col">
+      <div className="space-y-6 sm:space-y-8 flex-1 flex flex-col">
         {/* Pages Slider */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <Label className="flex items-center gap-2 text-base">
-              <FileText className="w-4 h-4" />
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex items-center justify-between gap-2">
+            <Label className="flex items-center gap-2 text-sm sm:text-base">
+              <FileText className="w-4 h-4 shrink-0" />
               Número de páginas
             </Label>
-            <span className="text-2xl font-bold text-primary">{pages}</span>
+            <span className="text-xl sm:text-2xl font-bold text-primary">{pages}</span>
           </div>
-          <Slider
-            value={[pages]}
-            onValueChange={(value) => setPages(value[0])}
-            min={50}
-            max={500}
-            step={10}
-            className="w-full"
-          />
-          <div className="flex justify-between text-sm text-muted-foreground">
+          <div className="px-1">
+            <Slider
+              value={[pages]}
+              onValueChange={(value) => setPages(value[0])}
+              min={50}
+              max={500}
+              step={10}
+              className="w-full"
+            />
+          </div>
+          <div className="flex justify-between text-xs sm:text-sm text-muted-foreground px-1">
             <span>50</span>
             <span>500+</span>
           </div>
         </div>
 
         {/* Deadline Select */}
-        <div className="space-y-3">
-          <Label className="flex items-center gap-2 text-base">
-            <Clock className="w-4 h-4" />
+        <div className="space-y-2 sm:space-y-3">
+          <Label className="flex items-center gap-2 text-sm sm:text-base">
+            <Clock className="w-4 h-4 shrink-0" />
             Plazo de entrega
           </Label>
           <Select value={deadline} onValueChange={setDeadline}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -142,13 +144,13 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         </div>
 
         {/* Correction Select */}
-        <div className="space-y-3">
-          <Label className="flex items-center gap-2 text-base">
-            <FileText className="w-4 h-4" />
+        <div className="space-y-2 sm:space-y-3">
+          <Label className="flex items-center gap-2 text-sm sm:text-base">
+            <FileText className="w-4 h-4 shrink-0" />
             Corrección
           </Label>
           <Select value={correction} onValueChange={setCorrection}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -160,59 +162,60 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
             </SelectContent>
           </Select>
           {correction !== 'none' && (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Estimación: ~{calculation.estimatedWords.toLocaleString()} palabras
             </p>
           )}
         </div>
 
         {/* Sales Panel Checkbox */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-start sm:items-center space-x-3">
           <Checkbox
             id="salesPanel"
             checked={includeSalesPanel}
             onCheckedChange={(checked) => setIncludeSalesPanel(checked as boolean)}
+            className="mt-0.5 sm:mt-0"
           />
-          <Label htmlFor="salesPanel" className="cursor-pointer">
+          <Label htmlFor="salesPanel" className="cursor-pointer text-sm sm:text-base leading-tight">
             Panel de ventas en tiempo real (+75 €)
           </Label>
         </div>
 
         {/* Price Breakdown */}
-        <div className="border-t border-border pt-6 space-y-3 mt-auto">
-          <div className="flex justify-between text-sm">
+        <div className="border-t border-border pt-4 sm:pt-6 space-y-2 sm:space-y-3 mt-auto">
+          <div className="flex justify-between text-xs sm:text-sm gap-2">
             <span className="text-muted-foreground">Precio base ({pages} páginas)</span>
-            <span>{calculation.basePrice.toLocaleString()} €</span>
+            <span className="font-medium shrink-0">{calculation.basePrice.toLocaleString()} €</span>
           </div>
           {deadline !== '120' && (
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs sm:text-sm gap-2">
               <span className="text-muted-foreground">Ajuste por plazo</span>
-              <span>+{(calculation.adjustedPrice - calculation.basePrice).toLocaleString()} €</span>
+              <span className="font-medium shrink-0">+{(calculation.adjustedPrice - calculation.basePrice).toLocaleString()} €</span>
             </div>
           )}
           {calculation.correctionCost > 0 && (
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs sm:text-sm gap-2">
               <span className="text-muted-foreground">Corrección</span>
-              <span>+{calculation.correctionCost.toLocaleString()} €</span>
+              <span className="font-medium shrink-0">+{calculation.correctionCost.toLocaleString()} €</span>
             </div>
           )}
           {calculation.salesPanelCost > 0 && (
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs sm:text-sm gap-2">
               <span className="text-muted-foreground">Panel de ventas</span>
-              <span>+{calculation.salesPanelCost} €</span>
+              <span className="font-medium shrink-0">+{calculation.salesPanelCost} €</span>
             </div>
           )}
           
-          <div className="border-t border-border pt-4 mt-4">
+          <div className="border-t border-border pt-3 sm:pt-4 mt-3 sm:mt-4">
             {calculation.isConsultation ? (
               <div className="text-center">
-                <p className="text-lg text-muted-foreground">Para más de 400 páginas</p>
-                <p className="text-2xl font-bold text-primary">Consultar precio</p>
+                <p className="text-sm sm:text-lg text-muted-foreground">Para más de 400 páginas</p>
+                <p className="text-xl sm:text-2xl font-bold text-primary">Consultar precio</p>
               </div>
             ) : (
-              <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold">Total estimado</span>
-                <span className="text-3xl font-bold text-primary">
+              <div className="flex justify-between items-center gap-2">
+                <span className="text-base sm:text-lg font-semibold">Total estimado</span>
+                <span className="text-2xl sm:text-3xl font-bold text-primary shrink-0">
                   {Math.round(calculation.total).toLocaleString()} €
                 </span>
               </div>
@@ -232,12 +235,12 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
             })
           }
           size="lg"
-          className="w-full text-lg py-6"
+          className="w-full text-base sm:text-lg py-5 sm:py-6"
         >
           Solicitar presupuesto definitivo
         </Button>
 
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-xs sm:text-sm text-muted-foreground">
           * Precio orientativo. El presupuesto final puede variar según el manuscrito.
         </p>
       </div>
