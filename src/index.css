@@ -37,6 +37,11 @@ All colors MUST be HSL.
     --accent: 0 0% 96%;
     --accent-foreground: 0 0% 15%;
 
+    /* WhatsApp (CTA flotante) */
+    --whatsapp: 142 70% 45%;
+    --whatsapp-hover: 142 70% 35%;
+    --whatsapp-foreground: 0 0% 100%;
+
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
 
