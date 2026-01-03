@@ -137,7 +137,7 @@ const Index = () => {
           title="Publica tu Libro"
           description="¿Eres escritor? Publicamos tu libro con distribución en 4000 librerías. Edición profesional, autoedición, maquetación y diseño de portadas. Más de 1000 autores confían en nosotros."
           image={editorialBg}
-          link="/grupo-dauro/editorial"
+          link="/autoedicion"
         />
 
         {/* Arte Section */}
