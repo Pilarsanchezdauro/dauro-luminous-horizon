@@ -86,18 +86,18 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
   }, [pages, deadline, correction, includeSalesPanel]);
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-6 sm:mb-8">
-        <div className="p-2 sm:p-3 bg-primary/10 rounded-xl shrink-0">
-          <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+    <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
+      <div className="flex items-center gap-3 mb-4 sm:mb-6">
+        <div className="p-2 bg-primary/10 rounded-xl shrink-0">
+          <Calculator className="w-5 h-5 text-primary" />
         </div>
         <div className="min-w-0">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">Calcula tu presupuesto</h3>
-          <p className="text-sm sm:text-base text-muted-foreground">Precio orientativo en tiempo real</p>
+          <h3 className="text-lg sm:text-xl font-bold text-foreground">Calcula tu presupuesto</h3>
+          <p className="text-xs sm:text-sm text-muted-foreground">Precio orientativo en tiempo real</p>
         </div>
       </div>
 
-      <div className="space-y-6 sm:space-y-8 flex-1 flex flex-col">
+      <div className="space-y-4 sm:space-y-6">
         {/* Pages Slider */}
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center justify-between gap-2">
@@ -182,7 +182,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         </div>
 
         {/* Price Breakdown */}
-        <div className="border-t border-border pt-4 sm:pt-6 space-y-2 sm:space-y-3 mt-auto">
+        <div className="border-t border-border pt-3 sm:pt-4 space-y-2">
           <div className="flex justify-between text-xs sm:text-sm gap-2">
             <span className="text-muted-foreground">Precio base ({pages} páginas)</span>
             <span className="font-medium shrink-0">{calculation.basePrice.toLocaleString()} €</span>
@@ -206,7 +206,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
             </div>
           )}
           
-          <div className="border-t border-border pt-3 sm:pt-4 mt-3 sm:mt-4">
+          <div className="border-t border-border pt-2 sm:pt-3 mt-2">
             {calculation.isConsultation ? (
               <div className="text-center">
                 <p className="text-sm sm:text-lg text-muted-foreground">Para más de 400 páginas</p>
@@ -235,7 +235,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
             })
           }
           size="lg"
-          className="w-full text-base sm:text-lg py-5 sm:py-6"
+          className="w-full text-sm sm:text-base py-4 sm:py-5"
         >
           Solicitar presupuesto definitivo
         </Button>
