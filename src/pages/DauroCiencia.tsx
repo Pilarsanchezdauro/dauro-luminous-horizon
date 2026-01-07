@@ -67,6 +67,7 @@ import {
   Brush,
 } from "lucide-react";
 import { toast } from "sonner";
+import dauroCienciaSello from "@/assets/dauro-ciencia-sello.png";
 
 // Pricing tables
 const BASE_PRICES: Record<number, number> = {
@@ -179,7 +180,7 @@ const PROCESS_STEPS = [
 
 const WHY_DAURO = [
   "Más de 1.000 libros publicados",
-  "38 años de experiencia editorial",
+  "26 años de experiencia editorial",
   "Distribución en +4.000 librerías",
   "Revisión científica especializada",
   "Certificado válido para CV académico",
@@ -387,6 +388,15 @@ export default function DauroCiencia() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Sello de garantía */}
+            <div className="flex justify-center mb-6">
+              <img 
+                src={dauroCienciaSello} 
+                alt="Sello Dauro Ciencia - Garantía de calidad académica" 
+                className="w-24 h-24 md:w-32 md:h-32 object-contain"
+              />
+            </div>
+
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 px-4 py-2">
               <Sparkles className="w-4 h-4 mr-2" />
               Sello académico de Grupo Dauro · Más de 1.000 libros publicados
@@ -410,6 +420,17 @@ export default function DauroCiencia() {
               <Button size="lg" variant="outline" className="text-lg px-8" onClick={scrollToPricing}>
                 Ver tarifas
               </Button>
+            </div>
+
+            {/* Credenciales del equipo */}
+            <div className="mt-10 p-6 bg-card/50 backdrop-blur-sm border border-border rounded-2xl max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <Award className="w-5 h-5 text-primary" />
+                <span className="text-sm font-semibold text-foreground">Equipo directivo con experiencia académica</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Nuestros directivos son universitarios, científicos e investigadores con libros publicados de éxito y premiados. Entendemos tus necesidades porque somos como tú.
+              </p>
             </div>
           </div>
         </div>
