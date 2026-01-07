@@ -65,6 +65,7 @@ import {
   BarChart3,
   TestTube,
   Brush,
+  Globe,
 } from "lucide-react";
 import { toast } from "sonner";
 import dauroCienciaSello from "@/assets/dauro-ciencia-sello.png";
@@ -705,6 +706,96 @@ export default function DauroCiencia() {
                   </TableBody>
                 </Table>
               </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* International Distribution Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+                <Truck className="w-4 h-4 mr-2" />
+                Distribución global
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Tu obra disponible en todo el mundo
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                El contrato de 3 años nos permite garantizar acuerdos de distribución internacional estables que benefician directamente a tu publicación.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Card className="p-6 border-2 hover:border-primary/30 transition-colors">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Globe className="w-5 h-5 text-primary" />
+                  </div>
+                  ¿Por qué 3 años?
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Los acuerdos con distribuidores internacionales como Logista, Amazon Global y redes de librerías requieren compromisos mínimos de permanencia para incluir títulos en sus catálogos.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2 text-sm">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Garantiza presencia estable en catálogos internacionales</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Permite negociar mejores condiciones de distribución</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Asegura visibilidad continua de tu obra</span>
+                  </li>
+                </ul>
+              </Card>
+
+              <Card className="p-6 border-2 hover:border-primary/30 transition-colors">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <ShoppingBag className="w-5 h-5 text-primary" />
+                  </div>
+                  Dónde estará tu libro
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">+4.000</p>
+                    <p className="text-xs text-muted-foreground">Librerías España</p>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">Amazon</p>
+                    <p className="text-xs text-muted-foreground">Global</p>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">Casa del Libro</p>
+                    <p className="text-xs text-muted-foreground">España</p>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">FNAC</p>
+                    <p className="text-xs text-muted-foreground">Europa</p>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">Libros.cc</p>
+                    <p className="text-xs text-muted-foreground">Especializado</p>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg text-center">
+                    <p className="font-semibold text-sm">Logista</p>
+                    <p className="text-xs text-muted-foreground">Distribución</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="bg-muted/30 rounded-2xl p-8 text-center">
+              <h3 className="text-xl font-bold mb-3">Al finalizar los 3 años</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Puedes renovar el contrato para mantener la distribución, o recuperar todos los derechos de tu obra sin coste alguno. Tú decides el futuro de tu publicación.
+              </p>
             </div>
           </div>
         </div>
