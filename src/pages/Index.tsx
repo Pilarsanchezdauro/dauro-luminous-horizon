@@ -12,9 +12,6 @@ import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
 import { LatestWorks } from "@/components/LatestWorks";
 import { NovedadesSection } from "@/components/NovedadesSection";
-import ChristmasEffects from "@/components/ChristmasEffects";
-import ChristmasBanner from "@/components/ChristmasBanner";
-import ChristmasSongAnnouncement from "@/components/ChristmasSongAnnouncement";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
@@ -112,13 +109,8 @@ const Index = () => {
         structuredData={homeStructuredData}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publisherStructuredData) }} />
-      <ChristmasEffects />
-      <ChristmasBanner />
       <Navigation />
       <Hero />
-
-      {/* Christmas Song Announcement */}
-      <ChristmasSongAnnouncement />
 
       {/* Widget Section */}
       <section className="py-8 bg-gradient-to-br from-primary/5 via-background to-accent/5">
