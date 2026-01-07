@@ -27,6 +27,7 @@ const Navigation = () => {
       submenu: [
         { name: "Dauro Editorial", path: "/grupo-dauro/editorial" },
         { name: "Publica tu libro", path: "/autoedicion" },
+        { name: "Dauro Ciencia", path: "/dauro-ciencia" },
         { name: "Dauro Arte", path: "/grupo-dauro/arte" },
         { name: "Dauro Cine", path: "/grupo-dauro/cine" },
         { name: "Dauro Música", path: "/grupo-dauro/musica" },
