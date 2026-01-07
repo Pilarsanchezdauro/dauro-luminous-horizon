@@ -221,9 +221,9 @@ const FAQ_ITEMS = [
       "Tu libro estará disponible en más de 4.000 librerías a través de Logista, además de plataformas online como Amazon, Casa del Libro y FNAC. También se incluye en Libros.cc para distribución especializada.",
   },
   {
-    question: "¿Mantengo los derechos de autor?",
+    question: "¿Cómo funciona el contrato de publicación?",
     answer:
-      "Sí, el 100% de los derechos de autor son tuyos. No hay cláusulas ocultas ni costes de rescisión. Puedes retirar tu libro cuando quieras sin ningún coste.",
+      "El contrato tiene una duración de 3 años debido a los acuerdos de distribución internacional. Durante este período, los derechos de explotación son compartidos para garantizar la máxima difusión de tu obra. Una vez finalizado el contrato, puedes renovarlo o recuperar todos los derechos.",
   },
   {
     question: "¿Puedo incluir gráficos, tablas e imágenes?",
@@ -255,11 +255,11 @@ const COMPARISON_DATA = [
   { feature: "Distribución Logista", dauro: "✓", circuloRojo: "✓", eae: "✗" },
   {
     feature: "Derechos de autor",
-    dauro: "100% tuyos",
+    dauro: "Compartidos 3 años",
     circuloRojo: "100% tuyos",
     eae: "Cláusulas ocultas",
   },
-  { feature: "Coste de rescisión", dauro: "0€", circuloRojo: "0€", eae: "750€" },
+  { feature: "Duración contrato", dauro: "3 años", circuloRojo: "Indefinido", eae: "Indefinido + 750€ rescisión" },
 ];
 
 function getCorrectionPrice(pages: number): number {
@@ -474,11 +474,11 @@ export default function DauroCiencia() {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="w-7 h-7 text-primary" />
                 </div>
-                <CardTitle className="text-xl">Tú mantienes los derechos</CardTitle>
+                <CardTitle className="text-xl">Contrato transparente</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  El 100% de los derechos de autor son tuyos. Publica y vende como quieras
+                  Contrato de 3 años por distribución internacional. Sin cláusulas ocultas ni sorpresas
                 </p>
               </CardContent>
             </Card>
