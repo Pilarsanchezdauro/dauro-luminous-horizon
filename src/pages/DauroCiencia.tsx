@@ -372,12 +372,12 @@ export default function DauroCiencia() {
         <title>Dauro Ciencia - Editorial Universitaria | Publica tu TFG, TFM o Tesis</title>
         <meta
           name="description"
-          content="Editorial universitaria con revisión científica por IA especializada. Publica tu investigación desde 439€. ISBN, distribución nacional e internacional y certificado académico incluidos."
+          content="Editorial universitaria con revisión científica por expertos y asistida por IA. Publica tu investigación desde 439€. ISBN, distribución nacional e internacional y certificado académico incluidos."
         />
         <meta property="og:title" content="Dauro Ciencia - Editorial Universitaria" />
         <meta
           property="og:description"
-          content="Publica tu investigación con rigor científico. Editorial universitaria con revisión por IA especializada desde 439€."
+          content="Publica tu investigación con rigor científico. Editorial universitaria con revisión por expertos y asistida por IA desde 439€."
         />
       </Helmet>
 
@@ -408,7 +408,7 @@ export default function DauroCiencia() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Editorial universitaria con revisión científica por IA especializada. Desde{" "}
+              Editorial universitaria con revisión científica por expertos y asistida por IA. Desde{" "}
               <span className="font-bold text-primary">439€</span>. ISBN, distribución nacional
               e internacional y certificado académico incluidos.
             </p>
