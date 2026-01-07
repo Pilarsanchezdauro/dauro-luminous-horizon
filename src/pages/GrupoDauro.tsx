@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, BookOpen, Film, Brain, Palette, Users, Target, Sparkles, TrendingUp, Music, Frame, FileText, Search, Gem, PenTool } from "lucide-react";
+import { X, BookOpen, Film, Brain, Palette, Users, Target, Sparkles, TrendingUp, Music, Frame, FileText, Search, Gem, PenTool, GraduationCap } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
@@ -134,6 +134,14 @@ const GrupoDauro = () => {
                   <h4 className="font-semibold text-foreground mb-1 text-sm">Edición Literaria</h4>
                   <p className="text-xs text-muted-foreground">Narrativa, poesía, ensayo e investigación.</p>
                 </div>
+                
+                <a href="/dauro-ciencia" className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                  <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                    <GraduationCap className="w-5 h-5 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-1 text-sm">Dauro Ciencia</h4>
+                  <p className="text-xs text-muted-foreground">Editorial universitaria con revisión científica.</p>
+                </a>
                 
                 <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
