@@ -129,8 +129,8 @@ const INCLUDED_SERVICES = [
   { text: "Distribución Libros.cc y Logista", icon: Truck },
   { text: "Formato ebook incluido", icon: Smartphone },
   { text: "Alta en Amazon, Casa del Libro, FNAC", icon: ShoppingBag },
-  { text: "Revisión científica con IA (opcional)", icon: Brain },
-  { text: "Certificado de evaluación académica", icon: Award },
+  { text: "Revisión científica por expertos + IA (opcional)", icon: Brain },
+  { text: "Sello Académico Dauro Ciencia", icon: Award },
 ];
 
 const PROCESS_STEPS = [
@@ -149,7 +149,7 @@ const PROCESS_STEPS = [
   {
     step: 3,
     title: "Revisión científica",
-    description: "Evaluamos tu obra con IA especializada (opcional)",
+    description: "Evaluación por expertos asistida por IA (opcional)",
     icon: Brain,
   },
   {
@@ -196,9 +196,9 @@ const FAQ_ITEMS = [
       "Sí, publicamos todo tipo de trabajos académicos: TFG, TFM, tesis doctorales, investigaciones y ensayos. Tu trabajo recibirá el mismo tratamiento profesional que cualquier otra publicación editorial.",
   },
   {
-    question: "¿Qué incluye la revisión científica con IA?",
+    question: "¿Qué incluye la revisión científica?",
     answer:
-      "Incluye una evaluación especializada por rama de conocimiento, un informe detallado con recomendaciones de mejora, y un certificado oficial de Dauro Ciencia válido para tu CV académico.",
+      "Incluye una evaluación realizada por expertos académicos asistidos por IA especializada en tu rama de conocimiento, un informe detallado con recomendaciones de mejora, y el Sello Académico Dauro Ciencia válido para tu CV.",
   },
   {
     question: "¿El certificado es válido para mi CV?",
@@ -247,11 +247,11 @@ const COMPARISON_DATA = [
   },
   {
     feature: "Revisión científica",
-    dauro: "IA especializada 159€",
+    dauro: "Expertos + IA 159€",
     circuloRojo: "No disponible",
     eae: "No",
   },
-  { feature: "Certificado académico", dauro: "✓", circuloRojo: "✗", eae: "✗" },
+  { feature: "Sello Académico", dauro: "✓", circuloRojo: "✗", eae: "✗" },
   { feature: "Distribución Logista", dauro: "✓", circuloRojo: "✓", eae: "✗" },
   {
     feature: "Derechos de autor",
@@ -445,12 +445,11 @@ export default function DauroCiencia() {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                   <Brain className="w-7 h-7 text-primary" />
                 </div>
-                <CardTitle className="text-xl">Revisión científica IA</CardTitle>
+                <CardTitle className="text-xl">Revisión por expertos + IA</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Evaluación especializada por rama de conocimiento con certificado válido para
-                  tu CV académico
+                  Evaluación por especialistas asistidos por IA, con Sello Académico Dauro Ciencia válido para tu CV
                 </p>
               </CardContent>
             </Card>
@@ -574,7 +573,7 @@ export default function DauroCiencia() {
                         htmlFor="aiReview"
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                       >
-                        Revisión científica IA + certificado
+                        Revisión científica + Sello Académico
                         <span className="text-primary ml-2">+159€</span>
                       </label>
                     </div>
@@ -623,7 +622,7 @@ export default function DauroCiencia() {
                   </div>
                   {calculation.aiReviewCost > 0 && (
                     <div className="flex justify-between text-sm">
-                      <span>Revisión científica IA</span>
+                      <span>Revisión científica + Sello</span>
                       <span>+{calculation.aiReviewCost}€</span>
                     </div>
                   )}
@@ -738,14 +737,13 @@ export default function DauroCiencia() {
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 <Brain className="w-4 h-4 mr-2" />
-                Tecnología exclusiva
+                Revisión híbrida exclusiva
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Evaluación científica especializada por rama de conocimiento
+                Evaluación por expertos asistidos por IA especializada
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Nuestros agentes de IA están entrenados en cada disciplina académica para ofrecer
-                una revisión rigurosa de tu manuscrito.
+                Combinamos el criterio de académicos expertos con tecnología de IA entrenada en cada disciplina para ofrecer una revisión rigurosa y completa de tu manuscrito.
               </p>
             </div>
 
@@ -778,7 +776,7 @@ export default function DauroCiencia() {
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Certificado oficial Dauro Ciencia</span>
+                      <span>Sello Académico Dauro Ciencia</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
