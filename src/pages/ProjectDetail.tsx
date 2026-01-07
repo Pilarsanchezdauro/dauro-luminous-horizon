@@ -135,7 +135,7 @@ function ArtistLayout({ project, links, galleryImages }: {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-24 pb-16">
+        <main className="container mx-auto px-4 pt-28 pb-16">
           <Link to="/portafolio">
             <Button variant="ghost" className="mb-8">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -505,7 +505,7 @@ function DefaultProjectLayout({ project, links, galleryImages }: {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        <main className="container mx-auto px-4 pt-24 pb-16">
+          <main className="container mx-auto px-4 pt-28 pb-16">
           <Link to="/portafolio">
             <Button variant="ghost" className="mb-6">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -753,7 +753,7 @@ export default function ProjectDetail() {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
-        <main className="container mx-auto px-4 pt-24 pb-16">
+        <main className="container mx-auto px-4 pt-28 pb-16">
           <div className="animate-pulse space-y-8">
             <div className="h-8 bg-muted rounded w-1/4" />
             <div className="h-12 bg-muted rounded w-3/4" />
@@ -772,7 +772,7 @@ export default function ProjectDetail() {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
-        <main className="container mx-auto px-4 pt-24 pb-16 text-center">
+        <main className="container mx-auto px-4 pt-28 pb-16 text-center">
           <h1 className="text-3xl font-bold mb-4">Proyecto no encontrado</h1>
           <Link to="/portafolio">
             <Button>

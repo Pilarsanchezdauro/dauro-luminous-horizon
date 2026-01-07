@@ -155,7 +155,7 @@ const MisEbooks = () => {
 
       <Navigation />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-background pt-28 pb-16">
         <div className="container max-w-4xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
