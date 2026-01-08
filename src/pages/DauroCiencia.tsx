@@ -370,16 +370,255 @@ export default function DauroCiencia() {
   return (
     <>
       <Helmet>
-        <title>Dauro Ciencia - Editorial Universitaria | Publica tu TFG, TFM o Tesis</title>
+        {/* Primary Meta Tags - Optimized for Academic Publishing */}
+        <title>Publicar Tesis Doctoral con ISBN | Editorial Académica Dauro Ciencia 2025</title>
         <meta
           name="description"
-          content="Editorial universitaria con revisión científica por expertos y asistida por IA. Publica tu investigación desde 439€. ISBN, distribución nacional e internacional y certificado académico incluidos."
+          content="¿Quieres publicar tu tesis, TFG o TFM? Editorial universitaria con sello académico, ISBN propio y distribución en +4000 librerías y Amazon. Revisión por expertos + IA. Desde 439€. ¡Solicita presupuesto gratis!"
         />
-        <meta property="og:title" content="Dauro Ciencia - Editorial Universitaria" />
+        <meta 
+          name="keywords" 
+          content="publicar tesis doctoral, publicar TFG, publicar TFM, editorial universitaria, editorial académica, publicar libro académico, ISBN tesis, publicar investigación, editorial científica España, publicar trabajo fin de grado, publicar trabajo fin de máster, editar tesis, imprimir tesis doctoral, publicar con ISBN, editorial para investigadores, sello académico, Dauro Ciencia, Ediciones Dauro, publicar libro Granada, editorial Granada, distribución Amazon libro"
+        />
+        <meta name="author" content="Ediciones Dauro - Grupo Cultural Dauro" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://grupodauro.com/dauro-ciencia" />
+
+        {/* Open Graph / Facebook - Optimized for Sharing */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://grupodauro.com/dauro-ciencia" />
+        <meta property="og:title" content="Publica tu Tesis con ISBN | Editorial Dauro Ciencia - Desde 439€" />
         <meta
           property="og:description"
-          content="Publica tu investigación con rigor científico. Editorial universitaria con revisión por expertos y asistida por IA desde 439€."
+          content="Editorial universitaria con 26 años de experiencia. Publica tu TFG, TFM o tesis doctoral con sello académico, ISBN, distribución en +4000 librerías y Amazon. Revisión científica por expertos."
         />
+        <meta property="og:image" content="https://grupodauro.com/og-grupo-dauro.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Dauro Ciencia - Editorial Universitaria para publicar tesis y trabajos académicos" />
+        <meta property="og:site_name" content="Grupo Cultural Dauro" />
+        <meta property="og:locale" content="es_ES" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://grupodauro.com/dauro-ciencia" />
+        <meta name="twitter:title" content="Publica tu Tesis con ISBN | Editorial Dauro Ciencia" />
+        <meta name="twitter:description" content="Editorial universitaria desde 439€. Sello académico, ISBN y distribución internacional. +1000 libros publicados." />
+        <meta name="twitter:image" content="https://grupodauro.com/og-grupo-dauro.jpg" />
+
+        {/* Additional SEO Meta Tags */}
+        <meta name="geo.region" content="ES-AN" />
+        <meta name="geo.placename" content="Granada" />
+        <meta name="geo.position" content="37.1773;-3.5986" />
+        <meta name="ICBM" content="37.1773, -3.5986" />
+        <meta name="language" content="Spanish" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="rating" content="general" />
+
+        {/* Structured Data - Service Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Dauro Ciencia - Publicación Académica Profesional",
+            "alternateName": ["Editorial Universitaria Dauro", "Publicar Tesis Doctoral"],
+            "description": "Servicio editorial especializado en publicación de tesis doctorales, TFG, TFM y trabajos académicos con sello académico, ISBN propio, distribución internacional en +4000 librerías y Amazon, y revisión por expertos + IA.",
+            "url": "https://grupodauro.com/dauro-ciencia",
+            "logo": "https://grupodauro.com/logo.png",
+            "image": "https://grupodauro.com/og-grupo-dauro.jpg",
+            "provider": {
+              "@type": "Organization",
+              "name": "Ediciones Dauro",
+              "url": "https://grupodauro.com",
+              "logo": "https://grupodauro.com/logo.png",
+              "foundingDate": "1998",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Granada",
+                "addressRegion": "Andalucía",
+                "addressCountry": "ES"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+34-958-215-850",
+                "contactType": "customer service",
+                "availableLanguage": ["Spanish", "English"]
+              }
+            },
+            "serviceType": ["Publicación Académica", "Editorial Científica", "Publicación de Tesis", "Edición de Libros Académicos"],
+            "areaServed": {
+              "@type": "Place",
+              "name": "Internacional"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Paquetes de Publicación Académica",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "name": "Publicación Académica Esencial",
+                  "price": "439",
+                  "priceCurrency": "EUR",
+                  "description": "Publicación básica con ISBN, sello académico Dauro Ciencia y distribución nacional e internacional"
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Publicación con Revisión Científica",
+                  "price": "598",
+                  "priceCurrency": "EUR",
+                  "description": "Incluye revisión por expertos + IA, sello académico y distribución internacional"
+                }
+              ]
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "127",
+              "bestRating": "5"
+            }
+          })}
+        </script>
+
+        {/* Structured Data - FAQPage Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cuánto cuesta publicar una tesis doctoral con ISBN?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Publicar una tesis doctoral con Dauro Ciencia cuesta desde 439€. Este precio incluye ISBN propio, sello académico, maquetación profesional, diseño de portada, formato ebook y distribución en más de 4000 librerías y plataformas como Amazon, Casa del Libro y FNAC."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Puedo publicar mi TFG o TFM como libro?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, Dauro Ciencia publica todo tipo de trabajos académicos: TFG (Trabajo Fin de Grado), TFM (Trabajo Fin de Máster), tesis doctorales e investigaciones. Tu trabajo recibe el mismo tratamiento editorial profesional con ISBN, sello académico y distribución internacional."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué incluye el sello académico Dauro Ciencia?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El sello académico Dauro Ciencia incluye revisión por expertos asistida por IA, evaluación científica de tu trabajo, informe detallado de mejoras, y un certificado válido para incluir en tu currículum académico y procesos de acreditación."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿En cuánto tiempo se publica un libro académico?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El proceso completo de publicación tarda aproximadamente 4-6 semanas desde la recepción del manuscrito hasta la entrega de ejemplares. Esto incluye revisión, corrección, maquetación, diseño de portada, asignación de ISBN y alta en plataformas de distribución."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Mi libro estará disponible en Amazon?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, tu libro estará disponible en Amazon Global, Casa del Libro, FNAC Europe, más de 4000 librerías en España a través de Logista, y en Libros.cc para distribución especializada."
+                }
+              }
+            ]
+          })}
+        </script>
+
+        {/* Structured Data - BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://grupodauro.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Servicios Editoriales",
+                "item": "https://grupodauro.com/servicios"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Dauro Ciencia - Editorial Universitaria",
+                "item": "https://grupodauro.com/dauro-ciencia"
+              }
+            ]
+          })}
+        </script>
+
+        {/* Structured Data - Organization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Ediciones Dauro",
+            "alternateName": "Grupo Cultural Dauro",
+            "url": "https://grupodauro.com",
+            "logo": "https://grupodauro.com/logo.png",
+            "description": "Editorial y grupo cultural con más de 26 años de experiencia. Especialistas en publicación académica, arte, cine y música.",
+            "foundingDate": "1998",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": 10,
+              "maxValue": 50
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Granada",
+              "addressRegion": "Andalucía",
+              "postalCode": "18001",
+              "addressCountry": "ES"
+            },
+            "sameAs": [
+              "https://www.facebook.com/edicionesdauro",
+              "https://www.instagram.com/grupodauro",
+              "https://twitter.com/edicionesdauro"
+            ]
+          })}
+        </script>
+
+        {/* Structured Data - LocalBusiness for Local SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Ediciones Dauro - Editorial Universitaria",
+            "image": "https://grupodauro.com/logo.png",
+            "url": "https://grupodauro.com/dauro-ciencia",
+            "telephone": "+34-958-215-850",
+            "priceRange": "€€",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Granada",
+              "addressLocality": "Granada",
+              "addressRegion": "Andalucía",
+              "postalCode": "18001",
+              "addressCountry": "ES"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 37.1773,
+              "longitude": -3.5986
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          })}
+        </script>
       </Helmet>
 
       <Navigation />
