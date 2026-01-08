@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -280,6 +280,8 @@ function getBasePrice(pages: number): number {
 }
 
 export default function DauroCiencia() {
+  const navigate = useNavigate();
+  
   // Calculator state
   const [pages, setPages] = useState(150);
   const [copies, setCopies] = useState(50);
@@ -328,27 +330,19 @@ export default function DauroCiencia() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xvgogvdo", {
+      const response = await fetch("https://formspree.io/f/mgovgpgg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          subject: "Solicitud Dauro Ciencia",
+          subject: "Solicitud Dauro Ciencia - Publicación Académica",
           presupuestoEstimado: `${calculation.total}€`,
+          origen: "Página Dauro Ciencia",
         }),
       });
 
       if (response.ok) {
-        toast.success("¡Solicitud enviada! Te contactaremos en 24-48h.");
-        setFormData({
-          nombre: "",
-          email: "",
-          telefono: "",
-          universidad: "",
-          tipoTrabajo: "",
-          paginas: "",
-          mensaje: "",
-        });
+        navigate("/gracias-dauro-ciencia");
       } else {
         throw new Error("Error al enviar");
       }
