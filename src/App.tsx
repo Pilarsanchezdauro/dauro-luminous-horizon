@@ -28,6 +28,7 @@ import Terminos from "./pages/Terminos";
 import CompromisoEtico from "./pages/CompromisoEtico";
 import ArchivoHistorico from "./pages/ArchivoHistorico";
 import Gracias from "./pages/Gracias";
+import GraciasDauroCiencia from "./pages/GraciasDauroCiencia";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -115,6 +116,7 @@ const App = () => (
             <Route path="/generador-portadas" element={<GeneradorPortadas />} />
             <Route path="/artistas/solicitud" element={<SolicitarRepresentacion />} />
             <Route path="/gracias" element={<Gracias />} />
+            <Route path="/gracias-dauro-ciencia" element={<GraciasDauroCiencia />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/compromiso-etico" element={<CompromisoEtico />} />
