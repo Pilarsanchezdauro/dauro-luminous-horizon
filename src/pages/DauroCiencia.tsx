@@ -392,10 +392,10 @@ export default function DauroCiencia() {
           property="og:description"
           content="Editorial universitaria con 26 años de experiencia. Publica tu TFG, TFM o tesis doctoral con sello académico, ISBN, distribución en +4000 librerías y Amazon. Revisión científica por expertos."
         />
-        <meta property="og:image" content="https://grupodauro.com/og-grupo-dauro.jpg" />
+        <meta property="og:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Dauro Ciencia - Editorial Universitaria para publicar tesis y trabajos académicos" />
+        <meta property="og:image:height" content="640" />
+        <meta property="og:image:alt" content="Dauro Ciencia - Publica tu Tesis con ISBN - Editorial Universitaria" />
         <meta property="og:site_name" content="Grupo Cultural Dauro" />
         <meta property="og:locale" content="es_ES" />
 
@@ -404,7 +404,7 @@ export default function DauroCiencia() {
         <meta name="twitter:url" content="https://grupodauro.com/dauro-ciencia" />
         <meta name="twitter:title" content="Publica tu Tesis con ISBN | Editorial Dauro Ciencia" />
         <meta name="twitter:description" content="Editorial universitaria desde 439€. Sello académico, ISBN y distribución internacional. +1000 libros publicados." />
-        <meta name="twitter:image" content="https://grupodauro.com/og-grupo-dauro.jpg" />
+        <meta name="twitter:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
 
         {/* Additional SEO Meta Tags */}
         <meta name="geo.region" content="ES-AN" />
