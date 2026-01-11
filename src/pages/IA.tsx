@@ -26,6 +26,7 @@ const IA = () => {
         description="Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos."
         keywords="inteligencia artificial arte, IA creatividad, generación imágenes IA, música IA, contenido IA, servicios IA creativos, arte generativo"
         url="https://grupodauro.com/grupo-dauro/ia"
+        image="https://grupodauro.com/og-dauro-ia.jpg"
         structuredData={structuredData}
       />
       <Navigation />
