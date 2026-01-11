@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Brain, Zap, Code, Palette, BookOpen, Building2, Landmark } from "lucide-react";
+import { Sparkles, Brain, Zap, Palette, BookOpen, Building2, Landmark, FileSearch, PenTool, Video, BarChart3, GraduationCap, Globe, Music, Bot, Image, MessageSquare, Shield, Cpu } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import iaBg from "@/assets/ia-bg.jpg";
 import mascotLogo from "@/assets/mascot.png";
@@ -109,10 +109,10 @@ const IA = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {/* Servicios Culturales */}
+          {/* Fila 1 */}
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Sparkles className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Palette className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Valoración y Gestión Patrimonial</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Gestiona activos artísticos, históricos o inmobiliarios con precisión IA.
@@ -126,7 +126,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Brain className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <FileSearch className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Documentoscopia y Verificación</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Autenticidad documental para instituciones, notarías y administración pública.
@@ -140,7 +140,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Sparkles className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <PenTool className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Redacción y Contenidos IA</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Textos institucionales, editoriales y corporativos con estilo profesional.
@@ -152,13 +152,13 @@ const IA = () => {
             </ul>
           </div>
 
-          {/* Servicios Institucionales */}
+          {/* Fila 2 */}
           <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
             <Landmark className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Soluciones Institucionales</h3>
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Soluciones para Gobiernos</h3>
             <p className="text-muted-foreground text-sm mb-4">
-              IA para ayuntamientos, universidades, gobiernos y organismos públicos.
+              IA para ayuntamientos, diputaciones y organismos públicos.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>• Atención ciudadana automatizada</li>
@@ -169,7 +169,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Building2 className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Sparkles className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Branding y Comunicación</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Identidad visual y narrativa para empresas e instituciones.
@@ -183,7 +183,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Zap className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Video className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Producción Audiovisual</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Vídeos corporativos, institucionales y promocionales con IA.
@@ -195,9 +195,10 @@ const IA = () => {
             </ul>
           </div>
 
+          {/* Fila 3 */}
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Code className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <BarChart3 className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Visualización de Datos</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Los datos también necesitan estética para comunicar con impacto.
@@ -211,7 +212,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Brain className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <GraduationCap className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Formación en IA</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Capacita a tu equipo o institución para trabajar con IA generativa.
@@ -225,7 +226,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Sparkles className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Globe className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Webs y Plataformas</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Diseño web para empresas, instituciones y proyectos culturales.
@@ -237,9 +238,10 @@ const IA = () => {
             </ul>
           </div>
 
+          {/* Fila 4 */}
           <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Code className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Music className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Música y Audio IA</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Identidad sonora para marcas, instituciones y producciones.
@@ -253,7 +255,7 @@ const IA = () => {
 
           <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
-            <Brain className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <Bot className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
             <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Modelos IA Personalizados</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Tu propia IA entrenada con tu archivo, datos y estilo institucional.
@@ -262,6 +264,63 @@ const IA = () => {
               <li>• Chatbots especializados</li>
               <li>• Asistentes virtuales</li>
               <li>• IA de atención al público</li>
+            </ul>
+          </div>
+
+          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <Image className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Generación de Imágenes</h3>
+            <p className="text-muted-foreground text-sm mb-4">
+              Ilustraciones, portadas y contenido visual con IA generativa.
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• Portadas de libros</li>
+              <li>• Ilustraciones editoriales</li>
+              <li>• Cartelería y gráfica</li>
+            </ul>
+          </div>
+
+          {/* Fila 5 */}
+          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <MessageSquare className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Atención Automatizada</h3>
+            <p className="text-muted-foreground text-sm mb-4">
+              Sistemas de atención 24/7 para empresas y administraciones.
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• Chat inteligente multicanal</li>
+              <li>• Gestión de consultas ciudadanas</li>
+              <li>• Soporte técnico automatizado</li>
+            </ul>
+          </div>
+
+          <div className="group bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 p-8 rounded-3xl border-2 border-accent/30 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <Shield className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Seguridad y Compliance</h3>
+            <p className="text-muted-foreground text-sm mb-4">
+              Soluciones IA que cumplen con normativas y protección de datos.
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• Auditoría de contenido IA</li>
+              <li>• Cumplimiento RGPD</li>
+              <li>• Ética en inteligencia artificial</li>
+            </ul>
+          </div>
+
+          <div className="group bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
+            <Cpu className="h-10 w-10 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-xl font-playfair font-bold mb-3 relative z-10">Automatización de Procesos</h3>
+            <p className="text-muted-foreground text-sm mb-4">
+              Optimiza flujos de trabajo con inteligencia artificial.
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• Automatización documental</li>
+              <li>• Workflows inteligentes</li>
+              <li>• Integración de sistemas</li>
             </ul>
           </div>
         </div>
