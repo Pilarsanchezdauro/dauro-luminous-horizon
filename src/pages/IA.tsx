@@ -334,27 +334,27 @@ const IA = () => {
               Nuestra trayectoria no empezó con la moda de la IA
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Llevamos más de 20 años creando con tecnología, arte y visión. Hemos diseñado 
+              Llevamos más de 25 años creando con tecnología, arte y visión. Hemos diseñado 
               ideas, campañas y narrativas para autores, editoriales, museos, asociaciones y marcas.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Hemos usado inteligencia artificial mucho antes de que tuviera nombre de tendencia. 
+              Automatizábamos procesos editoriales antes de que existiese la IA. 
               Hoy lo llamamos IA Generativa. <span className="text-primary font-semibold">Nosotras siempre lo llamamos creación con visión.</span>
             </p>
             
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
               <div className="text-center">
-                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">+20</p>
+                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">+25</p>
                 <p className="text-sm text-muted-foreground">años en cultura y arte</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">+150</p>
-                <p className="text-sm text-muted-foreground">proyectos con IA</p>
+                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">+1.000</p>
+                <p className="text-sm text-muted-foreground">libros publicados</p>
               </div>
               <div className="text-center">
-                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">98%</p>
-                <p className="text-sm text-muted-foreground">de satisfacción</p>
+                <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">+5.000</p>
+                <p className="text-sm text-muted-foreground">proyectos con IA</p>
               </div>
               <div className="text-center">
                 <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">Global</p>
