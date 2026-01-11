@@ -712,7 +712,7 @@ export default function DauroCiencia() {
                       El <strong className="text-foreground">Dr. Antonio Rodríguez Jiménez</strong> es un respetado académico y autor con <strong className="text-foreground">doctorados en Teoría de la Literatura, Literatura Comparada y Comunicación</strong>. Su destacada carrera incluye la publicación de <strong className="text-primary">67 libros</strong> y numerosos estudios de investigación.
                     </p>
                     <p className="text-lg text-muted-foreground leading-relaxed">
-                      Es <strong className="text-foreground">Investigador Nacional Nivel I</strong> del Sistema Nacional de Investigación (SNI) de México, y profesor titular en la <strong className="text-foreground">Universidad Autónoma de Guadalajara</strong>, donde imparte cursos de posgrado en Metodología y Seminarios de Investigación.
+                      Es <strong className="text-foreground">Investigador Nacional Nivel II</strong> del Sistema Nacional de Investigación (SNI-Conahcyt) de México, adscrito a <strong className="text-foreground">El Colegio de Jalisco</strong>, centro de Estudios Regionales. Imparte clases en la <strong className="text-foreground">Universidad de Guadalajara</strong>, a la que está vinculado desde 2014.
                     </p>
                   </div>
                 </Card>
@@ -736,8 +736,8 @@ export default function DauroCiencia() {
                         <Award className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground">SNI Nivel I</p>
-                        <p className="text-sm text-muted-foreground">Sistema Nacional de Investigación México</p>
+                        <p className="font-semibold text-foreground">SNI Nivel II</p>
+                        <p className="text-sm text-muted-foreground">El Colegio de Jalisco · Conahcyt</p>
                       </div>
                     </div>
                   </Card>
