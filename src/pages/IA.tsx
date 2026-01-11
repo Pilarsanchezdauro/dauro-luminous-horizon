@@ -90,14 +90,18 @@ const IA = () => {
             <div className="absolute inset-0 bg-[url('/public/projects/dauro-ia.png')] bg-cover bg-center opacity-[0.05]" />
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
             <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
-              Servicios con Visión Artística
+              IA para Cualquier Sector. Con ADN Cultural.
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
-              En Grupo Dauro IA desarrollamos tecnología con alma. Unimos la precisión de la 
-              inteligencia artificial con la sensibilidad del arte para crear soluciones que 
-              inspiran, emocionan y funcionan.
+              Nuestros servicios de inteligencia artificial están diseñados para <strong className="text-foreground">cualquier sector</strong>: 
+              empresas, instituciones, industria, salud, educación... Pero cuando tu proyecto necesita 
+              <strong className="text-foreground"> belleza, cultura o estética</strong>, ahí es donde marcamos la diferencia.
             </p>
-            <p className="text-primary font-semibold mt-4 text-center relative z-10">
+            <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10 mt-4">
+              <span className="text-primary font-semibold">Llevamos la cultura y la belleza en nuestro ADN.</span> Más de 20 años 
+              en el mundo del arte nos han enseñado que incluso los datos necesitan estética para comunicar.
+            </p>
+            <p className="text-primary font-semibold mt-6 text-center relative z-10">
               🎯 Todos nuestros servicios son personalizados
             </p>
           </div>
@@ -265,11 +269,11 @@ const IA = () => {
         {/* Use Cases */}
         <section className="mb-20">
           <h2 className="text-4xl font-playfair font-bold text-center mb-4">
-            Casos de uso
+            ¿Para quién trabajamos?
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            En Grupo Dauro IA aplicamos inteligencia artificial desde una perspectiva artística, 
-            emocional y estratégica
+            Desde grandes corporaciones hasta instituciones culturales. 
+            <strong className="text-foreground"> Cualquier sector que necesite IA con criterio estético</strong>
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
