@@ -689,12 +689,12 @@ export default function DauroCiencia() {
             <div className="grid lg:grid-cols-3 gap-8 items-start">
               {/* Director Photo & Info */}
               <div className="lg:col-span-1">
-                <Card className="overflow-hidden border-2 border-primary/20">
-                  <div className="aspect-[3/4] relative">
+                <Card className="overflow-hidden border-2 border-primary/20 group">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-white">
                     <img 
                       src="/dauro-ciencia-director.jpg" 
                       alt="Dr. Antonio Rodríguez Jiménez - Director de Dauro Ciencia"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                       <h3 className="text-xl font-bold text-white">Dr. Antonio Rodríguez Jiménez</h3>
