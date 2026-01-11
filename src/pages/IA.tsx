@@ -5,7 +5,7 @@ import { Sparkles, Brain, Zap, Code } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import iaBg from "@/assets/ia-bg.jpg";
 import mascotLogo from "@/assets/mascot.png";
-
+import logoDauroIA from "@/assets/logo-dauro-ia.png";
 const IA = () => {
   const structuredData = {
     "@context": "https://schema.org",
@@ -42,6 +42,11 @@ const IA = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
+          <img 
+            src={logoDauroIA} 
+            alt="Dauro IA - Inteligencia Artificial Creativa" 
+            className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 drop-shadow-2xl"
+          />
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
             Dauro IA
           </h1>
