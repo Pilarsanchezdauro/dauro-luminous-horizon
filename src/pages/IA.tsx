@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Brain, Zap, Code } from "lucide-react";
+import { Sparkles, Brain, Zap, Code, Palette, BookOpen, Building2, Landmark } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import iaBg from "@/assets/ia-bg.jpg";
 import mascotLogo from "@/assets/mascot.png";
@@ -272,37 +272,48 @@ const IA = () => {
             emocional y estratégica
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center group">
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl mb-6 flex items-center justify-center border-2 border-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl mb-4 flex items-center justify-center border border-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_10px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Sparkles className="h-16 w-16 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                <Palette className="h-10 w-10 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-playfair font-bold mb-3">Galerías y Museos</h3>
+              <h3 className="text-lg font-playfair font-bold mb-2">Galerías y Museos</h3>
               <p className="text-muted-foreground text-sm">
                 Gestión de colecciones, valoración de obras y experiencias digitales inmersivas
               </p>
             </div>
 
             <div className="text-center group">
-              <div className="aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl mb-6 flex items-center justify-center border-2 border-accent/30 group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl mb-4 flex items-center justify-center border border-accent/30 group-hover:border-primary/40 group-hover:shadow-[0_10px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Brain className="h-16 w-16 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                <BookOpen className="h-10 w-10 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-playfair font-bold mb-3">Editoriales y Autores</h3>
+              <h3 className="text-lg font-playfair font-bold mb-2">Editoriales y Autores</h3>
               <p className="text-muted-foreground text-sm">
                 Asistencia en escritura, corrección estilística y optimización de procesos editoriales
               </p>
             </div>
 
             <div className="text-center group">
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl mb-6 flex items-center justify-center border-2 border-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl mb-4 flex items-center justify-center border border-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_10px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Code className="h-16 w-16 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                <Building2 className="h-10 w-10 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-playfair font-bold mb-3">Empresas y Marcas</h3>
+              <h3 className="text-lg font-playfair font-bold mb-2">Empresas y Marcas</h3>
               <p className="text-muted-foreground text-sm">
                 Branding cultural, producción audiovisual y soluciones creativas con IA
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl mb-4 flex items-center justify-center border border-accent/30 group-hover:border-primary/40 group-hover:shadow-[0_10px_40px_-10px_rgba(224,74,92,0.4)] transition-all duration-300 group-hover:scale-105 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Landmark className="h-10 w-10 text-primary relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              </div>
+              <h3 className="text-lg font-playfair font-bold mb-2">Entidades Públicas</h3>
+              <p className="text-muted-foreground text-sm">
+                Ayuntamientos, universidades e instituciones gubernamentales con IA generativa
               </p>
             </div>
           </div>
