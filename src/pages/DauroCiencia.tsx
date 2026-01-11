@@ -66,6 +66,8 @@ import {
   TestTube,
   Brush,
   Globe,
+  ExternalLink,
+  Newspaper,
 } from "lucide-react";
 import { toast } from "sonner";
 import dauroCienciaSello from "@/assets/dauro-ciencia-sello.png";
@@ -665,6 +667,153 @@ export default function DauroCiencia() {
               <p className="text-sm text-muted-foreground">
                 Nuestros directivos son universitarios, científicos e investigadores con libros publicados de éxito y premiados. Entendemos tus necesidades porque somos como tú.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Director Section - Antonio Rodríguez Jiménez */}
+      <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-2">
+                <Award className="w-4 h-4 mr-2" />
+                Dirección Académica
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Liderazgo académico de prestigio internacional
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+              {/* Director Photo & Info */}
+              <div className="lg:col-span-1">
+                <Card className="overflow-hidden border-2 border-primary/20">
+                  <div className="aspect-[3/4] relative">
+                    <img 
+                      src="/dauro-ciencia-director.jpg" 
+                      alt="Dr. Antonio Rodríguez Jiménez - Director de Dauro Ciencia"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <h3 className="text-xl font-bold text-white">Dr. Antonio Rodríguez Jiménez</h3>
+                      <p className="text-primary-foreground/80 text-sm">Director de Dauro Ciencia</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Bio & Credentials */}
+              <div className="lg:col-span-2 space-y-6">
+                <Card className="p-6 border-2">
+                  <div className="prose prose-lg dark:prose-invert max-w-none">
+                    <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                      El <strong className="text-foreground">Dr. Antonio Rodríguez Jiménez</strong> es un respetado académico y autor con <strong className="text-foreground">doctorados en Teoría de la Literatura, Literatura Comparada y Comunicación</strong>. Su destacada carrera incluye la publicación de <strong className="text-primary">67 libros</strong> y numerosos estudios de investigación.
+                    </p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                      Es <strong className="text-foreground">Investigador Nacional Nivel I</strong> del Sistema Nacional de Investigación (SNI) de México, y profesor titular en la <strong className="text-foreground">Universidad Autónoma de Guadalajara</strong>, donde imparte cursos de posgrado en Metodología y Seminarios de Investigación.
+                    </p>
+                  </div>
+                </Card>
+
+                {/* Credentials Grid */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Card className="p-4 bg-primary/5 border-primary/20">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <BookOpen className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">67 Libros Publicados</p>
+                        <p className="text-sm text-muted-foreground">Autor e investigador prolífico</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4 bg-primary/5 border-primary/20">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Award className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">SNI Nivel I</p>
+                        <p className="text-sm text-muted-foreground">Sistema Nacional de Investigación México</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4 bg-primary/5 border-primary/20">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Globe className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">22 Años Cuadernos del Sur</p>
+                        <p className="text-sm text-muted-foreground">Coordinador del suplemento literario</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4 bg-primary/5 border-primary/20">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <GraduationCap className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">Director Instituto Cervantes</p>
+                        <p className="text-sm text-muted-foreground">Fez, Marruecos</p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+
+                {/* Academies */}
+                <Card className="p-4 border-2">
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">Miembro numerario</strong> de la <em>Academia Hispanoamericana de Buenas Letras</em> en Madrid y de la <em>Academia de Buenas Letras de Granada</em>.
+                  </p>
+                </Card>
+
+                {/* Press Coverage */}
+                <div>
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-2">
+                    <Newspaper className="w-4 h-4" />
+                    Cobertura en prensa
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    <a 
+                      href="https://el-mexicano.com/internacional/nombran-a-academico-de-la-uag-como-director-de-editorial-espanola/2184468" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium hover:border-primary hover:text-primary transition-colors"
+                    >
+                      El Mexicano <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a 
+                      href="https://laregiontam.com.mx/2023/08/05/nombran-a-academico-de-la-uag-como-director-de-editorial-espanola/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium hover:border-primary hover:text-primary transition-colors"
+                    >
+                      La Región <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a 
+                      href="https://tijuanainformativo.info/index.php/noticias-de-impacto-nacional-economicas-politica-y-social/item/158201-nombran-a-academico-de-la-uag-como-director-de-editorial-espanola" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium hover:border-primary hover:text-primary transition-colors"
+                    >
+                      Tijuana Informativo <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a 
+                      href="https://www.uag.mx/es/mediahub/dr-antonio-rodriguez-jimenez-academico-de-la-uag-nuevo-director-de-dauro-ciencia/2023-07" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium hover:border-primary hover:text-primary transition-colors"
+                    >
+                      UAG MediaHub <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
