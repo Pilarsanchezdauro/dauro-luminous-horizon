@@ -256,10 +256,10 @@ const Cine = () => {
                   <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
                 </div>
                 <Button variant="outline" size="sm" asChild>
-                  <Link to="/tienda/el-hidalgo-don-rodrigo-de-cervantes" className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    Ver novela original
-                  </Link>
+                  <a href="https://www.youtube.com/@ElHidalgoDonRodrigodeCervantes" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <Film className="w-4 h-4" />
+                    Ver canal del proyecto
+                  </a>
                 </Button>
               </div>
             </Card>
@@ -292,10 +292,10 @@ const Cine = () => {
                   <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
                 </div>
                 <Button variant="outline" size="sm" asChild>
-                  <Link to="/tienda/latido-apasionadamente-vuestro" className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    Ver novela original
-                  </Link>
+                  <a href="https://grupodauro.com/blog/presentacion-latido-carmen-alcaide" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <ExternalLink className="w-4 h-4" />
+                    Ver presentación
+                  </a>
                 </Button>
               </div>
             </Card>
