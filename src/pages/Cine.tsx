@@ -370,152 +370,111 @@ const Cine = () => {
           </div>
         </section>
 
-        {/* Projects */}
+        {/* Proyectos Premiados */}
         <section className="mb-20">
-          <h2 className="text-4xl font-playfair font-bold text-center mb-12">
-            Proyectos destacados
+          <h2 className="text-4xl font-playfair font-bold text-center mb-4">
+            Proyectos Premiados
           </h2>
+          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+            Producciones reconocidas en festivales nacionales e internacionales
+          </p>
           
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Proyecto 1 - Reinas */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="aspect-[2/3] w-full max-w-sm mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-lg">
+            <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group">
+              <div className="aspect-[3/4] overflow-hidden">
                 <img 
                   src="/projects/reinas-poster.png" 
-                  alt="Reinas - Cortometraje" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  alt="Reinas - Cortometraje premiado" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="eager"
-                  decoding="async"
                 />
               </div>
-              <div>
-                <h3 className="text-3xl font-playfair font-bold mb-4">
-                  Reinas
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Tres mujeres que, tras sucesivos fracasos y excesos, terminan "coronadas" por la vida. 
-                  En un ambiente de fiesta permanente donde sus propias miserias brillan incluso más que las luces de neón, 
-                  el cortometraje utiliza la ironía y el drama para retratar la vulnerabilidad y las contradicciones de sus protagonistas, 
-                  explorando temas como el fracaso, los sueños incumplidos y la supervivencia emocional.
-                </p>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                  Con Virtudes Olvera (actriz y guionista). Seleccionado en el Festival de Terror de Sabadell y otros certámenes de cine independiente.
-                </p>
-                <div className="flex gap-2 flex-wrap mb-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Drama
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Independiente
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Cortometraje
-                  </span>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-medium text-primary">Festival Sabadell</span>
                 </div>
-                <Button 
-                  variant="outline" 
-                  asChild
-                >
-                  <a href="https://cortosdemetraje.com/cortometrajes/reinas-2/" target="_blank" rel="noopener noreferrer">Ver más</a>
+                <h3 className="text-xl font-playfair font-bold mb-2">Reinas</h3>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                  Tres mujeres "coronadas" por la vida en un ambiente de fiesta permanente.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-3">
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Drama</span>
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Cortometraje</span>
+                </div>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <a href="https://cortosdemetraje.com/cortometrajes/reinas-2/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                    <ExternalLink className="w-3 h-3" />
+                    Ver proyecto
+                  </a>
                 </Button>
               </div>
-            </div>
+            </Card>
 
             {/* Proyecto 2 - Reinvention */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="lg:order-2 aspect-[2/3] w-full max-w-sm mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-lg">
+            <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group">
+              <div className="aspect-[3/4] overflow-hidden">
                 <img 
                   src="/projects/reinvention-poster.png" 
-                  alt="Reinvention - Cortometraje" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  alt="Reinvention K365D - Cortometraje nominado" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="eager"
-                  decoding="async"
                 />
               </div>
-              <div className="lg:order-1">
-                <h3 className="text-3xl font-playfair font-bold mb-4">
-                  Reinvention K365D
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Dirigido por Pepe Luis Pareja y producido por Chichinagranaina Producciones en asociación con Sauro Productions (ahora Grupo Dauro). 
-                  La trama gira en torno a Carmenchu y Emilio, una pareja cuya relación está totalmente acabada, aunque ninguno se atreve a ponerle fin. 
-                  Transitan su día a día en una rutina vacía, marcada por horas frente a la televisión, adicción al móvil y conflictos constantes.
-                </p>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                  Un ruido ensordecedor sacude sus vidas, actuando como detonante de posibles cambios. 
-                  Mezcla drama y humor cotidiano, mostrando la dificultad de afrontar rupturas y el miedo al cambio. 
-                  Nominado a Mejor Actriz en el Festival de Cine de Benagalbón.
-                </p>
-                <div className="flex gap-2 flex-wrap mb-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Drama
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Humor
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Cortometraje
-                  </span>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-medium text-primary">Nominación Benagalbón</span>
                 </div>
-                <Button 
-                  variant="outline"
-                  asChild
-                >
-                  <a href="https://youtu.be/0Slt7Myc4bA" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                <h3 className="text-xl font-playfair font-bold mb-2">Reinvention K365D</h3>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                  Pareja atrapada en una rutina vacía busca el detonante del cambio.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-3">
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Drama</span>
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Cortometraje</span>
+                </div>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <a href="https://youtu.be/0Slt7Myc4bA" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                    <ExternalLink className="w-3 h-3" />
+                    Ver trailer
+                  </a>
                 </Button>
               </div>
-            </div>
+            </Card>
 
             {/* Proyecto 3 - El Día */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="aspect-[2/3] w-full max-w-sm mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-lg">
+            <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group">
+              <div className="aspect-[3/4] overflow-hidden">
                 <img 
                   src="/projects/el-dia.png" 
-                  alt="El Día - Largometraje" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  alt="El Día - Largometraje premiado internacionalmente" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="eager"
-                  decoding="async"
                 />
               </div>
-              <div>
-                <h3 className="text-3xl font-playfair font-bold mb-4">
-                  El Día
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Dirigida por Tao Mijares y producida por Tao Producciones SA de CV en colaboración con Grupo Dauro. 
-                  Se proyectó como parte del lanzamiento de Sauro Productions y tuvo su estreno internacional online con Grupo Dauro. 
-                  La historia sigue a Lorena atrapada en un "poema urbano" durante 24 horas, como metáfora de la vida contemporánea 
-                  y símbolo de libertad y humanidad.
-                </p>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                  Lorena va cerrando olvidos, rememorando recuerdos y enfrentándose a los retos de cada instante, explorando 
-                  los miedos, amores perdidos y el desarraigo. La obra reflexiona sobre cómo la vida se construye a partir de 
-                  lo que amamos y lo que la sociedad nos arrebata. Publicada también como libro por Dauro Ediciones (ISBN: 9788494783098).
-                </p>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                  <strong>Datos técnicos:</strong> Duración 1h 42min | México, 2009 | Protagonista: Juliana Guajardo | 
-                  Seleccionada en festivales internacionales de India, Colombia, EE.UU., Francia y México, ganando múltiples premios 
-                  incluyendo Mejor Edición, Mejor Música y Mejor Película.
-                </p>
-                <div className="flex gap-2 flex-wrap mb-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Drama
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Experimental
-                  </span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                    Largometraje
-                  </span>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-medium text-primary">Premios Internacionales</span>
                 </div>
-                <Button 
-                  variant="outline" 
-                  asChild
-                >
-                  <a href="https://youtu.be/4_6CzclR7GU?si=IOoXfCVl-YmczIkD" target="_blank" rel="noopener noreferrer">Ver trailer</a>
+                <h3 className="text-xl font-playfair font-bold mb-2">El Día</h3>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                  Lorena atrapada en un "poema urbano" durante 24 horas de autodescubrimiento.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-3">
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Drama</span>
+                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">Largometraje</span>
+                </div>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <a href="https://youtu.be/4_6CzclR7GU?si=IOoXfCVl-YmczIkD" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                    <ExternalLink className="w-3 h-3" />
+                    Ver trailer
+                  </a>
                 </Button>
               </div>
-            </div>
+            </Card>
           </div>
         </section>
 
