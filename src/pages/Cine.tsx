@@ -303,11 +303,7 @@ const Cine = () => {
         </section>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10">
-          <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">15+</p>
-            <p className="text-sm text-muted-foreground">Producciones</p>
-          </div>
+        <div className="grid grid-cols-3 gap-8 mb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 p-8 rounded-3xl border-2 border-primary/10">
           <div className="text-center">
             <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">12+</p>
             <p className="text-sm text-muted-foreground">Premios</p>
