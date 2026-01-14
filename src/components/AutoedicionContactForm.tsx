@@ -62,6 +62,7 @@ export const AutoedicionContactForm = ({ preset }: { preset?: BudgetQuoteRequest
     const lines = [
       `Presupuesto orientativo: ${preset.estimatedTotal.toLocaleString()} €`,
       `Páginas: ${preset.pages}`,
+      `Ejemplares: ${preset.copies}`,
       `Plazo: ${preset.deadline} días`,
       `Corrección: ${preset.correction}`,
       `Panel de ventas: ${preset.includeSalesPanel ? 'Sí' : 'No'}`,

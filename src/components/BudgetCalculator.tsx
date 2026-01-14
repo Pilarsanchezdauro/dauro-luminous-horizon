@@ -1,11 +1,12 @@
 import { useState, useMemo } from 'react';
-import { Calculator, Clock, FileText, Languages, Check } from 'lucide-react';
+import { Calculator, Clock, FileText, BookCopy, Check } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 
+// Base prices by page range (for 50 copies)
 const PRICE_TIERS = [
   { min: 1, max: 100, price: 390 },
   { min: 101, max: 150, price: 490 },
@@ -13,6 +14,16 @@ const PRICE_TIERS = [
   { min: 201, max: 250, price: 690 },
   { min: 251, max: 300, price: 790 },
   { min: 301, max: 400, price: 890 },
+];
+
+// Copy options with price per additional copy beyond base 50
+const COPIES_OPTIONS = [
+  { copies: 50, label: '50 ejemplares', extraCost: 0 },
+  { copies: 75, label: '75 ejemplares', extraCost: 95 },
+  { copies: 100, label: '100 ejemplares', extraCost: 175 },
+  { copies: 150, label: '150 ejemplares', extraCost: 290 },
+  { copies: 200, label: '200 ejemplares', extraCost: 390 },
+  { copies: 300, label: '300 ejemplares', extraCost: 550 },
 ];
 
 const DEADLINE_MULTIPLIERS = [
@@ -32,6 +43,7 @@ const CORRECTION_OPTIONS = [
 
 export type BudgetQuoteRequest = {
   pages: number;
+  copies: number;
   deadline: string;
   correction: string;
   includeSalesPanel: boolean;
@@ -45,6 +57,7 @@ interface BudgetCalculatorProps {
 
 export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
   const [pages, setPages] = useState(150);
+  const [copies, setCopies] = useState('50');
   const [deadline, setDeadline] = useState('120');
   const [correction, setCorrection] = useState('none');
   const [includeSalesPanel, setIncludeSalesPanel] = useState(false);
@@ -53,16 +66,20 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
     // Base price by pages
     let basePrice = 0;
     if (pages > 400) {
-      basePrice = 1490; // Show base, but indicate consultation needed
+      basePrice = 890; // Show base, but indicate consultation needed
     } else {
       const tier = PRICE_TIERS.find(t => pages >= t.min && pages <= t.max);
-      basePrice = tier?.price || 690;
+      basePrice = tier?.price || 390;
     }
+
+    // Copies extra cost
+    const copiesOption = COPIES_OPTIONS.find(c => c.copies === parseInt(copies));
+    const copiesCost = copiesOption?.extraCost || 0;
 
     // Deadline multiplier
     const deadlineOption = DEADLINE_MULTIPLIERS.find(d => d.days === parseInt(deadline));
     const multiplier = deadlineOption?.multiplier || 1;
-    const adjustedPrice = basePrice * multiplier;
+    const adjustedPrice = (basePrice + copiesCost) * multiplier;
 
     // Correction cost (estimate ~250 words per page)
     const estimatedWords = pages * 250;
@@ -76,6 +93,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
 
     return {
       basePrice,
+      copiesCost,
       adjustedPrice,
       correctionCost,
       salesPanelCost,
@@ -83,7 +101,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
       isConsultation: pages > 400,
       estimatedWords,
     };
-  }, [pages, deadline, correction, includeSalesPanel]);
+  }, [pages, copies, deadline, correction, includeSalesPanel]);
 
   return (
     <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
@@ -121,6 +139,26 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
             <span>50</span>
             <span>500+</span>
           </div>
+        </div>
+
+        {/* Copies Select */}
+        <div className="space-y-2 sm:space-y-3">
+          <Label className="flex items-center gap-2 text-sm sm:text-base">
+            <BookCopy className="w-4 h-4 shrink-0" />
+            Número de ejemplares
+          </Label>
+          <Select value={copies} onValueChange={setCopies}>
+            <SelectTrigger className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {COPIES_OPTIONS.map((option) => (
+                <SelectItem key={option.copies} value={option.copies.toString()}>
+                  {option.label} {option.extraCost > 0 && `(+${option.extraCost} €)`}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Deadline Select */}
@@ -184,13 +222,19 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         {/* Price Breakdown */}
         <div className="border-t border-border pt-3 sm:pt-4 space-y-2">
           <div className="flex justify-between text-xs sm:text-sm gap-2">
-            <span className="text-muted-foreground">Precio base ({pages} páginas)</span>
+            <span className="text-muted-foreground">Precio base ({pages} páginas, 50 ej.)</span>
             <span className="font-medium shrink-0">{calculation.basePrice.toLocaleString()} €</span>
           </div>
+          {calculation.copiesCost > 0 && (
+            <div className="flex justify-between text-xs sm:text-sm gap-2">
+              <span className="text-muted-foreground">Ejemplares adicionales (+{parseInt(copies) - 50})</span>
+              <span className="font-medium shrink-0">+{calculation.copiesCost.toLocaleString()} €</span>
+            </div>
+          )}
           {deadline !== '120' && (
             <div className="flex justify-between text-xs sm:text-sm gap-2">
               <span className="text-muted-foreground">Ajuste por plazo</span>
-              <span className="font-medium shrink-0">+{(calculation.adjustedPrice - calculation.basePrice).toLocaleString()} €</span>
+              <span className="font-medium shrink-0">+{(calculation.adjustedPrice - calculation.basePrice - calculation.copiesCost).toLocaleString()} €</span>
             </div>
           )}
           {calculation.correctionCost > 0 && (
@@ -227,6 +271,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
           onClick={() =>
             onRequestQuote({
               pages,
+              copies: parseInt(copies),
               deadline,
               correction,
               includeSalesPanel,
