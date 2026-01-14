@@ -559,18 +559,17 @@ export default function Autoedicion() {
                   <Award className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Más de lo que pagas
+                  Todo incluido, sin sorpresas
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  Nuestro precio incluye servicios que otras editoriales cobran aparte. Transparencia total sin sorpresas.
+                  Lo que otras editoriales cobran como extras, nosotros lo incluimos. Precio cerrado desde el primer día.
                 </p>
                 <ul className="space-y-3">
                   {[
                     'ISBN y depósito legal incluidos',
                     'Ebook en formato profesional gratis',
                     'Distribución en plataformas incluida',
-                    'Material promocional sin coste extra',
-                    'Corrección ortotipográfica incluida'
+                    'Material promocional sin coste extra'
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-2 text-foreground">
                       <Check className="w-5 h-5 text-primary flex-shrink-0" />
