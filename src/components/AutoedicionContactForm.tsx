@@ -18,10 +18,7 @@ const formSchema = z.object({
   email: z.string().email('Email inválido'),
   telefono: z.string().optional(),
   titulo_libro: z.string().min(1, 'El título es obligatorio'),
-  paginas: z.string().min(1, 'Indica el número de páginas'),
-  correccion: z.string(),
   traduccion: z.string(),
-  plazo: z.string(),
   mensaje: z.string().optional(),
 });
 
@@ -37,27 +34,13 @@ export const AutoedicionContactForm = ({ preset }: { preset?: BudgetQuoteRequest
       email: '',
       telefono: '',
       titulo_libro: '',
-      paginas: '',
-      correccion: 'no',
       traduccion: 'no',
-      plazo: '120',
       mensaje: '',
     },
   });
 
   useEffect(() => {
     if (!preset) return;
-
-    const correctionMap: Record<string, FormData['correccion']> = {
-      none: 'no',
-      ortho: 'ortho',
-      style: 'style',
-      complete: 'complete',
-    };
-
-    form.setValue('paginas', String(preset.pages));
-    form.setValue('plazo', preset.deadline);
-    form.setValue('correccion', correctionMap[preset.correction] ?? 'no');
 
     const lines = [
       `Presupuesto orientativo: ${preset.estimatedTotal.toLocaleString()} €`,
@@ -90,10 +73,7 @@ export const AutoedicionContactForm = ({ preset }: { preset?: BudgetQuoteRequest
           email: data.email,
           telefono: data.telefono || 'No proporcionado',
           titulo_libro: data.titulo_libro,
-          paginas: data.paginas,
-          correccion: data.correccion,
           traduccion: data.traduccion,
-          plazo: `${data.plazo} días`,
           mensaje: data.mensaje || 'Sin mensaje adicional',
           _subject: `Nueva solicitud de autoedición: ${data.titulo_libro}`,
         }),
@@ -189,96 +169,29 @@ export const AutoedicionContactForm = ({ preset }: { preset?: BudgetQuoteRequest
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="paginas"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Nº de páginas *</FormLabel>
+          <FormField
+            control={form.control}
+            name="traduccion"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-sm">¿Traducción?</FormLabel>
+                <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
-                    <Input type="number" placeholder="150" {...field} className="h-10" />
+                    <SelectTrigger className="h-10">
+                      <SelectValue />
+                    </SelectTrigger>
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="plazo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">Plazo de publicación</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger className="h-10">
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="120">120 días (4 meses)</SelectItem>
-                      <SelectItem value="90">90 días (3 meses)</SelectItem>
-                      <SelectItem value="60">60 días (2 meses)</SelectItem>
-                      <SelectItem value="45">45 días</SelectItem>
-                      <SelectItem value="30">30 días (urgente)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="correccion"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">¿Corrección?</FormLabel>
-                   <Select value={field.value} onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger className="h-10">
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="no">No necesito</SelectItem>
-                      <SelectItem value="ortho">Ortotipográfica</SelectItem>
-                      <SelectItem value="style">De estilo</SelectItem>
-                      <SelectItem value="complete">Completa</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="traduccion"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">¿Traducción?</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger className="h-10">
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="no">No</SelectItem>
-                      <SelectItem value="ingles">Inglés</SelectItem>
-                      <SelectItem value="frances">Francés</SelectItem>
-                      <SelectItem value="otro">Otro idioma</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                  <SelectContent>
+                    <SelectItem value="no">No</SelectItem>
+                    <SelectItem value="ingles">Inglés</SelectItem>
+                    <SelectItem value="frances">Francés</SelectItem>
+                    <SelectItem value="otro">Otro idioma</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
