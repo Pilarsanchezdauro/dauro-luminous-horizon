@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
@@ -8,8 +8,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import { BudgetCalculator, type BudgetQuoteRequest } from '@/components/BudgetCalculator';
-import { AutoedicionContactForm } from '@/components/AutoedicionContactForm';
+import { BudgetCalculator } from '@/components/BudgetCalculator';
 import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -137,16 +136,9 @@ const structuredData = {
 
 export default function Autoedicion() {
   const formRef = useRef<HTMLDivElement>(null);
-  const [quotePreset, setQuotePreset] = useState<BudgetQuoteRequest | null>(null);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleRequestQuote = (data: BudgetQuoteRequest) => {
-    setQuotePreset(data);
-    const formElement = document.getElementById('contact-form');
-    formElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
 
@@ -288,10 +280,7 @@ export default function Autoedicion() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
-            <BudgetCalculator onRequestQuote={handleRequestQuote} />
-            <AutoedicionContactForm preset={quotePreset} />
-          </div>
+          <BudgetCalculator />
         </div>
       </section>
 

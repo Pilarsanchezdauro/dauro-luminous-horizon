@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
-import { Calculator, Clock, FileText, BookCopy, Check } from 'lucide-react';
+import { Calculator, Clock, FileText, BookCopy, Send, Loader2 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 // Base prices by page range (for 50 copies)
 const PRICE_TIERS = [
@@ -41,6 +43,8 @@ const CORRECTION_OPTIONS = [
   { id: 'complete', label: 'Corrección completa', pricePerWord: 0.018 },
 ];
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjnjlgd';
+
 export type BudgetQuoteRequest = {
   pages: number;
   copies: number;
@@ -51,16 +55,19 @@ export type BudgetQuoteRequest = {
   isConsultation: boolean;
 };
 
-interface BudgetCalculatorProps {
-  onRequestQuote: (data: BudgetQuoteRequest) => void;
-}
-
-export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
+export const BudgetCalculator = () => {
   const [pages, setPages] = useState(150);
   const [copies, setCopies] = useState('50');
   const [deadline, setDeadline] = useState('120');
   const [correction, setCorrection] = useState('none');
   const [includeSalesPanel, setIncludeSalesPanel] = useState(false);
+  
+  // Contact form fields
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [tituloLibro, setTituloLibro] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const calculation = useMemo(() => {
     // Base price by pages
@@ -103,8 +110,64 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
     };
   }, [pages, copies, deadline, correction, includeSalesPanel]);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!nombre.trim() || !email.trim()) {
+      toast.error('Por favor, completa los campos obligatorios');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    const correctionLabel = CORRECTION_OPTIONS.find(c => c.id === correction)?.label || 'Sin corrección';
+    const deadlineLabel = DEADLINE_MULTIPLIERS.find(d => d.days === parseInt(deadline))?.label || deadline;
+    
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre,
+          email,
+          telefono: telefono || 'No proporcionado',
+          titulo_libro: tituloLibro || 'No especificado',
+          paginas: pages,
+          ejemplares: copies,
+          plazo: deadlineLabel,
+          correccion: correctionLabel,
+          panel_ventas: includeSalesPanel ? 'Sí' : 'No',
+          presupuesto_estimado: `${Math.round(calculation.total).toLocaleString()} €`,
+          _subject: `Nueva solicitud de autoedición: ${tituloLibro || 'Sin título'}`,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Error en el envío');
+
+      toast.success('¡Solicitud enviada!', {
+        description: 'Te contactaremos pronto con tu presupuesto personalizado.',
+      });
+      
+      // Reset contact fields
+      setNombre('');
+      setEmail('');
+      setTelefono('');
+      setTituloLibro('');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Error al enviar', {
+        description: 'Por favor, inténtalo de nuevo más tarde.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
+    <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl max-w-2xl mx-auto">
       <div className="flex items-center gap-3 mb-4 sm:mb-6">
         <div className="p-2 bg-primary/10 rounded-xl shrink-0">
           <Calculator className="w-5 h-5 text-primary" />
@@ -115,7 +178,7 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
         </div>
       </div>
 
-      <div className="space-y-4 sm:space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         {/* Pages Slider */}
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center justify-between gap-2">
@@ -267,28 +330,86 @@ export const BudgetCalculator = ({ onRequestQuote }: BudgetCalculatorProps) => {
           </div>
         </div>
 
+        {/* Contact Fields */}
+        <div className="border-t border-border pt-4 sm:pt-6 space-y-4">
+          <p className="text-sm text-muted-foreground text-center">
+            Déjanos tus datos y te enviaremos un presupuesto personalizado
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="nombre" className="text-sm">Nombre *</Label>
+              <Input
+                id="nombre"
+                placeholder="Tu nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                required
+                className="h-10"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="tu@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="h-10"
+              />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="telefono" className="text-sm">Teléfono</Label>
+              <Input
+                id="telefono"
+                type="tel"
+                placeholder="+34 600 000 000"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                className="h-10"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="titulo" className="text-sm">Título del libro</Label>
+              <Input
+                id="titulo"
+                placeholder="El título de tu obra"
+                value={tituloLibro}
+                onChange={(e) => setTituloLibro(e.target.value)}
+                className="h-10"
+              />
+            </div>
+          </div>
+        </div>
+
         <Button
-          onClick={() =>
-            onRequestQuote({
-              pages,
-              copies: parseInt(copies),
-              deadline,
-              correction,
-              includeSalesPanel,
-              estimatedTotal: Math.round(calculation.total),
-              isConsultation: calculation.isConsultation,
-            })
-          }
+          type="submit"
           size="lg"
           className="w-full text-sm sm:text-base py-4 sm:py-5"
+          disabled={isSubmitting}
         >
-          Solicitar presupuesto definitivo
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Enviando...
+            </>
+          ) : (
+            <>
+              <Send className="mr-2 h-5 w-5" />
+              Solicitar presupuesto gratuito
+            </>
+          )}
         </Button>
 
         <p className="text-center text-xs sm:text-sm text-muted-foreground">
-          * Precio orientativo. El presupuesto final puede variar según el manuscrito.
+          * Sin compromiso. Respuesta en menos de 24 horas.
         </p>
-      </div>
+      </form>
     </div>
   );
 };
