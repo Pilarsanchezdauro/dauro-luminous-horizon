@@ -7,12 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 
 const PRICE_TIERS = [
-  { min: 1, max: 100, price: 690 },
-  { min: 101, max: 150, price: 850 },
-  { min: 151, max: 200, price: 990 },
-  { min: 201, max: 250, price: 1150 },
-  { min: 251, max: 300, price: 1290 },
-  { min: 301, max: 400, price: 1490 },
+  { min: 1, max: 100, price: 390 },
+  { min: 101, max: 150, price: 490 },
+  { min: 151, max: 200, price: 590 },
+  { min: 201, max: 250, price: 690 },
+  { min: 251, max: 300, price: 790 },
+  { min: 301, max: 400, price: 890 },
 ];
 
 const DEADLINE_MULTIPLIERS = [
