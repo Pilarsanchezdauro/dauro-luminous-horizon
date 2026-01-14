@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Calculator, Clock, FileText, BookCopy, Send, Loader2 } from 'lucide-react';
+import { Calculator, Clock, FileText, BookCopy, Send, Loader2, CheckCircle2, ArrowLeft, Sparkles } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -68,6 +68,8 @@ export const BudgetCalculator = () => {
   const [telefono, setTelefono] = useState('');
   const [tituloLibro, setTituloLibro] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submittedName, setSubmittedName] = useState('');
 
   const calculation = useMemo(() => {
     // Base price by pages
@@ -147,11 +149,11 @@ export const BudgetCalculator = () => {
 
       if (!response.ok) throw new Error('Error en el envío');
 
-      toast.success('¡Solicitud enviada!', {
-        description: 'Te contactaremos pronto con tu presupuesto personalizado.',
-      });
+      // Show success state
+      setSubmittedName(nombre.split(' ')[0]);
+      setIsSuccess(true);
       
-      // Reset contact fields
+      // Reset contact fields for next time
       setNombre('');
       setEmail('');
       setTelefono('');
@@ -165,6 +167,72 @@ export const BudgetCalculator = () => {
       setIsSubmitting(false);
     }
   };
+
+  const handleReset = () => {
+    setIsSuccess(false);
+    setSubmittedName('');
+  };
+
+  // Success State
+  if (isSuccess) {
+    return (
+      <div className="bg-card border border-border rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl max-w-2xl mx-auto text-center">
+        <div className="relative">
+          {/* Decorative elements */}
+          <div className="absolute -top-4 -left-4 w-16 h-16 bg-primary/10 rounded-full blur-xl" />
+          <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-primary/5 rounded-full blur-2xl" />
+          
+          <div className="relative z-10 space-y-6">
+            {/* Success Icon */}
+            <div className="flex justify-center">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping" />
+                <div className="relative p-4 bg-gradient-to-br from-primary to-primary/80 rounded-full shadow-lg shadow-primary/25">
+                  <CheckCircle2 className="w-12 h-12 sm:w-16 sm:h-16 text-primary-foreground" />
+                </div>
+              </div>
+            </div>
+
+            {/* Main Message */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+                <span className="text-sm font-medium text-primary uppercase tracking-wider">¡Solicitud recibida!</span>
+                <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                Gracias{submittedName ? `, ${submittedName}` : ''}
+              </h3>
+              
+              <p className="text-base sm:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
+                Hemos recibido tu solicitud de presupuesto. Nuestro equipo editorial lo revisará y te contactaremos en menos de 24 horas.
+              </p>
+            </div>
+
+            {/* Info Box */}
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 sm:p-6 max-w-sm mx-auto">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">¿Mientras tanto?</span><br />
+                Revisa tu bandeja de entrada. Te enviaremos un email de confirmación con los detalles de tu solicitud.
+              </p>
+            </div>
+
+            {/* Action Button */}
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleReset}
+              className="mt-4"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Calcular otro presupuesto
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl max-w-2xl mx-auto">
