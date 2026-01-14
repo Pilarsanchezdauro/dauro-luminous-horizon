@@ -34,9 +34,9 @@ const PROCESS_STEPS = [
 ];
 
 const COMPARISON_DATA = [
-  { feature: 'Libro 200 páginas', dauro: 'Desde 990 €', others: '1.200 € – 2.600 €' },
+  { feature: 'Libro 200 páginas (con corrección)', dauro: 'Desde 990 €', others: '1.200 € – 2.600 €' },
   { feature: 'Ebook incluido', dauro: '✓ Gratis', others: 'A veces con coste' },
-  { feature: 'Corrección incluida', dauro: 'Opcional', others: 'A veces obligatoria' },
+  { feature: 'Corrección incluida', dauro: '✓ Incluida', others: 'A veces obligatoria' },
   { feature: 'Financiación sin intereses', dauro: '✓ 2 plazos', others: 'No disponible' },
   { feature: 'Descuento de autor', dauro: '✓ Sí', others: 'Variable' },
   { feature: 'Panel de ventas', dauro: '✓ Opcional', others: 'Limitado' },
