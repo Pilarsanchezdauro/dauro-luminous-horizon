@@ -4,7 +4,7 @@ import {
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
   Globe, CreditCard, FileText, Palette, Package, 
   BarChart3, Languages, ChevronRight, Award, Users, Trophy, Calendar,
-  Video, Megaphone, Monitor, Share2, ShoppingBag, Library
+  Video, Megaphone, Monitor, Share2, ShoppingBag, Library, Heart
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -33,16 +33,6 @@ const PROCESS_STEPS = [
   { step: 6, title: 'Tu libro en tus manos', description: 'Recíbelo impreso y en digital. Listo para vender.' },
 ];
 
-const COMPARISON_DATA = [
-  { feature: 'Libro 200 páginas (con corrección)', dauro: 'Desde 990 €', others: '1.200 € – 2.600 €' },
-  { feature: 'Ebook incluido', dauro: '✓ Gratis', others: 'A veces con coste' },
-  { feature: 'Corrección incluida', dauro: '✓ Incluida', others: 'A veces obligatoria' },
-  { feature: 'Financiación sin intereses', dauro: '✓ 2 plazos', others: 'No disponible' },
-  { feature: 'Descuento de autor', dauro: '✓ Sí', others: 'Variable' },
-  { feature: 'Panel de ventas', dauro: '✓ Opcional', others: 'Limitado' },
-  { feature: 'Plazos flexibles', dauro: '✓ Desde 30 días', others: 'Fijos' },
-  { feature: 'Traducción profesional', dauro: '✓ Disponible', others: 'Raramente' },
-];
 
 const TRANSLATION_PRICES = [
   { language: 'Inglés', price: '0,04 €/palabra' },
@@ -519,32 +509,84 @@ export default function Autoedicion() {
         </div>
       </section>
 
-      {/* Comparison Table */}
+      {/* Value Proposition - Atención Personalizada */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Compara y decide
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Por qué somos la mejor opción para publicar tu libro
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border rounded-2xl overflow-hidden">
-              <div className="grid grid-cols-3 bg-primary text-primary-foreground font-semibold">
-                <div className="p-4">Característica</div>
-                <div className="p-4 text-center">Dauro Editorial</div>
-                <div className="p-4 text-center">Grandes grupos</div>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Heart className="w-4 h-4" />
+                Lo que nos hace diferentes
               </div>
-              {COMPARISON_DATA.map((row, index) => (
-                <div key={index} className="grid grid-cols-3 border-b border-border last:border-0">
-                  <div className="p-4 text-foreground">{row.feature}</div>
-                  <div className="p-4 text-center text-primary font-medium">{row.dauro}</div>
-                  <div className="p-4 text-center text-muted-foreground">{row.others}</div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Valor real superior al coste
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                No somos una fábrica de libros. Cada proyecto recibe atención individual porque tu historia merece ser tratada como única
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Atención Personalizada */}
+              <div className="bg-card border border-border rounded-2xl p-8">
+                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <Users className="w-8 h-8 text-primary" />
                 </div>
-              ))}
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Atención personalizada real
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Tendrás contacto directo con nuestro equipo editorial durante todo el proceso. Sin intermediarios, sin respuestas automáticas.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    'Un editor asignado a tu proyecto',
+                    'Comunicación directa por teléfono y WhatsApp',
+                    'Resolución de dudas en tiempo real',
+                    'Asesoramiento editorial honesto'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-foreground">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Valor Superior */}
+              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-8">
+                <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                  <Award className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Más de lo que pagas
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Nuestro precio incluye servicios que otras editoriales cobran aparte. Transparencia total sin sorpresas.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    'ISBN y depósito legal incluidos',
+                    'Ebook en formato profesional gratis',
+                    'Distribución en plataformas incluida',
+                    'Material promocional sin coste extra',
+                    'Corrección ortotipográfica incluida'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-foreground">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Quote/Testimonial style emphasis */}
+            <div className="mt-12 text-center bg-card border border-border rounded-2xl p-8">
+              <p className="text-2xl md:text-3xl font-medium text-foreground italic mb-4">
+                "No buscamos el mayor volumen de publicaciones, sino los mejores resultados para cada autor"
+              </p>
+              <p className="text-primary font-semibold">— Filosofía Dauro Editorial</p>
             </div>
           </div>
         </div>
