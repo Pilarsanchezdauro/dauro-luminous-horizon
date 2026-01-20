@@ -71,6 +71,7 @@ import ShopifyGenres from "./pages/admin/ShopifyGenres";
 import ProductClassifier from "./pages/admin/ProductClassifier";
 import Autoedicion from "./pages/Autoedicion";
 import DauroCiencia from "./pages/DauroCiencia";
+import WebsDeLibros from "./pages/WebsDeLibros";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,7 @@ const App = () => (
             <Route path="/grupo-dauro" element={<GrupoDauro />} />
             <Route path="/grupo-dauro/editorial" element={<Editorial />} />
             <Route path="/autoedicion" element={<Autoedicion />} />
+            <Route path="/webs-de-libros" element={<WebsDeLibros />} />
             <Route path="/dauro-ciencia" element={<DauroCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
