@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music, Calculator } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music, Calculator, GraduationCap } from "lucide-react";
 import { ShippingCalculator } from "@/components/ShippingCalculator";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
@@ -97,6 +97,35 @@ export default function Shop() {
   const librosAntiguos = bookProductsBase.filter(isLibroAntiguo);
   const artProducts: ShopifyProduct[] = [];
   const nftProducts: ShopifyProduct[] = [];
+
+  // Dauro Ciencia: products with "dauro-ciencia" tag or from specific academic authors
+  const DAURO_CIENCIA_AUTHORS = [
+    'carlos blanco',
+    'antonio rodríguez',
+    'antonio rodriguez',
+    'antonio rodríguez jiménez',
+    'antonio rodriguez jimenez',
+  ];
+  const dauroCienciaProducts = products.filter(p => {
+    const tags = p.node.tags || [];
+    const tagsLower = tags.map((t: string) => t.toLowerCase());
+    const title = p.node.title.toLowerCase();
+    const description = (p.node.description || '').toLowerCase();
+    
+    // Check for dauro-ciencia tag
+    if (tagsLower.includes('dauro-ciencia') || tagsLower.includes('dauro ciencia') || tagsLower.includes('ciencia')) {
+      return true;
+    }
+    
+    // Check for specific authors or titles
+    const isCarlosBlanco = title.includes('carlos blanco') || description.includes('carlos blanco') ||
+      title.includes('leonardo da vinci') || title.includes('pensamiento y vida') || title.includes('singularidad esencial');
+    const isAntonioRodriguez = title.includes('propuestas pedagógicas') || title.includes('propuestas pedagogicas') ||
+      title.includes('modelos educativos') || description.includes('antonio rodríguez') || description.includes('antonio rodriguez');
+    
+    return isCarlosBlanco || isAntonioRodriguez;
+  });
+  const dauroCienciaIds = new Set(dauroCienciaProducts.map(p => p.node.id));
 
   // Normalize genre names (merge similar ones like "Libro" and "Libros")
   const normalizeGenre = (genre: string): string => {
@@ -456,10 +485,14 @@ export default function Shop() {
               </div>
             ) : (
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-6 mb-8">
+                <TabsList className="grid w-full grid-cols-7 mb-8">
                   <TabsTrigger value="libros" className="flex items-center gap-2">
                     <Book className="h-4 w-4" />
                     <span className="hidden sm:inline">Libros</span> ({bookProducts.length})
+                  </TabsTrigger>
+                  <TabsTrigger value="dauro-ciencia" className="flex items-center gap-2">
+                    <GraduationCap className="h-4 w-4" />
+                    <span className="hidden sm:inline">Ciencia</span> ({dauroCienciaProducts.length})
                   </TabsTrigger>
                   <TabsTrigger value="ebooks" className="flex items-center gap-2">
                     <Tablet className="h-4 w-4" />
@@ -822,6 +855,142 @@ export default function Shop() {
                         )}
                         </>
                       )}
+                    </>
+                  )}
+                </TabsContent>
+
+                {/* DAURO CIENCIA TAB */}
+                <TabsContent value="dauro-ciencia">
+                  {dauroCienciaProducts.length === 0 ? (
+                    <div className="text-center py-20">
+                      <GraduationCap className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                      <h2 className="text-2xl font-semibold mb-2">Publicaciones académicas próximamente</h2>
+                      <p className="text-muted-foreground">
+                        Estamos preparando nuestra colección de obras académicas y científicas.
+                      </p>
+                      <Link to="/dauro-ciencia">
+                        <Button className="mt-6 gap-2">
+                          <GraduationCap className="h-4 w-4" />
+                          Conoce Dauro Ciencia
+                        </Button>
+                      </Link>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Header con descripción */}
+                      <div className="mb-8 p-6 rounded-xl bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border border-primary/20">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="p-2 rounded-lg bg-primary/10">
+                            <GraduationCap className="h-6 w-6 text-primary" />
+                          </div>
+                          <h2 className="text-2xl font-playfair font-bold">Dauro Ciencia</h2>
+                        </div>
+                        <p className="text-muted-foreground mb-4">
+                          Nuestra línea editorial académica con sello de calidad universitaria. Tesis doctorales, TFG, TFM 
+                          y obras de investigación convertidas en libro con ISBN, depósito legal y distribución internacional.
+                        </p>
+                        <Link to="/dauro-ciencia">
+                          <Button variant="outline" size="sm" className="gap-2">
+                            Publica tu investigación
+                            <ExternalLink className="h-3 w-3" />
+                          </Button>
+                        </Link>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {dauroCienciaProducts.map((product) => (
+                          <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow border-primary/20 bg-gradient-to-b from-primary/5 to-transparent">
+                            <Link to={`/producto/${product.node.handle}`} className="block relative">
+                              {product.node.images.edges[0]?.node && (
+                                <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4">
+                                  <img
+                                    src={product.node.images.edges[0].node.url}
+                                    alt={product.node.images.edges[0].node.altText || `${product.node.title} - Publicación académica Dauro Ciencia`}
+                                    loading="lazy"
+                                    width="400"
+                                    height="533"
+                                    className="w-full h-full object-contain hover:scale-105 transition-all duration-300 drop-shadow-2xl"
+                                  />
+                                  {/* Sello Académico Badge */}
+                                  <div className="absolute top-2 left-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                    <GraduationCap className="w-3 h-3" />
+                                    Sello Académico
+                                  </div>
+                                  {/* Ebook Badge */}
+                                  {hasEbook(product.node.id) && (
+                                    <div className="absolute top-2 right-2 bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
+                                      <Tablet className="w-3 h-3" />
+                                      Ebook
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </Link>
+                            
+                            <CardHeader>
+                              <Link to={`/producto/${product.node.handle}`}>
+                                <CardTitle className="hover:text-primary transition-colors line-clamp-2 uppercase text-sm">
+                                  {product.node.title}
+                                </CardTitle>
+                              </Link>
+                              <CardDescription className="line-clamp-3">
+                                {getSynopsisOnly(product.node.description, 120)}
+                              </CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent className="flex-1">
+                              <div className="space-y-2">
+                                {(() => {
+                                  const physicalVariant = product.node.variants.edges.find(
+                                    v => !v.node.title.toLowerCase().includes('ebook')
+                                  );
+                                  const ebookVariant = product.node.variants.edges.find(
+                                    v => v.node.title.toLowerCase().includes('ebook')
+                                  );
+                                  
+                                  return (
+                                    <>
+                                      <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-md text-xs font-medium">
+                                          <Book className="w-3 h-3" />
+                                          <span>Papel</span>
+                                        </div>
+                                        <span className="text-lg font-bold">
+                                          {physicalVariant ? `${parseFloat(physicalVariant.node.price.amount).toFixed(2)} €` : `${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)} €`}
+                                        </span>
+                                      </div>
+                                      {hasEbook(product.node.id) && ebookVariant && (
+                                        <div className="flex items-center gap-2">
+                                          <div className="flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 rounded-md text-xs font-medium">
+                                            <Tablet className="w-3 h-3" />
+                                            <span>Ebook</span>
+                                          </div>
+                                          <span className="text-lg font-bold text-cyan-700 dark:text-cyan-300">
+                                            {parseFloat(ebookVariant.node.price.amount).toFixed(2)} €
+                                          </span>
+                                        </div>
+                                      )}
+                                    </>
+                                  );
+                                })()}
+                              </div>
+                            </CardContent>
+                            
+                            <CardFooter>
+                              <Button 
+                                onClick={() => handleAddToCart(product)}
+                                className="w-full"
+                                disabled={!product.node.variants.edges[0]?.node.availableForSale}
+                              >
+                                <ShoppingCart className="w-4 h-4 mr-2" />
+                                {product.node.variants.edges[0]?.node.availableForSale 
+                                  ? 'Agregar al Carrito' 
+                                  : 'Agotado'}
+                              </Button>
+                            </CardFooter>
+                          </Card>
+                        ))}
+                      </div>
                     </>
                   )}
                 </TabsContent>
