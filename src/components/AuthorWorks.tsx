@@ -2,40 +2,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { getProducts } from "@/lib/shopify";
+import { 
+  extractAuthorFromTitle, 
+  extractTitleWithoutAuthor, 
+  authorsMatch 
+} from "@/lib/author-utils";
+import { User } from "lucide-react";
 
 interface AuthorWorksProps {
   currentProductHandle: string;
   productTitle: string;
-}
-
-// Extraer el autor del título del producto
-// Formato típico: "TÍTULO – Autor" o "TÍTULO - Autor"
-function extractAuthorFromTitle(title: string): string | null {
-  // Separador típico con espacios alrededor del guión
-  const parts = title.split(/\s[–—-]\s/);
-
-  if (parts.length >= 2) {
-    const potentialAuthor = parts[parts.length - 1].trim();
-    if (
-      potentialAuthor &&
-      potentialAuthor.toLowerCase() !== "nan" &&
-      potentialAuthor.length > 2
-    ) {
-      return potentialAuthor;
-    }
-  }
-
-  return null;
-}
-
-// Normalizar nombre del autor para comparación
-function normalizeAuthorName(author: string): string {
-  return author
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // Quitar acentos
-    .replace(/[^a-z0-9\s]/g, "") // Solo letras y números
-    .trim();
 }
 
 export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksProps) {
@@ -59,8 +35,6 @@ export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksP
         const edges = response?.products ?? [];
 
         if (Array.isArray(edges) && edges.length > 0) {
-          const normalizedAuthor = normalizeAuthorName(author);
-
           // Filtrar productos del mismo autor, excluyendo el actual
           const authorProducts = edges.filter((edge: any) => {
             const product = edge.node;
@@ -74,14 +48,8 @@ export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksP
             const productAuthor = extractAuthorFromTitle(product.title);
             if (!productAuthor) return false;
 
-            const normalizedProductAuthor = normalizeAuthorName(productAuthor);
-
-            // Comparar autores normalizados
-            return (
-              normalizedProductAuthor === normalizedAuthor ||
-              normalizedProductAuthor.includes(normalizedAuthor) ||
-              normalizedAuthor.includes(normalizedProductAuthor)
-            );
+            // Comparar autores usando la función mejorada
+            return authorsMatch(productAuthor, author);
           });
 
           setOtherWorks(authorProducts.slice(0, 4)); // Máximo 4 obras
@@ -103,9 +71,12 @@ export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksP
 
   return (
     <section className="mt-12 pt-8 border-t border-border">
-      <h2 className="text-2xl font-serif font-bold text-foreground mb-6">
-        Otras obras de {authorName}
-      </h2>
+      <div className="flex items-center gap-2 mb-6">
+        <User className="w-5 h-5 text-primary" />
+        <h2 className="text-2xl font-serif font-bold text-foreground">
+          Otras obras de {authorName}
+        </h2>
+      </div>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {otherWorks.map((edge: any) => {
@@ -114,8 +85,7 @@ export function AuthorWorks({ currentProductHandle, productTitle }: AuthorWorksP
           const price = product.priceRange?.minVariantPrice;
           
           // Extraer solo el título sin el autor
-          const titleParts = product.title.split(/\s[–—-]\s/);
-          const cleanTitle = titleParts[0];
+          const cleanTitle = extractTitleWithoutAuthor(product.title);
           
           return (
             <Link

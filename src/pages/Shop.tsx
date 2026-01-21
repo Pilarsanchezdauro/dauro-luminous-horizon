@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music, Calculator, GraduationCap } from "lucide-react";
+import { ShoppingCart, Loader2, Book, Palette, Image, Award, Gem, Film, ExternalLink, Trophy, FileCheck, Search, ArrowUpDown, Library, Tag, Tablet, BookMarked, Music, Calculator, GraduationCap, User } from "lucide-react";
 import { ShippingCalculator } from "@/components/ShippingCalculator";
 import { getAllProducts, getCollections, getAllCollectionProducts } from "@/lib/shopify";
 import { useCartStore, type ShopifyProduct } from "@/stores/cartStore";
@@ -18,6 +18,7 @@ import { getSynopsisOnly } from "@/lib/description-parser";
 import heroCultureBg from "@/assets/hero-culture-bg.png";
 import { supabase } from "@/integrations/supabase/client";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { extractUniqueAuthors, filterProductsByAuthor, extractAuthorFromTitle } from "@/lib/author-utils";
 
 interface ShopifyCollection {
   node: {
@@ -35,6 +36,7 @@ export default function Shop() {
   const [activeTab, setActiveTab] = useState("libros");
   const [bookCategory, setBookCategory] = useState<string>("todos");
   const [selectedGenre, setSelectedGenre] = useState<string>("todos");
+  const [selectedAuthor, setSelectedAuthor] = useState<string>("todos");
   const [booksScope, setBooksScope] = useState<"todas" | "antiguos">("todas");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("novedades");
@@ -168,7 +170,10 @@ export default function Shop() {
   // Reset visible count when filters change
   useEffect(() => {
     setVisibleBooksCount(20);
-  }, [searchQuery, selectedGenre, bookCategory, selectedCollection, sortBy, booksScope]);
+  }, [searchQuery, selectedGenre, bookCategory, selectedCollection, sortBy, booksScope, selectedAuthor]);
+
+  // Extract unique authors from all book products for the filter
+  const availableAuthors = extractUniqueAuthors(bookProducts);
 
   // Filter books by search query first
   const searchFilteredBooks = searchQuery.trim() 
@@ -253,8 +258,11 @@ export default function Shop() {
       ? librosAntiguos
       : categoryFilteredBooks;
 
+  // Filter by selected author
+  const authorFilteredBooks = filterProductsByAuthor(scopedBooks, selectedAuthor);
+
   // Sort the filtered books - products without images go to the end
-  const filteredBooks = [...scopedBooks].sort((a, b) => {
+  const filteredBooks = [...authorFilteredBooks].sort((a, b) => {
     // First: products with images come before products without images
     const aHasImage = (a.node.images.edges.length > 0 && a.node.images.edges[0]?.node?.url) ? 0 : 1;
     const bHasImage = (b.node.images.edges.length > 0 && b.node.images.edges[0]?.node?.url) ? 0 : 1;
@@ -680,8 +688,8 @@ export default function Shop() {
                         </div>
                       </div>
 
-                      {/* Category filters with accordion */}
-                      <Accordion type="single" collapsible className="mb-6">
+                      {/* Category and Author filters with accordion */}
+                      <Accordion type="multiple" className="mb-6 space-y-2">
                         <AccordionItem value="categories" className="border rounded-lg px-4">
                           <AccordionTrigger className="hover:no-underline">
                             <div className="flex items-center gap-2">
@@ -707,6 +715,50 @@ export default function Shop() {
                             </div>
                           </AccordionContent>
                         </AccordionItem>
+
+                        {/* Author filter */}
+                        {availableAuthors.length > 0 && (
+                          <AccordionItem value="authors" className="border rounded-lg px-4">
+                            <AccordionTrigger className="hover:no-underline">
+                              <div className="flex items-center gap-2">
+                                <User className="h-4 w-4" />
+                                <span className="font-medium">
+                                  Filtrar por autor: {selectedAuthor === "todos" ? "Todos" : selectedAuthor}
+                                </span>
+                                {selectedAuthor !== "todos" && (
+                                  <span className="text-muted-foreground text-sm">
+                                    ({filterProductsByAuthor(scopedBooks, selectedAuthor).length})
+                                  </span>
+                                )}
+                              </div>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                              <div className="flex gap-2 flex-wrap pt-2 max-h-60 overflow-y-auto">
+                                <Button
+                                  variant={selectedAuthor === "todos" ? "default" : "outline"}
+                                  onClick={() => setSelectedAuthor("todos")}
+                                  size="sm"
+                                >
+                                  Todos los autores
+                                </Button>
+                                {availableAuthors.map(author => {
+                                  const count = filterProductsByAuthor(scopedBooks, author).length;
+                                  if (count === 0) return null;
+                                  return (
+                                    <Button
+                                      key={author}
+                                      variant={selectedAuthor === author ? "default" : "outline"}
+                                      onClick={() => setSelectedAuthor(author)}
+                                      size="sm"
+                                    >
+                                      {author} ({count})
+                                    </Button>
+                                  );
+                                })}
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        )}
                       </Accordion>
 
                       {filteredBooks.length === 0 ? (
