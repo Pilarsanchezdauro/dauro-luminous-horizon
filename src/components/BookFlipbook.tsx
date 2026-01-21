@@ -1,6 +1,6 @@
-import { useRef, useState, forwardRef } from "react";
+import { useRef, useState, forwardRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
-import { ChevronLeft, ChevronRight, BookOpen, Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PageProps {
@@ -33,6 +33,7 @@ interface BookFlipbookProps {
 const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) => {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const allPages = coverImage ? [coverImage, ...pages] : pages;
   const totalPages = allPages.length;
 
@@ -52,23 +53,38 @@ const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) 
     bookRef.current?.pageFlip()?.flip(0);
   };
 
-  return (
-    <div className={`flex flex-col items-center gap-8 ${className}`}>
-      {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="flex items-center justify-center gap-3 text-primary">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
-          <BookOpen className="w-6 h-6" />
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
-        </div>
-        <h3 className="text-2xl md:text-3xl font-serif text-white">
-          Lee las primeras páginas
-        </h3>
-        <p className="text-white/50 text-sm max-w-md mx-auto">
-          Descubre el inicio de esta fascinante obra. Haz clic en las esquinas o desliza para pasar página.
-        </p>
-      </div>
-      
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // Lock body scroll when fullscreen
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
+
+  // Close on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isFullscreen]);
+
+  const bookWidth = isFullscreen ? 550 : 400;
+  const bookHeight = isFullscreen ? 770 : 560;
+
+  const FlipbookContent = () => (
+    <>
       {/* Book Container with decorative elements */}
       <div className="relative">
         {/* Decorative glow */}
@@ -81,19 +97,19 @@ const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) 
           {/* @ts-ignore - HTMLFlipBook types are not perfect */}
           <HTMLFlipBook
             ref={bookRef}
-            width={400}
-            height={560}
+            width={bookWidth}
+            height={bookHeight}
             size="stretch"
-            minWidth={320}
-            maxWidth={600}
-            minHeight={450}
-            maxHeight={840}
+            minWidth={isFullscreen ? 450 : 320}
+            maxWidth={isFullscreen ? 700 : 600}
+            minHeight={isFullscreen ? 630 : 450}
+            maxHeight={isFullscreen ? 980 : 840}
             showCover={true}
             mobileScrollSupport={true}
             onFlip={onFlip}
             className="shadow-2xl shadow-black/70 rounded-sm overflow-hidden"
             style={{}}
-            startPage={0}
+            startPage={currentPage}
             drawShadow={true}
             flippingTime={600}
             usePortrait={true}
@@ -133,16 +149,11 @@ const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) 
           >
             <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
           </button>
-
-          {/* Page corners hint */}
-          <div className="absolute bottom-4 right-4 text-white/30 text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            <Maximize2 className="w-4 h-4" />
-          </div>
         </div>
       </div>
 
       {/* Navigation controls */}
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 mt-6">
         {/* Progress bar */}
         <div className="w-64 md:w-80 h-1 bg-white/10 rounded-full overflow-hidden">
           <div 
@@ -198,12 +209,79 @@ const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) 
           </Button>
         )}
       </div>
+    </>
+  );
 
-      {/* CTA */}
-      <p className="text-white/40 text-sm text-center max-w-lg px-4">
-        ¿Te gusta lo que lees? Consigue el libro completo y sumérgete en la fascinante vida de Leonardo da Vinci.
-      </p>
-    </div>
+  return (
+    <>
+      {/* Regular inline view */}
+      <div className={`flex flex-col items-center gap-8 ${className}`}>
+        {/* Header */}
+        <div className="text-center space-y-3">
+          <div className="flex items-center justify-center gap-3 text-primary">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
+            <BookOpen className="w-6 h-6" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
+          </div>
+          <h3 className="text-2xl md:text-3xl font-serif text-white">
+            Lee las primeras páginas
+          </h3>
+          <p className="text-white/50 text-sm max-w-md mx-auto">
+            Descubre el inicio de esta fascinante obra. Haz clic en las esquinas o desliza para pasar página.
+          </p>
+        </div>
+        
+        <FlipbookContent />
+
+        {/* Fullscreen button */}
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={toggleFullscreen}
+          className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary gap-2"
+        >
+          <Maximize2 className="w-5 h-5" />
+          Ver a pantalla completa
+        </Button>
+
+        {/* CTA */}
+        <p className="text-white/40 text-sm text-center max-w-lg px-4">
+          ¿Te gusta lo que lees? Consigue el libro completo y sumérgete en la fascinante vida de Leonardo da Vinci.
+        </p>
+      </div>
+
+      {/* Fullscreen modal */}
+      {isFullscreen && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsFullscreen(false);
+          }}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setIsFullscreen(false)}
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
+            aria-label="Cerrar pantalla completa"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Minimize hint */}
+          <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2 text-white/50 text-sm">
+            <Minimize2 className="w-4 h-4" />
+            <span className="hidden md:inline">Pulsa ESC o haz clic fuera para cerrar</span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl md:text-2xl font-serif text-white mb-6 text-center">
+            Leonardo da Vinci: La Tragedia de la Perfección
+          </h3>
+
+          <FlipbookContent />
+        </div>
+      )}
+    </>
   );
 };
 
