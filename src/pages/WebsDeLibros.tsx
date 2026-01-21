@@ -279,13 +279,25 @@ const WebsDeLibros = () => {
                 </div>
                 <button 
                   className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer"
-                  onClick={() => {
-                    if (navigator.share) {
-                      navigator.share({
-                        title: 'Leonardo da Vinci: La Tragedia de la Perfección',
-                        text: 'Una indagación poética y filosófica sobre Leonardo da Vinci',
-                        url: window.location.href
-                      });
+                  onClick={async () => {
+                    const shareData = {
+                      title: 'Leonardo da Vinci: La Tragedia de la Perfección',
+                      text: 'Una indagación poética y filosófica sobre Leonardo da Vinci',
+                      url: window.location.href
+                    };
+                    
+                    if (navigator.share && navigator.canShare?.(shareData)) {
+                      try {
+                        await navigator.share(shareData);
+                      } catch (err) {
+                        // User cancelled or error - fallback to clipboard
+                        await navigator.clipboard.writeText(window.location.href);
+                        alert('Enlace copiado al portapapeles');
+                      }
+                    } else {
+                      // Fallback: copy to clipboard
+                      await navigator.clipboard.writeText(window.location.href);
+                      alert('Enlace copiado al portapapeles');
                     }
                   }}
                 >
@@ -299,7 +311,7 @@ const WebsDeLibros = () => {
 
         {/* Footer */}
         <footer className="relative z-40 bg-[#050505] py-8 text-center text-white/40 text-xs border-t border-white/5">
-          <p>© {new Date().getFullYear()} Carlos Blanco · Editorial Dauro</p>
+          <p>© {new Date().getFullYear()} Carlos Blanco · Grupo Dauro Cultural</p>
         </footer>
       </div>
     </>
