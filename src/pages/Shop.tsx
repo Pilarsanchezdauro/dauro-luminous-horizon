@@ -162,6 +162,7 @@ export default function Shop() {
     { id: "desarrollo personal", label: "Desarrollo Personal" },
     { id: "miscelánea", label: "Miscelánea" },
     { id: "crónica", label: "Crónica" },
+    { id: "dauro-ciencia", label: "Dauro Ciencia" },
   ];
 
   // Reset visible count when filters change
@@ -186,13 +187,34 @@ export default function Shop() {
         p.node.productType && normalizeGenre(p.node.productType) === selectedGenre
       );
 
-  // Then filter by selected category using productType
+  // Helper to check if product belongs to Dauro Ciencia
+  const isDauroCiencia = (p: ShopifyProduct) => {
+    const tags = p.node.tags || [];
+    const tagsLower = tags.map((t: string) => t.toLowerCase());
+    const title = p.node.title.toLowerCase();
+    const description = (p.node.description || '').toLowerCase();
+    
+    if (tagsLower.includes('dauro-ciencia') || tagsLower.includes('dauro ciencia') || tagsLower.includes('ciencia')) {
+      return true;
+    }
+    
+    const isCarlosBlanco = title.includes('carlos blanco') || description.includes('carlos blanco') ||
+      title.includes('leonardo da vinci') || title.includes('pensamiento y vida') || title.includes('singularidad esencial');
+    const isAntonioRodriguez = title.includes('propuestas pedagógicas') || title.includes('propuestas pedagogicas') ||
+      title.includes('modelos educativos') || description.includes('antonio rodríguez') || description.includes('antonio rodriguez');
+    
+    return isCarlosBlanco || isAntonioRodriguez;
+  };
+
+  // Then filter by selected category using productType or special categories
   const categoryFilteredBooks = bookCategory === "todos" 
     ? genreFilteredBooks 
-    : genreFilteredBooks.filter(p => {
-        const productType = (p.node.productType || '').toLowerCase().trim();
-        return productType === bookCategory.toLowerCase();
-      });
+    : bookCategory === "dauro-ciencia"
+      ? genreFilteredBooks.filter(p => isDauroCiencia(p))
+      : genreFilteredBooks.filter(p => {
+          const productType = (p.node.productType || '').toLowerCase().trim();
+          return productType === bookCategory.toLowerCase();
+        });
 
   // Libros premiados específicos (por título)
   const LIBROS_PREMIADOS = [
@@ -270,9 +292,12 @@ export default function Shop() {
     ).length;
   };
 
-  // Count books per category (based on productType)
+  // Count books per category (based on productType or special categories)
   const getCategoryCount = (categoryId: string) => {
     if (categoryId === "todos") return genreFilteredBooks.length;
+    if (categoryId === "dauro-ciencia") {
+      return genreFilteredBooks.filter(p => isDauroCiencia(p)).length;
+    }
     return genreFilteredBooks.filter(p => {
       const productType = (p.node.productType || '').toLowerCase().trim();
       return productType === categoryId.toLowerCase();
