@@ -252,24 +252,44 @@ const WebsDeLibros = () => {
                 </blockquote>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button 
-                  size="lg"
-                  className="bg-primary text-black hover:bg-primary/90 font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
-                  onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
-                >
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Comprar Tapa Blanda (21€)
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 hover:bg-white/10 text-white font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
-                  onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
-                >
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Versión Ebook (9.99€)
-                </Button>
+              <div className="space-y-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    size="lg"
+                    className="bg-primary text-black hover:bg-primary/90 font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
+                    onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
+                  >
+                    <ShoppingCart className="mr-2 h-5 w-5" />
+                    Comprar Tapa Blanda (21€)
+                  </Button>
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-white/20 hover:bg-white/10 text-white font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
+                    onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
+                  >
+                    <BookOpen className="mr-2 h-5 w-5" />
+                    Versión Ebook (9.99€)
+                  </Button>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-orange-500/50 hover:bg-orange-500/10 text-orange-400 hover:text-orange-300 font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
+                    onClick={() => window.open('https://www.amazon.es/Leonardo-Vinci-Carlos-Blanco-P%C3%A9rez-ebook/dp/B0GFXK1Z61', '_blank')}
+                  >
+                    Comprar en Amazon
+                  </Button>
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-blue-500/50 hover:bg-blue-500/10 text-blue-400 hover:text-blue-300 font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
+                    onClick={() => window.open('https://libros.cc/Leonardo-Da-Vinci.htm?isbn=9791399116625', '_blank')}
+                  >
+                    Comprar en Libros.cc
+                  </Button>
+                </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-4 md:gap-6 text-xs md:text-sm text-white/60 pt-6 md:pt-8 border-t border-white/10">
