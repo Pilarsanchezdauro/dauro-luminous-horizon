@@ -11,6 +11,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/logo.png";
 import mascot from "@/assets/mascot.png";
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -63,7 +64,6 @@ const Navigation = () => {
       ],
     },
     { name: "Tienda", path: "/tienda" },
-    // { name: "Mirlo Key", path: "/mirlo-key" }, // Temporalmente oculto mientras se trabaja en la página
     {
       name: "Blog",
       path: "/blog",
@@ -148,11 +148,14 @@ const Navigation = () => {
                       {item.submenu.map((subitem) => (
                         'nestedSubmenu' in subitem && subitem.nestedSubmenu ? (
                           <div key={subitem.name} className="relative group/nested">
-                            <div className="flex items-center justify-between px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors cursor-pointer">
+                            <Link
+                              to={subitem.path}
+                              className="flex items-center justify-between px-6 py-4 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
+                            >
                               <span>{subitem.name}</span>
                               <ChevronDown className="h-4 w-4 -rotate-90" />
-                            </div>
-                            <div className="absolute left-full top-0 ml-1 w-48 opacity-0 invisible group-hover/nested:opacity-100 group-hover/nested:visible transition-all">
+                            </Link>
+                            <div className="absolute left-full top-0 ml-1 w-48 opacity-0 invisible group-hover/nested:opacity-100 group-hover/nested:visible transition-all z-50">
                               <div className="bg-card border border-border rounded-lg shadow-xl overflow-hidden">
                                 {subitem.nestedSubmenu.map((nestedItem) => (
                                   <Link
@@ -166,7 +169,7 @@ const Navigation = () => {
                               </div>
                             </div>
                           </div>
-                        ) : subitem.external ? (
+                        ) : 'external' in subitem && subitem.external ? (
                           <a
                             key={subitem.name}
                             href={subitem.path}
@@ -232,28 +235,28 @@ const Navigation = () => {
                       <div className="pl-4 space-y-1">
                         {item.submenu.map((subitem) => (
                           'nestedSubmenu' in subitem && subitem.nestedSubmenu ? (
-                            <Accordion key={subitem.name} type="single" collapsible className="w-full">
-                              <AccordionItem value={subitem.name} className="border-none">
-                                <AccordionTrigger className="px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg hover:no-underline">
-                                  {subitem.name}
-                                </AccordionTrigger>
-                                <AccordionContent className="pb-0">
-                                  <div className="pl-4 space-y-1">
-                                    {subitem.nestedSubmenu.map((nestedItem) => (
-                                      <Link
-                                        key={nestedItem.name}
-                                        to={nestedItem.path}
-                                        className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
-                                        onClick={() => setIsOpen(false)}
-                                      >
-                                        {nestedItem.name}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            </Accordion>
-                          ) : subitem.external ? (
+                            <div key={subitem.name}>
+                              <Link
+                                to={subitem.path}
+                                className="block px-4 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200 font-medium"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {subitem.name}
+                              </Link>
+                              <div className="pl-4 space-y-1">
+                                {subitem.nestedSubmenu.map((nestedItem) => (
+                                  <Link
+                                    key={nestedItem.name}
+                                    to={nestedItem.path}
+                                    className="block px-4 py-2 text-xs text-muted-foreground/80 hover:text-primary hover:bg-accent/20 rounded-lg transition-colors duration-200"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    → {nestedItem.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : 'external' in subitem && subitem.external ? (
                             <a
                               key={subitem.name}
                               href={subitem.path}
