@@ -329,6 +329,42 @@ const WebsDeLibros = () => {
           </div>
         </section>
 
+        {/* Author Biography Section */}
+        <section className="relative z-40 bg-gradient-to-b from-[#0a0a0a] to-[#050505] py-16 md:py-24 border-t border-white/5">
+          <div className="container mx-auto px-4 md:px-8 max-w-5xl">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              {/* Author Photo - Oval */}
+              <div className="flex-shrink-0">
+                <div className="w-48 h-64 md:w-56 md:h-72 rounded-[50%] overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/10">
+                  <img 
+                    src="/webs-libros/leonardo/carlos-blanco-autor.png" 
+                    alt="Carlos Blanco - Autor"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+              </div>
+              
+              {/* Author Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="font-serif text-2xl md:text-3xl text-primary mb-4">Sobre el Autor</h3>
+                <h4 className="font-serif text-xl md:text-2xl text-white mb-4">Carlos Blanco</h4>
+                <p className="text-white/70 leading-relaxed text-sm md:text-base">
+                  <span className="text-white/90 font-medium">Carlos Blanco (Madrid, 1986)</span> es profesor titular de Filosofía en la Universidad Pontificia Comillas y director de la revista <em>Pensamiento</em>. En 2007 acabó simultáneamente tres carreras: Filosofía, Química y Teología. Doctor en Filosofía y Doctor en Teología, entre 2009 y 2011 fue Visiting Fellow en la Universidad de Harvard, becado por la Fundación Caja Madrid.
+                </p>
+                <p className="text-white/70 leading-relaxed text-sm md:text-base mt-4">
+                  Ha publicado más de veinte libros, entre los que destacan <em>El sentido de la libertad</em>, <em>Logos y Sofos</em>, <em>The integration of knowledge</em>, <em>Athanasius</em>, <em>Historia de la neurociencia</em>, <em>El pensamiento de la apocalíptica judía</em>, <em>Conciencia y mismidad</em> y <em>El nacimiento de la civilización egipcia</em>.
+                </p>
+                <p className="text-white/70 leading-relaxed text-sm md:text-base mt-4">
+                  En 1997 ingresó en la Asociación Española de Egiptología y en 1998 pronunció su primera conferencia, en el Museo Egipcio de Barcelona. Desde entonces ha impartido conferencias en países como Estados Unidos, México, Italia y Rusia. En 2015 fue elegido miembro de la <span className="text-white/90">World Academy of Art and Science</span> y en 2016 de la <span className="text-white/90">Academia Europea de Ciencias y Artes de Salzburgo</span>.
+                </p>
+                <p className="text-white/70 leading-relaxed text-sm md:text-base mt-4">
+                  En 2012 cofundó <span className="text-white/90">The Altius Society</span> en Oxford, que ha reunido a algunas de las mentes más brillantes de la ciencia y de la filosofía para abordar desafíos globales como el transhumanismo, la inteligencia artificial y el futuro de la educación.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Footer */}
         <footer className="relative z-40 bg-[#050505] py-8 text-center text-white/40 text-xs border-t border-white/5">
           <p>© {new Date().getFullYear()} Carlos Blanco · Grupo Dauro Cultural</p>
