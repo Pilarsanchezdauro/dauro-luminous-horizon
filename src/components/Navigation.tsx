@@ -70,7 +70,7 @@ const Navigation = () => {
             { 
               name: "Carlos Blanco", 
               books: [
-                { name: "Leonardo da Vinci", path: "/webs-de-libros" },
+                { name: "Leonardo da Vinci", path: "/webs-de-libros/carlos-blanco/leonardo-da-vinci" },
               ]
             },
           ]
