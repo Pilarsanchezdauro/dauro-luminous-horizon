@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import { ShoppingCart, BookOpen, Feather, Share2, ArrowDown, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
+import BookFlipbook from "@/components/BookFlipbook";
+
+const FLIPBOOK_PAGES = [
+  "/webs-libros/leonardo/flipbook/page-1.jpg",
+  "/webs-libros/leonardo/flipbook/page-2.jpg",
+  "/webs-libros/leonardo/flipbook/page-3.jpg",
+  "/webs-libros/leonardo/flipbook/page-4.jpg",
+  "/webs-libros/leonardo/flipbook/page-5.jpg",
+  "/webs-libros/leonardo/flipbook/page-6.jpg",
+  "/webs-libros/leonardo/flipbook/page-7.jpg",
+  "/webs-libros/leonardo/flipbook/page-8.jpg",
+  "/webs-libros/leonardo/flipbook/page-9.jpg",
+  "/webs-libros/leonardo/flipbook/page-10.jpg",
+];
 
 const WebsDeLibros = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -336,6 +350,13 @@ const WebsDeLibros = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Flipbook Preview Section */}
+        <section className="relative z-35 bg-gradient-to-b from-[#050505] to-[#0a0a0a] py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <BookFlipbook pages={FLIPBOOK_PAGES} />
           </div>
         </section>
 
