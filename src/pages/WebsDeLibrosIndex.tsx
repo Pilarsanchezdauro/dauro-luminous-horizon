@@ -1,0 +1,148 @@
+import { Link } from "react-router-dom";
+import { BookOpen, ArrowRight, User } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Helmet } from "react-helmet-async";
+
+interface BookInfo {
+  title: string;
+  slug: string;
+  cover: string;
+  description: string;
+}
+
+interface AuthorInfo {
+  name: string;
+  slug: string;
+  books: BookInfo[];
+}
+
+const authors: AuthorInfo[] = [
+  {
+    name: "Carlos Blanco",
+    slug: "carlos-blanco",
+    books: [
+      {
+        title: "Leonardo da Vinci: La Tragedia de la Perfección",
+        slug: "leonardo-da-vinci",
+        cover: "/webs-libros/leonardo/portada-libro.jpg",
+        description: "Una indagación poética y filosófica en la grandeza de la mente humana."
+      }
+    ]
+  }
+];
+
+const WebsDeLibrosIndex = () => {
+  return (
+    <>
+      <Helmet>
+        <title>Webs de Libros | Grupo Dauro Cultural</title>
+        <meta name="description" content="Páginas web dedicadas a libros de nuestros autores. Descubre las obras de Editorial Dauro con sus landings exclusivas." />
+        <meta property="og:title" content="Webs de Libros | Grupo Dauro Cultural" />
+        <meta property="og:description" content="Páginas web dedicadas a libros de nuestros autores." />
+      </Helmet>
+
+      <Navigation />
+      
+      <main className="min-h-screen bg-background pt-28">
+        {/* Hero Section */}
+        <section className="py-16 md:py-24 bg-gradient-to-b from-muted/50 to-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm mb-6">
+                <BookOpen className="w-4 h-4" />
+                <span>Webs de Libros</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+                Páginas Web Dedicadas
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground">
+                Cada libro merece su propio espacio. Descubre las landings exclusivas de nuestros autores.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Authors Grid */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="space-y-16">
+              {authors.map((author) => (
+                <div key={author.slug} className="space-y-8">
+                  {/* Author Header */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <User className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                        {author.name}
+                      </h2>
+                      <p className="text-muted-foreground text-sm">
+                        {author.books.length} {author.books.length === 1 ? 'libro' : 'libros'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Books Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {author.books.map((book) => (
+                      <Link
+                        key={book.slug}
+                        to={`/webs-de-libros/${author.slug}/${book.slug}`}
+                        className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
+                      >
+                        <div className="aspect-[3/4] overflow-hidden">
+                          <img
+                            src={book.cover}
+                            alt={book.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+                            {book.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            {book.description}
+                          </p>
+                          <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                            <span>Ver landing</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 md:py-24 bg-muted/50">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4">
+              ¿Quieres una web para tu libro?
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+              Creamos páginas web exclusivas para promocionar tu obra. Diseño profesional, animaciones y optimización SEO.
+            </p>
+            <Link
+              to="/solicitar-web"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            >
+              Solicitar presupuesto
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  );
+};
+
+export default WebsDeLibrosIndex;
