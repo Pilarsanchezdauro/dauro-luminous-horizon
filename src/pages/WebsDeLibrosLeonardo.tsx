@@ -16,7 +16,19 @@ const FLIPBOOK_PAGES = [
   "/webs-libros/leonardo/flipbook/page-8.jpg",
   "/webs-libros/leonardo/flipbook/page-9.jpg",
   "/webs-libros/leonardo/flipbook/page-10.jpg",
+  "/webs-libros/leonardo/flipbook/page-11.jpg",
+  "/webs-libros/leonardo/flipbook/page-12.jpg",
+  "/webs-libros/leonardo/flipbook/page-13.jpg",
+  "/webs-libros/leonardo/flipbook/page-14.jpg",
+  "/webs-libros/leonardo/flipbook/page-15.jpg",
+  "/webs-libros/leonardo/flipbook/page-16.jpg",
+  "/webs-libros/leonardo/flipbook/page-17.jpg",
+  "/webs-libros/leonardo/flipbook/page-18.jpg",
+  "/webs-libros/leonardo/flipbook/page-19.jpg",
+  "/webs-libros/leonardo/flipbook/page-20.jpg",
 ];
+
+const BOOK_COVER = "/webs-libros/leonardo/portada-libro.jpg";
 
 const WebsDeLibros = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -354,9 +366,9 @@ const WebsDeLibros = () => {
         </section>
 
         {/* Flipbook Preview Section */}
-        <section className="relative z-35 bg-gradient-to-b from-[#050505] to-[#0a0a0a] py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <BookFlipbook pages={FLIPBOOK_PAGES} />
+        <section className="relative z-35 bg-gradient-to-b from-[#050505] via-[#080808] to-[#0a0a0a] py-20 md:py-32">
+          <div className="container mx-auto px-4 md:px-8">
+            <BookFlipbook pages={FLIPBOOK_PAGES} coverImage={BOOK_COVER} />
           </div>
         </section>
 
