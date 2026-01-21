@@ -192,18 +192,23 @@ export default function Shop() {
     const tags = p.node.tags || [];
     const tagsLower = tags.map((t: string) => t.toLowerCase());
     const title = p.node.title.toLowerCase();
-    const description = (p.node.description || '').toLowerCase();
     
-    if (tagsLower.includes('dauro-ciencia') || tagsLower.includes('dauro ciencia') || tagsLower.includes('ciencia')) {
+    // Check for dauro-ciencia tag first
+    if (tagsLower.includes('dauro-ciencia') || tagsLower.includes('dauro ciencia')) {
       return true;
     }
     
-    const isCarlosBlanco = title.includes('carlos blanco') || description.includes('carlos blanco') ||
-      title.includes('leonardo da vinci') || title.includes('pensamiento y vida') || title.includes('singularidad esencial');
-    const isAntonioRodriguez = title.includes('propuestas pedagógicas') || title.includes('propuestas pedagogicas') ||
-      title.includes('modelos educativos') || description.includes('antonio rodríguez') || description.includes('antonio rodriguez');
+    // Carlos Blanco academic works
+    const isCarlosBlanco = title.includes('leonardo da vinci') || 
+      title.includes('pensamiento y vida') || 
+      title.includes('singularidad esencial');
     
-    return isCarlosBlanco || isAntonioRodriguez;
+    // Only specific Antonio Rodríguez academic works (not poetry like "La escala del tiempo")
+    const isAntonioRodriguezAcademic = title.includes('propuestas pedagógicas') || 
+      title.includes('propuestas pedagogicas') ||
+      title.includes('modelos educativos comparados');
+    
+    return isCarlosBlanco || isAntonioRodriguezAcademic;
   };
 
   // Then filter by selected category using productType or special categories
