@@ -192,14 +192,17 @@ export default function Shop() {
     const tags = p.node.tags || [];
     const tagsLower = tags.map((t: string) => t.toLowerCase());
     const title = p.node.title.toLowerCase();
+    const description = (p.node.description || '').toLowerCase();
     
     // Check for dauro-ciencia tag first
     if (tagsLower.includes('dauro-ciencia') || tagsLower.includes('dauro ciencia')) {
       return true;
     }
     
-    // Carlos Blanco academic works
-    const isCarlosBlanco = title.includes('leonardo da vinci') || 
+    // ALL Carlos Blanco works (academic author)
+    const isCarlosBlanco = title.includes('carlos blanco') || 
+      description.includes('carlos blanco') ||
+      title.includes('leonardo da vinci') || 
       title.includes('pensamiento y vida') || 
       title.includes('singularidad esencial');
     
