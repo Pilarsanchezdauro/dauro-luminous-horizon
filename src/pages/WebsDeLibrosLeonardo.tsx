@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { ShoppingCart, BookOpen, Feather, Share2, ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShoppingCart, BookOpen, Feather, Share2, ArrowDown, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
 
@@ -103,14 +104,23 @@ const WebsDeLibros = () => {
       <div className="min-h-[400vh] bg-[#0a0a0a] text-white overflow-x-hidden font-sans selection:bg-primary selection:text-primary-foreground">
         {/* Header */}
         <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 bg-transparent">
-          <span className="text-sm tracking-[0.3em] uppercase font-medium">Carlos Blanco</span>
-          <Button 
-            variant="outline" 
-            className="border-white/30 text-white hover:bg-white/10 text-xs tracking-widest uppercase"
-            onClick={() => document.getElementById('book-section')?.scrollIntoView({ behavior: 'smooth' })}
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
           >
-            Comprar Ahora
-          </Button>
+            <Home className="w-4 h-4" />
+            <span className="text-sm tracking-[0.2em] uppercase font-medium">Grupo Dauro</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <span className="text-sm tracking-[0.3em] uppercase font-medium hidden sm:block">Carlos Blanco</span>
+            <Button 
+              variant="outline" 
+              className="border-white/30 text-white hover:bg-white/10 text-xs tracking-widest uppercase"
+              onClick={() => document.getElementById('book-section')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Comprar Ahora
+            </Button>
+          </div>
         </header>
 
         {/* Hero Section */}
