@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -59,6 +60,9 @@ import {
   PenTool,
   Lightbulb,
   ArrowRight,
+  Upload,
+  X,
+  FileText as FileIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -192,17 +196,91 @@ export default function DauroCiencia() {
     descripcion: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [curriculumFile, setCurriculumFile] = useState<File | null>(null);
+  const [obraFile, setObraFile] = useState<File | null>(null);
+  const curriculumInputRef = useRef<HTMLInputElement>(null);
+  const obraInputRef = useRef<HTMLInputElement>(null);
+
+  const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+  const ALLOWED_TYPES = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+
+  const validateFile = (file: File): string | null => {
+    if (file.size > MAX_FILE_SIZE) {
+      return "El archivo no puede superar los 20MB";
+    }
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return "Solo se permiten archivos PDF o Word (.doc, .docx)";
+    }
+    return null;
+  };
+
+  const uploadFile = async (file: File, prefix: string): Promise<string | null> => {
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${prefix}-${Date.now()}.${fileExt}`;
+    const filePath = `dauro-ciencia/${fileName}`;
+
+    const { error } = await supabase.storage
+      .from("editorial-submissions")
+      .upload(filePath, file);
+
+    if (error) {
+      console.error("Error uploading file:", error);
+      return null;
+    }
+
+    return filePath;
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      let curriculumPath: string | null = null;
+      let obraPath: string | null = null;
+
+      // Upload files if provided
+      if (curriculumFile) {
+        const error = validateFile(curriculumFile);
+        if (error) {
+          toast.error(error);
+          setIsSubmitting(false);
+          return;
+        }
+        curriculumPath = await uploadFile(curriculumFile, "curriculum");
+        if (!curriculumPath) {
+          toast.error("Error al subir el curriculum");
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
+      if (obraFile) {
+        const error = validateFile(obraFile);
+        if (error) {
+          toast.error(error);
+          setIsSubmitting(false);
+          return;
+        }
+        obraPath = await uploadFile(obraFile, "obra");
+        if (!obraPath) {
+          toast.error("Error al subir la obra");
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
       const response = await fetch("https://formspree.io/f/xrepaqjr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          curriculum_file: curriculumPath || "No adjuntado",
+          obra_file: obraPath || "No adjuntado",
           subject: "Nueva propuesta Dauro Ciencia - Publicación Académica",
           origen: "Página Dauro Ciencia (Nueva versión)",
         }),
@@ -1107,6 +1185,117 @@ export default function DauroCiencia() {
                     placeholder="Cuéntanos sobre tu proyecto de investigación..."
                   />
                 </div>
+
+                {/* File uploads */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="curriculum">Curriculum Vitae (opcional)</Label>
+                    <div className="mt-1.5">
+                      {curriculumFile ? (
+                        <div className="flex items-center gap-2 p-3 border rounded-md bg-muted/50">
+                          <FileIcon className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-sm truncate flex-1">{curriculumFile.name}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={() => {
+                              setCurriculumFile(null);
+                              if (curriculumInputRef.current) curriculumInputRef.current.value = "";
+                            }}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="w-full justify-start"
+                          onClick={() => curriculumInputRef.current?.click()}
+                        >
+                          <Upload className="w-4 h-4 mr-2" />
+                          Subir CV (PDF, Word)
+                        </Button>
+                      )}
+                      <input
+                        ref={curriculumInputRef}
+                        type="file"
+                        id="curriculum"
+                        accept=".pdf,.doc,.docx"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const error = validateFile(file);
+                            if (error) {
+                              toast.error(error);
+                              return;
+                            }
+                            setCurriculumFile(file);
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="obra">Manuscrito / Obra (opcional)</Label>
+                    <div className="mt-1.5">
+                      {obraFile ? (
+                        <div className="flex items-center gap-2 p-3 border rounded-md bg-muted/50">
+                          <FileIcon className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-sm truncate flex-1">{obraFile.name}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={() => {
+                              setObraFile(null);
+                              if (obraInputRef.current) obraInputRef.current.value = "";
+                            }}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="w-full justify-start"
+                          onClick={() => obraInputRef.current?.click()}
+                        >
+                          <Upload className="w-4 h-4 mr-2" />
+                          Subir obra (PDF, Word)
+                        </Button>
+                      )}
+                      <input
+                        ref={obraInputRef}
+                        type="file"
+                        id="obra"
+                        accept=".pdf,.doc,.docx"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const error = validateFile(file);
+                            if (error) {
+                              toast.error(error);
+                              return;
+                            }
+                            setObraFile(file);
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-muted-foreground">
+                  Máximo 20MB por archivo. Formatos aceptados: PDF, Word (.doc, .docx)
+                </p>
 
                 <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                   {isSubmitting ? "Enviando..." : "Enviar propuesta"}
