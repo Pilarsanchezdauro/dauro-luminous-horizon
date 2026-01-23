@@ -15,6 +15,12 @@ const LIBROS_PREMIADOS = [
   'boabdil el principe del dia y de la noche',
   'boabdil, el príncipe del día y de la noche',
   'boabdil, el principe del dia y de la noche',
+  'alguacil de la casa y corte',
+];
+
+// Libros premiados que NO deben mostrar badge de "Novedad" aunque tengan el tag
+const PREMIADOS_SIN_NOVEDAD = [
+  'alguacil de la casa y corte',
 ];
 
 // Helper to check if product is "premiado" (awarded book)
@@ -193,10 +199,13 @@ export const NovedadesSection = () => {
                                         const isSegundaEdicion = tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
                                         const isNovedadTag = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
                                         const esPremiado = isPremiado(product);
+                                        const titleLower = product.node.title.toLowerCase().trim();
+                                        const esPremiadoSinNovedad = PREMIADOS_SIN_NOVEDAD.some(titulo => titleLower.includes(titulo));
+                                        const mostrarNovedad = isNovedadTag && !esPremiadoSinNovedad;
                                         
                                         return (
                                           <>
-                                            {isNovedadTag && (
+                                            {mostrarNovedad && (
                                               <div className="bg-emerald-600 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
                                                 Novedad
                                               </div>
