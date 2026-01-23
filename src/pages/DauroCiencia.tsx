@@ -325,6 +325,104 @@ export default function DauroCiencia() {
         </div>
       </section>
 
+      {/* Credenciales Institucionales - Sello, Certificado, Memorándum */}
+      <section className="py-16 bg-gradient-to-b from-background to-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-2">
+                <Shield className="w-4 h-4 mr-2" />
+                Garantía de seriedad editorial
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Credenciales institucionales
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Nuestro compromiso con el rigor científico está respaldado por documentos oficiales y un sello de calidad reconocido.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Sello Académico */}
+              <Card className="p-6 border-2 border-primary/30 bg-gradient-to-br from-card to-primary/5 text-center group hover:shadow-xl transition-all">
+                <div className="flex justify-center mb-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-125 group-hover:scale-150 transition-transform"></div>
+                    <img 
+                      src="/dauro-ciencia-sello.png" 
+                      alt="Sello Académico Dauro Ciencia - Garantía de calidad editorial universitaria" 
+                      className="h-28 w-28 relative z-10 drop-shadow-lg"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Sello Académico</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Distintivo de calidad que avala la rigurosidad científica de cada obra publicada.
+                </p>
+                <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30">
+                  <Award className="w-3 h-3 mr-1" />
+                  Válido para CV académico
+                </Badge>
+              </Card>
+
+              {/* Certificado */}
+              <Card className="p-6 border-2 hover:border-primary/30 text-center group hover:shadow-xl transition-all">
+                <div className="flex justify-center mb-4">
+                  <div className="w-28 h-28 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <FileText className="w-14 h-14 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Certificado Oficial</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Documento que acredita la evaluación científica de tu obra por nuestro comité editorial.
+                </p>
+                <a 
+                  href="/docs/dauro-ciencia-certificado.pdf" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium text-sm"
+                >
+                  Ver certificado modelo
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Card>
+
+              {/* Memorándum */}
+              <Card className="p-6 border-2 hover:border-primary/30 text-center group hover:shadow-xl transition-all">
+                <div className="flex justify-center mb-4">
+                  <div className="w-28 h-28 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <BookMarked className="w-14 h-14 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Memorándum Científico</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Nuestra declaración de principios: «La Nueva Legitimidad Científica» y el uso ético de la IA.
+                </p>
+                <a 
+                  href="/docs/memorandum-dauro-ciencia.docx" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium text-sm"
+                >
+                  Descargar memorándum
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Card>
+            </div>
+
+            {/* Quote destacada */}
+            <div className="mt-10 p-8 bg-primary/5 border border-primary/20 rounded-2xl text-center">
+              <blockquote className="text-xl md:text-2xl font-medium text-foreground italic max-w-3xl mx-auto">
+                "Nuestra misión es devolver a la ciencia la credibilidad que la avalancha de contenido generado por IA amenaza con arrebatarle."
+              </blockquote>
+              <p className="mt-4 text-muted-foreground">
+                — Memorándum «La Nueva Legitimidad Científica»
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Director Section - Antonio Rodríguez Jiménez */}
       <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4">
