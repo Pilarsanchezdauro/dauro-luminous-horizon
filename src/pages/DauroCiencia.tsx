@@ -164,6 +164,11 @@ const FAQ_ITEMS = [
     answer:
       "Sí, maquetamos tu libro con todos los elementos gráficos necesarios: tablas, gráficos, imágenes, fórmulas matemáticas, etc., respetando los estándares académicos.",
   },
+  {
+    question: "¿Cuánto cuesta publicar con Dauro Ciencia?",
+    answer:
+      "En Grupo Dauro trabajamos con servicios editoriales profesionales. El coste final dependerá de las características específicas de tu proyecto: extensión del manuscrito, complejidad del contenido, elementos gráficos, tirada de ejemplares y servicios adicionales que requieras. Contacta con nosotros para recibir un presupuesto personalizado sin compromiso.",
+  },
 ];
 
 const EDITORIAL_SERVICES = [
