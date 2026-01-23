@@ -804,7 +804,7 @@ export default function Shop() {
                         <Card key={product.node.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                           <Link to={`/producto/${product.node.handle}`} className="block relative">
                             {product.node.images.edges[0]?.node && (
-                              <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4">
+                              <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-secondary/10 to-secondary/30 rounded-t-lg flex items-center justify-center p-4 relative">
                                 <img
                                   src={product.node.images.edges[0].node.url}
                                   alt={product.node.images.edges[0].node.altText || `${product.node.title} - Libro disponible en Ediciones Dauro`}
@@ -813,60 +813,34 @@ export default function Shop() {
                                   height="533"
                                   className="w-full h-full object-contain hover:scale-105 transition-all duration-300 drop-shadow-2xl grayscale hover:grayscale-0"
                                 />
-                                {/* Novedad Badge */}
+                                {/* BADGES ESQUINA SUPERIOR IZQUIERDA - Ebook */}
+                                {hasEbook(product.node.id) && (
+                                  <div className="absolute top-2 left-2 bg-cyan-500 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
+                                    Ebook
+                                  </div>
+                                )}
+                                {/* BADGES ESQUINA SUPERIOR DERECHA - Novedad/Premio */}
                                 {isNovedad(product) && (
-                                  <div className="absolute top-2 right-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <Tag className="w-3 h-3" />
+                                  <div className="absolute top-2 right-2 bg-emerald-600 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
                                     Novedad
                                   </div>
                                 )}
-                                {/* Bestseller Badge */}
-                                {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
-                                  <div className={`absolute ${isNovedad(product) ? 'top-10' : 'top-2'} right-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide`}>
-                                    <Award className="w-3 h-3" />
-                                    Éxito
-                                  </div>
-                                )}
-                                {/* Joya Badge */}
-                                {product.node.tags?.some(tag => tag.toLowerCase() === 'joya') && (
-                                  <div className="absolute top-10 right-2 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <Gem className="w-3 h-3" />
-                                    Joya
-                                  </div>
-                                )}
-                                {/* Premio Badge - Libros premiados */}
+                                {/* Premio Badge - debajo de novedad */}
                                 {isPremiado(product) && (
-                                  <div className="absolute top-[4.5rem] right-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide animate-pulse">
-                                    <Trophy className="w-3 h-3" />
+                                  <div className={`absolute ${isNovedad(product) ? 'top-9' : 'top-2'} right-2 bg-amber-500 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md animate-pulse`}>
                                     Premio
                                   </div>
                                 )}
                                 {/* Premio Andalucía de la Crítica Badge */}
                                 {!isPremiado(product) && product.node.tags?.some(tag => tag.toLowerCase() === 'premio andalucía de la crítica') && (
-                                  <div className="absolute top-[4.5rem] right-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <Trophy className="w-3 h-3" />
+                                  <div className={`absolute ${isNovedad(product) ? 'top-9' : 'top-2'} right-2 bg-blue-600 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md`}>
                                     Premio
                                   </div>
                                 )}
-                                {/* Basada en Hechos Reales Badge */}
-                                {product.node.tags?.some(tag => tag.toLowerCase() === 'basada en hechos reales') && (
-                                  <div className="absolute top-[6.5rem] right-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <FileCheck className="w-3 h-3" />
-                                    H. Reales
-                                  </div>
-                                )}
-                                {/* Cine Badge */}
-                                {product.node.tags?.some(tag => tag.toLowerCase() === 'cine') && (
-                                  <div className="absolute top-[8.5rem] right-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <Film className="w-3 h-3" />
-                                    Cine
-                                  </div>
-                                )}
-                                {/* Ebook Badge */}
-                                {hasEbook(product.node.id) && (
-                                  <div className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-2 py-1 rounded-full shadow-md flex items-center gap-1 font-semibold text-[10px] uppercase tracking-wide">
-                                    <Tablet className="w-3 h-3" />
-                                    Ebook
+                                {/* Bestseller Badge */}
+                                {product.node.tags?.some(tag => tag.toLowerCase() === 'bestseller') && (
+                                  <div className={`absolute ${isNovedad(product) && isPremiado(product) ? 'top-16' : isNovedad(product) || isPremiado(product) ? 'top-9' : 'top-2'} right-2 bg-yellow-500 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md`}>
+                                    Éxito
                                   </div>
                                 )}
                                 {/* Segunda Edición Stamp */}
@@ -894,9 +868,8 @@ export default function Shop() {
                           </CardHeader>
                           
                           <CardContent className="flex-1">
-                            {/* Formatos disponibles con precios */}
-                            <div className="space-y-2">
-                              {/* Precio libro físico (variante principal) */}
+                            {/* Formatos disponibles con precios - Estilo compacto */}
+                            <div className="space-y-1.5">
                               {(() => {
                                 const physicalVariant = product.node.variants.edges.find(
                                   v => !v.node.title.toLowerCase().includes('ebook')
@@ -908,22 +881,22 @@ export default function Shop() {
                                 return (
                                   <>
                                     <div className="flex items-center gap-2">
-                                      <div className="flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-md text-xs font-medium">
+                                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-xs font-medium border border-amber-200 dark:border-amber-800">
                                         <Book className="w-3 h-3" />
-                                        <span>Papel</span>
-                                      </div>
-                                      <span className="text-lg font-bold">
+                                        Papel
+                                      </span>
+                                      <span className="text-base font-bold">
                                         {physicalVariant ? `${parseFloat(physicalVariant.node.price.amount).toFixed(2)} €` : `${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)} €`}
                                       </span>
                                     </div>
-                                    {hasEbook(product.node.id) && ebookVariant && (
+                                    {hasEbook(product.node.id) && (
                                       <div className="flex items-center gap-2">
-                                        <div className="flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 rounded-md text-xs font-medium">
+                                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 text-xs font-medium border border-cyan-200 dark:border-cyan-800">
                                           <Tablet className="w-3 h-3" />
-                                          <span>Ebook</span>
-                                        </div>
-                                        <span className="text-lg font-bold text-cyan-700 dark:text-cyan-300">
-                                          {parseFloat(ebookVariant.node.price.amount).toFixed(2)} €
+                                          Ebook
+                                        </span>
+                                        <span className="text-base font-bold text-cyan-700 dark:text-cyan-300">
+                                          {ebookVariant ? `${parseFloat(ebookVariant.node.price.amount).toFixed(2)} €` : '9.99 €'}
                                         </span>
                                       </div>
                                     )}

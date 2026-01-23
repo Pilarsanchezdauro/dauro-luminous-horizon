@@ -173,52 +173,51 @@ export const NovedadesSection = () => {
                       </div>
                     )}
                     
-                    {/* Badges */}
-                    <div className="absolute top-4 left-4 flex flex-col gap-2">
-                      {(() => {
-                        const tags = product.node.tags || [];
-                        const tagsLower = tags.map((t: string) => t.toLowerCase());
-                        const isSegundaEdicion = tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
-                        const isNovedad = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
-                        const esPremiado = isPremiado(product);
-                        
-                        return (
-                          <>
-                            {esPremiado && (
-                              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-semibold px-3 py-1.5 shadow-lg animate-pulse">
-                                <Trophy className="h-3 w-3 mr-1.5" />
-                                Premio
-                              </Badge>
-                            )}
-                            {isNovedad && (
-                              <Badge className="bg-primary text-primary-foreground font-semibold px-3 py-1.5 shadow-lg">
-                                <Sparkles className="h-3 w-3 mr-1.5" />
-                                Novedad
-                              </Badge>
-                            )}
-                            {isSegundaEdicion && (
-                              <div className="flex items-center justify-center w-14 h-14 rounded-full border-[3px] border-blue-600 bg-white/90 backdrop-blur-sm transform -rotate-12 shadow-lg">
-                                <div className="text-center">
-                                  <span className="block text-blue-600 font-black text-[10px] uppercase tracking-tight leading-none">2ª</span>
-                                  <span className="block text-blue-600 font-bold text-[8px] uppercase tracking-wide leading-tight">Edición</span>
-                                </div>
-                              </div>
-                            )}
-                          </>
-                        );
-                      })()}
-                    </div>
-
-                    {/* Precio flotante */}
-                    <div className={`
-                      absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-4 py-2
-                      shadow-lg transition-all duration-300
-                      ${isHovered ? 'scale-110' : 'scale-100'}
-                    `}>
-                      <span className="font-bold text-primary">
-                        {parseFloat(price.amount).toFixed(2)}€
-                      </span>
-                    </div>
+                                    {/* Badge EBOOK - Esquina superior izquierda */}
+                                    {(() => {
+                                      const tags = product.node.tags || [];
+                                      const tagsLower = tags.map((t: string) => t.toLowerCase());
+                                      const hasEbook = tagsLower.includes('ebook');
+                                      return hasEbook ? (
+                                        <div className="absolute top-4 left-4 bg-cyan-500 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
+                                          Ebook
+                                        </div>
+                                      ) : null;
+                                    })()}
+                                    
+                                    {/* Badges DERECHA - Novedad/Premio */}
+                                    <div className="absolute top-4 right-4 flex flex-col gap-2">
+                                      {(() => {
+                                        const tags = product.node.tags || [];
+                                        const tagsLower = tags.map((t: string) => t.toLowerCase());
+                                        const isSegundaEdicion = tagsLower.includes('segunda edicion') || tagsLower.includes('segunda edición') || tagsLower.includes('2a edicion') || tagsLower.includes('2a edición');
+                                        const isNovedadTag = tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
+                                        const esPremiado = isPremiado(product);
+                                        
+                                        return (
+                                          <>
+                                            {isNovedadTag && (
+                                              <div className="bg-emerald-600 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
+                                                Novedad
+                                              </div>
+                                            )}
+                                            {esPremiado && (
+                                              <div className="bg-amber-500 text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md animate-pulse">
+                                                Premio
+                                              </div>
+                                            )}
+                                            {isSegundaEdicion && (
+                                              <div className="flex items-center justify-center w-12 h-12 rounded-full border-[3px] border-blue-600 bg-white/90 backdrop-blur-sm transform -rotate-12 shadow-lg">
+                                                <div className="text-center">
+                                                  <span className="block text-blue-600 font-black text-[9px] uppercase tracking-tight leading-none">2ª</span>
+                                                  <span className="block text-blue-600 font-bold text-[7px] uppercase tracking-wide leading-tight">Edición</span>
+                                                </div>
+                                              </div>
+                                            )}
+                                          </>
+                                        );
+                                      })()}
+                                    </div>
                   </div>
                   
                   {/* Contenido */}
@@ -235,6 +234,46 @@ export const NovedadesSection = () => {
                         {product.node.description}
                       </p>
                     )}
+                    
+                    {/* Precios por formato */}
+                    <div className="space-y-1.5 mb-4">
+                      {(() => {
+                        const physicalVariant = product.node.variants.edges.find(
+                          v => !v.node.title.toLowerCase().includes('ebook')
+                        );
+                        const ebookVariant = product.node.variants.edges.find(
+                          v => v.node.title.toLowerCase().includes('ebook')
+                        );
+                        const tags = product.node.tags || [];
+                        const tagsLower = tags.map((t: string) => t.toLowerCase());
+                        const hasEbook = tagsLower.includes('ebook');
+                        
+                        return (
+                          <>
+                            <div className="flex items-center gap-2">
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-xs font-medium border border-amber-200 dark:border-amber-800">
+                                <BookOpen className="w-3 h-3" />
+                                Papel
+                              </span>
+                              <span className="text-base font-bold">
+                                {physicalVariant ? `${parseFloat(physicalVariant.node.price.amount).toFixed(2)} €` : `${parseFloat(price.amount).toFixed(2)} €`}
+                              </span>
+                            </div>
+                            {hasEbook && (
+                              <div className="flex items-center gap-2">
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200 text-xs font-medium border border-cyan-200 dark:border-cyan-800">
+                                  <BookOpen className="w-3 h-3" />
+                                  Ebook
+                                </span>
+                                <span className="text-base font-bold text-cyan-700 dark:text-cyan-300">
+                                  {ebookVariant ? `${parseFloat(ebookVariant.node.price.amount).toFixed(2)} €` : '9.99 €'}
+                                </span>
+                              </div>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
                     
                     {/* Botón añadir al carrito */}
                     <Button 
