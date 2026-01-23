@@ -237,6 +237,12 @@ export default function Shop() {
     'boabdil el principe del dia y de la noche',
     'boabdil, el príncipe del día y de la noche',
     'boabdil, el principe del dia y de la noche',
+    'alguacil de la casa y corte',
+  ];
+
+  // Libros premiados que NO deben mostrar badge de "Novedad" aunque tengan el tag
+  const PREMIADOS_SIN_NOVEDAD = [
+    'alguacil de la casa y corte',
   ];
 
   // Helper to check if product is "premiado" (awarded book)
@@ -246,7 +252,12 @@ export default function Shop() {
   };
 
   // Helper to check if product is a "novedad" (new arrival)
+  // Excluye libros premiados que no deben mostrar novedad
   const isNovedad = (product: ShopifyProduct) => {
+    const titleLower = product.node.title.toLowerCase().trim();
+    const esPremiadoSinNovedad = PREMIADOS_SIN_NOVEDAD.some(titulo => titleLower.includes(titulo));
+    if (esPremiadoSinNovedad) return false;
+    
     const tags = product.node.tags || [];
     const tagsLower = tags.map((t: string) => t.toLowerCase());
     return tagsLower.includes('novedad') || tagsLower.includes('novedades') || tagsLower.includes('nuevo') || tagsLower.includes('new');
