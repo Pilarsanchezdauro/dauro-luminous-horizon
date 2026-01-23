@@ -404,7 +404,7 @@ export default function DauroCiencia() {
                   Nuestra declaración de principios: «La Nueva Legitimidad Científica» y el uso ético de la IA.
                 </p>
                 <a 
-                  href="/docs/memorandum-dauro-ciencia.docx" 
+                  href="/docs/memorandum-dauro-ciencia.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary hover:underline font-medium text-sm"
