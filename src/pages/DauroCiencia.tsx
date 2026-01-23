@@ -413,10 +413,10 @@ export default function DauroCiencia() {
             {/* Quote destacada */}
             <div className="mt-10 p-8 bg-primary/5 border border-primary/20 rounded-2xl text-center">
               <blockquote className="text-xl md:text-2xl font-medium text-foreground italic max-w-3xl mx-auto">
-                "Nuestra misión es devolver a la ciencia la credibilidad que la avalancha de contenido generado por IA amenaza con arrebatarle."
+                "La inteligencia artificial, guiada por el criterio de expertos, potencia el rigor científico y eleva la calidad de cada publicación."
               </blockquote>
               <p className="mt-4 text-muted-foreground">
-                — Memorándum «La Nueva Legitimidad Científica»
+                — Principios de Dauro Ciencia
               </p>
             </div>
           </div>
