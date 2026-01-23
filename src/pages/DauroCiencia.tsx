@@ -825,7 +825,7 @@ export default function DauroCiencia() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Camera className="w-7 h-7 text-primary" />
@@ -853,6 +853,20 @@ export default function DauroCiencia() {
                 </div>
                 <h3 className="font-semibold mb-2">Diseño de portada</h3>
                 <p className="text-sm text-muted-foreground">Personalizado y cuidado</p>
+              </Card>
+              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <ExternalLink className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Landing page exclusiva</h3>
+                <p className="text-sm text-muted-foreground">Web del autor y su obra</p>
+              </Card>
+              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Smartphone className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Publicación en ebook</h3>
+                <p className="text-sm text-muted-foreground">Formato digital incluido</p>
               </Card>
             </div>
 
