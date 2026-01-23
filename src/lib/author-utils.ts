@@ -60,6 +60,14 @@ export function normalizeAuthorName(author: string): string {
     .trim();
 }
 
+// Obtener el apellido principal de un autor (último apellido normalmente)
+function getMainSurname(author: string): string {
+  const normalized = normalizeAuthorName(author);
+  const parts = normalized.split(" ").filter(p => p.length > 2);
+  // Devolver el último apellido (o el nombre si solo hay uno)
+  return parts.length > 0 ? parts[parts.length - 1] : normalized;
+}
+
 // Comprobar si dos nombres de autor coinciden
 export function authorsMatch(author1: string, author2: string): boolean {
   const normalized1 = normalizeAuthorName(author1);
@@ -67,6 +75,24 @@ export function authorsMatch(author1: string, author2: string): boolean {
   
   // Coincidencia exacta
   if (normalized1 === normalized2) return true;
+  
+  // Obtener partes de cada nombre
+  const parts1 = normalized1.split(" ").filter(p => p.length > 2);
+  const parts2 = normalized2.split(" ").filter(p => p.length > 2);
+  
+  // Comprobar si comparten apellido principal (último)
+  const surname1 = parts1[parts1.length - 1] || "";
+  const surname2 = parts2[parts2.length - 1] || "";
+  
+  // Typo correction: si los apellidos son muy similares (ej: "blanco" vs "blanco")
+  if (surname1 === surname2 && surname1.length > 3) {
+    // Verificar que al menos un nombre/palabra coincida o sea similar
+    const commonParts = parts1.filter(p1 => 
+      parts2.some(p2 => p1 === p2 || 
+        (p1.length > 3 && p2.length > 3 && (p1.includes(p2) || p2.includes(p1))))
+    );
+    if (commonParts.length > 0) return true;
+  }
   
   // Uno contiene al otro (para variaciones de nombre)
   if (normalized1.includes(normalized2) || normalized2.includes(normalized1)) {
@@ -79,41 +105,62 @@ export function authorsMatch(author1: string, author2: string): boolean {
   return false;
 }
 
+// Obtener la versión canónica de un autor (la más completa y correcta)
+function getCanonicalAuthorName(existingName: string, newName: string): string {
+  // Preferir nombres con más partes (más completos)
+  const existingParts = existingName.split(/\s+/).length;
+  const newParts = newName.split(/\s+/).length;
+  
+  if (newParts > existingParts) return newName;
+  if (existingParts > newParts) return existingName;
+  
+  // Si tienen el mismo número de partes, preferir mayúsculas/minúsculas correctas
+  const existingHasProperCase = existingName !== existingName.toUpperCase() && existingName !== existingName.toLowerCase();
+  const newHasProperCase = newName !== newName.toUpperCase() && newName !== newName.toLowerCase();
+  
+  if (newHasProperCase && !existingHasProperCase) return newName;
+  if (existingHasProperCase && !newHasProperCase) return existingName;
+  
+  // Preferir el más largo
+  return newName.length > existingName.length ? newName : existingName;
+}
+
 // Extraer todos los autores únicos de una lista de productos
 export function extractUniqueAuthors(products: any[]): string[] {
-  const authorsMap = new Map<string, string>(); // normalized -> original
+  const authorsMap = new Map<string, { canonical: string, count: number }>(); // normalized surname -> {canonical, count}
   
   products.forEach(product => {
     const title = product.node?.title || product.title;
     const author = extractAuthorFromTitle(title);
     
     if (author) {
-      const normalized = normalizeAuthorName(author);
+      const mainSurname = getMainSurname(author);
       
-      // Verificar si ya existe un autor similar
-      let found = false;
-      for (const [existingNorm, existingOriginal] of authorsMap.entries()) {
-        if (authorsMatch(author, existingOriginal)) {
-          // Preferir el nombre más largo/completo
-          if (author.length > existingOriginal.length) {
-            authorsMap.delete(existingNorm);
-            authorsMap.set(normalized, author);
-          }
-          found = true;
+      // Buscar si ya existe un autor con el mismo apellido principal
+      let foundKey: string | null = null;
+      for (const [key, data] of authorsMap.entries()) {
+        if (authorsMatch(author, data.canonical)) {
+          foundKey = key;
           break;
         }
       }
       
-      if (!found) {
-        authorsMap.set(normalized, author);
+      if (foundKey) {
+        const existing = authorsMap.get(foundKey)!;
+        authorsMap.set(foundKey, {
+          canonical: getCanonicalAuthorName(existing.canonical, author),
+          count: existing.count + 1
+        });
+      } else {
+        authorsMap.set(mainSurname, { canonical: author, count: 1 });
       }
     }
   });
   
-  // Ordenar alfabéticamente y devolver los nombres originales
-  return Array.from(authorsMap.values()).sort((a, b) => 
-    a.localeCompare(b, 'es', { sensitivity: 'base' })
-  );
+  // Ordenar alfabéticamente y devolver los nombres canónicos
+  return Array.from(authorsMap.values())
+    .map(v => v.canonical)
+    .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
 }
 
 // Filtrar productos por autor
