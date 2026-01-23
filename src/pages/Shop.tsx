@@ -716,49 +716,80 @@ export default function Shop() {
                           </AccordionContent>
                         </AccordionItem>
 
-                        {/* Author filter */}
-                        {availableAuthors.length > 0 && (
-                          <AccordionItem value="authors" className="border rounded-lg px-4">
-                            <AccordionTrigger className="hover:no-underline">
-                              <div className="flex items-center gap-2">
-                                <User className="h-4 w-4" />
-                                <span className="font-medium">
-                                  Filtrar por autor: {selectedAuthor === "todos" ? "Todos" : selectedAuthor}
+                        {/* Author filter with search */}
+                        <AccordionItem value="authors" className="border rounded-lg px-4">
+                          <AccordionTrigger className="hover:no-underline">
+                            <div className="flex items-center gap-2">
+                              <User className="h-4 w-4" />
+                              <span className="font-medium">
+                                Filtrar por autor: {selectedAuthor === "todos" ? "Todos" : selectedAuthor}
+                              </span>
+                              {selectedAuthor !== "todos" && (
+                                <span className="text-muted-foreground text-sm">
+                                  ({filterProductsByAuthor(scopedBooks, selectedAuthor).length})
                                 </span>
-                                {selectedAuthor !== "todos" && (
-                                  <span className="text-muted-foreground text-sm">
-                                    ({filterProductsByAuthor(scopedBooks, selectedAuthor).length})
-                                  </span>
-                                )}
+                              )}
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="pt-2 space-y-3">
+                              {/* Author search input */}
+                              <div className="relative">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Input
+                                  type="text"
+                                  placeholder="Escribe el nombre del autor..."
+                                  value={selectedAuthor === "todos" ? "" : selectedAuthor}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (value === "") {
+                                      setSelectedAuthor("todos");
+                                    } else {
+                                      setSelectedAuthor(value);
+                                    }
+                                  }}
+                                  className="pl-10"
+                                />
                               </div>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <div className="flex gap-2 flex-wrap pt-2 max-h-60 overflow-y-auto">
-                                <Button
-                                  variant={selectedAuthor === "todos" ? "default" : "outline"}
-                                  onClick={() => setSelectedAuthor("todos")}
-                                  size="sm"
-                                >
-                                  Todos los autores
-                                </Button>
-                                {availableAuthors.map(author => {
-                                  const count = filterProductsByAuthor(scopedBooks, author).length;
-                                  if (count === 0) return null;
-                                  return (
-                                    <Button
-                                      key={author}
-                                      variant={selectedAuthor === author ? "default" : "outline"}
-                                      onClick={() => setSelectedAuthor(author)}
-                                      size="sm"
-                                    >
-                                      {author} ({count})
-                                    </Button>
-                                  );
-                                })}
-                              </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
+                              
+                              {/* Author suggestions */}
+                              {availableAuthors.length > 0 && (
+                                <div className="flex gap-2 flex-wrap max-h-40 overflow-y-auto">
+                                  <Button
+                                    variant={selectedAuthor === "todos" ? "default" : "outline"}
+                                    onClick={() => setSelectedAuthor("todos")}
+                                    size="sm"
+                                  >
+                                    Todos los autores
+                                  </Button>
+                                  {availableAuthors
+                                    .filter(author => {
+                                      // Si hay texto escrito, filtrar autores que coincidan
+                                      if (selectedAuthor !== "todos" && selectedAuthor !== "") {
+                                        const searchLower = selectedAuthor.toLowerCase();
+                                        return author.toLowerCase().includes(searchLower);
+                                      }
+                                      return true;
+                                    })
+                                    .map(author => {
+                                      const count = filterProductsByAuthor(scopedBooks, author).length;
+                                      if (count === 0) return null;
+                                      return (
+                                        <Button
+                                          key={author}
+                                          variant={selectedAuthor === author ? "default" : "outline"}
+                                          onClick={() => setSelectedAuthor(author)}
+                                          size="sm"
+                                        >
+                                          {author} ({count})
+                                        </Button>
+                                      );
+                                    })}
+                                </div>
+                              )}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
                       </Accordion>
 
                       {filteredBooks.length === 0 ? (
