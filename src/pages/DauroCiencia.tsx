@@ -208,6 +208,16 @@ export default function DauroCiencia() {
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   ];
 
+  type UploadedFileInfo = {
+    path: string;
+    signedUrl: string;
+  };
+
+  type UploadFilesResponse = {
+    curriculum?: UploadedFileInfo;
+    obra?: UploadedFileInfo;
+  };
+
   const validateFile = (file: File): string | null => {
     if (file.size > MAX_FILE_SIZE) {
       return "El archivo no puede superar los 20MB";
@@ -218,21 +228,25 @@ export default function DauroCiencia() {
     return null;
   };
 
-  const uploadFile = async (file: File, prefix: string): Promise<string | null> => {
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${prefix}-${Date.now()}.${fileExt}`;
-    const filePath = `dauro-ciencia/${fileName}`;
+  const uploadFilesForEmail = async (args: {
+    curriculumFile?: File | null;
+    obraFile?: File | null;
+  }): Promise<UploadFilesResponse> => {
+    const body = new FormData();
+    if (args.curriculumFile) body.append("curriculum", args.curriculumFile);
+    if (args.obraFile) body.append("obra", args.obraFile);
 
-    const { error } = await supabase.storage
-      .from("editorial-submissions")
-      .upload(filePath, file);
+    const { data, error } = await supabase.functions.invoke<UploadFilesResponse>(
+      "dauro-ciencia-upload-files",
+      // supabase-js types are conservative here; FormData is valid at runtime
+      { body: body as any }
+    );
 
     if (error) {
-      console.error("Error uploading file:", error);
-      return null;
+      throw error;
     }
 
-    return filePath;
+    return data || {};
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -242,8 +256,10 @@ export default function DauroCiencia() {
     try {
       let curriculumPath: string | null = null;
       let obraPath: string | null = null;
+      let curriculumSignedUrl: string | null = null;
+      let obraSignedUrl: string | null = null;
 
-      // Upload files if provided
+      // Validate first (client-side)
       if (curriculumFile) {
         const error = validateFile(curriculumFile);
         if (error) {
@@ -251,14 +267,7 @@ export default function DauroCiencia() {
           setIsSubmitting(false);
           return;
         }
-        curriculumPath = await uploadFile(curriculumFile, "curriculum");
-        if (!curriculumPath) {
-          toast.error("Error al subir el curriculum");
-          setIsSubmitting(false);
-          return;
-        }
       }
-
       if (obraFile) {
         const error = validateFile(obraFile);
         if (error) {
@@ -266,8 +275,22 @@ export default function DauroCiencia() {
           setIsSubmitting(false);
           return;
         }
-        obraPath = await uploadFile(obraFile, "obra");
-        if (!obraPath) {
+      }
+
+      // Upload + generate downloadable links for email
+      if (curriculumFile || obraFile) {
+        const uploaded = await uploadFilesForEmail({ curriculumFile, obraFile });
+        curriculumPath = uploaded.curriculum?.path ?? null;
+        obraPath = uploaded.obra?.path ?? null;
+        curriculumSignedUrl = uploaded.curriculum?.signedUrl ?? null;
+        obraSignedUrl = uploaded.obra?.signedUrl ?? null;
+
+        if (curriculumFile && !curriculumPath) {
+          toast.error("Error al subir el curriculum");
+          setIsSubmitting(false);
+          return;
+        }
+        if (obraFile && !obraPath) {
           toast.error("Error al subir la obra");
           setIsSubmitting(false);
           return;
@@ -280,7 +303,9 @@ export default function DauroCiencia() {
         body: JSON.stringify({
           ...formData,
           curriculum_file: curriculumPath || "No adjuntado",
+          curriculum_descarga: curriculumSignedUrl || "No disponible",
           obra_file: obraPath || "No adjuntado",
+          obra_descarga: obraSignedUrl || "No disponible",
           subject: "Nueva propuesta Dauro Ciencia - Publicación Académica",
           origen: "Página Dauro Ciencia (Nueva versión)",
         }),
