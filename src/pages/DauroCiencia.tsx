@@ -198,7 +198,7 @@ export default function DauroCiencia() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/mgovgpgg", {
+      const response = await fetch("https://formspree.io/f/xrepaqjr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
