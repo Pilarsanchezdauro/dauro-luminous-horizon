@@ -47,27 +47,22 @@ export default function EditorialSubmissions() {
   };
 
   const downloadFile = async (filePath: string) => {
+    // Create a signed URL for private bucket access
     const { data, error } = await supabase.storage
       .from('editorial-submissions')
-      .download(filePath);
+      .createSignedUrl(filePath, 60); // 60 seconds expiry
 
-    if (error) {
+    if (error || !data?.signedUrl) {
       toast({
         title: 'Error',
-        description: 'No se pudo descargar el archivo',
+        description: 'No se pudo obtener el enlace de descarga',
         variant: 'destructive',
       });
       return;
     }
 
-    const url = URL.createObjectURL(data);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filePath.split('/').pop() || 'documento';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    // Open the signed URL in a new tab to download
+    window.open(data.signedUrl, '_blank');
   };
 
   if (loading) {
