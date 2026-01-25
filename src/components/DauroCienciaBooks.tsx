@@ -138,10 +138,10 @@ function useAcademicBooks() {
   return useQuery({
     queryKey: ["dauro-ciencia-books"],
     queryFn: async () => {
-      // Search for Carlos Blanco's books and specific academic titles
+      // Search for Dauro Ciencia vendor and academic authors
       const data = await storefrontApiRequest(PRODUCTS_QUERY, {
         first: 50,
-        query: "Carlos Blanco OR Antonio Rodriguez OR La singularidad OR Pensamiento OR Leonardo da Vinci OR Filosofía OR construcción discursiva OR Dauro Ciencia",
+        query: 'vendor:"Dauro Ciencia" OR "Carlos Blanco" OR "construcción discursiva"',
       });
 
       if (!data?.data?.products?.edges) return [];
@@ -152,15 +152,19 @@ function useAcademicBooks() {
 
       // Filter to only include academic books (by handle or specific titles)
       const academicBooks = products.filter((product: ShopifyProduct) => {
-        const isAcademicHandle = ACADEMIC_BOOK_HANDLES.some((h) =>
-          product.handle.toLowerCase().includes(h.split("-")[0])
-        );
+        // Check if it's a Dauro Ciencia product
+        const isDauroCiencia = product.description?.toLowerCase().includes("dauro ciencia") ||
+          product.title.toLowerCase().includes("carlos blanco") ||
+          product.title.toLowerCase().includes("antonio rodríguez") ||
+          product.title.toLowerCase().includes("antonio rodriguez");
+        
         const isCarlosBlanco = product.title.toLowerCase().includes("carlos blanco");
         const isAntonioRodriguez = 
           product.title.toLowerCase().includes("antonio rodríguez") || 
           product.title.toLowerCase().includes("antonio rodriguez") ||
           product.title.toLowerCase().includes("construcción discursiva") ||
           product.title.toLowerCase().includes("liderazgo");
+        
         const isAcademicTitle = 
           product.title.toLowerCase().includes("filosofía") ||
           product.title.toLowerCase().includes("singularidad") ||
@@ -171,7 +175,7 @@ function useAcademicBooks() {
         // Exclude ebooks (we want physical books)
         const isEbook = product.title.toLowerCase().includes("ebook");
         
-        return (isCarlosBlanco || isAntonioRodriguez || isAcademicTitle || isAcademicHandle) && !isEbook;
+        return (isDauroCiencia || isCarlosBlanco || isAntonioRodriguez || isAcademicTitle) && !isEbook;
       });
 
       // Remove duplicates by title (keep the one with better data)
