@@ -26,6 +26,12 @@ const ACADEMIC_BOOK_HANDLES = [
   "la-espana-quebrantada-manuel-garcia-fernandez",
 ];
 
+// Keywords to match academic books
+const ACADEMIC_KEYWORDS = [
+  "liderazgo",
+  "construcción discursiva",
+];
+
 interface ShopifyProduct {
   id: string;
   title: string;
