@@ -219,19 +219,31 @@ function BookCard({ product }: { product: ShopifyProduct }) {
   let title = titleParts[0].trim();
   let author = titleParts[1]?.trim() || "";
   
-  // Normalize specific titles to proper capitalization
+  // Helper function to capitalize titles correctly
+  const capitalizeTitle = (str: string) => {
+    const lower = str.toLowerCase();
+    
+    // Specific title overrides
+    if (lower.includes("filosofia") && lower.includes("ulterioridad")) {
+      return "Filosofía de la Ulterioridad";
+    }
+    if (lower.includes("construccion") && lower.includes("liderazgo")) {
+      return "La Construcción Discursiva del Liderazgo";
+    }
+    
+    // Default: capitalize first letter of each word except articles/prepositions
+    return str.split(' ').map((word, index) => {
+      const lowerWord = word.toLowerCase();
+      if (index === 0) return word.charAt(0).toUpperCase() + word.slice(1);
+      if (['de', 'del', 'la', 'el', 'y', 'o'].includes(lowerWord)) {
+        return lowerWord;
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
+  };
+  
+  title = capitalizeTitle(title);
   const lowerTitle = title.toLowerCase();
-  if (lowerTitle === "filosofía de la ulterioridad" || 
-      lowerTitle === "filosofia de la ulterioridad" ||
-      lowerTitle.startsWith("filosofía de la ulterioridad") ||
-      lowerTitle.startsWith("filosofia de la ulterioridad")) {
-    title = "Filosofía de la Ulterioridad";
-  } else if (lowerTitle === "la construcción discursiva del liderazgo" ||
-             lowerTitle === "la construccion discursiva del liderazgo" ||
-             lowerTitle.startsWith("la construcción discursiva del liderazgo") ||
-             lowerTitle.startsWith("la construccion discursiva del liderazgo")) {
-    title = "La construcción discursiva del liderazgo";
-  }
   
   // If no author extracted but it's a Carlos Blanco book, add the author
   if (!author) {
