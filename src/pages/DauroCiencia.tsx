@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import DauroCienciaBooks from "@/components/DauroCienciaBooks";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -669,6 +670,9 @@ export default function DauroCiencia() {
           </div>
         </div>
       </section>
+
+      {/* Obras académicas destacadas */}
+      <DauroCienciaBooks />
 
       {/* Nuestro Método Section - NEW */}
       <section id="metodo" className="py-20 bg-background scroll-mt-28">
