@@ -200,12 +200,39 @@ function useAcademicBooks() {
 
 function BookCard({ product }: { product: ShopifyProduct }) {
   const imageUrl = product.images.edges[0]?.node.url || "/placeholder.svg";
-  const price = parseFloat(product.priceRange.minVariantPrice.amount);
+  
+  // Find paper variant price (Tapa Blanda, Papel) instead of ebook price
+  const paperVariant = product.variants.edges.find(
+    (v) => {
+      const variantTitle = v.node.title.toLowerCase();
+      return variantTitle.includes("tapa") || 
+             variantTitle.includes("papel") || 
+             variantTitle === "default title";
+    }
+  );
+  const price = paperVariant 
+    ? parseFloat(paperVariant.node.price.amount)
+    : parseFloat(product.priceRange.minVariantPrice.amount);
 
-  // Extract author from title if present
+  // Extract author from title if present (format: "Title – Author")
   const titleParts = product.title.split(" – ");
-  const title = titleParts[0].trim();
-  const author = titleParts[1]?.trim() || "";
+  let title = titleParts[0].trim();
+  let author = titleParts[1]?.trim() || "";
+  
+  // If no author extracted but it's a Carlos Blanco book, add the author
+  if (!author) {
+    const lowerTitle = title.toLowerCase();
+    if (lowerTitle.includes("pensamiento y vida") ||
+        lowerTitle.includes("leonardo da vinci") ||
+        lowerTitle.includes("singularidad") ||
+        lowerTitle.includes("filosofía de la ulterioridad") ||
+        lowerTitle.includes("filosofia de la ulterioridad")) {
+      author = "Carlos Blanco";
+    } else if (lowerTitle.includes("construcción discursiva") ||
+               lowerTitle.includes("liderazgo")) {
+      author = "Antonio Rodríguez Jiménez";
+    }
+  }
 
   return (
     <Link to={`/producto/${product.handle}`} className="group">
