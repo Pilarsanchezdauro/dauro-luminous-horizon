@@ -223,11 +223,12 @@ function BookCard({ product }: { product: ShopifyProduct }) {
   const capitalizeTitle = (str: string) => {
     const lower = str.toLowerCase();
     
-    // Specific title overrides
-    if (lower.includes("filosofia") && lower.includes("ulterioridad")) {
+    // Specific title overrides - exact matching
+    if (lower === "filosofia de la ulterioridad" || lower === "filosofía de la ulterioridad") {
       return "Filosofía de la Ulterioridad";
     }
-    if (lower.includes("construccion") && lower.includes("liderazgo")) {
+    if (lower === "la construccion discursiva del liderazgo" || 
+        lower === "la construcción discursiva del liderazgo") {
       return "La Construcción Discursiva del Liderazgo";
     }
     
