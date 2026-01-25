@@ -8,9 +8,9 @@ import { BookOpen, ArrowRight, GraduationCap, ShoppingCart } from "lucide-react"
 import { toast } from "sonner";
 
 const SHOPIFY_API_VERSION = "2025-07";
-const SHOPIFY_STORE_DOMAIN = "tienda-grupo-dauro.myshopify.com";
+const SHOPIFY_STORE_DOMAIN = "dauro-luminous-horizon-6vj19.myshopify.com";
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = "3e9605ac5e4b6243a880c8df00d8e2df";
+const SHOPIFY_STOREFRONT_TOKEN = "8765bcd785f87943aa829ab10985ffde";
 
 // Academic book handles to display
 const ACADEMIC_BOOK_HANDLES = [
