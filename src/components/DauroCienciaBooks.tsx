@@ -231,15 +231,8 @@ function BookCard({ product }: { product: ShopifyProduct }) {
       return "La Construcción Discursiva del Liderazgo";
     }
     
-    // Default: capitalize first letter of each word except articles/prepositions
-    return str.split(' ').map((word, index) => {
-      const lowerWord = word.toLowerCase();
-      if (index === 0) return word.charAt(0).toUpperCase() + word.slice(1);
-      if (['de', 'del', 'la', 'el', 'y', 'o'].includes(lowerWord)) {
-        return lowerWord;
-      }
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join(' ');
+    // Default: return as-is from Shopify
+    return str;
   };
   
   title = capitalizeTitle(title);
