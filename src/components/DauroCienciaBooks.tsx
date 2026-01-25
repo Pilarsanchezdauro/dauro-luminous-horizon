@@ -221,9 +221,15 @@ function BookCard({ product }: { product: ShopifyProduct }) {
   
   // Normalize specific titles to proper capitalization
   const lowerTitle = title.toLowerCase();
-  if (lowerTitle.includes("filosofía de la ulterioridad") || lowerTitle.includes("filosofia de la ulterioridad")) {
+  if (lowerTitle === "filosofía de la ulterioridad" || 
+      lowerTitle === "filosofia de la ulterioridad" ||
+      lowerTitle.startsWith("filosofía de la ulterioridad") ||
+      lowerTitle.startsWith("filosofia de la ulterioridad")) {
     title = "Filosofía de la Ulterioridad";
-  } else if (lowerTitle.includes("construcción discursiva") || lowerTitle.includes("liderazgo")) {
+  } else if (lowerTitle === "la construcción discursiva del liderazgo" ||
+             lowerTitle === "la construccion discursiva del liderazgo" ||
+             lowerTitle.startsWith("la construcción discursiva del liderazgo") ||
+             lowerTitle.startsWith("la construccion discursiva del liderazgo")) {
     title = "La construcción discursiva del liderazgo";
   }
   
