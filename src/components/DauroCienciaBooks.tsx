@@ -225,11 +225,11 @@ function BookCard({ product }: { product: ShopifyProduct }) {
     
     // Specific title overrides - exact matching
     if (lower === "filosofia de la ulterioridad" || lower === "filosofía de la ulterioridad") {
-      return "Filosofía de la Ulterioridad";
+      return "FILOSOFÍA DE LA ULTERIORIDAD";
     }
     if (lower === "la construccion discursiva del liderazgo" || 
         lower === "la construcción discursiva del liderazgo") {
-      return "La Construcción Discursiva del Liderazgo";
+      return "LA CONSTRUCCIÓN DISCURSIVA DEL LIDERAZGO";
     }
     
     // Default: return as-is from Shopify
