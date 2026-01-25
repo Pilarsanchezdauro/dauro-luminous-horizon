@@ -231,6 +231,9 @@ function BookCard({ product }: { product: ShopifyProduct }) {
         lower === "la construcción discursiva del liderazgo") {
       return "LA CONSTRUCCIÓN DISCURSIVA DEL LIDERAZGO";
     }
+    if (lower === "mundos perdidos") {
+      return "MUNDOS PERDIDOS";
+    }
     
     // Default: return as-is from Shopify
     return str;
