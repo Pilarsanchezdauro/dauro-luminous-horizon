@@ -108,6 +108,12 @@ const pages = [
     title: 'Booktrailers Profesionales | Promociona tu Libro con Vídeo',
     description: 'Creamos booktrailers cinematográficos para promocionar tu libro. Vídeos profesionales que captan la esencia de tu obra.',
     image: '/og-cine.jpg'
+  },
+  {
+    path: 'dauro-ciencia',
+    title: 'Dauro Ciencia | Sello Editorial Científico con Evaluación por IA',
+    description: 'El primer sello editorial científico que legitima la IA. Evaluación por expertos asistidos por inteligencia artificial. ISBN, distribución internacional.',
+    image: '/og-dauro-ciencia.jpg'
   }
 ];
 
