@@ -219,9 +219,16 @@ function BookCard({ product }: { product: ShopifyProduct }) {
   let title = titleParts[0].trim();
   let author = titleParts[1]?.trim() || "";
   
+  // Normalize specific titles to proper capitalization
+  const lowerTitle = title.toLowerCase();
+  if (lowerTitle.includes("filosofía de la ulterioridad") || lowerTitle.includes("filosofia de la ulterioridad")) {
+    title = "Filosofía de la Ulterioridad";
+  } else if (lowerTitle.includes("construcción discursiva") || lowerTitle.includes("liderazgo")) {
+    title = "La construcción discursiva del liderazgo";
+  }
+  
   // If no author extracted but it's a Carlos Blanco book, add the author
   if (!author) {
-    const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes("pensamiento y vida") ||
         lowerTitle.includes("leonardo da vinci") ||
         lowerTitle.includes("singularidad") ||
