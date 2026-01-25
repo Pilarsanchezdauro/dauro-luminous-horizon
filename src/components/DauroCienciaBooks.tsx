@@ -141,7 +141,7 @@ function useAcademicBooks() {
       // Search for Carlos Blanco's books and specific academic titles
       const data = await storefrontApiRequest(PRODUCTS_QUERY, {
         first: 50,
-        query: "Carlos Blanco OR Antonio Rodriguez OR La singularidad OR Pensamiento OR Leonardo da Vinci OR Filosofía OR liderazgo",
+        query: "Carlos Blanco OR Antonio Rodriguez OR La singularidad OR Pensamiento OR Leonardo da Vinci OR Filosofía OR construcción discursiva OR Dauro Ciencia",
       });
 
       if (!data?.data?.products?.edges) return [];
@@ -158,6 +158,8 @@ function useAcademicBooks() {
         const isCarlosBlanco = product.title.toLowerCase().includes("carlos blanco");
         const isAntonioRodriguez = 
           product.title.toLowerCase().includes("antonio rodríguez") || 
+          product.title.toLowerCase().includes("antonio rodriguez") ||
+          product.title.toLowerCase().includes("construcción discursiva") ||
           product.title.toLowerCase().includes("liderazgo");
         const isAcademicTitle = 
           product.title.toLowerCase().includes("filosofía") ||
