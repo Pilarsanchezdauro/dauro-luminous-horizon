@@ -37,6 +37,11 @@ const sanitizeHtmlBasic = (html: string) => {
     .replace(/(href|src)\s*=\s*(['"])\s*javascript:[^'"]*\2/gi, "$1=$2#$2");
 };
 
+// Treat content as HTML only when it includes block-level HTML tags.
+// This avoids breaking Markdown rendering when the content only contains inline HTML like <a> buttons.
+const isRichHtmlContent = (content: string) =>
+  /<(p|h1|h2|h3|h4|ul|ol|li|blockquote|hr|br|div|section|article)\b/i.test(content);
+
 const BlogPost = () => {
   const { slug } = useParams();
   const { trackBlogEngagement } = useAnalytics();
@@ -477,7 +482,7 @@ const BlogPost = () => {
 
                 <article className="prose prose-lg max-w-none prose-headings:text-foreground prose-headings:font-playfair prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-primary prose-blockquote:italic prose-blockquote:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:mb-2 mb-8">
                   {post.content ? (
-                    /<\/?[a-z][\s\S]*>/i.test(post.content) ? (
+                    isRichHtmlContent(post.content) ? (
                       <div
                         className="blog-content [&>p]:mb-6 [&>p]:leading-[1.8] [&>p]:text-muted-foreground [&>p]:text-base md:[&>p]:text-lg [&>h2]:text-2xl [&>h2]:font-playfair [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-6 [&>h2]:text-foreground [&>h2]:border-b [&>h2]:border-border [&>h2]:pb-3 [&>h3]:text-xl [&>h3]:font-playfair [&>h3]:font-semibold [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-foreground [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-3 [&>ul]:my-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-3 [&>ol]:my-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:my-8 [&>blockquote]:bg-muted/30 [&>blockquote]:py-4 [&>blockquote]:rounded-r-lg [&>hr]:my-10 [&>hr]:border-border [&>strong]:text-foreground [&>strong]:font-semibold [&_strong]:text-foreground [&_strong]:font-semibold"
                         dangerouslySetInnerHTML={{
