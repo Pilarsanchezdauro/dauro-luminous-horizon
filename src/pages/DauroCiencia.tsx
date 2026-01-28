@@ -85,7 +85,7 @@ const INCLUDED_SERVICES = [
   { text: "Distribución Libros.cc y Logista", icon: Truck },
   { text: "Formato ebook incluido", icon: Smartphone },
   { text: "Alta en Amazon, Casa del Libro, FNAC", icon: ShoppingBag },
-  { text: "Revisión científica por expertos + IA", icon: Brain },
+  { text: "Evaluación ampliada con agentes tecnológicos", icon: Brain },
   { text: "Sello Académico Dauro Ciencia", icon: Award },
 ];
 
@@ -99,7 +99,7 @@ const PROCESS_STEPS = [
   {
     step: 2,
     title: "Evaluación inicial",
-    description: "Analizamos tu propuesta con nuestro método IA",
+    description: "Analizamos tu propuesta con agentes tecnológicos especializados",
     icon: Brain,
   },
   {
@@ -140,9 +140,9 @@ const FAQ_ITEMS = [
       "Sí, publicamos todo tipo de trabajos académicos: tesis doctorales, investigaciones y ensayos. Tu trabajo recibirá el mismo tratamiento profesional que cualquier otra publicación editorial.",
   },
   {
-    question: "¿Qué incluye la revisión científica?",
+    question: "¿Qué incluye la evaluación científica?",
     answer:
-      "Incluye una evaluación realizada por expertos académicos asistidos por IA especializada en tu rama de conocimiento, un informe detallado con recomendaciones de mejora, y el Sello Académico Dauro Ciencia válido para tu CV.",
+      "Incluye una evaluación realizada por expertos académicos apoyados por agentes tecnológicos especializados en tu rama de conocimiento, un informe detallado con recomendaciones de mejora, y el Sello Académico Dauro Ciencia válido para tu CV.",
   },
   {
     question: "¿El certificado es válido para mi CV?",
@@ -180,7 +180,7 @@ const EDITORIAL_SERVICES = [
   { text: "Evaluación y análisis de manuscritos", icon: Search },
   { text: "Edición y corrección especializada", icon: PenTool },
   { text: "Diseño editorial científico", icon: Palette },
-  { text: "Formación en IA para investigadores", icon: Brain },
+  { text: "Formación en metodologías avanzadas", icon: Brain },
   { text: "Asesoramiento para publicación académica", icon: Lightbulb },
 ];
 
@@ -335,14 +335,14 @@ export default function DauroCiencia() {
   return (
     <>
       <Helmet>
-        <title>Dauro Ciencia | Sello Editorial Científico con Evaluación por IA</title>
+        <title>Dauro Ciencia | Sello Editorial Científico con Evaluación Ampliada</title>
         <meta
           name="description"
-          content="El primer sello editorial científico que legitima la IA. Evaluación por expertos asistidos por inteligencia artificial. ISBN, distribución internacional y visibilidad para tu investigación."
+          content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados. ISBN, distribución internacional y visibilidad para tu investigación."
         />
         <meta 
           name="keywords" 
-          content="publicar tesis doctoral, editorial universitaria, editorial académica, publicar investigación, editorial científica España, sello académico, Dauro Ciencia, evaluación IA"
+          content="publicar tesis doctoral, editorial universitaria, editorial académica, publicar investigación, editorial científica España, sello académico, Dauro Ciencia, evaluación científica"
         />
         <meta name="author" content="Ediciones Dauro - Grupo Cultural Dauro" />
         <meta name="robots" content="index, follow" />
@@ -350,17 +350,17 @@ export default function DauroCiencia() {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://grupodauro.com/dauro-ciencia" />
-        <meta property="og:title" content="Dauro Ciencia | Sello Editorial Científico con Evaluación por IA" />
+        <meta property="og:title" content="Dauro Ciencia | Sello Editorial Científico con Evaluación Ampliada" />
         <meta
           property="og:description"
-          content="El primer sello editorial científico que legitima la IA. Evaluación por expertos asistidos por inteligencia artificial. ISBN, distribución internacional y visibilidad para tu trabajo."
+          content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados. ISBN, distribución internacional y visibilidad para tu trabajo."
         />
         <meta property="og:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
         <meta property="og:locale" content="es_ES" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dauro Ciencia | Sello Editorial Científico" />
-        <meta name="twitter:description" content="El primer sello editorial científico que legitima la IA. Evaluación por expertos + IA." />
+        <meta name="twitter:description" content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos." />
         <meta name="twitter:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
 
         <script type="application/ld+json">
@@ -368,7 +368,7 @@ export default function DauroCiencia() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Dauro Ciencia",
-            "description": "El primer sello editorial científico que legitima la IA. Evaluación por expertos asistidos por inteligencia artificial.",
+            "description": "Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados.",
             "url": "https://grupodauro.com/dauro-ciencia",
             "logo": "https://grupodauro.com/dauro-ciencia-logo.png",
             "parentOrganization": {
@@ -398,7 +398,7 @@ export default function DauroCiencia() {
 
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 px-4 py-2">
               <Sparkles className="w-4 h-4 mr-2" />
-              El primer sello editorial científico que legitima la IA
+              Metodología editorial de evaluación ampliada
             </Badge>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
@@ -407,7 +407,7 @@ export default function DauroCiencia() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Evaluación por expertos asistidos por inteligencia artificial.
+              Evaluación por expertos apoyados por agentes tecnológicos especializados.
               ISBN, distribución internacional y visibilidad para tu trabajo.
             </p>
 
@@ -505,7 +505,7 @@ export default function DauroCiencia() {
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Memorándum Científico</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Nuestra declaración de principios: «La Nueva Legitimidad Científica» y el uso ético de la IA.
+                  Nuestra declaración de principios: «La Nueva Legitimidad Científica» y el uso ético de la tecnología avanzada.
                 </p>
                 <a 
                   href="/docs/memorandum-dauro-ciencia.pdf" 
@@ -522,7 +522,7 @@ export default function DauroCiencia() {
             {/* Quote destacada */}
             <div className="mt-10 p-8 bg-primary/5 border border-primary/20 rounded-2xl text-center">
               <blockquote className="text-xl md:text-2xl font-medium text-foreground italic max-w-3xl mx-auto">
-                "La inteligencia artificial, guiada por el criterio de expertos, potencia el rigor científico y eleva la calidad de cada publicación."
+                "La intervención tecnológica no sustituye el criterio experto, sino que amplía su alcance, permitiendo una evaluación más profunda y contextualizada."
               </blockquote>
               <p className="mt-4 text-muted-foreground">
                 — Principios de Dauro Ciencia
@@ -674,52 +674,92 @@ export default function DauroCiencia() {
       {/* Obras académicas destacadas */}
       <DauroCienciaBooks />
 
-      {/* Nuestro Método Section - NEW */}
+      {/* Nuestro Método Section - Metodología editorial */}
       <section id="metodo" className="py-20 bg-background scroll-mt-28">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-2">
                 <Brain className="w-4 h-4 mr-2" />
-                Evaluación híbrida exclusiva
+                Metodología editorial
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Nuestro método: rigor amplificado por IA
+                Evaluación híbrida: rigor amplificado
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                En Dauro Ciencia, cada manuscrito es evaluado por académicos expertos que utilizan 
-                inteligencia artificial como herramienta de análisis. Esto nos permite:
+                Dauro Ciencia integra agentes tecnológicos especializados como apoyo a sus procesos 
+                editoriales y de evaluación científica. Estos agentes permiten:
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Análisis de originalidad</h3>
-                <p className="text-sm text-muted-foreground">A escala, verificando la autenticidad de tu trabajo</p>
-              </Card>
-              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <FileWarning className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Detección de inconsistencias</h3>
-                <p className="text-sm text-muted-foreground">Identificación de problemas metodológicos</p>
-              </Card>
-              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <BookCheck className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">Comparación sistemática</h3>
-                <p className="text-sm text-muted-foreground">Con literatura existente en tu campo</p>
+                <h3 className="font-semibold mb-2">Análisis de literatura</h3>
+                <p className="text-sm text-muted-foreground">A gran escala, contrastando con fuentes científicas internacionales de alta relevancia</p>
+              </Card>
+              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Coherencia metodológica</h3>
+                <p className="text-sm text-muted-foreground">Detección de originalidad y alineación conceptual</p>
               </Card>
               <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">Evaluación documentada</h3>
-                <p className="text-sm text-muted-foreground">Más profunda y detallada</p>
+                <h3 className="font-semibold mb-2">Informes comparativos</h3>
+                <p className="text-sm text-muted-foreground">Que refuerzan el trabajo de los revisores humanos</p>
+              </Card>
+              <Card className="p-6 text-center border-2 hover:border-primary/30 transition-colors">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Acceso global</h3>
+                <p className="text-sm text-muted-foreground">A fuentes científicas relevantes a nivel internacional</p>
+              </Card>
+            </div>
+
+            {/* Modelo de evaluación y rigor */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <Card className="p-6 border-2 border-primary/20 bg-primary/5">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-primary" />
+                  Evaluación y rigor
+                </h3>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Evaluación híbrida (experta y tecnológica)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Análisis comparativo de fuentes relevantes a nivel global</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Trazabilidad del proceso editorial</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Mejora continua de la calidad científica</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="p-6 border-2">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5 text-primary" />
+                  Compromiso con la evolución científica
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Dauro Ciencia entiende la ciencia como un proceso dinámico y evolutivo. Por ello, 
+                  incorpora herramientas tecnológicas avanzadas como parte del método, no como un 
+                  elemento accesorio, garantizando que las obras publicadas dialoguen con el estado 
+                  actual del conocimiento global.
+                </p>
               </Card>
             </div>
 
@@ -751,7 +791,7 @@ export default function DauroCiencia() {
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm">
                   <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>Evaluación de tu tesis por expertos + IA</span>
+                  <span>Evaluación de tu tesis por expertos con apoyo tecnológico</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <Check className="w-4 h-4 text-primary flex-shrink-0" />
@@ -783,7 +823,7 @@ export default function DauroCiencia() {
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm">
                   <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>Evaluación por expertos asistidos por IA</span>
+                  <span>Evaluación ampliada con agentes tecnológicos especializados</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm">
                   <Check className="w-4 h-4 text-primary flex-shrink-0" />
