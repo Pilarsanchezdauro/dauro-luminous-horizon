@@ -1,7 +1,8 @@
 import { useRef, useState, forwardRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
-import { ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2, X, Link2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface PageProps {
   src: string;
@@ -50,12 +51,26 @@ const flipbookPages = [
 
 interface LiderazgoFlipbookProps {
   className?: string;
+  shareUrl?: string;
 }
 
-const LiderazgoFlipbook = ({ className = "" }: LiderazgoFlipbookProps) => {
+const LiderazgoFlipbook = ({ className = "", shareUrl }: LiderazgoFlipbookProps) => {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    const url = shareUrl || `${window.location.origin}${window.location.pathname}#flipbook-section`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      toast.success("Enlace copiado al portapapeles");
+      setTimeout(() => setLinkCopied(false), 2000);
+    } catch (err) {
+      toast.error("No se pudo copiar el enlace");
+    }
+  };
   const coverImage = "/products/construccion-discursiva-liderazgo.png";
   const allPages = [coverImage, ...flipbookPages];
   const totalPages = allPages.length;
@@ -256,16 +271,28 @@ const LiderazgoFlipbook = ({ className = "" }: LiderazgoFlipbookProps) => {
         
         <FlipbookContent />
 
-        {/* Fullscreen button */}
-        <Button
-          variant="outline"
-          size="lg"
-          onClick={toggleFullscreen}
-          className="border-[#c9a45c]/50 text-[#c9a45c] hover:bg-[#c9a45c]/10 hover:text-[#c9a45c] gap-2"
-        >
-          <Maximize2 className="w-5 h-5" />
-          Ver a pantalla completa
-        </Button>
+        {/* Action buttons */}
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={toggleFullscreen}
+            className="border-[#c9a45c]/50 text-[#c9a45c] hover:bg-[#c9a45c]/10 hover:text-[#c9a45c] gap-2"
+          >
+            <Maximize2 className="w-5 h-5" />
+            Ver a pantalla completa
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleCopyLink}
+            className="border-white/30 text-white/80 hover:bg-white/10 hover:text-white gap-2"
+          >
+            {linkCopied ? <Check className="w-5 h-5" /> : <Link2 className="w-5 h-5" />}
+            {linkCopied ? "¡Copiado!" : "Copiar enlace"}
+          </Button>
+        </div>
 
         {/* CTA */}
         <p className="text-white/40 text-sm text-center max-w-lg px-4">
