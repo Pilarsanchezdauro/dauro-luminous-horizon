@@ -552,7 +552,7 @@ export default function DauroCiencia() {
                 <Card className="overflow-hidden border-2 border-primary/20 group">
                   <div className="aspect-[3/4] relative overflow-hidden bg-white">
                     <img 
-                      src="/dauro-ciencia-director.jpg" 
+                      src="/dauro-ciencia-director-2025.jpg" 
                       alt="Dr. Antonio Rodríguez Jiménez - Director de Dauro Ciencia"
                       className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
