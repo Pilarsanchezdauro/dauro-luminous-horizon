@@ -73,6 +73,7 @@ import Autoedicion from "./pages/Autoedicion";
 import DauroCiencia from "./pages/DauroCiencia";
 import WebsDeLibrosIndex from "./pages/WebsDeLibrosIndex";
 import WebsDeLibrosLeonardo from "./pages/WebsDeLibrosLeonardo";
+import WebsDeLibrosLiderazgo from "./pages/WebsDeLibrosLiderazgo";
 
 const queryClient = new QueryClient();
 
@@ -94,6 +95,7 @@ const App = () => (
             <Route path="/autoedicion" element={<Autoedicion />} />
             <Route path="/webs-de-libros" element={<WebsDeLibrosIndex />} />
             <Route path="/webs-de-libros/carlos-blanco/leonardo-da-vinci" element={<WebsDeLibrosLeonardo />} />
+            <Route path="/webs-de-libros/antonio-rodriguez/liderazgo-discursivo" element={<WebsDeLibrosLiderazgo />} />
             <Route path="/dauro-ciencia" element={<DauroCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />

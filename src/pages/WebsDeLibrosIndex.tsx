@@ -29,6 +29,18 @@ const authors: AuthorInfo[] = [
         description: "Una indagación poética y filosófica en la grandeza de la mente humana."
       }
     ]
+  },
+  {
+    name: "Antonio Rodríguez Jiménez",
+    slug: "antonio-rodriguez",
+    books: [
+      {
+        title: "La Construcción Discursiva del Liderazgo",
+        slug: "liderazgo-discursivo",
+        cover: "/products/construccion-discursiva-liderazgo.png",
+        description: "De Platón a la inteligencia artificial. Un análisis del liderazgo como construcción narrativa."
+      }
+    ]
   }
 ];
 
