@@ -236,6 +236,17 @@ const BlogPost = () => {
 
   const renderContent = (content: string) => {
     return content.split('\n').map((paragraph, idx) => {
+      // HTML links/buttons - render as raw HTML
+      if (paragraph.trim().startsWith('<a ') && paragraph.includes('href=')) {
+        return (
+          <div 
+            key={idx} 
+            className="my-6"
+            dangerouslySetInnerHTML={{ __html: sanitizeHtmlBasic(paragraph) }} 
+          />
+        );
+      }
+
       // Imágenes en markdown: ![alt](url)
       const imageMatch = paragraph.match(/^!\[(.*?)\]\((.*?)\)$/);
       if (imageMatch) {
