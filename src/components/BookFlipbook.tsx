@@ -1,7 +1,8 @@
 import { useRef, useState, forwardRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
-import { ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2, X, Link2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface PageProps {
   src: string;
@@ -28,14 +29,29 @@ interface BookFlipbookProps {
   pages: string[];
   coverImage?: string;
   className?: string;
+  shareUrl?: string;
+  bookTitle?: string;
 }
 
-const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) => {
+const BookFlipbook = ({ pages, coverImage, className = "", shareUrl, bookTitle = "Libro" }: BookFlipbookProps) => {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const allPages = coverImage ? [coverImage, ...pages] : pages;
   const totalPages = allPages.length;
+
+  const handleCopyLink = async () => {
+    const url = shareUrl || `${window.location.origin}${window.location.pathname}#flipbook-section`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      toast.success("Enlace copiado al portapapeles");
+      setTimeout(() => setLinkCopied(false), 2000);
+    } catch (err) {
+      toast.error("No se pudo copiar el enlace");
+    }
+  };
 
   const onFlip = (e: { data: number }) => {
     setCurrentPage(e.data);
@@ -233,20 +249,32 @@ const BookFlipbook = ({ pages, coverImage, className = "" }: BookFlipbookProps) 
         
         <FlipbookContent />
 
-        {/* Fullscreen button */}
-        <Button
-          variant="outline"
-          size="lg"
-          onClick={toggleFullscreen}
-          className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary gap-2"
-        >
-          <Maximize2 className="w-5 h-5" />
-          Ver a pantalla completa
-        </Button>
+        {/* Action buttons */}
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={toggleFullscreen}
+            className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary gap-2"
+          >
+            <Maximize2 className="w-5 h-5" />
+            Ver a pantalla completa
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleCopyLink}
+            className="border-white/30 text-white/80 hover:bg-white/10 hover:text-white gap-2"
+          >
+            {linkCopied ? <Check className="w-5 h-5" /> : <Link2 className="w-5 h-5" />}
+            {linkCopied ? "¡Copiado!" : "Copiar enlace"}
+          </Button>
+        </div>
 
         {/* CTA */}
         <p className="text-white/40 text-sm text-center max-w-lg px-4">
-          ¿Te gusta lo que lees? Consigue el libro completo y sumérgete en la fascinante vida de Leonardo da Vinci.
+          ¿Te gusta lo que lees? Consigue el libro completo y sumérgete en la fascinante vida de {bookTitle}.
         </p>
       </div>
 
