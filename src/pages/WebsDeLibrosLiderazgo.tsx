@@ -377,23 +377,24 @@ const WebsDeLibrosLiderazgo = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col gap-4">
                     <Button 
                       size="lg"
-                      className="bg-[#1a3a5c] text-white hover:bg-[#1a3a5c]/90 font-medium tracking-wide h-14 px-8 text-base"
+                      className="bg-[#1a3a5c] text-white hover:bg-[#1a3a5c]/90 font-medium tracking-wide h-14 px-8 text-base w-full"
                       onClick={() => window.open('https://grupodauro.com/producto/la-construccion-discursiva-del-liderazgo-antonio-rodriguez-jimenez', '_blank')}
                     >
                       <ShoppingCart className="mr-2 h-5 w-5" />
-                      Comprar (17€)
+                      Comprar en Grupo Dauro (17€)
                     </Button>
                     <Button 
                       size="lg"
-                      variant="outline"
-                      className="border-[#1a3a5c]/30 hover:bg-[#1a3a5c]/5 text-[#1a3a5c] font-medium tracking-wide h-14 px-8 text-base"
-                      onClick={() => window.open('https://www.amazon.es', '_blank')}
+                      className="bg-[#FF9900] text-white hover:bg-[#FF9900]/90 font-medium tracking-wide h-14 px-8 text-base w-full"
+                      onClick={() => window.open('https://www.amazon.es/dp/B0GKG2F4H7', '_blank')}
                     >
-                      <BookOpen className="mr-2 h-5 w-5" />
-                      Versión Kindle
+                      <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 01-10.951-.577 17.88 17.88 0 01-5.43-3.35c-.1-.074-.151-.15-.151-.228l.044-.114zm6.047-4.8c0-1.138.263-2.07.79-2.794.526-.724 1.216-1.195 2.07-1.41a9.466 9.466 0 012.61-.24l1.17.054v-.96c0-.81-.065-1.37-.196-1.68-.24-.546-.702-.82-1.386-.82-.576 0-.996.156-1.26.466-.264.31-.396.78-.396 1.41h-2.85c.036-1.386.456-2.37 1.26-2.952.804-.582 1.938-.874 3.402-.874 1.608 0 2.766.396 3.474 1.188.708.792 1.062 1.944 1.062 3.456v6.12l.102 1.836h-2.496l-.24-1.236h-.054c-.216.4-.546.744-.99 1.032-.444.288-1.008.432-1.692.432-.984 0-1.782-.324-2.394-.972-.612-.648-.918-1.482-.918-2.502l.03-.054zm2.94-.06c0 .528.12.948.36 1.26.24.312.57.468.99.468.504 0 .906-.168 1.206-.504.3-.336.45-.75.45-1.242v-1.17c-.522-.036-.93-.054-1.224-.054-.624 0-1.092.156-1.404.468-.312.312-.468.744-.468 1.296l.09-.522z"/>
+                      </svg>
+                      Comprar en Amazon
                     </Button>
                   </div>
                 </div>
