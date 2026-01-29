@@ -256,17 +256,17 @@ const BlogPost = () => {
       const imageMatch = paragraph.match(/^!\[(.*?)\]\((.*?)\)$/);
       if (imageMatch) {
         return (
-          <div key={idx} className="my-8">
+          <div key={idx} className="my-6 md:my-8">
             <img
               src={imageMatch[2]}
               alt={imageMatch[1] || "Imagen del artículo"}
               loading="lazy"
               width="1200"
               height="800"
-              className="w-full rounded-lg shadow-lg"
+              className="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain rounded-lg shadow-lg"
             />
             {imageMatch[1] && (
-              <p className="text-sm text-center text-muted-foreground mt-2 italic">
+              <p className="text-xs sm:text-sm text-center text-muted-foreground mt-2 italic px-2">
                 {imageMatch[1]}
               </p>
             )}
@@ -395,17 +395,18 @@ const BlogPost = () => {
               Volver al blog
             </Link>
 
-            <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl">
-<div className="relative h-96 overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={`${post.title} - Artículo completo del blog Grupo Cultural Dauro`}
-                  width="1200"
-                  height="630"
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              </div>
+              <article className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl">
+                {/* Hero image - responsive height */}
+                <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={`${post.title} - Artículo completo del blog Grupo Cultural Dauro`}
+                    width="1200"
+                    height="630"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
               <div className="p-8 lg:p-12">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                   <span className="flex items-center gap-1">
@@ -543,7 +544,7 @@ const BlogPost = () => {
 
                 {/* Imágenes adicionales (image2, image3) */}
                 {(post.image2 || post.image3) && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div className="grid grid-cols-1 gap-4 sm:gap-6 mb-8">
                     {post.image2 && (
                       <div className="rounded-lg overflow-hidden shadow-lg">
                         <img
@@ -552,7 +553,7 @@ const BlogPost = () => {
                           loading="lazy"
                           width="600"
                           height="400"
-                          className="w-full h-64 object-cover"
+                          className="w-full h-auto max-h-[40vh] sm:max-h-[50vh] object-contain bg-muted/20"
                         />
                       </div>
                     )}
@@ -564,7 +565,7 @@ const BlogPost = () => {
                           loading="lazy"
                           width="600"
                           height="400"
-                          className="w-full h-64 object-cover"
+                          className="w-full h-auto max-h-[40vh] sm:max-h-[50vh] object-contain bg-muted/20"
                         />
                       </div>
                     )}
