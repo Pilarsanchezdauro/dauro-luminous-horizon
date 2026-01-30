@@ -472,12 +472,17 @@ export const AutoedicionCalculator = () => {
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
             
             <div className="relative z-10">
-              <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+            <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Indica las páginas de tu libro
               </h4>
-              <p className="text-muted-foreground mb-6">
-                📝 Copia tu texto en un documento <strong>A4 (tamaño folio)</strong> con <strong>Times New Roman</strong> a <strong>1,5 de interlineado</strong> para saber cuántas páginas tiene.
-              </p>
+              <div className="space-y-3 mb-6">
+                <p className="text-muted-foreground">
+                  📝 Copia tu texto en un documento <strong>A4 (tamaño folio)</strong> con <strong>Times New Roman</strong> a <strong>1,5 de interlineado</strong>. Después, <strong className="text-primary">aumenta ese número un 30%</strong> para obtener la extensión real que tendrá tu libro maquetado en formato A5.
+                </p>
+                <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 text-sm">
+                  <span className="font-medium">💡 Ejemplo:</span> Si tu documento A4 tiene 100 páginas → el libro tendrá aproximadamente <strong>130 páginas</strong>
+                </div>
+              </div>
               
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-background/80 backdrop-blur-sm p-4 sm:p-5 rounded-xl border border-border shadow-sm">
                 <div className="flex items-center gap-3 flex-1">
@@ -831,11 +836,30 @@ export const AutoedicionCalculator = () => {
             </p>
           </section>
 
+          {/* Extra Exclusivo Banner */}
+          <section className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-2 border-green-200 dark:border-green-800 rounded-xl p-6 space-y-3">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-green-600 dark:text-green-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-green-700 dark:text-green-300">Extra Exclusivo</span>
+            </div>
+            <h5 className="text-lg font-bold text-green-800 dark:text-green-200">
+              📋 Prevaloración profesional GRATIS
+            </h5>
+            <p className="text-sm text-green-700 dark:text-green-300">
+              Nuestro equipo editorial analizará tu obra y te dará una valoración profesional sin compromiso antes de que decidas publicar.
+            </p>
+          </section>
+
           {/* Contact Fields */}
           <section className="border-t border-border pt-6 space-y-4">
-            <p className="text-sm text-muted-foreground text-center">
-              Déjanos tus datos y te enviaremos el presupuesto por email
-            </p>
+            <div className="text-center space-y-2">
+              <h5 className="text-lg font-semibold text-foreground">
+                🎯 Solicita más detalles y tu prevaloración GRATIS
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                Déjanos tus datos para recibir información detallada del presupuesto y una valoración profesional de tu obra antes de decidirte a publicar con nosotros.
+              </p>
+            </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -869,13 +893,13 @@ export const AutoedicionCalculator = () => {
             ) : (
               <>
                 <Send className="mr-2 h-5 w-5" />
-                Solicitar presupuesto gratuito
+                Solicitar prevaloración gratuita
               </>
             )}
           </Button>
 
           <p className="text-center text-xs text-muted-foreground">
-            * Sin compromiso. Respuesta en menos de 24 horas.
+            * Sin compromiso. Recibirás una valoración profesional de tu obra y respuesta en menos de 24 horas.
           </p>
         </form>
       )}
