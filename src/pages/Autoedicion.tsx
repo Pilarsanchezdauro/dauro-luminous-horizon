@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import { BudgetCalculator } from '@/components/BudgetCalculator';
+import { AutoedicionCalculator } from '@/components/AutoedicionCalculator';
 import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -270,7 +270,7 @@ export default function Autoedicion() {
             </p>
           </div>
 
-          <BudgetCalculator />
+          <AutoedicionCalculator />
         </div>
       </section>
 
