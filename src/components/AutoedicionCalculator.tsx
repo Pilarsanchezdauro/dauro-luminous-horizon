@@ -434,48 +434,58 @@ export const AutoedicionCalculator = () => {
   return (
     <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl max-w-3xl mx-auto">
       {/* Header */}
-      <div className="mb-8">
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+      <div className="mb-6">
+        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
           Calculadora de precios
         </h3>
-        <p className="text-muted-foreground mb-4">
+        <p className="text-muted-foreground">
           Consigue un <span className="text-primary font-semibold underline decoration-primary/30">presupuesto personalizado</span>,{' '}
           <span className="text-primary font-semibold underline decoration-primary/30">instantáneo y descargable</span> de todos nuestros servicios.
         </p>
-        <p className="text-sm text-muted-foreground/80 italic border-l-4 border-primary/30 pl-4">
-          💡 Para calcular las páginas, copia tu texto en un documento A5 con Times New Roman a 1,5 de interlineado. 
-          El resultado será muy aproximado a la extensión final de tu libro.
-        </p>
       </div>
 
-      {/* Step 1: Pages selection */}
+      {/* Step 1: Pages selection - PROMINENT */}
       {!showFullCalculator ? (
         <div className="space-y-6">
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Indica las páginas</h4>
+          {/* Hero input section */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 p-6 sm:p-8">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
             
-            <div className="flex flex-wrap items-center gap-3 p-5 rounded-xl border-2 border-border bg-muted/30">
-              <span className="text-lg">📖</span>
-              <span className="text-sm sm:text-base">Mi libro ocupará</span>
-              <Input
-                type="number"
-                value={pagesInput}
-                onChange={(e) => handlePagesChange(e.target.value)}
-                className="w-24 text-center font-bold bg-background text-lg"
-                placeholder="150"
-                min={50}
-                max={1500}
-              />
-              <span className="text-sm sm:text-base">páginas</span>
-              <Button 
-                type="button" 
-                onClick={handleCalculate}
-                disabled={!pagesInput}
-                className="ml-auto"
-                size="lg"
-              >
-                CALCULAR
-              </Button>
+            <div className="relative z-10">
+              <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                Indica las páginas de tu libro
+              </h4>
+              <p className="text-muted-foreground mb-6">
+                📝 Copia tu texto en un documento <strong>A5</strong> con <strong>Times New Roman</strong> a <strong>1,5 de interlineado</strong> para saber cuántas páginas tiene.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-background/80 backdrop-blur-sm p-4 sm:p-5 rounded-xl border border-border shadow-sm">
+                <div className="flex items-center gap-3 flex-1">
+                  <span className="text-2xl">📖</span>
+                  <span className="text-base sm:text-lg font-medium">Mi libro ocupará</span>
+                  <Input
+                    type="number"
+                    value={pagesInput}
+                    onChange={(e) => handlePagesChange(e.target.value)}
+                    className="w-28 text-center font-bold bg-primary/5 border-primary/30 text-xl h-12"
+                    placeholder="150"
+                    min={50}
+                    max={1500}
+                  />
+                  <span className="text-base sm:text-lg font-medium">páginas</span>
+                </div>
+                <Button 
+                  type="button" 
+                  onClick={handleCalculate}
+                  disabled={!pagesInput}
+                  size="lg"
+                  className="h-12 px-8 text-base font-bold shadow-lg shadow-primary/25"
+                >
+                  CALCULAR
+                </Button>
+              </div>
             </div>
           </div>
         </div>
