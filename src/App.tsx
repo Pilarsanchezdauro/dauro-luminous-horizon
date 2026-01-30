@@ -72,6 +72,7 @@ import ProductClassifier from "./pages/admin/ProductClassifier";
 import Autoedicion from "./pages/Autoedicion";
 import DauroCiencia from "./pages/DauroCiencia";
 import PresupuestadorCiencia from "./pages/PresupuestadorCiencia";
+import PresupuestadorAutoedicion from "./pages/PresupuestadorAutoedicion";
 import WebsDeLibrosIndex from "./pages/WebsDeLibrosIndex";
 import WebsDeLibrosLeonardo from "./pages/WebsDeLibrosLeonardo";
 import WebsDeLibrosLiderazgo from "./pages/WebsDeLibrosLiderazgo";
@@ -94,6 +95,7 @@ const App = () => (
             <Route path="/grupo-dauro" element={<GrupoDauro />} />
             <Route path="/grupo-dauro/editorial" element={<Editorial />} />
             <Route path="/autoedicion" element={<Autoedicion />} />
+            <Route path="/presupuestador" element={<PresupuestadorAutoedicion />} />
             <Route path="/webs-de-libros" element={<WebsDeLibrosIndex />} />
             <Route path="/webs-de-libros/carlos-blanco/leonardo-da-vinci" element={<WebsDeLibrosLeonardo />} />
             <Route path="/webs-de-libros/antonio-rodriguez/liderazgo-discursivo" element={<WebsDeLibrosLiderazgo />} />
