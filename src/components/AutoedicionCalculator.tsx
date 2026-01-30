@@ -458,7 +458,7 @@ export const AutoedicionCalculator = () => {
                 Indica las páginas de tu libro
               </h4>
               <p className="text-muted-foreground mb-6">
-                📝 Copia tu texto en un documento <strong>A5</strong> con <strong>Times New Roman</strong> a <strong>1,5 de interlineado</strong> para saber cuántas páginas tiene.
+                📝 Copia tu texto en un documento <strong>A4 (tamaño folio)</strong> con <strong>Times New Roman</strong> a <strong>1,5 de interlineado</strong> para saber cuántas páginas tiene.
               </p>
               
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-background/80 backdrop-blur-sm p-4 sm:p-5 rounded-xl border border-border shadow-sm">
