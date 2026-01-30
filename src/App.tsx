@@ -71,6 +71,7 @@ import ShopifyGenres from "./pages/admin/ShopifyGenres";
 import ProductClassifier from "./pages/admin/ProductClassifier";
 import Autoedicion from "./pages/Autoedicion";
 import DauroCiencia from "./pages/DauroCiencia";
+import PresupuestadorCiencia from "./pages/PresupuestadorCiencia";
 import WebsDeLibrosIndex from "./pages/WebsDeLibrosIndex";
 import WebsDeLibrosLeonardo from "./pages/WebsDeLibrosLeonardo";
 import WebsDeLibrosLiderazgo from "./pages/WebsDeLibrosLiderazgo";
@@ -97,6 +98,7 @@ const App = () => (
             <Route path="/webs-de-libros/carlos-blanco/leonardo-da-vinci" element={<WebsDeLibrosLeonardo />} />
             <Route path="/webs-de-libros/antonio-rodriguez/liderazgo-discursivo" element={<WebsDeLibrosLiderazgo />} />
             <Route path="/dauro-ciencia" element={<DauroCiencia />} />
+            <Route path="/presupuestador-ciencia" element={<PresupuestadorCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
             <Route path="/grupo-dauro/musica" element={<Musica />} />
