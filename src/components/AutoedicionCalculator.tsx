@@ -1,8 +1,8 @@
 import { useState, useMemo, useCallback } from 'react';
 import { 
-  Calculator, BookOpen, FileText, Printer, Package, 
+  Calculator, BookOpen, FileText, Printer,
   Megaphone, Share2, Send, Loader2, CheckCircle2, 
-  ArrowLeft, Sparkles, GraduationCap, Gift, ChevronDown, ChevronUp, HelpCircle
+  ArrowLeft, Sparkles, GraduationCap, Download
 } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -11,6 +11,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import jsPDF from 'jspdf';
 
 // Page ranges with base maquetación price and print prices
 const PAGE_RANGES = [
@@ -45,7 +46,6 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjnjlgd';
 
 export const AutoedicionCalculator = () => {
   // Progressive reveal state
-  const [pagesMode, setPagesMode] = useState<'known' | 'unknown' | null>(null);
   const [showFullCalculator, setShowFullCalculator] = useState(false);
   
   // Book configuration
@@ -53,7 +53,6 @@ export const AutoedicionCalculator = () => {
   const [pages, setPages] = useState(150);
   const [pagesInput, setPagesInput] = useState('');
   const [bookSize, setBookSize] = useState('a6');
-  const [showTable, setShowTable] = useState(false);
   
   // Services
   const [maqueta, setMaqueta] = useState<'no' | 'si'>('si');
@@ -84,23 +83,17 @@ export const AutoedicionCalculator = () => {
     return range || PAGE_RANGES[PAGE_RANGES.length - 1];
   }, [pages]);
 
-  const isConsultation = pages > 1000 || pagesMode === 'unknown';
+  const isConsultation = pages > 1000;
 
   // Calculate all prices
   const calculation = useMemo(() => {
     const isTesis = bookType === 'tesis';
     
-    // Base maquetación
     const maquetaPrice = maqueta === 'si' ? currentRange.base : 0;
-    
-    // ISBN
     const isbnPrice = isbn === 'si' ? 45 : 0;
-    
-    // Ebook (free for tesis)
     const ebookPrice = ebook === 'si' ? (isTesis ? 0 : 235) : 0;
     const ebookFree = isTesis && ebook === 'si';
     
-    // Correction
     let correccionPrice = 0;
     if (correccion === 'orto') {
       correccionPrice = pages * 1.5;
@@ -108,15 +101,12 @@ export const AutoedicionCalculator = () => {
       correccionPrice = pages * 2.5;
     }
     
-    // Print
     const printPrice = printCopies > 0 
       ? currentRange.print[printCopies as keyof typeof currentRange.print] || 0 
       : 0;
     
-    // Marketing
     const marketingPrice = marketing === 'si' ? 550 : 0;
     
-    // Distribution
     let distribucionPrice = 0;
     if (distribucion === 'si') {
       if (distAmazonPapel) distribucionPrice += 55;
@@ -124,24 +114,16 @@ export const AutoedicionCalculator = () => {
       if (distAmazonEbook) distribucionPrice += 55;
     }
     
-    // Subtotal before discount
     const subtotal = maquetaPrice + isbnPrice + ebookPrice + correccionPrice + printPrice + marketingPrice + distribucionPrice;
     
-    // Check if all services are contracted (for tesis discount)
     const allServices = maqueta === 'si' && isbn === 'si' && ebook === 'si' && 
                        correccion !== 'no' && printCopies > 0 && marketing === 'si' && 
                        distribucion === 'si';
     
-    // 20% discount for tesis with all services
     const discountPercent = isTesis && allServices ? 20 : 0;
     const discountAmount = subtotal * (discountPercent / 100);
-    
-    // Free author web if all services
     const freeWeb = allServices;
-    
-    // AI valuation free for tesis
     const freeIAValuation = isTesis;
-    
     const total = subtotal - discountAmount;
     
     return {
@@ -172,11 +154,6 @@ export const AutoedicionCalculator = () => {
   }, []);
 
   const handleCalculate = useCallback(() => {
-    if (pagesMode === 'unknown') {
-      setShowFullCalculator(true);
-      return;
-    }
-    
     const num = parseInt(pagesInput);
     if (!isNaN(num) && num >= 50) {
       setPages(Math.min(num, 1500));
@@ -187,7 +164,134 @@ export const AutoedicionCalculator = () => {
     } else {
       toast.error('Introduce un número válido de páginas (mínimo 50)');
     }
-  }, [pagesInput, pagesMode]);
+  }, [pagesInput]);
+
+  const generatePDF = useCallback(() => {
+    const doc = new jsPDF();
+    const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+    
+    // Header
+    doc.setFontSize(22);
+    doc.setTextColor(192, 57, 43); // Primary red
+    doc.text('Presupuesto de Autoedición', 20, 25);
+    
+    doc.setFontSize(11);
+    doc.setTextColor(100);
+    doc.text('Grupo Dauro Editorial', 20, 35);
+    doc.text(`Fecha: ${fecha}`, 20, 42);
+    
+    // Line
+    doc.setDrawColor(192, 57, 43);
+    doc.setLineWidth(0.5);
+    doc.line(20, 48, 190, 48);
+    
+    // Book details
+    doc.setFontSize(14);
+    doc.setTextColor(0);
+    doc.text('Datos del libro', 20, 60);
+    
+    doc.setFontSize(11);
+    doc.setTextColor(60);
+    doc.text(`Tipo: ${bookType === 'tesis' ? 'Tesis doctoral' : 'Libro general'}`, 20, 70);
+    doc.text(`Páginas: ${pages}`, 20, 77);
+    doc.text(`Tamaño: ${SIZE_OPTIONS.find(s => s.id === bookSize)?.name || bookSize}`, 20, 84);
+    
+    // Services
+    doc.setFontSize(14);
+    doc.setTextColor(0);
+    doc.text('Servicios seleccionados', 20, 100);
+    
+    let y = 110;
+    doc.setFontSize(11);
+    doc.setTextColor(60);
+    
+    if (maqueta === 'si') {
+      doc.text(`• Maquetación interior y cubierta: ${calculation.maquetaPrice} €`, 20, y);
+      y += 7;
+    }
+    if (isbn === 'si') {
+      doc.text(`• ISBN y depósito legal: ${calculation.isbnPrice} €`, 20, y);
+      y += 7;
+    }
+    if (ebook === 'si') {
+      doc.text(`• Ebook EPUB: ${calculation.ebookFree ? 'GRATIS (Tesis doctoral)' : calculation.ebookPrice + ' €'}`, 20, y);
+      y += 7;
+    }
+    if (correccion !== 'no') {
+      const tipo = correccion === 'orto' ? 'ortotipográfica' : 'de estilo + ortotipográfica';
+      doc.text(`• Corrección ${tipo}: ${Math.round(calculation.correccionPrice)} €`, 20, y);
+      y += 7;
+    }
+    if (printCopies > 0) {
+      doc.text(`• Impresión (${printCopies} ejemplares): ${calculation.printPrice} €`, 20, y);
+      y += 7;
+    }
+    if (marketing === 'si') {
+      doc.text(`• Pack Marketing Completo: ${calculation.marketingPrice} €`, 20, y);
+      y += 7;
+    }
+    if (distribucion === 'si') {
+      const canales = [];
+      if (distAmazonPapel) canales.push('Amazon papel');
+      if (distLibrerias) canales.push('Librerías españolas');
+      if (distAmazonEbook) canales.push('Amazon ebook');
+      doc.text(`• Distribución (${canales.join(', ')}): ${calculation.distribucionPrice} €`, 20, y);
+      y += 7;
+    }
+    
+    // Bonuses
+    if (bookType === 'tesis') {
+      y += 5;
+      doc.setTextColor(39, 174, 96);
+      doc.text('Beneficios Tesis Doctoral incluidos:', 20, y);
+      y += 7;
+      doc.text('• Valoración por Agentes IA: GRATIS', 20, y);
+      y += 7;
+    }
+    if (calculation.freeWeb) {
+      doc.setTextColor(39, 174, 96);
+      doc.text('• Web dedicada al autor: INCLUIDA', 20, y);
+      y += 7;
+    }
+    
+    // Discount
+    if (calculation.discountAmount > 0) {
+      y += 5;
+      doc.setTextColor(39, 174, 96);
+      doc.text(`Descuento Tesis Doctoral (20%): -${Math.round(calculation.discountAmount)} €`, 20, y);
+      y += 10;
+    }
+    
+    // Total
+    y += 10;
+    doc.setDrawColor(192, 57, 43);
+    doc.line(20, y, 190, y);
+    y += 10;
+    
+    doc.setFontSize(16);
+    doc.setTextColor(192, 57, 43);
+    doc.text(`TOTAL ESTIMADO: ${Math.round(calculation.total).toLocaleString()} €`, 20, y);
+    
+    y += 10;
+    doc.setFontSize(9);
+    doc.setTextColor(100);
+    doc.text('(Los precios NO incluyen IVA: 4% libros, 21% servicios)', 20, y);
+    
+    // Footer
+    y += 20;
+    doc.setFontSize(10);
+    doc.setTextColor(60);
+    doc.text('Este presupuesto es orientativo. Para confirmar, contacta con nosotros:', 20, y);
+    y += 7;
+    doc.setTextColor(192, 57, 43);
+    doc.text('editorial@grupodauro.com | +34 958 215 318', 20, y);
+    y += 7;
+    doc.text('www.grupodauro.com', 20, y);
+    
+    // Save
+    doc.save(`presupuesto-autoedicion-${pages}pag-${fecha.replace(/\s/g, '-')}.pdf`);
+    toast.success('Presupuesto descargado');
+  }, [bookType, pages, bookSize, maqueta, isbn, ebook, correccion, printCopies, marketing, distribucion, distAmazonPapel, distLibrerias, distAmazonEbook, calculation]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -228,12 +332,12 @@ export const AutoedicionCalculator = () => {
           telefono: telefono || 'No proporcionado',
           titulo_libro: tituloLibro || 'No especificado',
           tipo_libro: bookType === 'tesis' ? 'Tesis doctoral' : 'Libro general',
-          paginas: pagesMode === 'unknown' ? 'A determinar' : pages,
+          paginas: pages,
           tamano: SIZE_OPTIONS.find(s => s.id === bookSize)?.name || bookSize,
           servicios: serviciosContratados.join(', '),
-          presupuesto_estimado: isConsultation ? 'Pendiente de consulta' : `${Math.round(calculation.total).toLocaleString()} €`,
+          presupuesto_estimado: `${Math.round(calculation.total).toLocaleString()} €`,
           descuento_aplicado: calculation.discountPercent > 0 ? `${calculation.discountPercent}% (-${Math.round(calculation.discountAmount)} €)` : 'Ninguno',
-          _subject: `Presupuesto autoedición: ${tituloLibro || 'Sin título'} - ${isConsultation ? 'Consulta' : Math.round(calculation.total) + ' €'}`,
+          _subject: `Presupuesto autoedición: ${tituloLibro || 'Sin título'} - ${Math.round(calculation.total)} €`,
         }),
       });
 
@@ -260,9 +364,7 @@ export const AutoedicionCalculator = () => {
     setIsSuccess(false);
     setSubmittedName('');
     setShowFullCalculator(false);
-    setPagesMode(null);
     setPagesInput('');
-    // Reset form to defaults
     setBookType('general');
     setPages(150);
     setBookSize('a6');
@@ -312,14 +414,12 @@ export const AutoedicionCalculator = () => {
               </p>
             </div>
 
-            {!isConsultation && (
-              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 sm:p-6 max-w-sm mx-auto">
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">Total estimado:</span><br />
-                  <span className="text-2xl font-bold text-primary">{Math.round(calculation.total).toLocaleString()} €</span>
-                </p>
-              </div>
-            )}
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 sm:p-6 max-w-sm mx-auto">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Total estimado:</span><br />
+                <span className="text-2xl font-bold text-primary">{Math.round(calculation.total).toLocaleString()} €</span>
+              </p>
+            </div>
 
             <Button variant="outline" size="lg" onClick={handleReset} className="mt-4">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -335,12 +435,16 @@ export const AutoedicionCalculator = () => {
     <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl max-w-3xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
           Calculadora de precios
         </h3>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mb-4">
           Consigue un <span className="text-primary font-semibold underline decoration-primary/30">presupuesto personalizado</span>,{' '}
           <span className="text-primary font-semibold underline decoration-primary/30">instantáneo y descargable</span> de todos nuestros servicios.
+        </p>
+        <p className="text-sm text-muted-foreground/80 italic border-l-4 border-primary/30 pl-4">
+          💡 Para calcular las páginas, copia tu texto en un documento A5 con Times New Roman a 1,5 de interlineado. 
+          El resultado será muy aproximado a la extensión final de tu libro.
         </p>
       </div>
 
@@ -350,112 +454,41 @@ export const AutoedicionCalculator = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Indica las páginas</h4>
             
-            <div className="space-y-3">
-              {/* Option: Known pages */}
-              <label 
-                className={cn(
-                  "flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all",
-                  pagesMode === 'known' 
-                    ? "border-primary bg-primary/5" 
-                    : "border-border hover:border-primary/50"
-                )}
+            <div className="flex flex-wrap items-center gap-3 p-5 rounded-xl border-2 border-border bg-muted/30">
+              <span className="text-lg">📖</span>
+              <span className="text-sm sm:text-base">Mi libro ocupará</span>
+              <Input
+                type="number"
+                value={pagesInput}
+                onChange={(e) => handlePagesChange(e.target.value)}
+                className="w-24 text-center font-bold bg-background text-lg"
+                placeholder="150"
+                min={50}
+                max={1500}
+              />
+              <span className="text-sm sm:text-base">páginas</span>
+              <Button 
+                type="button" 
+                onClick={handleCalculate}
+                disabled={!pagesInput}
+                className="ml-auto"
+                size="lg"
               >
-                <div className={cn(
-                  "w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0",
-                  pagesMode === 'known' ? "border-primary" : "border-muted-foreground"
-                )}>
-                  {pagesMode === 'known' && <div className="w-3 h-3 rounded-full bg-primary" />}
-                </div>
-                <input
-                  type="radio"
-                  name="pagesMode"
-                  checked={pagesMode === 'known'}
-                  onChange={() => setPagesMode('known')}
-                  className="sr-only"
-                />
-                <span className="text-sm sm:text-base">Mi libro ocupará</span>
-                <Input
-                  type="number"
-                  value={pagesInput}
-                  onChange={(e) => {
-                    handlePagesChange(e.target.value);
-                    setPagesMode('known');
-                  }}
-                  onClick={() => setPagesMode('known')}
-                  className="w-20 sm:w-24 text-center font-bold bg-background"
-                  placeholder="150"
-                  min={50}
-                  max={1500}
-                />
-                <span className="text-sm sm:text-base">páginas</span>
-                <Button 
-                  type="button" 
-                  onClick={handleCalculate}
-                  disabled={pagesMode !== 'known' || !pagesInput}
-                  className="ml-auto shrink-0"
-                >
-                  CALCULAR
-                </Button>
-              </label>
-              
-              {/* Option: Unknown pages */}
-              <label 
-                className={cn(
-                  "flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all",
-                  pagesMode === 'unknown' 
-                    ? "border-primary bg-primary/5" 
-                    : "border-border hover:border-primary/50"
-                )}
-              >
-                <div className={cn(
-                  "w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0",
-                  pagesMode === 'unknown' ? "border-primary" : "border-muted-foreground"
-                )}>
-                  {pagesMode === 'unknown' && <div className="w-3 h-3 rounded-full bg-primary" />}
-                </div>
-                <input
-                  type="radio"
-                  name="pagesMode"
-                  checked={pagesMode === 'unknown'}
-                  onChange={() => setPagesMode('unknown')}
-                  className="sr-only"
-                />
-                <div className="flex items-center gap-2">
-                  <HelpCircle className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm sm:text-base">No lo sé. <span className="text-muted-foreground">Aún no está maquetado.</span></span>
-                </div>
-              </label>
+                CALCULAR
+              </Button>
             </div>
-            
-            {pagesMode === 'unknown' && (
-              <div className="mt-4">
-                <Button 
-                  type="button" 
-                  onClick={handleCalculate}
-                  className="w-full sm:w-auto"
-                >
-                  Continuar sin especificar páginas
-                </Button>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Te proporcionaremos un presupuesto orientativo que ajustaremos cuando conozcamos la extensión final.
-                </p>
-              </div>
-            )}
           </div>
         </div>
       ) : (
         /* Full Calculator */
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Pages Summary - Collapsible */}
+          {/* Pages Summary */}
           <div className="bg-muted/50 p-4 rounded-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <FileText className="w-5 h-5 text-primary" />
                 <span className="font-medium">
-                  {pagesMode === 'unknown' 
-                    ? 'Páginas: A determinar' 
-                    : `${pages} páginas (${currentRange.min}-${currentRange.max})`
-                  }
+                  {pages} páginas (rango {currentRange.min}-{currentRange.max})
                 </span>
               </div>
               <Button 
@@ -464,19 +497,15 @@ export const AutoedicionCalculator = () => {
                 size="sm"
                 onClick={() => {
                   setShowFullCalculator(false);
-                  if (pagesMode === 'known') {
-                    setPagesInput(pages.toString());
-                  }
+                  setPagesInput(pages.toString());
                 }}
               >
                 Cambiar
               </Button>
             </div>
-            {pagesMode === 'known' && (
-              <p className="text-sm text-muted-foreground mt-1 ml-8">
-                Precio base maquetación: {currentRange.base} €
-              </p>
-            )}
+            <p className="text-sm text-muted-foreground mt-1 ml-8">
+              Precio base maquetación: {currentRange.base} €
+            </p>
           </div>
 
           {/* Book Type */}
@@ -562,11 +591,9 @@ export const AutoedicionCalculator = () => {
           {/* Services Section */}
           <section className="space-y-6">
             <h4 className="text-lg font-semibold">El presupuesto</h4>
-            {pagesMode === 'known' && (
-              <p className="text-sm text-muted-foreground italic">
-                Todos los precios se actualizan automáticamente según el rango de páginas seleccionado.
-              </p>
-            )}
+            <p className="text-sm text-muted-foreground italic">
+              Todos los precios se actualizan automáticamente según el rango de páginas seleccionado.
+            </p>
 
             {/* Maquetación */}
             <div className="space-y-2">
@@ -576,7 +603,7 @@ export const AutoedicionCalculator = () => {
                 <ServiceOption 
                   value="si" 
                   label="Quiero maqueta de interior y cubierta" 
-                  price={pagesMode === 'unknown' ? 'Consultar' : `${currentRange.base} €`} 
+                  price={`${currentRange.base} €`} 
                   selected={maqueta === 'si'} 
                 />
               </RadioGroup>
@@ -621,14 +648,14 @@ export const AutoedicionCalculator = () => {
                   value="orto" 
                   label="Corrección ortotipográfica" 
                   sublabel="1,50 €/página"
-                  price={pagesMode === 'unknown' ? 'Consultar' : `${(pages * 1.5).toLocaleString()} €`} 
+                  price={`${(pages * 1.5).toLocaleString()} €`} 
                   selected={correccion === 'orto'} 
                 />
                 <ServiceOption 
                   value="estilo" 
                   label="Corrección de estilo + ortotipográfica" 
                   sublabel="2,50 €/página"
-                  price={pagesMode === 'unknown' ? 'Consultar' : `${(pages * 2.5).toLocaleString()} €`} 
+                  price={`${(pages * 2.5).toLocaleString()} €`} 
                   selected={correccion === 'estilo'} 
                 />
               </RadioGroup>
@@ -647,13 +674,7 @@ export const AutoedicionCalculator = () => {
                     key={opt.copies}
                     value={opt.copies.toString()} 
                     label={opt.label} 
-                    price={opt.copies > 0 
-                      ? (pagesMode === 'unknown' 
-                          ? 'Consultar' 
-                          : `${currentRange.print[opt.copies as keyof typeof currentRange.print]} €`
-                        ) 
-                      : null
-                    } 
+                    price={opt.copies > 0 ? `${currentRange.print[opt.copies as keyof typeof currentRange.print]} €` : null} 
                     selected={printCopies === opt.copies} 
                   />
                 ))}
@@ -717,15 +738,24 @@ export const AutoedicionCalculator = () => {
 
           {/* Summary */}
           <section className="bg-muted/50 rounded-xl p-6 space-y-4">
-            <h4 className="text-xl font-bold">Resumen</h4>
+            <div className="flex items-center justify-between">
+              <h4 className="text-xl font-bold">Resumen</h4>
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="sm" 
+                onClick={generatePDF}
+                className="gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Descargar PDF
+              </Button>
+            </div>
             
             <div className="space-y-2 text-sm">
               <SummaryRow 
                 label="Maqueta interior y cubierta" 
-                value={pagesMode === 'unknown' 
-                  ? (maqueta === 'si' ? 'Consultar' : '0 €')
-                  : (calculation.maquetaPrice > 0 ? `${calculation.maquetaPrice} €` : '0 €')
-                } 
+                value={calculation.maquetaPrice > 0 ? `${calculation.maquetaPrice} €` : '0 €'} 
               />
               <SummaryRow label="ISBN" value={calculation.isbnPrice > 0 ? `${calculation.isbnPrice} €` : '0 €'} />
               <SummaryRow 
@@ -738,24 +768,18 @@ export const AutoedicionCalculator = () => {
               )}
               <SummaryRow 
                 label="Corrección" 
-                value={pagesMode === 'unknown' 
-                  ? (correccion !== 'no' ? 'Consultar' : '0 €')
-                  : (calculation.correccionPrice > 0 ? `${Math.round(calculation.correccionPrice)} €` : '0 €')
-                } 
+                value={calculation.correccionPrice > 0 ? `${Math.round(calculation.correccionPrice)} €` : '0 €'} 
               />
               <SummaryRow 
                 label="Ejemplares" 
-                value={pagesMode === 'unknown' 
-                  ? (printCopies > 0 ? 'Consultar' : '0 €')
-                  : (calculation.printPrice > 0 ? `${calculation.printPrice} €` : '0 €')
-                } 
+                value={calculation.printPrice > 0 ? `${calculation.printPrice} €` : '0 €'} 
               />
               <SummaryRow label="Distribución" value={calculation.distribucionPrice > 0 ? `${calculation.distribucionPrice} €` : '0 €'} />
               <SummaryRow label="Marketing" value={calculation.marketingPrice > 0 ? `${calculation.marketingPrice} €` : '0 €'} />
               {calculation.freeWeb && (
                 <SummaryRow label="🎁 Web dedicada al autor" value="INCLUIDA" highlight />
               )}
-              {calculation.discountAmount > 0 && pagesMode === 'known' && (
+              {calculation.discountAmount > 0 && (
                 <div className="bg-green-100 dark:bg-green-900/30 -mx-6 px-6 py-2">
                   <SummaryRow 
                     label={`🎓 Descuento Tesis Doctoral (${calculation.discountPercent}%)`} 
