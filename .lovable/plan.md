@@ -1,79 +1,72 @@
 
+## Plan: Ampliar Floating Author Cards
 
-## Plan: Mejoras en la Calculadora de Autoedición
+### Cambios a realizar
 
-### Resumen de cambios solicitados
+#### 1. Copiar las nuevas imágenes de autores
 
-1. **Corregir la instrucción de cálculo de páginas** - Explicar que un documento A4 con Times New Roman y 1,5 de interlineado necesita aumentarse aproximadamente un 30% para obtener las páginas reales del libro en A5.
+Guardar las 4 nuevas imágenes en `public/authors/`:
 
-2. **Cambiar el formulario de contacto** - En lugar de "enviar presupuesto por email", el mensaje debe ser: solicitar más detalles del presupuesto y una **prevaloracion profesional GRATIS** de la obra antes de decidirse a publicar.
-
-3. **Destacar la prevaloracion gratis como extra** - Este beneficio debe reflejarse visualmente en la web como un valor añadido.
-
----
-
-### Cambios técnicos
-
-#### 1. Instrucción de cálculo de páginas (Líneas 476-479)
-
-**Texto actual:**
-> "📝 Copia tu texto en un documento A4 (tamaño folio) con Times New Roman a 1,5 de interlineado para saber cuántas páginas tiene."
-
-**Nuevo texto:**
-> "📝 Copia tu texto en un documento A4 (tamaño folio) con Times New Roman a 1,5 de interlineado. Después, aumenta ese número de páginas un 30% para obtener la extensión real que tendrá tu libro maquetado en formato A5."
-
-Con un ejemplo práctico debajo:
-> "💡 Ejemplo: Si tu documento A4 tiene 100 páginas → el libro tendrá aproximadamente 130 páginas"
+| Archivo origen | Destino |
+|----------------|---------|
+| `RETRATO_ANTONIO_RODRÍGUEZ_JIMÉNEZ.png` | `public/authors/antonio-rodriguez-jimenez.png` |
+| `RETRATO_MIGUEL_PUCHE-2.png` | `public/authors/miguel-puche.png` (reemplaza la existente) |
+| `RETRATO_ELEAZAR_SANTANA.png` | `public/authors/eleazar-santana.png` |
+| `RETRATO_PILAR_SÁNCHEZ.png` | `public/authors/pilar-sanchez.png` |
 
 ---
 
-#### 2. Reformular la sección de contacto (Líneas 834-879)
+#### 2. Aumentar el tamaño de las imágenes
 
-**Cambios:**
-
-- **Nuevo título y mensaje**: Cambiar de "Déjanos tus datos y te enviaremos el presupuesto por email" a destacar la prevaloracion profesional gratuita.
-
-- **Nuevo mensaje principal:**
-  > "🎯 Solicita más detalles y una prevaloracion profesional GRATIS de tu obra antes de decidirte a publicar con nosotros"
-
-- **Botón**: Cambiar texto de "Solicitar presupuesto gratuito" a "Solicitar prevaloracion gratuita"
-
-- **Nota al pie**: Actualizar para reflejar que recibirán valoración profesional sin compromiso.
-
----
-
-#### 3. Destacar la prevaloracion gratis como extra visible
-
-Añadir un banner destacado antes del formulario de contacto con:
-
-```text
-┌────────────────────────────────────────────────────────────────┐
-│  ✨ EXTRA EXCLUSIVO                                           │
-│  ─────────────────────────────────────────────────────────────│
-│  📋 Prevaloracion profesional GRATIS                         │
-│                                                                │
-│  Nuestro equipo editorial analizará tu obra y te dará        │
-│  una valoración profesional sin compromiso antes de que      │
-│  decidas publicar.                                            │
-└────────────────────────────────────────────────────────────────┘
+**Tamaños actuales:**
+```
+w-20 h-28 sm:w-24 sm:h-32  (80x112px → 96x128px)
 ```
 
-Este banner usará estilos similares a los beneficios de "Tesis Doctoral" (fondo verde/primary suave, borde, iconos).
+**Nuevos tamaños (aproximadamente 50% más grande):**
+```
+w-28 h-40 sm:w-36 sm:h-48  (112x160px → 144x192px)
+```
+
+Esto hará las tarjetas más visibles y los retratos artísticos lucirán mejor.
 
 ---
 
-### Archivos a modificar
+#### 3. Actualizar el array de autores
 
-| Archivo | Líneas | Cambio |
-|---------|--------|--------|
-| `src/components/AutoedicionCalculator.tsx` | 476-479 | Actualizar instrucciones de cálculo de páginas con el +30% |
-| `src/components/AutoedicionCalculator.tsx` | 834-879 | Reformular sección de contacto para destacar prevaloracion gratis |
+```typescript
+const AUTHORS: Author[] = [
+  { id: "benito", name: "Benito Lamenca", image: "/authors/benito-lamenca.png" },
+  { id: "carlos", name: "Carlos Blanco", image: "/authors/carlos-blanco.png" },
+  { id: "carmen", name: "Carmen Alcaide", image: "/authors/carmen-alcaide.png" },
+  { id: "miguel", name: "Miguel Puche", image: "/authors/miguel-puche.png" },
+  { id: "paco", name: "Paco López Barrios", image: "/authors/paco-lopez-barrios.png" },
+  { id: "manuel", name: "Manuel Orozco", image: "/authors/manuel-orozco.png" },
+  // Nuevos autores:
+  { id: "antonio", name: "Antonio Rodríguez Jiménez", image: "/authors/antonio-rodriguez-jimenez.png" },
+  { id: "eleazar", name: "Eleazar Santana", image: "/authors/eleazar-santana.png" },
+  { id: "pilar", name: "Pilar Sánchez", image: "/authors/pilar-sanchez.png" },
+];
+```
+
+Total: **9 autores** en rotación.
 
 ---
+
+#### 4. Ajustes adicionales de estilo
+
+- Aumentar ligeramente el padding del contenedor para las imágenes más grandes
+- Ajustar el tamaño del texto del nombre del autor para que sea proporcional
+- Mantener el borde decorativo y efectos hover
+
+---
+
+### Archivo a modificar
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/components/FloatingAuthorCard.tsx` | Actualizar AUTHORS array, aumentar tamaños de imagen |
 
 ### Resultado esperado
 
-- Los usuarios entenderán claramente que deben aumentar un 30% las páginas de su documento A4 para obtener la extensión real del libro en A5.
-- El formulario de contacto ya no se presenta como "enviar presupuesto" (ya tienen el PDF descargable), sino como una oportunidad para recibir una valoración profesional gratuita de su obra.
-- La prevaloracion gratis se presenta como un beneficio exclusivo visible y atractivo.
-
+Las floating author cards serán más grandes y visualmente impactantes, con los 9 autores rotando aleatoriamente por la pantalla.
