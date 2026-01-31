@@ -14,6 +14,9 @@ const AUTHORS: Author[] = [
   { id: "miguel", name: "Miguel Puche", image: "/authors/miguel-puche.png" },
   { id: "paco", name: "Paco López Barrios", image: "/authors/paco-lopez-barrios.png" },
   { id: "manuel", name: "Manuel Orozco", image: "/authors/manuel-orozco.png" },
+  { id: "antonio", name: "Antonio Rodríguez Jiménez", image: "/authors/antonio-rodriguez-jimenez.png" },
+  { id: "eleazar", name: "Eleazar Santana", image: "/authors/eleazar-santana.png" },
+  { id: "pilar", name: "Pilar Sánchez", image: "/authors/pilar-sanchez.png" },
 ];
 
 const INTERVAL_MS = 15000; // Cada 15 segundos
@@ -121,9 +124,9 @@ const FloatingAuthorCard = () => {
         </button>
 
         {/* Contenido de la tarjeta */}
-        <div className="flex flex-col items-center p-3 sm:p-4">
+        <div className="flex flex-col items-center p-4 sm:p-5">
           {/* Imagen del autor */}
-          <div className="relative w-20 h-28 sm:w-24 sm:h-32 overflow-hidden rounded-lg shadow-lg">
+          <div className="relative w-28 h-40 sm:w-36 sm:h-48 overflow-hidden rounded-lg shadow-lg">
             <img
               src={currentAuthor.image}
               alt={currentAuthor.name}
@@ -134,11 +137,11 @@ const FloatingAuthorCard = () => {
           </div>
 
           {/* Nombre del autor */}
-          <div className="mt-2 sm:mt-3 text-center">
-            <p className="text-xs sm:text-sm font-serif font-semibold text-foreground tracking-wide">
+          <div className="mt-3 sm:mt-4 text-center">
+            <p className="text-sm sm:text-base font-serif font-semibold text-foreground tracking-wide">
               {currentAuthor.name}
             </p>
-            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
               Ver obras →
             </p>
           </div>
