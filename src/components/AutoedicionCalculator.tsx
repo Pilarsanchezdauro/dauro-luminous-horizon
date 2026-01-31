@@ -122,7 +122,7 @@ export const AutoedicionCalculator = () => {
                        correccion !== 'no' && printCopies > 0 && marketing === 'si' && 
                        distribucion === 'si';
     
-    const discountPercent = isTesis && allServices ? 20 : 0;
+    const discountPercent = isTesis && allServices ? 15 : 0;
     const discountAmount = subtotal * (discountPercent / 100);
     const freeWeb = allServices;
     const freeIAValuation = isTesis;
@@ -260,7 +260,7 @@ export const AutoedicionCalculator = () => {
     if (calculation.discountAmount > 0) {
       y += 5;
       doc.setTextColor(39, 174, 96);
-      doc.text(`Descuento Tesis Doctoral (20%): -${Math.round(calculation.discountAmount)} €`, 20, y);
+      doc.text(`Descuento Alumno Tesis Doctoral (15%): -${Math.round(calculation.discountAmount)} €`, 20, y);
       y += 10;
     }
     
@@ -849,9 +849,9 @@ export const AutoedicionCalculator = () => {
               {calculation.discountAmount > 0 && (
                 <div className="bg-green-100 dark:bg-green-900/30 -mx-6 px-6 py-2">
                   <SummaryRow 
-                    label={`🎓 Descuento Tesis Doctoral (${calculation.discountPercent}%)`} 
+                    label={`🎓 Descuento Alumno Tesis (${calculation.discountPercent}%)`} 
                     value={`-${Math.round(calculation.discountAmount)} €`} 
-                    highlight 
+                    highlight
                   />
                 </div>
               )}
