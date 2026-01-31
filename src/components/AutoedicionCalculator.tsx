@@ -472,7 +472,7 @@ export const AutoedicionCalculator = () => {
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
             
             <div className="relative z-10">
-            <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+              <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Indica las páginas de tu libro
               </h4>
               <div className="space-y-3 mb-6">
@@ -482,12 +482,44 @@ export const AutoedicionCalculator = () => {
                 <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 text-sm">
                   <span className="font-medium">💡 Ejemplo:</span> Si tu documento A4 tiene 100 páginas → el libro tendrá aproximadamente <strong>130 páginas</strong>
                 </div>
+                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-3 text-sm">
+                  <span className="font-medium text-green-700 dark:text-green-300">🎓 Tesis Doctoral:</span>{' '}
+                  <span className="text-green-600 dark:text-green-400">20% de descuento si contratas todos los servicios</span>
+                </div>
+              </div>
+              
+              {/* Tipo de proyecto selector */}
+              <div className="grid grid-cols-2 gap-3 mb-5">
+                <button
+                  type="button"
+                  onClick={() => setBookType('general')}
+                  className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                    bookType === 'general'
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-border bg-background/50 text-muted-foreground hover:border-primary/50'
+                  }`}
+                >
+                  <span className="text-2xl">📖</span>
+                  <span className="font-semibold">Libro</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBookType('tesis')}
+                  className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                    bookType === 'tesis'
+                      ? 'border-green-500 bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-300'
+                      : 'border-border bg-background/50 text-muted-foreground hover:border-green-500/50'
+                  }`}
+                >
+                  <span className="text-2xl">🎓</span>
+                  <span className="font-semibold">Tesis Doctoral</span>
+                </button>
               </div>
               
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-background/80 backdrop-blur-sm p-4 sm:p-5 rounded-xl border border-border shadow-sm">
                 <div className="flex items-center gap-3 flex-1">
-                  <span className="text-2xl">📖</span>
-                  <span className="text-base sm:text-lg font-medium">Mi libro ocupará</span>
+                  <span className="text-2xl">{bookType === 'tesis' ? '🎓' : '📖'}</span>
+                  <span className="text-base sm:text-lg font-medium">Mi {bookType === 'tesis' ? 'tesis' : 'libro'} ocupará</span>
                   <Input
                     type="number"
                     value={pagesInput}
