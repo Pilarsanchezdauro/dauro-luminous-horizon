@@ -8,24 +8,24 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-// Base prices by page range (for 50 copies)
+// Base prices by page range (for 50 copies) - +10% increase applied
 const PRICE_TIERS = [
-  { min: 1, max: 100, price: 390 },
-  { min: 101, max: 150, price: 490 },
-  { min: 151, max: 200, price: 590 },
-  { min: 201, max: 250, price: 690 },
-  { min: 251, max: 300, price: 790 },
-  { min: 301, max: 400, price: 890 },
+  { min: 1, max: 100, price: 429 },
+  { min: 101, max: 150, price: 539 },
+  { min: 151, max: 200, price: 649 },
+  { min: 201, max: 250, price: 759 },
+  { min: 251, max: 300, price: 869 },
+  { min: 301, max: 400, price: 979 },
 ];
 
-// Copy options with price per additional copy beyond base 50
+// Copy options with price per additional copy beyond base 50 - +10% increase applied
 const COPIES_OPTIONS = [
   { copies: 50, label: '50 ejemplares', extraCost: 0 },
-  { copies: 75, label: '75 ejemplares', extraCost: 95 },
-  { copies: 100, label: '100 ejemplares', extraCost: 175 },
-  { copies: 150, label: '150 ejemplares', extraCost: 290 },
-  { copies: 200, label: '200 ejemplares', extraCost: 390 },
-  { copies: 300, label: '300 ejemplares', extraCost: 550 },
+  { copies: 75, label: '75 ejemplares', extraCost: 105 },
+  { copies: 100, label: '100 ejemplares', extraCost: 193 },
+  { copies: 150, label: '150 ejemplares', extraCost: 319 },
+  { copies: 200, label: '200 ejemplares', extraCost: 429 },
+  { copies: 300, label: '300 ejemplares', extraCost: 605 },
 ];
 
 const DEADLINE_MULTIPLIERS = [
