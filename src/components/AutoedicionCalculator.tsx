@@ -14,17 +14,18 @@ import { cn } from '@/lib/utils';
 import jsPDF from 'jspdf';
 
 // Page ranges with base maquetación price and print prices
-// Page ranges with base maquetación price and print prices (+10% increase applied)
+// Precios de impresión basados en costos reales de producción premium + 15% margen
+// (cubierta con solapas 90g, papel offset ahuesado 90g, cubierta 300g mate)
 const PAGE_RANGES = [
-  { min: 50, max: 150, base: 300, print: { 1: 6, 5: 22, 10: 39, 25: 88, 50: 160, 100: 303 } },
-  { min: 151, max: 250, base: 350, print: { 1: 7, 5: 28, 10: 50, 25: 110, 50: 204, 100: 385 } },
-  { min: 251, max: 350, base: 400, print: { 1: 8, 5: 33, 10: 61, 25: 138, 50: 259, 100: 495 } },
-  { min: 351, max: 450, base: 475, print: { 1: 9, 5: 39, 10: 72, 25: 165, 50: 314, 100: 605 } },
-  { min: 451, max: 550, base: 550, print: { 1: 10, 5: 44, 10: 83, 25: 193, 50: 369, 100: 715 } },
-  { min: 551, max: 650, base: 650, print: { 1: 11, 5: 50, 10: 94, 25: 220, 50: 424, 100: 825 } },
-  { min: 651, max: 750, base: 750, print: { 1: 12, 5: 55, 10: 105, 25: 248, 50: 479, 100: 935 } },
-  { min: 751, max: 850, base: 875, print: { 1: 13, 5: 61, 10: 116, 25: 275, 50: 534, 100: 1045 } },
-  { min: 851, max: 1000, base: 1000, print: { 1: 15, 5: 72, 10: 138, 25: 330, 50: 644, 100: 1265 } },
+  { min: 50, max: 150, base: 300, print: { 1: 8, 5: 32, 10: 58, 25: 130, 50: 235, 100: 430 } },
+  { min: 151, max: 250, base: 350, print: { 1: 9, 5: 38, 10: 69, 25: 155, 50: 280, 100: 515 } },
+  { min: 251, max: 350, base: 400, print: { 1: 10, 5: 43, 10: 80, 25: 180, 50: 330, 100: 575 } },
+  { min: 351, max: 450, base: 475, print: { 1: 11, 5: 49, 10: 92, 25: 210, 50: 385, 100: 690 } },
+  { min: 451, max: 550, base: 550, print: { 1: 12, 5: 55, 10: 105, 25: 240, 50: 445, 100: 810 } },
+  { min: 551, max: 650, base: 650, print: { 1: 14, 5: 62, 10: 118, 25: 275, 50: 510, 100: 940 } },
+  { min: 651, max: 750, base: 750, print: { 1: 15, 5: 70, 10: 132, 25: 310, 50: 580, 100: 1075 } },
+  { min: 751, max: 850, base: 875, print: { 1: 17, 5: 78, 10: 148, 25: 350, 50: 655, 100: 1215 } },
+  { min: 851, max: 1000, base: 1000, print: { 1: 19, 5: 90, 10: 172, 25: 410, 50: 770, 100: 1430 } },
 ];
 
 const PRINT_OPTIONS = [
