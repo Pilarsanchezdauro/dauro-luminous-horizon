@@ -8,6 +8,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { HelmetProvider } from "react-helmet-async";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import FloatingAuthorCard from "@/components/FloatingAuthorCard";
 import Index from "./pages/Index";
 import GrupoDauro from "./pages/GrupoDauro";
 import Editorial from "./pages/Editorial";
@@ -89,6 +90,7 @@ const App = () => (
         <BrowserRouter>
           <ExitIntentPopup />
           <WhatsAppFloatingButton />
+          <FloatingAuthorCard />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
