@@ -484,9 +484,9 @@ export const AutoedicionCalculator = () => {
                 <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 text-sm">
                   <span className="font-medium">💡 Ejemplo:</span> Si tu documento A4 tiene 100 páginas → el libro tendrá aproximadamente <strong>130 páginas</strong>
                 </div>
-                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-3 text-sm">
-                  <span className="font-medium text-green-700 dark:text-green-300">🎓 Tesis Doctoral:</span>{' '}
-                  <span className="text-green-600 dark:text-green-400">20% de descuento si contratas todos los servicios</span>
+              <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-3 text-sm">
+                  <span className="font-medium text-green-700 dark:text-green-300">🎓 Descuento Alumno Tesis:</span>{' '}
+                  <span className="text-green-600 dark:text-green-400">15% de descuento para alumnos que contratan de forma individual (no subvención universitaria)</span>
                 </div>
               </div>
               
@@ -601,7 +601,7 @@ export const AutoedicionCalculator = () => {
                       <span className="font-medium">Tesis doctoral</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">
-                      🎁 Ebook GRATIS + 20% descuento + Valoración IA GRATIS si contratas todos los servicios
+                      🎁 Ebook GRATIS + 15% descuento alumno + Valoración IA GRATIS si contratas todos los servicios
                     </p>
                   </div>
                 </div>
@@ -614,7 +614,8 @@ export const AutoedicionCalculator = () => {
                 <ul className="text-sm text-green-700 dark:text-green-300 space-y-1">
                   <li>🎁 Ebook GRATIS (valor 235 €)</li>
                   <li>🤖 Valoración por Agentes Tecnológicos Avanzados GRATIS</li>
-                  <li>💰 20% de descuento si contratas todos los servicios</li>
+                  <li>💰 15% de descuento si contratas todos los servicios</li>
+                  <li className="text-xs italic mt-2">* Descuento exclusivo para alumnos que contratan de forma individual, no aplica a subvenciones universitarias</li>
                 </ul>
               </div>
             )}
