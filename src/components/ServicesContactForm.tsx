@@ -284,6 +284,7 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="publicacion">Edición y Publicación</SelectItem>
+            <SelectItem value="traduccion">Traducción Profesional</SelectItem>
             <SelectItem value="guion">Adaptación y Dirección Técnica de Guion</SelectItem>
             <SelectItem value="audiovisual">Producción Audiovisual con IA</SelectItem>
             <SelectItem value="escritura">Escritura, Edición y Datos</SelectItem>
