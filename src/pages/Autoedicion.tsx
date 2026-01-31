@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
   Globe, CreditCard, FileText, Palette, Package, 
   BarChart3, Languages, ChevronRight, Award, Users, Trophy, Calendar,
-  Video, Megaphone, Monitor, Share2, ShoppingBag, Library, Heart
+  Video, Megaphone, Monitor, Share2, ShoppingBag, Library, Heart, GraduationCap, ExternalLink
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import { AutoedicionCalculator } from '@/components/AutoedicionCalculator';
 import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const INCLUDED_FEATURES = [
   { icon: FileText, title: 'Maquetación profesional interior', description: 'Diseño tipográfico cuidado y legible' },
@@ -123,6 +124,151 @@ const structuredData = {
     "bestRating": "5"
   }
 };
+
+// Translation Section Component
+function TranslationSection() {
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  
+  const LANGUAGES = [
+    { value: 'ingles', label: 'Inglés', price: '0,04 €/palabra' },
+    { value: 'frances', label: 'Francés', price: '0,04 €/palabra' },
+    { value: 'italiano', label: 'Italiano', price: '0,04 €/palabra' },
+    { value: 'portugues', label: 'Portugués', price: '0,04 €/palabra' },
+    { value: 'aleman', label: 'Alemán', price: '0,05 €/palabra' },
+    { value: 'catalan', label: 'Catalán', price: '0,035 €/palabra' },
+    { value: 'euskera', label: 'Euskera', price: '0,035 €/palabra' },
+    { value: 'gallego', label: 'Gallego', price: '0,035 €/palabra' },
+    { value: 'ruso', label: 'Ruso', price: '0,06 €/palabra' },
+    { value: 'polaco', label: 'Polaco', price: '0,06 €/palabra' },
+    { value: 'holandes', label: 'Holandés', price: '0,06 €/palabra' },
+    { value: 'chino', label: 'Chino mandarín', price: 'Consultar' },
+    { value: 'japones', label: 'Japonés', price: 'Consultar' },
+    { value: 'arabe', label: 'Árabe', price: 'Consultar' },
+    { value: 'hindi', label: 'Hindi', price: 'Consultar' },
+    { value: 'coreano', label: 'Coreano', price: 'Consultar' },
+  ];
+
+  const selectedPrice = LANGUAGES.find(l => l.value === selectedLanguage)?.price;
+
+  return (
+    <section className="py-20 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Languages className="w-4 h-4" />
+              Servicio de traducción profesional
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Lleva tu libro al siguiente nivel
+            </h2>
+            <p className="text-xl text-muted-foreground mb-6">
+              Alcanza lectores en todo el mundo con traducciones profesionales de calidad editorial
+            </p>
+          </div>
+
+          {/* Tesis Doctoral highlight */}
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-2 border-green-200 dark:border-green-800 rounded-xl p-6 mb-8">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-6 h-6 text-green-600 dark:text-green-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-800 dark:text-green-200 mb-2">
+                  🎓 Tesis Doctorales: Rigor académico garantizado
+                </h3>
+                <p className="text-green-700 dark:text-green-300 text-sm">
+                  Las tesis doctorales requieren una traducción con máximo rigor científico. Nuestro equipo de traductores especializados en ámbitos académicos garantiza la precisión terminológica y el respeto a las convenciones de cada disciplina.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-card border border-border rounded-2xl p-8">
+            {/* Selector de idioma */}
+            <div className="mb-8">
+              <label className="block text-sm font-medium text-foreground mb-3">
+                Selecciona el idioma de destino:
+              </label>
+              <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+                <SelectTrigger className="w-full md:w-96">
+                  <SelectValue placeholder="Elige un idioma..." />
+                </SelectTrigger>
+                <SelectContent className="bg-background border border-border z-50">
+                  {LANGUAGES.map((lang) => (
+                    <SelectItem key={lang.value} value={lang.value}>
+                      {lang.label} — <span className="text-primary font-medium">{lang.price}</span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              {selectedPrice && (
+                <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                  <p className="text-foreground">
+                    <strong>Precio por palabra:</strong>{' '}
+                    <span className="text-primary text-xl font-bold">{selectedPrice}</span>
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Tabla de precios resumida */}
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              {TRANSLATION_PRICES.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-3 border-b border-border last:border-0">
+                  <span className="text-foreground">{item.language}</span>
+                  <span className="font-semibold text-primary">{item.price}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-muted/50 rounded-xl p-6">
+              <h4 className="font-semibold text-foreground mb-4">Ejemplos orientativos:</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Novela de 50.000 palabras → Traducción al inglés: <strong className="text-foreground">2.000 €</strong></li>
+                <li>• Novela de 70.000 palabras → Traducción al francés: <strong className="text-foreground">2.800 €</strong></li>
+                <li>• Tesis doctoral de 30.000 palabras → Traducción al inglés: <strong className="text-foreground">1.200 €</strong></li>
+              </ul>
+            </div>
+
+            <div className="mt-6 space-y-3">
+              <h4 className="font-semibold text-foreground">La traducción incluye:</h4>
+              <ul className="grid md:grid-cols-2 gap-2">
+                {[
+                  'Traducción completa del manuscrito',
+                  'Revisión por traductor literario profesional',
+                  'Adaptación cultural y estilística',
+                  'Entrega en formato editable',
+                  'Terminología especializada (tesis)',
+                  'Revisión nativa garantizada'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-muted-foreground">
+                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-8 pt-6 border-t border-border text-center">
+              <p className="text-muted-foreground mb-4">
+                ¿Quieres llevar tu libro o tesis a lectores internacionales?
+              </p>
+              <Link to="/servicios#contacto">
+                <Button size="lg" className="gap-2">
+                  Solicitar presupuesto de traducción
+                  <ExternalLink className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Autoedicion() {
   const formRef = useRef<HTMLDivElement>(null);
@@ -348,60 +494,7 @@ export default function Autoedicion() {
       </section>
 
       {/* Translation Service */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Languages className="w-4 h-4" />
-                Servicio de traducción
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Lleva tu libro a lectores de todo el mundo
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Traducción editorial con revisión profesional por traductores nativos
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-2xl p-8">
-              <div className="grid md:grid-cols-2 gap-4 mb-8">
-                {TRANSLATION_PRICES.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center py-3 border-b border-border last:border-0">
-                    <span className="text-foreground">{item.language}</span>
-                    <span className="font-semibold text-primary">{item.price}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-muted/50 rounded-xl p-6">
-                <h4 className="font-semibold text-foreground mb-4">Ejemplos orientativos:</h4>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Novela de 50.000 palabras → Traducción al inglés: <strong className="text-foreground">2.000 €</strong></li>
-                  <li>• Novela de 70.000 palabras → Traducción al francés: <strong className="text-foreground">2.800 €</strong></li>
-                </ul>
-              </div>
-
-              <div className="mt-6 space-y-3">
-                <h4 className="font-semibold text-foreground">La traducción incluye:</h4>
-                <ul className="grid md:grid-cols-2 gap-2">
-                  {[
-                    'Traducción completa del manuscrito',
-                    'Revisión por traductor literario profesional',
-                    'Adaptación cultural y estilística',
-                    'Entrega en formato editable'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-muted-foreground">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TranslationSection />
 
       {/* Marketing Services */}
       <section className="py-20">
