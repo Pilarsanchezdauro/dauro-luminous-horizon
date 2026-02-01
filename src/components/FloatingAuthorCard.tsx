@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Author {
   id: string;
@@ -23,11 +24,15 @@ const INTERVAL_MS = 15000; // Cada 15 segundos
 const DISPLAY_DURATION_MS = 8000; // Se muestra durante 8 segundos
 
 const FloatingAuthorCard = () => {
+  const isMobile = useIsMobile();
   const [currentAuthor, setCurrentAuthor] = useState<Author | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [side, setSide] = useState<"left" | "right">("left");
   const [dismissedAuthors, setDismissedAuthors] = useState<Set<string>>(new Set());
   const [isPaused, setIsPaused] = useState(false);
+
+  // No mostrar en móvil
+  if (isMobile) return null;
 
   const showRandomAuthor = useCallback(() => {
     if (isPaused) return;
