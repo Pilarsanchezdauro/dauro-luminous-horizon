@@ -502,7 +502,7 @@ export default function Portafolio() {
                       Descubre nuestro catálogo de libros
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Más de 1000 obras publicadas desde el año 2000. Encuentra tu próxima lectura en nuestra tienda.
+                      Más de 2000 obras publicadas desde el año 2000. Encuentra tu próxima lectura en nuestra tienda.
                     </p>
                   </div>
                   

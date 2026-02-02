@@ -30,7 +30,7 @@ const GrupoDauro = () => {
     <div className="min-h-screen">
       <SEO
         title="Grupo Cultural Dauro | Editorial y Servicios para Autores en Granada"
-        description="Grupo Cultural Dauro: editorial independiente, servicios de autoedición, maquetación, diseño de portadas y publicación de libros. Más de 1000 obras publicadas desde el año 2000."
+        description="Grupo Cultural Dauro: editorial independiente, servicios de autoedición, maquetación, diseño de portadas y publicación de libros. Más de 2000 obras publicadas desde el año 2000."
         keywords="Grupo Cultural Dauro, editorial Granada, publicar libro Granada, autoedición Granada, servicios editoriales, maquetación libros, diseño portadas, publicar mi libro, editorial independiente España"
         url="https://grupodauro.com/grupo-dauro"
       />
