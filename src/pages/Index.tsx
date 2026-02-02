@@ -41,7 +41,7 @@ const Index = () => {
     "@type": "WebSite",
     "name": "Grupo Cultural Dauro",
     "url": "https://grupodauro.com",
-    "description": "Editorial independiente y servicios para autores. Publicamos tu libro con distribución nacional. Más de 1000 obras publicadas.",
+    "description": "Editorial independiente y servicios para autores. Publicamos tu libro con distribución nacional. Más de 2000 obras publicadas.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://grupodauro.com/blog?q={search_term_string}",
@@ -103,7 +103,7 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden w-full">
       <SEO
         title="Editorial Dauro | Publica tu Libro - Edición y Autoedición Profesional"
-        description="¿Quieres publicar tu libro? Grupo Cultural Dauro es una editorial independiente con más de 1000 obras publicadas. Ofrecemos edición, autoedición, maquetación y diseño de portadas. Distribución en 4000 librerías."
+        description="¿Quieres publicar tu libro? Grupo Cultural Dauro es una editorial independiente con más de 2000 obras publicadas. Ofrecemos edición, autoedición, maquetación y diseño de portadas. Distribución en 4000 librerías."
         keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, maquetación libros, diseño portadas, ISBN, autopublicación, editorial independiente, servicios editoriales, publicar novela, publicar poesía"
         url="https://grupodauro.com"
         structuredData={homeStructuredData}

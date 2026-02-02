@@ -10,7 +10,7 @@ const pages = [
   {
     path: 'grupo-dauro',
     title: 'Grupo Cultural Dauro | Editorial y Servicios para Autores',
-    description: 'Grupo Cultural Dauro: editorial independiente con más de 1000 obras publicadas. Servicios de edición, autoedición, maquetación y publicación de libros en Granada.',
+    description: 'Grupo Cultural Dauro: editorial independiente con más de 2000 obras publicadas. Servicios de edición, autoedición, maquetación y publicación de libros en Granada.',
     image: '/og-grupo-dauro.jpg'
   },
   {
@@ -69,14 +69,14 @@ const pages = [
   },
   {
     path: 'tienda',
-    title: 'Tienda de Libros | Editorial Dauro - Más de 1000 Títulos',
+    title: 'Tienda de Libros | Editorial Dauro - Más de 2000 Títulos',
     description: 'Compra libros de narrativa, poesía, ensayo e historia. Envío a toda España. Catálogo completo de Ediciones Dauro.',
     image: '/og-editorial.jpg'
   },
   {
     path: 'catalogo',
     title: 'Catálogo de Libros | Editorial Dauro - Literatura de Calidad',
-    description: 'Explora nuestro catálogo de más de 1000 libros publicados. Narrativa, poesía, ensayo, historia y pensamiento contemporáneo.',
+    description: 'Explora nuestro catálogo de más de 2000 libros publicados. Narrativa, poesía, ensayo, historia y pensamiento contemporáneo.',
     image: '/og-editorial.jpg'
   },
   {
