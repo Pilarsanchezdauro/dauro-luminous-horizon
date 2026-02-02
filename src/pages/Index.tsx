@@ -127,7 +127,7 @@ const Index = () => {
         {/* Editorial Section */}
         <SectionCard
           title="Publica tu Libro"
-          description="¿Eres escritor? Publicamos tu libro con distribución en 4000 librerías. Edición profesional, autoedición, maquetación y diseño de portadas. Más de 1000 autores confían en nosotros."
+          description="¿Eres escritor? Publicamos tu libro con distribución en 4000 librerías. Edición profesional, autoedición, maquetación y diseño de portadas. Más de 2000 autores confían en nosotros."
           image={editorialBg}
           link="/autoedicion"
         />
@@ -179,7 +179,7 @@ const Index = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">1000+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">2000+</div>
                   <h3 className="font-semibold mb-1">Libros Editados</h3>
                   <p className="text-sm text-muted-foreground">
                     Obras literarias publicadas

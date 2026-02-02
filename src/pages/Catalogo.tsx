@@ -93,8 +93,8 @@ const Catalogo = () => {
   return (
     <>
       <SEO 
-        title="Catálogo de Libros | Editorial Dauro - Más de 1000 Títulos"
-        description="Catálogo completo de Ediciones Dauro: más de 1000 libros de narrativa, poesía, ensayo, historia y biografía. Compra online con envío a toda España."
+        title="Catálogo de Libros | Editorial Dauro - Más de 2000 Títulos"
+        description="Catálogo completo de Ediciones Dauro: más de 2000 libros de narrativa, poesía, ensayo, historia y biografía. Compra online con envío a toda España."
         keywords="catálogo libros, comprar libros online, librería online, libros narrativa, libros poesía, editorial española, libros ensayo"
       />
       <Navigation />
