@@ -56,7 +56,7 @@ const storeStructuredData = {
     }
   },
   "sameAs": [
-    "https://www.edicionesdauro.com"
+    "https://grupodauro.com"
   ]
 };
 
@@ -99,7 +99,7 @@ const Tienda = () => {
               Nuestra tienda propia con todo el catálogo, gestionada directamente por Grupo Dauro. Atención personalizada y envío desde España.
             </p>
             <a
-              href="https://www.edicionesdauro.com/"
+              href="https://grupodauro.com/catalogo"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300 max-w-xl"
@@ -109,7 +109,7 @@ const Tienda = () => {
                 <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
                   Ediciones Dauro
                 </span>
-                <span className="text-sm text-muted-foreground">edicionesdauro.com · Envío desde España</span>
+                <span className="text-sm text-muted-foreground">grupodauro.com · Envío desde España</span>
               </div>
               <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
             </a>
