@@ -224,9 +224,9 @@ const Editorial = () => {
               Distribución Global
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center mb-8 max-w-3xl mx-auto relative z-10">
-              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online.
+              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online. Además, contamos con <strong className="text-foreground">distribución directa en 11 países</strong> de Europa, Estados Unidos y Latinoamérica.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 relative z-10">
+            <div className="flex flex-wrap justify-center gap-6 relative z-10 mb-8">
               <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
                 <ShoppingCart className="h-5 w-5 text-primary" />
                 <span className="font-medium">Amazon</span>
@@ -247,6 +247,19 @@ const Editorial = () => {
                 <Store className="h-5 w-5 text-primary" />
                 <span className="font-medium">FNAC</span>
               </div>
+            </div>
+            {/* Banderas de distribución internacional */}
+            <div className="flex flex-wrap justify-center gap-3 relative z-10">
+              {["🇪🇺 Europa", "🇺🇸 EE.UU.", "🇲🇽 México", "🇦🇷 Argentina", "🇨🇴 Colombia", "🇨🇱 Chile", "🇪🇨 Ecuador", "🇧🇴 Bolivia", "🇨🇷 Costa Rica", "🇬🇹 Guatemala", "🇻🇪 Venezuela"].map((country) => (
+                <span key={country} className="inline-flex items-center gap-1.5 bg-background/60 border border-border px-3 py-1.5 rounded-full text-sm font-medium text-foreground">
+                  {country}
+                </span>
+              ))}
+            </div>
+            <div className="text-center mt-6 relative z-10">
+              <Link to="/tienda" className="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
+                Ver todas las tiendas por país <ExternalLink className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </section>

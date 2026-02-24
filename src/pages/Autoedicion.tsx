@@ -13,6 +13,7 @@ import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { GlobalDistributionBanner } from '@/components/GlobalDistributionBanner';
 
 const INCLUDED_FEATURES = [
   { icon: FileText, title: 'Maquetación profesional interior', description: 'Diseño tipográfico cuidado y legible' },
@@ -401,6 +402,13 @@ export default function Autoedicion() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Distribución Internacional para Autores */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <GlobalDistributionBanner variant="compact" />
         </div>
       </section>
 
