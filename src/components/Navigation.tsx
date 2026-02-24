@@ -102,7 +102,7 @@ const Navigation = () => {
       name: "Tienda",
       path: "/tienda",
       submenu: [
-        { name: "🇪🇸 España", path: "https://tienda.grupodauro.com", external: true },
+        { name: "🇪🇺 Europa", path: "https://tienda.grupodauro.com", external: true },
         { name: "🇲🇽 México", path: "https://mexico.grupodauro.com", external: true },
         { name: "🇦🇷 Argentina", path: "https://argentina.grupodauro.com", external: true },
         { name: "🇨🇱 Chile", path: "https://chile.grupodauro.com", external: true },
