@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import { ExternalLink, Globe, MapPin } from "lucide-react";
 import { SEO } from "@/components/SEO";
 
-const stores = [
-  { flag: "🇪🇸", name: "España", url: "https://tienda.grupodauro.com" },
+const distributionStores = [
+  { flag: "🇪🇺", name: "Europa", subtitle: "Excepto Reino Unido", url: "https://tienda.grupodauro.com" },
   { flag: "🇲🇽", name: "México", url: "https://mexico.grupodauro.com" },
   { flag: "🇦🇷", name: "Argentina", url: "https://argentina.grupodauro.com" },
   { flag: "🇨🇱", name: "Chile", url: "https://chile.grupodauro.com" },
@@ -37,30 +37,58 @@ const Tienda = () => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Nuestros libros están disponibles en <strong className="text-foreground">toda Europa</strong> (excepto Reino Unido), <strong className="text-foreground">Estados Unidos</strong> y en los principales países de <strong className="text-foreground">Latinoamérica</strong>. Poco a poco iremos ampliando a más tiendas alrededor del mundo.
             </p>
-            <div className="flex items-center justify-center gap-2 mt-6 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>Elige tu país y accede a nuestra tienda más cercana</span>
-            </div>
           </div>
 
-          {/* Store grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {stores.map((store) => (
-              <a
-                key={store.name}
-                href={store.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:bg-accent/20 hover:border-primary/40 transition-all duration-200"
-              >
-                <span className="text-3xl">{store.flag}</span>
-                <span className="text-base font-medium text-card-foreground group-hover:text-primary transition-colors">
-                  {store.name}
+          {/* Compra directa */}
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Compra directa</h2>
+            <p className="text-muted-foreground mb-6">Nuestra tienda propia, gestionada directamente por Grupo Dauro.</p>
+            <a
+              href="https://www.edicionesdauro.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-4 p-6 rounded-xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 transition-all duration-200"
+            >
+              <span className="text-4xl">🇪🇸</span>
+              <div>
+                <span className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors block">
+                  Ediciones Dauro — España
                 </span>
-                <ExternalLink className="h-4 w-4 ml-auto text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            ))}
-          </div>
+                <span className="text-sm text-muted-foreground">edicionesdauro.com</span>
+              </div>
+              <ExternalLink className="h-5 w-5 ml-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            </a>
+          </section>
+
+          {/* Distribución internacional */}
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Distribución internacional</h2>
+            <p className="text-muted-foreground mb-6">
+              Tiendas gestionadas por <strong className="text-foreground">Quares</strong>, nuestro distribuidor internacional. Elige tu zona y compra con envío local.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {distributionStores.map((store) => (
+                <a
+                  key={store.name}
+                  href={store.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:bg-accent/20 hover:border-primary/40 transition-all duration-200"
+                >
+                  <span className="text-3xl">{store.flag}</span>
+                  <div className="flex flex-col">
+                    <span className="text-base font-medium text-card-foreground group-hover:text-primary transition-colors">
+                      {store.name}
+                    </span>
+                    {store.subtitle && (
+                      <span className="text-xs text-muted-foreground">{store.subtitle}</span>
+                    )}
+                  </div>
+                  <ExternalLink className="h-4 w-4 ml-auto text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
       <Footer />
