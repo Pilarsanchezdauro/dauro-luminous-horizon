@@ -90,6 +90,10 @@ export const ExitIntentPopup = () => {
               Ebook gratis incluido
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
+              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">🌍</span>
+              <span>Distribución en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
+            </li>
+            <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
               26 años de experiencia · +1.000 libros publicados
             </li>

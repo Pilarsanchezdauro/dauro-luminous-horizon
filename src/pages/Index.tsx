@@ -13,6 +13,7 @@ import { DauroWidget } from "@/components/DauroWidget";
 import { LatestWorks } from "@/components/LatestWorks";
 import { NovedadesSection } from "@/components/NovedadesSection";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
+import { GlobalDistributionBanner } from "@/components/GlobalDistributionBanner";
 import editorialBg from "@/assets/editorial-bg.jpg";
 import arteBg from "@/assets/arte-bg.jpg";
 import cineBg from "@/assets/cine-bg.jpg";
@@ -393,6 +394,9 @@ const Index = () => {
             </Link>
           </div>
         </section>
+
+        {/* Global Distribution Section */}
+        <GlobalDistributionBanner variant="full" />
 
         {/* Authors CTA Section */}
         <section className="my-32">
