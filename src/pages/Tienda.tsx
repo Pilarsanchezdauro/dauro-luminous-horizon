@@ -116,7 +116,7 @@ const Tienda = () => {
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </a>
               <Link
-                to="/catalogo"
+                to="/shop"
                 className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
               >
                 <ShoppingCart className="h-12 w-12 text-muted-foreground group-hover:text-primary transition-colors" />
