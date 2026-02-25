@@ -76,22 +76,26 @@ export const ExitIntentPopup = () => {
         {/* Content */}
         <div className="p-8">
           <p className="text-lg text-foreground mb-4">
-            <strong>Publica tu libro con calidad profesional</strong> desde 690€. 
+            <strong>Publica tu libro con calidad editorial profesional.</strong>{' '}
             Si nos enamora tu obra, la editamos sin coste para ti.
           </p>
           
           <ul className="space-y-3 mb-6">
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              Maquetación + portada + ISBN + distribución global
+              Maquetación profesional + portada personalizada + ISBN
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              Ebook gratis incluido
+              Ebook gratis incluido con cada publicación
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">🌍</span>
-              <span>Distribución en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
+              <span>Tus libros disponibles en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
+            </li>
+            <li className="flex items-center gap-3 text-muted-foreground">
+              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
+              Financiación en 2 plazos sin intereses
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
@@ -102,7 +106,7 @@ export const ExitIntentPopup = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="flex-1 text-base">
               <Link to="/autoedicion" onClick={handleClose}>
-                Calcula tu presupuesto
+                Publica tu libro
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
