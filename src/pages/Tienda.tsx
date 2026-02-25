@@ -76,10 +76,10 @@ const Tienda = () => {
             <div className="relative">
               <Globe className="mx-auto h-16 w-16 text-primary mb-8 animate-pulse" strokeWidth={1.5} />
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight tracking-tight">
-                Nuestros libros, en {TOTAL_COUNTRIES} países
+                Nuestros libros, en toda Europa, EE.UU. y Latinoamérica
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Disponibles en <strong className="text-foreground">España</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
+                Disponibles en <strong className="text-foreground">España</strong>, toda <strong className="text-foreground">Europa</strong> (excepto Reino Unido), <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
               </p>
             </div>
           </header>
@@ -203,7 +203,7 @@ const Tienda = () => {
                   )}
 
                   {c.expanding && !c.note && (
-                    <p className="text-xs text-muted-foreground italic">Disponible próximamente</p>
+                    <p className="text-xs text-muted-foreground italic">Distribución con acuerdos locales</p>
                   )}
                 </div>
               ))}
