@@ -162,7 +162,15 @@ const Tienda = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Los precios incluyen gastos de envío?</h3>
-                <p className="text-muted-foreground">Los gastos de envío se calculan en cada tienda según tu ubicación. Al comprar en la tienda de tu país, el envío suele ser local y más económico.</p>
+                <p className="text-muted-foreground">El coste del transporte se calcula automáticamente cuando introduces tu dirección de envío durante el proceso de compra.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">¿Qué métodos de pago aceptáis?</h3>
+                <p className="text-muted-foreground">Puedes pagar con tarjeta de crédito/débito o mediante PayPal, según la tienda en la que realices tu compra.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">¿Enviáis a Baleares y Canarias?</h3>
+                <p className="text-muted-foreground">Sí. Tanto Baleares como Canarias están incluidos en nuestras zonas de envío.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿También vendéis ebooks?</h3>
