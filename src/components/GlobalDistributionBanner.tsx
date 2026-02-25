@@ -1,24 +1,11 @@
 import { Link } from "react-router-dom";
-import { Globe, ExternalLink, Truck } from "lucide-react";
+import { Globe, ExternalLink, Truck, MapPin, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const STORES = [
-  { flag: "🇪🇺", name: "Europa" },
-  { flag: "🇺🇸", name: "EE.UU." },
-  { flag: "🇲🇽", name: "México" },
-  { flag: "🇦🇷", name: "Argentina" },
-  { flag: "🇨🇴", name: "Colombia" },
-  { flag: "🇨🇱", name: "Chile" },
-  { flag: "🇪🇨", name: "Ecuador" },
-  { flag: "🇧🇴", name: "Bolivia" },
-  { flag: "🇨🇷", name: "Costa Rica" },
-  { flag: "🇬🇹", name: "Guatemala" },
-  { flag: "🇻🇪", name: "Venezuela" },
-];
+import { DISTRIBUTION_NETWORK, ACTIVE_COUNTRIES, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
 
 interface GlobalDistributionBannerProps {
-  /** "full" = homepage style with CTA. "compact" = inline for author pages. "mini" = single line for popups */
-  variant?: "full" | "compact" | "mini";
+  /** "full" = homepage style with CTA. "compact" = inline for author pages. "mini" = single line for popups. "detailed" = full network with channels */
+  variant?: "full" | "compact" | "mini" | "detailed";
 }
 
 export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributionBannerProps) => {
@@ -29,7 +16,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
           <Globe className="w-3.5 h-3.5" />
         </span>
         <span>
-          Distribución en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica
+          Distribución en <strong className="text-foreground">{TOTAL_COUNTRIES} países</strong>: España, Europa, EE.UU. y Latinoamérica
         </span>
       </div>
     );
@@ -44,24 +31,119 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
           </div>
           <div>
             <h3 className="text-lg font-bold text-foreground">Tu libro, en todo el mundo</h3>
-            <p className="text-sm text-muted-foreground">Distribución directa en 11 países</p>
+            <p className="text-sm text-muted-foreground">Distribución directa en {TOTAL_COUNTRIES} países</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-          {STORES.map((s) => (
-            <span key={s.name} className="inline-flex items-center gap-1.5 bg-background/80 border border-border px-3 py-1.5 rounded-full text-sm">
-              <span>{s.flag}</span>
-              <span className="text-foreground font-medium">{s.name}</span>
+          {DISTRIBUTION_NETWORK.map((c) => (
+            <span key={c.country} className="inline-flex items-center gap-1.5 bg-background/80 border border-border px-3 py-1.5 rounded-full text-sm">
+              <span>{c.flag}</span>
+              <span className="text-foreground font-medium">{c.short}</span>
             </span>
+          ))}
+        </div>
+        {/* Top distributors */}
+        <div className="space-y-1.5 mb-4">
+          {ACTIVE_COUNTRIES.slice(0, 4).map((c) => (
+            <div key={c.country} className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>{c.flag}</span>
+              <span className="font-medium text-foreground">{c.country}:</span>
+              <span>{c.distributor}</span>
+              {c.channels.length > 0 && (
+                <span className="text-xs">({c.channels.map(ch => ch.name).join(", ")})</span>
+              )}
+            </div>
           ))}
         </div>
         <p className="text-sm text-muted-foreground">
           Tus lectores compran con <strong className="text-foreground">envío local</strong> y sin aduanas desde su propio país.
         </p>
         <Link to="/tienda" className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold mt-3 hover:underline">
-          Ver todas las tiendas <ExternalLink className="w-3.5 h-3.5" />
+          Ver red completa de distribución <ExternalLink className="w-3.5 h-3.5" />
         </Link>
       </div>
+    );
+  }
+
+  if (variant === "detailed") {
+    return (
+      <section className="my-16" aria-labelledby="red-distribucion-detalle">
+        <div className="bg-gradient-to-br from-primary/5 via-background to-accent/5 border border-border rounded-3xl p-8 md:p-12">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Store className="w-4 h-4" />
+              Red de distribución y puntos de venta
+            </div>
+            <h2 id="red-distribucion-detalle" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Dónde encontrar nuestros libros
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Trabajamos con distribuidores locales en cada país para que los lectores compren con envío local, sin aduanas y al mejor precio.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {DISTRIBUTION_NETWORK.map((c) => (
+              <div
+                key={c.country}
+                className="bg-card border border-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">{c.flag}</span>
+                  <div>
+                    <h3 className="font-bold text-foreground">{c.country}</h3>
+                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {c.distributor}
+                    </p>
+                  </div>
+                </div>
+
+                {c.channels.length > 0 && (
+                  <div className="space-y-1 mb-3">
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Puntos de venta</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {c.channels.map((ch) => (
+                        <span
+                          key={ch.name}
+                          className="inline-flex items-center bg-primary/5 text-foreground text-xs px-2.5 py-1 rounded-lg border border-primary/10"
+                        >
+                          {ch.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.note && (
+                  <p className="text-xs text-muted-foreground italic">{c.note}</p>
+                )}
+
+                {c.expanding && !c.note && (
+                  <p className="text-xs text-muted-foreground italic">Construyendo red de ventas</p>
+                )}
+
+                {c.storeUrl && (
+                  <a
+                    href={c.storeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-primary font-medium mt-2 hover:underline"
+                  >
+                    Tienda online <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground mb-4">
+              ¿Conoces un punto de venta que debamos incluir? <Link to="/contacto" className="text-primary font-medium hover:underline">Recomiéndanoslo</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
     );
   }
 
@@ -82,16 +164,33 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
               Nuestros libros, en todo el mundo
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Si eres <strong className="text-foreground">autor</strong>, tu libro llegará a lectores de <strong className="text-foreground">Europa, Estados Unidos y Latinoamérica</strong> con envío local en cada país. Si eres <strong className="text-foreground">lector</strong>, compra desde tu país sin aduanas.
+              Si eres <strong className="text-foreground">autor</strong>, tu libro llegará a lectores de <strong className="text-foreground">{TOTAL_COUNTRIES} países</strong> con distribuidores locales y envío nacional en cada territorio. Si eres <strong className="text-foreground">lector</strong>, compra desde tu país sin aduanas.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {STORES.map((s) => (
-              <span key={s.name} className="inline-flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border px-4 py-2.5 rounded-xl text-sm hover:border-primary/40 transition-colors">
-                <span className="text-xl">{s.flag}</span>
-                <span className="font-medium text-foreground">{s.name}</span>
+          {/* Country flags row */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {DISTRIBUTION_NETWORK.map((c) => (
+              <span key={c.country} className="inline-flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border px-4 py-2.5 rounded-xl text-sm hover:border-primary/40 transition-colors">
+                <span className="text-xl">{c.flag}</span>
+                <span className="font-medium text-foreground">{c.short}</span>
               </span>
+            ))}
+          </div>
+
+          {/* Top distributors highlight */}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 mb-10 max-w-4xl mx-auto">
+            {ACTIVE_COUNTRIES.filter(c => c.channels.length > 0).slice(0, 6).map((c) => (
+              <div key={c.country} className="bg-background/60 backdrop-blur-sm border border-border rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg">{c.flag}</span>
+                  <span className="font-semibold text-foreground text-sm">{c.country}</span>
+                </div>
+                <p className="text-xs text-muted-foreground">{c.distributor}</p>
+                {c.channels.length > 0 && (
+                  <p className="text-xs text-primary mt-1">{c.channels.map(ch => ch.name).join(" · ")}</p>
+                )}
+              </div>
             ))}
           </div>
 

@@ -1,22 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ExternalLink, Globe, ShoppingBag, ShoppingCart, Truck } from "lucide-react";
+import { ExternalLink, Globe, ShoppingBag, ShoppingCart, Truck, MapPin, Store } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { DISTRIBUTION_NETWORK, COUNTRIES_WITH_STORE, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
 
-const distributionStores = [
-  { flag: "🇪🇺", name: "Europa", subtitle: "Excepto Reino Unido", url: "https://tienda.grupodauro.com" },
-  { flag: "🇺🇸", name: "Estados Unidos", url: "https://usa.grupodauro.com" },
-  { flag: "🇲🇽", name: "México", url: "https://mexico.grupodauro.com" },
-  { flag: "🇦🇷", name: "Argentina", url: "https://argentina.grupodauro.com" },
-  { flag: "🇨🇴", name: "Colombia", url: "https://colombia.grupodauro.com" },
-  { flag: "🇨🇱", name: "Chile", url: "https://chile.grupodauro.com" },
-  { flag: "🇪🇨", name: "Ecuador", url: "https://ecuador.grupodauro.com" },
-  { flag: "🇧🇴", name: "Bolivia", url: "https://bolivia.grupodauro.com" },
-  { flag: "🇨🇷", name: "Costa Rica", url: "https://costarica.grupodauro.com" },
-  { flag: "🇬🇹", name: "Guatemala", url: "https://guatemala.grupodauro.com" },
-  { flag: "🇻🇪", name: "Venezuela", url: "https://venezuela.grupodauro.com" },
-];
+const distributionStores = COUNTRIES_WITH_STORE.map(c => ({
+  flag: c.flag,
+  name: c.country,
+  subtitle: c.country === "España" ? "Distribuidores: " + c.distributor : c.distributor,
+  url: c.storeUrl!,
+}));
 
 const storeStructuredData = {
   "@context": "https://schema.org",
@@ -82,10 +76,10 @@ const Tienda = () => {
             <div className="relative">
               <Globe className="mx-auto h-16 w-16 text-primary mb-8 animate-pulse" strokeWidth={1.5} />
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight tracking-tight">
-                Nuestros libros, en todo el mundo
+                Nuestros libros, en {TOTAL_COUNTRIES} países
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Disponibles en <strong className="text-foreground">toda Europa</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong>. Elige tu zona y recibe tu pedido con envío local.
+                Disponibles en <strong className="text-foreground">España</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
               </p>
             </div>
           </header>
@@ -133,10 +127,10 @@ const Tienda = () => {
           <section aria-labelledby="distribucion-internacional">
             <div className="flex items-center gap-3 mb-3">
               <Truck className="h-6 w-6 text-primary" />
-              <h2 id="distribucion-internacional" className="text-2xl md:text-3xl font-bold text-foreground">Distribución internacional</h2>
+              <h2 id="distribucion-internacional" className="text-2xl md:text-3xl font-bold text-foreground">Tiendas online internacionales</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Red de tiendas gestionadas por <strong className="text-foreground">Quares</strong>, nuestro distribuidor internacional. Compra desde tu país con envío local y sin aduanas.
+              Red de tiendas gestionadas por <strong className="text-foreground">Quares</strong>, nuestro socio de distribución internacional. Compra desde tu país con envío local y sin aduanas.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {distributionStores.map((store) => (
@@ -160,6 +154,64 @@ const Tienda = () => {
                 </a>
               ))}
             </div>
+          </section>
+
+          {/* Red de distribuidores y puntos de venta */}
+          <section className="mt-20 border-t border-border pt-12" aria-labelledby="distribuidores-red">
+            <div className="flex items-center gap-3 mb-3">
+              <Store className="h-6 w-6 text-primary" />
+              <h2 id="distribuidores-red" className="text-2xl md:text-3xl font-bold text-foreground">Distribuidores y puntos de venta</h2>
+            </div>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              Trabajamos con distribuidores locales en cada país para garantizar disponibilidad en librerías físicas y marketplaces.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {DISTRIBUTION_NETWORK.map((c) => (
+                <div
+                  key={c.country}
+                  className="bg-card border border-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl">{c.flag}</span>
+                    <div>
+                      <h3 className="font-bold text-foreground">{c.country}</h3>
+                      <p className="text-xs text-muted-foreground flex items-center gap-1">
+                        <MapPin className="w-3 h-3" />
+                        {c.distributor}
+                      </p>
+                    </div>
+                  </div>
+
+                  {c.channels.length > 0 && (
+                    <div className="space-y-1 mb-3">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Puntos de venta</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {c.channels.map((ch) => (
+                          <span
+                            key={ch.name}
+                            className="inline-flex items-center bg-primary/5 text-foreground text-xs px-2.5 py-1 rounded-lg border border-primary/10"
+                          >
+                            {ch.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {c.note && (
+                    <p className="text-xs text-muted-foreground italic">{c.note}</p>
+                  )}
+
+                  {c.expanding && !c.note && (
+                    <p className="text-xs text-muted-foreground italic">Construyendo red de ventas</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground mt-6 text-center">
+              ¿Conoces un punto de venta que debamos incluir?{" "}
+              <Link to="/contacto" className="text-primary font-medium hover:underline">Recomiéndanoslo</Link>.
+            </p>
           </section>
 
           {/* FAQ / info SEO */}
