@@ -34,6 +34,15 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     storeUrl: "https://tienda.grupodauro.com",
   },
   {
+    flag: "🇪🇺",
+    country: "Europa (excepto Reino Unido)",
+    short: "Europa",
+    distributor: "Distribución mediante acuerdos locales",
+    channels: [],
+    note: "Envío a todos los países de la Unión Europea y países asociados.",
+    storeUrl: "https://europa.grupodauro.com",
+  },
+  {
     flag: "🇲🇽",
     country: "México",
     short: "México",
@@ -80,6 +89,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
       { name: "Librería VPV" },
     ],
     expanding: true,
+    note: "Ampliando red de librerías.",
     storeUrl: "https://bolivia.grupodauro.com",
   },
   {
@@ -130,7 +140,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     flag: "🇺🇸",
     country: "Estados Unidos",
     short: "EE.UU.",
-    distributor: "En expansión",
+    distributor: "Distribución mediante acuerdos locales",
     channels: [],
     expanding: true,
     storeUrl: "https://usa.grupodauro.com",
@@ -139,7 +149,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     flag: "🇪🇨",
     country: "Ecuador",
     short: "Ecuador",
-    distributor: "En expansión",
+    distributor: "Distribución mediante acuerdos locales",
     channels: [],
     expanding: true,
     storeUrl: "https://ecuador.grupodauro.com",
@@ -148,7 +158,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     flag: "🇳🇮",
     country: "Nicaragua",
     short: "Nicaragua",
-    distributor: "En expansión",
+    distributor: "Distribución mediante acuerdos locales",
     channels: [],
     expanding: true,
   },
@@ -156,14 +166,14 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     flag: "🇭🇳",
     country: "Honduras",
     short: "Honduras",
-    distributor: "En expansión",
+    distributor: "Distribución mediante acuerdos locales",
     channels: [],
     expanding: true,
   },
 ];
 
-/** Países con distribuidor confirmado (no "en expansión") */
-export const ACTIVE_COUNTRIES = DISTRIBUTION_NETWORK.filter(c => c.distributor !== "En expansión");
+/** Países con distribuidor nombrado (no genérico) */
+export const ACTIVE_COUNTRIES = DISTRIBUTION_NETWORK.filter(c => !c.expanding);
 
 /** Total de países en la red (incluyendo los que están en expansión) */
 export const TOTAL_COUNTRIES = DISTRIBUTION_NETWORK.length;
