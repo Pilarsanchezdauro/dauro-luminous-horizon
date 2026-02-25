@@ -16,7 +16,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
           <Globe className="w-3.5 h-3.5" />
         </span>
         <span>
-          Distribución en <strong className="text-foreground">{TOTAL_COUNTRIES} países</strong>: España, Europa, EE.UU. y Latinoamérica
+          Distribución en <strong className="text-foreground">toda Europa, EE.UU. y Latinoamérica</strong>
         </span>
       </div>
     );
@@ -31,7 +31,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
           </div>
           <div>
             <h3 className="text-lg font-bold text-foreground">Tu libro, en todo el mundo</h3>
-            <p className="text-sm text-muted-foreground">Distribución directa en {TOTAL_COUNTRIES} países</p>
+            <p className="text-sm text-muted-foreground">Distribución en toda Europa, EE.UU. y Latinoamérica</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
@@ -120,7 +120,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
                 )}
 
                 {c.expanding && !c.note && (
-                  <p className="text-xs text-muted-foreground italic">Construyendo red de ventas</p>
+                  <p className="text-xs text-muted-foreground italic">Distribución con acuerdos locales</p>
                 )}
 
                 {c.storeUrl && (
@@ -164,7 +164,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
               Nuestros libros, en todo el mundo
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Si eres <strong className="text-foreground">autor</strong>, tu libro llegará a lectores de <strong className="text-foreground">{TOTAL_COUNTRIES} países</strong> con distribuidores locales y envío nacional en cada territorio. Si eres <strong className="text-foreground">lector</strong>, compra desde tu país sin aduanas.
+              Si eres <strong className="text-foreground">autor</strong>, tu libro llegará a lectores de <strong className="text-foreground">toda Europa, EE.UU. y Latinoamérica</strong> con distribuidores locales y envío nacional en cada territorio. Si eres <strong className="text-foreground">lector</strong>, compra desde tu país sin aduanas.
             </p>
           </div>
 
