@@ -31,17 +31,12 @@ const FloatingAuthorCard = () => {
   const [dismissedAuthors, setDismissedAuthors] = useState<Set<string>>(new Set());
   const [isPaused, setIsPaused] = useState(false);
 
-  // No mostrar en móvil
-  if (isMobile) return null;
-
   const showRandomAuthor = useCallback(() => {
     if (isPaused) return;
     
-    // Filtrar autores que ya fueron cerrados en esta sesión
     const availableAuthors = AUTHORS.filter(a => !dismissedAuthors.has(a.id));
     
     if (availableAuthors.length === 0) {
-      // Resetear si todos fueron cerrados
       setDismissedAuthors(new Set());
       return;
     }
@@ -53,19 +48,18 @@ const FloatingAuthorCard = () => {
     setCurrentAuthor(randomAuthor);
     setIsVisible(true);
 
-    // Auto-ocultar después de DISPLAY_DURATION_MS
     setTimeout(() => {
       setIsVisible(false);
     }, DISPLAY_DURATION_MS);
   }, [dismissedAuthors, isPaused]);
 
   useEffect(() => {
-    // Mostrar el primero después de 5 segundos
+    if (isMobile) return;
+
     const initialTimeout = setTimeout(() => {
       showRandomAuthor();
     }, 5000);
 
-    // Intervalo para mostrar nuevos autores
     const interval = setInterval(() => {
       showRandomAuthor();
     }, INTERVAL_MS);
@@ -74,7 +68,7 @@ const FloatingAuthorCard = () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
     };
-  }, [showRandomAuthor]);
+  }, [showRandomAuthor, isMobile]);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -84,12 +78,13 @@ const FloatingAuthorCard = () => {
   };
 
   const handleCardClick = () => {
-    // Navegar a la tienda con filtro por autor
     if (currentAuthor) {
       window.location.href = `/tienda?autor=${encodeURIComponent(currentAuthor.name)}`;
     }
   };
 
+  // Early returns AFTER all hooks
+  if (isMobile) return null;
   if (!currentAuthor) return null;
 
   return (
