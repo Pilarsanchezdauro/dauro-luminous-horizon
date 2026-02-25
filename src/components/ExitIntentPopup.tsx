@@ -95,10 +95,6 @@ export const ExitIntentPopup = () => {
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              Financiación en 2 plazos sin intereses
-            </li>
-            <li className="flex items-center gap-3 text-muted-foreground">
-              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
               26 años de experiencia · +2.000 obras publicadas
             </li>
           </ul>
