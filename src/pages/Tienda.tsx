@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ExternalLink, Globe, ShoppingBag, Truck } from "lucide-react";
+import { ExternalLink, Globe, ShoppingBag, ShoppingCart, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 
 const distributionStores = [
@@ -114,11 +115,11 @@ const Tienda = () => {
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </a>
-              <a
-                href="/catalogo"
+              <Link
+                to="/catalogo"
                 className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
               >
-                <span className="text-5xl">🛒</span>
+                <ShoppingCart className="h-12 w-12 text-muted-foreground group-hover:text-primary transition-colors" />
                 <div className="flex-1">
                   <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
                     Tienda Online
@@ -126,7 +127,7 @@ const Tienda = () => {
                   <span className="text-sm text-muted-foreground">Compra directa con envío desde España</span>
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </a>
+              </Link>
             </div>
           </section>
 
