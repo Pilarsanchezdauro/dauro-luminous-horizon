@@ -342,9 +342,21 @@ export default function GeneradorPortadas() {
   return (
     <>
       <SEO
-        title="Generador de Portadas de Libros Gratis con IA | Crea tu Portada Online"
-        description="Genera portadas de libros gratis con inteligencia artificial. Herramienta online para crear portadas profesionales para tu novela, poesía, ensayo o autoedición. Sin registro."
-        keywords="generador portadas gratis, crear portada libro, portada con IA, diseño portada online, portada libro gratis, herramienta portadas, generador covers, diseño editorial gratis, autoedición portada"
+        title="Generador de Portadas de Libros Gratis con IA"
+        description="Crea portadas de libros gratis con inteligencia artificial. Herramienta online para diseñar portadas profesionales para tu novela, poesía o ensayo. Sin registro necesario."
+        keywords="generador portadas gratis, crear portada libro, portada con IA, diseño portada online, portada libro gratis, herramienta portadas, autoedición portada, cover design free"
+        url="https://grupodauro.com/generador-portadas"
+        image="https://grupodauro.com/og-generador-portadas-gratis.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Generador de Portadas de Libros con IA",
+          "applicationCategory": "DesignApplication",
+          "operatingSystem": "Web",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+          "description": "Herramienta online gratuita para crear portadas de libros profesionales usando inteligencia artificial.",
+          "provider": { "@type": "Organization", "name": "Grupo Cultural Dauro" }
+        }}
       />
       <div className="min-h-screen bg-background">
         <Navigation />

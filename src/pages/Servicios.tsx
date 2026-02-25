@@ -26,7 +26,7 @@ const Servicios = () => {
         "Corrección de estilo",
         "ISBN y registro legal",
         "Publicación impresa y digital",
-        "Distribución global en 11 países",
+        "Distribución global en toda Europa, EE.UU. y Latinoamérica",
       ],
       aplicaciones: [
         "Libros de autor",
@@ -43,7 +43,7 @@ Cada obra pasa por un flujo completo de:
 — Diseño gráfico, maquetación y preparación de archivos.
 — Gestión de ISBN, depósito legal y distribución.
 — Publicación en formato impreso, digital y audiolibro.
-— Distribución internacional en 11 países: Europa, EE.UU. y Latinoamérica, con envío local en cada país.
+— Distribución internacional en toda Europa (excepto Reino Unido), EE.UU. y Latinoamérica, con envío local en cada país.
 
 En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calidad y profesionalidad que merece cada proyecto literario.`,
     },
@@ -325,10 +325,35 @@ Cada producción combina narrativa visual, dirección artística y técnica prof
   return (
     <div className="min-h-screen">
       <SEO
-        title="Servicios Editoriales para Autores | Edición, Maquetación y Publicación"
-        description="Servicios profesionales para autores: edición de libros, maquetación, diseño de portadas, corrección de estilo, ISBN y publicación. Publica tu libro con distribución nacional."
-        keywords="servicios editoriales, edición de libros, maquetación libros, diseño portadas libros, corrección estilo, ISBN, publicar libro, autoedición profesional, editorial para autores, publicar manuscrito"
+        title="Servicios Creativos y Editoriales | Grupo Cultural Dauro"
+        description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guionismo, producción audiovisual, IA creativa y tasación de arte."
+        keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, autoedición, producción audiovisual, tasación arte, IA creativa"
         url="https://grupodauro.com/servicios"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Servicios Creativos - Grupo Cultural Dauro",
+          "url": "https://grupodauro.com/servicios",
+          "description": "Servicios profesionales de edición, diseño, producción audiovisual, IA creativa y tasación de arte para autores y creadores.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Grupo Cultural Dauro",
+            "url": "https://grupodauro.com"
+          },
+          "areaServed": [
+            { "@type": "Place", "name": "España" },
+            { "@type": "Place", "name": "Europa" },
+            { "@type": "Place", "name": "Latinoamérica" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios Creativos",
+            "itemListElement": services.map(s => ({
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": s.title, "description": s.subtitle }
+            }))
+          }
+        }}
       />
       <Navigation />
       
