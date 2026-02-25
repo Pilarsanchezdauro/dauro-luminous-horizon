@@ -324,8 +324,13 @@ export default function Autoedicion() {
               Autoedición artesanal y tecnológica. Precios justos. Plazos a tu medida.
             </p>
             
-            <p className="text-lg text-primary font-medium mb-8">
+            <p className="text-lg text-primary font-medium mb-4">
               "Tu libro, con calidad de bestseller. Si nos enamora tu obra, la editamos sin coste para ti."
+            </p>
+
+            <p className="text-base text-muted-foreground mb-8 flex items-center justify-center gap-2">
+              <Globe className="w-5 h-5 text-primary flex-shrink-0" />
+              <span>Tus libros disponibles en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -351,7 +356,7 @@ export default function Autoedicion() {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Calidad bestseller</h3>
               <p className="text-muted-foreground">
-                Maquetación profesional, portada de autor, ISBN, distribución real en todas las plataformas.
+                Maquetación profesional, portada de autor, ISBN y distribución real en <strong className="text-foreground">11 países</strong> de Europa, EE.UU. y Latinoamérica.
               </p>
             </div>
 
