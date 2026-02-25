@@ -103,7 +103,7 @@ const Tienda = () => {
                   <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
                     Ediciones Dauro
                   </span>
-                  <span className="text-sm text-muted-foreground">Shopify · Catálogo completo</span>
+                  <span className="text-sm text-muted-foreground">Catálogo completo</span>
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </Link>
@@ -203,7 +203,7 @@ const Tienda = () => {
                   )}
 
                   {c.expanding && !c.note && (
-                    <p className="text-xs text-muted-foreground italic">Construyendo red de ventas</p>
+                    <p className="text-xs text-muted-foreground italic">Disponible próximamente</p>
                   )}
                 </div>
               ))}
