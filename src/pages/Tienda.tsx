@@ -96,23 +96,38 @@ const Tienda = () => {
               <h2 id="compra-directa" className="text-2xl md:text-3xl font-bold text-foreground">Compra directa</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Nuestra tienda propia con todo el catálogo, gestionada directamente por Grupo Dauro. Atención personalizada y envío desde España.
+              Nuestras tiendas propias con todo el catálogo, gestionadas directamente por Grupo Dauro. Atención personalizada y envío desde España.
             </p>
-            <a
-              href="https://grupodauro.com/catalogo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300 max-w-xl"
-            >
-              <span className="text-5xl">🇪🇸</span>
-              <div className="flex-1">
-                <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
-                  Ediciones Dauro
-                </span>
-                <span className="text-sm text-muted-foreground">grupodauro.com · Envío desde España</span>
-              </div>
-              <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-            </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+              <a
+                href="https://grupodauro.com/catalogo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
+              >
+                <span className="text-5xl">🇪🇸</span>
+                <div className="flex-1">
+                  <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
+                    Ediciones Dauro
+                  </span>
+                  <span className="text-sm text-muted-foreground">grupodauro.com · Catálogo completo</span>
+                </div>
+                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+              </a>
+              <a
+                href="/shop"
+                className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
+              >
+                <span className="text-5xl">🛒</span>
+                <div className="flex-1">
+                  <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
+                    Tienda Online
+                  </span>
+                  <span className="text-sm text-muted-foreground">Compra directa con envío desde España</span>
+                </div>
+                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+              </a>
+            </div>
           </section>
 
           {/* Distribución internacional */}

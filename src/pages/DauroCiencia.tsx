@@ -123,7 +123,7 @@ const PROCESS_STEPS = [
 ];
 
 const WHY_DAURO = [
-  "Más de 1.000 libros publicados",
+  "Más de 2.000 obras publicadas",
   "26 años de experiencia editorial",
   "Distribución en +4.000 librerías",
   "Revisión científica especializada",
