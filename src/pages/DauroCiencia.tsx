@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import DauroCienciaBooks from "@/components/DauroCienciaBooks";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -334,51 +334,60 @@ export default function DauroCiencia() {
 
   return (
     <>
-      <Helmet>
-        <title>Dauro Ciencia | Sello Editorial Científico con Evaluación Ampliada</title>
-        <meta
-          name="description"
-          content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados. ISBN, distribución internacional y visibilidad para tu investigación."
-        />
-        <meta 
-          name="keywords" 
-          content="publicar tesis doctoral, editorial universitaria, editorial académica, publicar investigación, editorial científica España, sello académico, Dauro Ciencia, evaluación científica"
-        />
-        <meta name="author" content="Ediciones Dauro - Grupo Cultural Dauro" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://grupodauro.com/dauro-ciencia" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://grupodauro.com/dauro-ciencia" />
-        <meta property="og:title" content="Dauro Ciencia | Sello Editorial Científico con Evaluación Ampliada" />
-        <meta
-          property="og:description"
-          content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados. ISBN, distribución internacional y visibilidad para tu trabajo."
-        />
-        <meta property="og:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
-        <meta property="og:locale" content="es_ES" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dauro Ciencia | Sello Editorial Científico" />
-        <meta name="twitter:description" content="Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos." />
-        <meta name="twitter:image" content="https://grupodauro.com/og-dauro-ciencia.jpg" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
+      <SEO
+        title="Dauro Ciencia | Publicar Tesis Doctoral e Investigación Científica"
+        description="Publica tu tesis doctoral o investigación con sello académico. Evaluación por expertos con agentes tecnológicos. ISBN, distribución en Europa, EE.UU. y Latinoamérica."
+        keywords="publicar tesis doctoral, editorial universitaria, editorial académica, publicar investigación, editorial científica España, sello académico, Dauro Ciencia, evaluación científica, publicar TFG, publicar TFM"
+        url="https://grupodauro.com/dauro-ciencia"
+        image="https://grupodauro.com/og-dauro-ciencia.jpg"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "Dauro Ciencia",
+          "description": "Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados.",
+          "url": "https://grupodauro.com/dauro-ciencia",
+          "logo": "https://grupodauro.com/dauro-ciencia-logo.png",
+          "parentOrganization": {
             "@type": "Organization",
-            "name": "Dauro Ciencia",
-            "description": "Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados.",
-            "url": "https://grupodauro.com/dauro-ciencia",
-            "logo": "https://grupodauro.com/dauro-ciencia-logo.png",
-            "parentOrganization": {
-              "@type": "Organization",
-              "name": "Grupo Cultural Dauro",
-              "url": "https://grupodauro.com"
-            }
-          })}
-        </script>
-      </Helmet>
+            "name": "Grupo Cultural Dauro",
+            "url": "https://grupodauro.com"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios Académicos",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Publicación de Tesis Doctorales",
+                  "description": "Publicación profesional de tesis doctorales con ISBN, evaluación académica y distribución internacional"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Publicación de Investigaciones Científicas",
+                  "description": "Edición y publicación de trabajos de investigación con sello académico certificado"
+                }
+              }
+            ]
+          }
+        }}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": FAQ_ITEMS.map(item => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+          }
+        }))
+      }) }} />
 
       <Navigation />
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight, User } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 
 interface BookInfo {
   title: string;
@@ -47,12 +47,12 @@ const authors: AuthorInfo[] = [
 const WebsDeLibrosIndex = () => {
   return (
     <>
-      <Helmet>
-        <title>Webs de Libros | Grupo Dauro Cultural</title>
-        <meta name="description" content="Páginas web dedicadas a libros de nuestros autores. Descubre las obras de Editorial Dauro con sus landings exclusivas." />
-        <meta property="og:title" content="Webs de Libros | Grupo Dauro Cultural" />
-        <meta property="og:description" content="Páginas web dedicadas a libros de nuestros autores." />
-      </Helmet>
+      <SEO
+        title="Webs de Libros | Páginas Web Exclusivas para Autores"
+        description="Landing pages exclusivas para libros de nuestros autores. Cada obra merece su propio espacio digital con reseñas, extractos y compra directa."
+        keywords="webs de libros, landing page libro, página web autor, marketing editorial, promoción libros online"
+        url="https://grupodauro.com/webs-de-libros"
+      />
 
       <Navigation />
       

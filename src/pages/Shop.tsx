@@ -493,11 +493,11 @@ export default function Shop() {
   return (
     <>
       <SEO
-        title="Tienda - Obras Destacadas"
-        description="Descubre nuestra colección de productos culturales: libros, arte y NFTs. Ediciones Dauro, editorial independiente de Granada especializada en literatura andaluza."
-        keywords="tienda, libros, editorial Dauro, comprar libros online, literatura Granada, arte, NFTs culturales"
+        title="Librería Online | Comprar Libros - Editorial Dauro"
+        description="Compra libros de narrativa, poesía, ensayo e historia en la librería online de Editorial Dauro. Envío a toda España. Más de 2000 títulos disponibles."
+        keywords="comprar libros online, librería online, libros narrativa, libros poesía, libros ensayo, editorial Dauro, libros Granada, literatura española, novela histórica"
         image="https://grupodauro.com/og-image.jpg"
-        url="https://grupodauro.com/tienda"
+        url="https://grupodauro.com/shop"
         structuredData={structuredData}
       />
 

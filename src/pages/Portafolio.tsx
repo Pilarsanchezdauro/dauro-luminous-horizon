@@ -123,9 +123,17 @@ export default function Portafolio() {
   return (
     <>
       <SEO
-        title="Portafolio de Proyectos"
-        description="Descubre nuestros proyectos creativos en YouTube, web, diseño gráfico y guiones. Un portafolio completo de trabajos realizados para diferentes clientes."
-        keywords="portafolio, proyectos, trabajos, youtube, web, diseño, guiones, creatividad"
+        title="Portafolio Creativo | Webs, Booktrailers, Diseño y Branding"
+        description="Explora nuestro portafolio de proyectos creativos: webs de libros, booktrailers, diseño de portadas, imagen corporativa, producción musical y pintura."
+        keywords="portafolio creativo, diseño editorial, booktrailers, webs de libros, imagen corporativa, diseño portadas, producción musical, pintura, branding cultural"
+        url="https://grupodauro.com/portafolio"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Portafolio Creativo - Grupo Cultural Dauro",
+          "url": "https://grupodauro.com/portafolio",
+          "description": "Portafolio de proyectos creativos realizados por Grupo Cultural Dauro: webs, booktrailers, diseño gráfico, branding y producción audiovisual."
+        }}
       />
       <div className="min-h-screen">
         <Navigation />
