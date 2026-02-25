@@ -26,6 +26,7 @@ const Servicios = () => {
         "Corrección de estilo",
         "ISBN y registro legal",
         "Publicación impresa y digital",
+        "Distribución global en 11 países",
       ],
       aplicaciones: [
         "Libros de autor",
@@ -42,6 +43,7 @@ Cada obra pasa por un flujo completo de:
 — Diseño gráfico, maquetación y preparación de archivos.
 — Gestión de ISBN, depósito legal y distribución.
 — Publicación en formato impreso, digital y audiolibro.
+— Distribución internacional en 11 países: Europa, EE.UU. y Latinoamérica, con envío local en cada país.
 
 En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calidad y profesionalidad que merece cada proyecto literario.`,
     },
