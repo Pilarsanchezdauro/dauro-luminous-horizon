@@ -55,7 +55,7 @@ const FEATURED_AUTHORS = [
 ];
 
 const WHY_DAURO = [
-  'Más de 1.000 libros publicados',
+  'Más de 2.000 obras publicadas',
   'Autores premiados en el catálogo (Premio Andalucía de la Crítica, entre otros)',
   'Equipo editorial profesional con trato directo',
   'Financiación en 2 plazos sin intereses',
@@ -307,7 +307,7 @@ export default function Autoedicion() {
               </div>
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <BookOpen className="w-4 h-4" />
-                +1.000 libros publicados
+                +2.000 obras publicadas
               </div>
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <Trophy className="w-4 h-4" />
@@ -496,9 +496,9 @@ export default function Autoedicion() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">+1.000 Libros</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2">+2.000 Obras</h3>
                 <p className="text-muted-foreground text-sm">
-                  Un catálogo con más de mil títulos publicados de todos los géneros
+                  Un catálogo con más de dos mil títulos publicados de todos los géneros
                 </p>
               </div>
             </div>
