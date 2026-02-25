@@ -109,8 +109,8 @@ const App = () => (
             <Route path="/grupo-dauro/ia" element={<IA />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/tienda" element={<Tienda />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/producto/:handle" element={<ProductDetail />} />
             <Route path="/tienda/producto/:handle" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/stats" element={<BlogStats />} />
