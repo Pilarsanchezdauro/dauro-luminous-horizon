@@ -44,7 +44,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
       { name: "Mercado Libre" },
       { name: "Buscalibre" },
     ],
-    note: "También presentamos el catálogo a librerías independientes.",
+    note: "También disponible en librerías independientes.",
     storeUrl: "https://mexico.grupodauro.com",
   },
   {
@@ -68,7 +68,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     channels: [
       { name: "Librería Piedrasanta" },
     ],
-    note: "Seguimos presentando el catálogo para incorporar nuevas librerías.",
+    note: "Próximamente en más librerías.",
     storeUrl: "https://guatemala.grupodauro.com",
   },
   {
@@ -103,7 +103,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
       { name: "Recursos Bíblicos" },
       { name: "Bodeguita Cultural" },
     ],
-    note: "El catálogo sigue siendo presentado para sumar nuevas librerías.",
+    note: "Próximamente en más librerías.",
     storeUrl: "https://costarica.grupodauro.com",
   },
   {
@@ -112,7 +112,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     short: "Chile",
     distributor: "Dpiprint",
     channels: [],
-    note: "Estamos presentando el catálogo a librerías.",
+    note: "Próximamente en librerías.",
     expanding: true,
     storeUrl: "https://chile.grupodauro.com",
   },
@@ -122,7 +122,7 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     short: "Venezuela",
     distributor: "Araca",
     channels: [],
-    note: "Presentando el catálogo para sumar nuevas librerías.",
+    note: "Próximamente en más librerías.",
     expanding: true,
     storeUrl: "https://venezuela.grupodauro.com",
   },
