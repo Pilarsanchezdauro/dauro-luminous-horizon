@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss, MessageCircle } from "lucide-react";
+import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss, MessageCircle, Globe } from "lucide-react";
 import logoNega from "@/assets/logo-nega.png";
 import logoBpwMadrid from "@/assets/logo-bpw-madrid.png";
 import logoIwfSpain from "@/assets/logo-iwf-spain.png";
+import { ACTIVE_COUNTRIES, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
 
 const Footer = () => {
   return (
@@ -208,6 +209,29 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Distribución internacional */}
+        <div className="pt-8 border-t border-background/20 mb-8">
+          <div className="flex items-center gap-2 mb-4">
+            <Globe className="h-4 w-4 text-primary" />
+            <h4 className="font-semibold text-sm text-primary">Distribución en {TOTAL_COUNTRIES} países</h4>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2 text-xs text-background/70 mb-4">
+            {ACTIVE_COUNTRIES.map((c) => (
+              <div key={c.country} className="flex items-center gap-1.5">
+                <span>{c.flag}</span>
+                <span className="font-medium text-background/90">{c.short}</span>
+                <span className="text-background/50">— {c.distributor}</span>
+              </div>
+            ))}
+          </div>
+          <Link
+            to="/tienda"
+            className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+          >
+            Ver todos los puntos de venta →
+          </Link>
         </div>
 
         {/* Bottom bar */}
