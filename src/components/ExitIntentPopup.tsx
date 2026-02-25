@@ -91,7 +91,7 @@ export const ExitIntentPopup = () => {
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">🌍</span>
-              <span>Tus libros disponibles en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
+              <span>Tus libros disponibles en <strong className="text-foreground">toda Europa, EE.UU. y Latinoamérica</strong></span>
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>

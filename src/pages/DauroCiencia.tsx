@@ -934,13 +934,18 @@ export default function DauroCiencia() {
                     <p className="text-xs text-muted-foreground">Europa</p>
                   </div>
                   <div className="p-3 bg-muted/50 rounded-lg text-center">
-                    <p className="font-semibold text-sm">Libros.cc</p>
-                    <p className="text-xs text-muted-foreground">Especializado</p>
+                    <p className="font-semibold text-sm">🇪🇺 Europa</p>
+                    <p className="text-xs text-muted-foreground">Distribución local</p>
                   </div>
                   <div className="p-3 bg-muted/50 rounded-lg text-center">
-                    <p className="font-semibold text-sm">Logista</p>
-                    <p className="text-xs text-muted-foreground">Distribución</p>
+                    <p className="font-semibold text-sm">🌎 Latinoamérica</p>
+                    <p className="text-xs text-muted-foreground">12 países</p>
                   </div>
+                </div>
+                <div className="mt-4">
+                  <Link to="/tienda" className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold hover:underline">
+                    Ver red completa de distribución <ExternalLink className="w-4 h-4" />
+                  </Link>
                 </div>
               </Card>
             </div>

@@ -224,7 +224,7 @@ const Editorial = () => {
               Distribución Global
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center mb-8 max-w-3xl mx-auto relative z-10">
-              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online. Además, contamos con <strong className="text-foreground">distribución directa en 11 países</strong> de Europa, Estados Unidos y Latinoamérica.
+              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online. Además, contamos con <strong className="text-foreground">distribución directa en toda Europa (excepto Reino Unido), Estados Unidos y Latinoamérica</strong> a través de distribuidores locales en cada país.
             </p>
             <div className="flex flex-wrap justify-center gap-6 relative z-10 mb-8">
               <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
