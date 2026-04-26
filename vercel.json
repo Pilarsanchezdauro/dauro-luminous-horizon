@@ -1,32 +1,14 @@
 {
-  "buildCommand": "npm run build && node scripts/prerender-pages.js && node scripts/prerender-blog.js",
-  "outputDirectory": "dist",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/feed.xml",
-      "dest": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
-    },
-    {
-      "src": "/rss.xml",
-      "dest": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/og-(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    }
-  ]
+    "buildCommand": "npm run build && node scripts/prerender-pages.js && node scripts/prerender-blog.js",
+    "outputDirectory": "dist",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+          { "source": "/feed.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },
+          { "source": "/rss.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },
+          { "source": "/((?!api/).*)", "destination": "/index.html" }
+    ],
+    "headers": [
+          { "source": "/og-(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+    ]
 }
