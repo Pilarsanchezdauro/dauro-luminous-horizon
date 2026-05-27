@@ -94,6 +94,7 @@ const Tienda = () => {
               Nuestras tiendas propias con todo el catálogo, gestionadas directamente por Grupo Dauro. Atención personalizada y envío desde España.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+              {/* Ambos botones abren la tienda Odoo (tiendaspain.grupodauro.com) en pestaña nueva */}
               <a
                 href="https://tiendaspain.grupodauro.com/"
                 target="_blank"
