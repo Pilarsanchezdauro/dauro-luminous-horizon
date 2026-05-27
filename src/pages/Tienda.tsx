@@ -94,8 +94,10 @@ const Tienda = () => {
               Nuestras tiendas propias con todo el catálogo, gestionadas directamente por Grupo Dauro. Atención personalizada y envío desde España.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-              <Link
-                to="/shop"
+              <a
+                href="https://tiendaspain.grupodauro.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
               >
                 <span className="text-5xl">🇪🇸</span>
@@ -106,9 +108,11 @@ const Tienda = () => {
                   <span className="text-sm text-muted-foreground">Catálogo completo</span>
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </Link>
-              <Link
-                to="/shop"
+              </a>
+              <a
+                href="https://tiendaspain.grupodauro.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
               >
                 <ShoppingCart className="h-12 w-12 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -119,7 +123,7 @@ const Tienda = () => {
                   <span className="text-sm text-muted-foreground">Compra directa con envío desde España</span>
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </Link>
+              </a>
             </div>
           </section>
 
