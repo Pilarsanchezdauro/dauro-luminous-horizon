@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, User } from "lucide-react";
+import { BookOpen, ArrowRight, User, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -9,6 +9,8 @@ interface BookInfo {
   slug: string;
   cover: string;
   description: string;
+  /** Si está definido, la tarjeta enlaza a este sitio externo en una pestaña nueva. */
+  external?: string;
 }
 
 interface AuthorInfo {
@@ -18,6 +20,19 @@ interface AuthorInfo {
 }
 
 const authors: AuthorInfo[] = [
+  {
+    name: "Tony de Haro",
+    slug: "tony-de-haro",
+    books: [
+      {
+        title: "Pelayo · Leyenda y Vida I",
+        slug: "pelayo",
+        cover: "/webs-libros/pelayo/portada.jpg",
+        description: "Novela histórica. Caída y nacimiento de imperios entre los siglos VII y VIII: el origen del hombre antes que la leyenda.",
+        external: "https://pelayo.grupodauro.com"
+      }
+    ]
+  },
   {
     name: "Carlos Blanco",
     slug: "carlos-blanco",
@@ -98,33 +113,53 @@ const WebsDeLibrosIndex = () => {
 
                   {/* Books Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {author.books.map((book) => (
-                      <Link
-                        key={book.slug}
-                        to={`/webs-de-libros/${author.slug}/${book.slug}`}
-                        className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                      >
-                        <div className="aspect-[3/4] overflow-hidden">
-                          <img
-                            src={book.cover}
-                            alt={book.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        <div className="p-6">
-                          <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-                            {book.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            {book.description}
-                          </p>
-                          <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                            <span>Ver landing</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    {author.books.map((book) => {
+                      const cardClass = "group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10";
+                      const inner = (
+                        <>
+                          <div className="aspect-[3/4] overflow-hidden">
+                            <img
+                              src={book.cover}
+                              alt={book.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                          <div className="p-6">
+                            <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+                              {book.title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              {book.description}
+                            </p>
+                            <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                              <span>{book.external ? "Visitar la web" : "Ver landing"}</span>
+                              {book.external
+                                ? <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+                            </div>
+                          </div>
+                        </>
+                      );
+                      return book.external ? (
+                        <a
+                          key={book.slug}
+                          href={book.external}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={cardClass}
+                        >
+                          {inner}
+                        </a>
+                      ) : (
+                        <Link
+                          key={book.slug}
+                          to={`/webs-de-libros/${author.slug}/${book.slug}`}
+                          className={cardClass}
+                        >
+                          {inner}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
