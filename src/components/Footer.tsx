@@ -126,7 +126,19 @@ const Footer = () => {
                 <Mail className="h-4 w-4" />
                 info@grupodauro.com
               </a>
-              
+
+              {/* WhatsApp chat directo (escríbenos) */}
+              <a
+                href="https://wa.me/34640919090?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-background/70 hover:text-[#25D366] transition-colors"
+                aria-label="Escríbenos por WhatsApp al 640 919 090"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp: 640 919 090
+              </a>
+
               {/* WhatsApp Channel CTA */}
               <a
                 href="https://whatsapp.com/channel/0029Vb7T73a2v1Iv9rL0U33K"
