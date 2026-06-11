@@ -72,7 +72,7 @@ const Privacidad = () => {
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">2. Finalidad del tratamiento de datos</h2>
                 <p className="mb-4">
-                  En Grupo Dauro Limited tratamos la información que nos facilitan las personas interesadas con las siguientes finalidades:
+                  En Grupo Dauro tratamos la información que nos facilitan las personas interesadas con las siguientes finalidades:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                   <li>Gestionar las consultas y solicitudes realizadas a través de nuestros formularios de contacto</li>
@@ -136,7 +136,7 @@ const Privacidad = () => {
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">7. Derechos del interesado</h2>
                 <p className="mb-4 text-muted-foreground">
-                  Cualquier persona tiene derecho a obtener confirmación sobre si en Grupo Dauro Limited 
+                  Cualquier persona tiene derecho a obtener confirmación sobre si en Grupo Dauro 
                   estamos tratando datos personales que les conciernan, o no. Las personas interesadas 
                   tienen derecho a:
                 </p>
@@ -163,7 +163,7 @@ const Privacidad = () => {
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">8. Seguridad de los datos</h2>
                 <p className="text-muted-foreground">
-                  Grupo Dauro Limited ha adoptado las medidas técnicas y organizativas necesarias para 
+                  Grupo Dauro ha adoptado las medidas técnicas y organizativas necesarias para 
                   garantizar la seguridad e integridad de los datos de carácter personal que trata, así 
                   como para evitar su pérdida, alteración y/o acceso por parte de terceros no autorizados.
                 </p>
@@ -183,7 +183,7 @@ const Privacidad = () => {
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">10. Actualización de la política</h2>
                 <p className="text-muted-foreground">
-                  Grupo Dauro Limited se reserva el derecho a modificar la presente Política de Privacidad 
+                  Grupo Dauro se reserva el derecho a modificar la presente Política de Privacidad 
                   para adaptarla a novedades legislativas o jurisprudenciales, así como a prácticas de la industria. 
                   En dichos supuestos, anunciará en esta página los cambios introducidos con razonable antelación 
                   a su puesta en práctica.
