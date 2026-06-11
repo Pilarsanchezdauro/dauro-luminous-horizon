@@ -48,7 +48,7 @@ const Privacidad = () => {
               <section className="bg-card p-6 rounded-xl border border-border">
                 <h2 className="text-2xl font-playfair font-bold mb-4">1. Responsable del tratamiento</h2>
                 <div className="space-y-3 text-card-foreground">
-                  <p><strong>Identidad:</strong> Grupo Dauro Limited</p>
+                  <p><strong>Identidad:</strong> LEGAL INTERNATIONAL &amp; FINANCES EXPERTS GROUP, S.L. (Grupo Dauro) · NIF B-19661685</p>
                   <div className="flex items-start gap-2">
                     <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <p><strong>Dirección:</strong> Calle Almajara 11, 18008 Granada, España</p>
@@ -60,6 +60,10 @@ const Privacidad = () => {
                   <div className="flex items-center gap-2">
                     <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                     <p><strong>Teléfono:</strong> <a href="tel:+34958281183" className="text-primary hover:underline">+34 958 28 11 83</a></p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-5 w-5 text-primary flex-shrink-0" />
+                    <p><strong>Contacto de Protección de Datos (Dauro Guard):</strong> <a href="mailto:dpo@grupodauro.com" className="text-primary hover:underline">dpo@grupodauro.com</a></p>
                   </div>
                 </div>
               </section>
@@ -146,7 +150,7 @@ const Privacidad = () => {
                   <li><strong>Retirar el consentimiento</strong> prestado en cualquier momento</li>
                 </ul>
                 <p className="mt-4 text-muted-foreground">
-                  Para ejercer estos derechos, puede contactar con nosotros en <a href="mailto:info@grupodauro.com" className="text-primary hover:underline">info@grupodauro.com</a> o 
+                  Para ejercer estos derechos, puede contactar con nuestro responsable de protección de datos (Dauro Guard) en <a href="mailto:dpo@grupodauro.com" className="text-primary hover:underline">dpo@grupodauro.com</a> o
                   en la dirección postal indicada anteriormente, adjuntando copia de su DNI o documento equivalente.
                 </p>
                 <p className="mt-4 text-muted-foreground">
