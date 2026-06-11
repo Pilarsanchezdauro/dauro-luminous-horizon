@@ -49,7 +49,7 @@ const Terminos = () => {
                 <h2 className="text-2xl font-playfair font-bold mb-4">1. Información general</h2>
                 <p className="text-muted-foreground">
                   Los presentes términos y condiciones (en adelante, "Términos") regulan el acceso y uso del 
-                  sitio web grupodauro.com (en adelante, el "Sitio Web"), propiedad de Grupo Dauro Limited 
+                  sitio web grupodauro.com (en adelante, el "Sitio Web"), propiedad de LEGAL INTERNATIONAL &amp; FINANCES EXPERTS GROUP, S.L.
                   (en adelante, "Grupo Dauro", "nosotros" o "nuestro").
                 </p>
                 <p className="mt-4 text-muted-foreground">
@@ -62,7 +62,7 @@ const Terminos = () => {
               <section className="bg-card p-6 rounded-xl border border-border">
                 <h2 className="text-2xl font-playfair font-bold mb-4">2. Datos del titular</h2>
                 <div className="space-y-3 text-card-foreground">
-                  <p><strong>Titular:</strong> Grupo Dauro Limited</p>
+                  <p><strong>Titular:</strong> LEGAL INTERNATIONAL &amp; FINANCES EXPERTS GROUP, S.L. (Grupo Dauro) · NIF B-19661685</p>
                   <div className="flex items-start gap-2">
                     <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <p><strong>Domicilio:</strong> Calle Almajara 11, 18008 Granada, España</p>
