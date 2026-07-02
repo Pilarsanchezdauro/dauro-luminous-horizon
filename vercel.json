@@ -2,6 +2,9 @@
         "buildCommand": "npm run build && node scripts/prerender-pages.js && node scripts/prerender-blog.js",
         "outputDirectory": "dist",
         "trailingSlash": false,
+        "redirects": [
+                  { "source": "/cartas", "destination": "https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026", "permanent": false }
+        ],
         "rewrites": [
                   { "source": "/feed.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },
                   { "source": "/rss.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },
