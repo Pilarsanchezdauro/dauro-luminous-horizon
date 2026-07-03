@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, User, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { blogPosts } from "@/data/blogData";
 
 const categoryLabels: Record<string, string> = {
   webs: "Desarrollo Web",
@@ -31,22 +32,8 @@ export const LatestWorks = () => {
     },
   });
 
-  // Fetch latest blog post
-  const { data: blogPost } = useQuery({
-    queryKey: ["latest-blog-post"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("status", "published")
-        .order("published_at", { ascending: false })
-        .limit(1)
-        .single();
-      
-      if (error) throw error;
-      return data;
-    },
-  });
+  // Latest blog post from the static blog data (same source as /blog)
+  const blogPost = blogPosts.find((post) => !post.hidden && post.slug);
 
   const hasContent = (projects && projects.length > 0) || blogPost;
 
@@ -56,7 +43,7 @@ export const LatestWorks = () => {
     <section className="my-32">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-          Últimos Trabajos
+          Noticias destacadas del Grupo
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           Descubre nuestros proyectos más recientes y publicaciones destacadas
@@ -114,10 +101,10 @@ export const LatestWorks = () => {
         {blogPost && (
           <Card className="group overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
             <Link to={`/blog/${blogPost.slug}`} className="block">
-              {blogPost.image_url && (
+              {blogPost.image && (
                 <div className="relative h-56 overflow-hidden bg-muted">
                   <img
-                    src={blogPost.image_url}
+                    src={blogPost.image}
                     alt={blogPost.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
@@ -131,11 +118,7 @@ export const LatestWorks = () => {
                   </Badge>
                   <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
-                    {new Date(blogPost.published_at || blogPost.created_at).toLocaleDateString('es-ES', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
+                    {blogPost.date}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
