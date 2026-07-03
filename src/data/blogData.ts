@@ -34,6 +34,61 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "«Cartas desde la otra orilla»: la primera novela de Carmen Puerta Extremera, un misterio de secretos de familia entre la Guerra Civil y el presente",
+    excerpt: "Un joven entierra a un abuelo al que apenas conoció y encuentra, en un cajón que debería estar vacío, cartas escritas en secreto durante medio siglo a una mujer llamada Ángela. La poeta Carmen Puerta Extremera debuta en la novela con una historia de misterio, memoria y amor que ya está a la venta en papel y ebook.",
+    date: "3 Julio 2026",
+    author: "Grupo Dauro",
+    image: "/blog/cartas-desde-la-otra-orilla.jpg",
+    ogImage: "/blog/cartas-desde-la-otra-orilla.jpg",
+    category: "literatura",
+    slug: "cartas-desde-la-otra-orilla-carmen-puerta-extremera",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026",
+    amazonLink: "https://www.amazon.es/dp/B0H7JSW6KK",
+    content: `## Hay cartas que cruzan el tiempo. Y secretos que una familia guarda durante generaciones.
+
+Cuando Ángel viaja a un pueblo perdido de Andalucía para enterrar a un abuelo al que apenas conoció, cree que solo serán tres días. Pero en la casa del muerto, en un cajón que debería estar vacío, aparece un sobre con un nombre de mujer —**Ángela**— y un puñado de cartas escritas en secreto a lo largo de medio siglo.
+
+¿Quién fue Ángela? ¿Por qué su abuelo le escribió toda la vida sin llegar a enviárselas? ¿Y por qué, en aquella vieja casa junto al río, Ángel empieza a sentir que no está nunca del todo solo?
+
+Así arranca **«Cartas desde la otra orilla»**, la primera novela de **Carmen Puerta Extremera**, que publicamos en Grupo Dauro con la ilusión de quien sabe que tiene entre manos una de esas historias que se leen con el corazón encogido.
+
+## Una novela de misterio y secretos de familia
+
+**«Cartas desde la otra orilla»** es una novela de misterio en el sentido más hondo: el que no va de detectives, sino de **secretos de familia**. A través de las cartas-poema que el abuelo escribió en secreto —de la **Guerra Civil española** al presente—, Ángel irá destejiendo una herida cosida a tres generaciones: la guerra, el hambre, los amores renunciados y los hijos criados por quien no los engendró.
+
+Dos fuerzas tiran de él a la vez. Una es **Miriam**, la nieta de la vieja nodriza: un amor inmediato y luminoso, envenenado por una sospecha que crece página a página. La otra es lo inexplicable: una respiración que no es la suya, una mano fría en la frente, una mujer que se aparece junto al río y se desvanece.
+
+> *«Lo que el tiempo calla, la memoria lo reclama.»*
+
+## La poeta que se atrevió con la novela
+
+**Carmen Puerta Extremera** (Cazorla, Jaén, 1963) escribe desde Navarra, donde echó raíces siendo niña. Poeta con **siete poemarios publicados** —entre ellos «La otra orilla», que conoció tres ediciones—, preside la Asociación Navarra de Escritoras y Escritores y cofundó Aldara Ediciones.
+
+Su debut en la narrativa tiene la prosa de una poeta: sensorial y contenida. Cada página está escrita con la precisión de quien lleva toda la vida pesando las palabras, y eso se nota en una historia donde la emoción nunca se desborda: se contiene, como los secretos.
+
+## Ficha del libro
+
+- **Título:** Cartas desde la otra orilla
+- **Autora:** Carmen Puerta Extremera
+- **Editorial:** Grupo Dauro
+- **ISBN:** 979-13-991166-6-3
+- **Formato papel:** 15 × 21 cm, rústica con solapas, 212 páginas — 17,00 €
+- **Ebook (EPUB y Kindle):** 7,99 €
+- **Género:** novela de misterio, secretos de familia, ficción contemporánea española
+
+## Dónde conseguirla
+
+- En [nuestra tienda](https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026), en papel y en [ebook](https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-ebook-18028)
+- En [Amazon](https://www.amazon.es/dp/B0H7JSW6KK), en papel y Kindle
+- En tu librería habitual (distribuye Quares)
+- Y toda la información, con las primeras páginas para hojear, en la web del libro: [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com)
+
+Si tienes un club de lectura, escríbenos: organizamos **encuentros con la autora**, presenciales u online, y tenemos guía de lectura disponible. Y si eres librero, [aquí tienes la ficha técnica](https://cartasdesdelaotraorilla.grupodauro.com/ficha-tecnica.pdf).
+
+*Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
+  },
+
+  {
     title: "La Singularidad Esencial: el libro que desafía todo lo que creías saber sobre el cambio personal",
     excerpt: "Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno. El nuevo libro de Pilar Sánchez propone un sistema probabilístico de 90 días para romper con tu vida anterior.",
     date: "29 Diciembre 2025",
