@@ -125,6 +125,26 @@ const BlogPost = () => {
 
   const metaTitle = post.metaTitle || post.title;
   const metaDescription = post.metaDescription || post.excerpt;
+  const imageAltText = post.imageAlt || post.title;
+
+  // Fecha en español ("3 Julio 2026") -> ISO ("2026-07-03") para los buscadores
+  const toIsoDate = (dateStr: string) => {
+    const months: Record<string, string> = {
+      enero: "01", febrero: "02", marzo: "03", abril: "04", mayo: "05", junio: "06",
+      julio: "07", agosto: "08", septiembre: "09", octubre: "10", noviembre: "11", diciembre: "12",
+    };
+    const parts = dateStr.toLowerCase().split(/\s+/).filter((p) => p !== "de");
+    if (parts.length >= 3) {
+      const day = parts[0].padStart(2, "0");
+      const month = months[parts[1]] || "01";
+      return `${parts[2]}-${month}-${day}`;
+    }
+    return new Date().toISOString().split("T")[0];
+  };
+  const isoDate = toIsoDate(post.date);
+  const ogImageType = (post.ogImage || post.image).toLowerCase().endsWith(".png")
+    ? "image/png"
+    : "image/jpeg";
 
   const getCategoryLabel = (category: string) => {
     const categoryMap: Record<string, string> = {
@@ -161,6 +181,8 @@ const BlogPost = () => {
     const imagePath = imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
     return `${baseUrl}${imagePath}`;
   };
+
+  const ogImageUrl = getAbsoluteImageUrl(post.ogImage || post.image);
 
   const handleShare = (platform: string) => {
     const shareUrl = getShareUrl();
@@ -213,24 +235,55 @@ const BlogPost = () => {
     }
   };
 
-  // Helper to parse inline markdown (bold, italic, links)
+  // Helper to parse inline markdown: **bold** y enlaces [texto](url).
+  // Los enlaces internos (empiezan por /) usan <Link> para SEO y navegación SPA;
+  // los externos usan <a target="_blank">. Esto es imprescindible para que los
+  // enlaces internos cuenten como tales de cara al posicionamiento.
   const parseInlineMarkdown = (text: string) => {
     const parts: (string | JSX.Element)[] = [];
     let remaining = text;
     let keyIndex = 0;
+    const pattern = /\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)]+)\)/;
 
     while (remaining.length > 0) {
-      // Bold **text**
-      const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
-      if (boldMatch && boldMatch.index !== undefined) {
-        if (boldMatch.index > 0) {
-          parts.push(remaining.slice(0, boldMatch.index));
+      const match = remaining.match(pattern);
+      if (match && match.index !== undefined) {
+        if (match.index > 0) {
+          parts.push(remaining.slice(0, match.index));
         }
-        parts.push(<strong key={keyIndex++}>{boldMatch[1]}</strong>);
-        remaining = remaining.slice(boldMatch.index + boldMatch[0].length);
+
+        if (match[1] !== undefined) {
+          // Negrita **texto**
+          parts.push(<strong key={keyIndex++}>{match[1]}</strong>);
+        } else {
+          // Enlace [texto](url)
+          const linkText = match[2];
+          const url = match[3];
+          if (url.startsWith("/") || url.startsWith("#")) {
+            parts.push(
+              <Link key={keyIndex++} to={url} className="text-primary hover:underline">
+                {linkText}
+              </Link>
+            );
+          } else {
+            parts.push(
+              <a
+                key={keyIndex++}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                {linkText}
+              </a>
+            );
+          }
+        }
+
+        remaining = remaining.slice(match.index + match[0].length);
         continue;
       }
-      
+
       // No more matches, add remaining text
       parts.push(remaining);
       break;
@@ -325,32 +378,35 @@ const BlogPost = () => {
       <Helmet>
         <title>{metaTitle} | Grupo Dauro</title>
         <meta name="description" content={metaDescription} />
+        {post.keywords && <meta name="keywords" content={post.keywords} />}
         <meta name="author" content={post.author} />
         <link rel="canonical" href={getShareUrl()} />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
         <meta property="og:url" content={getShareUrl()} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
-        <meta property="og:image:secure_url" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:secure_url" content={ogImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content={ogImageType} />
+        <meta property="og:image:alt" content={imageAltText} />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:site_name" content="Grupo Cultural Dauro" />
-        <meta property="article:published_time" content={post.date} />
+        <meta property="article:published_time" content={isoDate} />
+        <meta property="article:modified_time" content={isoDate} />
         <meta property="article:author" content={post.author} />
         <meta property="article:section" content={getCategoryLabel(post.category)} />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={getShareUrl()} />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={getAbsoluteImageUrl(post.ogImage || post.image)} />
-        <meta name="twitter:image:alt" content={post.title} />
+        <meta name="twitter:image" content={ogImageUrl} />
+        <meta name="twitter:image:alt" content={imageAltText} />
         
         {/* Structured Data / JSON-LD */}
         <script type="application/ld+json">
@@ -359,7 +415,7 @@ const BlogPost = () => {
              "@type": "Article",
              "headline": metaTitle,
              "description": metaDescription,
-             "image": getAbsoluteImageUrl(post.ogImage || post.image),
+             "image": ogImageUrl,
              "author": {
                "@type": "Organization",
                "name": post.author,
@@ -373,13 +429,28 @@ const BlogPost = () => {
                  "url": "https://grupodauro.com/og-logo.png",
                },
              },
-             "datePublished": post.date,
+             "datePublished": isoDate,
+             "dateModified": isoDate,
              "mainEntityOfPage": {
                "@type": "WebPage",
                "@id": getShareUrl(),
              },
              "articleSection": getCategoryLabel(post.category),
              "inLanguage": "es-ES",
+           })}
+        </script>
+
+        {/* Breadcrumbs para resultados enriquecidos de Google */}
+        <script type="application/ld+json">
+           {JSON.stringify({
+             "@context": "https://schema.org",
+             "@type": "BreadcrumbList",
+             "itemListElement": [
+               { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://grupodauro.com" },
+               { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://grupodauro.com/blog" },
+               { "@type": "ListItem", "position": 3, "name": getCategoryLabel(post.category), "item": `https://grupodauro.com/blog?categoria=${post.category}` },
+               { "@type": "ListItem", "position": 4, "name": post.title, "item": getShareUrl() },
+             ],
            })}
         </script>
       </Helmet>
@@ -400,7 +471,7 @@ const BlogPost = () => {
                 <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
                   <img
                     src={post.image}
-                    alt={`${post.title} - Artículo completo del blog Grupo Cultural Dauro`}
+                    alt={imageAltText}
                     width="1200"
                     height="630"
                     className="w-full h-full object-cover object-center"

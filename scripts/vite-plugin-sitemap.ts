@@ -39,22 +39,29 @@ function extractBlogPostsFromSource(rootDir: string) {
       return [];
     }
     
-    const posts: Array<{ title: string; date: string; slug: string; image?: string }> = [];
+    const posts: Array<{ title: string; date: string; slug: string; image?: string; imageTitle?: string; imageAlt?: string }> = [];
     const arrayContent = postsMatch[1];
     const postBlocks = arrayContent.split(/\n  \{/).slice(1);
-    
+
     postBlocks.forEach(block => {
-      const post: { title?: string; date?: string; slug?: string; image?: string } = {};
-      
+      const post: { title?: string; date?: string; slug?: string; image?: string; imageTitle?: string; imageAlt?: string } = {};
+
       const titleMatch = block.match(/title:\s*["'`]([^"'`]+)["'`]/);
       if (titleMatch) post.title = titleMatch[1];
-      
+
       const dateMatch = block.match(/date:\s*["'`]([^"'`]+)["'`]/);
       if (dateMatch) post.date = dateMatch[1];
-      
+
       const slugMatch = block.match(/slug:\s*["'`]([^"'`]+)["'`]/);
       if (slugMatch) post.slug = slugMatch[1];
-      
+
+      // Título conciso y alt para el sitemap de imágenes (SEO de Google Imágenes)
+      const metaTitleMatch = block.match(/metaTitle:\s*["'`]([^"'`]+)["'`]/);
+      post.imageTitle = metaTitleMatch ? metaTitleMatch[1] : post.title;
+
+      const imageAltMatch = block.match(/imageAlt:\s*["'`]([^"'`]+)["'`]/);
+      if (imageAltMatch) post.imageAlt = imageAltMatch[1];
+
       const ogImageMatch = block.match(/ogImage:\s*["'`]([^"'`]+)["'`]/);
       if (ogImageMatch) {
         post.image = ogImageMatch[1];
@@ -64,9 +71,9 @@ function extractBlogPostsFromSource(rootDir: string) {
           post.image = imageMatch[1];
         }
       }
-      
+
       if (post.title && post.slug && post.date) {
-        posts.push(post as { title: string; date: string; slug: string; image?: string });
+        posts.push(post as { title: string; date: string; slug: string; image?: string; imageTitle?: string; imageAlt?: string });
       }
     });
     
@@ -103,7 +110,7 @@ function escapeXml(text: string): string {
     .replace(/'/g, '&apos;');
 }
 
-function generateSitemap(blogPosts: Array<{ title: string; date: string; slug: string; image?: string }>): string {
+function generateSitemap(blogPosts: Array<{ title: string; date: string; slug: string; image?: string; imageTitle?: string; imageAlt?: string }>): string {
   const today = new Date().toISOString().split('T')[0];
   
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -130,22 +137,24 @@ function generateSitemap(blogPosts: Array<{ title: string; date: string; slug: s
 
   blogPosts.forEach(post => {
     const lastmod = parseSpanishDate(post.date);
-    const safeTitle = escapeXml(post.title);
-    
+    const safeImageTitle = escapeXml(post.imageTitle || post.title);
+    const safeCaption = escapeXml(post.imageAlt || post.title);
+
     xml += `  <url>
     <loc>${baseUrl}/blog/${post.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>`;
-    
+
     if (post.image) {
       xml += `
     <image:image>
       <image:loc>${baseUrl}${post.image}</image:loc>
-      <image:title>${safeTitle}</image:title>
+      <image:title>${safeImageTitle}</image:title>
+      <image:caption>${safeCaption}</image:caption>
     </image:image>`;
     }
-    
+
     xml += `
   </url>
 `;

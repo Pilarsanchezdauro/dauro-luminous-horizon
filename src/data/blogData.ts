@@ -20,6 +20,10 @@ export interface BlogPost {
   author: string;
   image: string;
   ogImage?: string; // Open Graph image URL (public path)
+  metaTitle?: string; // SEO <title> conciso (~60 car.); si falta se usa title
+  metaDescription?: string; // SEO meta description (~155 car.); si falta se usa excerpt
+  keywords?: string; // Palabras clave separadas por comas
+  imageAlt?: string; // Texto alternativo SEO de la imagen de portada
   category: BlogCategory;
   slug?: string;
   content?: string;
@@ -34,8 +38,63 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "«Pelayo. Leyenda y Vida I»: la novela histórica de Tony de Haro sobre el origen de la Reconquista y el nacimiento del Reino de Asturias",
+    excerpt: "Asturias, año 692. Un niño nace entre la nieve y un pueblo corea su nombre. Veinte años después plantará cara al mayor ejército del mundo. Tony de Haro debuta en la novela histórica con «Pelayo. Leyenda y Vida I», el origen de la Reconquista. Ya a la venta.",
+    date: "3 Julio 2026",
+    author: "Grupo Dauro",
+    image: "/blog/pelayo-leyenda-y-vida.jpg",
+    ogImage: "/blog/pelayo-leyenda-y-vida.jpg",
+    category: "literatura",
+    slug: "pelayo-leyenda-y-vida-tony-de-haro",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/pelayo-leyenda-y-vida-i-18016",
+    content: `## «¡He aquí a mi hijo Pelayo, vuestro futuro señor! ¡De él cantarán los juglares hazañas eternas!»
+
+Nadie creyó al padre. Debieron hacerlo.
+
+Asturias, año 692. La nieve cae sobre un recién nacido en una torre del norte mientras un pueblo entero corea su nombre. Veinte años después, ese niño cabalgará entre ciudades en llamas, cruzará un reino que se desgarra entre traiciones y conspiraciones, y plantará cara al ejército más poderoso que el mundo ha conocido.
+
+Así arranca **«Pelayo. Leyenda y Vida I»**, la primera novela de **Tony de Haro** y el comienzo de una gran saga histórica que publicamos en Grupo Dauro.
+
+## El origen de la Reconquista, en clave de gran novela histórica
+
+Mientras Pelayo crece —cazando lobos, aprendiendo en quién puede fiarse un hombre—, al otro lado del Estrecho se forja la tormenta perfecta: un conde cegado por la venganza abre las puertas de Hispania al invasor. Cuando el reino visigodo cae de rodillas, cuando los más valientes se rinden y los más poderosos huyen, un solo hombre decide que él no.
+
+> *«Un solo hombre decidió que él no. Que él jamás.»*
+
+**«Pelayo»** es una novela histórica monumental sobre el origen de la Reconquista y el nacimiento del Reino de Asturias: 690 páginas de épica, honor, traición y aventura, con el rigor de la investigación y el pulso de la mejor novela de aventuras.
+
+## La historia detrás del libro: un linaje que se remonta a Pelayo
+
+Detrás de esta novela hay una historia real casi tan asombrosa como la que cuenta. **Tony de Haro** —nombre literario de Antonio Domínguez— vive entre **Granada y Almuñécar desde niño**, y es hijo del **internacional pintor Antonio Domínguez de Haro**, [a quien despedimos hace poco en su Almuñécar natal](/blog/antonio-dominguez-de-haro-pintor-almunecar).
+
+Una **talla románica** y un viejo **sello de la Orden del Santo Sepulcro**, conservados en la familia, encendieron una investigación que reveló algo extraordinario: su **linaje materno se remonta al propio Pelayo**. De esa mezcla de herencia, arte e Historia nace esta novela.
+
+## Ficha del libro
+
+- **Título:** Pelayo. Leyenda y Vida I
+- **Autor:** Tony de Haro
+- **Editorial:** Grupo Dauro
+- **ISBN:** 979-13-991166-7-0
+- **Formato:** 15 × 21 cm, rústica con solapas, 690 páginas — 25,90 €
+- **Género:** novela histórica · saga «Leyenda y Vida» (vol. I)
+
+## Dónde conseguirla
+
+- En [nuestra tienda](https://tiendaspain.grupodauro.com/shop/pelayo-leyenda-y-vida-i-18016), en papel
+- En tu librería habitual (distribuye Quares)
+- Y toda la información, con las primeras páginas para hojear, en la web del libro: [pelayo.grupodauro.com](https://pelayo.grupodauro.com)
+
+Si tienes un club de lectura, escríbenos: organizamos **encuentros con el autor**, presenciales u online, y tenemos guía de lectura disponible.
+
+*Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
+  },
+  {
     title: "«Cartas desde la otra orilla»: la primera novela de Carmen Puerta Extremera, un misterio de secretos de familia entre la Guerra Civil y el presente",
     excerpt: "Un joven entierra a un abuelo al que apenas conoció y encuentra, en un cajón que debería estar vacío, cartas escritas en secreto durante medio siglo a una mujer llamada Ángela. La poeta Carmen Puerta Extremera debuta en la novela con una historia de misterio, memoria y amor que ya está a la venta en papel y ebook.",
+    metaTitle: "Cartas desde la otra orilla · Novela de Carmen Puerta",
+    metaDescription: "«Cartas desde la otra orilla», primera novela de Carmen Puerta Extremera: misterio y secretos de familia entre la Guerra Civil y hoy. En papel y ebook.",
+    keywords: "Cartas desde la otra orilla, Carmen Puerta Extremera, novela de misterio, secretos de familia, novela Guerra Civil, novela española 2026, misterio familiar, Grupo Dauro, comprar novela",
+    imageAlt: "Portada de «Cartas desde la otra orilla», novela de Carmen Puerta Extremera publicada por Grupo Dauro",
     date: "3 Julio 2026",
     author: "Grupo Dauro",
     image: "/blog/cartas-desde-la-otra-orilla.jpg",
@@ -50,7 +109,7 @@ Cuando Ángel viaja a un pueblo perdido de Andalucía para enterrar a un abuelo 
 
 ¿Quién fue Ángela? ¿Por qué su abuelo le escribió toda la vida sin llegar a enviárselas? ¿Y por qué, en aquella vieja casa junto al río, Ángel empieza a sentir que no está nunca del todo solo?
 
-Así arranca **«Cartas desde la otra orilla»**, la primera novela de **Carmen Puerta Extremera**, que publicamos en Grupo Dauro con la ilusión de quien sabe que tiene entre manos una de esas historias que se leen con el corazón encogido.
+Así arranca **«Cartas desde la otra orilla»**, la primera novela de **Carmen Puerta Extremera**, que publicamos en [Grupo Dauro](/grupo-dauro/editorial) con la ilusión de quien sabe que tiene entre manos una de esas historias que se leen con el corazón encogido.
 
 ## Una novela de misterio y secretos de familia
 
@@ -84,6 +143,11 @@ Su debut en la narrativa tiene la prosa de una poeta: sensorial y contenida. Cad
 - Y toda la información, con las primeras páginas para hojear, en la web del libro: [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com)
 
 Si tienes un club de lectura, escríbenos: organizamos **encuentros con la autora**, presenciales u online, y tenemos guía de lectura disponible. Y si eres librero, [aquí tienes la ficha técnica](https://cartasdesdelaotraorilla.grupodauro.com/ficha-tecnica.pdf).
+
+## Sigue descubriendo nuestro catálogo
+
+- ¿Otra novela recién nacida? Lee sobre [«Pelayo. Leyenda y Vida I», de Tony de Haro](/blog/pelayo-leyenda-y-vida-tony-de-haro), la novela histórica sobre el origen de la Reconquista.
+- ¿Eres autor y sueñas con publicar? Descubre cómo [editamos tu libro en Grupo Dauro](/grupo-dauro/editorial) y visita el [blog de la editorial](/blog).
 
 *Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
   },

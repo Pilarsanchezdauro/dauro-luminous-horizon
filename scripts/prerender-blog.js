@@ -37,7 +37,20 @@ function extractBlogPostsFromSource() {
     // Extract excerpt
     const excerptMatch = block.match(/excerpt:\s*["'`]([^"'`]+)["'`]/);
     if (excerptMatch) post.excerpt = excerptMatch[1];
-    
+
+    // SEO overrides opcionales (título/descr. concisos, keywords, alt de imagen)
+    const metaTitleMatch = block.match(/metaTitle:\s*["'`]([^"'`]+)["'`]/);
+    if (metaTitleMatch) post.metaTitle = metaTitleMatch[1];
+
+    const metaDescMatch = block.match(/metaDescription:\s*["'`]([^"'`]+)["'`]/);
+    if (metaDescMatch) post.metaDescription = metaDescMatch[1];
+
+    const keywordsMatch = block.match(/keywords:\s*["'`]([^"'`]+)["'`]/);
+    if (keywordsMatch) post.keywords = keywordsMatch[1];
+
+    const imageAltMatch = block.match(/imageAlt:\s*["'`]([^"'`]+)["'`]/);
+    if (imageAltMatch) post.imageAlt = imageAltMatch[1];
+
     // Extract date
     const dateMatch = block.match(/date:\s*["'`]([^"'`]+)["'`]/);
     if (dateMatch) post.date = dateMatch[1];
@@ -122,12 +135,12 @@ function getCategoryInSpanish(category) {
 
 function generateArticleStructuredData(post) {
   const isoDate = parseSpanishDate(post.date);
-  
-  return {
+
+  const article = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": post.title,
-    "description": post.excerpt,
+    "headline": post.metaTitle || post.title,
+    "description": post.metaDescription || post.excerpt,
     "image": `${baseUrl}${post.image}`,
     "author": {
       "@type": "Organization",
@@ -151,6 +164,25 @@ function generateArticleStructuredData(post) {
     "articleSection": getCategoryInSpanish(post.category),
     "inLanguage": "es-ES"
   };
+
+  if (post.keywords) {
+    article.keywords = post.keywords;
+  }
+
+  return article;
+}
+
+function generateBreadcrumbStructuredData(post) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": baseUrl },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog` },
+      { "@type": "ListItem", "position": 3, "name": getCategoryInSpanish(post.category), "item": `${baseUrl}/blog?categoria=${post.category}` },
+      { "@type": "ListItem", "position": 4, "name": post.title, "item": `${baseUrl}/blog/${post.slug}` }
+    ]
+  };
 }
 
 // Use SPA index.html as template so each blog post
@@ -166,61 +198,70 @@ try {
 }
 
 function generateBlogPostHTML(post) {
-  const safeTitle = escapeHtml(post.title);
-  const safeExcerpt = escapeHtml(post.excerpt);
+  // Título/descr. concisos para buscadores (fallback al largo si no hay override)
+  const safeTitle = escapeHtml(post.metaTitle || post.title);
+  const safeDescription = escapeHtml(post.metaDescription || post.excerpt);
+  const safeImageAlt = escapeHtml(post.imageAlt || post.title);
   const safeAuthor = escapeHtml(post.author || 'Grupo Dauro');
   const isoDate = parseSpanishDate(post.date);
   const structuredData = generateArticleStructuredData(post);
+  const breadcrumbData = generateBreadcrumbStructuredData(post);
   const url = `${baseUrl}/blog/${post.slug}`;
   const imageUrl = `${baseUrl}${post.image}`;
 
   let html = blogTemplateHtml;
- 
+
   // Remove any existing meta tags that we'll override so each article has a single, correct source of truth
   html = html
     .replace(/<link rel="canonical"[^>]*>\s*/g, '')
+    .replace(/<meta name="keywords"[^>]*>\s*/g, '')
     .replace(/<meta property="og:url"[^>]*>\s*/g, '')
     .replace(/<meta property="og:image[^"]*"[^>]*>\s*/g, '')
     .replace(/<meta name="twitter:url"[^>]*>\s*/g, '')
     .replace(/<meta name="twitter:image"[^>]*>\s*/g, '');
- 
+
   // Primary title and description
   html = html.replace(/<title>.*?<\/title>/, `<title>${safeTitle} | Grupo Dauro</title>`);
   html = html.replace(/<meta name="title"[^>]*>/, `<meta name="title" content="${safeTitle}" />`);
-  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeExcerpt}" />`);
+  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeDescription}" />`);
   html = html.replace(/<meta name="author"[^>]*>/, `<meta name="author" content="${safeAuthor}" />`);
 
 
   // Open Graph
   html = html.replace(/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="article" />`);
   html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${safeTitle}" />`);
-  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${safeExcerpt}" />`);
+  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${safeDescription}" />`);
 
   // Twitter
   html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${safeTitle}" />`);
-  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${safeExcerpt}" />`);
+  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${safeDescription}" />`);
+
+  const keywordsMeta = post.keywords ? `\n  <meta name="keywords" content="${escapeHtml(post.keywords)}" />` : '';
 
   const extraMeta = `
-  <link rel="canonical" href="${url}" />
+  <link rel="canonical" href="${url}" />${keywordsMeta}
   <meta property="og:url" content="${url}" />
   <meta property="og:image" content="${imageUrl}" />
   <meta property="og:image:secure_url" content="${imageUrl}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/${post.image.endsWith('.png') ? 'png' : 'jpeg'}" />
-  <meta property="og:image:alt" content="${safeTitle}" />
+  <meta property="og:image:alt" content="${safeImageAlt}" />
   <meta property="article:published_time" content="${isoDate}" />
   <meta property="article:modified_time" content="${isoDate}" />
   <meta property="article:author" content="${safeAuthor}" />
   <meta property="article:section" content="${getCategoryInSpanish(post.category)}" />
   <meta name="twitter:url" content="${url}" />
   <meta name="twitter:image" content="${imageUrl}" />
-  <meta name="twitter:image:alt" content="${safeTitle}" />
+  <meta name="twitter:image:alt" content="${safeImageAlt}" />
   `;
 
   const structuredDataScript = `
   <script type="application/ld+json">
 ${JSON.stringify(structuredData, null, 2)}
+  </script>
+  <script type="application/ld+json">
+${JSON.stringify(breadcrumbData, null, 2)}
   </script>`;
 
   const metaBlock = `${extraMeta}\n${structuredDataScript}`;
