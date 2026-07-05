@@ -74,9 +74,9 @@ const Navigation = () => {
         },
       ],
     },
-    // ————— 2 · CINE Y GUIONES —————
+    // ————— 2 · GUIONES —————
     {
-      name: "Cine y Guiones",
+      name: "Guiones",
       path: "/grupo-dauro/cine",
       submenu: [
         { name: "Dauro Cine", path: "/grupo-dauro/cine" },
