@@ -101,17 +101,6 @@ const Navigation = () => {
     { name: "Tecnología", path: "/grupo-dauro/ia" },
     { name: "Servicios", path: "/servicios" },
     {
-      name: "Portafolio",
-      path: "/portafolio",
-      submenu: [
-        { name: "Ver Todo", path: "/portafolio" },
-        { name: "Webs", path: "/portafolio?categoria=webs" },
-        { name: "Booktrailers", path: "/portafolio?categoria=booktrailers" },
-        { name: "Imagen Corporativa", path: "/portafolio?categoria=imagen-corporativa" },
-        { name: "Obras de Arte", path: "/portafolio?categoria=obras-arte" },
-      ],
-    },
-    {
       name: "Tienda",
       path: "/tienda",
       submenu: [
