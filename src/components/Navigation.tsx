@@ -52,23 +52,20 @@ const Navigation = () => {
 
   const menuItems: MenuItem[] = [
     { name: "Inicio", path: "/" },
+    // ————— 1 · LIBROS —————
     {
-      name: "Grupo Dauro",
-      path: "/grupo-dauro",
+      name: "Libros",
+      path: "/grupo-dauro/editorial",
       submenu: [
         { name: "Dauro Editorial", path: "/grupo-dauro/editorial" },
         { name: "Publica tu libro", path: "/autoedicion" },
         { name: "Dauro Ciencia", path: "/dauro-ciencia" },
-        { name: "Dauro Arte", path: "/grupo-dauro/arte" },
-        { name: "Dauro Cine", path: "/grupo-dauro/cine" },
-        { name: "Dauro Música", path: "/grupo-dauro/musica" },
-        { name: "Dauro IA", path: "/grupo-dauro/ia" },
-        { 
-          name: "Webs de Libros", 
+        {
+          name: "Webs de Libros",
           path: "/webs-de-libros",
           nestedSubmenu: [
-            { 
-              name: "Carlos Blanco", 
+            {
+              name: "Carlos Blanco",
               books: [
                 { name: "Leonardo da Vinci", path: "/webs-de-libros/carlos-blanco/leonardo-da-vinci" },
               ]
@@ -77,6 +74,31 @@ const Navigation = () => {
         },
       ],
     },
+    // ————— 2 · CINE Y GUIONES —————
+    {
+      name: "Cine y Guiones",
+      path: "/grupo-dauro/cine",
+      submenu: [
+        { name: "Dauro Cine", path: "/grupo-dauro/cine" },
+        { name: "El Hidalgo Don Rodrigo de Cervantes", path: "/grupo-dauro/cine" },
+        { name: "Latido", path: "/grupo-dauro/cine" },
+        { name: "El Huésped de las Tinieblas", path: "/grupo-dauro/cine" },
+        { name: "Dauro Música", path: "/grupo-dauro/musica" },
+      ],
+    },
+    // ————— 3 · ARTE —————
+    {
+      name: "Arte",
+      path: "/grupo-dauro/arte",
+      submenu: [
+        { name: "Dauro Arte", path: "/grupo-dauro/arte" },
+        { name: "Cantantes", path: "/portafolio?categoria=artistas-cantantes" },
+        { name: "Pintores", path: "/portafolio?categoria=artistas-pintores" },
+        { name: "Quiero ser representado", path: "/artistas/solicitud" },
+      ],
+    },
+    // ————— 4 · TECNOLOGÍA —————
+    { name: "Tecnología", path: "/grupo-dauro/ia" },
     { name: "Servicios", path: "/servicios" },
     {
       name: "Portafolio",
@@ -87,15 +109,6 @@ const Navigation = () => {
         { name: "Booktrailers", path: "/portafolio?categoria=booktrailers" },
         { name: "Imagen Corporativa", path: "/portafolio?categoria=imagen-corporativa" },
         { name: "Obras de Arte", path: "/portafolio?categoria=obras-arte" },
-      ],
-    },
-    {
-      name: "Artistas",
-      path: "/portafolio?categoria=artistas",
-      submenu: [
-        { name: "Cantantes", path: "/portafolio?categoria=artistas-cantantes" },
-        { name: "Pintores", path: "/portafolio?categoria=artistas-pintores" },
-        { name: "Quiero ser representado", path: "/artistas/solicitud" },
       ],
     },
     {

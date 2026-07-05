@@ -10,7 +10,6 @@ import { BookOpen, Calendar, User, Upload } from "lucide-react";
 import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
-import { LatestWorks } from "@/components/LatestWorks";
 import { NovedadesSection } from "@/components/NovedadesSection";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
 import { GlobalDistributionBanner } from "@/components/GlobalDistributionBanner";
@@ -125,175 +124,39 @@ const Index = () => {
         {/* Novedades Editoriales Section */}
         <NovedadesSection />
 
-        {/* Editorial Section */}
+        {/* 1 · LIBROS / Editorial Section */}
         <SectionCard
-          title="Publica tu Libro"
-          description="¿Eres escritor? Publicamos tu libro con distribución en 4000 librerías. Edición profesional, autoedición, maquetación y diseño de portadas. Más de 2000 autores confían en nosotros."
+          title="Libros que perduran"
+          description="Más de 2.000 obras publicadas y autores premiados. Editamos con criterio, distribuimos en 4.000 librerías de España y Portugal, y damos voz a grandes obras. ¿Tienes un manuscrito? Lo llevamos a las librerías."
           image={editorialBg}
           link="/autoedicion"
         />
 
-        {/* Arte Section */}
+        {/* 2 · GUIONES / Cine Section */}
         <SectionCard
-          title="Arte"
-          description="Promovemos el arte contemporáneo. Representamos artistas, organizamos exposiciones y creamos puentes entre creadores y coleccionistas."
-          image={arteBg}
-          link="/grupo-dauro/arte"
+          title="Guiones y Series"
+          description="Uno de nuestros fuertes. Guionistas de cine y televisión especializados en series y adaptaciones literarias. Desarrollamos biblias, guiones técnicos y preproducción para proyectos audiovisuales de primer nivel."
+          image={cineBg}
+          link="/grupo-dauro/cine"
           reversed
         />
 
-        {/* Cine Section */}
+        {/* 3 · ARTE / Representación Section */}
         <SectionCard
-          title="Cine"
-          description="Producimos y distribuimos contenido audiovisual de calidad. Apostamos por narrativas innovadoras que exploran nuevas formas de contar historias."
-          image={cineBg}
-          link="/grupo-dauro/cine"
+          title="Representación Artística"
+          description="Representamos obras y artistas de alto nivel. Gestión, promoción y venta de arte contemporáneo, con tasación, peritaje y certificación de autenticidad avalados por expertos."
+          image={arteBg}
+          link="/grupo-dauro/arte"
         />
 
-        {/* IA Section */}
+        {/* 4 · TECNOLOGÍA / IA Section */}
         <SectionCard
-          title="Inteligencia Artificial"
-          description="Exploramos las posibilidades creativas de la IA en el arte y la cultura. Desarrollamos proyectos que fusionan tecnología y expresión artística."
+          title="División Tecnológica · IA"
+          description="Nuestra división más nueva y en plena expansión. Creamos programas e integraciones con IA generativa, soluciones a medida para empresas y formación y cursos de inteligencia artificial."
           image={iaBg}
           link="/grupo-dauro/ia"
           reversed
         />
-
-        {/* Latest Works Section */}
-        <LatestWorks />
-
-        {/* Portfolio CTA Section - SEO Optimized */}
-        <section className="my-32">
-          <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 rounded-3xl p-8 md:p-16 overflow-hidden">
-            <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-            
-            <div className="max-w-5xl mx-auto relative z-10">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6">
-                  Descubre Nuestros Proyectos Destacados
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                  Explora nuestro portafolio de trabajos en desarrollo web, booktrailers, producción audiovisual, creación de avatares y más. Cada proyecto refleja nuestro compromiso con la calidad y la innovación.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">2000+</div>
-                  <h3 className="font-semibold mb-1">Libros Editados</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Obras literarias publicadas
-                  </p>
-                </div>
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">200+</div>
-                  <h3 className="font-semibold mb-1">Proyectos Web</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Sitios profesionales y aplicaciones
-                  </p>
-                </div>
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">300+</div>
-                  <h3 className="font-semibold mb-1">Booktrailers</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Videos promocionales creativos
-                  </p>
-                </div>
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">400+</div>
-                  <h3 className="font-semibold mb-1">Avatares & Branding</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Identidad visual corporativa
-                  </p>
-                </div>
-                <div className="bg-background/80 backdrop-blur-sm p-6 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all hover:scale-105">
-                  <div className="text-4xl font-bold text-primary mb-2">5000+</div>
-                  <h3 className="font-semibold mb-1">Informes Técnicos</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Análisis y documentación
-                  </p>
-                </div>
-              </div>
-
-              {/* Premios y Reconocimientos */}
-              <div className="mt-12 mb-10">
-                <h3 className="text-xl font-semibold text-center mb-6 text-muted-foreground">
-                  Premios y Reconocimientos
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="flex items-center gap-3 bg-gradient-to-br from-amber-500/10 to-amber-600/5 p-4 rounded-xl border border-amber-500/20 hover:border-amber-500/40 transition-all">
-                    <div className="bg-amber-500/20 p-3 rounded-lg">
-                      <svg className="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm">Premio Andalucía</p>
-                      <p className="text-xs text-muted-foreground">Crítica Literaria</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-4 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
-                    <div className="bg-blue-500/20 p-3 rounded-lg">
-                      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm">Certificación</p>
-                      <p className="text-xs text-muted-foreground">Calidad Editorial</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 bg-gradient-to-br from-purple-500/10 to-purple-600/5 p-4 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
-                    <div className="bg-purple-500/20 p-3 rounded-lg">
-                      <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm">Producción</p>
-                      <p className="text-xs text-muted-foreground">Audiovisual Premiada</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 bg-gradient-to-br from-green-500/10 to-green-600/5 p-4 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all">
-                    <div className="bg-green-500/20 p-3 rounded-lg">
-                      <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm">+25 Años</p>
-                      <p className="text-xs text-muted-foreground">Excelencia Cultural</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link to="/portafolio">
-                  <Button 
-                    size="lg" 
-                    className="text-lg px-8 py-6 h-auto w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
-                  >
-                    Ver Portafolio Completo
-                  </Button>
-                </Link>
-                <Link to="/solicitar-proyecto">
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="text-lg px-8 py-6 h-auto w-full sm:w-auto border-2 hover:border-primary/60 transition-all"
-                  >
-                    Solicita tu Proyecto
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* AI Tool CTA Section */}
         <section id="generador-portadas-gratis" className="my-32">
