@@ -80,9 +80,9 @@ const Navigation = () => {
       path: "/grupo-dauro/cine",
       submenu: [
         { name: "Dauro Cine", path: "/grupo-dauro/cine" },
-        { name: "El Hidalgo Don Rodrigo de Cervantes", path: "/grupo-dauro/cine" },
-        { name: "Latido", path: "/grupo-dauro/cine" },
-        { name: "El Huésped de las Tinieblas", path: "/grupo-dauro/cine" },
+        { name: "El Hidalgo Don Rodrigo de Cervantes", path: "/grupo-dauro/cine/el-hidalgo-don-rodrigo" },
+        { name: "Latido", path: "/grupo-dauro/cine/latido" },
+        { name: "El Huésped de las Tinieblas", path: "/grupo-dauro/cine/el-huesped-de-las-tinieblas" },
         { name: "Dauro Música", path: "/grupo-dauro/musica" },
       ],
     },

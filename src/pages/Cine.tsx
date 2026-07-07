@@ -223,11 +223,11 @@ const Cine = () => {
               Series en Desarrollo
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Actualmente trabajamos en la adaptación de dos novelas para formato serie
+              Tres grandes guiones de serie de novela histórica y drama, escritos y adaptados por nuestro equipo
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Serie 1 - El hidalgo don Rodrigo */}
             <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group">
               <div className="aspect-[16/9] overflow-hidden">
@@ -256,10 +256,10 @@ const Cine = () => {
                   <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
                 </div>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://www.youtube.com/@ElHidalgoDonRodrigodeCervantes" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <Link to="/grupo-dauro/cine/el-hidalgo-don-rodrigo" className="flex items-center gap-2">
                     <Film className="w-4 h-4" />
-                    Ver canal del proyecto
-                  </a>
+                    Ver la serie
+                  </Link>
                 </Button>
               </div>
             </Card>
@@ -292,10 +292,46 @@ const Cine = () => {
                   <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
                 </div>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://www.grupodauro.com/blog/presentacion-latido-carmen-alcaide" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    <ExternalLink className="w-4 h-4" />
-                    Ver presentación
-                  </a>
+                  <Link to="/grupo-dauro/cine/latido" className="flex items-center gap-2">
+                    <Film className="w-4 h-4" />
+                    Ver la serie
+                  </Link>
+                </Button>
+              </div>
+            </Card>
+
+            {/* Serie 3 - El Huésped de las Tinieblas */}
+            <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 group">
+              <div className="aspect-[16/9] overflow-hidden">
+                <img
+                  src="/dauro-cine-director.jpg"
+                  alt="El Huésped de las Tinieblas - Serie en desarrollo de Juan José Porto"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Tv className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium text-primary">Serie de TV</span>
+                </div>
+                <h3 className="text-2xl font-playfair font-bold mb-3">
+                  El Huésped de las Tinieblas
+                </h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Guion original de <strong className="text-foreground">Juan José Porto</strong>,
+                  director y supervisor creativo de Dauro Cine. Un nuevo proyecto de serie
+                  actualmente en desarrollo de la mano de un referente del cine español.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-4">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Drama</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Thriller</span>
+                  <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
+                </div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link to="/grupo-dauro/cine/el-huesped-de-las-tinieblas" className="flex items-center gap-2">
+                    <Film className="w-4 h-4" />
+                    Ver la serie
+                  </Link>
                 </Button>
               </div>
             </Card>

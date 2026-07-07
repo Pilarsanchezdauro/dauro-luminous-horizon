@@ -40,6 +40,24 @@ const pages = [
     image: '/og-cine.jpg'
   },
   {
+    path: 'grupo-dauro/cine/el-hidalgo-don-rodrigo',
+    title: 'El Hidalgo Don Rodrigo de Cervantes — Serie de Drama Histórico | Guion Dauro',
+    description: 'Serie de drama histórico basada en la novela de Francisco del Valle Sánchez. La infancia de Miguel de Cervantes y el origen de Don Quijote, en la España de Felipe II (1553–1556). Adaptación de guion de Pilar Sánchez para Grupo Cultural Dauro.',
+    image: '/og-don-rodrigo.png'
+  },
+  {
+    path: 'grupo-dauro/cine/latido',
+    title: 'Latido. Apasionadamente vuestro — Serie sobre la Transición | Guion Dauro',
+    description: 'Serie de drama, romance y thriller político basada en la novela de Carmen Alcaide. Amor y Historia en la España de la Transición (1973–1979). Adaptación de guion de Pilar Sánchez para Grupo Cultural Dauro.',
+    image: '/og-latido-presentacion.jpg'
+  },
+  {
+    path: 'grupo-dauro/cine/el-huesped-de-las-tinieblas',
+    title: 'El Huésped de las Tinieblas — Serie de Juan José Porto | Guion Dauro',
+    description: 'Nuevo proyecto de serie de Juan José Porto para Grupo Cultural Dauro. Actualmente en desarrollo. Drama y thriller de la mano de un referente del cine español.',
+    image: '/og-cine.jpg'
+  },
+  {
     path: 'grupo-dauro/ia',
     title: 'Dauro IA - Creatividad e Inteligencia Artificial',
     description: 'Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos.',

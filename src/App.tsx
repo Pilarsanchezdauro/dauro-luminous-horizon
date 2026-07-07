@@ -14,6 +14,7 @@ import GrupoDauro from "./pages/GrupoDauro";
 import Editorial from "./pages/Editorial";
 import Arte from "./pages/Arte";
 import Cine from "./pages/Cine";
+import GuionSerie from "./pages/GuionSerie";
 import Musica from "./pages/Musica";
 import IA from "./pages/IA";
 import Servicios from "./pages/Servicios";
@@ -105,6 +106,7 @@ const App = () => (
             <Route path="/presupuestador-ciencia" element={<PresupuestadorCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
+            <Route path="/grupo-dauro/cine/:slug" element={<GuionSerie />} />
             <Route path="/grupo-dauro/musica" element={<Musica />} />
             <Route path="/grupo-dauro/ia" element={<IA />} />
             <Route path="/servicios" element={<Servicios />} />
