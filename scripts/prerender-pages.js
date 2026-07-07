@@ -59,8 +59,8 @@ const pages = [
   },
   {
     path: 'grupo-dauro/ia',
-    title: 'Dauro IA - Creatividad e Inteligencia Artificial',
-    description: 'Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos.',
+    title: 'División Tecnológica · IA para Empresas | Software a Medida, IA Generativa y Cursos',
+    description: 'La división tecnológica de Grupo Dauro: desarrollamos software a medida e integraciones con IA generativa, implantamos inteligencia artificial segura en empresas —sin fugas de datos— y formamos a tu equipo con cursos de IA.',
     image: '/og-ia.jpg'
   },
   {

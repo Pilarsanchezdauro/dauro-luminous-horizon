@@ -10,9 +10,11 @@ const IA = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Dauro IA - Inteligencia Artificial Creativa",
+    "serviceType": "Desarrollo de software a medida e inteligencia artificial para empresas",
+    "name": "Dauro — División Tecnológica",
     "url": "https://www.grupodauro.com/grupo-dauro/ia",
-    "description": "Servicios creativos con inteligencia artificial: generación de imágenes, textos, música y contenido multimedia",
+    "description": "Software a medida, integraciones con IA generativa, implantación de inteligencia artificial segura en empresas y cursos de IA.",
+    "areaServed": "ES",
     "provider": {
       "@type": "Organization",
       "name": "Grupo Cultural Dauro"
@@ -22,9 +24,9 @@ const IA = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Dauro IA - Creatividad e Inteligencia Artificial"
-        description="Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos."
-        keywords="inteligencia artificial arte, IA creatividad, generación imágenes IA, música IA, contenido IA, servicios IA creativos, arte generativo"
+        title="División Tecnológica · IA para Empresas | Software a Medida, IA Generativa y Cursos"
+        description="La división tecnológica de Grupo Dauro: desarrollamos software a medida e integraciones con IA generativa, implantamos inteligencia artificial segura en empresas —sin fugas de datos— y formamos a tu equipo con cursos de IA."
+        keywords="software a medida, IA para empresas, inteligencia artificial generativa, implantación de IA, automatización de procesos, IA segura sin fugas de datos, cursos de IA, chatbots, transformación digital, Granada"
         url="https://www.grupodauro.com/grupo-dauro/ia"
         image="https://www.grupodauro.com/og-dauro-ia.jpg"
         structuredData={structuredData}
@@ -43,16 +45,19 @@ const IA = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <img 
-            src={logoDauroIA} 
-            alt="Dauro IA - Inteligencia Artificial Creativa" 
+          <img
+            src={logoDauroIA}
+            alt="Dauro — División Tecnológica e Inteligencia Artificial"
             className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 drop-shadow-2xl"
           />
+          <p className="text-sm md:text-base uppercase tracking-[0.2em] text-primary font-semibold mb-4">
+            División Tecnológica de Grupo Dauro
+          </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-white mb-6">
-            Dauro IA
+            Software a medida e IA para tu empresa
           </h1>
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
-            Visión Artística. Creación IA. Belleza Inteligente.
+            Programas propios, IA generativa y formación. Inteligencia artificial que trabaja dentro de tu casa, sin filtrar tus datos.
           </p>
         </div>
       </section>
@@ -90,19 +95,20 @@ const IA = () => {
             <div className="absolute inset-0 bg-[url('/public/projects/dauro-ia.png')] bg-cover bg-center opacity-[0.05]" />
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
             <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 text-center relative z-10">
-              IA para Cualquier Sector. Con ADN Cultural.
+              La división que lleva la IA a tu empresa
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
-              Nuestros servicios de inteligencia artificial están diseñados para <strong className="text-foreground">cualquier sector</strong>: 
-              empresas, instituciones, industria, salud, educación... Pero cuando tu proyecto necesita 
-              <strong className="text-foreground"> belleza, cultura o estética</strong>, ahí es donde marcamos la diferencia.
+              Desarrollamos el <strong className="text-foreground">software a medida</strong> que tu empresa necesita e integramos
+              <strong className="text-foreground"> inteligencia artificial generativa</strong> en tus procesos: presupuestos, informes,
+              atención, documentación… Automatizamos lo que hoy te roba horas.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10 mt-4">
-              <span className="text-primary font-semibold">Llevamos la cultura y la belleza en nuestro ADN.</span> Más de 20 años 
-              en el mundo del arte nos han enseñado que incluso los datos necesitan estética para comunicar.
+              Y lo hacemos con <span className="text-primary font-semibold">IA segura</span>: trabaja dentro de tu casa, con tus datos
+              bajo tu control, sin filtrarlos a terceros. Con nuestra plataforma <strong className="text-foreground">Égida</strong> como
+              buque insignia, y con <strong className="text-foreground">cursos y formación</strong> para que tu equipo la aproveche de verdad.
             </p>
             <p className="text-primary font-semibold mt-6 text-center relative z-10">
-              🎯 Todos nuestros servicios son personalizados
+              🎯 Cada solución se adapta a tu empresa y a tu sector
             </p>
           </div>
         </div>
@@ -425,17 +431,24 @@ const IA = () => {
         <div className="text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-12 lg:p-16 rounded-3xl border-2 border-primary/20 relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
           <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-6 relative z-10">
-            ¿Listo para dar el salto cuántico?
+            ¿Llevamos la IA a tu empresa?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
-            Tu visión, impulsada por nuestra experticia en inteligencia artificial, 
-            tiene el poder de redefinir tu industria. Este es el momento. Esta es la señal.
+            Empezamos con una visita de diagnóstico: con tus procesos reales, te enseñamos dónde la
+            inteligencia artificial te ahorra horas y dinero —sin poner tus datos en riesgo—.
           </p>
-          <a href="https://dauroia.com/" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-block">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6">
-              Descubre Nuestras Soluciones
-            </Button>
-          </a>
+          <div className="relative z-10 flex flex-wrap gap-4 justify-center">
+            <a href="https://dauroia.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6">
+                Ver la plataforma en dauroia.com
+              </Button>
+            </a>
+            <a href="https://pilarsanchezdauro.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Button size="lg" variant="outline" className="border-2 hover:border-primary/60 transition-all duration-300 hover:scale-105 text-lg px-8 py-6">
+                Formación y cursos de IA
+              </Button>
+            </a>
+          </div>
         </div>
       </main>
 
