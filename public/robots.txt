@@ -29,12 +29,16 @@ Allow: /og-*.png
 Allow: /og-*.jpg
 
 # Páginas a no indexar
-Disallow: /admin/
-Disallow: /auth/
-Disallow: /gracias/
+Disallow: /admin
+Disallow: /auth
+Disallow: /gracias
+Disallow: /gracias-dauro-ciencia
+Disallow: /gracias-compra
+Disallow: /mis-ebooks
+Disallow: /descargar-ebook
+Disallow: /blog/stats
 Disallow: /api/
 Disallow: /*.json$
-Disallow: /*?*
 
 # Delay de rastreo (cortesía para el servidor)
 Crawl-delay: 1
@@ -137,9 +141,9 @@ Disallow: /
 # ============================================
 # Sitemaps
 # ============================================
-Sitemap: https://grupodauro.com/sitemap.xml
+Sitemap: https://www.grupodauro.com/sitemap.xml
 
 # ============================================
 # Host canónico
 # ============================================
-Host: https://grupodauro.com
+Host: https://www.grupodauro.com

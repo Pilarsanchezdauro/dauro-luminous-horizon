@@ -13,7 +13,7 @@ const Arte = () => {
     "@context": "https://schema.org",
     "@type": "ArtGallery",
     "name": "Dauro Arte",
-    "url": "https://grupodauro.com/grupo-dauro/arte",
+    "url": "https://www.grupodauro.com/grupo-dauro/arte",
     "description": "Galería de arte y servicios de tasación, peritaje y asesoramiento artístico",
     "priceRange": "€€€"
   };
@@ -93,7 +93,7 @@ const Arte = () => {
         title="Dauro Arte - Análisis, Valoración y Autenticidad de Obras de Arte"
         description="Servicios profesionales de tasación, peritaje, autenticación y gestión de obras de arte. Informes periciales y análisis técnico con IA para coleccionistas, museos e instituciones."
         keywords="tasación arte, peritaje obras arte, autenticación arte, análisis obras arte, valoración arte Granada"
-        url="https://grupodauro.com/grupo-dauro/arte"
+        url="https://www.grupodauro.com/grupo-dauro/arte"
         structuredData={structuredData}
       />
       <Navigation />

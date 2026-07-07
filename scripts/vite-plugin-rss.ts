@@ -1,7 +1,7 @@
 import { writeFileSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
-const baseUrl = 'https://grupodauro.com';
+const baseUrl = 'https://www.grupodauro.com';
 
 interface BlogPost {
   title: string;

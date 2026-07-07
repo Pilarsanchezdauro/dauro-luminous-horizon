@@ -89,7 +89,7 @@ export default function LeBrunCollection() {
         title="LeBrun Collection | Colección de Arte Exclusiva"
         description="Descubre la LeBrun Collection, una exclusiva colección de obras de arte contemporáneo gestionada por Grupo Dauro. Peritaje, tasación y adquisición de obras."
         keywords="LeBrun Collection, arte contemporáneo, colección arte, peritaje arte, tasación obras, galería arte"
-        image="https://grupodauro.com/og-lebrun-collection.jpg"
+        image="https://www.grupodauro.com/og-lebrun-collection.jpg"
       />
       <div className="min-h-screen bg-background">
         <Navigation />

@@ -92,7 +92,7 @@ function extractBlogPostsFromSource() {
   return posts;
 }
 
-const baseUrl = 'https://grupodauro.com';
+const baseUrl = 'https://www.grupodauro.com';
 
 function escapeHtml(text) {
   return text

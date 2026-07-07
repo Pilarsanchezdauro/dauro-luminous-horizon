@@ -381,7 +381,7 @@ const WebsDeLibrosLiderazgo = () => {
                     <Button 
                       size="lg"
                       className="bg-[#1a3a5c] text-white hover:bg-[#1a3a5c]/90 font-medium tracking-wide h-14 px-8 text-base w-full"
-                      onClick={() => window.open('https://grupodauro.com/producto/la-construccion-discursiva-del-liderazgo-antonio-rodriguez-jimenez', '_blank')}
+                      onClick={() => window.open('https://www.grupodauro.com/producto/la-construccion-discursiva-del-liderazgo-antonio-rodriguez-jimenez', '_blank')}
                     >
                       <ShoppingCart className="mr-2 h-5 w-5" />
                       Comprar en Grupo Dauro (17€)

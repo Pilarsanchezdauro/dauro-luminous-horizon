@@ -128,8 +128,8 @@ function ArtistLayout({ project, links, galleryImages }: {
       <SEO
         title={`${project.title} | Artista representado por Grupo Dauro`}
         description={project.summary}
-        image={`https://grupodauro.com/og-${project.slug}.jpg`}
-        url={`https://grupodauro.com/portafolio/${project.slug}`}
+        image={`https://www.grupodauro.com/og-${project.slug}.jpg`}
+        url={`https://www.grupodauro.com/portafolio/${project.slug}`}
         type="article"
       />
       <div className="min-h-screen bg-background">

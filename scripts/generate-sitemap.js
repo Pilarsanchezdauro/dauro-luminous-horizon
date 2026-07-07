@@ -7,7 +7,7 @@ const __dirname = dirname(__filename);
 
 // This script generates a dynamic sitemap.xml including all blog posts from blogData.ts
 
-const baseUrl = 'https://grupodauro.com';
+const baseUrl = 'https://www.grupodauro.com';
 
 // Static pages configuration
 const staticPages = [

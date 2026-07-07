@@ -73,9 +73,9 @@ const structuredData = {
   "provider": {
     "@type": "Organization",
     "name": "Dauro Editorial",
-    "url": "https://grupodauro.com",
+    "url": "https://www.grupodauro.com",
     "foundingDate": "1999",
-    "logo": "https://grupodauro.com/og-logo.png",
+    "logo": "https://www.grupodauro.com/og-logo.png",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Granada",
@@ -117,12 +117,6 @@ const structuredData = {
         }
       }
     ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "150",
-    "bestRating": "5"
   }
 };
 
@@ -286,7 +280,7 @@ export default function Autoedicion() {
         description="Publica tu libro con calidad editorial profesional desde 690€. Incluye maquetación, portada personalizada, ISBN, ebook gratis y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Financiación sin intereses en 2 plazos."
         keywords="autoedición libros, publicar libro España, editorial autoedición, autopublicación profesional, editar mi libro, ISBN libro, maquetación libros, diseño portada libro, ebook incluido, distribución Amazon, publicar novela, publicar poesía, imprimir libro bajo demanda, editorial Granada, autopublicar libro barato, publicar libro online"
         image="/og-editorial.jpg"
-        url="https://grupodauro.com/autoedicion"
+        url="https://www.grupodauro.com/autoedicion"
         structuredData={structuredData}
       />
       

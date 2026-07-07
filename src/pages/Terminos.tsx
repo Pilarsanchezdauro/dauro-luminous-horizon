@@ -2,10 +2,15 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
+import { SEO } from "@/components/SEO";
 
 const Terminos = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Términos y Condiciones"
+        description="Términos y condiciones de uso de los servicios y la web de Grupo Cultural Dauro: condiciones de contratación, propiedad intelectual y responsabilidades."
+      />
       <Navigation />
       <main className="pt-32 pb-16 relative overflow-hidden">
         {/* Floating mascot logos */}

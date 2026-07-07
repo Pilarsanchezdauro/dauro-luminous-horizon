@@ -66,7 +66,7 @@ const WebsDeLibrosIndex = () => {
         title="Webs de Libros | Páginas Web Exclusivas para Autores"
         description="Landing pages exclusivas para libros de nuestros autores. Cada obra merece su propio espacio digital con reseñas, extractos y compra directa."
         keywords="webs de libros, landing page libro, página web autor, marketing editorial, promoción libros online"
-        url="https://grupodauro.com/webs-de-libros"
+        url="https://www.grupodauro.com/webs-de-libros"
       />
 
       <Navigation />

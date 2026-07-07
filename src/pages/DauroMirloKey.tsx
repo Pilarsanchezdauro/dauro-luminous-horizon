@@ -352,7 +352,7 @@ const DauroMirloKey = () => {
             <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
               <div className="flex flex-col items-center md:items-start gap-2">
                 <CreditCard className="w-6 h-6 text-primary mb-2" />
-                <a href="https://grupodauro.com" className="text-primary-foreground hover:text-primary transition-colors font-medium">
+                <a href="https://www.grupodauro.com" className="text-primary-foreground hover:text-primary transition-colors font-medium">
                   grupodauro.com
                 </a>
               </div>

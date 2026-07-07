@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Home, Mail, Clock, GraduationCap, BookOpen, Award, Globe, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import dauroCienciaSello from "@/assets/dauro-ciencia-sello.png";
+import { SEO } from "@/components/SEO";
 
 export default function GraciasDauroCiencia() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-primary/5 to-accent/20">
+      <SEO
+        title="Propuesta académica recibida"
+        description="Hemos recibido tu propuesta para Dauro Ciencia. Te responderemos muy pronto."
+        noindex
+      />
       <Navigation />
       
       <main className="flex-1 flex items-center justify-center px-4 py-16">

@@ -161,7 +161,7 @@ Si tienes un club de lectura, escríbenos: organizamos **encuentros con la autor
     ogImage: "/blog/la-singularidad-esencial.png",
     category: "literatura",
     slug: "la-singularidad-esencial-pilar-sanchez",
-    bookLink: "https://grupodauro.com/producto/la-singularidad-esencial",
+    bookLink: "https://www.grupodauro.com/producto/la-singularidad-esencial",
     amazonLink: "https://leer.amazon.es/sample/B0GCWFLTBV?clientId=share",
     content: `## Cuando mejorar ya no basta. Cuando adaptarse es insuficiente. Cuando necesitas un punto de no retorno.
 
@@ -286,7 +286,7 @@ Sin misticismo. Sin promesas vacías. Solo la física brutal del cambio real.`
     ogImage: "/blog/la-espana-quebrantada.jpg",
     category: "literatura",
     slug: "la-espana-quebrantada-manuel-orozco",
-    bookLink: "https://grupodauro.com/producto/la-espana-quebrantada",
+    bookLink: "https://www.grupodauro.com/producto/la-espana-quebrantada",
     amazonLink: "https://leer.amazon.es/sample/8412849671?clientId=share",
     content: `En Grupo Dauro seguimos apostando por la diversidad de voces y el debate de ideas. Hoy presentamos **"La España Quebrantada"**, el nuevo ensayo de **Manuel E. Orozco Redondo**, una obra que invita a la reflexión sobre la historia contemporánea de nuestro país desde una perspectiva personal y sin concesiones.
 

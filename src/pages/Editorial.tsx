@@ -31,9 +31,10 @@ const Editorial = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Publisher",
+    "@type": "Organization",
+    "knowsAbout": ["Edición de libros", "Publicación", "Autoedición", "Distribución editorial"],
     "name": "Ediciones Dauro",
-    "url": "https://grupodauro.com/grupo-dauro/editorial",
+    "url": "https://www.grupodauro.com/grupo-dauro/editorial",
     "description": "Editorial independiente con más de 2000 obras publicadas. Publicamos tu libro con distribución en 4000 librerías. Envía tu manuscrito.",
     "address": {
       "@type": "PostalAddress",
@@ -103,7 +104,7 @@ const Editorial = () => {
         title="Publicar Libro | Editorial Dauro - Edición de Libros en España"
         description="¿Quieres publicar tu libro? Editorial Dauro ofrece edición profesional, autoedición y publicación con distribución en 4000 librerías. Envía tu manuscrito gratis. Más de 2000 obras publicadas."
         keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, enviar manuscrito, publicar novela, autopublicación, editar libro, editorial independiente, publicar libro gratis, coste publicar libro, ISBN libro"
-        url="https://grupodauro.com/grupo-dauro/editorial"
+        url="https://www.grupodauro.com/grupo-dauro/editorial"
         structuredData={structuredData}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />

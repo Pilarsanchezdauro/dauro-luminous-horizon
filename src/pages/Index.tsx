@@ -40,75 +40,24 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Grupo Cultural Dauro",
-    "url": "https://grupodauro.com",
-    "description": "Editorial independiente y servicios para autores. Publicamos tu libro con distribución nacional. Más de 2000 obras publicadas.",
+    "url": "https://www.grupodauro.com",
+    "description": "Grupo cultural y tecnológico en Granada: editorial de libros, guiones de cine y televisión, representación de arte y soluciones de inteligencia artificial.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://grupodauro.com/blog?q={search_term_string}",
+      "target": "https://www.grupodauro.com/blog?q={search_term_string}",
       "query-input": "required name=search_term_string"
-    }
-  };
-
-  const publisherStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Grupo Cultural Dauro",
-    "alternateName": "Ediciones Dauro",
-    "url": "https://grupodauro.com",
-    "logo": "https://grupodauro.com/og-logo.png",
-    "description": "Editorial independiente española. Publicamos libros de narrativa, poesía, ensayo e historia. Servicios de edición, maquetación y diseño de portadas para autores.",
-    "foundingDate": "2000",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Granada",
-      "addressRegion": "Andalucía",
-      "addressCountry": "ES"
-    },
-    "sameAs": [
-      "https://www.edicionesdauro.com"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Servicios Editoriales",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Publicación de libros",
-            "description": "Edición y publicación profesional con ISBN y distribución en librerías"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Autoedición profesional",
-            "description": "Servicios de autoedición con maquetación, corrección y diseño de portada"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Diseño de portadas",
-            "description": "Diseño profesional de portadas de libros"
-          }
-        }
-      ]
     }
   };
 
   return (
     <div className="min-h-screen overflow-x-hidden w-full">
       <SEO
-        title="Editorial Dauro | Publica tu Libro - Edición y Autoedición Profesional"
-        description="¿Quieres publicar tu libro? Grupo Cultural Dauro es una editorial independiente con más de 2000 obras publicadas. Ofrecemos edición, autoedición, maquetación y diseño de portadas. Distribución en 4000 librerías."
-        keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, maquetación libros, diseño portadas, ISBN, autopublicación, editorial independiente, servicios editoriales, publicar novela, publicar poesía"
-        url="https://grupodauro.com"
+        title="Grupo Dauro | Editorial, Guiones de Cine y TV, Arte y Tecnología IA"
+        description="Grupo cultural y tecnológico en Granada: editamos libros con distribución en 4000 librerías, escribimos guiones de series, representamos obras y artistas, y creamos soluciones de inteligencia artificial para empresas."
+        keywords="grupo cultural Granada, editorial Granada, publicar libro, guiones de series, guionistas cine y televisión, representación de artistas, obras de arte, inteligencia artificial para empresas, IA generativa, cursos de IA"
+        url="https://www.grupodauro.com"
         structuredData={homeStructuredData}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publisherStructuredData) }} />
       <Navigation />
       <Hero />
 

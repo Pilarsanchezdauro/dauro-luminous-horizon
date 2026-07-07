@@ -144,8 +144,8 @@ export default function ProductDetail() {
     return null;
   }
 
-  const productUrl = `https://grupodauro.com/producto/${product.handle}`;
-  const productImage = product.images.edges[0]?.node?.url || 'https://grupodauro.com/og-image.jpg';
+  const productUrl = `https://www.grupodauro.com/producto/${product.handle}`;
+  const productImage = product.images.edges[0]?.node?.url || 'https://www.grupodauro.com/og-image.jpg';
   
   const structuredData = {
     "@context": "https://schema.org",

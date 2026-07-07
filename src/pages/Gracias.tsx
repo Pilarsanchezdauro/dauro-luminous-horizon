@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Home, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoDauro from "@/assets/logo-dauro-gracias.png";
+import { SEO } from "@/components/SEO";
 
 export default function Gracias() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-accent/20">
+      <SEO
+        title="Propuesta recibida"
+        description="Hemos recibido tu propuesta. Te responderemos muy pronto."
+        noindex
+      />
       <Navigation />
       
       <main className="flex-1 flex items-center justify-center px-4 py-16">

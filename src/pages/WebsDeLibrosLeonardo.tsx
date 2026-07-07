@@ -293,7 +293,7 @@ const WebsDeLibros = () => {
                   <Button 
                     size="lg"
                     className="bg-primary text-black hover:bg-primary/90 font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
-                    onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
+                    onClick={() => window.open('https://www.grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
                   >
                     <ShoppingCart className="mr-2 h-5 w-5" />
                     Comprar Tapa Blanda (21€)
@@ -302,7 +302,7 @@ const WebsDeLibros = () => {
                     size="lg"
                     variant="outline"
                     className="border-white/20 hover:bg-white/10 text-white font-serif tracking-wide h-12 md:h-14 px-6 md:px-8 text-base md:text-lg"
-                    onClick={() => window.open('https://grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
+                    onClick={() => window.open('https://www.grupodauro.com/producto/leonardo-da-vinci-tragedia-perfeccion-carlos-blanco', '_blank')}
                   >
                     <BookOpen className="mr-2 h-5 w-5" />
                     Versión Ebook (9.99€)

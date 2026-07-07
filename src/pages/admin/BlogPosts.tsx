@@ -101,7 +101,7 @@ export default function BlogPosts() {
   };
 
   const handlePrepareForSocial = (post: BlogPost) => {
-    const postUrl = `https://grupodauro.com/blog/${post.slug}`;
+    const postUrl = `https://www.grupodauro.com/blog/${post.slug}`;
     const hashtags = post.tags?.map((tag: string) => `#${tag.replace(/\s+/g, '')}`).join(' ') || '';
     
     const content = `${post.title}

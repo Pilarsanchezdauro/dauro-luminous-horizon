@@ -74,7 +74,7 @@ const Contacto = () => {
         title="Contacto | Envía tu Manuscrito - Editorial Dauro Granada"
         description="¿Quieres publicar tu libro? Contacta con Editorial Dauro para enviar tu manuscrito, solicitar presupuesto de edición o información sobre autoedición. Respuesta en 48h."
         keywords="contacto editorial, enviar manuscrito, publicar libro Granada, editorial Granada contacto, consulta publicación, presupuesto edición libro, autoedición contacto"
-        url="https://grupodauro.com/contacto"
+        url="https://www.grupodauro.com/contacto"
       />
       <Navigation />
       

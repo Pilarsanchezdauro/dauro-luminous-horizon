@@ -470,8 +470,8 @@ export default function Shop() {
     "@type": "Store",
     "name": "Tienda Grupo Cultural Dauro",
     "description": "Tienda oficial de Grupo Cultural Dauro con libros, arte y NFTs culturales",
-    "url": "https://grupodauro.com/tienda",
-    "image": "https://grupodauro.com/og-image.jpg",
+    "url": "https://www.grupodauro.com/tienda",
+    "image": "https://www.grupodauro.com/og-image.jpg",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Productos Culturales",
@@ -482,7 +482,7 @@ export default function Shop() {
           "name": product.node.title,
           "image": product.node.images.edges[0]?.node?.url,
           "description": product.node.description,
-          "url": `https://grupodauro.com/producto/${product.node.handle}`
+          "url": `https://www.grupodauro.com/producto/${product.node.handle}`
         },
         "price": parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2),
         "priceCurrency": product.node.priceRange.minVariantPrice.currencyCode
@@ -496,8 +496,8 @@ export default function Shop() {
         title="Librería Online | Comprar Libros - Editorial Dauro"
         description="Compra libros de narrativa, poesía, ensayo e historia en la librería online de Editorial Dauro. Envío a toda España. Más de 2000 títulos disponibles."
         keywords="comprar libros online, librería online, libros narrativa, libros poesía, libros ensayo, editorial Dauro, libros Granada, literatura española, novela histórica"
-        image="https://grupodauro.com/og-image.jpg"
-        url="https://grupodauro.com/shop"
+        image="https://www.grupodauro.com/og-image.jpg"
+        url="https://www.grupodauro.com/shop"
         structuredData={structuredData}
       />
 

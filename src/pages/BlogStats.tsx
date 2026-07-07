@@ -149,7 +149,7 @@ export default function BlogStats() {
       <SEO
         title="Estadísticas del Blog - Grupo Dauro"
         description="Descubre las publicaciones más leídas, tendencias de categorías y métricas de engagement del blog de Grupo Dauro."
-        url="https://grupodauro.com/blog/stats"
+        url="https://www.grupodauro.com/blog/stats"
       />
       
       <div className="container mx-auto px-4 py-8 max-w-7xl">

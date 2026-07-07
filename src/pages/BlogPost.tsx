@@ -161,7 +161,7 @@ const BlogPost = () => {
   const getShareUrl = () => {
     // Use the production domain or current origin if in production
     const baseUrl = window.location.hostname.includes('lovableproject.com') 
-      ? 'https://grupodauro.com' 
+      ? 'https://www.grupodauro.com' 
       : window.location.origin;
     return `${baseUrl}/blog/${post.slug}`;
   };
@@ -174,7 +174,7 @@ const BlogPost = () => {
     
     // Get the base URL
     const baseUrl = window.location.hostname.includes('lovableproject.com') 
-      ? 'https://grupodauro.com' 
+      ? 'https://www.grupodauro.com' 
       : window.location.origin;
     
     // If the image starts with /, it's already a path from root
@@ -419,14 +419,14 @@ const BlogPost = () => {
              "author": {
                "@type": "Organization",
                "name": post.author,
-               "url": "https://grupodauro.com",
+               "url": "https://www.grupodauro.com",
              },
              "publisher": {
                "@type": "Organization",
                "name": "Grupo Cultural Dauro",
                "logo": {
                  "@type": "ImageObject",
-                 "url": "https://grupodauro.com/og-logo.png",
+                 "url": "https://www.grupodauro.com/og-logo.png",
                },
              },
              "datePublished": isoDate,
@@ -446,9 +446,9 @@ const BlogPost = () => {
              "@context": "https://schema.org",
              "@type": "BreadcrumbList",
              "itemListElement": [
-               { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://grupodauro.com" },
-               { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://grupodauro.com/blog" },
-               { "@type": "ListItem", "position": 3, "name": getCategoryLabel(post.category), "item": `https://grupodauro.com/blog?categoria=${post.category}` },
+               { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.grupodauro.com" },
+               { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.grupodauro.com/blog" },
+               { "@type": "ListItem", "position": 3, "name": getCategoryLabel(post.category), "item": `https://www.grupodauro.com/blog?categoria=${post.category}` },
                { "@type": "ListItem", "position": 4, "name": post.title, "item": getShareUrl() },
              ],
            })}

@@ -14,7 +14,7 @@ const Cine = () => {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "Dauro Cine",
-    "url": "https://grupodauro.com/grupo-dauro/cine",
+    "url": "https://www.grupodauro.com/grupo-dauro/cine",
     "description": "Guionismo para cine y televisión, desarrollo de series, preproducción audiovisual y narrativas innovadoras"
   };
 
@@ -38,7 +38,7 @@ const Cine = () => {
         title="Dauro Cine - Guionistas de Cine y TV | Series y Preproducción Audiovisual"
         description="Guionistas especializados en series de televisión, cine y desarrollo de proyectos audiovisuales. Expertos en preproducción, adaptación literaria y edición. Bajo la supervisión de Juan José Porto."
         keywords="guionistas cine, guion series televisión, preproducción audiovisual, adaptación literaria cine, desarrollo series TV, Juan José Porto, guion cinematográfico"
-        url="https://grupodauro.com/grupo-dauro/cine"
+        url="https://www.grupodauro.com/grupo-dauro/cine"
         structuredData={structuredData}
       />
       <Navigation />
@@ -292,7 +292,7 @@ const Cine = () => {
                   <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-sm rounded-full">En desarrollo</span>
                 </div>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://grupodauro.com/blog/presentacion-latido-carmen-alcaide" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <a href="https://www.grupodauro.com/blog/presentacion-latido-carmen-alcaide" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     <ExternalLink className="w-4 h-4" />
                     Ver presentación
                   </a>

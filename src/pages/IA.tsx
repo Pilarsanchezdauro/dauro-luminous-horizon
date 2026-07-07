@@ -11,7 +11,7 @@ const IA = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Dauro IA - Inteligencia Artificial Creativa",
-    "url": "https://grupodauro.com/grupo-dauro/ia",
+    "url": "https://www.grupodauro.com/grupo-dauro/ia",
     "description": "Servicios creativos con inteligencia artificial: generación de imágenes, textos, música y contenido multimedia",
     "provider": {
       "@type": "Organization",
@@ -25,8 +25,8 @@ const IA = () => {
         title="Dauro IA - Creatividad e Inteligencia Artificial"
         description="Servicios creativos con IA: generación de imágenes artísticas, textos creativos, música original y contenido multimedia. Fusionamos arte y tecnología para proyectos únicos."
         keywords="inteligencia artificial arte, IA creatividad, generación imágenes IA, música IA, contenido IA, servicios IA creativos, arte generativo"
-        url="https://grupodauro.com/grupo-dauro/ia"
-        image="https://grupodauro.com/og-dauro-ia.jpg"
+        url="https://www.grupodauro.com/grupo-dauro/ia"
+        image="https://www.grupodauro.com/og-dauro-ia.jpg"
         structuredData={structuredData}
       />
       <Navigation />

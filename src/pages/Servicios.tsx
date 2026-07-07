@@ -328,17 +328,17 @@ Cada producción combina narrativa visual, dirección artística y técnica prof
         title="Servicios Creativos y Editoriales | Grupo Cultural Dauro"
         description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guionismo, producción audiovisual, IA creativa y tasación de arte."
         keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, autoedición, producción audiovisual, tasación arte, IA creativa"
-        url="https://grupodauro.com/servicios"
+        url="https://www.grupodauro.com/servicios"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "name": "Servicios Creativos - Grupo Cultural Dauro",
-          "url": "https://grupodauro.com/servicios",
+          "url": "https://www.grupodauro.com/servicios",
           "description": "Servicios profesionales de edición, diseño, producción audiovisual, IA creativa y tasación de arte para autores y creadores.",
           "provider": {
             "@type": "Organization",
             "name": "Grupo Cultural Dauro",
-            "url": "https://grupodauro.com"
+            "url": "https://www.grupodauro.com"
           },
           "areaServed": [
             { "@type": "Place", "name": "España" },

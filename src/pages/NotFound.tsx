@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   const location = useLocation();
-  const canonical = `${window.location.origin}${location.pathname}${location.search}`;
 
   return (
     <div className="min-h-screen">
@@ -16,7 +15,6 @@ const NotFound = () => {
           name="description"
           content="La página que buscas no existe. Vuelve al inicio o visita el blog y la tienda de Grupo Dauro."
         />
-        <link rel="canonical" href={canonical} />
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 

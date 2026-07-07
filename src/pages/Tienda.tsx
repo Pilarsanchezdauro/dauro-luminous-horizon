@@ -16,8 +16,8 @@ const storeStructuredData = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Grupo Cultural Dauro",
-  "url": "https://grupodauro.com",
-  "logo": "https://grupodauro.com/og-logo.png",
+  "url": "https://www.grupodauro.com",
+  "logo": "https://www.grupodauro.com/og-logo.png",
   "description": "Editorial y grupo cultural con distribución internacional de libros en Europa, Estados Unidos y Latinoamérica.",
   "address": {
     "@type": "PostalAddress",
@@ -51,7 +51,7 @@ const storeStructuredData = {
     }
   },
   "sameAs": [
-    "https://grupodauro.com"
+    "https://www.grupodauro.com"
   ]
 };
 
@@ -62,7 +62,7 @@ const Tienda = () => {
         title="Comprar Libros Online — Envío a Europa, USA y Latinoamérica"
         description="Compra libros de Grupo Cultural Dauro con envío a España, Europa, Estados Unidos, México, Argentina, Colombia, Chile y más. Tienda directa y distribución internacional."
         keywords="comprar libros online, editorial española, envío internacional libros, libros España, libros Latinoamérica, libros Europa, editorial Granada, Ediciones Dauro, distribución libros"
-        url="https://grupodauro.com/tienda"
+        url="https://www.grupodauro.com/tienda"
         image="/og-editorial.jpg"
         structuredData={storeStructuredData}
       />

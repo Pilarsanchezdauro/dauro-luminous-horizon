@@ -56,7 +56,7 @@ const Blog = () => {
 
   const getShareUrl = (postSlug?: string) => {
     const baseUrl = window.location.hostname.includes("lovableproject.com")
-      ? "https://grupodauro.com"
+      ? "https://www.grupodauro.com"
       : window.location.origin;
     return postSlug ? `${baseUrl}/blog/${postSlug}` : baseUrl;
   };
@@ -113,7 +113,7 @@ const Blog = () => {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "Blog Grupo Cultural Dauro",
-    "url": "https://grupodauro.com/blog",
+    "url": "https://www.grupodauro.com/blog",
     "description": "Noticias, eventos y novedades sobre arte, literatura, cine e inteligencia artificial",
     "publisher": {
       "@type": "Organization",
@@ -127,7 +127,7 @@ const Blog = () => {
         title="Blog - Noticias Culturales y Eventos"
         description="Lee las últimas noticias del mundo cultural: presentaciones de libros, eventos de arte, estrenos cinematográficos y novedades sobre IA creativa. Blog actualizado del Grupo Dauro."
         keywords="blog cultura, noticias arte, eventos literarios, presentaciones libros, actualidad cultural, blog Granada cultura"
-        url="https://grupodauro.com/blog"
+        url="https://www.grupodauro.com/blog"
         structuredData={structuredData}
       />
       <Navigation />

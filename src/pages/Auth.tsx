@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Check, X } from 'lucide-react';
+import { SEO } from '@/components/SEO';
 
 // Password validation schema
 const validatePassword = (password: string) => {
@@ -162,6 +163,7 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO title="Acceso" description="Acceso al panel de Grupo Cultural Dauro." noindex />
       <Navigation />
       
       <main className="flex-1 flex items-center justify-center py-12 px-4">

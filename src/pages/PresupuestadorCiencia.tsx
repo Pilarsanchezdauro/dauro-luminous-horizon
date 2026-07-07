@@ -10,7 +10,7 @@ const PresupuestadorCiencia = () => {
         title="Presupuestador de Publicación Académica | Dauro Ciencia"
         description="Calcula el presupuesto orientativo para publicar tu obra académica, tesis doctoral o investigación con Dauro Ciencia. Presupuesto personalizado sin compromiso."
         keywords="presupuesto publicación académica, publicar tesis, editar libro científico, presupuesto editorial académico"
-        url="https://grupodauro.com/presupuestador-ciencia"
+        url="https://www.grupodauro.com/presupuestador-ciencia"
       />
       
       <div className="min-h-screen bg-background">

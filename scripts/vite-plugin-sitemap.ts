@@ -1,19 +1,23 @@
 import { writeFileSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
-const baseUrl = 'https://grupodauro.com';
+const baseUrl = 'https://www.grupodauro.com';
 
 // Static pages configuration
 const staticPages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/grupo-dauro', priority: '0.8', changefreq: 'monthly' },
   { path: '/grupo-dauro/editorial', priority: '0.9', changefreq: 'monthly' },
+  { path: '/autoedicion', priority: '0.9', changefreq: 'monthly' },
   { path: '/grupo-dauro/arte', priority: '0.9', changefreq: 'monthly' },
   { path: '/grupo-dauro/cine', priority: '0.9', changefreq: 'monthly' },
+  { path: '/grupo-dauro/musica', priority: '0.8', changefreq: 'monthly' },
   { path: '/grupo-dauro/ia', priority: '0.9', changefreq: 'monthly' },
+  { path: '/dauro-ciencia', priority: '0.8', changefreq: 'monthly' },
   { path: '/blog', priority: '0.9', changefreq: 'daily' },
   { path: '/shop', priority: '0.8', changefreq: 'weekly' },
   { path: '/tienda', priority: '0.8', changefreq: 'weekly' },
+  { path: '/catalogo', priority: '0.8', changefreq: 'weekly' },
   { path: '/servicios', priority: '0.8', changefreq: 'monthly' },
   { path: '/portafolio', priority: '0.8', changefreq: 'weekly' },
   { path: '/contacto', priority: '0.7', changefreq: 'monthly' },
@@ -21,6 +25,13 @@ const staticPages = [
   { path: '/solicitar-web', priority: '0.7', changefreq: 'monthly' },
   { path: '/solicitar-booktrailer', priority: '0.7', changefreq: 'monthly' },
   { path: '/solicitar-portada', priority: '0.7', changefreq: 'monthly' },
+  { path: '/generador-portadas', priority: '0.6', changefreq: 'monthly' },
+  { path: '/presupuestador', priority: '0.6', changefreq: 'monthly' },
+  { path: '/presupuestador-ciencia', priority: '0.5', changefreq: 'monthly' },
+  { path: '/artistas/solicitud', priority: '0.6', changefreq: 'monthly' },
+  { path: '/webs-de-libros', priority: '0.6', changefreq: 'monthly' },
+  { path: '/webs-de-libros/carlos-blanco/leonardo-da-vinci', priority: '0.6', changefreq: 'yearly' },
+  { path: '/webs-de-libros/antonio-rodriguez/liderazgo-discursivo', priority: '0.6', changefreq: 'yearly' },
   { path: '/compromiso-etico', priority: '0.6', changefreq: 'yearly' },
   { path: '/archivo-historico', priority: '0.5', changefreq: 'yearly' },
   { path: '/privacidad', priority: '0.3', changefreq: 'yearly' },
@@ -122,9 +133,10 @@ function generateSitemap(blogPosts: Array<{ title: string; date: string; slug: s
 `;
 
   staticPages.forEach(page => {
+    // Sin lastmod en páginas estáticas: una fecha de build idéntica en todas
+    // anula el valor de la señal para Google (los posts sí llevan su fecha real)
     xml += `  <url>
     <loc>${baseUrl}${page.path}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>

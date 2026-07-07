@@ -10,7 +10,7 @@ const PresupuestadorAutoedicion = () => {
         title="Presupuestador de Autoedición | Grupo Dauro"
         description="Calcula el presupuesto para publicar tu libro con Grupo Dauro. Maquetación, ISBN, ebook, corrección, impresión, marketing y distribución. Presupuesto instantáneo."
         keywords="presupuesto autoedición, publicar libro precio, editar libro coste, imprimir libro, ISBN, ebook"
-        url="https://grupodauro.com/presupuestador"
+        url="https://www.grupodauro.com/presupuestador"
       />
       
       <div className="min-h-screen bg-background">

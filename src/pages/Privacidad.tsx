@@ -2,10 +2,15 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
+import { SEO } from "@/components/SEO";
 
 const Privacidad = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Política de Privacidad"
+        description="Política de privacidad y protección de datos de Grupo Cultural Dauro: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos."
+      />
       <Navigation />
       <main className="pt-32 pb-16 relative overflow-hidden">
         {/* Floating mascot logos */}

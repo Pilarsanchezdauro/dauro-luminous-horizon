@@ -338,19 +338,19 @@ export default function DauroCiencia() {
         title="Dauro Ciencia | Publicar Tesis Doctoral e Investigación Científica"
         description="Publica tu tesis doctoral o investigación con sello académico. Evaluación por expertos con agentes tecnológicos. ISBN, distribución en Europa, EE.UU. y Latinoamérica."
         keywords="publicar tesis doctoral, editorial universitaria, editorial académica, publicar investigación, editorial científica España, sello académico, Dauro Ciencia, evaluación científica, publicar TFG, publicar TFM"
-        url="https://grupodauro.com/dauro-ciencia"
-        image="https://grupodauro.com/og-dauro-ciencia.jpg"
+        url="https://www.grupodauro.com/dauro-ciencia"
+        image="https://www.grupodauro.com/og-dauro-ciencia.jpg"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "EducationalOrganization",
           "name": "Dauro Ciencia",
           "description": "Sello editorial científico con metodología de evaluación híbrida. Revisores expertos apoyados por agentes tecnológicos especializados.",
-          "url": "https://grupodauro.com/dauro-ciencia",
-          "logo": "https://grupodauro.com/dauro-ciencia-logo.png",
+          "url": "https://www.grupodauro.com/dauro-ciencia",
+          "logo": "https://www.grupodauro.com/dauro-ciencia-logo.png",
           "parentOrganization": {
             "@type": "Organization",
             "name": "Grupo Cultural Dauro",
-            "url": "https://grupodauro.com"
+            "url": "https://www.grupodauro.com"
           },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",

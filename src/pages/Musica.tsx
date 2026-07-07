@@ -12,7 +12,7 @@ const Musica = () => {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "Dauro Música",
-    "url": "https://grupodauro.com/grupo-dauro/musica",
+    "url": "https://www.grupodauro.com/grupo-dauro/musica",
     "description": "Producción musical, composición original y proyectos artísticos"
   };
 
@@ -22,7 +22,7 @@ const Musica = () => {
         title="Dauro Música - Producción Musical y Composición Original"
         description="Producción musical innovadora: composición original, grabaciones, videoclips musicales y proyectos artísticos. Creamos música que emociona y trasciende fronteras."
         keywords="producción musical, composición original, música original, videoclips musicales, producción música Granada, música de autor"
-        url="https://grupodauro.com/grupo-dauro/musica"
+        url="https://www.grupodauro.com/grupo-dauro/musica"
         structuredData={structuredData}
       />
       <Navigation />
