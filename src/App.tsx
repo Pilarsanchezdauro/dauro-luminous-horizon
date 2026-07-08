@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,75 +10,79 @@ import { HelmetProvider } from "react-helmet-async";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import FloatingAuthorCard from "@/components/FloatingAuthorCard";
+
+// La home carga al instante; el resto de páginas se cargan bajo demanda
+// (code-splitting) para reducir el JavaScript inicial que descarga el visitante.
 import Index from "./pages/Index";
-import GrupoDauro from "./pages/GrupoDauro";
-import Editorial from "./pages/Editorial";
-import Arte from "./pages/Arte";
-import Cine from "./pages/Cine";
-import GuionSerie from "./pages/GuionSerie";
-import Musica from "./pages/Musica";
-import IA from "./pages/IA";
-import Servicios from "./pages/Servicios";
-import Tienda from "./pages/Tienda";
-import Shop from "./pages/Shop";
-import ProductDetail from "./pages/ProductDetail";
-import Contacto from "./pages/Contacto";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import BlogStats from "./pages/BlogStats";
-import Privacidad from "./pages/Privacidad";
-import Terminos from "./pages/Terminos";
-import CompromisoEtico from "./pages/CompromisoEtico";
-import ArchivoHistorico from "./pages/ArchivoHistorico";
-import Gracias from "./pages/Gracias";
-import GraciasDauroCiencia from "./pages/GraciasDauroCiencia";
-import NotFound from "./pages/NotFound";
-import Auth from "./pages/Auth";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import DauroArteContacts from "./pages/admin/DauroArteContacts";
-import EditorialSubmissions from "./pages/admin/EditorialSubmissions";
-import ServicesContacts from "./pages/admin/ServicesContacts";
-import BlogPosts from "./pages/admin/BlogPosts";
-import BlogPostForm from "./pages/admin/BlogPostForm";
-import RssFeed from "./pages/RssFeed";
-import Portafolio from "./pages/Portafolio";
-import ProjectDetail from "./pages/ProjectDetail";
-import Projects from "./pages/admin/Projects";
-import ProjectForm from "./pages/admin/ProjectForm";
-import WebRequests from "./pages/admin/WebRequests";
-import BooktrailerRequests from "./pages/admin/BooktrailerRequests";
-import PortfolioInquiries from "./pages/admin/PortfolioInquiries";
-import SolicitarBooktrailer from "./pages/SolicitarBooktrailer";
-import SolicitarWeb from "./pages/SolicitarWeb";
-import SolicitarProyecto from "./pages/SolicitarProyecto";
-import SolicitarPortada from "./pages/SolicitarPortada";
-import SolicitarRepresentacion from "./pages/SolicitarRepresentacion";
-import GeneradorPortadas from "./pages/GeneradorPortadas";
-import BookCoverRequests from "./pages/admin/BookCoverRequests";
-import ImageSeoManager from "./pages/admin/ImageSeoManager";
-import Analytics from "./pages/admin/Analytics";
-import AIMonitoring from "./pages/admin/AIMonitoring";
-import ArtistSubmissions from "./pages/admin/ArtistSubmissions";
-import LeBrunCollection from "./pages/LeBrunCollection";
-import DauroMirloKey from "./pages/DauroMirloKey";
-import Catalogo from "./pages/Catalogo";
-import CatalogProducts from "./pages/admin/CatalogProducts";
-import ShopifySync from "./pages/admin/ShopifySync";
-import ShopifyImages from "./pages/admin/ShopifyImages";
-import ProductEbooks from "./pages/admin/ProductEbooks";
-import DescargarEbook from "./pages/DescargarEbook";
-import MisEbooks from "./pages/MisEbooks";
-import GraciasCompra from "./pages/GraciasCompra";
-import ShopifyGenres from "./pages/admin/ShopifyGenres";
-import ProductClassifier from "./pages/admin/ProductClassifier";
-import Autoedicion from "./pages/Autoedicion";
-import DauroCiencia from "./pages/DauroCiencia";
-import PresupuestadorCiencia from "./pages/PresupuestadorCiencia";
-import PresupuestadorAutoedicion from "./pages/PresupuestadorAutoedicion";
-import WebsDeLibrosIndex from "./pages/WebsDeLibrosIndex";
-import WebsDeLibrosLeonardo from "./pages/WebsDeLibrosLeonardo";
-import WebsDeLibrosLiderazgo from "./pages/WebsDeLibrosLiderazgo";
+
+const GrupoDauro = lazy(() => import("./pages/GrupoDauro"));
+const Editorial = lazy(() => import("./pages/Editorial"));
+const Arte = lazy(() => import("./pages/Arte"));
+const Cine = lazy(() => import("./pages/Cine"));
+const GuionSerie = lazy(() => import("./pages/GuionSerie"));
+const Musica = lazy(() => import("./pages/Musica"));
+const IA = lazy(() => import("./pages/IA"));
+const Servicios = lazy(() => import("./pages/Servicios"));
+const Tienda = lazy(() => import("./pages/Tienda"));
+const Shop = lazy(() => import("./pages/Shop"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Contacto = lazy(() => import("./pages/Contacto"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const BlogStats = lazy(() => import("./pages/BlogStats"));
+const Privacidad = lazy(() => import("./pages/Privacidad"));
+const Terminos = lazy(() => import("./pages/Terminos"));
+const CompromisoEtico = lazy(() => import("./pages/CompromisoEtico"));
+const ArchivoHistorico = lazy(() => import("./pages/ArchivoHistorico"));
+const Gracias = lazy(() => import("./pages/Gracias"));
+const GraciasDauroCiencia = lazy(() => import("./pages/GraciasDauroCiencia"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Auth = lazy(() => import("./pages/Auth"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const DauroArteContacts = lazy(() => import("./pages/admin/DauroArteContacts"));
+const EditorialSubmissions = lazy(() => import("./pages/admin/EditorialSubmissions"));
+const ServicesContacts = lazy(() => import("./pages/admin/ServicesContacts"));
+const BlogPosts = lazy(() => import("./pages/admin/BlogPosts"));
+const BlogPostForm = lazy(() => import("./pages/admin/BlogPostForm"));
+const RssFeed = lazy(() => import("./pages/RssFeed"));
+const Portafolio = lazy(() => import("./pages/Portafolio"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Projects = lazy(() => import("./pages/admin/Projects"));
+const ProjectForm = lazy(() => import("./pages/admin/ProjectForm"));
+const WebRequests = lazy(() => import("./pages/admin/WebRequests"));
+const BooktrailerRequests = lazy(() => import("./pages/admin/BooktrailerRequests"));
+const PortfolioInquiries = lazy(() => import("./pages/admin/PortfolioInquiries"));
+const SolicitarBooktrailer = lazy(() => import("./pages/SolicitarBooktrailer"));
+const SolicitarWeb = lazy(() => import("./pages/SolicitarWeb"));
+const SolicitarProyecto = lazy(() => import("./pages/SolicitarProyecto"));
+const SolicitarPortada = lazy(() => import("./pages/SolicitarPortada"));
+const SolicitarRepresentacion = lazy(() => import("./pages/SolicitarRepresentacion"));
+const GeneradorPortadas = lazy(() => import("./pages/GeneradorPortadas"));
+const BookCoverRequests = lazy(() => import("./pages/admin/BookCoverRequests"));
+const ImageSeoManager = lazy(() => import("./pages/admin/ImageSeoManager"));
+const Analytics = lazy(() => import("./pages/admin/Analytics"));
+const AIMonitoring = lazy(() => import("./pages/admin/AIMonitoring"));
+const ArtistSubmissions = lazy(() => import("./pages/admin/ArtistSubmissions"));
+const LeBrunCollection = lazy(() => import("./pages/LeBrunCollection"));
+const DauroMirloKey = lazy(() => import("./pages/DauroMirloKey"));
+const Catalogo = lazy(() => import("./pages/Catalogo"));
+const CatalogProducts = lazy(() => import("./pages/admin/CatalogProducts"));
+const ShopifySync = lazy(() => import("./pages/admin/ShopifySync"));
+const ShopifyImages = lazy(() => import("./pages/admin/ShopifyImages"));
+const ProductEbooks = lazy(() => import("./pages/admin/ProductEbooks"));
+const DescargarEbook = lazy(() => import("./pages/DescargarEbook"));
+const MisEbooks = lazy(() => import("./pages/MisEbooks"));
+const GraciasCompra = lazy(() => import("./pages/GraciasCompra"));
+const ShopifyGenres = lazy(() => import("./pages/admin/ShopifyGenres"));
+const ProductClassifier = lazy(() => import("./pages/admin/ProductClassifier"));
+const Autoedicion = lazy(() => import("./pages/Autoedicion"));
+const DauroCiencia = lazy(() => import("./pages/DauroCiencia"));
+const PresupuestadorCiencia = lazy(() => import("./pages/PresupuestadorCiencia"));
+const PresupuestadorAutoedicion = lazy(() => import("./pages/PresupuestadorAutoedicion"));
+const WebsDeLibrosIndex = lazy(() => import("./pages/WebsDeLibrosIndex"));
+const WebsDeLibrosLeonardo = lazy(() => import("./pages/WebsDeLibrosLeonardo"));
+const WebsDeLibrosLiderazgo = lazy(() => import("./pages/WebsDeLibrosLiderazgo"));
 
 const queryClient = new QueryClient();
 
@@ -92,6 +97,7 @@ const App = () => (
           <ExitIntentPopup />
           <WhatsAppFloatingButton />
           <FloatingAuthorCard />
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="h-10 w-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" aria-label="Cargando" /></div>}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
@@ -168,6 +174,7 @@ const App = () => (
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
