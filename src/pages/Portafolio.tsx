@@ -401,30 +401,19 @@ export default function Portafolio() {
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      Crea tu propia portada con IA
+                      ¿Necesitas la portada de tu libro?
                     </h2>
                     <p className="text-lg text-muted-foreground mb-2">
-                      Usa nuestra herramienta gratuita de inteligencia artificial
+                      Diseñamos portadas profesionales a medida de tu obra
                     </p>
                     <p className="text-muted-foreground">
                       O visita nuestra tienda para ver todos los libros publicados
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Button 
-                      size="lg" 
-                      className="w-full sm:w-auto text-lg px-8 py-6 h-auto"
-                      asChild
-                    >
-                      <Link to="/generador-portadas" className="flex items-center gap-2">
-                        <BookOpen className="w-5 h-5" />
-                        Crear portada gratis con IA
-                      </Link>
-                    </Button>
-                    
-                    <Button 
-                      size="lg" 
+                    <Button
+                      size="lg"
                       variant="outline"
                       className="w-full sm:w-auto text-lg px-8 py-6 h-auto border-2"
                       asChild
@@ -434,7 +423,7 @@ export default function Portafolio() {
                         Ver tienda
                       </Link>
                     </Button>
-                    
+
                     <Button 
                       size="lg" 
                       variant="outline"

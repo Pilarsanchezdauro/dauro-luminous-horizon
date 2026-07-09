@@ -103,42 +103,6 @@ const Index = () => {
           reversed
         />
 
-        {/* AI Tool CTA Section */}
-        <section id="generador-portadas-gratis" className="my-32">
-          <div className="max-w-5xl mx-auto">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-background border-2 border-primary/30 shadow-2xl hover:shadow-[0_25px_80px_-15px_rgba(224,74,92,0.5)] transition-all duration-500">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(224,74,92,0.15),transparent_70%)]" />
-              <div className="relative p-8 md:p-12 text-center">
-                <div className="inline-block mb-6">
-                  <div className="bg-primary/10 backdrop-blur-sm rounded-full px-6 py-2 border border-primary/30">
-                    <span className="text-sm font-semibold text-primary">🎨 Herramienta Gratuita</span>
-                  </div>
-                </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                  Crea portadas de libro con IA
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Usa nuestra herramienta de inteligencia artificial completamente gratuita. 
-                  Diseña portadas profesionales en minutos sin conocimientos de diseño.
-                </p>
-                <Button 
-                  size="lg" 
-                  className="text-lg px-10 py-7 h-auto shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-primary hover:bg-primary/90"
-                  asChild
-                >
-                  <Link to="/generador-portadas" className="flex items-center gap-3">
-                    <BookOpen className="w-6 h-6" />
-                    Crear mi portada gratis
-                  </Link>
-                </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  Sin registro • Sin costos ocultos • Resultados instantáneos
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Blog Section - Latest News */}
         <section className="my-32">
           <div className="text-center mb-12">

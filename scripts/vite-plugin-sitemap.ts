@@ -26,7 +26,6 @@ const staticPages = [
   { path: '/solicitar-web', priority: '0.7', changefreq: 'monthly' },
   { path: '/solicitar-booktrailer', priority: '0.7', changefreq: 'monthly' },
   { path: '/solicitar-portada', priority: '0.7', changefreq: 'monthly' },
-  { path: '/generador-portadas', priority: '0.6', changefreq: 'monthly' },
   { path: '/presupuestador', priority: '0.6', changefreq: 'monthly' },
   { path: '/presupuestador-ciencia', priority: '0.5', changefreq: 'monthly' },
   { path: '/artistas/solicitud', priority: '0.6', changefreq: 'monthly' },

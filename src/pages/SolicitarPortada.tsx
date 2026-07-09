@@ -100,17 +100,6 @@ export default function SolicitarPortada() {
               </CardContent>
             </Card>
 
-            {/* Additional Info */}
-            <div className="mt-8 p-6 bg-muted/50 rounded-lg">
-              <h3 className="font-semibold mb-2">¿Prefieres usar nuestro generador gratuito de IA?</h3>
-              <p className="text-sm text-muted-foreground">
-                Si quieres crear tu portada de forma rápida y gratuita, prueba nuestro{' '}
-                <a href="/generador-portadas" className="text-primary hover:underline">
-                  generador de portadas con inteligencia artificial
-                </a>
-                . Es ideal para obtener ideas iniciales o portadas sencillas.
-              </p>
-            </div>
           </div>
         </main>
 

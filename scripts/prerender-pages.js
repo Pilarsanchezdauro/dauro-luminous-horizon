@@ -112,12 +112,6 @@ const pages = [
     image: '/og-generador-portadas-gratis.png'
   },
   {
-    path: 'generador-portadas',
-    title: 'Generador de Portadas con IA Gratis | Crea tu Portada de Libro',
-    description: 'Genera portadas de libros gratis con inteligencia artificial. Herramienta online para crear portadas profesionales para tu novela, poesía o ensayo.',
-    image: '/og-generador-portadas-gratis.png'
-  },
-  {
     path: 'solicitar-booktrailer',
     title: 'Booktrailers Profesionales | Promociona tu Libro con Vídeo',
     description: 'Creamos booktrailers cinematográficos para promocionar tu libro. Vídeos profesionales que captan la esencia de tu obra.',

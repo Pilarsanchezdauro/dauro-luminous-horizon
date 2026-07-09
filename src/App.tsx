@@ -56,7 +56,9 @@ const SolicitarWeb = lazy(() => import("./pages/SolicitarWeb"));
 const SolicitarProyecto = lazy(() => import("./pages/SolicitarProyecto"));
 const SolicitarPortada = lazy(() => import("./pages/SolicitarPortada"));
 const SolicitarRepresentacion = lazy(() => import("./pages/SolicitarRepresentacion"));
-const GeneradorPortadas = lazy(() => import("./pages/GeneradorPortadas"));
+// Generador de portadas retirado de la web (ruta desactivada); se conserva el
+// archivo src/pages/GeneradorPortadas.tsx por si se reactiva en el futuro.
+// const GeneradorPortadas = lazy(() => import("./pages/GeneradorPortadas"));
 const BookCoverRequests = lazy(() => import("./pages/admin/BookCoverRequests"));
 const ImageSeoManager = lazy(() => import("./pages/admin/ImageSeoManager"));
 const Analytics = lazy(() => import("./pages/admin/Analytics"));
@@ -127,7 +129,6 @@ const App = () => (
             <Route path="/solicitar-web" element={<SolicitarWeb />} />
             <Route path="/solicitar-proyecto" element={<SolicitarProyecto />} />
             <Route path="/solicitar-portada" element={<SolicitarPortada />} />
-            <Route path="/generador-portadas" element={<GeneradorPortadas />} />
             <Route path="/artistas/solicitud" element={<SolicitarRepresentacion />} />
             <Route path="/gracias" element={<Gracias />} />
             <Route path="/gracias-dauro-ciencia" element={<GraciasDauroCiencia />} />
