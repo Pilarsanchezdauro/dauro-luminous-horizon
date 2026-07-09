@@ -391,61 +391,6 @@ Desde Grupo Dauro acompañaremos hoy a su familia en su despedida, con respeto y
 — Familia Dauro`
   },
   {
-    title: "Crea Portadas Gratis con IA: Visualiza tu libro antes de publicar",
-    excerpt: "Descubre nuestro generador gratuito de portadas con inteligencia artificial. Crea diseños profesionales para tu libro en segundos y visualiza cómo quedará antes de dar el paso definitivo.",
-    date: "7 Diciembre 2025",
-    author: "Grupo Dauro",
-    image: "/og-generador-portadas-gratis.png",
-    ogImage: "/og-generador-portadas-gratis.png",
-    category: "consejos",
-    slug: "generador-portadas-gratis-ia",
-    bookLink: "/#generador-portadas-gratis",
-    content: `## Visualiza tu libro antes de publicar
-
-¿Alguna vez has imaginado cómo quedaría la portada de tu libro? Ahora puedes verlo en segundos, totalmente **gratis**, gracias a nuestro generador de portadas con inteligencia artificial.
-
-## ¿Qué es el Generador de Portadas?
-
-Es una herramienta online que te permite crear diseños de portadas profesionales para tu libro utilizando inteligencia artificial. Solo tienes que:
-
-- **Introducir el título** de tu obra
-- **Añadir el nombre del autor**
-- **Describir brevemente** la temática o estilo que imaginas
-- **Seleccionar el género** literario
-
-¡Y en pocos segundos tendrás varias propuestas de portada!
-
-## ¿Para qué sirve?
-
-### 📚 Para autores que están escribiendo
-Visualizar una portada mientras escribes puede ser una fuente de inspiración increíble. Ver tu nombre y tu título en una portada profesional te motiva a seguir adelante.
-
-### 🎨 Para decidir el estilo visual
-¿No sabes si tu novela debería tener una portada minimalista, ilustrada o fotográfica? Prueba diferentes estilos y descubre qué funciona mejor.
-
-### 💡 Para presentar tu proyecto
-Si necesitas mostrar tu libro a editores, agentes o en crowdfunding, una portada atractiva marca la diferencia.
-
-### 🎁 Totalmente gratis
-Ofrecemos generaciones gratuitas para que puedas experimentar sin compromiso. Es nuestra forma de apoyar a los autores en sus primeros pasos.
-
-## ¿Cómo funciona la IA?
-
-Nuestro generador utiliza modelos avanzados de inteligencia artificial entrenados en millones de imágenes. A partir de tu descripción, crea diseños únicos que respetan los estándares profesionales del sector editorial.
-
-## ¿Y si quiero una portada profesional definitiva?
-
-El generador gratuito es perfecto para visualizar ideas, pero para tu portada final recomendamos trabajar con nuestro equipo de diseñadores profesionales. Ellos crean portadas personalizadas que destacan en librerías y plataformas online.
-
----
-
-## 🚀 Pruébalo ahora
-
-No esperes más. Introduce los datos de tu libro y descubre cómo podría lucir tu próxima obra.
-
-**Es gratis, es rápido y puede ser el impulso que necesitas para dar el siguiente paso en tu carrera literaria.**`
-  },
-  {
     title: "El Arte es Navidad: nuestra canción original para estas fiestas",
     excerpt: "Grupo Dauro presenta 'El Arte es Navidad', una composición original que celebra la creatividad y el espíritu navideño. Una producción propia que une música, poesía y el compromiso cultural que nos define.",
     date: "7 Diciembre 2025",
