@@ -38,7 +38,7 @@ const Arte = () => {
         "Intermediación profesional y confidencial",
         "Verificación documental y certificación previa",
         "Asesoramiento en negociación y contratos",
-        "Obras de artistas como Picasso, Basquiat, Warhol, Miró, Kandinsky, entre otros"
+        "Piezas únicas de Picasso, Basquiat, Modigliani, Diego Rivera y Warhol, entre otros"
       ]
     },
     {
@@ -91,8 +91,8 @@ const Arte = () => {
     <div className="min-h-screen">
       <SEO
         title="Dauro Arte · Representación de Obras y Artistas de Alto Nivel"
-        description="Representamos obras y artistas de alto nivel: gestión, promoción y venta de arte contemporáneo con red internacional de coleccionistas. También tasación, peritaje y autenticación de obras."
-        keywords="representación de artistas, gestión de obras de arte, venta de arte, galería de arte, arte contemporáneo, coleccionistas, tasación de arte, peritaje de obras de arte, Granada"
+        description="Representamos piezas únicas de Picasso, Basquiat, Modigliani, Diego Rivera y Warhol. Gestión, promoción y venta de obras y artistas de alto nivel, con tasación, peritaje y autenticación."
+        keywords="obra original Picasso, obra Basquiat, obra Modigliani, Diego Rivera, Andy Warhol, representación de artistas, venta de obras de arte, galería de arte, coleccionistas, tasación de arte, peritaje de obras de arte, Granada"
         url="https://www.grupodauro.com/grupo-dauro/arte"
         structuredData={structuredData}
       />
@@ -159,9 +159,45 @@ const Arte = () => {
           </div>
         </div>
 
+        {/* Piezas que representamos ahora */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="rounded-3xl bg-neutral-950 text-white p-8 lg:p-14 relative overflow-hidden">
+            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
+            <div className="relative z-10 text-center">
+              <span className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-4">
+                Representación actual · Piezas únicas
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
+                Representamos en este momento piezas únicas de
+              </h2>
+              <p className="text-white/60 max-w-2xl mx-auto mb-10">
+                Obras originales de grandes maestros del arte moderno y contemporáneo, disponibles para coleccionistas e inversores a través de Dauro Arte.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 rounded-2xl overflow-hidden">
+                {[
+                  "Pablo Ruiz Picasso",
+                  "Jean-Michel Basquiat",
+                  "Amedeo Modigliani",
+                  "Diego Rivera",
+                  "Andy Warhol",
+                ].map((nombre) => (
+                  <div key={nombre} className="bg-neutral-950 px-4 py-7 flex items-center justify-center">
+                    <span className="font-playfair text-lg lg:text-xl leading-tight text-center">
+                      {nombre}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-white/40 mt-6">
+                Disponibilidad sujeta a confirmación. Operaciones con verificación documental y máxima discreción.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Servicios */}
         <div className="max-w-5xl mx-auto mb-16">
-          <h2 
+          <h2
             className="text-3xl lg:text-4xl font-bold text-center mb-12"
             style={{ color: '#111111' }}
           >

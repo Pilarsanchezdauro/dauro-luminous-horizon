@@ -30,7 +30,7 @@ const pages = [
   {
     path: 'grupo-dauro/arte',
     title: 'Dauro Arte · Representación de Obras y Artistas de Alto Nivel',
-    description: 'Representamos obras y artistas de alto nivel: gestión, promoción y venta de arte contemporáneo con red internacional de coleccionistas. También tasación, peritaje y autenticación de obras.',
+    description: 'Representamos piezas únicas de Picasso, Basquiat, Modigliani, Diego Rivera y Warhol. Gestión, promoción y venta de obras y artistas de alto nivel, con tasación, peritaje y autenticación.',
     image: '/og-arte.jpg'
   },
   {
