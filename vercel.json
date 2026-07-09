@@ -3,7 +3,9 @@
         "outputDirectory": "dist",
         "trailingSlash": false,
         "redirects": [
-                  { "source": "/cartas", "destination": "https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026", "permanent": false }
+                  { "source": "/cartas", "destination": "https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026", "permanent": false },
+                  { "source": "/shop", "destination": "https://tiendaspain.grupodauro.com/shop", "permanent": false },
+                  { "source": "/catalogo", "destination": "https://tiendaspain.grupodauro.com/shop", "permanent": false }
         ],
         "rewrites": [
                   { "source": "/feed.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },

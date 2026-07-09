@@ -94,12 +94,6 @@ const pages = [
     image: '/og-editorial.jpg'
   },
   {
-    path: 'catalogo',
-    title: 'Catálogo de Libros | Editorial Dauro - Más de 2000 Títulos',
-    description: 'Catálogo completo de Ediciones Dauro: más de 2000 libros de narrativa, poesía, ensayo, historia y biografía. Compra online con envío a toda España.',
-    image: '/og-editorial.jpg'
-  },
-  {
     path: 'portafolio',
     title: 'Portafolio Creativo | Webs, Booktrailers, Diseño y Branding',
     description: 'Explora nuestro portafolio de proyectos creativos: webs de libros, booktrailers, diseño de portadas, imagen corporativa, producción musical y pintura.',

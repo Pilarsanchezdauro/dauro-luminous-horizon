@@ -10,7 +10,6 @@ import { BookOpen, Calendar, User, Upload } from "lucide-react";
 import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
-import { NovedadesSection } from "@/components/NovedadesSection";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
 import { GlobalDistributionBanner } from "@/components/GlobalDistributionBanner";
 import editorialBg from "@/assets/editorial-bg.jpg";
@@ -70,9 +69,6 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
-        {/* Novedades Editoriales Section */}
-        <NovedadesSection />
-
         {/* 1 · LIBROS / Editorial Section */}
         <SectionCard
           title="Libros que perduran"

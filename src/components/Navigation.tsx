@@ -100,23 +100,7 @@ const Navigation = () => {
     // ————— 4 · TECNOLOGÍA —————
     { name: "Tecnología", path: "/grupo-dauro/ia" },
     { name: "Servicios", path: "/servicios" },
-    {
-      name: "Tienda",
-      path: "/tienda",
-      submenu: [
-        { name: "🇪🇺 Europa", path: "https://tienda.grupodauro.com", external: true },
-        { name: "🇲🇽 México", path: "https://mexico.grupodauro.com", external: true },
-        { name: "🇦🇷 Argentina", path: "https://argentina.grupodauro.com", external: true },
-        { name: "🇨🇱 Chile", path: "https://chile.grupodauro.com", external: true },
-        { name: "🇪🇨 Ecuador", path: "https://ecuador.grupodauro.com", external: true },
-        { name: "🇺🇸 USA", path: "https://usa.grupodauro.com", external: true },
-        { name: "🇨🇴 Colombia", path: "https://colombia.grupodauro.com", external: true },
-        { name: "🇧🇴 Bolivia", path: "https://bolivia.grupodauro.com", external: true },
-        { name: "🇨🇷 Costa Rica", path: "https://costarica.grupodauro.com", external: true },
-        { name: "🇬🇹 Guatemala", path: "https://guatemala.grupodauro.com", external: true },
-        { name: "🇻🇪 Venezuela", path: "https://venezuela.grupodauro.com", external: true },
-      ],
-    },
+    { name: "Tienda", path: "/tienda" },
     {
       name: "Blog",
       path: "/blog",
