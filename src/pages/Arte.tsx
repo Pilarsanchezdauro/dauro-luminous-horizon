@@ -14,42 +14,20 @@ const Arte = () => {
     "@type": "ArtGallery",
     "name": "Dauro Arte",
     "url": "https://www.grupodauro.com/grupo-dauro/arte",
-    "description": "Galería de arte y servicios de tasación, peritaje y asesoramiento artístico",
+    "description": "Representación de obras y artistas de alto nivel: gestión, promoción y venta de arte contemporáneo, con tasación, peritaje y autenticación de obras.",
     "priceRange": "€€€"
   };
 
   const services = [
     {
-      icon: FileCheck,
-      title: "Informes periciales de obras de arte",
-      description: "Elaboramos informes técnicos y jurídicos con validez oficial, integrando criterios de autenticidad, análisis de materiales y contexto histórico.",
-      includes: [
-        "Estudios técnicos, estéticos y materiales",
-        "Análisis de procedencia y datación",
-        "Dictámenes judiciales y extrajudiciales",
-        "Documentación certificada con respaldo pericial"
-      ]
-    },
-    {
-      icon: TrendingUp,
-      title: "Tasación y valoración de obras de arte",
-      description: "Realizamos tasaciones y valoraciones patrimoniales con rigor metodológico y respaldo documental. Determinamos el valor real de mercado mediante comparativas internacionales, autenticidad y estado de conservación.",
-      applications: [
-        "Patrimonios y herencias artísticas",
-        "Fondos de inversión cultural",
-        "Seguros y valoraciones fiscales",
-        "Colecciones privadas o institucionales"
-      ]
-    },
-    {
-      icon: FileSearch,
-      title: "Análisis de firma, autenticidad y documentoscopia",
-      description: "Aplicamos IA avanzada, visión artificial y técnicas de documentoscopia forense para verificar la autenticidad de obras, firmas y documentos asociados. Combinamos el sistema NEGA (Neural Graphic Analysis) con métodos de laboratorio tradicionales.",
-      includes: [
-        "Escaneo de alta resolución y análisis de trazos",
-        "Estudio de tintas, soportes y papel",
-        "Comparación con bases de datos certificadas",
-        "Informe técnico con validación humana y trazabilidad forense"
+      icon: Briefcase,
+      title: "Representación y gestión de artistas",
+      description: "Representamos a artistas consolidados y gestionamos su carrera de principio a fin. Construimos su portfolio, documentamos su trayectoria, certificamos su obra y proyectamos su imagen en el circuito internacional del arte.",
+      offers: [
+        "Elaboración completa del catálogo de obra",
+        "Documentación técnica y archivo digital",
+        "Identidad visual y posicionamiento artístico",
+        "Coordinación de publicaciones, ferias y exposiciones"
       ]
     },
     {
@@ -64,14 +42,36 @@ const Arte = () => {
       ]
     },
     {
-      icon: Briefcase,
-      title: "Creación y gestión de portfolio artístico",
-      description: "En Dauro Arte construimos y gestionamos el portfolio integral de artistas consolidados. Creamos su catálogo técnico y visual, documentamos su trayectoria, certificamos su obra y proyectamos su imagen en el circuito internacional del arte.",
-      offers: [
-        "Elaboración completa del catálogo de obra",
-        "Documentación técnica y archivo digital",
-        "Identidad visual y posicionamiento artístico",
-        "Coordinación de publicaciones, ferias y exposiciones"
+      icon: TrendingUp,
+      title: "Tasación y valoración de obras de arte",
+      description: "Realizamos tasaciones y valoraciones patrimoniales con rigor metodológico y respaldo documental. Determinamos el valor real de mercado mediante comparativas internacionales, autenticidad y estado de conservación.",
+      applications: [
+        "Patrimonios y herencias artísticas",
+        "Fondos de inversión cultural",
+        "Seguros y valoraciones fiscales",
+        "Colecciones privadas o institucionales"
+      ]
+    },
+    {
+      icon: FileCheck,
+      title: "Informes periciales de obras de arte",
+      description: "Elaboramos informes técnicos y jurídicos con validez oficial, integrando criterios de autenticidad, análisis de materiales y contexto histórico.",
+      includes: [
+        "Estudios técnicos, estéticos y materiales",
+        "Análisis de procedencia y datación",
+        "Dictámenes judiciales y extrajudiciales",
+        "Documentación certificada con respaldo pericial"
+      ]
+    },
+    {
+      icon: FileSearch,
+      title: "Análisis de firma, autenticidad y documentoscopia",
+      description: "Aplicamos IA avanzada, visión artificial y técnicas de documentoscopia forense para verificar la autenticidad de obras, firmas y documentos asociados. Combinamos el sistema NEGA (Neural Graphic Analysis) con métodos de laboratorio tradicionales.",
+      includes: [
+        "Escaneo de alta resolución y análisis de trazos",
+        "Estudio de tintas, soportes y papel",
+        "Comparación con bases de datos certificadas",
+        "Informe técnico con validación humana y trazabilidad forense"
       ]
     },
     {
@@ -90,9 +90,9 @@ const Arte = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Dauro Arte - Análisis, Valoración y Autenticidad de Obras de Arte"
-        description="Servicios profesionales de tasación, peritaje, autenticación y gestión de obras de arte. Informes periciales y análisis técnico con IA para coleccionistas, museos e instituciones."
-        keywords="tasación arte, peritaje obras arte, autenticación arte, análisis obras arte, valoración arte Granada"
+        title="Dauro Arte · Representación de Obras y Artistas de Alto Nivel"
+        description="Representamos obras y artistas de alto nivel: gestión, promoción y venta de arte contemporáneo con red internacional de coleccionistas. También tasación, peritaje y autenticación de obras."
+        keywords="representación de artistas, gestión de obras de arte, venta de arte, galería de arte, arte contemporáneo, coleccionistas, tasación de arte, peritaje de obras de arte, Granada"
         url="https://www.grupodauro.com/grupo-dauro/arte"
         structuredData={structuredData}
       />
@@ -114,7 +114,7 @@ const Arte = () => {
             Dauro Arte
           </h1>
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
-            Análisis. Valor. Autenticidad.
+            Representamos obras y artistas de alto nivel.
           </p>
         </div>
       </section>
@@ -151,12 +151,10 @@ const Arte = () => {
             <div className="absolute inset-0 bg-[url('/public/projects/4-personas-acrilico.png')] bg-cover bg-center opacity-[0.07] grayscale" />
             <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
             <p className="text-base lg:text-lg leading-relaxed mb-6 relative z-10" style={{ color: '#333333' }}>
-              En Dauro Arte combinamos el conocimiento artístico con la ciencia y la tecnología para ofrecer un servicio integral de análisis, certificación y gestión de obras de arte.
-              Trabajamos con coleccionistas, museos, instituciones y artistas de trayectoria consolidada, garantizando rigor técnico, discreción y excelencia profesional.
+              En Dauro Arte <strong>representamos obras y artistas de alto nivel</strong>. Gestionamos la carrera de artistas consolidados, promovemos su obra en el circuito internacional y coordinamos la venta y adquisición de piezas de primer nivel con una red de coleccionistas y compradores de confianza.
             </p>
             <p className="text-base lg:text-lg leading-relaxed relative z-10" style={{ color: '#333333' }}>
-              Nuestro equipo está formado por peritos judiciales, historiadores del arte, analistas documentales e ingenieros en IA, capaces de unir la sensibilidad estética con la objetividad científica.
-              Cada informe, valoración o proyecto nace con un mismo propósito: preservar la autenticidad del arte y proteger su valor real.
+              Y respaldamos cada operación con el rigor de un equipo de peritos judiciales, historiadores del arte y analistas: <strong>tasación, peritaje y autenticación</strong> que protegen el valor real de cada obra. Representación con criterio, discreción y garantía.
             </p>
           </div>
         </div>
@@ -267,14 +265,14 @@ const Arte = () => {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-8 lg:p-12 rounded-3xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <h2 
+            <h2
               className="text-3xl lg:text-4xl font-bold text-center mb-4 relative z-10"
               style={{ color: '#111111' }}
             >
-              Solicitar informe o valoración
+              ¿Hablamos de tu obra o colección?
             </h2>
             <p className="text-center text-gray-600 mb-8 relative z-10">
-              Completa el formulario y nos pondremos en contacto contigo lo antes posible
+              Eres artista y quieres que te representemos, o tienes una obra o colección para vender, tasar o autenticar: completa el formulario y te contactamos.
             </p>
             <div className="relative z-10">
               <DauroArteContactForm />

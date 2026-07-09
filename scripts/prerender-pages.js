@@ -29,8 +29,8 @@ const pages = [
   },
   {
     path: 'grupo-dauro/arte',
-    title: 'Dauro Arte - Análisis, Valoración y Autenticidad de Obras de Arte',
-    description: 'Servicios profesionales de tasación, peritaje, autenticación y gestión de obras de arte. Informes periciales y análisis técnico con IA para coleccionistas, museos e instituciones.',
+    title: 'Dauro Arte · Representación de Obras y Artistas de Alto Nivel',
+    description: 'Representamos obras y artistas de alto nivel: gestión, promoción y venta de arte contemporáneo con red internacional de coleccionistas. También tasación, peritaje y autenticación de obras.',
     image: '/og-arte.jpg'
   },
   {
