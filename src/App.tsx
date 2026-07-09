@@ -24,8 +24,6 @@ const Musica = lazy(() => import("./pages/Musica"));
 const IA = lazy(() => import("./pages/IA"));
 const Servicios = lazy(() => import("./pages/Servicios"));
 const Tienda = lazy(() => import("./pages/Tienda"));
-const Shop = lazy(() => import("./pages/Shop"));
-const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const Contacto = lazy(() => import("./pages/Contacto"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -66,7 +64,6 @@ const AIMonitoring = lazy(() => import("./pages/admin/AIMonitoring"));
 const ArtistSubmissions = lazy(() => import("./pages/admin/ArtistSubmissions"));
 const LeBrunCollection = lazy(() => import("./pages/LeBrunCollection"));
 const DauroMirloKey = lazy(() => import("./pages/DauroMirloKey"));
-const Catalogo = lazy(() => import("./pages/Catalogo"));
 const CatalogProducts = lazy(() => import("./pages/admin/CatalogProducts"));
 const ShopifySync = lazy(() => import("./pages/admin/ShopifySync"));
 const ShopifyImages = lazy(() => import("./pages/admin/ShopifyImages"));
@@ -117,10 +114,6 @@ const App = () => (
             <Route path="/grupo-dauro/ia" element={<IA />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/tienda" element={<Tienda />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/tienda/producto/:handle" element={<ProductDetail />} />
-            <Route path="/producto/:handle" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/stats" element={<BlogStats />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
