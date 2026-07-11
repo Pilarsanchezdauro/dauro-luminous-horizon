@@ -188,6 +188,14 @@ export default {
 			'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite'
 		},
   		fontFamily: {
+  			playfair: [
+  				'Playfair Display',
+  				'Lora',
+  				'Georgia',
+  				'Cambria',
+  				'Times New Roman',
+  				'serif'
+  			],
   			sans: [
   				'Inter',
   				'ui-sans-serif',

@@ -469,12 +469,12 @@ Cada producción combina narrativa visual, dirección artística y técnica prof
 
                     <Accordion type="single" collapsible className="mt-auto">
                       <AccordionItem value={service.id} className="border-0">
-                        <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>button]:mb-3">
-                          <Button
-                            className="w-full bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0 hover:scale-105"
+                        <AccordionTrigger className="hover:no-underline p-0 pb-0 [&[data-state=open]>span]:mb-3">
+                          <span
+                            className="w-full inline-flex items-center justify-center bg-[#E31B23] hover:bg-[#C3131A] text-white font-bold text-[15px] rounded-[10px] py-[10px] px-4 shadow-[0_4px_10px_rgba(227,27,35,0.22)] transition-all duration-[200ms] border-0 hover:scale-105"
                           >
                             Más información
-                          </Button>
+                          </span>
                         </AccordionTrigger>
                         <AccordionContent className="pt-0 animate-accordion-down">
                           <div className="bg-white/95 p-5 md:p-6 rounded-[14px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#E9E9E9] max-h-[380px] md:max-h-[440px] overflow-y-auto backdrop-blur-sm">
