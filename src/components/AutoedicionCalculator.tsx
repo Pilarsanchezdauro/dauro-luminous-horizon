@@ -237,8 +237,10 @@ export const AutoedicionCalculator = () => {
       if (distAmazonPapel) canales.push('Amazon papel');
       if (distLibrerias) canales.push('Librerías españolas');
       if (distAmazonEbook) canales.push('Amazon ebook');
-      doc.text(`• Distribución (${canales.join(', ')}): ${calculation.distribucionPrice} €`, 20, y);
-      y += 7;
+      if (canales.length > 0) {
+        doc.text(`• Distribución (${canales.join(', ')}): ${calculation.distribucionPrice} €`, 20, y);
+        y += 7;
+      }
     }
     
     // Bonuses
@@ -303,6 +305,13 @@ export const AutoedicionCalculator = () => {
       return;
     }
 
+    if (distribucion === 'si' && !distAmazonPapel && !distLibrerias && !distAmazonEbook) {
+      toast.error('Has marcado que quieres distribución', {
+        description: 'Elige al menos un canal de distribución, o marca "No quiero distribución".',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     const serviciosContratados = [];
@@ -318,7 +327,9 @@ export const AutoedicionCalculator = () => {
       if (distAmazonPapel) canales.push('Amazon papel');
       if (distLibrerias) canales.push('Librerías españolas');
       if (distAmazonEbook) canales.push('Amazon ebook');
-      serviciosContratados.push(`Distribución: ${canales.join(', ')}`);
+      if (canales.length > 0) {
+        serviciosContratados.push(`Distribución: ${canales.join(', ')}`);
+      }
     }
     
     try {
@@ -799,6 +810,11 @@ export const AutoedicionCalculator = () => {
                     <Checkbox checked={distAmazonEbook} onCheckedChange={(c) => setDistAmazonEbook(!!c)} />
                     <span className="text-sm">Ebook Amazon (mundial) 12 meses: <strong>55 €</strong></span>
                   </label>
+                  {!distAmazonPapel && !distLibrerias && !distAmazonEbook && (
+                    <p className="text-sm font-medium text-destructive bg-destructive/10 border border-destructive/30 rounded-lg p-3">
+                      ⚠️ Elige al menos un canal: tu presupuesto aún no incluye ninguna distribución.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
@@ -842,7 +858,14 @@ export const AutoedicionCalculator = () => {
                 label="Ejemplares" 
                 value={calculation.printPrice > 0 ? `${calculation.printPrice} €` : '0 €'} 
               />
-              <SummaryRow label="Distribución" value={calculation.distribucionPrice > 0 ? `${calculation.distribucionPrice} €` : '0 €'} />
+              <SummaryRow
+                label="Distribución"
+                value={
+                  distribucion === 'si' && calculation.distribucionPrice === 0
+                    ? '⚠️ Elige canal'
+                    : calculation.distribucionPrice > 0 ? `${calculation.distribucionPrice} €` : '0 €'
+                }
+              />
               <SummaryRow label="Marketing" value={calculation.marketingPrice > 0 ? `${calculation.marketingPrice} €` : '0 €'} />
               {calculation.freeWeb && (
                 <SummaryRow label="🎁 Web dedicada al autor" value="INCLUIDA" highlight />
