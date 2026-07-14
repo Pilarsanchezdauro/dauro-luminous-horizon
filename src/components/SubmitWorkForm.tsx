@@ -12,7 +12,7 @@ import { Loader2, Upload, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import logoDauroToast from "@/assets/logo-dauro-toast.png";
 
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB (límite de la edge function de subida)
 const ACCEPTED_FILE_TYPES = [
   "application/pdf",
   "application/msword",
@@ -76,7 +76,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     if (file.size > MAX_FILE_SIZE) {
       toast({
         title: "Error",
-        description: `${fieldName} no debe superar 50MB`,
+        description: `${fieldName} no debe superar 20MB`,
         variant: "destructive",
       });
       return false;
@@ -85,17 +85,27 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
     return true;
   };
 
-  const uploadFile = async (file: File, path: string): Promise<string | null> => {
-    const { data, error } = await supabase.storage
-      .from("editorial-submissions")
-      .upload(path, file);
+  // El bucket "editorial-submissions" es privado: la subida se hace a través de
+  // la edge function (service role), que devuelve la ruta y una URL firmada de
+  // 30 días para los enlaces del email. Función compartida con Dauro Ciencia.
+  const uploadViaFunction = async (
+    file: File,
+    field: "obra" | "curriculum"
+  ): Promise<{ path: string; signedUrl: string }> => {
+    const formData = new FormData();
+    formData.append(field, file);
 
-    if (error) {
-      console.error("Error uploading file:", error);
-      throw error;
+    const { data, error } = await supabase.functions.invoke(
+      "dauro-ciencia-upload-files",
+      { body: formData }
+    );
+
+    if (error || !data?.[field]?.path || !data?.[field]?.signedUrl) {
+      console.error("Error uploading file:", error, data);
+      throw new Error(`Error al subir ${field === "obra" ? "la obra" : "el currículum"}`);
     }
 
-    return data.path;
+    return data[field];
   };
 
   const onSubmit = async (data: FormData) => {
@@ -108,50 +118,21 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       return;
     }
 
+    if (!validateFile(obraFile, "manuscrito") || !validateFile(curriculumFile, "currículum")) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      let obraFilePath = null;
-      let curriculumFilePath = null;
+      // Subir a través de la edge function (bucket privado + URL firmada de 30 días)
+      const obraUpload = await uploadViaFunction(obraFile, "obra");
+      const cvUpload = await uploadViaFunction(curriculumFile, "curriculum");
 
-      // Upload manuscript file
-      const obraFileExt = obraFile.name.split('.').pop();
-      const obraFileName = `obra-${Date.now()}-${Math.random().toString(36).substring(7)}.${obraFileExt}`;
-      const obraPath = `manuscripts/${obraFileName}`;
-
-      const { error: obraUploadError } = await supabase.storage
-        .from('editorial-submissions')
-        .upload(obraPath, obraFile);
-
-      if (obraUploadError) {
-        throw new Error('Error al subir la obra');
-      }
-
-      obraFilePath = obraPath;
-
-      // Upload curriculum file
-      const cvFileExt = curriculumFile.name.split('.').pop();
-      const cvFileName = `cv-${Date.now()}-${Math.random().toString(36).substring(7)}.${cvFileExt}`;
-      const cvPath = `cvs/${cvFileName}`;
-
-      const { error: cvUploadError } = await supabase.storage
-        .from('editorial-submissions')
-        .upload(cvPath, curriculumFile);
-
-      if (cvUploadError) {
-        throw new Error('Error al subir el curriculum');
-      }
-
-      curriculumFilePath = cvPath;
-
-      // Generar URLs públicas de los archivos
-      const { data: { publicUrl: obraUrl } } = supabase.storage
-        .from('editorial-submissions')
-        .getPublicUrl(obraFilePath);
-      
-      const { data: { publicUrl: cvUrl } } = supabase.storage
-        .from('editorial-submissions')
-        .getPublicUrl(curriculumFilePath);
+      const obraFilePath = obraUpload.path;
+      const curriculumFilePath = cvUpload.path;
+      const obraUrl = obraUpload.signedUrl;
+      const cvUrl = cvUpload.signedUrl;
 
       // Preparar datos para Formspree (sin archivos grandes, solo URLs)
       const formspreeEndpoint = 'https://formspree.io/f/mldoyzjb';
@@ -167,7 +148,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         tipo_obra: data.tipo_obra,
         manuscrito_url: obraUrl,
         curriculum_url: cvUrl,
-        mensaje: `🎉 NUEVA PROPUESTA EDITORIAL RECIBIDA\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👤 DATOS DEL AUTOR:\n   • Nombre: ${data.nombre} ${data.apellidos}\n   • Email: ${data.email}\n   • Teléfono: ${data.telefono}\n\n📚 DATOS DE LA OBRA:\n   • Título: ${data.titulo_obra}\n   • Tipo: ${data.tipo_obra}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📥 DESCARGAR ARCHIVOS:\n\n📖 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 Haz clic en los enlaces para descargar los archivos directamente.\n\nGrupo Dauro Editorial`,
+        mensaje: `🎉 NUEVA PROPUESTA EDITORIAL RECIBIDA\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👤 DATOS DEL AUTOR:\n   • Nombre: ${data.nombre} ${data.apellidos}\n   • Email: ${data.email}\n   • Teléfono: ${data.telefono}\n\n📚 DATOS DE LA OBRA:\n   • Título: ${data.titulo_obra}\n   • Tipo: ${data.tipo_obra}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📥 DESCARGAR ARCHIVOS:\n\n📖 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 Haz clic en los enlaces para descargar los archivos directamente.\n⚠️ Los enlaces caducan a los 30 días; después, los archivos siguen disponibles en el panel de administración (grupodauro.com/admin/editorial).\n\nGrupo Dauro Editorial`,
       };
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
@@ -351,7 +332,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="obra">Manuscrito de la obra * (PDF o Word, máx. 50MB)</Label>
+        <Label htmlFor="obra">Manuscrito de la obra * (PDF o Word, máx. 20MB)</Label>
         <div className="mt-2">
           <input
             id="obra"
@@ -389,7 +370,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="curriculum">Curriculum vitae * (PDF o Word, máx. 50MB)</Label>
+        <Label htmlFor="curriculum">Curriculum vitae * (PDF o Word, máx. 20MB)</Label>
         <div className="mt-2">
           <input
             id="curriculum"
