@@ -106,7 +106,9 @@ const Navigation = () => {
       path: "/blog",
       submenu: [
         { name: "Blog Actual", path: "/blog" },
-        { name: "Antiguo Blog", path: "https://grupodauro.wpcomstaging.com/", external: true },
+        // Antes apuntaba a grupodauro.wpcomstaging.com, un dominio temporal de
+        // WordPress que caducó y devuelve 403. El archivo vive ahora aquí.
+        { name: "Hemeroteca 2006-2025", path: "/blog/hemeroteca" },
       ],
     },
     { name: "Contacto", path: "/contacto" },

@@ -28,6 +28,7 @@ const Contacto = lazy(() => import("./pages/Contacto"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const BlogStats = lazy(() => import("./pages/BlogStats"));
+const Hemeroteca = lazy(() => import("./pages/Hemeroteca"));
 const Privacidad = lazy(() => import("./pages/Privacidad"));
 const Terminos = lazy(() => import("./pages/Terminos"));
 const CompromisoEtico = lazy(() => import("./pages/CompromisoEtico"));
@@ -118,6 +119,7 @@ const App = () => (
             <Route path="/tienda" element={<Tienda />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/stats" element={<BlogStats />} />
+          <Route path="/blog/hemeroteca" element={<Hemeroteca />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/feed.xml" element={<RssFeed />} />
             <Route path="/rss.xml" element={<RssFeed />} />

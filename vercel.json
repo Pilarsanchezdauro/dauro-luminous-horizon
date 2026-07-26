@@ -8,7 +8,8 @@
                   { "source": "/catalogo", "destination": "https://tiendaspain.grupodauro.com/shop", "permanent": false },
                   { "source": "/producto/:path*", "destination": "https://tiendaspain.grupodauro.com/shop", "permanent": false },
                   { "source": "/tienda/producto/:path*", "destination": "https://tiendaspain.grupodauro.com/shop", "permanent": false },
-                  { "source": "/generador-portadas", "destination": "/solicitar-portada", "permanent": false }
+                  { "source": "/generador-portadas", "destination": "/solicitar-portada", "permanent": false },
+                  { "source": "/:anio(\\d{4})/:mes(\\d{2})/:dia(\\d{2})/:slug", "destination": "/blog/:slug", "permanent": true }
         ],
         "rewrites": [
                   { "source": "/feed.xml", "destination": "https://rnrsfzgmgjdzufqrsnhd.supabase.co/functions/v1/generate-rss" },

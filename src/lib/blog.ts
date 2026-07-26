@@ -23,6 +23,13 @@ export type DbBlogPostRow = {
   meta_description: string | null;
 };
 
+/**
+ * Categoría con la que se marcan los artículos importados del blog antiguo de
+ * WordPress (2006-2025). Viven en la misma tabla que los demás, pero se
+ * listan aparte en /blog/hemeroteca.
+ */
+export const HEMEROTECA_CATEGORY = "hemeroteca";
+
 export const normalizeBlogCategory = (category?: string | null): BlogCategory => {
   const c = (category || "").toLowerCase().trim();
 

@@ -10,6 +10,7 @@ import {
   Link2,
   Check,
   BarChart3,
+  Library,
 } from "lucide-react";
 import {
   blogPosts as staticBlogPosts,
@@ -150,12 +151,20 @@ const Blog = () => {
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6">
             Presentaciones, reflexiones, novedades y análisis sobre arte, cultura, literatura y tecnología
           </p>
-          <Link to="/blog/stats">
-            <Button variant="secondary" size="lg" className="gap-2">
-              <BarChart3 className="h-4 w-4" />
-              Ver Estadísticas
-            </Button>
-          </Link>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link to="/blog/stats">
+              <Button variant="secondary" size="lg" className="gap-2">
+                <BarChart3 className="h-4 w-4" />
+                Ver Estadísticas
+              </Button>
+            </Link>
+            <Link to="/blog/hemeroteca">
+              <Button variant="secondary" size="lg" className="gap-2">
+                <Library className="h-4 w-4" />
+                Hemeroteca 2006-2025
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       
