@@ -308,15 +308,18 @@ const BlogPost = () => {
       // Imágenes en markdown: ![alt](url)
       const imageMatch = paragraph.match(/^!\[(.*?)\]\((.*?)\)$/);
       if (imageMatch) {
+        // La imagen nunca se muestra por encima de su tamaño real: estirar una
+        // foto pequeña al ancho de la columna la deja borrosa. Y con un alto
+        // contenido, para que un reportaje con varias fotos siga siendo legible.
         return (
-          <div key={idx} className="my-6 md:my-8">
+          <div key={idx} className="my-6 md:my-8 flex flex-col items-center">
             <img
               src={imageMatch[2]}
               alt={imageMatch[1] || "Imagen del artículo"}
               loading="lazy"
               width="1200"
               height="800"
-              className="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain rounded-lg shadow-lg"
+              className="max-w-full w-auto h-auto max-h-[45vh] md:max-h-[55vh] object-contain rounded-lg shadow-lg"
             />
             {imageMatch[1] && (
               <p className="text-xs sm:text-sm text-center text-muted-foreground mt-2 italic px-2">
