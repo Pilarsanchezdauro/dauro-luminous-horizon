@@ -34,6 +34,19 @@ const authors: AuthorInfo[] = [
     ]
   },
   {
+    name: "Carmen Puerta Extremera",
+    slug: "carmen-puerta-extremera",
+    books: [
+      {
+        title: "Cartas desde la otra orilla",
+        slug: "cartas-desde-la-otra-orilla",
+        cover: "/webs-libros/cartas/portada.jpg",
+        description: "Novela de misterio. Un sobre con un nombre de mujer y medio siglo de cartas escritas en secreto.",
+        external: "https://cartasdesdelaotraorilla.grupodauro.com"
+      }
+    ]
+  },
+  {
     name: "Tony de Haro",
     slug: "tony-de-haro",
     books: [
