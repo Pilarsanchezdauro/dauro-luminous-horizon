@@ -21,6 +21,19 @@ interface AuthorInfo {
 
 const authors: AuthorInfo[] = [
   {
+    name: "Francisco López Barrios",
+    slug: "francisco-lopez-barrios",
+    books: [
+      {
+        title: "Los fotones creen en Dios",
+        slug: "los-fotones-creen-en-dios",
+        cover: "/webs-libros/fotones/portada.jpg",
+        description: "Física, mística y misterio en Granada. Web del autor con flipbook de las primeras páginas, agenda de presentaciones y sala de prensa.",
+        external: "https://losfotonescreenendios.grupodauro.com"
+      }
+    ]
+  },
+  {
     name: "Tony de Haro",
     slug: "tony-de-haro",
     books: [
