@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Images, Search, X } from "lucide-react";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -74,10 +74,16 @@ const Hemeroteca = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4">
             Hemeroteca
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             El archivo completo de nuestro blog entre 2006 y 2025. Presentaciones,
             autores, exposiciones y noticias de casi veinte años de vida cultural.
           </p>
+          <Link to="/blog/hemeroteca/galeria">
+            <Button variant="outline" className="gap-2">
+              <Images className="h-4 w-4" />
+              Ver la galería de fotografías
+            </Button>
+          </Link>
         </div>
       </section>
 
