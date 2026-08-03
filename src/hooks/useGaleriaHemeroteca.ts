@@ -9,6 +9,13 @@ export type FotoGaleria = {
   t: string;
   /** Año */
   a: string;
+  /**
+   * 1 = fotografía (un acto, un autor, un lugar).
+   * 0 = material gráfico (cartel, invitación, portada, recorte de prensa).
+   * Lo decide un análisis de la propia imagen al convertir el archivo, así que
+   * acierta en la gran mayoría pero no en todas.
+   */
+  p?: number;
 };
 
 type IndiceGaleria = {

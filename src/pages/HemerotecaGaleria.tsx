@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookImage, Camera, X } from "lucide-react";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,6 +14,7 @@ const TANDA = 96;
 const HemerotecaGaleria = () => {
   const { data, isLoading, isError } = useGaleriaHemeroteca();
   const [anio, setAnio] = useState<string | null>(null);
+  const [tipo, setTipo] = useState<"todo" | "foto" | "grafico">("todo");
   const [visibles, setVisibles] = useState(TANDA);
   const [abierta, setAbierta] = useState<number | null>(null);
 
@@ -27,8 +28,19 @@ const HemerotecaGaleria = () => {
   }, [todas]);
 
   const fotos = useMemo(
-    () => (anio ? todas.filter((f) => f.a === anio) : todas),
-    [todas, anio]
+    () =>
+      todas.filter(
+        (f) =>
+          (!anio || f.a === anio) &&
+          (tipo === "todo" ||
+            (tipo === "foto" ? f.p === 1 : f.p !== 1))
+      ),
+    [todas, anio, tipo]
+  );
+
+  const cuantasFotografias = useMemo(
+    () => todas.filter((f) => f.p === 1).length,
+    [todas]
   );
 
   const mostradas = fotos.slice(0, visibles);
@@ -36,6 +48,12 @@ const HemerotecaGaleria = () => {
 
   const elegirAnio = (valor: string | null) => {
     setAnio(valor);
+    setVisibles(TANDA);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const elegirTipo = (valor: "todo" | "foto" | "grafico") => {
+    setTipo(valor);
     setVisibles(TANDA);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -98,6 +116,43 @@ const HemerotecaGaleria = () => {
 
       <main className="pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Fotografías o material gráfico */}
+          {!isLoading && !isError && (
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
+              <Button
+                variant={tipo === "todo" ? "default" : "outline"}
+                size="sm"
+                onClick={() => elegirTipo("todo")}
+                className="gap-1.5"
+              >
+                Todo
+                <span className="text-xs opacity-60">{todas.length}</span>
+              </Button>
+              <Button
+                variant={tipo === "foto" ? "default" : "outline"}
+                size="sm"
+                onClick={() => elegirTipo("foto")}
+                className="gap-1.5"
+              >
+                <Camera className="h-3.5 w-3.5" />
+                Fotografías
+                <span className="text-xs opacity-60">{cuantasFotografias}</span>
+              </Button>
+              <Button
+                variant={tipo === "grafico" ? "default" : "outline"}
+                size="sm"
+                onClick={() => elegirTipo("grafico")}
+                className="gap-1.5"
+              >
+                <BookImage className="h-3.5 w-3.5" />
+                Carteles y portadas
+                <span className="text-xs opacity-60">
+                  {todas.length - cuantasFotografias}
+                </span>
+              </Button>
+            </div>
+          )}
+
           {/* Años */}
           {!isLoading && !isError && (
             <div className="flex flex-wrap gap-2 justify-center mb-8">
