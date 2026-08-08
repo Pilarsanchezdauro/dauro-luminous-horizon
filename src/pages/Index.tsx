@@ -237,17 +237,17 @@ const Index = () => {
                 ¿Quieres ver nuestros trabajos desde el año 2000?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Ve a nuestro antiguo blog donde encontrarás toda una hemeroteca 
-                interesante de nuestros autores
+                Nuestra hemeroteca reúne el archivo completo del blog entre 2006 y 2025:
+                presentaciones, autores, exposiciones y casi dos mil fotografías
               </p>
-              <a href="https://grupodauro.wpcomstaging.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
-                <Button 
-                  size="lg" 
+              <Link to="/blog/hemeroteca" className="inline-block">
+                <Button
+                  size="lg"
                   className="bg-primary hover:bg-primary/90 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.5)] transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
                 >
-                  Visitar Antiguo Blog
+                  Ver la hemeroteca
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

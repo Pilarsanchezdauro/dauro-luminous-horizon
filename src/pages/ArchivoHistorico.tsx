@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -109,50 +110,40 @@ const ArchivoHistorico = () => {
 
                 <div className="bg-primary/5 p-6 rounded-lg border-l-4 border-primary">
                   <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <ExternalLink className="h-5 w-5" />
-                    Importante: Sitio externo
+                    <Archive className="h-5 w-5" />
+                    Todo el archivo, ya en esta web
                   </h3>
-                  <p className="text-foreground/70 mb-4">
-                    Al continuar, serás redirigido a nuestro archivo histórico alojado en un servidor externo. 
-                    Este contenido se mantiene con fines documentales y puede diferir en diseño y funcionalidad de nuestra web actual.
-                  </p>
-                  <p className="text-sm text-foreground/60">
-                    URL de destino: <span className="font-mono">grupodauro.wpcomstaging.com</span>
+                  <p className="text-foreground/70">
+                    Durante años este material vivió en un blog aparte. Ahora está aquí:
+                    los artículos publicados entre 2006 y 2025, con sus fotografías,
+                    en la hemeroteca de Grupo Cultural Dauro.
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="flex-1"
-                  >
-                    <a
-                      href="https://grupodauro.wpcomstaging.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                      Acceder al Archivo Histórico
-                    </a>
+                  <Button asChild size="lg" className="flex-1">
+                    <Link to="/blog/hemeroteca" className="flex items-center justify-center gap-2">
+                      <Archive className="h-5 w-5" />
+                      Ir a la hemeroteca
+                    </Link>
                   </Button>
-                  
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="flex-1"
-                  >
-                    <a href="/">
-                      Volver a la página principal
-                    </a>
+
+                  <Button asChild variant="outline" size="lg" className="flex-1">
+                    <Link to="/blog/hemeroteca/galeria" className="flex items-center justify-center gap-2">
+                      <Image className="h-5 w-5" />
+                      Ver la galería de fotografías
+                    </Link>
                   </Button>
                 </div>
 
                 <div className="border-t border-border pt-6 mt-8">
                   <p className="text-sm text-foreground/60 italic">
-                    El archivo histórico se mantiene como referencia documental. Para información actualizada sobre nuestros servicios y publicaciones, visita las secciones principales de esta web.
+                    El archivo se conserva como referencia documental: 1.476 artículos y
+                    cerca de dos mil fotografías. Para lo último que publicamos, visita el{" "}
+                    <Link to="/blog" className="text-primary hover:underline not-italic">
+                      blog
+                    </Link>
+                    .
                   </p>
                 </div>
               </div>

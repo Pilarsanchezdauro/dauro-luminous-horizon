@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Calendar, ChevronLeft, ChevronRight, Images, Search, X } from "lucide-react";
 
 import Navigation from "@/components/Navigation";
@@ -19,8 +19,13 @@ const PRIMER_ANIO = 2006;
 const ULTIMO_ANIO = 2025;
 
 const Hemeroteca = () => {
-  const [texto, setTexto] = useState("");
-  const [busqueda, setBusqueda] = useState("");
+  // Se puede llegar con una búsqueda ya hecha: /blog/hemeroteca?buscar=música.
+  // Lo usan las secciones que antes enlazaban a categorías del blog antiguo.
+  const [parametros] = useSearchParams();
+  const busquedaInicial = parametros.get("buscar") ?? "";
+
+  const [texto, setTexto] = useState(busquedaInicial);
+  const [busqueda, setBusqueda] = useState(busquedaInicial);
   const [anio, setAnio] = useState<string | null>(null);
   const [pagina, setPagina] = useState(1);
 

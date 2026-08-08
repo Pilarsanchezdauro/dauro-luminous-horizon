@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -722,18 +723,17 @@ const Musica = () => {
                 Más Proyectos Musicales en Nuestro Archivo
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Explora más producciones, colaboraciones y proyectos musicales en nuestro archivo histórico. 
-                Años de música, artistas y creaciones que han marcado nuestra trayectoria.
+                Explora más producciones, colaboraciones y proyectos musicales en nuestra
+                hemeroteca. Años de música, artistas y creaciones que han marcado nuestra
+                trayectoria.
               </p>
-              <a 
-                href="https://grupodauro.wpcomstaging.com/category/dauromusica/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/blog/hemeroteca?buscar=m%C3%BAsica"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors font-medium"
               >
                 <Music className="h-5 w-5" />
-                Ver archivo de música
-              </a>
+                Ver el archivo de música
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -403,22 +404,21 @@ const GrupoDauro = () => {
               {/* Enlace al archivo histórico */}
               <div className="mt-8 p-6 bg-muted/30 rounded-xl border border-border text-center">
                 <p className="text-muted-foreground mb-4">
-                  ¿Quieres ver más? Visita nuestro <strong>archivo histórico</strong> con todas las galerías desde nuestros inicios. 
+                  ¿Quieres ver más? En la <strong>galería de la hemeroteca</strong> están
+                  todas nuestras fotografías desde 2006.
                   <span className="block text-sm mt-1 italic">
-                    (La página puede tardar en cargar debido a la cantidad de contenido)
+                    Cerca de dos mil imágenes, ordenadas por año
                   </span>
                 </p>
-                <a
-                  href="https://grupodauro.wpcomstaging.com/?s=galeria#jp-carousel-14909"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/blog/hemeroteca/galeria"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 text-primary border border-primary/30 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors font-medium"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
-                  Explorar Archivo Histórico Completo
-                </a>
+                  Explorar la galería completa
+                </Link>
               </div>
             </div>
           </div>
