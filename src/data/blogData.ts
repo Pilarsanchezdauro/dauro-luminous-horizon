@@ -65,7 +65,7 @@ El 13 de agosto, en **O Grove** —el pueblo gallego donde el autor granadino te
 
 ## Un embajador, un alcalde y una boya amarilla por lámpara
 
-La lista de invitados dice mucho de quién es Francisco López Barrios: por aquel jardín pasaron el **embajador de España en Filipinas**, el **alcalde de O Grove**, un histórico dirigente político gallego y empresarios y hosteleros de la ría, mezclados sin protocolo alguno con vecinos y amigos de siempre. Todo bajo una **boya amarilla reconvertida en lámpara**, con las hamacas al fondo y un manzano dando sombra a la mesa presidencial.
+La lista de invitados dice mucho de quién es Francisco López Barrios: por aquel jardín pasaron **Miguel Utray**, embajador de España en Filipinas, **José Antonio Cacabelos**, alcalde de O Grove, un histórico dirigente político gallego y empresarios y hosteleros de la ría, mezclados sin protocolo alguno con vecinos y amigos de siempre. Todo bajo una **boya amarilla reconvertida en lámpara**, con las hamacas al fondo y un manzano dando sombra a la mesa presidencial.
 
 ## La originalidad de Paco
 
