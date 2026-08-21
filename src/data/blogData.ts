@@ -82,7 +82,7 @@ Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los
 **«Los fotones creen en Dios»** (Grupo Dauro, 2026) es una novela de fronteras: entre la física y la mística, entre el pasado y el porvenir, entre la carcajada y el vértigo. Una Granada donde el tiempo se pliega, una trama de espionaje que cruza el Estrecho y un autor —Premio Ciudad de Granada de novela y Premio Andalucía de la Crítica— en plena forma.
 
 - 📖 En papel (22 €) y ebook (9,99 €) en [nuestra tienda](https://tiendaspain.grupodauro.com/shop/los-fotones-creen-en-dios-18029) y en [Amazon](https://www.amazon.es/dp/B0H95MJS2H).
-- 🌐 En [la web del libro](https://losfotonescreenendios.grupodauro.com) puedes hojear las 25 primeras páginas y **escuchar al propio Paco contar cómo fue la presentación**, en su voz.
+- 🌐 En [la web del libro](https://losfotonescreenendios.grupodauro.com) puedes hojear las 25 primeras páginas y ver todas las fotos de la presentación.
 `,
   },
   {
