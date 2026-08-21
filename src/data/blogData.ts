@@ -73,7 +73,7 @@ Quien conozca su literatura no se sorprenderá. El hombre que ha metido en una m
 
 En la mesa, el autor conversó sobre la novela flanqueado por dos periodistas: el gallego **Álex Piñeiro Reboredo**, que ofició de presentador, y **Charo Fernández Cotta**, periodista y escritora llegada desde Sevilla para la ocasión. Hubo lectura, hubo risas, hubo preguntas de las buenas y una larga **firma de ejemplares**.
 
-Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los árboles de su finca** en la comida anual de la **cofradía agrocultural La Hierbabuena** —mantel rojo, guitarras y sombreros de paja—, con su regla de oro de siempre: aquí se viene invitado, pero la cuenta se paga entre todos, a partes iguales y con los recibos en la mano. Este año las cuentas las llevó una juez. Salieron exactas.
+Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los árboles** en la comida anual de la **cofradía agrocultural La Hierbabuena** —mantel rojo, guitarras y sombreros de paja—, con su regla de oro de siempre: aquí se viene invitado, pero la cuenta se paga entre todos, a partes iguales y con los recibos en la mano. Este año las cuentas las llevó una juez. Salieron exactas.
 
 > *«Estamos en el umbral de un mundo en el que la síntesis de materia y espiritualidad se realizará de manera imperceptible.»*
 
