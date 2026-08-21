@@ -75,8 +75,6 @@ En la mesa, el autor conversó sobre la novela flanqueado por dos periodistas: e
 
 Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los árboles** en la comida anual de la **cofradía agrocultural La Hierbabuena** —mantel rojo, guitarras y sombreros de paja—, con su regla de oro de siempre: aquí se viene invitado, pero la cuenta se paga entre todos, a partes iguales y con los recibos en la mano. Este año las cuentas las llevó una juez. Salieron exactas.
 
-> *«Estamos en el umbral de un mundo en el que la síntesis de materia y espiritualidad se realizará de manera imperceptible.»*
-
 ## La novela
 
 **«Los fotones creen en Dios»** (Grupo Dauro, 2026) es una novela de fronteras: entre la física y la mística, entre el pasado y el porvenir, entre la carcajada y el vértigo. Una Granada donde el tiempo se pliega, una trama de espionaje que cruza el Estrecho y un autor —Premio Ciudad de Granada de novela y Premio Andalucía de la Crítica— en plena forma.
