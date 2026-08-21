@@ -20,7 +20,6 @@ interface Message {
 
 const SEARCH_EXAMPLES = [
   // Servicios
-  "¿Cómo funciona el generador de portadas gratis?",
   "¿Qué servicios de autoedición ofrecéis?",
   "¿Hacéis booktrailers para libros?",
   "¿Cómo puedo unirme a vuestro canal de WhatsApp?",

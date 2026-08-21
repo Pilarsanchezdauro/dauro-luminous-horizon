@@ -692,43 +692,6 @@ const BlogPost = () => {
                   </div>
                 )}
 
-                {/* CTA for posts with just bookLink (no bookImage) - like the cover generator */}
-                {post.bookLink && !post.bookImage && (
-                  <div className="bg-gradient-to-br from-primary/20 via-primary/10 to-background p-8 rounded-xl border-2 border-primary/30 mt-8 text-center">
-                    <h3 className="text-2xl font-playfair font-bold mb-4 text-foreground">
-                      🚀 ¡Pruébalo ahora!
-                    </h3>
-                    <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                      Crea tu portada gratuita en segundos. Sin registro, sin costos ocultos.
-                    </p>
-                    <Button
-                      asChild
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 h-auto"
-                    >
-                      {post.bookLink.startsWith('/') || post.bookLink.startsWith('#') ? (
-                        <Link to={post.bookLink} className="flex items-center gap-2">
-                          <BookOpen className="h-5 w-5" />
-                          Crear mi portada gratis
-                        </Link>
-                      ) : (
-                        <a
-                          href={post.bookLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2"
-                        >
-                          <ExternalLink className="h-5 w-5" />
-                          Ver más
-                        </a>
-                      )}
-                    </Button>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      Sin registro • Sin costos ocultos • Resultados instantáneos
-                    </p>
-                  </div>
-                )}
-
                 {/* Book image and link for posts with additional content */}
                 {post.bookImage && post.bookLink && (
                   <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-xl border border-primary/10 mt-8">
