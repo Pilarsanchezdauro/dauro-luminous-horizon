@@ -105,7 +105,7 @@ Así arranca **«Pelayo. Leyenda y Vida I»**, la primera novela de **Tony de Ha
 
 Mientras Pelayo crece —cazando lobos, aprendiendo en quién puede fiarse un hombre—, al otro lado del Estrecho se forja la tormenta perfecta: un conde cegado por la venganza abre las puertas de Hispania al invasor. Cuando el reino visigodo cae de rodillas, cuando los más valientes se rinden y los más poderosos huyen, un solo hombre decide que él no.
 
-> *«Un solo hombre decidió que él no. Que él jamás.»*
+«Un solo hombre decidió que él no. Que él jamás.»
 
 **«Pelayo»** es una novela histórica monumental sobre el origen de la Reconquista y el nacimiento del Reino de Asturias: 690 páginas de épica, honor, traición y aventura, con el rigor de la investigación y el pulso de la mejor novela de aventuras.
 
@@ -163,7 +163,7 @@ Así arranca **«Cartas desde la otra orilla»**, la primera novela de **Carmen 
 
 Dos fuerzas tiran de él a la vez. Una es **Miriam**, la nieta de la vieja nodriza: un amor inmediato y luminoso, envenenado por una sospecha que crece página a página. La otra es lo inexplicable: una respiración que no es la suya, una mano fría en la frente, una mujer que se aparece junto al río y se desvanece.
 
-> *«Lo que el tiempo calla, la memoria lo reclama.»*
+«Lo que el tiempo calla, la memoria lo reclama.»
 
 ## La poeta que se atrevió con la novela
 
