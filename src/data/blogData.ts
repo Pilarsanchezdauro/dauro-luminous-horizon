@@ -38,6 +38,48 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Una presentación campera y por estricta invitación: «Los fotones creen en Dios», de Francisco López Barrios, se estrena en O Grove",
+    excerpt: "Nada de salón de actos: una mesa con mantel rojo bajo los árboles, guitarras, amigos convocados uno a uno y firma de ejemplares. Así presentó Francisco López Barrios su novela «Los fotones creen en Dios» en el Náutico de San Vicente, en O Grove.",
+    date: "21 Agosto 2026",
+    author: "Grupo Dauro",
+    image: "/blog/fotones-presentacion/mesa-presentacion.jpg",
+    ogImage: "/blog/fotones-presentacion/mesa-presentacion.jpg",
+    imageAlt: "Francisco López Barrios, entre Álex Piñeiro Reboredo y Charo Fernández Cotta, en la presentación de Los fotones creen en Dios en O Grove",
+    metaTitle: "La presentación campera de «Los fotones creen en Dios»",
+    metaDescription: "Crónica de la presentación de la novela de Francisco López Barrios en el Náutico de San Vicente (O Grove): una velada campera, por estricta invitación, con guitarras y firma de ejemplares.",
+    keywords: "Los fotones creen en Dios, Francisco López Barrios, presentación libro O Grove, Grupo Dauro, novela literaria",
+    category: "literatura",
+    slug: "presentacion-los-fotones-creen-en-dios-o-grove",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/los-fotones-creen-en-dios-18029",
+    amazonLink: "https://www.amazon.es/dp/B0H95MJS2H",
+    gallery: [
+      "/blog/fotones-presentacion/mesa-campera.jpg",
+      "/blog/fotones-presentacion/publico-jardin.jpg",
+      "/blog/fotones-presentacion/paco-y-amigos.jpg",
+    ],
+    content: `## Nada de tarima, nada de micrófono solemne: una huerta, un mantel rojo y guitarras
+
+Hay autores que presentan sus libros en salones de actos. Y luego está **Francisco López Barrios**.
+
+El 13 de agosto, en el **Náutico (El Otro) de San Vicente**, en O Grove —el pueblo gallego donde el autor granadino terminó de escribir la novela—, **«Los fotones creen en Dios»** se presentó como se presentan las cosas importantes de verdad: entre amigos. Una mesa larga con mantel rojo bajo los árboles, guitarras que iban y venían, vino albariño y una regla que Paco defendió con la misma sonrisa con la que la impuso: **por estricta invitación**. Cada asistente estaba allí porque el autor lo había querido allí.
+
+## La originalidad de Paco
+
+Quien conozca su literatura no se sorprenderá. El hombre que ha metido en una misma novela los aceleradores de partículas y el misticismo sufí, los espacios cuánticos de castigo del río Darro y los resucitados que pasean por Granada con toda naturalidad, no iba a hacer una presentación de folleto. Hizo una **velada campera**, mitad romería mitad tertulia, donde se habló de física y de espíritu con un plato de queso delante.
+
+Al caer la tarde llegó la parte más «formal» —es un decir—: en el jardín, con una boya amarilla por lámpara y las hamacas al fondo, el autor conversó sobre la novela acompañado por los periodistas **Álex Piñeiro Reboredo** y **Charo Fernández Cotta**. Hubo lectura, hubo risas, hubo preguntas de las buenas y una larga **firma de ejemplares**.
+
+> *«Estamos en el umbral de un mundo en el que la síntesis de materia y espiritualidad se realizará de manera imperceptible.»*
+
+## La novela
+
+**«Los fotones creen en Dios»** (Grupo Dauro, 2026) es una novela de fronteras: entre la física y la mística, entre el pasado y el porvenir, entre la carcajada y el vértigo. Una Granada donde el tiempo se pliega, una trama de espionaje que cruza el Estrecho y un autor —Premio Ciudad de Granada de novela y Premio Andalucía de la Crítica— en plena forma.
+
+- 📖 En papel (22 €) y ebook (9,99 €) en [nuestra tienda](https://tiendaspain.grupodauro.com/shop/los-fotones-creen-en-dios-18029) y en [Amazon](https://www.amazon.es/dp/B0H95MJS2H).
+- 🌐 En [la web del libro](https://losfotonescreenendios.grupodauro.com) puedes hojear las 25 primeras páginas y **escuchar al propio Paco contar cómo fue la presentación**, en su voz.
+`,
+  },
+  {
     title: "«Pelayo. Leyenda y Vida I»: la novela histórica de Tony de Haro sobre el origen de la Reconquista y el nacimiento del Reino de Asturias",
     excerpt: "Asturias, año 692. Un niño nace entre la nieve y un pueblo corea su nombre. Veinte años después plantará cara al mayor ejército del mundo. Tony de Haro debuta en la novela histórica con «Pelayo. Leyenda y Vida I», el origen de la Reconquista. Ya a la venta.",
     date: "3 Julio 2026",
