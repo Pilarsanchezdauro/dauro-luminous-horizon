@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     author: "Grupo Dauro",
     image: "/blog/fotones-presentacion/portada-mesa.jpg",
     ogImage: "/blog/fotones-presentacion/portada-mesa.jpg",
-    imageAlt: "Francisco López Barrios, entre Álex Espiño y Charo Fernández Cotta, en la presentación de Los fotones creen en Dios en O Grove",
+    imageAlt: "Francisco López Barrios, entre Álex Espiño Reboredo y Charo Fernández Cotta, en la presentación de Los fotones creen en Dios en O Grove",
     metaTitle: "La presentación campera de «Los fotones creen en Dios»",
     metaDescription: "Crónica de la presentación de la novela de Francisco López Barrios en O Grove: una velada campera por estricta invitación, con un embajador, un alcalde, guitarras y firma de ejemplares.",
     keywords: "Los fotones creen en Dios, Francisco López Barrios, presentación libro O Grove, Grupo Dauro, novela literaria",
@@ -71,7 +71,7 @@ La lista de invitados dice mucho de quién es Francisco López Barrios: por aque
 
 Quien conozca su literatura no se sorprenderá. El hombre que ha metido en una misma novela los aceleradores de partículas y el misticismo sufí, los espacios cuánticos de castigo del río Darro y los resucitados que pasean por Granada con toda naturalidad, no iba a hacer una presentación de folleto. Hizo una **velada campera**, mitad romería mitad tertulia, donde se habló de física y de espíritu con una copa de albariño en la mano.
 
-En la mesa, el autor conversó sobre la novela flanqueado por dos periodistas: el gallego **Álex Espiño**, que ofició de presentador, y **Charo Fernández Cotta**, periodista y escritora llegada desde Sevilla para la ocasión. Hubo lectura, hubo risas, hubo preguntas de las buenas y una larga **firma de ejemplares**.
+En la mesa, el autor conversó sobre la novela flanqueado por dos periodistas: el gallego **Álex Espiño Reboredo**, que ofició de presentador, y **Charo Fernández Cotta**, periodista y escritora llegada desde Sevilla para la ocasión. Hubo lectura, hubo risas, hubo preguntas de las buenas y una larga **firma de ejemplares**.
 
 Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los árboles** en la comida anual de la **cofradía agrocultural La Hierbabuena** —mantel rojo, guitarras y sombreros de paja—, con su regla de oro de siempre: aquí se viene invitado, pero la cuenta se paga entre todos, a partes iguales y con los recibos en la mano. Este año las cuentas las llevó una juez. Salieron exactas.
 
