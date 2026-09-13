@@ -79,6 +79,7 @@ const Navigation = () => {
       name: "Guiones",
       path: "/grupo-dauro/cine",
       submenu: [
+        { name: "Nuestros guiones", path: "/guiones" },
         { name: "Dauro Cine", path: "/grupo-dauro/cine" },
         { name: "El Hidalgo Don Rodrigo de Cervantes", path: "/grupo-dauro/cine/el-hidalgo-don-rodrigo" },
         { name: "Latido", path: "/grupo-dauro/cine/latido" },

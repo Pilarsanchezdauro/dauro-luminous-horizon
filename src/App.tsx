@@ -20,6 +20,7 @@ const Editorial = lazy(() => import("./pages/Editorial"));
 const Arte = lazy(() => import("./pages/Arte"));
 const Cine = lazy(() => import("./pages/Cine"));
 const GuionSerie = lazy(() => import("./pages/GuionSerie"));
+const Guiones = lazy(() => import("./pages/Guiones"));
 const Musica = lazy(() => import("./pages/Musica"));
 const IA = lazy(() => import("./pages/IA"));
 const Servicios = lazy(() => import("./pages/Servicios"));
@@ -112,6 +113,7 @@ const App = () => (
             <Route path="/dauro-ciencia" element={<DauroCiencia />} />
             <Route path="/presupuestador-ciencia" element={<PresupuestadorCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
+            <Route path="/guiones" element={<Guiones />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
             <Route path="/grupo-dauro/cine/:slug" element={<GuionSerie />} />
             <Route path="/grupo-dauro/musica" element={<Musica />} />
