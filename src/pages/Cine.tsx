@@ -223,7 +223,7 @@ const Cine = () => {
               Series en Desarrollo
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tres grandes guiones de serie de novela histórica y drama, escritos y adaptados por nuestro equipo
+              Dos grandes guiones de serie y un largometraje, escritos y adaptados por nuestro equipo
             </p>
           </div>
 

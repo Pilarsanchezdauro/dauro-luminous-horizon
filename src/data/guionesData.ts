@@ -169,28 +169,42 @@ export const guiones: Guion[] = [
     adaptacion: "Supervisión creativa: Juan José Porto",
     estado: "En desarrollo",
     logline:
-      "El nuevo proyecto de serie firmado por Juan José Porto —director, guionista y supervisor creativo de Dauro Cine—, con más de cinco décadas de trayectoria en el cine y la literatura españoles.",
+      "Largometraje sobre la vida y la obra de Gustavo Adolfo Bécquer, firmado por Juan José Porto —director, guionista y biógrafo del poeta—, que entrelaza la biografía del autor con sus propias leyendas hasta que no se sabe dónde acaba el hombre y dónde empieza lo que escribió.",
     sinopsis: [
-      "El Huésped de las Tinieblas es el tercer gran guion de serie en el que trabaja Grupo Cultural Dauro, de la mano de Juan José Porto: pionero de la comedia nostálgica del cine español, director de catorce largometrajes, guionista y biógrafo reconocido.",
-      "El proyecto se encuentra actualmente en desarrollo. Iremos ampliando su ficha —sinopsis completa, personajes y biblia de serie— a medida que avance la escritura.",
+      "El Huésped de las Tinieblas es una película sobre Gustavo Adolfo Bécquer: el poeta de las Rimas, el autor de las Leyendas, el hombre que murió a los treinta y cuatro años sin ver publicado su libro.",
+      "La película no cuenta primero su vida y después sus cuentos: los trenza. La biografía y las leyendas avanzan entrelazadas, de modo que lo que le ocurre al hombre reaparece transformado en lo que escribe. Junto a él, su hermano Valeriano y la tradición de todo un pueblo. Bécquer: un hombre y su destino.",
+      "Nace de un libro que Juan José Porto escribió justamente para eso. En su propia sinopsis lo dice sin rodeos: un apunte biográfico concebido para «establecer las bases dramáticas» de una recreación cinematográfica posterior. El libro está publicado por Grupo Dauro y se puede leer.",
+      "Lo firma Juan José Porto: periodista, escritor y director de catorce largometrajes, entre ellos «El último guateque» (1978) y «El florido pensil» (2002), premio nacional Benito Pérez Galdós por su novela «La víbora». El guion está en desarrollo y ampliaremos su ficha a medida que avance la escritura.",
     ],
-    genero: "Drama · Thriller",
-    formato: "Serie de televisión · En desarrollo",
-    epoca: "Por confirmar",
-    localizaciones: "Por confirmar",
+    genero: "Drama · Biografía · Fantástico",
+    formato: "Largometraje · En desarrollo",
+    epoca: "España, siglo XIX",
+    localizaciones: "Sevilla · Toledo · Veruela · Madrid",
     datos: [
+      { etiqueta: "Formato", valor: "Largometraje" },
       { etiqueta: "Estado", valor: "En desarrollo" },
       { etiqueta: "Autor", valor: "J. J. Porto" },
     ],
-    personajes: [],
-    tags: ["Drama", "Thriller", "En desarrollo"],
-    imagen: "/dauro-cine-director.jpg",
+    personajes: [
+      {
+        nombre: "Gustavo Adolfo Bécquer",
+        rol: "Protagonista",
+        descripcion:
+          "Sevilla, 1836 – Madrid, 1870. Huérfano a los once años, periodista de oficio y poeta a destiempo. Escribe las Rimas sin verlas publicadas y las Leyendas mientras se le va la salud. Vive rodeado de lo que él mismo inventa.",
+      },
+    ],
+    tags: ["Drama", "Biografía", "Bécquer", "Largometraje", "En desarrollo"],
+    imagen: "/products/el-huesped-de-las-tinieblas.jpg",
     ogImage: "/og-cine.jpg",
+    enlaceExtra: {
+      texto: "Leer el libro de Juan José Porto",
+      url: "https://tiendaspain.grupodauro.com/shop/bc978-84-18183-27-0-el-huesped-de-las-tinieblas-juan-jose-porto-14826",
+    },
     blog: undefined,
     seoTitle:
-      "El Huésped de las Tinieblas — Serie de Juan José Porto | Guion Dauro",
+      "El Huésped de las Tinieblas — Película sobre Bécquer de Juan José Porto | Dauro Cine",
     seoDescription:
-      "Nuevo proyecto de serie de Juan José Porto para Grupo Cultural Dauro. Actualmente en desarrollo. Drama y thriller de la mano de un referente del cine español.",
+      "Largometraje en desarrollo sobre la vida y la obra de Gustavo Adolfo Bécquer, escrito por Juan José Porto para Grupo Cultural Dauro: biografía y leyendas entrelazadas.",
   },
 ];
 

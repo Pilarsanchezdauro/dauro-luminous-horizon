@@ -18,6 +18,9 @@ const GuionSerie = () => {
     return <Navigate to="/grupo-dauro/cine" replace />;
   }
 
+  // Hay guiones de serie y guiones de cine: el formato manda en la etiqueta.
+  const esLargometraje = /largometraje|pel[íi]cula/i.test(guion.formato);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TVSeries",
@@ -55,7 +58,7 @@ const GuionSerie = () => {
       <SEO
         title={guion.seoTitle}
         description={guion.seoDescription}
-        keywords={`${guion.titulo}, ${guion.autor}, serie de televisión, ${guion.genero}, guion de serie, guiones de series históricas, adaptación novela a serie, Grupo Cultural Dauro`}
+        keywords={`${guion.titulo}, ${guion.autor}, ${esLargometraje ? "largometraje, guion de cine, película" : "serie de televisión, guion de serie, guiones de series históricas"}, ${guion.genero}, adaptación novela a pantalla, Grupo Cultural Dauro`}
         url={`${SITE}/grupo-dauro/cine/${guion.slug}`}
         image={guion.ogImage}
         type="article"
@@ -98,7 +101,9 @@ const GuionSerie = () => {
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-primary text-xs font-semibold uppercase tracking-wider">
-                  <Tv className="w-3.5 h-3.5" /> Serie de TV · {guion.estado}
+                  {esLargometraje
+                    ? <><Film className="w-3.5 h-3.5" /> Largometraje · {guion.estado}</>
+                    : <><Tv className="w-3.5 h-3.5" /> Serie de TV · {guion.estado}</>}
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white leading-none mb-3">

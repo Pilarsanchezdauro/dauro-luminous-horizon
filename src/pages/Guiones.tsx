@@ -14,9 +14,9 @@ const Guiones = () => {
   return (
     <>
       <SEO
-        title="Nuestros Guiones | De la novela a la serie — Grupo Cultural Dauro"
-        description="Convertimos los libros de nuestro catálogo en guiones de serie y de cine. Tres guiones escritos y en preproducción: El Hidalgo Don Rodrigo de Cervantes, Latido y El Huésped de las Tinieblas."
-        keywords="guiones de serie, adaptación literaria, novela a serie, preproducción audiovisual, biblia de serie, guionistas, Grupo Dauro, Dauro Cine"
+        title="Nuestros Guiones | De la novela a la pantalla — Grupo Cultural Dauro"
+        description="Convertimos los libros de nuestro catálogo en guiones de serie y de cine. Dos series en preproducción, El Hidalgo Don Rodrigo de Cervantes y Latido, y un largometraje sobre Bécquer, El Huésped de las Tinieblas."
+        keywords="guiones de serie, guion de cine, adaptación literaria, novela a serie, preproducción audiovisual, biblia de serie, largometraje Bécquer, guionistas, Grupo Dauro, Dauro Cine"
         url="https://www.grupodauro.com/guiones"
       />
 
@@ -32,7 +32,7 @@ const Guiones = () => {
                 <span>Nuestros guiones</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
-                De la novela a la serie
+                De la novela a la pantalla
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
                 No enviamos novelas esperando que alguien las lea. Escribimos el guion, la biblia
@@ -50,11 +50,11 @@ const Guiones = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mb-12">
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-3">
-                Tres guiones escritos
+                Dos series y una película
               </h2>
               <p className="text-muted-foreground">
-                Dos nacen de novelas de nuestro catálogo. El tercero es un guion original de
-                Juan José Porto, supervisor creativo de Dauro Cine.
+                Las dos series nacen de novelas de nuestro catálogo. La película es un guion
+                original de Juan José Porto sobre la vida y la obra de Bécquer.
               </p>
             </div>
 
@@ -65,12 +65,14 @@ const Guiones = () => {
                   to={`/grupo-dauro/cine/${g.slug}`}
                   className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col"
                 >
-                  <div className="aspect-[3/4] overflow-hidden bg-muted">
+                  {/* object-contain: las cubiertas tienen proporciones distintas y
+                      con object-cover se partían por arriba y por abajo. */}
+                  <div className="aspect-[3/4] overflow-hidden bg-muted flex items-center justify-center p-4">
                     <img
                       src={g.imagen}
                       alt={g.titulo}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
