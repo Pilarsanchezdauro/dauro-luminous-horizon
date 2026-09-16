@@ -38,52 +38,6 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "Vuelta al trabajo en Grupo Dauro: dos novelas recién nacidas, una presentación junto al mar y la inteligencia artificial que llega a las empresas",
-    excerpt: "Septiembre llega cargado en Grupo Dauro: «Pelayo» y «Cartas desde la otra orilla» ya están en las librerías, «Los fotones creen en Dios» se presentó en O Grove y Dauro IA reúne hoy a empresarios en Peligros y lanza su máster «La empresa automatizada».",
-    date: "16 Septiembre 2026",
-    author: "Grupo Dauro",
-    image: "/blog/fotones-presentacion/portada-mesa.jpg",
-    ogImage: "/blog/fotones-presentacion/portada-mesa.jpg",
-    imageAlt: "Presentación de «Los fotones creen en Dios» en O Grove, una de las novedades de Grupo Dauro en 2026",
-    metaTitle: "Novedades de Grupo Dauro · Septiembre 2026",
-    metaDescription: "Nuevas novelas de Tony de Haro y Carmen Puerta, la presentación de «Los fotones creen en Dios» en O Grove y las jornadas y el máster de Dauro IA para empresas.",
-    keywords: "Grupo Dauro novedades, Pelayo Leyenda y Vida, Cartas desde la otra orilla, Los fotones creen en Dios, Dauro IA, jornada IA empresas Granada, máster empresa automatizada",
-    category: "literatura",
-    slug: "novedades-grupo-dauro-septiembre-2026",
-    content: `## Septiembre no es un final de verano. Es un comienzo.
-
-Hay editoriales que descansan en agosto. En Grupo Dauro, el verano nos ha dejado dos novelas nuevas en las librerías, una presentación que nadie de los que estuvieron va a olvidar y un proyecto de tecnología que ya está entrando en las empresas.
-
-Te lo contamos todo.
-
-## Dos voces nuevas en nuestro catálogo
-
-En julio publicamos dos primeras novelas muy distintas, unidas por lo mismo que nos mueve desde siempre: **dar voz a autores que merecen ser leídos**.
-
-**«Pelayo. Leyenda y Vida I»**, de **Tony de Haro**, es una novela histórica monumental sobre el origen de la Reconquista y el nacimiento del Reino de Asturias: 690 páginas de épica, honor y traición que abren una gran saga. [Te contamos su historia aquí](/blog/pelayo-leyenda-y-vida-tony-de-haro).
-
-**«Cartas desde la otra orilla»**, de **Carmen Puerta Extremera**, es el salto a la novela de una poeta: un joven encuentra en un cajón las cartas que su abuelo escribió en secreto durante medio siglo. Misterio, memoria y secretos de familia entre la Guerra Civil y el presente, en papel y ebook. [Descúbrela aquí](/blog/cartas-desde-la-otra-orilla-carmen-puerta-extremera).
-
-## Una presentación campera en O Grove
-
-El 13 de agosto, **Francisco López Barrios** presentó **«Los fotones creen en Dios»** como solo él podía hacerlo: en el jardín de una casa junto al mar, por estricta invitación, con un embajador, un alcalde, guitarras y un mantel rojo bajo los árboles. Física, mística y una larga firma de ejemplares. [Lee la crónica completa](/blog/presentacion-los-fotones-creen-en-dios-o-grove).
-
-## Dauro IA: la inteligencia artificial, explicada a quien tiene una empresa
-
-La cultura y la tecnología conviven en Grupo Dauro. Nuestra área de inteligencia artificial, **Dauro IA**, vive un septiembre intenso:
-
-- **Hoy, 16 de septiembre**, celebramos en la **sede de ASEGRA** (Peligros, Granada) una **jornada gratuita de IA para empresas**: automatización de procesos, integración con el programa de gestión, protección de datos y Reglamento Europeo de IA, con demostraciones en vivo y certificado de asistencia. Es la tercera, tras las de julio en ASEGRA y en la Casa de la Juventud de Cabra, con el Ayuntamiento de Cabra.
-- Hemos lanzado el **Máster online «La empresa automatizada»**: Odoo y Claude, 136 horas, 12 módulos y 82 lecciones en vídeo, con título Máster Dauro IA. Tiene un **25 % de descuento de lanzamiento hasta el 31 de octubre**.
-
-Toda la información, en [dauroia.com](https://www.dauroia.com).
-
-## Lo que viene
-
-Seguimos trabajando en nuevos títulos que verán la luz en los próximos meses. Si tienes un manuscrito, [envíanos tu obra](/grupo-dauro/editorial): leemos todo lo que nos llega.
-
-*Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
-  },
-  {
     title: "Una presentación campera y por estricta invitación: «Los fotones creen en Dios», de Francisco López Barrios, se estrena en O Grove",
     excerpt: "Nada de salón de actos: el jardín de una casa privada junto al mar, un mantel rojo bajo los árboles, guitarras, un embajador, un alcalde y amigos convocados uno a uno. Así presentó Francisco López Barrios su novela «Los fotones creen en Dios» en O Grove.",
     date: "21 Agosto 2026",
