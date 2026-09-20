@@ -479,7 +479,9 @@ const Editorial = () => {
             ¿Eres autor? ¿Tienes un manuscrito?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
-            Estamos siempre buscando nuevas propuestas editoriales. Envíanos tu proyecto y lo evaluaremos con atención.
+            Mándanos las quince primeras páginas y te respondemos en 48 horas: si tu obra no encaja en
+            nuestro catálogo, si queremos editarla por nuestra cuenta o si merece un informe de valoración.
+            Este primer paso es gratuito.
           </p>
           <Button
             size="lg"
@@ -488,6 +490,11 @@ const Editorial = () => {
           >
             Enviar propuesta editorial
           </Button>
+          <p className="mt-5 text-sm text-muted-foreground relative z-10">
+            <Link to="/valoracion" className="text-primary hover:underline font-medium">
+              Cómo valoramos tu obra, paso a paso
+            </Link>
+          </p>
         </div>
         {/* CTA Tienda */}
         <section className="mt-20">

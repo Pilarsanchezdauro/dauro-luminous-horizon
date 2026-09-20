@@ -58,6 +58,7 @@ const Navigation = () => {
       path: "/grupo-dauro/editorial",
       submenu: [
         { name: "Dauro Editorial", path: "/grupo-dauro/editorial" },
+        { name: "Cómo valoramos tu obra", path: "/valoracion" },
         { name: "Publica tu libro", path: "/autoedicion" },
         { name: "Dauro Ciencia", path: "/dauro-ciencia" },
         {

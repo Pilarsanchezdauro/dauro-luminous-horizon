@@ -21,6 +21,7 @@ const Arte = lazy(() => import("./pages/Arte"));
 const Cine = lazy(() => import("./pages/Cine"));
 const GuionSerie = lazy(() => import("./pages/GuionSerie"));
 const Guiones = lazy(() => import("./pages/Guiones"));
+const Valoracion = lazy(() => import("./pages/Valoracion"));
 const Musica = lazy(() => import("./pages/Musica"));
 const IA = lazy(() => import("./pages/IA"));
 const Servicios = lazy(() => import("./pages/Servicios"));
@@ -114,6 +115,7 @@ const App = () => (
             <Route path="/presupuestador-ciencia" element={<PresupuestadorCiencia />} />
             <Route path="/grupo-dauro/arte" element={<Arte />} />
             <Route path="/guiones" element={<Guiones />} />
+            <Route path="/valoracion" element={<Valoracion />} />
             <Route path="/grupo-dauro/cine" element={<Cine />} />
             <Route path="/grupo-dauro/cine/:slug" element={<GuionSerie />} />
             <Route path="/grupo-dauro/musica" element={<Musica />} />

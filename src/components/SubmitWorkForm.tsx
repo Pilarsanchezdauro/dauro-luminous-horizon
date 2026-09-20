@@ -332,7 +332,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="obra">Manuscrito de la obra * (PDF o Word, máx. 20MB)</Label>
+        <Label htmlFor="obra">Las quince primeras páginas de tu obra * (PDF o Word, máx. 20MB)</Label>
         <div className="mt-2">
           <input
             id="obra"
@@ -362,7 +362,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
             ) : (
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Upload className="h-5 w-5" />
-                <span>Haz clic para subir tu obra</span>
+                <span>Haz clic para subir tus páginas</span>
               </div>
             )}
           </label>
@@ -370,7 +370,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="curriculum">Curriculum vitae * (PDF o Word, máx. 20MB)</Label>
+        <Label htmlFor="curriculum">Sinopsis y unas líneas sobre ti * (PDF o Word, máx. 20MB)</Label>
         <div className="mt-2">
           <input
             id="curriculum"
@@ -400,7 +400,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
             ) : (
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Upload className="h-5 w-5" />
-                <span>Haz clic para subir tu CV</span>
+                <span>Haz clic para subir la sinopsis</span>
               </div>
             )}
           </label>
