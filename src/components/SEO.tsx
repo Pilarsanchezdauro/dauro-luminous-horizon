@@ -47,7 +47,7 @@ export const SEO = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Grupo Cultural Dauro",
-    "alternateName": "Ediciones Dauro",
+    "alternateName": "Grupo Dauro",
     "foundingDate": "2000",
     "url": SITE_URL,
     "logo": `${SITE_URL}/og-logo.png`,

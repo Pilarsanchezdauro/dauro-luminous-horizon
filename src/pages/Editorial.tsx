@@ -33,7 +33,7 @@ const Editorial = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "knowsAbout": ["Edición de libros", "Publicación", "Autoedición", "Distribución editorial"],
-    "name": "Ediciones Dauro",
+    "name": "Grupo Dauro",
     "url": "https://www.grupodauro.com/grupo-dauro/editorial",
     "description": "Editorial independiente con más de 2000 obras publicadas. Publicamos tu libro con distribución en 4000 librerías. Envía tu manuscrito.",
     "address": {
@@ -73,7 +73,7 @@ const Editorial = () => {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "¿Cómo puedo publicar mi libro con Ediciones Dauro?",
+        "name": "¿Cómo puedo publicar mi libro con Grupo Dauro?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Envía tu manuscrito a través de nuestro formulario de contacto. Nuestro comité editorial evaluará tu obra y te contactará en un plazo de 2-4 semanas."

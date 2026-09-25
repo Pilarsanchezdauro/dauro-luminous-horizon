@@ -23,7 +23,7 @@ const CompromisoEtico = () => {
 
               <div className="prose prose-lg max-w-none space-y-6 text-foreground/80">
                 <p className="text-lg leading-relaxed">
-                  En <strong>Ediciones Dauro</strong> y <strong>Grupo Dauro</strong> trabajamos desde hace años con un modelo profesional basado en la honestidad, el respeto a los autores y la calidad en cada proceso editorial. Nuestro equipo ha acompañado a cientos de autores en la publicación de sus obras, ofreciendo siempre un trato cercano y un trabajo técnico riguroso.
+                  En <strong>Grupo Dauro</strong> trabajamos desde hace años con un modelo profesional basado en la honestidad, el respeto a los autores y la calidad en cada proceso editorial. Nuestro equipo ha acompañado a cientos de autores en la publicación de sus obras, ofreciendo siempre un trato cercano y un trabajo técnico riguroso.
                 </p>
 
                 <p className="text-lg leading-relaxed">

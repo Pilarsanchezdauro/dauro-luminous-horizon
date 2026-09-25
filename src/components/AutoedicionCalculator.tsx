@@ -110,7 +110,7 @@ export const AutoedicionCalculator = () => {
     const marketingPrice = marketing === 'si' ? 550 : 0;
     
     let distribucionPrice = 0;
-    if (distribucion === 'si') {
+    if (distribucion === 'si' && isbn === 'si') {
       if (distAmazonPapel) distribucionPrice += 55;
       if (distLibrerias) distribucionPrice += 55;
       if (distAmazonEbook) distribucionPrice += 55;
@@ -127,8 +127,13 @@ export const AutoedicionCalculator = () => {
     const freeWeb = allServices;
     const freeIAValuation = isTesis;
     const total = subtotal - discountAmount;
+    // Por debajo del mínimo no damos cifra: se convierte en consulta.
+    const MINIMO = 250;
+    const belowMin = total > 0 && total < MINIMO;
     
     return {
+      belowMin,
+      minimo: MINIMO,
       maquetaPrice,
       isbnPrice,
       ebookPrice,
@@ -274,7 +279,20 @@ export const AutoedicionCalculator = () => {
     
     doc.setFontSize(16);
     doc.setTextColor(192, 57, 43);
-    doc.text(`TOTAL ESTIMADO: ${Math.round(calculation.total).toLocaleString()} €`, 20, y);
+    doc.text(
+      calculation.belowMin
+        ? 'TOTAL ESTIMADO: a consultar'
+        : `TOTAL ESTIMADO: ${Math.round(calculation.total).toLocaleString()} €`,
+      20, y
+    );
+    if (calculation.belowMin) {
+      y += 8;
+      doc.setFontSize(9);
+      doc.setTextColor(100);
+      doc.text(`Lo seleccionado queda por debajo de nuestro mínimo de ${calculation.minimo} €.`, 20, y);
+      doc.text('Escríbenos y te decimos qué hace falta para publicar tu libro.', 20, y + 5);
+      y += 5;
+    }
     
     y += 10;
     doc.setFontSize(9);
@@ -288,7 +306,7 @@ export const AutoedicionCalculator = () => {
     doc.text('Este presupuesto es orientativo. Para confirmar, contacta con nosotros:', 20, y);
     y += 7;
     doc.setTextColor(192, 57, 43);
-    doc.text('editorial@grupodauro.com | +34 958 215 318', 20, y);
+    doc.text('info@grupodauro.com | 958 281 183 | WhatsApp +34 640 91 90 90', 20, y);
     y += 7;
     doc.text('www.grupodauro.com', 20, y);
     
@@ -305,7 +323,7 @@ export const AutoedicionCalculator = () => {
       return;
     }
 
-    if (distribucion === 'si' && !distAmazonPapel && !distLibrerias && !distAmazonEbook) {
+    if (distribucion === 'si' && isbn === 'si' && !distAmazonPapel && !distLibrerias && !distAmazonEbook) {
       toast.error('Has marcado que quieres distribución', {
         description: 'Elige al menos un canal de distribución, o marca "No quiero distribución".',
       });
@@ -348,9 +366,13 @@ export const AutoedicionCalculator = () => {
           paginas: pages,
           tamano: SIZE_OPTIONS.find(s => s.id === bookSize)?.name || bookSize,
           servicios: serviciosContratados.join(', '),
-          presupuesto_estimado: `${Math.round(calculation.total).toLocaleString()} €`,
+          presupuesto_estimado: calculation.belowMin
+            ? `CONSULTA (la selección suma ${Math.round(calculation.total)} €, por debajo del mínimo de ${calculation.minimo} €)`
+            : `${Math.round(calculation.total).toLocaleString()} €`,
           descuento_aplicado: calculation.discountPercent > 0 ? `${calculation.discountPercent}% (-${Math.round(calculation.discountAmount)} €)` : 'Ninguno',
-          _subject: `Presupuesto autoedición: ${tituloLibro || 'Sin título'} - ${Math.round(calculation.total)} €`,
+          _subject: calculation.belowMin
+            ? `CONSULTA autoedición (bajo mínimo): ${tituloLibro || 'Sin título'}`
+            : `Presupuesto autoedición: ${tituloLibro || 'Sin título'} - ${Math.round(calculation.total)} €`,
         }),
       });
 
@@ -678,7 +700,7 @@ export const AutoedicionCalculator = () => {
             <div className="space-y-2">
               <Label className="text-primary font-semibold">Pbook (Maquetación para imprenta y Amazon papel)</Label>
               <RadioGroup value={maqueta} onValueChange={(v) => setMaqueta(v as 'no' | 'si')} className="space-y-2">
-                <ServiceOption value="no" label="No necesito maqueta" price={null} selected={maqueta === 'no'} />
+                <ServiceOption value="no" label="Ya lo tengo maquetado (traigo el PDF de imprenta)" price={null} selected={maqueta === 'no'} />
                 <ServiceOption 
                   value="si" 
                   label="Quiero maqueta de interior y cubierta" 
@@ -686,6 +708,13 @@ export const AutoedicionCalculator = () => {
                   selected={maqueta === 'si'} 
                 />
               </RadioGroup>
+              {maqueta === 'no' && (
+                <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-md p-3">
+                  Revisamos tu PDF antes de imprimir nada. Si no cumple los requisitos de imprenta
+                  —márgenes, sangrados, tipografías incrustadas, resolución de las imágenes—, habrá que
+                  maquetarlo, y ese importe se añade al presupuesto.
+                </p>
+              )}
             </div>
 
             {/* ISBN */}
@@ -790,10 +819,20 @@ export const AutoedicionCalculator = () => {
                 <Share2 className="w-4 h-4" />
                 Distribución
               </Label>
-              <RadioGroup value={distribucion} onValueChange={(v) => setDistribucion(v as 'no' | 'si')} className="space-y-2">
-                <ServiceOption value="no" label="No quiero distribución" price={null} selected={distribucion === 'no'} />
-                <ServiceOption value="si" label="Sí quiero distribución" price={null} selected={distribucion === 'si'} />
+              <RadioGroup
+                value={isbn === 'no' ? 'no' : distribucion}
+                onValueChange={(v) => { if (isbn === 'no') return; setDistribucion(v as 'no' | 'si'); }}
+                className="space-y-2"
+              >
+                <ServiceOption value="no" label="No quiero distribución" price={null} selected={isbn === 'no' || distribucion === 'no'} />
+                <ServiceOption value="si" label="Sí quiero distribución" price={null} selected={isbn === 'si' && distribucion === 'si'} />
               </RadioGroup>
+              {isbn === 'no' && (
+                <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-md p-3">
+                  Para distribuir el libro hace falta ISBN: sin él, ni Amazon ni las librerías pueden darlo de alta.
+                  Marca el ISBN arriba y se activará la distribución.
+                </p>
+              )}
 
               {distribucion === 'si' && (
                 <div className="ml-6 mt-3 space-y-2">
@@ -861,7 +900,7 @@ export const AutoedicionCalculator = () => {
               <SummaryRow
                 label="Distribución"
                 value={
-                  distribucion === 'si' && calculation.distribucionPrice === 0
+                  distribucion === 'si' && isbn === 'si' && calculation.distribucionPrice === 0
                     ? '⚠️ Elige canal'
                     : calculation.distribucionPrice > 0 ? `${calculation.distribucionPrice} €` : '0 €'
                 }
@@ -883,12 +922,19 @@ export const AutoedicionCalculator = () => {
 
             <div className="border-t-2 border-border pt-4 flex justify-between items-center">
               <span className="text-2xl font-bold text-primary">Total</span>
-              {isConsultation ? (
+              {isConsultation || calculation.belowMin ? (
                 <span className="text-xl font-bold text-primary">Consultar</span>
               ) : (
                 <span className="text-3xl font-bold text-primary">{Math.round(calculation.total).toLocaleString()} €</span>
               )}
             </div>
+            {calculation.belowMin && (
+              <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-md p-3">
+                Lo que has marcado suma menos de {calculation.minimo} €, que es nuestro mínimo para poner un
+                libro en marcha. Mándanos igualmente tus datos: lo miramos y te decimos qué hace falta y
+                cuánto costaría de verdad.
+              </p>
+            )}
             <p className="text-xs text-muted-foreground italic">
               (Los precios NO incluyen IVA: 4% libros, 21% servicios)
             </p>

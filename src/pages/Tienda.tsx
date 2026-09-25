@@ -61,7 +61,7 @@ const Tienda = () => {
       <SEO
         title="Comprar Libros Online — Envío a Europa, USA y Latinoamérica"
         description="Compra libros de Grupo Cultural Dauro con envío a España, Europa, Estados Unidos, México, Argentina, Colombia, Chile y más. Tienda directa y distribución internacional."
-        keywords="comprar libros online, editorial española, envío internacional libros, libros España, libros Latinoamérica, libros Europa, editorial Granada, Ediciones Dauro, distribución libros"
+        keywords="comprar libros online, editorial española, envío internacional libros, libros España, libros Latinoamérica, libros Europa, editorial Granada, Grupo Dauro, distribución libros"
         url="https://www.grupodauro.com/tienda"
         image="/og-editorial.jpg"
         structuredData={storeStructuredData}
@@ -79,7 +79,7 @@ const Tienda = () => {
                 Nuestros libros, en toda Europa, EE.UU. y Latinoamérica
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Disponibles en <strong className="text-foreground">España</strong>, toda <strong className="text-foreground">Europa</strong> (excepto Reino Unido), <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
+                Disponibles en <strong className="text-foreground">España</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
               </p>
             </div>
           </header>
@@ -104,7 +104,7 @@ const Tienda = () => {
                 <span className="text-5xl">🇪🇸</span>
                 <div className="flex-1">
                   <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
-                    Ediciones Dauro
+                    Grupo Dauro
                   </span>
                   <span className="text-sm text-muted-foreground">Catálogo completo</span>
                 </div>
@@ -225,7 +225,7 @@ const Tienda = () => {
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Puedo comprar desde cualquier país?</h3>
-                <p className="text-muted-foreground">Sí. Tenemos tiendas específicas para Europa, Estados Unidos y los principales países de Latinoamérica. Si tu país no aparece, puedes comprar a través de la tienda europea o contactarnos directamente.</p>
+                <p className="text-muted-foreground">Sí. Tenemos tiendas específicas para Estados Unidos y los principales países de Latinoamérica. Si tu país no aparece, puedes comprar en nuestra tienda de España, que envía a cualquier país, o escribirnos y te lo resolvemos.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Quién gestiona la distribución internacional?</h3>

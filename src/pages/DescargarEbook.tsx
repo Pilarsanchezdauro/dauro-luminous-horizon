@@ -96,8 +96,8 @@ export default function DescargarEbook() {
     <>
       <SEO
         title="Descargar Ebook - Grupo Cultural Dauro"
-        description="Descarga tu ebook adquirido en Ediciones Dauro"
-        keywords="ebook, descarga, libro digital, Ediciones Dauro"
+        description="Descarga tu ebook adquirido en Grupo Dauro"
+        keywords="ebook, descarga, libro digital, Grupo Dauro"
       />
 
       <div className="min-h-screen flex flex-col">

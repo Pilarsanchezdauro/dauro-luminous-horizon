@@ -208,7 +208,7 @@ const Terminos = () => {
               <section id="politica-envios" className="bg-amber-50 dark:bg-amber-950/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
                 <h2 className="text-2xl font-playfair font-bold mb-4">12. Política comercial y gastos de envío</h2>
                 <p className="text-muted-foreground mb-4">
-                  En Ediciones Dauro aplicamos las siguientes condiciones para el envío de libros:
+                  En Grupo Dauro aplicamos las siguientes condiciones para el envío de libros:
                 </p>
                 
                 <h3 className="font-semibold text-lg mb-2 mt-4">Envíos nacionales</h3>
@@ -227,7 +227,7 @@ const Terminos = () => {
 
                 <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
                   <p className="text-sm text-red-800 dark:text-red-200">
-                    <strong>⚠️ Importante sobre envíos internacionales:</strong> Los costes de aduanas, aranceles e impuestos de importación varían según el país de destino y son <strong>responsabilidad exclusiva del comprador</strong>. Ediciones Dauro no tiene control sobre estos costes ni puede estimarlos de antemano. Recomendamos consultar con las autoridades aduaneras de su país antes de realizar el pedido.
+                    <strong>⚠️ Importante sobre envíos internacionales:</strong> Los costes de aduanas, aranceles e impuestos de importación varían según el país de destino y son <strong>responsabilidad exclusiva del comprador</strong>. Grupo Dauro no tiene control sobre estos costes ni puede estimarlos de antemano. Recomendamos consultar con las autoridades aduaneras de su país antes de realizar el pedido.
                   </p>
                 </div>
 

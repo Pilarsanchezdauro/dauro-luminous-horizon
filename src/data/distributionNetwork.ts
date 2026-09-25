@@ -31,17 +31,9 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     short: "España",
     distributor: "Arnoia, Azeta, Elkar y Cimadevilla",
     channels: [],
-    storeUrl: "https://tienda.grupodauro.com",
+    storeUrl: "https://tiendaspain.grupodauro.com",
   },
-  {
-    flag: "🇪🇺",
-    country: "Europa (excepto Reino Unido)",
-    short: "Europa",
-    distributor: "Distribución mediante acuerdos locales",
-    channels: [],
-    note: "Envío a todos los países de la Unión Europea y países asociados.",
-    storeUrl: "https://europa.grupodauro.com",
-  },
+  
   {
     flag: "🇲🇽",
     country: "México",

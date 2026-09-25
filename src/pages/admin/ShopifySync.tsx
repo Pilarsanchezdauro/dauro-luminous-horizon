@@ -84,7 +84,7 @@ const ShopifySync = () => {
     "familia": "[01] Narrativa",
     "pvp": 19,
     "descripcion": "SINOPSIS\\n\\nEl ideario que identifica su obra...",
-    "editorial": "Ediciones Dauro"
+    "editorial": "Grupo Dauro"
   }
 ]`;
 
