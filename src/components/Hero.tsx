@@ -64,7 +64,7 @@ const Hero = () => {
         <p className="text-sm sm:text-base md:text-[1.375rem] font-normal leading-relaxed md:leading-[1.4] text-[#333333] mb-6 md:mb-7 max-w-full md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center px-4 break-words">
           Los que publicamos, los defendemos. Más de dos mil obras editadas y en las librerías de España y América, con el criterio de una editorial que elige.
         </p>
-        <Link to="/servicios-editoriales">
+        <Link to="/valoracion">
           <Button
             className="text-sm md:text-base font-bold uppercase px-6 md:px-7 py-3 md:py-4 rounded-lg bg-[#111111] text-white hover:bg-[#E31B23] transition-all duration-200 animate-fade-in-up-delayed-more"
           >

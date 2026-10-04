@@ -41,9 +41,9 @@ export const PuertasEditorial = () => {
             tu obra</strong>: la publicamos bajo el sello Dauro y la llevamos a las
             librerías. A ti no te cuesta nada y percibes tus derechos de autor.
           </p>
-          <Link to="/contacto" className="mt-auto">
+          <Link to="/grupo-dauro/editorial#enviar-obra" className="mt-auto">
             <Button variant="outline" className="w-full border-2 hover:border-primary/60">
-              Cuéntanos tu obra
+              Envíanos tu obra
             </Button>
           </Link>
         </div>

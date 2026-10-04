@@ -82,7 +82,7 @@ const Index = () => {
           title="Libros que perduran"
           description="Más de 2.000 obras publicadas y autores premiados. Editamos con criterio, distribuimos en 4.000 librerías de España y Portugal, y damos voz a grandes obras. ¿Tienes un manuscrito? Lo llevamos a las librerías."
           image={editorialBg}
-          link="/servicios-editoriales"
+          link="/valoracion"
         />
 
         {/* 2 · GUIONES / Cine Section */}

@@ -102,7 +102,7 @@ export const ExitIntentPopup = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="flex-1 text-base">
-              <Link to="/servicios-editoriales" onClick={handleClose}>
+              <Link to="/valoracion" onClick={handleClose}>
                 Publica tu libro
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
