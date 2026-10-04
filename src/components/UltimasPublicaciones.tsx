@@ -81,13 +81,13 @@ export const UltimasPublicaciones = () => {
             rel="noopener noreferrer"
             className="group bg-card rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 overflow-hidden flex flex-col"
           >
-            {/* Marco uniforme: misma proporción y mismo fondo para todas las portadas */}
-            <div className="aspect-[3/4] bg-muted/40 flex items-center justify-center p-4">
+            {/* Marco uniforme: todas las portadas rellenan exactamente el mismo tamaño */}
+            <div className="aspect-[2/3] overflow-hidden bg-muted/40">
               <img
                 src={`${TIENDA}/web/image/product.template/${libro.id}/image_1024`}
                 alt={`Portada de ${libro.titulo}`}
                 loading="lazy"
-                className="max-h-full w-auto object-contain rounded-md shadow-md ring-1 ring-black/5 group-hover:scale-[1.03] transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
             </div>
             <div className="p-4 flex flex-col flex-grow border-t border-primary/10">
