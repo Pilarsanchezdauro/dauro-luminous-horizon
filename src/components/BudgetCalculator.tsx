@@ -145,7 +145,7 @@ export const BudgetCalculator = () => {
           correccion: correctionLabel,
           panel_ventas: includeSalesPanel ? 'Sí' : 'No',
           presupuesto_estimado: `${Math.round(calculation.total).toLocaleString()} €`,
-          _subject: `Nueva solicitud de autoedición: ${tituloLibro || 'Sin título'}`,
+          _subject: `Nueva solicitud de servicios editoriales: ${tituloLibro || 'Sin título'}`,
         }),
       });
 

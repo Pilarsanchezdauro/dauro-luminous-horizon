@@ -132,7 +132,7 @@ Una **talla románica** y un viejo **sello de la Orden del Santo Sepulcro**, con
 
 Si tienes un club de lectura, escríbenos: organizamos **encuentros con el autor**, presenciales u online, y tenemos guía de lectura disponible.
 
-*Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
+*Grupo Dauro · Editorial independiente con distribución en España y América desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
   },
   {
     title: "«Cartas desde la otra orilla»: la primera novela de Carmen Puerta Extremera, un misterio de secretos de familia entre la Guerra Civil y el presente",
@@ -195,7 +195,7 @@ Si tienes un club de lectura, escríbenos: organizamos **encuentros con la autor
 - ¿Otra novela recién nacida? Lee sobre [«Pelayo. Leyenda y Vida I», de Tony de Haro](/blog/pelayo-leyenda-y-vida-tony-de-haro), la novela histórica sobre el origen de la Reconquista.
 - ¿Eres autor y sueñas con publicar? Descubre cómo [editamos tu libro en Grupo Dauro](/grupo-dauro/editorial) y visita el [blog de la editorial](/blog).
 
-*Grupo Dauro · Editorial independiente en Granada desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
+*Grupo Dauro · Editorial independiente con distribución en España y América desde 1996 · info@grupodauro.com · WhatsApp +34 640 91 90 90*`,
   },
 
   {
