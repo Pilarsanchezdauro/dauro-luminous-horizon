@@ -45,9 +45,9 @@ const Valoracion = () => {
   return (
     <>
       <SEO
-        title="Cómo valoramos tu obra | Informe de valoración editorial — Grupo Dauro"
+        title="Publica tu libro con Dauro | Cómo valoramos tu obra — Grupo Dauro"
         description="Envía quince páginas y te respondemos en 48 horas: si tu obra no encaja, si apostamos por ella y la editamos sin coste para ti, o si merece un informe de valoración. El informe cuesta desde 90 € según la extensión y se descuenta íntegro si después contratas el trabajo editorial."
-        keywords="informe de valoración editorial, valoración de manuscritos, enviar manuscrito a editorial, editorial Granada, intervención editorial, publicar novela, Grupo Dauro"
+        keywords="cómo publicar un libro, publicar tu libro, enviar manuscrito a editorial, informe de valoración editorial, valoración de manuscritos, servicios editoriales, intervención editorial, publicar novela, Grupo Dauro"
         url="https://www.grupodauro.com/valoracion"
       />
 
