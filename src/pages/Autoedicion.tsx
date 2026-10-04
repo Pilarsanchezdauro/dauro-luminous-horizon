@@ -69,8 +69,8 @@ const WHY_DAURO = [
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Autoedición de Libros Profesional - Dauro Editorial",
-  "description": "Servicio de autoedición y autopublicación profesional para autores. Incluye maquetación, diseño de portada personalizada, ISBN oficial, ebook gratis y distribución global en Amazon, Casa del Libro, Fnac, El Corte Inglés y más. 26 años de experiencia editorial en Granada.",
+  "name": "Servicios Editoriales Profesionales - Dauro Editorial",
+  "description": "Servicios editoriales profesionales para autores cuyo manuscrito necesita trabajo antes de publicarse. Incluyen corrección, maquetación, diseño de portada personalizada, ISBN oficial, ebook y distribución global en Amazon, Casa del Libro, Fnac, El Corte Inglés y más. 26 años de experiencia editorial.",
   "provider": {
     "@type": "Organization",
     "name": "Dauro Editorial",
@@ -83,22 +83,20 @@ const structuredData = {
       "addressRegion": "Andalucía",
       "addressCountry": "ES"
     },
-    "sameAs": [
-      "https://www.edicionesdauro.com"
-    ]
+    "sameAs": []
   },
   "areaServed": {
     "@type": "Country",
     "name": "España"
   },
-  "serviceType": "Autoedición y Publicación de Libros",
+  "serviceType": "Servicios editoriales y publicación de libros",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Servicios de Autoedición",
+    "name": "Servicios editoriales",
     "itemListElement": [
       {
         "@type": "Offer",
-        "name": "Autoedición Básica",
+        "name": "Edición básica",
         "description": "Maquetación interior, portada personalizada, ISBN y alta legal, ebook incluido",
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -109,7 +107,7 @@ const structuredData = {
       },
       {
         "@type": "Offer",
-        "name": "Autoedición con Distribución",
+        "name": "Edición con distribución",
         "description": "Incluye distribución global en Amazon, Casa del Libro, Fnac, El Corte Inglés y más plataformas",
         "priceSpecification": {
           "@type": "PriceSpecification",
@@ -277,11 +275,11 @@ export default function Autoedicion() {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Autoedición de Libros | Publica tu Libro desde 690€ con ISBN y Distribución - Dauro Editorial"
-        description="Publica tu libro con calidad editorial profesional desde 690€. Incluye maquetación, portada personalizada, ISBN, ebook gratis y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Financiación sin intereses en 2 plazos."
-        keywords="autoedición libros, publicar libro España, editorial autoedición, autopublicación profesional, editar mi libro, ISBN libro, maquetación libros, diseño portada libro, ebook incluido, distribución Amazon, publicar novela, publicar poesía, imprimir libro bajo demanda, editorial Granada, autopublicar libro barato, publicar libro online"
+        title="Servicios Editoriales | Publica tu Libro con ISBN y Distribución - Dauro Editorial"
+        description="¿Tu manuscrito necesita trabajo antes de publicarse? Nuestros servicios editoriales incluyen corrección, maquetación, portada, ISBN, ebook y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Presupuesto cerrado y financiación en 2 plazos."
+        keywords="servicios editoriales, publicar libro España, editar mi libro, corrección de estilo, maquetación libros, diseño portada libro, ISBN libro, ebook incluido, distribución Amazon, publicar novela, publicar poesía, imprimir libro bajo demanda, presupuesto edición libro"
         image="/og-editorial.jpg"
-        url="https://www.grupodauro.com/autoedicion"
+        url="https://www.grupodauro.com/servicios-editoriales"
         structuredData={structuredData}
       />
       
@@ -316,7 +314,7 @@ export default function Autoedicion() {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-              Autoedición artesanal y tecnológica. Precios justos. Plazos a tu medida.
+              Servicios editoriales artesanales y tecnológicos. Precios justos. Plazos a tu medida.
             </p>
             
             <p className="text-lg text-primary font-medium mb-4">

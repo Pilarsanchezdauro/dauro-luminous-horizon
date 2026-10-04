@@ -8,7 +8,7 @@ const staticPages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/grupo-dauro', priority: '0.8', changefreq: 'monthly' },
   { path: '/grupo-dauro/editorial', priority: '0.9', changefreq: 'monthly' },
-  { path: '/autoedicion', priority: '0.9', changefreq: 'monthly' },
+  { path: '/servicios-editoriales', priority: '0.9', changefreq: 'monthly' },
   { path: '/grupo-dauro/arte', priority: '0.9', changefreq: 'monthly' },
   { path: '/grupo-dauro/cine', priority: '0.9', changefreq: 'monthly' },
   { path: '/grupo-dauro/cine/el-hidalgo-don-rodrigo', priority: '0.8', changefreq: 'monthly' },

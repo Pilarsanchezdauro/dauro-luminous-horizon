@@ -82,7 +82,7 @@ const Index = () => {
           title="Libros que perduran"
           description="Más de 2.000 obras publicadas y autores premiados. Editamos con criterio, distribuimos en 4.000 librerías de España y Portugal, y damos voz a grandes obras. ¿Tienes un manuscrito? Lo llevamos a las librerías."
           image={editorialBg}
-          link="/autoedicion"
+          link="/servicios-editoriales"
         />
 
         {/* 2 · GUIONES / Cine Section */}
@@ -188,7 +188,7 @@ const Index = () => {
               <div className="text-center mb-10">
                 <Upload className="h-16 w-16 text-primary mx-auto mb-6" />
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold mb-6">
-                  ¿Eres autor de obras literarias?
+                  ¿Has escrito un libro?
                 </h2>
                 <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8">
                   Publicamos obras de calidad que merecen ser leídas. Si tienes un manuscrito 

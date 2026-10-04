@@ -31,8 +31,8 @@ const GrupoDauro = () => {
     <div className="min-h-screen">
       <SEO
         title="Grupo Cultural Dauro | Editorial y Servicios para Autores en Granada"
-        description="Grupo Cultural Dauro: editorial independiente, servicios de autoedición, maquetación, diseño de portadas y publicación de libros. Más de 2000 obras publicadas desde el año 2000."
-        keywords="Grupo Cultural Dauro, editorial Granada, publicar libro Granada, autoedición Granada, servicios editoriales, maquetación libros, diseño portadas, publicar mi libro, editorial independiente España"
+        description="Grupo Cultural Dauro: editorial, servicios editoriales, maquetación, diseño de portadas y publicación de libros con distribución internacional. Más de 2000 obras publicadas desde el año 2000."
+        keywords="Grupo Cultural Dauro, editorial, publicar libro, servicios editoriales, maquetación libros, diseño portadas, publicar mi libro, editorial en español"
         url="https://www.grupodauro.com/grupo-dauro"
       />
       <Navigation />
@@ -221,7 +221,7 @@ const GrupoDauro = () => {
             {/* Cifras destacadas */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
               <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
-                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+1.000</p>
+                <p className="text-3xl md:text-4xl font-playfair font-bold text-primary">+2.000</p>
                 <p className="text-sm text-muted-foreground mt-1">Obras Publicadas</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-primary/5 to-transparent rounded-xl border border-primary/10">
@@ -298,7 +298,7 @@ const GrupoDauro = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-2xl font-playfair font-bold mb-4 text-primary">
-                  Más de 1.000 obras publicadas
+                  Más de 2.000 obras publicadas
                 </h3>
                 <p className="text-muted-foreground">
                   Nuestro catálogo editorial incluye narrativa, poesía, ensayo, investigación y colecciones especializadas, con obras y autores galardonados con premios de prestigio como el Premio Andalucía de la Crítica.

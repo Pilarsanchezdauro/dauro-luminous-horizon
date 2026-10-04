@@ -7,9 +7,9 @@ const PresupuestadorAutoedicion = () => {
   return (
     <>
       <SEO
-        title="Presupuestador de Autoedición | Grupo Dauro"
+        title="Presupuestador de servicios editoriales | Grupo Dauro"
         description="Calcula el presupuesto para publicar tu libro con Grupo Dauro. Maquetación, ISBN, ebook, corrección, impresión, marketing y distribución. Presupuesto instantáneo."
-        keywords="presupuesto autoedición, publicar libro precio, editar libro coste, imprimir libro, ISBN, ebook"
+        keywords="presupuesto servicios editoriales, publicar libro precio, editar libro coste, imprimir libro, ISBN, ebook"
         url="https://www.grupodauro.com/presupuestador"
       />
       
@@ -17,12 +17,12 @@ const PresupuestadorAutoedicion = () => {
         {/* Header */}
         <div className="bg-gradient-to-b from-primary/5 to-background border-b border-border">
           <div className="container mx-auto px-4 py-6">
-            <Link 
-              to="/autoedicion" 
+            <Link
+              to="/servicios-editoriales"
               className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver a Autoedición
+              Volver a servicios editoriales
             </Link>
             
             <div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ const PresupuestadorAutoedicion = () => {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-bold text-foreground">
-                  Presupuestador de Autoedición
+                  Presupuestador de servicios editoriales
                 </h1>
                 <p className="text-sm text-muted-foreground">
                   Grupo Dauro Editorial

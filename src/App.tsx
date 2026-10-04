@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { HelmetProvider } from "react-helmet-async";
@@ -106,7 +106,9 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/grupo-dauro" element={<GrupoDauro />} />
             <Route path="/grupo-dauro/editorial" element={<Editorial />} />
-            <Route path="/autoedicion" element={<Autoedicion />} />
+            <Route path="/servicios-editoriales" element={<Autoedicion />} />
+            {/* Redirección de la ruta antigua para no romper enlaces ni SEO */}
+            <Route path="/autoedicion" element={<Navigate to="/servicios-editoriales" replace />} />
             <Route path="/presupuestador" element={<PresupuestadorAutoedicion />} />
             <Route path="/webs-de-libros" element={<WebsDeLibrosIndex />} />
             <Route path="/webs-de-libros/carlos-blanco/leonardo-da-vinci" element={<WebsDeLibrosLeonardo />} />

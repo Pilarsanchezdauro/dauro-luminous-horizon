@@ -181,7 +181,7 @@ export const AutoedicionCalculator = () => {
     // Header
     doc.setFontSize(22);
     doc.setTextColor(192, 57, 43); // Primary red
-    doc.text('Presupuesto de Autoedición', 20, 25);
+    doc.text('Presupuesto de servicios editoriales', 20, 25);
     
     doc.setFontSize(11);
     doc.setTextColor(100);
@@ -312,7 +312,7 @@ export const AutoedicionCalculator = () => {
     doc.text('www.grupodauro.com', 20, y);
     
     // Save
-    doc.save(`presupuesto-autoedicion-${pages}pag-${fecha.replace(/\s/g, '-')}.pdf`);
+    doc.save(`presupuesto-servicios-editoriales-${pages}pag-${fecha.replace(/\s/g, '-')}.pdf`);
     toast.success('Presupuesto descargado');
   }, [bookType, pages, bookSize, maqueta, isbn, ebook, correccion, printCopies, marketing, distribucion, distAmazonPapel, distLibrerias, distAmazonEbook, calculation]);
 
@@ -372,8 +372,8 @@ export const AutoedicionCalculator = () => {
             : `${Math.round(calculation.total).toLocaleString()} €`,
           descuento_aplicado: calculation.discountPercent > 0 ? `${calculation.discountPercent}% (-${Math.round(calculation.discountAmount)} €)` : 'Ninguno',
           _subject: calculation.belowMin
-            ? `CONSULTA autoedición (bajo mínimo): ${tituloLibro || 'Sin título'}`
-            : `Presupuesto autoedición: ${tituloLibro || 'Sin título'} - ${Math.round(calculation.total)} €`,
+            ? `CONSULTA servicios editoriales (bajo mínimo): ${tituloLibro || 'Sin título'}`
+            : `Presupuesto servicios editoriales: ${tituloLibro || 'Sin título'} - ${Math.round(calculation.total)} €`,
         }),
       });
 

@@ -201,7 +201,7 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
                 Ver tiendas por país
               </Button>
             </Link>
-            <Link to="/autoedicion">
+            <Link to="/servicios-editoriales">
               <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2 hover:border-primary/60 transition-all">
                 Publica tu libro
               </Button>

@@ -33,10 +33,10 @@ const Editorial = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "knowsAbout": ["Edición de libros", "Publicación", "Autoedición", "Distribución editorial"],
+    "knowsAbout": ["Edición de libros", "Publicación", "Servicios editoriales", "Distribución editorial"],
     "name": "Grupo Dauro",
     "url": "https://www.grupodauro.com/grupo-dauro/editorial",
-    "description": "Editorial independiente con más de 2000 obras publicadas. Publicamos tu libro con distribución en 4000 librerías. Envía tu manuscrito.",
+    "description": "Editorial con más de 2000 obras publicadas y distribución en 4000 librerías de España y América. Si tu obra está terminada, apostamos por ella sin coste; si necesita trabajo, son servicios editoriales. Envía tu manuscrito.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Granada",
@@ -45,9 +45,7 @@ const Editorial = () => {
     },
     "foundingDate": "2000",
     "numberOfEmployees": "10-50",
-    "sameAs": [
-      "https://www.edicionesdauro.com"
-    ],
+    "sameAs": [],
     "makesOffer": [
       {
         "@type": "Offer",
@@ -61,8 +59,8 @@ const Editorial = () => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Autoedición profesional",
-          "description": "Servicios de autoedición con acompañamiento editorial profesional"
+          "name": "Servicios editoriales",
+          "description": "Corrección, estructura, estilo y maquetación con presupuesto cerrado para manuscritos que necesitan trabajo antes de publicarse"
         }
       }
     ]
@@ -77,7 +75,7 @@ const Editorial = () => {
         "name": "¿Cómo puedo publicar mi libro con Grupo Dauro?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Envía tu manuscrito a través de nuestro formulario de contacto. Nuestro comité editorial evaluará tu obra y te contactará en un plazo de 2-4 semanas."
+          "text": "Envía las quince primeras páginas a través de nuestro formulario. Nuestro comité editorial las lee y te responde en un plazo de 48 horas."
         }
       },
       {
@@ -85,7 +83,7 @@ const Editorial = () => {
         "name": "¿Cuánto cuesta publicar un libro?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ofrecemos diferentes modalidades de publicación. Contacta con nosotros para recibir un presupuesto personalizado según las características de tu obra."
+          "text": "Depende del punto en que esté tu manuscrito. Si ya está terminado, apostamos por él y lo editamos sin coste para ti. Si todavía necesita trabajo editorial (corrección, estructura, estilo), ese trabajo se presupuesta a medida."
         }
       },
       {
@@ -102,9 +100,9 @@ const Editorial = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Publicar Libro | Editorial Dauro - Edición de Libros en España"
-        description="¿Quieres publicar tu libro? Editorial Dauro ofrece edición profesional, autoedición y publicación con distribución en 4000 librerías. Envía tu manuscrito gratis. Más de 2000 obras publicadas."
-        keywords="publicar libro, editorial España, edición de libros, autoedición, cómo publicar mi libro, editorial Granada, enviar manuscrito, publicar novela, autopublicación, editar libro, editorial independiente, publicar libro gratis, coste publicar libro, ISBN libro"
+        title="Publicar tu Libro | Editorial Dauro — Edición y Distribución en Librerías"
+        description="¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales con presupuesto. Distribución en 4.000 librerías de España y América. Más de 2.000 obras publicadas."
+        keywords="publicar libro, editorial España, edición de libros, cómo publicar mi libro, enviar manuscrito, publicar novela, editar libro, servicios editoriales, publicar libro con editorial, coste publicar libro, ISBN libro"
         url="https://www.grupodauro.com/grupo-dauro/editorial"
         structuredData={structuredData}
       />
@@ -130,7 +128,7 @@ const Editorial = () => {
             Editorial profesional para autores exigentes
           </p>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Más de 1.000 obras publicadas. Distribución en 4.000 librerías de España y Portugal. Tu libro en Amazon, Casa del Libro, FNAC y El Corte Inglés.
+            Más de 2.000 obras publicadas. Distribución en 4.000 librerías de España y Portugal. Tu libro en Amazon, Casa del Libro, FNAC y El Corte Inglés.
           </p>
         </div>
       </section>
@@ -171,10 +169,10 @@ const Editorial = () => {
               Más de dos décadas de excelencia editorial
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10 mb-4">
-              Desde el año 2000, Dauro Editorial se ha consolidado como una de las editoriales independientes más sólidas y respetadas del panorama cultural español.
+              Desde el año 2000, Dauro se ha consolidado como una editorial de referencia en lengua española, con autores y lectores a ambos lados del Atlántico.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
-              Con más de mil obras publicadas, nuestro catálogo abarca narrativa, poesía, ensayo, historia, biografía, arte y pensamiento contemporáneo, reflejando un compromiso constante con la calidad literaria y la excelencia editorial.
+              Con más de dos mil obras publicadas, nuestro catálogo abarca narrativa, poesía, ensayo, historia, biografía, arte y pensamiento contemporáneo, reflejando un compromiso constante con la calidad literaria y la excelencia editorial.
             </p>
           </div>
         </div>
@@ -301,7 +299,7 @@ const Editorial = () => {
                   className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=boabdil" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
+                  <a href="https://tiendaspain.grupodauro.com/shop/bc9788416340866-boabdil-el-principe-del-dia-y-de-la-noche-enrique-antonio-1953-14706" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
@@ -331,7 +329,7 @@ const Editorial = () => {
                   className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=Yo+soy+todos+los+besos+que+nunca+supe+darte" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
+                  <a href="https://tiendaspain.grupodauro.com/shop/bc978-84-16340-34-7-yo-soy-todos-los-besos-que-nunca-pude-darte-francisco-lopez-barrios-14642" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
@@ -361,7 +359,7 @@ const Editorial = () => {
                   className="w-full h-8 text-xs group-hover:bg-primary group-hover:text-white transition-all"
                   asChild
                 >
-                  <a href="https://www.edicionesdauro.com/?buscar=juvenal+soto" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
+                  <a href="https://tiendaspain.grupodauro.com/shop/bc9788416340897-horizonte-interior-juvenal-soto-14676" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5">
                     Ver libro
                     <ExternalLink className="h-3 w-3" />
                   </a>
@@ -510,7 +508,7 @@ const Editorial = () => {
                   Explora nuestro catálogo completo
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-xl">
-                  Más de mil obras de narrativa, poesía, ensayo e historia te esperan en nuestra tienda online.
+                  Más de dos mil obras de narrativa, poesía, ensayo e historia te esperan en nuestra tienda online.
                 </p>
               </div>
               

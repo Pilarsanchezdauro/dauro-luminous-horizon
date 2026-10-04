@@ -344,7 +344,7 @@ export default function GeneradorPortadas() {
       <SEO
         title="Generador de Portadas de Libros Gratis con IA"
         description="Crea portadas de libros gratis con inteligencia artificial. Herramienta online para diseñar portadas profesionales para tu novela, poesía o ensayo. Sin registro necesario."
-        keywords="generador portadas gratis, crear portada libro, portada con IA, diseño portada online, portada libro gratis, herramienta portadas, autoedición portada, cover design free"
+        keywords="generador portadas gratis, crear portada libro, portada con IA, diseño portada online, portada libro gratis, herramienta portadas, portada de libro, cover design free"
         url="https://www.grupodauro.com/generador-portadas"
         image="https://www.grupodauro.com/og-generador-portadas-gratis.png"
         structuredData={{

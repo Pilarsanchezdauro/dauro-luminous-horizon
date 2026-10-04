@@ -20,7 +20,7 @@ interface Message {
 
 const SEARCH_EXAMPLES = [
   // Servicios
-  "¿Qué servicios de autoedición ofrecéis?",
+  "¿Qué servicios editoriales ofrecéis?",
   "¿Hacéis booktrailers para libros?",
   "¿Cómo puedo unirme a vuestro canal de WhatsApp?",
   "¿Ofrecéis representación artística?",
@@ -231,7 +231,7 @@ export const DauroWidget = () => {
                 <TooltipContent className="max-w-xs">
                   <p className="text-sm">
                     Asistente con IA para consultar nuestro catálogo de libros por género, 
-                    servicios de autoedición, diseño de portadas, booktrailers, diseño web, 
+                    servicios editoriales, diseño de portadas, booktrailers, diseño web,
                     representación artística y más. ¡Únete a nuestro canal de WhatsApp!
                   </p>
                 </TooltipContent>

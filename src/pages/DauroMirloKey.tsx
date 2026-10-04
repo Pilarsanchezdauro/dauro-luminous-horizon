@@ -126,7 +126,7 @@ const DauroMirloKey = () => {
             <div className="prose prose-lg mx-auto text-muted-foreground">
               <p className="text-lg leading-relaxed mb-6">
                 La <strong className="text-foreground">Dauro Mirlo Key</strong> es una <strong className="text-primary">llave cultural permanente</strong> que te conecta 
-                con el patrimonio creativo del Grupo Dauro: más de 1.000 obras literarias, producciones audiovisuales 
+                con el patrimonio creativo del Grupo Dauro: más de 2.000 obras literarias, producciones audiovisuales
                 originales, arte contemporáneo y experiencias culturales exclusivas.
               </p>
               

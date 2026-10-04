@@ -12,19 +12,19 @@ const pages = [
   {
     path: 'grupo-dauro',
     title: 'Grupo Cultural Dauro | Editorial y Servicios para Autores en Granada',
-    description: 'Grupo Cultural Dauro: editorial independiente, servicios de autoedición, maquetación, diseño de portadas y publicación de libros. Más de 2000 obras publicadas desde el año 2000.',
+    description: 'Grupo Cultural Dauro: editorial, servicios editoriales, maquetación, diseño de portadas y publicación de libros con distribución internacional. Más de 2000 obras publicadas desde el año 2000.',
     image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'grupo-dauro/editorial',
-    title: 'Publicar Libro | Editorial Dauro - Edición de Libros en España',
-    description: '¿Quieres publicar tu libro? Editorial Dauro ofrece edición profesional, autoedición y publicación con distribución en 4000 librerías. Envía tu manuscrito gratis.',
+    title: 'Publicar tu Libro | Editorial Dauro — Edición y Distribución en Librerías',
+    description: '¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales. Distribución en 4000 librerías de España y América.',
     image: '/og-editorial.jpg'
   },
   {
-    path: 'autoedicion',
-    title: 'Autoedición de Libros | Publica tu Libro desde 690€ con ISBN y Distribución - Dauro Editorial',
-    description: 'Publica tu libro con calidad editorial profesional desde 690€. Incluye maquetación, portada personalizada, ISBN, ebook gratis y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Financiación sin intereses en 2 plazos.',
+    path: 'servicios-editoriales',
+    title: 'Servicios Editoriales | Publica tu Libro con ISBN y Distribución - Dauro Editorial',
+    description: '¿Tu manuscrito necesita trabajo antes de publicarse? Nuestros servicios editoriales incluyen corrección, maquetación, portada, ISBN, ebook y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Presupuesto cerrado y financiación en 2 plazos.',
     image: '/og-editorial.jpg'
   },
   {
@@ -78,7 +78,7 @@ const pages = [
   {
     path: 'contacto',
     title: 'Contacto | Envía tu Manuscrito - Editorial Dauro Granada',
-    description: '¿Quieres publicar tu libro? Contacta con Editorial Dauro para enviar tu manuscrito, solicitar presupuesto de edición o información sobre autoedición. Respuesta en 48h.',
+    description: '¿Quieres publicar tu libro? Contacta con Editorial Dauro para enviar tu manuscrito, solicitar presupuesto de edición o información sobre nuestros servicios editoriales. Respuesta en 48h.',
     image: '/og-grupo-dauro.jpg'
   },
   {

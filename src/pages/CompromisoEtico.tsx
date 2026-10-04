@@ -71,7 +71,7 @@ const CompromisoEtico = () => {
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                         <p className="text-foreground/80 leading-relaxed">
-                          Más de <strong>1.000 obras literarias publicadas</strong>
+                          Más de <strong>2.000 obras literarias publicadas</strong>
                         </p>
                       </div>
                       <div className="flex items-start gap-3">

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
  * Distingue, con dignidad para ambos casos, al autor cuyo libro ya está terminado
  * (edición a cuenta de Dauro, sin coste) del autor cuya obra necesita trabajo
  * (servicios editoriales, con presupuesto).
- * Colocar allá donde pueda haber confusión: home, Editorial, Autoedición, Valoración.
+ * Colocar allá donde pueda haber confusión: home, Editorial, Servicios editoriales, Valoración.
  */
 export const PuertasEditorial = () => {
   return (
@@ -60,7 +60,7 @@ export const PuertasEditorial = () => {
             <strong className="text-foreground">precio claro que conoces desde el
             principio</strong>. Ninguna editorial reescribe gratis un texto sin terminar.
           </p>
-          <Link to="/autoedicion" className="mt-auto">
+          <Link to="/servicios-editoriales" className="mt-auto">
             <Button className="w-full bg-primary hover:bg-primary/90">
               Calcula tu presupuesto
             </Button>

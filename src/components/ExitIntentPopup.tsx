@@ -8,8 +8,9 @@ export const ExitIntentPopup = () => {
   const [hasShown, setHasShown] = useState(false);
   const location = useLocation();
 
-  // Don't show on autoedicion page
-  const isAutoedicionPage = location.pathname === '/autoedicion';
+  // Don't show on the servicios-editoriales page (ni en su ruta antigua)
+  const isAutoedicionPage =
+    location.pathname === '/servicios-editoriales' || location.pathname === '/autoedicion';
 
   useEffect(() => {
     // Check if already shown in this session
@@ -101,7 +102,7 @@ export const ExitIntentPopup = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="flex-1 text-base">
-              <Link to="/autoedicion" onClick={handleClose}>
+              <Link to="/servicios-editoriales" onClick={handleClose}>
                 Publica tu libro
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
