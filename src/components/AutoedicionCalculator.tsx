@@ -57,10 +57,11 @@ export const AutoedicionCalculator = () => {
   const [bookSize, setBookSize] = useState('a6');
   
   // Services
-  const [maqueta, setMaqueta] = useState<'no' | 'si'>('si');
-  const [isbn, setIsbn] = useState<'no' | 'si'>('si');
+  // Maquetación, ISBN y corrección son OBLIGATORIOS (siempre incluidos): no se eligen.
+  const [maqueta] = useState<'no' | 'si'>('si');
+  const [isbn] = useState<'no' | 'si'>('si');
   const [ebook, setEbook] = useState<'no' | 'si'>('no');
-  const [correccion, setCorreccion] = useState<'no' | 'orto' | 'estilo'>('no');
+  const [correccion, setCorreccion] = useState<'no' | 'orto' | 'estilo'>('orto');
   const [printCopies, setPrintCopies] = useState(0);
   const [marketing, setMarketing] = useState<'no' | 'si'>('no');
   
@@ -403,10 +404,8 @@ export const AutoedicionCalculator = () => {
     setBookType('general');
     setPages(150);
     setBookSize('a6');
-    setMaqueta('si');
-    setIsbn('si');
     setEbook('no');
-    setCorreccion('no');
+    setCorreccion('orto');
     setPrintCopies(0);
     setMarketing('no');
     setDistribucion('no');
@@ -696,34 +695,34 @@ export const AutoedicionCalculator = () => {
               Todos los precios se actualizan automáticamente según el rango de páginas seleccionado.
             </p>
 
-            {/* Maquetación */}
+            {/* Maquetación — OBLIGATORIA, siempre incluida */}
             <div className="space-y-2">
-              <Label className="text-primary font-semibold">Pbook (Maquetación para imprenta y Amazon papel)</Label>
-              <RadioGroup value={maqueta} onValueChange={(v) => setMaqueta(v as 'no' | 'si')} className="space-y-2">
-                <ServiceOption value="no" label="Ya lo tengo maquetado (traigo el PDF de imprenta)" price={null} selected={maqueta === 'no'} />
-                <ServiceOption 
-                  value="si" 
-                  label="Quiero maqueta de interior y cubierta" 
-                  price={`${currentRange.base} €`} 
-                  selected={maqueta === 'si'} 
-                />
-              </RadioGroup>
-              {maqueta === 'no' && (
-                <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-md p-3">
-                  Revisamos tu PDF antes de imprimir nada. Si no cumple los requisitos de imprenta
-                  —márgenes, sangrados, tipografías incrustadas, resolución de las imágenes—, habrá que
-                  maquetarlo, y ese importe se añade al presupuesto.
-                </p>
-              )}
+              <Label className="text-primary font-semibold">Maquetación (interior y cubierta)</Label>
+              <div className="flex items-center justify-between p-3 rounded-lg border border-primary/30 bg-primary/5">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium">Incluida siempre</span>
+                    <p className="text-xs text-muted-foreground mt-0.5">Interior y cubierta, lista para imprenta y Amazon papel. En Dauro no se publica sin maquetar.</p>
+                  </div>
+                </div>
+                <span className="font-bold text-primary shrink-0 ml-2">{currentRange.base} €</span>
+              </div>
             </div>
 
-            {/* ISBN */}
+            {/* ISBN — OBLIGATORIO, siempre incluido */}
             <div className="space-y-2">
-              <Label className="text-primary font-semibold">ISBN</Label>
-              <RadioGroup value={isbn} onValueChange={(v) => setIsbn(v as 'no' | 'si')} className="space-y-2">
-                <ServiceOption value="no" label="No necesito ISBN" price={null} selected={isbn === 'no'} />
-                <ServiceOption value="si" label="Quiero ISBN de Grupo Dauro (incluye depósito legal)" price="45 €" selected={isbn === 'si'} />
-              </RadioGroup>
+              <Label className="text-primary font-semibold">ISBN y depósito legal</Label>
+              <div className="flex items-center justify-between p-3 rounded-lg border border-primary/30 bg-primary/5">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium">Incluido siempre</span>
+                    <p className="text-xs text-muted-foreground mt-0.5">ISBN de Grupo Dauro y depósito legal. Imprescindible para distribuir el libro.</p>
+                  </div>
+                </div>
+                <span className="font-bold text-primary shrink-0 ml-2">45 €</span>
+              </div>
             </div>
 
             {/* Ebook */}
@@ -746,25 +745,24 @@ export const AutoedicionCalculator = () => {
               </RadioGroup>
             </div>
 
-            {/* Correction */}
+            {/* Corrección — OBLIGATORIA: se elige el nivel, nunca "ninguna" */}
             <div className="space-y-2">
-              <Label className="text-primary font-semibold">Corrección ortotipográfica y/o estilo</Label>
-              <p className="text-xs text-muted-foreground">Precio calculado según número de páginas × tarifa/página</p>
+              <Label className="text-primary font-semibold">Corrección (obligatoria)</Label>
+              <p className="text-xs text-muted-foreground">En Dauro no se publica sin corregir. Elige el nivel (precio según páginas × tarifa/página):</p>
               <RadioGroup value={correccion} onValueChange={(v) => setCorreccion(v as 'no' | 'orto' | 'estilo')} className="space-y-2">
-                <ServiceOption value="no" label="No necesito corrección" price={null} selected={correccion === 'no'} />
-                <ServiceOption 
-                  value="orto" 
-                  label="Corrección ortotipográfica" 
-                  sublabel="1,50 €/página"
-                  price={`${(pages * 1.5).toLocaleString()} €`} 
-                  selected={correccion === 'orto'} 
+                <ServiceOption
+                  value="orto"
+                  label="Corrección ortotipográfica"
+                  sublabel="1,50 €/página · el mínimo imprescindible"
+                  price={`${(pages * 1.5).toLocaleString()} €`}
+                  selected={correccion === 'orto'}
                 />
-                <ServiceOption 
-                  value="estilo" 
-                  label="Corrección de estilo + ortotipográfica" 
-                  sublabel="2,50 €/página"
-                  price={`${(pages * 2.5).toLocaleString()} €`} 
-                  selected={correccion === 'estilo'} 
+                <ServiceOption
+                  value="estilo"
+                  label="Corrección de estilo + ortotipográfica"
+                  sublabel="2,50 €/página · recomendada"
+                  price={`${(pages * 2.5).toLocaleString()} €`}
+                  selected={correccion === 'estilo'}
                 />
               </RadioGroup>
             </div>

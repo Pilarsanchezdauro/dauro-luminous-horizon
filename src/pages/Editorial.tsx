@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { PuertasEditorial } from "@/components/PuertasEditorial";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { BookOpen, Users, Award, TrendingUp, ShoppingCart, Store, ExternalLink } from "lucide-react";
@@ -480,8 +481,8 @@ const Editorial = () => {
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10">
             Mándanos las quince primeras páginas y te respondemos en 48 horas: si tu obra no encaja en
-            nuestro catálogo, si queremos editarla por nuestra cuenta o si merece un informe de valoración.
-            Este primer paso es gratuito.
+            nuestro catálogo, si apostamos por ella y la editamos sin coste para ti, o si merece un
+            informe de valoración. Este primer paso es gratuito.
           </p>
           <Button
             size="lg"
@@ -536,6 +537,8 @@ const Editorial = () => {
           <SubmitWorkForm onSuccess={() => setIsFormOpen(false)} />
         </DialogContent>
       </Dialog>
+
+      <PuertasEditorial />
 
       <Footer />
     </div>

@@ -10,6 +10,8 @@ import { BookOpen, Calendar, User, Upload } from "lucide-react";
 import { getLatestPosts } from "@/data/blogData";
 import { SEO } from "@/components/SEO";
 import { DauroWidget } from "@/components/DauroWidget";
+import { PuertasEditorial } from "@/components/PuertasEditorial";
+import { UltimasPublicaciones } from "@/components/UltimasPublicaciones";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
 import { GlobalDistributionBanner } from "@/components/GlobalDistributionBanner";
 import editorialBg from "@/assets/editorial-bg.jpg";
@@ -59,6 +61,12 @@ const Index = () => {
       />
       <Navigation />
       <Hero />
+
+      {/* Dos puertas: editorial tradicional vs servicios editoriales */}
+      <PuertasEditorial />
+
+      {/* Nuestras últimas publicaciones — justo debajo del bloque anterior */}
+      <UltimasPublicaciones />
 
       {/* Widget Section */}
       <section className="py-8 bg-gradient-to-br from-primary/5 via-background to-accent/5">

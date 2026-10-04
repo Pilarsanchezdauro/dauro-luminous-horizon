@@ -9,6 +9,7 @@ import {
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { AutoedicionCalculator } from '@/components/AutoedicionCalculator';
+import { PuertasEditorial } from '@/components/PuertasEditorial';
 import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -410,6 +411,9 @@ export default function Autoedicion() {
           <GlobalDistributionBanner variant="compact" />
         </div>
       </section>
+
+      {/* Dos puertas: editorial tradicional vs servicios editoriales */}
+      <PuertasEditorial />
 
       {/* Budget Calculator Section */}
       <section className="py-16 bg-muted/30" ref={formRef}>

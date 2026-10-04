@@ -54,21 +54,21 @@ const Hero = () => {
         style={{ transform: `translateY(${parallaxOffset * 0.2}px)` }}
       >
         <p className="text-base sm:text-lg md:text-[2rem] font-normal leading-tight md:leading-[1.1] tracking-wide md:tracking-[0.02em] text-[#666666] mb-4 md:mb-8 animate-fade-in text-center px-2 max-w-full break-words">
-          En Grupo Dauro Transformamos La Cultura en Experiencia
+          Hagámoslo <span className="italic text-[#E31B23]">excepcional</span>
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[7.5rem] font-black leading-[0.95] tracking-tight mb-4 md:mb-5 animate-fade-in-up text-[#111111] px-2 max-w-full break-words">
-          HAGÁMOSLO
+          NO PUBLICAMOS
           <br />
-          <span className="italic text-[#E31B23]">EXCEPCIONAL</span>
+          <span className="italic text-[#E31B23]">CUALQUIER LIBRO</span>
         </h1>
         <p className="text-sm sm:text-base md:text-[1.375rem] font-normal leading-relaxed md:leading-[1.4] text-[#333333] mb-6 md:mb-7 max-w-full md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center px-4 break-words">
-          Creamos proyectos que combinan arte, pensamiento y tecnología para conectar la emoción humana con la innovación. Convertimos cada idea en algo vivo, profundo y memorable.
+          Los que publicamos, los defendemos. Más de dos mil obras editadas y en las librerías de España y América, con el criterio de una editorial que elige.
         </p>
-        <Link to="/grupo-dauro">
-          <Button 
+        <Link to="/autoedicion">
+          <Button
             className="text-sm md:text-base font-bold uppercase px-6 md:px-7 py-3 md:py-4 rounded-lg bg-[#111111] text-white hover:bg-[#E31B23] transition-all duration-200 animate-fade-in-up-delayed-more"
           >
-            EXPLORAR
+            CÓMO PUBLICAR CON DAURO
           </Button>
         </Link>
       </div>

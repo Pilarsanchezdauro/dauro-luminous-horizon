@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { PuertasEditorial } from "@/components/PuertasEditorial";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -364,6 +365,7 @@ const Contacto = () => {
           </div>
         </div>
       </main>
+      <PuertasEditorial />
       <Footer />
     </div>
   );

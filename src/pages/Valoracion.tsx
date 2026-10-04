@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FileSearch, Clock, CheckCircle2, XCircle, BookOpen, Euro, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { PuertasEditorial } from "@/components/PuertasEditorial";
 import { SEO } from "@/components/SEO";
 
 /**
@@ -30,7 +31,7 @@ const SALIDAS = [
     icono: CheckCircle2,
     titulo: "Nos interesa y la editamos",
     texto:
-      "Queremos publicarla bajo el sello Dauro. La edición corre íntegramente de nuestra cuenta: no pagas nada.",
+      "Queremos publicarla bajo el sello Dauro. Apostamos por tu obra y la editamos sin coste para ti: no pagas nada.",
   },
   {
     icono: FileSearch,
@@ -45,7 +46,7 @@ const Valoracion = () => {
     <>
       <SEO
         title="Cómo valoramos tu obra | Informe de valoración editorial — Grupo Dauro"
-        description="Envía quince páginas y te respondemos en 48 horas: si tu obra no encaja, si queremos editarla por nuestra cuenta o si merece un informe de valoración. El informe cuesta desde 90 € según la extensión y se descuenta íntegro si después contratas el trabajo editorial."
+        description="Envía quince páginas y te respondemos en 48 horas: si tu obra no encaja, si apostamos por ella y la editamos sin coste para ti, o si merece un informe de valoración. El informe cuesta desde 90 € según la extensión y se descuenta íntegro si después contratas el trabajo editorial."
         keywords="informe de valoración editorial, valoración de manuscritos, enviar manuscrito a editorial, editorial Granada, intervención editorial, publicar novela, Grupo Dauro"
         url="https://www.grupodauro.com/valoracion"
       />
@@ -181,14 +182,14 @@ const Valoracion = () => {
                   3
                 </span>
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground">
-                  Si hay trabajo que hacer, lo hacemos nosotros
+                  Si hay trabajo que hacer, se encarga nuestro equipo editorial
                 </h2>
               </div>
               <p className="text-muted-foreground mb-8">
                 La intervención editorial la ejecuta nuestro equipo, no tú: corrección, estilo, verificación
                 de datos y las piezas que le falten al libro. Tú revisas el resultado y das el visto bueno.
                 La edición —maquetación, cubierta, ISBN, depósito legal, impresión, distribución y promoción—
-                corre siempre de nuestra cuenta.
+                la asume siempre la editorial.
               </p>
 
               <div className="grid md:grid-cols-2 gap-5">
@@ -235,6 +236,8 @@ const Valoracion = () => {
           </div>
         </section>
       </main>
+
+      <PuertasEditorial />
 
       <Footer />
     </>
