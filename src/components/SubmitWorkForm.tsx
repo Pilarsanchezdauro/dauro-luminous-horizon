@@ -238,6 +238,29 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Condiciones a la vista antes de enviar: cierra la "rendija" de quien
+          cree que publicamos cualquier obra sin coste en cualquier caso. */}
+      <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-5 text-sm leading-relaxed">
+        <p className="font-playfair font-bold text-base mb-2">Antes de enviar, cómo trabajamos</p>
+        <ul className="space-y-2 text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Si tu obra ya está terminada</strong> y encaja en
+            nuestro catálogo, apostamos por ella y la editamos{" "}
+            <strong className="text-foreground">sin coste para ti</strong>; tú percibes tus derechos.
+          </li>
+          <li>
+            <strong className="text-foreground">Si necesita trabajo</strong> (corrección, estructura,
+            estilo), de ese trabajo se encarga nuestro equipo editorial: son{" "}
+            <strong className="text-foreground">servicios editoriales</strong>, con un presupuesto
+            cerrado que conoces antes de empezar.
+          </li>
+        </ul>
+        <p className="mt-3 text-muted-foreground">
+          Te respondemos en <strong className="text-foreground">48 horas</strong>. Este primer paso es
+          gratuito y no te compromete a nada.
+        </p>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="nombre">Nombre *</Label>
