@@ -13,14 +13,15 @@ export const PuertasEditorial = () => {
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full my-20 md:my-28">
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-5">
-          ¿Quieres publicar tu libro?{" "}
-          <span className="text-primary">Hay dos caminos, según tu manuscrito.</span>
+          ¿Quieres publicar tu libro con nosotros?{" "}
+          <span className="text-primary">Estos son los dos caminos.</span>
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Todo depende de en qué punto esté tu manuscrito. Si ya está terminado,{" "}
-          <strong className="text-foreground">apostamos por él</strong>: lo editamos, lo
-          publicamos y lo llevamos a las librerías, <strong className="text-foreground">sin
-          coste para ti</strong>. Si todavía necesita trabajo —corrección, estructura,
+          Todo depende de en qué punto esté tu manuscrito. Si ya está terminado y nos
+          convence, <strong className="text-foreground">apostamos por él</strong>: lo
+          editamos, lo publicamos y lo llevamos a las librerías,{" "}
+          <strong className="text-foreground">sin coste para ti</strong>. Si todavía necesita
+          trabajo —corrección, estructura,
           estilo—, de ese trabajo se encarga nuestro equipo editorial: son{" "}
           <strong className="text-foreground">servicios editoriales</strong>, con un
           presupuesto cerrado. Mira en cuál de los dos casos estás:
