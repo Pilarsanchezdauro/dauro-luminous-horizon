@@ -63,11 +63,11 @@ const Valoracion = () => {
                 <span>Cómo valoramos tu obra</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-foreground mb-6">
-                Leemos todo lo que nos llega
+                Publica tu libro con Dauro
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Pero no publicamos todo lo que leemos. Aquí está, sin letra pequeña, lo que hacemos
-                con tu manuscrito desde que nos lo mandas.
+                Leemos todo lo que nos llega, pero no publicamos todo lo que leemos. Aquí tienes,
+                sin letra pequeña, lo que hacemos con tu manuscrito desde que nos lo mandas.
               </p>
             </div>
           </div>
