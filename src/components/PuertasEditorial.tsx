@@ -14,7 +14,7 @@ export const PuertasEditorial = () => {
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-5">
           ¿Quieres publicar tu libro?{" "}
-          <span className="text-primary">Hay dos caminos, y te los contamos claros.</span>
+          <span className="text-primary">Hay dos caminos, según tu manuscrito.</span>
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
           Todo depende de en qué punto esté tu manuscrito. Si ya está terminado,{" "}
