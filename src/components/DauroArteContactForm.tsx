@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -136,7 +137,7 @@ export default function DauroArteContactForm({ onSuccess }: DauroArteContactForm
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
         // Enviar a Formspree
-        fetch(formspreeEndpoint, {
+        submitForm("dauro-arte", formspreeEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

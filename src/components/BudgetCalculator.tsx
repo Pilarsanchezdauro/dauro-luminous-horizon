@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState, useMemo } from 'react';
 import { Calculator, Clock, FileText, BookCopy, Send, Loader2, CheckCircle2, ArrowLeft, Sparkles } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
@@ -128,7 +129,7 @@ export const BudgetCalculator = () => {
     const deadlineLabel = DEADLINE_MULTIPLIERS.find(d => d.days === parseInt(deadline))?.label || deadline;
     
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await submitForm("dauro-presupuesto", FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

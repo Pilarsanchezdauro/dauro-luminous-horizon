@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState, useMemo, useCallback } from 'react';
 import { 
   Calculator, BookOpen, FileText, Printer,
@@ -352,7 +353,7 @@ export const AutoedicionCalculator = () => {
     }
     
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await submitForm("dauro-autoedicion", FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

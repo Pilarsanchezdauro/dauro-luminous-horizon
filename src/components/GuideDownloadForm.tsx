@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,7 +46,7 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
 
     try {
       // Submit to Formspree
-      const formspreeResponse = await fetch("https://formspree.io/f/xdkqwndg", {
+      const formspreeResponse = await submitForm("dauro-guia", "https://formspree.io/f/xdkqwndg", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -153,7 +154,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
         // Enviar a Formspree solo con URLs (sin archivos pesados)
-        fetch(formspreeEndpoint, {
+        submitForm("dauro-manuscrito", formspreeEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

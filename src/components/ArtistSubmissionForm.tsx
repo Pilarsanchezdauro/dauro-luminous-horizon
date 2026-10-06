@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -190,7 +191,7 @@ export function ArtistSubmissionForm() {
         _subject: `Nueva solicitud de representación artística: ${data.nombre} ${data.apellidos}`,
       };
 
-      const formspreeResponse = await fetch("https://formspree.io/f/mpwvbyyr", {
+      const formspreeResponse = await submitForm("dauro-artista", "https://formspree.io/f/mpwvbyyr", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

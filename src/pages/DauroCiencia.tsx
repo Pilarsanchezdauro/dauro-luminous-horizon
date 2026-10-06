@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
@@ -298,7 +299,7 @@ export default function DauroCiencia() {
         }
       }
 
-      const response = await fetch("https://formspree.io/f/xrepaqjr", {
+      const response = await submitForm("dauro-ciencia", "https://formspree.io/f/xrepaqjr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,3 +1,4 @@
+import { submitForm } from "@/lib/submitForm";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { PuertasEditorial } from "@/components/PuertasEditorial";
@@ -31,7 +32,7 @@ const Contacto = () => {
     try {
       const formspreeEndpoint = 'https://formspree.io/f/mzzklylj';
       
-      const response = await fetch(formspreeEndpoint, {
+      const response = await submitForm("dauro-contacto", formspreeEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
