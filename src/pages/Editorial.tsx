@@ -509,7 +509,7 @@ const Editorial = () => {
               Envía tu propuesta editorial
             </DialogTitle>
           </DialogHeader>
-          <SubmitWorkForm onSuccess={() => setIsFormOpen(false)} />
+          <SubmitWorkForm />
         </DialogContent>
       </Dialog>
 

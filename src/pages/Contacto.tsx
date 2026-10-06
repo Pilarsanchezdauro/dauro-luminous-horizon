@@ -5,7 +5,7 @@ import { PuertasEditorial } from "@/components/PuertasEditorial";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, CheckCircle } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
 import logoDauroContact from "@/assets/logo-dauro-contact.png";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +15,7 @@ import { SEO } from "@/components/SEO";
 const Contacto = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,6 +59,7 @@ const Contacto = () => {
       });
 
       formRef.current?.reset();
+      setSent(true);
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -151,6 +153,14 @@ const Contacto = () => {
                   <h2 className="text-2xl font-bold mb-6 relative z-10">
                     Envíanos un mensaje
                   </h2>
+                  {sent ? (
+                    <div role="status" className="relative z-10 rounded-xl border border-primary/30 bg-primary/5 p-8 text-center">
+                      <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
+                      <p className="text-xl font-bold mb-2">¡Mensaje enviado!</p>
+                      <p className="text-muted-foreground mb-6">Gracias por escribirnos. Te responderemos en menos de 48 horas.</p>
+                      <Button type="button" variant="outline" onClick={() => setSent(false)}>Enviar otro mensaje</Button>
+                    </div>
+                  ) : (
                     <form 
                       ref={formRef}
                       onSubmit={handleSubmit}
@@ -228,6 +238,7 @@ const Contacto = () => {
                     {isSubmitting ? "Enviando..." : "Enviar mensaje"}
                   </Button>
                 </form>
+                  )}
                 </div>
               </div>
 
