@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, User, ExternalLink } from "lucide-react";
+import { BookOpen, ArrowRight, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -20,6 +20,32 @@ interface AuthorInfo {
 }
 
 const authors: AuthorInfo[] = [
+  {
+    name: "Anastassia Espinel Suares",
+    slug: "anastassia-espinel-suares",
+    books: [
+      {
+        title: "Una vida en Roma",
+        slug: "una-vida-en-roma",
+        cover: "/webs-libros/roma/portada.jpg",
+        description: "Novela histórica. De la cuna a la urna funeraria en la Roma del siglo I: una sola vida para contarlas todas, y detrás de cada escena, un dato.",
+        external: "https://unavidaenroma.grupodauro.com"
+      }
+    ]
+  },
+  {
+    name: "José Luis Sánchez Iglesias",
+    slug: "jose-luis-sanchez-iglesias",
+    books: [
+      {
+        title: "La sota de espadas",
+        slug: "la-sota-de-espadas",
+        cover: "/webs-libros/sota/portada.jpg",
+        description: "Novela negra en Salamanca. Una mujer aparece asesinada con la sota de espadas entre los dientes, y el inspector Rocasolano sospecha que la escena ha sido preparada.",
+        external: "https://lasotadeespadas.grupodauro.com"
+      }
+    ]
+  },
   {
     name: "Francisco López Barrios",
     slug: "francisco-lopez-barrios",
@@ -86,6 +112,12 @@ const authors: AuthorInfo[] = [
 ];
 
 const WebsDeLibrosIndex = () => {
+  // Una sola cuadrícula con todos los libros (antes se agrupaba por autor y, como cada
+  // autor tiene un solo libro, salía una portada gigante por fila).
+  const allBooks = authors.flatMap((author) =>
+    author.books.map((book) => ({ ...book, author: author.name, authorSlug: author.slug }))
+  );
+
   return (
     <>
       <SEO
@@ -116,79 +148,59 @@ const WebsDeLibrosIndex = () => {
           </div>
         </section>
 
-        {/* Authors Grid */}
+        {/* Books Grid (todas las obras en una sola cuadrícula) */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="space-y-16">
-              {authors.map((author) => (
-                <div key={author.slug} className="space-y-8">
-                  {/* Author Header */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <User className="w-6 h-6 text-primary" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {allBooks.map((book) => {
+                const cardClass = "group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col";
+                const inner = (
+                  <>
+                    <div className="aspect-[3/4] overflow-hidden bg-muted">
+                      <img
+                        src={book.cover}
+                        alt={book.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                        {author.name}
-                      </h2>
-                      <p className="text-muted-foreground text-sm">
-                        {author.books.length} {author.books.length === 1 ? 'libro' : 'libros'}
+                    <div className="p-5 flex flex-col flex-grow">
+                      <p className="text-xs text-muted-foreground mb-1">{book.author}</p>
+                      <h3 className="text-base font-serif font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug line-clamp-2">
+                        {book.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                        {book.description}
                       </p>
+                      <div className="mt-auto flex items-center gap-2 text-primary text-sm font-medium">
+                        <span>{book.external ? "Visitar la web" : "Ver landing"}</span>
+                        {book.external
+                          ? <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Books Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {author.books.map((book) => {
-                      const cardClass = "group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10";
-                      const inner = (
-                        <>
-                          <div className="aspect-[3/4] overflow-hidden">
-                            <img
-                              src={book.cover}
-                              alt={book.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          </div>
-                          <div className="p-6">
-                            <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-                              {book.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              {book.description}
-                            </p>
-                            <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                              <span>{book.external ? "Visitar la web" : "Ver landing"}</span>
-                              {book.external
-                                ? <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
-                            </div>
-                          </div>
-                        </>
-                      );
-                      return book.external ? (
-                        <a
-                          key={book.slug}
-                          href={book.external}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cardClass}
-                        >
-                          {inner}
-                        </a>
-                      ) : (
-                        <Link
-                          key={book.slug}
-                          to={`/webs-de-libros/${author.slug}/${book.slug}`}
-                          className={cardClass}
-                        >
-                          {inner}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
+                  </>
+                );
+                return book.external ? (
+                  <a
+                    key={book.slug}
+                    href={book.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClass}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link
+                    key={book.slug}
+                    to={`/webs-de-libros/${book.authorSlug}/${book.slug}`}
+                    className={cardClass}
+                  >
+                    {inner}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
