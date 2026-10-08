@@ -66,7 +66,7 @@ const authors: AuthorInfo[] = [
       {
         title: "Cartas desde la otra orilla",
         slug: "cartas-desde-la-otra-orilla",
-        cover: "/webs-libros/cartas/portada.jpg",
+        cover: "/webs-libros/cartas/portada.png",
         description: "Novela de misterio. Un sobre con un nombre de mujer y medio siglo de cartas escritas en secreto.",
         external: "https://cartasdesdelaotraorilla.grupodauro.com"
       }
