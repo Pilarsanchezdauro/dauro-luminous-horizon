@@ -21,6 +21,8 @@ interface GuideDownloadFormProps {
 const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores" }: GuideDownloadFormProps) => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
+  // Campo trampa: invisible para personas; si llega relleno, es un robot.
+  const [website, setWebsite] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDownloaded, setIsDownloaded] = useState(false);
   const [errors, setErrors] = useState<{ nombre?: string; email?: string }>({});
@@ -55,6 +57,7 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
         body: JSON.stringify({
           nombre,
           email,
+          _gotcha: website,
           guide_title: guideTitle,
           page_url: window.location.href,
           timestamp: new Date().toISOString(),
@@ -147,6 +150,9 @@ const GuideDownloadForm = ({ pdfUrl, guideTitle = "Guía Editorial para Autores"
         Introduce tu nombre y email para descargarla gratis.
       </p>
       <form onSubmit={handleSubmit} className="space-y-4 mt-auto">
+        <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)}
+          tabIndex={-1} autoComplete="off" aria-hidden="true"
+          style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="nombre">Nombre *</Label>
