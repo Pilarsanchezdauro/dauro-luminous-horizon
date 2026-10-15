@@ -59,7 +59,6 @@ export const SEO = ({
       "addressRegion": "Andalucía"
     },
     "sameAs": [
-      "https://www.edicionesdauro.com",
       "https://www.facebook.com/grupodauro",
       "https://www.instagram.com/grupodauro/",
       "https://x.com/EdicionesDauro",
