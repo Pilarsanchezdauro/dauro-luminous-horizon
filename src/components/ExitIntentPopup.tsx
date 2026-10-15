@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { X, BookOpen, ArrowRight, Check, Globe } from 'lucide-react';
+import { X, BookOpen, ArrowRight, Check, Globe, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const ExitIntentPopup = () => {
@@ -47,7 +47,6 @@ export const ExitIntentPopup = () => {
     { icon: Check, text: <>Edición, maquetación, portada e ISBN</> },
     { icon: Globe, text: <>Distribución en librerías de <strong className="text-foreground">España y América</strong></> },
     { icon: Check, text: <><strong className="text-foreground">+2.000 obras</strong> publicadas · autores premiados</> },
-    { icon: Check, text: <>Envíanos tu obra y te respondemos en <strong className="text-foreground">48 horas</strong></> },
   ];
 
   return (
@@ -80,6 +79,11 @@ export const ExitIntentPopup = () => {
           <h2 className="text-2xl sm:text-3xl font-playfair font-bold mb-3 leading-tight">
             ¿Quieres <span className="text-primary">publicar tu libro</span>?
           </h2>
+
+          <p className="flex items-start gap-2 text-base font-semibold text-foreground mb-4">
+            <Clock className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+            <span>Envíanos tu obra y te respondemos en <span className="text-primary">48 horas</span>.</span>
+          </p>
 
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Si tu manuscrito está terminado y nos convence, lo editamos{' '}
