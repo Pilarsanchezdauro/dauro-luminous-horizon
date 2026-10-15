@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { X, BookOpen, ArrowRight } from 'lucide-react';
+import { X, BookOpen, ArrowRight, Check, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const ExitIntentPopup = () => {
@@ -8,20 +8,18 @@ export const ExitIntentPopup = () => {
   const [hasShown, setHasShown] = useState(false);
   const location = useLocation();
 
-  // No mostrar en páginas donde el pop-up estorba o es redundante:
-  // la de servicios editoriales (y su ruta antigua) y la propia tienda.
+  // No mostrar en las páginas que ya SON el embudo de publicación (sería redundante):
+  // servicios editoriales (y su ruta antigua) y la página de valoración.
   const hidePopupHere =
     location.pathname === '/servicios-editoriales' ||
     location.pathname === '/autoedicion' ||
-    location.pathname === '/tienda';
+    location.pathname === '/valoracion';
 
   useEffect(() => {
-    // Check if already shown in this session
     const alreadyShown = sessionStorage.getItem('exitIntentShown');
     if (alreadyShown || hidePopupHere) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
-      // Only trigger when mouse leaves from the top of the page
       if (e.clientY <= 0 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
@@ -29,7 +27,6 @@ export const ExitIntentPopup = () => {
       }
     };
 
-    // Add delay before enabling the listener (don't show immediately)
     const timer = setTimeout(() => {
       document.addEventListener('mouseleave', handleMouseLeave);
     }, 5000);
@@ -46,91 +43,75 @@ export const ExitIntentPopup = () => {
 
   if (!isVisible || hidePopupHere) return null;
 
+  const benefits = [
+    { icon: Check, text: <>Edición, maquetación, portada e ISBN</> },
+    { icon: Globe, text: <>Distribución en librerías de <strong className="text-foreground">España y América</strong></> },
+    { icon: Check, text: <><strong className="text-foreground">+2.000 obras</strong> publicadas · autores premiados</> },
+    { icon: Check, text: <>Envía 15 páginas y te respondemos en <strong className="text-foreground">48 horas</strong></> },
+  ];
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
+      <div
+        className="absolute inset-0 bg-foreground/60 backdrop-blur-sm animate-fade-in"
         onClick={handleClose}
       />
-      
+
       {/* Popup */}
-      <div className="relative bg-card border border-border rounded-2xl shadow-2xl max-w-lg w-full animate-scale-in overflow-hidden">
-        {/* Close button */}
+      <div className="relative bg-card border-2 border-primary/20 rounded-3xl shadow-2xl max-w-lg w-full animate-scale-in overflow-hidden">
+        {/* Glow decorativo, como en las tarjetas de la web */}
+        <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />
+
         <button
           onClick={handleClose}
+          aria-label="Cerrar"
           className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Header with gradient */}
-        <div className="bg-gradient-to-r from-primary to-primary/80 p-8 text-primary-foreground">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-              <BookOpen className="w-7 h-7" />
-            </div>
-            <div>
-              <p className="text-sm opacity-90">Antes de irte…</p>
-              <h2 className="text-2xl font-bold">Descubre los libros de Dauro</h2>
-            </div>
+        <div className="relative p-8 sm:p-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium mb-5">
+            <BookOpen className="w-4 h-4" />
+            Publica con Dauro
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="p-8">
-          <p className="text-lg text-foreground mb-4">
-            <strong>Más de 2.000 libros</strong> de novela, novela negra, histórica,
-            poesía, ensayo, historia y memorias, de autores premiados.
+          <h2 className="text-2xl sm:text-3xl font-playfair font-bold mb-3 leading-tight">
+            ¿Quieres <span className="text-primary">publicar tu libro</span>?
+          </h2>
+
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Somos una editorial. Si tu manuscrito está terminado y nos convence, lo editamos{' '}
+            <strong className="text-foreground">sin coste para ti</strong>; si necesita trabajo,
+            son servicios editoriales con presupuesto.
           </p>
 
-          <ul className="space-y-3 mb-6">
-            <li className="flex items-center gap-3 text-muted-foreground">
-              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              En papel y en ebook, con compra segura
-            </li>
-            <li className="flex items-center gap-3 text-muted-foreground">
-              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">🌍</span>
-              <span>Envío a <strong className="text-foreground">España y toda América</strong></span>
-            </li>
-            <li className="flex items-center gap-3 text-muted-foreground">
-              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              Autores premiados (Premio Andalucía de la Crítica)
-            </li>
-            <li className="flex items-center gap-3 text-muted-foreground">
-              <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">✓</span>
-              Novedades cada mes en nuestra tienda online
-            </li>
+          <ul className="space-y-3 mb-8">
+            {benefits.map((b, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                <b.icon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>{b.text}</span>
+              </li>
+            ))}
           </ul>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild size="lg" className="flex-1 text-base">
-              <a
-                href="https://tiendaspain.grupodauro.com/shop"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleClose}
-              >
-                Ver la tienda
+            <Button asChild size="lg" className="flex-1 bg-primary hover:bg-primary/90">
+              <Link to="/valoracion" onClick={handleClose}>
+                Publica tu libro
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
               onClick={handleClose}
-              className="text-muted-foreground"
+              className="text-muted-foreground hover:text-foreground"
             >
               Ahora no
             </Button>
           </div>
-
-          <p className="text-center text-xs text-muted-foreground mt-4">
-            ¿Eres autor?{' '}
-            <Link to="/valoracion" onClick={handleClose} className="text-primary hover:underline font-medium">
-              Publica tu libro con Dauro
-            </Link>
-          </p>
         </div>
       </div>
     </div>
