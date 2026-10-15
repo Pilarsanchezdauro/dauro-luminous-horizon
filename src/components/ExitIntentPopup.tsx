@@ -47,7 +47,7 @@ export const ExitIntentPopup = () => {
     { icon: Check, text: <>Edición, maquetación, portada e ISBN</> },
     { icon: Globe, text: <>Distribución en librerías de <strong className="text-foreground">España y América</strong></> },
     { icon: Check, text: <><strong className="text-foreground">+2.000 obras</strong> publicadas · autores premiados</> },
-    { icon: Check, text: <>Envía 15 páginas y te respondemos en <strong className="text-foreground">48 horas</strong></> },
+    { icon: Check, text: <>Envíanos tu obra y te respondemos en <strong className="text-foreground">48 horas</strong></> },
   ];
 
   return (
