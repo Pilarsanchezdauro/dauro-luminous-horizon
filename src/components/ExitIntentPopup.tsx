@@ -82,7 +82,7 @@ export const ExitIntentPopup = () => {
           </h2>
 
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            Somos una editorial. Si tu manuscrito está terminado y nos convence, lo editamos{' '}
+            Si tu manuscrito está terminado y nos convence, lo editamos{' '}
             <strong className="text-foreground">sin coste para ti</strong>; si necesita trabajo,
             son servicios editoriales con presupuesto.
           </p>
