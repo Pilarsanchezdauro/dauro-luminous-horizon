@@ -17,6 +17,7 @@ const GraciasCompra = () => {
       <SEO
         title="¡Gracias por tu compra! | Grupo Dauro"
         description="Tu pedido ha sido procesado correctamente. Gracias por confiar en Grupo Dauro."
+        noindex
       />
       <div className="min-h-screen flex flex-col bg-background">
         <Navigation />

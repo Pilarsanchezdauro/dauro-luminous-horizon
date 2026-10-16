@@ -98,6 +98,7 @@ export default function DescargarEbook() {
         title="Descargar Ebook - Grupo Cultural Dauro"
         description="Descarga tu ebook adquirido en Grupo Dauro"
         keywords="ebook, descarga, libro digital, Grupo Dauro"
+        noindex
       />
 
       <div className="min-h-screen flex flex-col">
