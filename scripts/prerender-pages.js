@@ -17,13 +17,13 @@ const pages = [
   },
   {
     path: 'grupo-dauro/editorial',
-    title: 'Publicar tu Libro | Editorial Dauro — Edición y Distribución en Librerías',
+    title: 'Editorial Dauro | Edición y Distribución de Libros en España y América',
     description: '¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales. Distribución en 4000 librerías de España y América.',
     image: '/og-editorial.jpg'
   },
   {
     path: 'servicios-editoriales',
-    title: 'Servicios Editoriales | Publica tu Libro con ISBN y Distribución - Dauro Editorial',
+    title: 'Servicios Editoriales | Corrección, Maquetación, Portada e ISBN — Dauro',
     description: '¿Tu manuscrito necesita trabajo antes de publicarse? Nuestros servicios editoriales incluyen corrección, maquetación, portada, ISBN, ebook y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Presupuesto cerrado y financiación en 2 plazos.',
     image: '/og-editorial.jpg'
   },

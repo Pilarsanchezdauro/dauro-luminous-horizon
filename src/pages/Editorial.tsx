@@ -100,7 +100,7 @@ const Editorial = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Publicar tu Libro | Editorial Dauro — Edición y Distribución en Librerías"
+        title="Editorial Dauro | Edición y Distribución de Libros en España y América"
         description="¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales con presupuesto. Distribución en 4.000 librerías de España y América. Más de 2.000 obras publicadas."
         keywords="publicar libro, editorial España, edición de libros, cómo publicar mi libro, enviar manuscrito, publicar novela, editar libro, servicios editoriales, publicar libro con editorial, coste publicar libro, ISBN libro"
         url="https://www.grupodauro.com/grupo-dauro/editorial"

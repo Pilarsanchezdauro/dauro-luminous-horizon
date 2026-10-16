@@ -275,7 +275,7 @@ export default function Autoedicion() {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Servicios Editoriales | Publica tu Libro con ISBN y Distribución - Dauro Editorial"
+        title="Servicios Editoriales | Corrección, Maquetación, Portada e ISBN — Dauro"
         description="¿Tu manuscrito necesita trabajo antes de publicarse? Nuestros servicios editoriales incluyen corrección, maquetación, portada, ISBN, ebook y distribución en Amazon, Casa del Libro, Fnac y más. 26 años de experiencia. Presupuesto cerrado y financiación en 2 plazos."
         keywords="servicios editoriales, publicar libro España, editar mi libro, corrección de estilo, maquetación libros, diseño portada libro, ISBN libro, ebook incluido, distribución Amazon, publicar novela, publicar poesía, imprimir libro bajo demanda, presupuesto edición libro"
         image="/og-editorial.jpg"
