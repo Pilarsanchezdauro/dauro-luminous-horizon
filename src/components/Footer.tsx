@@ -27,10 +27,26 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
+                  to="/valoracion"
+                  className="text-background/70 hover:text-background transition-colors"
+                >
+                  Publica tu libro
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/grupo-dauro"
                   className="text-background/70 hover:text-background transition-colors"
                 >
                   Grupo Dauro
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contacto"
+                  className="text-background/70 hover:text-background transition-colors"
+                >
+                  Contacto
                 </Link>
               </li>
               <li>
@@ -257,7 +273,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-background/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/70">
-            <p>© 2025 Grupo Cultural Dauro. Todos los derechos reservados.</p>
+            <p>© {new Date().getFullYear()} Grupo Cultural Dauro. Todos los derechos reservados.</p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link to="/privacidad" className="hover:text-background transition-colors">
                 Política de privacidad
