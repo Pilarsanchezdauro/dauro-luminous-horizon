@@ -54,10 +54,14 @@ export const SEO = ({
     "description": "Grupo cultural dedicado a la edición de libros, los guiones de cine y televisión, la representación de arte y la inteligencia artificial en Granada",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Calle Almajara 11",
+      "postalCode": "18008",
       "addressLocality": "Granada",
-      "addressCountry": "ES",
-      "addressRegion": "Andalucía"
+      "addressRegion": "Andalucía",
+      "addressCountry": "ES"
     },
+    "telephone": "+34 958 28 11 83",
+    "email": "info@grupodauro.com",
     "sameAs": [
       "https://www.facebook.com/grupodauro",
       "https://www.instagram.com/grupodauro/",
