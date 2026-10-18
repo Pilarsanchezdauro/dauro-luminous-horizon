@@ -38,6 +38,37 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "«La sota de espadas», de José Luis Sánchez Iglesias, se presenta en la Torre de los Anaya (Salamanca)",
+    excerpt: "El viernes 23 de octubre, a las 19:30 h, José Luis Sánchez Iglesias presenta su novela negra «La sota de espadas» en la Torre de los Anaya. Le acompaña José Vicente Ledesma Agudo, policía con cuarenta años de servicio. Entrada libre hasta completar aforo.",
+    date: "18 Octubre 2026",
+    author: "Grupo Dauro",
+    image: "/blog/sota-presentacion/invitacion.jpg",
+    ogImage: "/blog/sota-presentacion/invitacion.jpg",
+    imageAlt: "Invitación a la presentación de «La sota de espadas» en la Torre de los Anaya de Salamanca, el 23 de octubre de 2026",
+    metaTitle: "«La sota de espadas» se presenta en Salamanca el 23 de octubre",
+    metaDescription: "José Luis Sánchez Iglesias presenta su novela negra «La sota de espadas» en la Torre de los Anaya (Salamanca) el viernes 23 de octubre a las 19:30 h, con el policía José Vicente Ledesma. Entrada libre.",
+    keywords: "La sota de espadas, José Luis Sánchez Iglesias, presentación Salamanca, Torre de los Anaya, novela negra, inspector Rocasolano, Grupo Dauro",
+    category: "literatura",
+    slug: "presentacion-la-sota-de-espadas-salamanca",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/la-sota-de-espadas-18042",
+    content: `## Una presentación poco habitual
+El **viernes 23 de octubre**, a las **19:30 h**, la **Torre de los Anaya** acoge la presentación de «La sota de espadas», la nueva novela de **José Luis Sánchez Iglesias** (Salamanca, 1955), doctor en Historia Medieval por la Universidad de Salamanca y autor de diez novelas.
+El autor estará acompañado por **José Vicente Ledesma Agudo, policía con cuarenta años de servicio**. No es un detalle de programa: la novela se detiene en el trabajo real —las primeras horas tras un crimen, el juez de guardia, la científica, el forense, las cámaras de un garaje— y también en lo incómodo, hasta dónde llega el margen de un policía cuando la orden que recibe no le cuadra con lo que ve. De ahí que la conversación entre un novelista y un policía con cuarenta años a la espalda prometa ir más lejos que una presentación al uso.
+La **entrada es libre hasta completar aforo**. Organiza Grupo Dauro, con la colaboración de la Fundación Salamanca Ciudad de Cultura.
+## Un crimen en un garaje de Huerta Otea
+Un domingo de agosto, con la ciudad medio vacía y un calor que no deja respirar, aparece el cadáver de una mujer en el garaje de un edificio del barrio de Huerta Otea. Está degollada y tiene un naipe sujeto entre los dientes: la sota de espadas.
+La firma parece inconfundible. En Madrid lleva meses actuando el llamado «asesino de la baraja», que acumula siete víctimas y va dejando, una tras otra, las cartas del palo de espadas. Esta sería la octava. Pero al inspector **Íñigo Rocasolano** hay cosas que no le cuadran: en el garaje apenas hay sangre para un cuello seccionado, y la víctima no es una desconocida elegida al azar, sino la jefa de administración del Hospital Clínico y esposa del político que gobierna el Ayuntamiento.
+«La sota de espadas» es la segunda entrega del inspector Rocasolano, que apareció por primera vez en «El fantasma de las Torres» (2014) y regresa doce años después. No hace falta haber leído aquella para entender esta.
+## Datos de la presentación
+- **Día y hora:** viernes 23 de octubre de 2026, 19:30 h
+- **Lugar:** Torre de los Anaya — Salamanca
+- **Intervienen:** José Luis Sánchez Iglesias, historiador y escritor, y José Vicente Ledesma Agudo, policía con 40 años de servicio
+- **Entrada:** libre hasta completar aforo
+- **Organiza:** Grupo Dauro · **Colabora:** Fundación Salamanca Ciudad de Cultura
+Toda la información del libro, la cubierta en alta resolución y las primeras veinticinco páginas para hojear están en [lasotadeespadas.grupodauro.com](https://lasotadeespadas.grupodauro.com).`,
+    image2: "/blog/sota-presentacion/cartel.jpg",
+  },
+  {
     title: "Una presentación campera y por estricta invitación: «Los fotones creen en Dios», de Francisco López Barrios, se estrena en O Grove",
     excerpt: "Nada de salón de actos: el jardín de una casa privada junto al mar, un mantel rojo bajo los árboles, guitarras, un embajador, un alcalde y amigos convocados uno a uno. Así presentó Francisco López Barrios su novela «Los fotones creen en Dios» en O Grove.",
     date: "21 Agosto 2026",
