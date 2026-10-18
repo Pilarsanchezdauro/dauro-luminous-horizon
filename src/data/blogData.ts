@@ -38,6 +38,31 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "«Cartas desde la otra orilla», de Carmen Puerta, sigue de gira: próximas presentaciones por Tierra Estella",
+    excerpt: "La primera novela de Carmen Puerta Extremera continúa su gira por Navarra. Próximas citas: 24 de octubre en Barbarin, 29 en Estella-Lizarra y 30 en Egüés.",
+    date: "18 Octubre 2026",
+    author: "Grupo Dauro",
+    image: "/blog/cartas-presentaciones/portada.jpg",
+    ogImage: "/blog/cartas-presentaciones/portada.jpg",
+    imageAlt: "Presentación de «Cartas desde la otra orilla», de Carmen Puerta Extremera",
+    metaTitle: "«Cartas desde la otra orilla» sigue de gira por Tierra Estella",
+    metaDescription: "Próximas presentaciones de la novela de Carmen Puerta Extremera: 24 de octubre en Barbarin, 29 en Estella-Lizarra y 30 en Egüés. Grupo Dauro.",
+    keywords: "Cartas desde la otra orilla, Carmen Puerta Extremera, presentaciones, Tierra Estella, Navarra, Grupo Dauro, novela",
+    category: "literatura",
+    slug: "cartas-desde-la-otra-orilla-presentaciones-tierra-estella",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026",
+    content: `## La novela sigue de gira
+«Cartas desde la otra orilla», la primera novela de **Carmen Puerta Extremera**, continúa su viaje entre lectores por Tierra Estella (Navarra). Cada cita incluye conversación con la autora y firma de ejemplares.
+## Próximas presentaciones
+- **24 de octubre, 18:00 h** — Barbarin
+- **29 de octubre, 19:00 h** — Estella-Lizarra
+- **30 de octubre, 18:00 h** — Egüés
+Próximamente, nuevas fechas en Tudela, Granada y Madrid.
+## Ya presentada
+La novela se ha presentado en Pamplona (Ámbito Cultural de El Corte Inglés), en Cazorla (Hotel Balcón de Cazorla) y, por Tierra Estella, en Piedramillera, Murieta y Luquin.
+La agenda completa y al día está en [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com/presentaciones.html).`,
+  },
+  {
     title: "«La sota de espadas», de José Luis Sánchez Iglesias, se presenta en la Torre de los Anaya (Salamanca)",
     excerpt: "El viernes 23 de octubre, a las 19:30 h, José Luis Sánchez Iglesias presenta su novela negra «La sota de espadas» en la Torre de los Anaya. Le acompaña José Vicente Ledesma Agudo, policía con cuarenta años de servicio. Entrada libre hasta completar aforo.",
     date: "18 Octubre 2026",
