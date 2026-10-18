@@ -60,7 +60,13 @@ export const blogPosts: BlogPost[] = [
 Próximamente, nuevas fechas en Tudela, Granada y Madrid.
 ## Ya presentada
 La novela se ha presentado en Pamplona (Ámbito Cultural de El Corte Inglés), en Cazorla (Hotel Balcón de Cazorla) y, por Tierra Estella, en Piedramillera, Murieta y Luquin.
-La agenda completa y al día está en [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com/presentaciones.html).`,
+La agenda completa y al día está en [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com/presentaciones.html).
+## En los medios
+La novela y su autora —Carmen Puerta Extremera, alcaldesa de Barbarin— han tenido eco en la prensa navarra:
+- **Navarra Televisión**: [entrevista con la autora](https://www.dailymotion.com/video/xar8oni).
+- **COPE Tierra Estella**: [entrevista radiofónica](https://www.facebook.com/100062959464891/posts/la-alcaldesa-de-barbarin-carmen-puerta-publica-su-primera-novela-cartas-desde-la/1422719429836692/).
+- **Diario de Navarra** y **Noticias de Navarra** recogieron la presentación en Pamplona.
+Además, «Cartas desde la otra orilla» está en el expositor de **novedades de El Corte Inglés de Pamplona**.`,
   },
   {
     title: "«La sota de espadas», de José Luis Sánchez Iglesias, se presenta en la Torre de los Anaya (Salamanca)",
@@ -137,6 +143,10 @@ Y como remate, fiel a sí mismo, Paco reunió a **veintidós comensales bajo los
 
 - 📖 En papel (22 €) y ebook (9,99 €) en [nuestra tienda](https://tiendaspain.grupodauro.com/shop/los-fotones-creen-en-dios-18029) y en [Amazon](https://www.amazon.es/dp/B0H95MJS2H).
 - 🌐 En [la web del libro](https://losfotonescreenendios.grupodauro.com) puedes hojear las 25 primeras páginas y ver todas las fotos de la presentación.
+
+## En los medios
+
+«Los fotones creen en Dios» ha recibido una amplia reseña en **Diario Córdoba** («Cuadernos del Sur», 10 de octubre de 2026). Bajo el título «Sinfonía sufí», el crítico Manuel Ángel Morales Escudero la sitúa, en sus palabras, «ante una obra mayor». Puedes leer la reseña completa [en Diario Córdoba](https://www.diariocordoba.com/cuadernos-del-sur/2026/10/10/sinfonia-sufi-135135160.html).
 `,
   },
   {
