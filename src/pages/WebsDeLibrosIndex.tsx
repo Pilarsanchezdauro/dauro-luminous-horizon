@@ -21,6 +21,19 @@ interface AuthorInfo {
 
 const authors: AuthorInfo[] = [
   {
+    name: "Isidoro de Antillón · ed. de Eduard Ariza Ugalde",
+    slug: "isidoro-de-antillon",
+    books: [
+      {
+        title: "Disertación sobre el origen de la esclavitud de los negros",
+        slug: "disertacion-esclavitud",
+        cover: "/webs-libros/antillon/portada.jpg",
+        description: "El primer alegato político contra la esclavitud en España (1802/1811), en edición crítica de Eduard Ariza Ugalde. Web con flipbook del libro, el impreso de 1811 y compra directa.",
+        external: "https://disertacionesclavitud.grupodauro.com"
+      }
+    ]
+  },
+  {
     name: "Anastassia Espinel Suares",
     slug: "anastassia-espinel-suares",
     books: [
