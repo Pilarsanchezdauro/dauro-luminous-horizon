@@ -1,5 +1,6 @@
 import { Music, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 
 const ChristmasSongAnnouncement = () => {
   return (
@@ -27,13 +28,7 @@ const ChristmasSongAnnouncement = () => {
             {/* Video Preview */}
             <div className="order-1 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-primary/20 aspect-video">
-                <iframe
-                  src="https://www.youtube.com/embed/mKHhpGMBVcI"
-                  title="El Arte es Navidad - Grupo Dauro 2025"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                />
+                <YouTubeEmbed videoId="mKHhpGMBVcI" title="El Arte es Navidad - Grupo Dauro 2025" />
               </div>
             </div>
 

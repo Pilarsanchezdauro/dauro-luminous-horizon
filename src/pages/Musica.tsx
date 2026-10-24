@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import mascotLogo from "@/assets/mascot.png";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
 import musicaBg from "@/assets/musica-bg.jpg";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 
 // Preguntas frecuentes: se muestran en la página y alimentan el FAQPage de los datos estructurados.
 const faqs = [
@@ -238,16 +239,7 @@ const Musica = () => {
               {/* Video embed */}
               <div className="order-2 lg:order-1">
                 <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/mKHhpGMBVcI"
-                    title="El Arte es Navidad - José Carrera"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
+                  <YouTubeEmbed videoId="mKHhpGMBVcI" title="El Arte es Navidad - José Carrera" />
                 </div>
               </div>
 
@@ -354,16 +346,7 @@ const Musica = () => {
               {/* Video embed */}
               <div className="order-2">
                 <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/Fsr64OQOFQg"
-                    title="Si cuento - Ojos de Blues con May Walker"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
+                  <YouTubeEmbed videoId="Fsr64OQOFQg" title="Si cuento - Ojos de Blues con May Walker" />
                 </div>
               </div>
             </div>
@@ -385,16 +368,7 @@ const Musica = () => {
                 {/* Video embed */}
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/J0xzs2bA6CQ"
-                      title="Sin ti - Ojos de Blues"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
+                    <YouTubeEmbed videoId="J0xzs2bA6CQ" title="Sin ti - Ojos de Blues" />
                   </div>
                 </div>
 
@@ -489,16 +463,7 @@ const Musica = () => {
                 {/* Video embed */}
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/BSKMUAiAez4"
-                      title="Ausencia - Tres Coma Catorce"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
+                    <YouTubeEmbed videoId="BSKMUAiAez4" title="Ausencia - Tres Coma Catorce" />
                   </div>
                 </div>
 
@@ -612,16 +577,7 @@ const Musica = () => {
                 {/* Video embed */}
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/PXr2CWQYgTM"
-                      title="Cous Kush - Tres Coma Catorce"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
+                    <YouTubeEmbed videoId="PXr2CWQYgTM" title="Cous Kush - Tres Coma Catorce" />
                   </div>
                 </div>
               </div>
@@ -655,16 +611,7 @@ const Musica = () => {
                 {/* Video embed */}
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/6r74NU6mQFI"
-                      title="Eres mi ritmo - Alciades Ferran"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
+                    <YouTubeEmbed videoId="6r74NU6mQFI" title="Eres mi ritmo - Alciades Ferran" />
                   </div>
                 </div>
 
@@ -766,16 +713,7 @@ const Musica = () => {
               {/* Video embed */}
               <div className="max-w-4xl mx-auto">
                 <div className="aspect-video rounded-xl overflow-hidden shadow-xl border-2 border-primary/20">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/8R2AV-h1Dzg"
-                    title="Una Voz para Dos Tierras - Lorena Avelar"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
+                  <YouTubeEmbed videoId="8R2AV-h1Dzg" title="Una Voz para Dos Tierras - Lorena Avelar" />
                 </div>
               </div>
 

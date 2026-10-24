@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
 import mascotLogo from "@/assets/mascot.png";
 import { SEO } from "@/components/SEO";
+import { Link } from "react-router-dom";
 
 const Privacidad = () => {
   return (
@@ -178,9 +179,11 @@ const Privacidad = () => {
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">9. Uso de cookies</h2>
                 <p className="text-muted-foreground">
-                  Este sitio web utiliza cookies propias y de terceros para mejorar nuestros servicios 
-                  y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus 
-                  hábitos de navegación. Para más información puede consultar nuestra Política de Cookies.
+                  Este sitio web no utiliza cookies de publicidad ni de seguimiento. Solo guarda en su 
+                  navegador lo estrictamente necesario para su funcionamiento, y los vídeos de YouTube 
+                  instalan cookies de Google únicamente si usted decide reproducirlos. Puede consultar 
+                  el detalle en nuestra{" "}
+                  <Link to="/cookies" className="text-primary hover:underline">Política de Cookies</Link>.
                 </p>
               </section>
 

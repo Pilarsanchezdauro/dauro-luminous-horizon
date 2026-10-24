@@ -34,6 +34,7 @@ const Hemeroteca = lazy(() => import("./pages/Hemeroteca"));
 const HemerotecaGaleria = lazy(() => import("./pages/HemerotecaGaleria"));
 const Privacidad = lazy(() => import("./pages/Privacidad"));
 const Terminos = lazy(() => import("./pages/Terminos"));
+const Cookies = lazy(() => import("./pages/Cookies"));
 const CompromisoEtico = lazy(() => import("./pages/CompromisoEtico"));
 const ArchivoHistorico = lazy(() => import("./pages/ArchivoHistorico"));
 const Gracias = lazy(() => import("./pages/Gracias"));
@@ -144,6 +145,7 @@ const App = () => (
             <Route path="/gracias-dauro-ciencia" element={<GraciasDauroCiencia />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/terminos" element={<Terminos />} />
+            <Route path="/cookies" element={<Cookies />} />
             <Route path="/compromiso-etico" element={<CompromisoEtico />} />
             <Route path="/archivo-historico" element={<ArchivoHistorico />} />
             <Route path="/mirlo-key" element={<DauroMirloKey />} />

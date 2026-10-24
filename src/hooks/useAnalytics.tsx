@@ -10,17 +10,19 @@ interface AnalyticsEvent {
   referrer?: string;
 }
 
+let memorySessionId: string | null = null;
+
 export const useAnalytics = () => {
   const trackEvent = useCallback(async (event: AnalyticsEvent) => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       
-      // Get or create session ID
-      let sessionId = sessionStorage.getItem('analytics_session_id');
-      if (!sessionId) {
-        sessionId = crypto.randomUUID();
-        sessionStorage.setItem('analytics_session_id', sessionId);
+      // Session ID kept in memory only (nothing stored on the visitor's device,
+      // so no cookie consent is needed; see /cookies). It resets on reload.
+      if (!memorySessionId) {
+        memorySessionId = crypto.randomUUID();
       }
+      const sessionId = memorySessionId;
 
       await supabase.from('analytics_events').insert({
         event_type: event.event_type,

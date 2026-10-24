@@ -281,6 +281,9 @@ const Footer = () => {
               <Link to="/terminos" className="hover:text-background transition-colors">
                 Términos y condiciones
               </Link>
+              <Link to="/cookies" className="hover:text-background transition-colors">
+                Política de cookies
+              </Link>
               <Link to="/compromiso-etico" className="hover:text-background transition-colors">
                 Compromiso Ético y Transparencia
               </Link>

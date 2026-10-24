@@ -33,6 +33,7 @@ const staticPages = [
   { path: '/archivo-historico', priority: '0.5', changefreq: 'yearly' },
   { path: '/privacidad', priority: '0.3', changefreq: 'yearly' },
   { path: '/terminos', priority: '0.3', changefreq: 'yearly' },
+  { path: '/cookies', priority: '0.3', changefreq: 'yearly' },
 ];
 
 // Read and parse blogData.ts to extract posts

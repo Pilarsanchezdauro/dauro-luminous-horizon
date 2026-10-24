@@ -13,6 +13,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PortfolioInquiryForm from '@/components/PortfolioInquiryForm';
 import { MusicProjectsCTA } from '@/components/MusicProjectsCTA';
+import { YouTubeEmbed, getYouTubeId } from '@/components/YouTubeEmbed';
 
 // Lightbox component for artwork display
 function ArtworkLightbox({ 
@@ -100,6 +101,7 @@ function ArtistLayout({ project, links, galleryImages }: {
 }) {
   const Icon = categoryIcons[project.category];
   const youtubeLink = links.find(l => l.url.includes('youtube'));
+  const youtubeId = youtubeLink ? getYouTubeId(youtubeLink.url) : null;
   
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -289,16 +291,11 @@ function ArtistLayout({ project, links, galleryImages }: {
             </div>
 
             {/* Video Section */}
-            {youtubeLink && (
+            {youtubeId && (
               <section className="mb-12">
                 <h2 className="text-2xl font-bold mb-6">Material audiovisual</h2>
                 <div className="aspect-video max-w-4xl rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src={youtubeLink.url.replace('watch?v=', 'embed/')}
-                    className="w-full h-full"
-                    allowFullScreen
-                    title={project.title}
-                  />
+                  <YouTubeEmbed videoId={youtubeId} title={project.title} />
                 </div>
               </section>
             )}
@@ -491,6 +488,7 @@ function DefaultProjectLayout({ project, links, galleryImages }: {
   galleryImages: Array<{ url: string; caption?: string }>;
 }) {
   const Icon = categoryIcons[project.category];
+  const mainVideoId = links.length > 0 ? getYouTubeId(links[0].url) : null;
 
   return (
     <>
@@ -529,17 +527,9 @@ function DefaultProjectLayout({ project, links, galleryImages }: {
             </div>
 
             {/* Main Image or Video */}
-            {links.length > 0 && (links[0].url.includes('youtube') || links[0].url.includes('youtu.be')) ? (
-              <div className="aspect-video">
-                <iframe
-                  src={links[0].url
-                    .replace('watch?v=', 'embed/')
-                    .replace('youtu.be/', 'www.youtube.com/embed/')
-                    .split('?')[0]}
-                  className="w-full h-full rounded-lg"
-                  allowFullScreen
-                  title={project.title}
-                />
+            {mainVideoId ? (
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <YouTubeEmbed videoId={mainVideoId} title={project.title} />
               </div>
             ) : project.main_image_url ? (
               <img
