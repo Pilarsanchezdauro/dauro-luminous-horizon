@@ -208,35 +208,45 @@ Si la obra necesita un estudio de autoría que va más allá de la tasación, te
     {
       id: "marca-artista",
       icon: <Music className="h-12 w-12 text-primary mb-4" />,
-      title: "Marca de Artista y Videoclips",
-      subtitle: "La imagen de tu música.",
+      title: "Producción Musical con IA y Marca de Artista",
+      subtitle: "De tu grabación a la canción publicada.",
       hacemos: [
+        "Producción musical con IA",
+        "Mezcla, máster y lanzamiento",
         "Marca e identidad del artista",
-        "Videoclips con IA",
-        "Sintetización de voz",
-        "Portadas y web del artista",
-        "Material visual para redes",
+        "Videoclips con IA y portadas",
+        "Canciones por encargo con tu voz digital",
       ],
       aplicaciones: [
-        "Artistas emergentes",
-        "Lanzamiento de single",
-        "Proyectos culturales",
-        "Música para audiovisual",
+        "Artistas y cantantes",
+        "Lanzamiento de single o álbum",
+        "Empresas y marcas",
+        "Celebraciones y eventos",
       ],
-      masInfo: `Trabajamos la parte visual y de marca de un proyecto musical: cómo se presenta el artista y cómo se ve su música.
+      masInfo: `Producimos tu música con inteligencia artificial a partir de tu propia grabación, la publicamos y construimos la imagen que la acompaña. Todo el trabajo se hace en línea.
 
-No producimos música. No grabamos, no mezclamos ni masterizamos, y no somos sello discográfico. Si lo que necesitas es estudio o producción de audio, te lo decimos desde el principio y no te hacemos perder tiempo.
+No somos sello discográfico: no fichamos artistas ni seleccionamos maquetas. Trabajamos por encargo, con cada artista que nos lo pide.
 
-Partimos de la música ya grabada y construimos todo lo que la rodea:
-— Marca e identidad del artista: nombre, concepto y aplicación a todos los soportes.
+Producción musical con IA, a partir de tu grabación:
+— Base y arreglo.
+— Voz sintetizada a partir de tu voz.
+— Mezcla y máster.
+— Gestión técnica del lanzamiento: distribuidora y perfiles de artista en las plataformas.
+
+Marca de artista:
+— Identidad del artista: nombre, concepto y aplicación a todos los soportes.
 — Logotipo y sus aplicaciones.
-— Videoclips con inteligencia artificial generativa y dirección artística propia.
-— Sintetización de voz.
-— Portadas de single, EP y álbum.
 — Web del artista y textos de presentación.
-— Material visual y posicionamiento en redes.
+— Material visual y presencia en redes.
+— Videoclips con inteligencia artificial y dirección artística propia.
+— Portadas de single, EP y álbum.
 
-Para ver cómo trabajamos, en nuestra sección de música están los videoclips y las piezas ya publicadas.`,
+Canciones por encargo con tu voz digital:
+Con tu autorización, creamos canciones para empresas y eventos con tu voz digital: sintonías, himnos, canciones corporativas o de celebración. Los ingresos de cada encargo se reparten contigo en las condiciones que se pactan por escrito.
+
+No hacemos conciertos, actuaciones en directo ni eventos presenciales.
+
+En nuestra sección de música están los videoclips y las piezas ya publicadas por Dauro Música.`,
     },
     {
       id: "gestion-arte",
@@ -273,15 +283,15 @@ Trabajamos por encargo, y la comisión se pacta por escrito antes de empezar.`,
     <div className="min-h-screen">
       <SEO
         title="Servicios Creativos y Editoriales | Grupo Cultural Dauro"
-        description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guion literario y técnico, producción ejecutiva, marca de artista, videoclips y tasación de obras de arte y joyas."
-        keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, guion literario, guion técnico, producción ejecutiva, videoclips, sintetización de voz, tasación de arte, tasación de joyas, perito judicial"
+        description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guion literario y técnico, producción ejecutiva, producción musical con IA, marca de artista, videoclips y tasación de obras de arte y joyas."
+        keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, guion literario, guion técnico, producción ejecutiva, producción musical con IA, mezcla y máster, voz digital, videoclips, tasación de arte, tasación de joyas, perito judicial"
         url="https://www.grupodauro.com/servicios"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "name": "Servicios Creativos - Grupo Cultural Dauro",
           "url": "https://www.grupodauro.com/servicios",
-          "description": "Servicios profesionales de edición, diseño, guion y producción ejecutiva, marca de artista, videoclips y tasación de obras de arte y joyas para autores y creadores.",
+          "description": "Servicios profesionales de edición, diseño, guion y producción ejecutiva, producción musical con IA, marca de artista, videoclips y tasación de obras de arte y joyas para autores y creadores.",
           "provider": {
             "@type": "Organization",
             "name": "Grupo Cultural Dauro",

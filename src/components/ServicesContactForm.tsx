@@ -290,7 +290,7 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
             <SelectItem value="diseno">Imagen, Diseño e Identidad Visual</SelectItem>
             <SelectItem value="innovacion">Innovación Cultural y Tecnología</SelectItem>
             <SelectItem value="tasacion-arte">Tasación de Obras de Arte y Joyas</SelectItem>
-            <SelectItem value="marca-artista">Marca de Artista y Videoclips</SelectItem>
+            <SelectItem value="marca-artista">Producción Musical con IA y Marca de Artista</SelectItem>
             <SelectItem value="gestion-arte">Gestión y Venta de Obras de Arte</SelectItem>
             <SelectItem value="otros">Otros</SelectItem>
           </SelectContent>
