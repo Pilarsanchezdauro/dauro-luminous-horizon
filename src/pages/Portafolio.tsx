@@ -539,10 +539,10 @@ export default function Portafolio() {
                 <div className="text-center space-y-8">
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      ¿Eres artista y buscas representación?
+                      ¿Eres artista?
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Envíanos tu portfolio y currículum. Buscamos talento para impulsar carreras artísticas.
+                      Producción musical con IA, marca de artista y canciones con tu voz digital, o promoción de tu obra en exposiciones virtuales. Todo en línea.
                     </p>
                   </div>
                   
@@ -554,7 +554,7 @@ export default function Portafolio() {
                     >
                       <Link to="/artistas/solicitud" className="flex items-center gap-2">
                         <UserPlus className="w-5 h-5" />
-                        Quiero ser representado
+                        Soy artista
                       </Link>
                     </Button>
                     

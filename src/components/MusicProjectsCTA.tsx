@@ -38,7 +38,7 @@ export function MusicProjectsCTA() {
               
               <p className="text-muted-foreground mb-6 max-w-xl">
                 Explora las producciones musicales y audiovisuales de Dauro Música. 
-                Canciones originales, videoclips y proyectos artísticos de nuestros representados.
+                Canciones, videoclips y proyectos de los artistas que trabajan con nosotros.
               </p>
               
               <Link to="/grupo-dauro/musica">

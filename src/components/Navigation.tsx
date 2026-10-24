@@ -96,7 +96,7 @@ const Navigation = () => {
         { name: "Dauro Arte", path: "/grupo-dauro/arte" },
         { name: "Cantantes", path: "/portafolio?categoria=artistas-cantantes" },
         { name: "Pintores", path: "/portafolio?categoria=artistas-pintores" },
-        { name: "Quiero ser representado", path: "/artistas/solicitud" },
+        { name: "Soy artista", path: "/artistas/solicitud" },
       ],
     },
     // ————— 4 · TECNOLOGÍA —————

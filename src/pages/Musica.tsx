@@ -8,21 +8,93 @@ import mascotLogo from "@/assets/mascot.png";
 import DauroArteContactForm from "@/components/DauroArteContactForm";
 import musicaBg from "@/assets/musica-bg.jpg";
 
+// Preguntas frecuentes: se muestran en la página y alimentan el FAQPage de los datos estructurados.
+const faqs = [
+  {
+    q: "¿Dauro Música produce música?",
+    a: "Sí. Producimos con inteligencia artificial a partir de la grabación del artista: base, arreglo, voz sintetizada, mezcla y máster. También nos ocupamos de la gestión técnica del lanzamiento: distribuidora y perfiles de artista en las plataformas.",
+  },
+  {
+    q: "¿Sois un sello discográfico?",
+    a: "No. No fichamos artistas ni seleccionamos maquetas. Trabajamos por encargo, como servicio profesional, con cada artista que nos lo pide.",
+  },
+  {
+    q: "¿Qué es la voz digital del artista?",
+    a: "Es un modelo de la voz del artista creado con inteligencia artificial. Con su autorización, la usamos para crear canciones por encargo para empresas y eventos: sintonías, himnos, canciones corporativas o de celebración. Los ingresos de cada encargo se reparten con el artista en las condiciones que se pactan por escrito.",
+  },
+  {
+    q: "¿Qué incluye la marca de artista?",
+    a: "La identidad del artista, el logotipo, la web, la presencia en redes, los videoclips con inteligencia artificial y las portadas de single, EP y álbum.",
+  },
+  {
+    q: "¿Hacéis conciertos o actuaciones en directo?",
+    a: "No. Todo el trabajo se hace en línea. No hacemos conciertos, actuaciones en directo ni eventos presenciales.",
+  },
+  {
+    q: "¿Cómo encargo una canción para mi empresa o para un evento?",
+    a: "Escríbenos desde el formulario de esta página con la ocasión, la fecha y el tipo de canción que buscas. Te respondemos con una propuesta y un presupuesto por escrito.",
+  },
+];
+
 const Musica = () => {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Dauro Música",
-    "url": "https://www.grupodauro.com/grupo-dauro/musica",
-    "description": "Producción musical, composición original y proyectos artísticos"
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://www.grupodauro.com/grupo-dauro/musica#servicio",
+        "name": "Dauro Música — Producción musical con IA y marca de artista",
+        "serviceType": "Producción musical con inteligencia artificial",
+        "url": "https://www.grupodauro.com/grupo-dauro/musica",
+        "description": "Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea.",
+        "areaServed": "Internacional (servicio en línea)",
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://www.grupodauro.com/grupo-dauro/musica#contact-form"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "Grupo Dauro",
+          "legalName": "Legal International & Finances Experts Group S.L.",
+          "url": "https://www.grupodauro.com"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Dauro Música",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Producción musical con IA", "description": "Base, arreglo, voz sintetizada, mezcla y máster a partir de la grabación del artista." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lanzamiento en plataformas", "description": "Gestión técnica con la distribuidora y los perfiles de artista." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marca de artista", "description": "Identidad, logotipo, web del artista y presencia en redes." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videoclips con IA y portadas", "description": "Videoclips generados con inteligencia artificial y portadas de single, EP y álbum." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Canciones por encargo con voz digital", "description": "Sintonías, himnos y canciones corporativas o de celebración para empresas y eventos, con autorización del artista y reparto de ingresos." } }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.grupodauro.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Grupo Dauro", "item": "https://www.grupodauro.com/grupo-dauro" },
+          { "@type": "ListItem", "position": 3, "name": "Dauro Música", "item": "https://www.grupodauro.com/grupo-dauro/musica" }
+        ]
+      }
+    ]
   };
 
   return (
     <div className="min-h-screen">
       <SEO
-        title="Dauro Música - Producción Musical y Composición Original"
-        description="Producción musical innovadora: composición original, grabaciones, videoclips musicales y proyectos artísticos. Creamos música que emociona y trasciende fronteras."
-        keywords="producción musical, composición original, música original, videoclips musicales, producción música Granada, música de autor"
+        title="Dauro Música - Producción Musical con IA y Marca de Artista"
+        description="Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea."
+        keywords="producción musical con IA, mezcla y máster, lanzamiento en plataformas, voz digital, voz sintetizada, marca de artista, videoclips con IA, canciones corporativas, sintonías, himnos, Dauro Música, Granada"
         url="https://www.grupodauro.com/grupo-dauro/musica"
         structuredData={structuredData}
       />
@@ -41,7 +113,7 @@ const Musica = () => {
             Dauro Música
           </h1>
           <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
-            Producción musical, composición original y proyectos artísticos
+            Producción musical con IA, marca de artista y canciones con voz digital
           </p>
         </div>
       </section>
@@ -80,9 +152,10 @@ const Musica = () => {
               Música que Conecta Culturas
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center relative z-10">
-              Dauro Música produce contenido musical original que explora la fusión de culturas, 
-              tradiciones y nuevas sonoridades. Desde composiciones originales hasta producciones 
-              multimedia, nuestro compromiso es crear música que emocione y trascienda fronteras.
+              Dauro Música produce con inteligencia artificial a partir de la grabación del artista:
+              base, arreglo, voz sintetizada, mezcla y máster, y la publicación en plataformas.
+              Construimos también la imagen que acompaña a la música. No somos sello discográfico
+              ni fichamos artistas: trabajamos por encargo y todo se hace en línea.
             </p>
           </div>
         </div>
@@ -112,36 +185,42 @@ const Musica = () => {
           <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-12 text-center">
             Nuestros Servicios Musicales
           </h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto -mt-6 mb-12">
+            Todo el trabajo se hace en línea. No hacemos conciertos, actuaciones en directo ni eventos presenciales.{" "}
+            <Link to="/servicios#marca-artista" className="text-primary font-medium hover:underline">
+              Ver la ficha completa del servicio
+            </Link>
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-card p-8 rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 group">
               <Music className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Composición Original</h3>
+              <h3 className="text-xl font-playfair font-bold mb-3">Producción con IA</h3>
               <p className="text-muted-foreground text-sm">
-                Música original para proyectos culturales, audiovisuales y artísticos.
+                A partir de tu grabación: base, arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 group">
               <Play className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Videoclips</h3>
+              <h3 className="text-xl font-playfair font-bold mb-3">Videoclips con IA</h3>
               <p className="text-muted-foreground text-sm">
-                Producción audiovisual de videoclips musicales con identidad visual única.
+                Videoclips generados con inteligencia artificial y dirección artística propia, y portadas de single y álbum.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 group">
               <Award className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Proyectos Artísticos</h3>
+              <h3 className="text-xl font-playfair font-bold mb-3">Marca de Artista</h3>
               <p className="text-muted-foreground text-sm">
-                Colaboraciones multidisciplinares que fusionan música, poesía y artes visuales.
+                Identidad, logotipo, web del artista y presencia en redes.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.3)] transition-all duration-300 group">
               <Users className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-xl font-playfair font-bold mb-3">Colaboraciones</h3>
+              <h3 className="text-xl font-playfair font-bold mb-3">Canciones con Voz Digital</h3>
               <p className="text-muted-foreground text-sm">
-                Trabajamos con artistas internacionales para crear obras que trasciendan fronteras.
+                Con autorización del artista, canciones por encargo para empresas y eventos: sintonías, himnos, canciones corporativas o de celebración.
               </p>
             </div>
           </div>
@@ -186,8 +265,8 @@ const Musica = () => {
 
                 <p className="text-muted-foreground leading-relaxed">
                   Una canción navideña original que celebra el arte como regalo y la creatividad como 
-                  expresión de los mejores deseos. <strong>José Carrera</strong>, cantante representado 
-                  por Dauro Música, nos regala esta pieza musical llena de emoción y espíritu festivo.
+                  expresión de los mejores deseos. <strong>José Carrera</strong>, cantante que trabaja
+                  con Dauro Música, nos regala esta pieza musical llena de emoción y espíritu festivo.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed text-sm">
@@ -489,8 +568,8 @@ const Musica = () => {
                 <div className="space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
                     <strong>"Cous Kush"</strong> es la primera canción del dúo granadino <strong>Tres Coma Catorce</strong>, 
-                    integrado por <strong>Serbio</strong> y <strong>Montabes</strong>. El grupo nació durante el mes de 
-                    enero de 2020 de la mano de Dauro Música.
+                    integrado por <strong>Serbio</strong> y <strong>Montabes</strong>. El dúo se formó en enero de 2020
+                    y publicó esta canción con Dauro Música.
                   </p>
 
                   <p className="text-muted-foreground leading-relaxed">
@@ -512,7 +591,7 @@ const Musica = () => {
                       <li>• <strong>Serbio</strong> - Violín magistral y composición</li>
                       <li>• <strong>Montabes</strong> - Voz de barítono potente</li>
                       <li>• <strong>Origen:</strong> Granada, músicos callejeros</li>
-                      <li>• <strong>Formación:</strong> Enero 2020 con Dauro Música</li>
+                      <li>• <strong>Formación:</strong> Enero de 2020</li>
                       <li>• <strong>Estilo:</strong> Rap conciencia, poético y pop con violín</li>
                     </ul>
                   </div>
@@ -715,6 +794,36 @@ const Musica = () => {
           </div>
         </div>
 
+        {/* Preguntas frecuentes */}
+        <section className="max-w-4xl mx-auto mb-24" aria-labelledby="faq-musica">
+          <h2 id="faq-musica" className="text-3xl lg:text-4xl font-playfair font-bold mb-10 text-center">
+            Preguntas frecuentes sobre Dauro Música
+          </h2>
+          <div className="space-y-6">
+            {faqs.map((f) => (
+              <div key={f.q} className="bg-card p-6 rounded-2xl border border-primary/20">
+                <h3 className="text-lg font-semibold mb-2">{f.q}</h3>
+                <p className="text-muted-foreground leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Más información en la{" "}
+            <Link to="/servicios#marca-artista" className="text-primary font-medium hover:underline">
+              ficha de producción musical con IA y marca de artista
+            </Link>
+            , en la{" "}
+            <Link to="/portafolio/jose-carrera" className="text-primary font-medium hover:underline">
+              ficha de José Carrera
+            </Link>{" "}
+            o, si eres artista,{" "}
+            <Link to="/artistas/solicitud" className="text-primary font-medium hover:underline">
+              en esta página
+            </Link>
+            .
+          </p>
+        </section>
+
         {/* Más proyectos en el archivo */}
         <div className="mb-24">
           <div className="bg-gradient-to-br from-muted/50 via-background to-muted/30 p-8 lg:p-12 rounded-3xl border-2 border-border hover:border-primary/30 transition-all duration-300">
@@ -745,8 +854,9 @@ const Musica = () => {
               ¿Tienes un Proyecto Musical?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Colaboramos con artistas, poetas y creadores para dar vida a proyectos musicales únicos. 
-              Cuéntanos tu idea y creemos algo extraordinario juntos.
+              Cuéntanos qué necesitas: producir tu canción con IA a partir de tu grabación, construir tu
+              marca de artista o encargar una canción con la voz digital de un artista. Te respondemos
+              con una propuesta por escrito.
             </p>
             <Button 
               size="lg" 

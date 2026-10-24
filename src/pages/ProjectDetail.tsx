@@ -126,7 +126,7 @@ function ArtistLayout({ project, links, galleryImages }: {
   return (
     <>
       <SEO
-        title={`${project.title} | Artista representado por Grupo Dauro`}
+        title={`${project.title} | ${project.category === 'artistas-cantantes' ? 'Dauro Música' : 'Artista representado por Grupo Dauro'}`}
         description={project.summary}
         image={`https://www.grupodauro.com/og-${project.slug}.jpg`}
         url={`https://www.grupodauro.com/portafolio/${project.slug}`}
@@ -220,10 +220,10 @@ function ArtistLayout({ project, links, galleryImages }: {
                     {project.category === 'artistas-cantantes' ? (
                       <>
                         <p className="text-muted-foreground text-sm">
-                          <strong>Disponible para:</strong> Contratación de su voz para proyectos empresariales, grabación de canciones y videoclips musicales con su imagen para expansión de marca.
+                          <strong>Disponible para:</strong> Canciones por encargo para empresas y eventos con su voz digital (sintonías, himnos, canciones corporativas o de celebración) y videoclips con IA con su imagen. Siempre con su autorización y con reparto de ingresos.
                         </p>
                         <p className="text-muted-foreground text-sm mt-2">
-                          <strong>No disponible para:</strong> Actuaciones en directo.
+                          <strong>No disponible para:</strong> Conciertos, actuaciones en directo ni eventos presenciales. Todo se hace en línea.
                         </p>
                       </>
                     ) : project.category === 'artistas-pintores' ? (
@@ -392,12 +392,17 @@ function ArtistLayout({ project, links, galleryImages }: {
                         {project.category === 'artistas-cantantes' ? (
                           <>
                             <ul className="text-muted-foreground space-y-1 list-disc list-inside">
-                              <li>Contratación de su voz para proyectos</li>
-                              <li>Grabación de canciones personalizadas</li>
-                              <li>Videoclips musicales con su imagen para expansión de marca</li>
+                              <li>Canciones por encargo con su voz digital</li>
+                              <li>Sintonías, himnos y canciones corporativas o de celebración</li>
+                              <li>Videoclips con IA con su imagen</li>
                             </ul>
                             <p className="text-muted-foreground/80 italic mt-2">
-                              * No disponible para actuaciones en directo
+                              * Todo se hace en línea: no hay conciertos, actuaciones en directo ni eventos presenciales
+                            </p>
+                            <p className="mt-2">
+                              <Link to="/grupo-dauro/musica" className="text-primary font-medium hover:underline">
+                                Cómo funciona la voz digital en Dauro Música →
+                              </Link>
                             </p>
                           </>
                         ) : project.category === 'artistas-pintores' ? (
@@ -418,7 +423,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                         {project.slug === 'jose-carrera' ? (
                           <>
                             <Music className="h-4 w-4" />
-                            <span>Representado por Grupo Dauro</span>
+                            <span>Voz digital con Dauro Música</span>
                           </>
                         ) : project.category === 'artistas-pintores' ? (
                           <>

@@ -66,7 +66,7 @@ const pages = [
   {
     path: 'servicios',
     title: 'Servicios Creativos y Editoriales | Grupo Cultural Dauro',
-    description: 'Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guionismo, producción audiovisual, IA creativa y tasación de arte.',
+    description: 'Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guion literario y técnico, producción ejecutiva, producción musical con IA, marca de artista, videoclips y tasación de obras de arte y joyas.',
     image: '/og-grupo-dauro.jpg'
   },
   {
@@ -101,9 +101,15 @@ const pages = [
   },
   {
     path: 'grupo-dauro/musica',
-    title: 'Dauro Música - Producción Musical y Composición Original',
-    description: 'Producción musical innovadora: composición original, grabaciones, videoclips musicales y proyectos artísticos. Creamos música que emociona y trasciende fronteras.',
+    title: 'Dauro Música - Producción Musical con IA y Marca de Artista',
+    description: 'Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea.',
     image: '/og-el-arte-es-navidad.png'
+  },
+  {
+    path: 'artistas/solicitud',
+    title: 'Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea',
+    description: 'Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Todo en línea.',
+    image: '/og-grupo-dauro.jpg'
   },
   {
     path: 'solicitar-portada',

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -14,6 +16,16 @@ import heroDauro from "@/assets/hero-dauro.jpg";
 import { SEO } from "@/components/SEO";
 
 const Servicios = () => {
+  // Permite enlazar a una ficha concreta, p. ej. /servicios#marca-artista
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const t = setTimeout(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+    return () => clearTimeout(t);
+  }, [hash]);
+
   const services = [
     {
       id: "publicacion",
@@ -247,6 +259,7 @@ Con tu autorización, creamos canciones para empresas y eventos con tu voz digit
 No hacemos conciertos, actuaciones en directo ni eventos presenciales.
 
 En nuestra sección de música están los videoclips y las piezas ya publicadas por Dauro Música.`,
+      enlace: { to: "/grupo-dauro/musica", label: "Ver Dauro Música: proyectos y preguntas frecuentes" },
     },
     {
       id: "gestion-arte",
@@ -382,7 +395,8 @@ Trabajamos por encargo, y la comisión se pacta por escrito antes de empezar.`,
               return (
                 <div
                   key={service.id}
-                  className={`group ${isEven ? 'bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 border-primary/20' : 'bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 border-accent/30'} border-2 hover:border-primary/40 rounded-3xl p-6 md:p-8 shadow-[0_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] flex flex-col max-h-[340px] relative overflow-hidden`}
+                  id={service.id}
+                  className={`scroll-mt-28 group ${isEven ? 'bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 border-primary/20' : 'bg-gradient-to-br from-accent/10 via-primary/10 to-accent/5 border-accent/30'} border-2 hover:border-primary/40 rounded-3xl p-6 md:p-8 shadow-[0_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(224,74,92,0.4)] transition-all duration-300 hover:scale-[1.02] flex flex-col max-h-[340px] relative overflow-hidden`}
                 >
                   <div className={`absolute ${isEven ? 'top-0 right-0' : 'bottom-0 left-0'} w-32 h-32 ${isEven ? 'bg-primary/10' : 'bg-accent/20'} rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300`} />
                   <div className="relative z-10">
@@ -441,6 +455,14 @@ Trabajamos por encargo, y la comisión se pacta por escrito antes de empezar.`,
                             <div className="text-[15px] md:text-[16px] font-normal text-[#333333] leading-[1.5] whitespace-pre-line">
                               {service.masInfo}
                             </div>
+                            {service.enlace && (
+                              <Link
+                                to={service.enlace.to}
+                                className="inline-block mt-4 text-[15px] font-semibold text-[#E31B23] hover:underline"
+                              >
+                                {service.enlace.label} →
+                              </Link>
+                            )}
                           </div>
                         </AccordionContent>
                       </AccordionItem>

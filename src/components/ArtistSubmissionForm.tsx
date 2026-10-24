@@ -188,7 +188,7 @@ export function ArtistSubmissionForm() {
         referencias: data.referencias || "No indicadas",
         portfolio_url: portfolioUrl || "No adjunto",
         curriculum_url: curriculumUrl || "No adjunto",
-        _subject: `Nueva solicitud de representación artística: ${data.nombre} ${data.apellidos}`,
+        _subject: `Nueva solicitud de artista: ${data.nombre} ${data.apellidos}`,
       };
 
       const formspreeResponse = await submitForm("dauro-artista", "https://formspree.io/f/mpwvbyyr", {
@@ -498,7 +498,7 @@ export function ArtistSubmissionForm() {
             Enviando solicitud...
           </>
         ) : (
-          "Enviar solicitud de representación"
+          "Enviar solicitud"
         )}
       </Button>
 

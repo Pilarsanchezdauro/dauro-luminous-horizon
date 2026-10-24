@@ -23,7 +23,7 @@ const SEARCH_EXAMPLES = [
   "¿Qué servicios editoriales ofrecéis?",
   "¿Hacéis booktrailers para libros?",
   "¿Cómo puedo unirme a vuestro canal de WhatsApp?",
-  "¿Ofrecéis representación artística?",
+  "¿Hacéis producción musical con IA?",
   "¿Qué servicios de diseño web tenéis?",
   "¿Tenéis servicio de corrección de textos?",
   // Catálogo por géneros
@@ -232,7 +232,7 @@ export const DauroWidget = () => {
                   <p className="text-sm">
                     Asistente con IA para consultar nuestro catálogo de libros por género, 
                     servicios editoriales, diseño de portadas, booktrailers, diseño web,
-                    representación artística y más. ¡Únete a nuestro canal de WhatsApp!
+                    producción musical con IA, arte y más. ¡Únete a nuestro canal de WhatsApp!
                   </p>
                 </TooltipContent>
               </Tooltip>

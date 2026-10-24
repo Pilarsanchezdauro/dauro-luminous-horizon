@@ -160,13 +160,13 @@ const GrupoDauro = () => {
                   <p className="text-xs text-muted-foreground">Booktrailers, cortometrajes y multimedia.</p>
                 </div>
                 
-                <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+                <Link to="/grupo-dauro/musica" className="block group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Music className="w-5 h-5 text-primary" />
                   </div>
-                  <h4 className="font-semibold text-foreground mb-1 text-sm">Producción Musical</h4>
-                  <p className="text-xs text-muted-foreground">Composición, grabación y producción musical.</p>
-                </div>
+                  <h4 className="font-semibold text-foreground mb-1 text-sm">Producción Musical con IA</h4>
+                  <p className="text-xs text-muted-foreground">Producción con IA, marca de artista y canciones con voz digital.</p>
+                </Link>
                 
                 <div className="group p-5 bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
                   <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">

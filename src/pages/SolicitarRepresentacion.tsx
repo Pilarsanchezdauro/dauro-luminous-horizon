@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArtistSubmissionForm } from "@/components/ArtistSubmissionForm";
@@ -9,15 +10,15 @@ const SolicitarRepresentacion = () => {
   return (
     <>
       <Helmet>
-        <title>Solicitar Representación Artística | Grupo Dauro</title>
+        <title>Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea</title>
         <meta
           name="description"
-          content="¿Eres artista y buscas representación profesional? Envíanos tu portfolio y currículum. Representamos cantantes, pintores, fotógrafos y más."
+          content="Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Todo en línea."
         />
-        <meta property="og:title" content="Solicitar Representación Artística | Grupo Dauro" />
+        <meta property="og:title" content="Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea" />
         <meta
           property="og:description"
-          content="¿Eres artista y buscas representación profesional? Envíanos tu portfolio y currículum."
+          content="Producción musical con IA, marca de artista, voz digital y exposiciones virtuales. Todo en línea."
         />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -31,19 +32,26 @@ const SolicitarRepresentacion = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                ¿Quieres que te representemos?
+                ¿Eres artista? Trabaja con Grupo Dauro
               </h1>
+              <p className="text-lg text-muted-foreground mb-4">
+                <strong className="text-foreground">Si eres cantante o músico</strong>, en{" "}
+                <Link to="/grupo-dauro/musica" className="text-primary hover:underline">Dauro Música</Link>{" "}
+                producimos tu música con inteligencia artificial a partir de tu grabación, construimos tu
+                marca de artista y, con tu autorización, creamos canciones por encargo para empresas y
+                eventos con tu voz digital, con reparto de ingresos.
+              </p>
               <p className="text-lg text-muted-foreground mb-6">
-                En Grupo Dauro buscamos talento artístico para proyectos empresariales y artísticos.
-                Si eres cantante, pintor, fotógrafo o cualquier otro tipo de artista,
-                envíanos tu portfolio y te contactaremos.
+                <strong className="text-foreground">Si eres pintor, fotógrafo o artista plástico</strong>,{" "}
+                <Link to="/grupo-dauro/arte" className="text-primary hover:underline">Dauro Arte</Link>{" "}
+                promociona y gestiona tu obra en exposiciones virtuales.
               </p>
               <div className="bg-muted/50 border border-border rounded-lg p-4 max-w-2xl mx-auto">
-              <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Importante:</strong> Nuestra representación se centra en el uso de tu voz e imagen para 
-                  proyectos empresariales, grabaciones, producciones audiovisuales y colaboraciones artísticas. 
-                  Las exposiciones que gestionamos son exclusivamente virtuales.
-                  <span className="text-primary font-medium"> No gestionamos directos, conciertos ni exposiciones físicas.</span>
+                <p className="text-sm text-muted-foreground">
+                  <strong className="text-foreground">Importante:</strong> No somos sello discográfico: no fichamos
+                  artistas ni seleccionamos maquetas. Trabajamos por encargo y todo se hace en línea.
+                  <span className="text-primary font-medium"> No hacemos conciertos, actuaciones en directo, eventos presenciales ni exposiciones físicas.</span>{" "}
+                  <Link to="/servicios#marca-artista" className="text-primary hover:underline">Ver el servicio de música</Link>.
                 </p>
               </div>
             </div>
@@ -95,7 +103,7 @@ const SolicitarRepresentacion = () => {
                   Formulario de solicitud
                 </h2>
                 <p className="text-muted-foreground text-center mb-8">
-                  Completa el formulario con tu información y documentación artística
+                  Cuéntanos quién eres y qué necesitas, y te respondemos con una propuesta por escrito
                 </p>
                 <ArtistSubmissionForm />
               </div>
