@@ -176,7 +176,7 @@ const Musica = () => {
               <div className="order-1 lg:order-2 space-y-6">
                 <div>
                   <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                    Dauro Free Productions · Navidad 2024
+                    Dauro Música · Navidad 2024
                   </div>
                   <h3 className="text-3xl lg:text-4xl font-playfair font-bold mb-4">
                     El Arte es Navidad
@@ -187,7 +187,7 @@ const Musica = () => {
                 <p className="text-muted-foreground leading-relaxed">
                   Una canción navideña original que celebra el arte como regalo y la creatividad como 
                   expresión de los mejores deseos. <strong>José Carrera</strong>, cantante representado 
-                  por Dauro Free Productions, nos regala esta pieza musical llena de emoción y espíritu festivo.
+                  por Dauro Música, nos regala esta pieza musical llena de emoción y espíritu festivo.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed text-sm">
@@ -199,7 +199,7 @@ const Musica = () => {
                 <div className="flex gap-2 flex-wrap">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Navidad</span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Música Original</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Dauro Free Productions</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Dauro Música</span>
                   <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">José Carrera</span>
                 </div>
 

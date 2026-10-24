@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Play, Music, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoDauroMusica from "@/assets/logo-dauro-musica.png";
 
 export function MusicProjectsCTA() {
   return (
@@ -16,12 +17,9 @@ export function MusicProjectsCTA() {
             <div className="flex-shrink-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-                <video
-                  src="/videos/logo-free-dauro-productions.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
+                  src={logoDauroMusica}
+                  alt="Dauro Música"
                   className="relative w-32 h-32 md:w-40 md:h-40 object-contain rounded-full"
                 />
               </div>
@@ -31,7 +29,7 @@ export function MusicProjectsCTA() {
             <div className="flex-1 text-center md:text-left">
               <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <Music className="w-4 h-4" />
-                <span>Dauro Free Productions</span>
+                <span>Dauro Música</span>
               </div>
               
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -39,7 +37,7 @@ export function MusicProjectsCTA() {
               </h3>
               
               <p className="text-muted-foreground mb-6 max-w-xl">
-                Explora las producciones musicales y audiovisuales de Dauro Free Productions. 
+                Explora las producciones musicales y audiovisuales de Dauro Música. 
                 Canciones originales, videoclips y proyectos artísticos de nuestros representados.
               </p>
               
