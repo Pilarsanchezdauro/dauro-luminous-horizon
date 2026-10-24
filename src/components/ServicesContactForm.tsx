@@ -285,12 +285,13 @@ export default function ServicesContactForm({ onSuccess }: ServicesContactFormPr
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="publicacion">Edición y Publicación</SelectItem>
-            <SelectItem value="traduccion">Traducción Profesional</SelectItem>
-            <SelectItem value="guion">Adaptación y Dirección Técnica de Guion</SelectItem>
-            <SelectItem value="audiovisual">Producción Audiovisual con IA</SelectItem>
+            <SelectItem value="guion">Guion y Producción Ejecutiva</SelectItem>
             <SelectItem value="escritura">Escritura, Edición y Datos</SelectItem>
             <SelectItem value="diseno">Imagen, Diseño e Identidad Visual</SelectItem>
             <SelectItem value="innovacion">Innovación Cultural y Tecnología</SelectItem>
+            <SelectItem value="tasacion-arte">Tasación de Obras de Arte y Joyas</SelectItem>
+            <SelectItem value="marca-artista">Marca de Artista y Videoclips</SelectItem>
+            <SelectItem value="gestion-arte">Gestión y Venta de Obras de Arte</SelectItem>
             <SelectItem value="otros">Otros</SelectItem>
           </SelectContent>
         </Select>

@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Video, FileText, Edit, Image, Zap, BookOpen, Music, Palette, BadgeDollarSign, Clapperboard } from "lucide-react";
+import { FileText, Edit, Image, Zap, BookOpen, Music, Palette, BadgeDollarSign } from "lucide-react";
 import ServicesContactForm from "@/components/ServicesContactForm";
 import mascotLogo from "@/assets/mascot.png";
 import heroDauro from "@/assets/hero-dauro.jpg";
@@ -50,65 +50,37 @@ En Grupo Cultural Dauro transformamos manuscritos en obras acabadas con la calid
     {
       id: "guion",
       icon: <FileText className="h-12 w-12 text-primary mb-4" />,
-      title: "Adaptación y Dirección Técnica de Guion",
+      title: "Guion y Producción Ejecutiva",
       subtitle: "Del texto a la imagen.",
       hacemos: [
-        "Adaptación de obras a guiones",
-        "Guiones literarios y técnicos",
-        "Análisis de personajes",
-        "Diseño de secuencias y planos",
-        "Creación de storyboards",
+        "Guion literario",
+        "Guion técnico",
+        "Adaptación de obras a guion",
+        "Biblia, escaleta y dossier",
+        "Apoyo en producción ejecutiva",
       ],
       aplicaciones: [
-        "Cine y documental",
-        "Videoarte y poesía visual",
-        "Narrativas experimentales",
+        "Series y largometrajes",
+        "Documental",
         "Obras literarias adaptadas",
+        "Proyectos en desarrollo",
       ],
-      masInfo: `En Grupo Cultural Dauro, convertimos la palabra en imagen.
-Adaptamos obras literarias, guiones previos o ideas conceptuales al lenguaje cinematográfico, definiendo su estructura narrativa, técnica y visual.
+      masInfo: `Escribimos el guion y acompañamos al proyecto mientras se levanta.
 
-Nuestro proceso combina análisis narrativo, dirección artística y planificación técnica para crear una hoja de ruta completa del proyecto.
-Desde el concepto hasta el storyboard, cada paso está pensado para que la idea respire coherencia estética y narrativa.
+No somos productora: no rodamos ni financiamos. Lo que aportamos es el texto y la gestión del desarrollo.
 
-Incluye:
-— Adaptación literaria y técnica.
-— Diseño narrativo de secuencias y planos.
-— Creación de storyboards visuales (manuales o generados con IA).
-— Análisis de personajes, ambiente y simbología visual.
-— Dirección técnica y estética del guion.
+Guion literario y guion técnico:
+— Adaptación de novelas y obras propias al formato audiovisual.
+— Guion literario: estructura, tramas, personajes y diálogos.
+— Guion técnico: secuencias, planos, continuidad y notas de dirección.
+— Biblia de serie, escaleta, dossier y ficha técnica.
 
-Nuestro objetivo: unir la visión artística con la precisión técnica, haciendo que cada historia se vea antes de ser filmada.`,
-    },
-    {
-      id: "audiovisual",
-      icon: <Video className="h-12 w-12 text-primary mb-4" />,
-      title: "Producción Audiovisual con IA",
-      subtitle: "La creación visual del futuro.",
-      hacemos: [
-        "Vídeo generativo IA",
-        "Escenas y personajes digitales",
-        "Montaje asistido algorítmico",
-        "Voz y música sintéticas",
-        "Postproducción inteligente",
-      ],
-      aplicaciones: [
-        "Proyectos culturales",
-        "Videopoesía y arte",
-        "Piezas institucionales",
-        "Laboratorio creativo",
-      ],
-      masInfo: `En Grupo Cultural Dauro trabajamos exclusivamente con inteligencia artificial generativa aplicada al audiovisual.
-Creamos vídeos, secuencias y composiciones visuales con algoritmos avanzados, guiados por una dirección artística humana.
-Nuestra metodología combina la experimentación estética con la ingeniería creativa.
+Producción ejecutiva:
+— Preparación del dossier con el que el proyecto se presenta.
+— Planificación de fases, calendario y necesidades de cada etapa.
+— Interlocución con la productora que asume la inversión y seguimiento del desarrollo.
 
-Desarrollamos:
-— Videopoesía, videoarte y ensayos visuales.
-— Piezas institucionales con enfoque artístico.
-— Integraciones audiovisuales en entornos culturales.
-— Contenidos editoriales y educativos con IA.
-
-Cada obra es una síntesis entre máquina y sensibilidad humana: una mirada contemporánea al lenguaje de la imagen.`,
+La productora produce y financia; nosotros ponemos el guion y llevamos la coordinación ejecutiva.`,
     },
     {
       id: "escritura",
@@ -203,122 +175,97 @@ Nuestro objetivo: que la tecnología no sustituya la creación, sino que la expa
     {
       id: "tasacion-arte",
       icon: <BadgeDollarSign className="h-12 w-12 text-primary mb-4" />,
-      title: "Tasación y Valoración de Obras de Arte",
-      subtitle: "El valor justo de cada obra.",
+      title: "Tasación de Obras de Arte y Joyas",
+      subtitle: "El valor de la obra, por escrito.",
       hacemos: [
-        "Tasación pericial de obras",
+        "Tasación de obras de arte",
+        "Tasación de joyas",
         "Valoración de colecciones",
-        "Informes técnicos certificados",
-        "Autenticación de piezas",
-        "Asesoría en adquisiciones",
+        "Informes técnicos y periciales",
+        "Asesoría en compra y venta",
       ],
       aplicaciones: [
+        "Procedimientos judiciales",
         "Seguros y herencias",
         "Compraventa de arte",
         "Colecciones privadas",
-        "Instituciones culturales",
       ],
-      masInfo: `Ofrecemos servicios profesionales de tasación y valoración de obras de arte con rigor técnico y conocimiento del mercado.
-Nuestros peritos cualificados emiten informes certificados reconocidos por aseguradoras, entidades financieras y organismos oficiales.
+      masInfo: `Tasamos obras y colecciones y entregamos el informe por escrito y firmado, con la metodología a la vista: descripción de la pieza, estado de conservación, comparables de mercado y conclusión de valor.
+
+Las tasaciones las firma Pilar Sánchez, perito judicial, n.º de colegiado 618 en la Asociación Española de Peritos Judiciales (AEPEJU), y máster en tasación de obras de arte y joyas por el Ateneo de Argentina.
 
 Incluye:
-— Tasación pericial de pintura, escultura y obra gráfica.
-— Valoración integral de colecciones artísticas.
-— Informes técnicos para seguros, herencias y donaciones.
-— Autenticación y certificación de obras.
-— Asesoramiento en compraventa y adquisición de arte.
+— Tasación de pintura, escultura y obra gráfica.
+— Tasación de joyas, alta joyería y piezas de colección.
+— Valoración de colecciones completas.
+— Informes periciales para procedimientos judiciales.
+— Informes para seguros, herencias, donaciones y reparto de bienes.
+— Estudio técnico de la pieza cuando el encargo lo requiere.
+— Asesoramiento en la compra y en la venta.
 
-Cada valoración combina análisis técnico, conocimiento histórico y visión de mercado para establecer el valor justo de cada pieza.`,
+Si la obra necesita un estudio de autoría que va más allá de la tasación, te lo decimos y se deriva al especialista que corresponda.`,
     },
     {
-      id: "produccion-musical",
+      id: "marca-artista",
       icon: <Music className="h-12 w-12 text-primary mb-4" />,
-      title: "Producción Musical",
-      subtitle: "Del concepto al sonido final.",
+      title: "Marca de Artista y Videoclips",
+      subtitle: "La imagen de tu música.",
       hacemos: [
-        "Producción de álbumes y singles",
-        "Composición y arreglos",
-        "Grabación profesional",
-        "Mezcla y masterización",
-        "Distribución digital",
+        "Marca e identidad del artista",
+        "Videoclips con IA",
+        "Sintetización de voz",
+        "Portadas y web del artista",
+        "Material visual para redes",
       ],
       aplicaciones: [
         "Artistas emergentes",
-        "Bandas sonoras",
+        "Lanzamiento de single",
         "Proyectos culturales",
         "Música para audiovisual",
       ],
-      masInfo: `En Dauro Free Productions desarrollamos proyectos musicales completos, desde la idea inicial hasta la distribución final.
-Trabajamos con artistas y proyectos culturales que buscan una producción profesional con identidad propia.
+      masInfo: `Trabajamos la parte visual y de marca de un proyecto musical: cómo se presenta el artista y cómo se ve su música.
 
-Incluye:
-— Producción integral de álbumes, EP y singles.
-— Composición original y arreglos musicales.
-— Grabación en estudio profesional.
-— Mezcla, masterización y postproducción de audio.
-— Gestión de distribución en plataformas digitales.
+No producimos música. No grabamos, no mezclamos ni masterizamos, y no somos sello discográfico. Si lo que necesitas es estudio o producción de audio, te lo decimos desde el principio y no te hacemos perder tiempo.
 
-Cada proyecto musical recibe un tratamiento artístico y técnico que respeta la visión del artista mientras alcanza los estándares de calidad profesional.`,
+Partimos de la música ya grabada y construimos todo lo que la rodea:
+— Marca e identidad del artista: nombre, concepto y aplicación a todos los soportes.
+— Logotipo y sus aplicaciones.
+— Videoclips con inteligencia artificial generativa y dirección artística propia.
+— Sintetización de voz.
+— Portadas de single, EP y álbum.
+— Web del artista y textos de presentación.
+— Material visual y posicionamiento en redes.
+
+Para ver cómo trabajamos, en nuestra sección de música están los videoclips y las piezas ya publicadas.`,
     },
     {
       id: "gestion-arte",
       icon: <Palette className="h-12 w-12 text-primary mb-4" />,
       title: "Gestión y Venta de Obras de Arte",
-      subtitle: "Conectamos arte y coleccionistas.",
+      subtitle: "Entre quien vende y quien compra.",
       hacemos: [
-        "Intermediación artística",
-        "Gestión de ventas",
-        "Consignación de obras",
+        "Intermediación en la venta",
+        "Valoración previa",
         "Asesoría a coleccionistas",
         "Promoción de artistas",
+        "Documentación de la operación",
       ],
       aplicaciones: [
         "Galerías y marchantes",
         "Coleccionistas privados",
         "Artistas contemporáneos",
-        "Subastas y ferias",
+        "Herencias y reparto de bienes",
       ],
-      masInfo: `Facilitamos la conexión entre artistas, coleccionistas y el mercado del arte con un enfoque profesional y transparente.
-Gestionamos la venta de obras con criterio estético, conocimiento del mercado y ética profesional.
+      masInfo: `Ponemos en contacto a quien vende con quien compra y llevamos la operación hasta el final.
 
 Incluye:
-— Intermediación en compraventa de obras de arte.
-— Gestión de consignaciones y depósitos.
-— Asesoramiento a coleccionistas en adquisiciones.
-— Promoción y posicionamiento de artistas.
-— Participación en ferias, subastas y eventos del sector.
+— Intermediación en la compraventa de obra.
+— Valoración previa, para salir al mercado con un precio sostenible.
+— Asesoramiento a coleccionistas en sus adquisiciones.
+— Promoción de los artistas a los que representamos.
+— Documentación de la operación: procedencia, certificados y factura.
 
-Nuestro objetivo es generar valor para artistas y coleccionistas, construyendo relaciones duraderas basadas en la confianza y el conocimiento.`,
-    },
-    {
-      id: "produccion-audiovisual",
-      icon: <Clapperboard className="h-12 w-12 text-primary mb-4" />,
-      title: "Producción Audiovisual",
-      subtitle: "Historias que cobran vida.",
-      hacemos: [
-        "Producción de cortometrajes",
-        "Documentales culturales",
-        "Videoclips musicales",
-        "Contenido corporativo",
-        "Postproducción profesional",
-      ],
-      aplicaciones: [
-        "Festivales de cine",
-        "Proyectos culturales",
-        "Instituciones y empresas",
-        "Artistas y músicos",
-      ],
-      masInfo: `En Dauro Free Productions desarrollamos proyectos audiovisuales con visión artística y rigor técnico.
-Desde la preproducción hasta la entrega final, cada proyecto recibe un tratamiento cinematográfico profesional.
-
-Incluye:
-— Producción de cortometrajes de ficción y documental.
-— Realización de documentales culturales e históricos.
-— Videoclips y contenido visual para artistas.
-— Vídeos corporativos e institucionales.
-— Postproducción, colorimetría y efectos visuales.
-
-Cada producción combina narrativa visual, dirección artística y técnica profesional para crear piezas audiovisuales con identidad y calidad.`,
+Trabajamos por encargo, y la comisión se pacta por escrito antes de empezar.`,
     },
   ];
 
@@ -326,15 +273,15 @@ Cada producción combina narrativa visual, dirección artística y técnica prof
     <div className="min-h-screen">
       <SEO
         title="Servicios Creativos y Editoriales | Grupo Cultural Dauro"
-        description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guionismo, producción audiovisual, IA creativa y tasación de arte."
-        keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, producción audiovisual, tasación arte, IA creativa"
+        description="Servicios profesionales para autores y creadores: edición, maquetación, diseño de portadas, guion literario y técnico, producción ejecutiva, marca de artista, videoclips y tasación de obras de arte y joyas."
+        keywords="servicios editoriales, edición de libros, maquetación, diseño portadas, corrección estilo, ISBN, publicar libro, guion literario, guion técnico, producción ejecutiva, videoclips, sintetización de voz, tasación de arte, tasación de joyas, perito judicial"
         url="https://www.grupodauro.com/servicios"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "name": "Servicios Creativos - Grupo Cultural Dauro",
           "url": "https://www.grupodauro.com/servicios",
-          "description": "Servicios profesionales de edición, diseño, producción audiovisual, IA creativa y tasación de arte para autores y creadores.",
+          "description": "Servicios profesionales de edición, diseño, guion y producción ejecutiva, marca de artista, videoclips y tasación de obras de arte y joyas para autores y creadores.",
           "provider": {
             "@type": "Organization",
             "name": "Grupo Cultural Dauro",
