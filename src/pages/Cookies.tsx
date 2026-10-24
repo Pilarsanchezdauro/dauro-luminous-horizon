@@ -118,7 +118,19 @@ const Cookies = () => {
               {/* Tabla */}
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">4. Cookies y almacenamiento que usa esta web</h2>
-                <div className="not-prose overflow-x-auto rounded-xl border border-border">
+                {/* Móvil: una ficha por fila */}
+                <div className="not-prose space-y-4 md:hidden">
+                  {almacenamiento.map((fila) => (
+                    <div key={fila.nombre} className="bg-card p-4 rounded-xl border border-border text-sm space-y-2">
+                      <p className="font-mono text-xs text-foreground break-words">{fila.nombre}</p>
+                      <p className="text-muted-foreground"><strong className="text-foreground">Tipo:</strong> {fila.tipo}</p>
+                      <p className="text-muted-foreground"><strong className="text-foreground">Titular:</strong> {fila.titular}</p>
+                      <p className="text-muted-foreground"><strong className="text-foreground">Finalidad:</strong> {fila.finalidad}</p>
+                      <p className="text-muted-foreground"><strong className="text-foreground">Duración:</strong> {fila.duracion}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="not-prose hidden md:block overflow-x-auto rounded-xl border border-border">
                   <table className="w-full text-sm text-left">
                     <thead className="bg-muted/50 text-foreground">
                       <tr>
