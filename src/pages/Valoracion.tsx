@@ -82,13 +82,13 @@ const Valoracion = () => {
                   1
                 </span>
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground">
-                  Las quince primeras páginas
+                  Tu obra, la sinopsis y unas líneas sobre ti
                 </h2>
               </div>
               <p className="text-muted-foreground mb-4">
-                Para el primer contacto nos mandas <strong className="text-foreground">las quince primeras
-                páginas</strong>, la sinopsis y unas líneas sobre ti. No hace falta el manuscrito entero:
-                con quince páginas sabemos si una obra se sostiene.
+                Para el primer contacto nos mandas <strong className="text-foreground">tu obra</strong>,
+                la sinopsis y unas líneas sobre ti. La leemos nosotros: no decidimos por un resumen ni
+                por las primeras páginas.
               </p>
               <div className="flex items-center gap-2 text-primary font-medium mb-8">
                 <Clock className="w-5 h-5" />

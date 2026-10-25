@@ -327,7 +327,7 @@ const DauroMirloKey = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 { title: "Editorial Dauro", desc: "Más de 2.000 obras publicadas, premios Andalucía de la Crítica" },
-                { title: "Dauro Free Production", desc: "Producción audiovisual de series y documentales" },
+                { title: "Dauro Audiovisual", desc: "Guion y producción ejecutiva de series y documentales" },
                 { title: "Dauro Arte", desc: "Representación y promoción de artistas contemporáneos" },
                 { title: "Dauro IA", desc: "Innovación tecnológica al servicio de la cultura" }
               ].map((item, index) => (

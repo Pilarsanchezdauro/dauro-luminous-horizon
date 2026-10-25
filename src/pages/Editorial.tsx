@@ -75,7 +75,7 @@ const Editorial = () => {
         "name": "¿Cómo puedo publicar mi libro con Grupo Dauro?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Envía las quince primeras páginas a través de nuestro formulario. Nuestro comité editorial las lee y te responde en un plazo de 48 horas."
+          "text": "Envía tu obra a través de nuestro formulario, con la sinopsis y unas líneas sobre ti. Nuestro comité editorial la lee y te responde en un plazo de 48 horas."
         }
       },
       {

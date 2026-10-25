@@ -161,11 +161,37 @@ const Contacto = () => {
                       <Button type="button" variant="outline" onClick={() => setSent(false)}>Enviar otro mensaje</Button>
                     </div>
                   ) : (
-                    <form 
+                    <form
                       ref={formRef}
                       onSubmit={handleSubmit}
                       className="space-y-6 relative z-10"
                     >
+                      {/* Este formulario no admite ficheros: quien viene a mandar su obra se
+                          encuentra sin dónde adjuntarla y acaba preguntando por correo. El aviso
+                          desvía solo ese caso; para todo lo demás, el formulario sigue igual. */}
+                      <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed">
+                        <strong className="text-foreground">¿Quieres presentar tu obra?</strong>{" "}
+                        Hazlo a través del{" "}
+                        <a
+                          href="/grupo-dauro/editorial#enviar-obra"
+                          className="text-primary font-medium underline underline-offset-2"
+                        >
+                          formulario de propuestas editoriales
+                        </a>
+                        , donde puedes adjuntar el manuscrito y la sinopsis. Para cualquier otra
+                        consulta, este formulario es el indicado.
+                        <span className="block mt-2">
+                          Si todavía no conoces{" "}
+                          <a
+                            href="/grupo-dauro/editorial"
+                            className="text-primary font-medium underline underline-offset-2"
+                          >
+                            nuestras dos formas de edición
+                          </a>
+                          , conviene leerlas antes: son las que determinan el camino de cada obra.
+                        </span>
+                      </div>
+
                       <div>
                         <label
                           htmlFor="name"
