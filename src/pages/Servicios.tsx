@@ -235,7 +235,7 @@ Si la obra necesita un estudio de autoría que va más allá de la tasación, te
         "Empresas y marcas",
         "Celebraciones y eventos",
       ],
-      masInfo: `Producimos tu música con inteligencia artificial a partir de tu propia grabación, la publicamos y construimos la imagen que la acompaña. Todo el trabajo se hace en línea.
+      masInfo: `Producimos tu música con inteligencia artificial a partir de tu propia grabación, la publicamos y construimos la imagen que la acompaña. El trabajo se hace en línea.
 
 No somos sello discográfico: no fichamos artistas ni seleccionamos maquetas. Trabajamos por encargo, con cada artista que nos lo pide.
 
@@ -252,11 +252,12 @@ Marca de artista:
 — Material visual y presencia en redes.
 — Videoclips con inteligencia artificial y dirección artística propia.
 — Portadas de single, EP y álbum.
+— Si lo pides, videoclip rodado contigo y sesión de fotos, con profesionales externos que contratamos y coordinamos.
 
 Canciones por encargo con tu voz digital:
 Con tu autorización, creamos canciones para empresas y eventos con tu voz digital: sintonías, himnos, canciones corporativas o de celebración. Los ingresos de cada encargo se reparten contigo en las condiciones que se pactan por escrito.
 
-No hacemos conciertos, actuaciones en directo ni eventos presenciales.
+No hacemos conciertos, actuaciones en directo ni eventos presenciales. Lo único que se hace fuera de línea es el rodaje del videoclip y la sesión de fotos, cuando el artista los pide.
 
 En nuestra sección de música están los videoclips y las piezas ya publicadas por Dauro Música.`,
       enlace: { to: "/grupo-dauro/musica", label: "Ver Dauro Música: proyectos y preguntas frecuentes" },

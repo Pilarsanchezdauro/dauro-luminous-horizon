@@ -542,7 +542,7 @@ export default function Portafolio() {
                       ¿Eres artista?
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Producción musical con IA, marca de artista y canciones con tu voz digital, o promoción de tu obra en exposiciones virtuales. Todo en línea.
+                      Producción musical con IA, marca de artista y canciones con tu voz digital, o promoción de tu obra en exposiciones virtuales. Sin conciertos ni eventos presenciales.
                     </p>
                   </div>
                   

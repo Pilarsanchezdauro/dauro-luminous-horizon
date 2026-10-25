@@ -225,7 +225,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                           <strong>Disponible para:</strong> Canciones por encargo para empresas y eventos con su voz digital (sintonías, himnos, canciones corporativas o de celebración) y videoclips con IA con su imagen. Siempre con su autorización y con reparto de ingresos.
                         </p>
                         <p className="text-muted-foreground text-sm mt-2">
-                          <strong>No disponible para:</strong> Conciertos, actuaciones en directo ni eventos presenciales. Todo se hace en línea.
+                          <strong>No disponible para:</strong> Conciertos, actuaciones en directo ni eventos presenciales.
                         </p>
                       </>
                     ) : project.category === 'artistas-pintores' ? (
@@ -394,7 +394,7 @@ function ArtistLayout({ project, links, galleryImages }: {
                               <li>Videoclips con IA con su imagen</li>
                             </ul>
                             <p className="text-muted-foreground/80 italic mt-2">
-                              * Todo se hace en línea: no hay conciertos, actuaciones en directo ni eventos presenciales
+                              * No disponible para conciertos, actuaciones en directo ni eventos presenciales
                             </p>
                             <p className="mt-2">
                               <Link to="/grupo-dauro/musica" className="text-primary font-medium hover:underline">

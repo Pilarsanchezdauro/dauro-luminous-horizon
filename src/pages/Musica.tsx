@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "¿Hacéis conciertos o actuaciones en directo?",
-    a: "No. Todo el trabajo se hace en línea. No hacemos conciertos, actuaciones en directo ni eventos presenciales.",
+    a: "No. No hacemos conciertos, actuaciones en directo ni eventos presenciales, y el trabajo se hace en línea. La excepción es lo que pida el artista: el rodaje de un videoclip con él y la sesión de fotos, que realizan profesionales externos que contratamos y coordinamos.",
   },
   {
     q: "¿Cómo encargo una canción para mi empresa o para un evento?",
@@ -47,7 +47,7 @@ const Musica = () => {
         "name": "Dauro Música — Producción musical con IA y marca de artista",
         "serviceType": "Producción musical con inteligencia artificial",
         "url": "https://www.grupodauro.com/grupo-dauro/musica",
-        "description": "Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea.",
+        "description": "Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Sin conciertos ni eventos presenciales.",
         "areaServed": "Internacional (servicio en línea)",
         "availableChannel": {
           "@type": "ServiceChannel",
@@ -67,6 +67,7 @@ const Musica = () => {
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lanzamiento en plataformas", "description": "Gestión técnica con la distribuidora y los perfiles de artista." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marca de artista", "description": "Identidad, logotipo, web del artista y presencia en redes." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videoclips con IA y portadas", "description": "Videoclips generados con inteligencia artificial y portadas de single, EP y álbum." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videoclip rodado y sesión de fotos", "description": "A petición del artista, con profesionales externos que Dauro contrata y coordina." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Canciones por encargo con voz digital", "description": "Sintonías, himnos y canciones corporativas o de celebración para empresas y eventos, con autorización del artista y reparto de ingresos." } }
           ]
         }
@@ -94,7 +95,7 @@ const Musica = () => {
     <div className="min-h-screen">
       <SEO
         title="Dauro Música - Producción Musical con IA y Marca de Artista"
-        description="Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea."
+        description="Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Sin conciertos ni eventos presenciales."
         keywords="producción musical con IA, mezcla y máster, lanzamiento en plataformas, voz digital, voz sintetizada, marca de artista, videoclips con IA, canciones corporativas, sintonías, himnos, Dauro Música, Granada"
         url="https://www.grupodauro.com/grupo-dauro/musica"
         structuredData={structuredData}
@@ -156,7 +157,8 @@ const Musica = () => {
               Dauro Música produce con inteligencia artificial a partir de la grabación del artista:
               base, arreglo, voz sintetizada, mezcla y máster, y la publicación en plataformas.
               Construimos también la imagen que acompaña a la música. No somos sello discográfico
-              ni fichamos artistas: trabajamos por encargo y todo se hace en línea.
+              ni fichamos artistas: trabajamos por encargo y en línea. Si el artista lo pide, organizamos
+              también el rodaje de su videoclip y su sesión de fotos con profesionales externos.
             </p>
           </div>
         </div>
@@ -187,7 +189,7 @@ const Musica = () => {
             Nuestros Servicios Musicales
           </h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto -mt-6 mb-12">
-            Todo el trabajo se hace en línea. No hacemos conciertos, actuaciones en directo ni eventos presenciales.{" "}
+            El trabajo se hace en línea; el rodaje de un videoclip con el artista y la sesión de fotos, si los pide, los realizan profesionales externos que contratamos y coordinamos. No hacemos conciertos, actuaciones en directo ni eventos presenciales.{" "}
             <Link to="/servicios#marca-artista" className="text-primary font-medium hover:underline">
               Ver la ficha completa del servicio
             </Link>
@@ -205,7 +207,7 @@ const Musica = () => {
               <Play className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
               <h3 className="text-xl font-playfair font-bold mb-3">Videoclips con IA</h3>
               <p className="text-muted-foreground text-sm">
-                Videoclips generados con inteligencia artificial y dirección artística propia, y portadas de single y álbum.
+                Videoclips generados con inteligencia artificial y dirección artística propia, y portadas de single y álbum. Si lo pides, también videoclip rodado contigo y sesión de fotos.
               </p>
             </div>
 

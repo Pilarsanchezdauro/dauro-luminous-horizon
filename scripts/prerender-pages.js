@@ -102,13 +102,13 @@ const pages = [
   {
     path: 'grupo-dauro/musica',
     title: 'Dauro Música - Producción Musical con IA y Marca de Artista',
-    description: 'Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Todo en línea.',
+    description: 'Producción musical con IA a partir de la grabación del artista: arreglo, voz sintetizada, mezcla, máster y lanzamiento en plataformas. Marca de artista, videoclips con IA y canciones por encargo con voz digital. Sin conciertos ni eventos presenciales.',
     image: '/og-el-arte-es-navidad.png'
   },
   {
     path: 'artistas/solicitud',
     title: 'Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea',
-    description: 'Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Todo en línea.',
+    description: 'Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Sin conciertos ni eventos presenciales.',
     image: '/og-grupo-dauro.jpg'
   },
   {

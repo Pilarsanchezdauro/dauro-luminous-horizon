@@ -13,12 +13,12 @@ const SolicitarRepresentacion = () => {
         <title>Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea</title>
         <meta
           name="description"
-          content="Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Todo en línea."
+          content="Cantantes y músicos: producción musical con IA a partir de tu grabación, marca de artista y canciones por encargo con tu voz digital. Pintores y fotógrafos: promoción de tu obra en exposiciones virtuales. Sin conciertos ni eventos presenciales."
         />
         <meta property="og:title" content="Artistas: trabaja con Grupo Dauro | Música con IA y Arte en línea" />
         <meta
           property="og:description"
-          content="Producción musical con IA, marca de artista, voz digital y exposiciones virtuales. Todo en línea."
+          content="Producción musical con IA, marca de artista, voz digital y exposiciones virtuales. Sin conciertos ni eventos presenciales."
         />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -49,7 +49,8 @@ const SolicitarRepresentacion = () => {
               <div className="bg-muted/50 border border-border rounded-lg p-4 max-w-2xl mx-auto">
                 <p className="text-sm text-muted-foreground">
                   <strong className="text-foreground">Importante:</strong> No somos sello discográfico: no fichamos
-                  artistas ni seleccionamos maquetas. Trabajamos por encargo y todo se hace en línea.
+                  artistas ni seleccionamos maquetas. Trabajamos por encargo y en línea; si lo pides, organizamos
+                  también el rodaje de tu videoclip y tu sesión de fotos con profesionales externos que contratamos y coordinamos.
                   <span className="text-primary font-medium"> No hacemos conciertos, actuaciones en directo, eventos presenciales ni exposiciones físicas.</span>{" "}
                   <Link to="/servicios#marca-artista" className="text-primary hover:underline">Ver el servicio de música</Link>.
                 </p>
