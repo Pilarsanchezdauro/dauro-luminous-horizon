@@ -153,6 +153,7 @@ Desarrollamos:
 — Integración visual entre arte, diseño e IA.
 
 Cada imagen está pensada para hablar el idioma de la cultura: belleza con estructura, arte con método.`,
+      enlace: { to: "/solicitar-portada", label: "Solicita el diseño de la cubierta de tu libro" },
     },
     {
       id: "innovacion",

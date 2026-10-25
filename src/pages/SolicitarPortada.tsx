@@ -5,13 +5,24 @@ import BookCoverRequestForm from '@/components/BookCoverRequestForm';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BookOpen, Palette, Sparkles } from 'lucide-react';
 import mascotLogo from '@/assets/mascot.png';
+import libroBesos from '@/assets/libro-besos.png';
+import libroBoabdil from '@/assets/libro-boabdil.png';
+import libroHorizonte from '@/assets/libro-horizonte-interior.png';
+import libroLatido from '@/assets/libro-latido.png';
+
+const portadasMuestra = [
+  { src: libroBesos, alt: 'Cubierta diseñada por Grupo Dauro: Besos' },
+  { src: libroBoabdil, alt: 'Cubierta diseñada por Grupo Dauro: Boabdil' },
+  { src: libroHorizonte, alt: 'Cubierta diseñada por Grupo Dauro: Horizonte interior' },
+  { src: libroLatido, alt: 'Cubierta diseñada por Grupo Dauro: Latido' },
+];
 
 export default function SolicitarPortada() {
   return (
     <>
       <SEO
-        title="Diseño de Portadas de Libros Profesional | Solicita Presupuesto Gratis"
-        description="Diseño profesional de portadas para tu libro. Portadas personalizadas, atractivas y optimizadas para venta en Amazon, Casa del Libro y librerías. Presupuesto sin compromiso."
+        title="Diseño de Portadas de Libros Profesional | Presupuesto sin compromiso"
+        description="Diseño profesional de portadas para tu libro, también si publicas por tu cuenta. Cubiertas personalizadas y optimizadas para venta en Amazon, Casa del Libro y librerías. Presupuesto cerrado desde 450 €."
         keywords="diseño portada libro, portada personalizada, diseño editorial profesional, portada Amazon, portada profesional, diseñador portadas, cover design, portada novela, portada poesía"
       />
       <div className="min-h-screen bg-background">
@@ -44,7 +55,28 @@ export default function SolicitarPortada() {
                 Solicitar Portada Personalizada
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Crea una portada única y profesional para tu libro con nuestro equipo de diseñadores expertos
+                Una cubierta única y profesional para tu libro, aunque no publiques con nosotros. Del diseño se encarga nuestro equipo editorial, con presupuesto cerrado desde 450 € y revisiones incluidas hasta que la cubierta te convenza.
+              </p>
+            </div>
+
+            {/* Portadas de muestra */}
+            <div className="mb-12">
+              <h2 className="font-playfair text-2xl font-bold text-center mb-6 text-foreground">
+                Cubiertas de nuestro catálogo
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {portadasMuestra.map((portada) => (
+                  <img
+                    key={portada.alt}
+                    src={portada.src}
+                    alt={portada.alt}
+                    loading="lazy"
+                    className="w-full rounded-lg shadow-md hover:shadow-xl transition-shadow object-cover"
+                  />
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground text-center mt-4">
+                Más de 2.000 obras publicadas avalan nuestro criterio editorial.
               </p>
             </div>
 
