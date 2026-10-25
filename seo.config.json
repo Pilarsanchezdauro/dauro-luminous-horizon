@@ -1,0 +1,326 @@
+{
+  "sitio": "https://www.grupodauro.com",
+  "nombre": "Grupo Dauro",
+  "idioma": "es",
+  "locale": "es_ES",
+  "dist": "dist",
+  "resumen": "Grupo Dauro es un grupo cultural y tecnológico de lengua española: editorial con más de 2.000 obras publicadas y distribución en España y América, guiones de cine y televisión, representación de arte, producción musical con IA e inteligencia artificial para empresas.",
+  "llmsDetalle": "Divisiones: Editorial (edición sin coste para obras que nos convencen y servicios editoriales con presupuesto cerrado), Dauro Ciencia (publicación académica), Dauro Cine (guiones de series y cine), Dauro Arte (representación, tasación y peritaje de obras), Dauro Música (producción musical con IA, todo en línea) y la división tecnológica (software a medida e IA para empresas). Los libros se compran en https://tiendaspain.grupodauro.com.",
+  "contacto": "WhatsApp +34 640 91 90 90 · info@grupodauro.com · C/ Almajara 11, 18008 Granada (España)",
+  "defecto": { "imagen": "/og-image.jpg", "imagenAncho": 1200, "imagenAlto": 630, "imagenAlt": "Grupo Dauro: libros, guiones, arte e inteligencia artificial" },
+  "jsonld": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://www.grupodauro.com/#organization",
+      "name": "Grupo Dauro",
+      "alternateName": "Grupo Cultural Dauro",
+      "legalName": "Legal International & Finances Experts Group S.L.",
+      "taxID": "B19661685",
+      "url": "https://www.grupodauro.com/",
+      "logo": "https://www.grupodauro.com/og-logo.png",
+      "image": "https://www.grupodauro.com/og-image.jpg",
+      "description": "Grupo cultural y tecnológico: editorial con más de 2.000 obras publicadas, guiones de cine y televisión, representación de arte, producción musical con IA e inteligencia artificial para empresas.",
+      "email": "info@grupodauro.com",
+      "telephone": "+34 640 91 90 90",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C/ Almajara 11",
+        "postalCode": "18008",
+        "addressLocality": "Granada",
+        "addressRegion": "Andalucía",
+        "addressCountry": "ES"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+34 640 91 90 90",
+        "email": "info@grupodauro.com",
+        "contactType": "customer service",
+        "availableLanguage": ["es"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/grupodauro",
+        "https://www.instagram.com/grupodauro/",
+        "https://x.com/EdicionesDauro",
+        "https://es.pinterest.com/Grupoculturaldauro/",
+        "https://www.youtube.com/@grupodauro2900",
+        "https://whatsapp.com/channel/0029Vb7T73a2v1Iv9rL0U33K"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.grupodauro.com/#website",
+      "name": "Grupo Dauro",
+      "url": "https://www.grupodauro.com/",
+      "inLanguage": "es",
+      "publisher": { "@id": "https://www.grupodauro.com/#organization" }
+    }
+  ],
+  "paginas": {
+    "/": {
+      "title": "Grupo Dauro | Editorial, Guiones de Cine y TV, Arte e IA",
+      "description": "Grupo cultural y tecnológico: editamos libros con distribución en 4.000 librerías, escribimos guiones de series, representamos arte y creamos IA para empresas.",
+      "contenido": "<header><h1>No publicamos cualquier libro</h1><p>Los que publicamos, los defendemos. Más de dos mil obras editadas y en las librerías de España y América, con el criterio de una editorial que elige.</p><p><a href=\"/valoracion\">Cómo publicar con Dauro</a></p></header><nav aria-label=\"Grupo Dauro\"><ul><li><a href=\"/grupo-dauro/editorial\">Editorial: publica tu libro con nosotros</a></li><li><a href=\"/servicios-editoriales\">Servicios editoriales: corrección, maquetación, portada e ISBN</a></li><li><a href=\"/dauro-ciencia\">Dauro Ciencia: publicación académica</a></li><li><a href=\"/grupo-dauro/cine\">Dauro Cine: guiones de cine y televisión</a></li><li><a href=\"/grupo-dauro/arte\">Dauro Arte: representación de obras y artistas</a></li><li><a href=\"/grupo-dauro/musica\">Dauro Música: producción musical con IA</a></li><li><a href=\"/grupo-dauro/ia\">Software a medida e IA para empresas</a></li><li><a href=\"/tienda\">Tienda de libros</a></li><li><a href=\"/blog\">Blog</a></li><li><a href=\"/contacto\">Contacto</a></li></ul></nav>",
+      "prioridad": "1.0"
+    },
+    "/grupo-dauro": {
+      "title": "Grupo Cultural Dauro | Editorial y servicios para autores",
+      "description": "Editorial, servicios editoriales, maquetación, diseño de portadas y publicación de libros con distribución internacional. Más de 2.000 obras publicadas.",
+      "h1": "Grupo Cultural Dauro",
+      "imagen": "/og-grupo-dauro.jpg", "imagenAncho": 1920, "imagenAlto": 1080,
+      "prioridad": "0.8"
+    },
+    "/grupo-dauro/editorial": {
+      "title": "Editorial Dauro | Edición y distribución en España y América",
+      "description": "Si tu manuscrito está terminado y nos convence, lo editamos sin coste para ti; si necesita trabajo, servicios editoriales. Más de 2.000 obras publicadas.",
+      "h1": "Publica tu libro con nosotros",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.9"
+    },
+    "/servicios-editoriales": {
+      "title": "Servicios editoriales | Corrección, maquetación, portada e ISBN",
+      "description": "Corrección, maquetación, portada, ISBN, ebook y distribución en Amazon, Casa del Libro y Fnac. Presupuesto cerrado y pago en dos plazos.",
+      "h1": "Publica tu primer libro con calidad profesional",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.9"
+    },
+    "/valoracion": {
+      "title": "Publica tu libro con Dauro | Cómo valoramos tu obra",
+      "description": "Envía quince páginas y te respondemos en 48 horas: si no encaja, si apostamos por ella sin coste para ti o si merece un informe de valoración.",
+      "h1": "Publica tu libro con Dauro",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.9"
+    },
+    "/presupuestador": {
+      "title": "Presupuestador de servicios editoriales | Grupo Dauro",
+      "description": "Calcula el presupuesto para publicar tu libro: maquetación, ISBN, ebook, corrección, impresión, marketing y distribución. Presupuesto al momento.",
+      "h1": "Presupuestador de servicios editoriales",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.6"
+    },
+    "/dauro-ciencia": {
+      "title": "Dauro Ciencia | Publicar tesis doctoral e investigación",
+      "description": "Publica tu tesis doctoral o tu investigación con sello académico: evaluación por expertos, ISBN y distribución en Europa, EE. UU. y Latinoamérica.",
+      "h1": "Publica tu investigación con rigor científico",
+      "imagen": "/og-dauro-ciencia.jpg", "imagenAncho": 1200, "imagenAlto": 640,
+      "prioridad": "0.8"
+    },
+    "/presupuestador-ciencia": {
+      "title": "Presupuestador de publicación académica | Dauro Ciencia",
+      "description": "Calcula el presupuesto orientativo para publicar tu obra académica, tesis doctoral o investigación con Dauro Ciencia, sin compromiso.",
+      "h1": "Presupuestador académico",
+      "imagen": "/og-dauro-ciencia.jpg", "imagenAncho": 1200, "imagenAlto": 640,
+      "prioridad": "0.5"
+    },
+    "/grupo-dauro/arte": {
+      "title": "Dauro Arte · Representación de Obras y Artistas de Alto Nivel",
+      "description": "Representamos piezas de Picasso, Basquiat, Modigliani, Diego Rivera y Warhol: gestión, promoción y venta de obras, con tasación, peritaje y autenticación.",
+      "h1": "Dauro Arte",
+      "imagen": "/og-arte.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.9"
+    },
+    "/grupo-dauro/cine": {
+      "title": "Dauro Cine | Guionistas de cine y TV, series y preproducción",
+      "description": "Guionistas de series de televisión y cine: desarrollo de proyectos audiovisuales, preproducción y adaptación literaria, con la supervisión de Juan José Porto.",
+      "h1": "Dauro Cine",
+      "imagen": "/og-cine.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.9"
+    },
+    "/guiones": {
+      "title": "Nuestros guiones | De la novela a la pantalla — Grupo Dauro",
+      "description": "Convertimos libros de nuestro catálogo en guiones: las series El Hidalgo Don Rodrigo de Cervantes y Latido, y un largometraje sobre Bécquer.",
+      "h1": "De la novela a la pantalla",
+      "imagen": "/og-cine.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.8"
+    },
+    "/grupo-dauro/cine/el-hidalgo-don-rodrigo": {
+      "title": "El Hidalgo Don Rodrigo de Cervantes | Serie de drama histórico",
+      "description": "Serie basada en la novela de Francisco del Valle Sánchez: la infancia de Cervantes y el origen del Quijote en la España de Felipe II. Guion de Pilar Sánchez.",
+      "h1": "El Hidalgo Don Rodrigo de Cervantes",
+      "imagen": "/og-don-rodrigo.png", "imagenAncho": 1152, "imagenAlto": 768,
+      "prioridad": "0.8"
+    },
+    "/grupo-dauro/cine/latido": {
+      "title": "Latido. Apasionadamente vuestro | Serie sobre la Transición",
+      "description": "Drama, romance y thriller político basado en la novela de Carmen Alcaide: amor e historia en la España de la Transición (1973-1979). Guion de Pilar Sánchez.",
+      "h1": "Latido. Apasionadamente vuestro",
+      "imagen": "/og-latido-presentacion.jpg", "imagenAncho": 1600, "imagenAlto": 1200,
+      "prioridad": "0.8"
+    },
+    "/grupo-dauro/cine/el-huesped-de-las-tinieblas": {
+      "title": "El Huésped de las Tinieblas | Película sobre Bécquer, Dauro Cine",
+      "description": "Largometraje en desarrollo sobre la vida y la obra de Gustavo Adolfo Bécquer, escrito por Juan José Porto: biografía y leyendas entrelazadas.",
+      "h1": "El Huésped de las Tinieblas",
+      "imagen": "/og-cine.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.7"
+    },
+    "/grupo-dauro/musica": {
+      "title": "Dauro Música | Producción musical con IA y marca de artista",
+      "description": "Producción musical con IA a partir de la grabación del artista: arreglo, voz, mezcla, máster y lanzamiento. Marca de artista y videoclips, todo en línea.",
+      "h1": "Dauro Música",
+      "imagen": "/og-el-arte-es-navidad.png", "imagenAncho": 1200, "imagenAlto": 600,
+      "prioridad": "0.8"
+    },
+    "/artistas/solicitud": {
+      "title": "Artistas: trabaja con Grupo Dauro | Música con IA y arte en línea",
+      "description": "Cantantes y músicos: producción con IA a partir de tu grabación y marca de artista. Pintores y fotógrafos: tu obra en exposiciones virtuales.",
+      "h1": "¿Eres artista? Trabaja con Grupo Dauro",
+      "imagen": "/og-grupo-dauro.jpg", "imagenAncho": 1920, "imagenAlto": 1080,
+      "prioridad": "0.6"
+    },
+    "/grupo-dauro/ia": {
+      "title": "IA para empresas | Software a medida, IA generativa y cursos",
+      "description": "Desarrollamos software a medida e integraciones con IA generativa, implantamos IA segura en empresas, sin fugas de datos, y formamos a tu equipo.",
+      "h1": "Software a medida e IA para tu empresa",
+      "imagen": "/og-dauro-ia.jpg", "imagenAncho": 1344, "imagenAlto": 768,
+      "prioridad": "0.9"
+    },
+    "/servicios": {
+      "title": "Servicios creativos y editoriales | Grupo Dauro",
+      "description": "Edición, maquetación, portadas, guion literario y técnico, producción ejecutiva, producción musical con IA, videoclips y tasación de obras de arte y joyas.",
+      "h1": "Nuestros servicios",
+      "imagen": "/og-grupo-dauro.jpg", "imagenAncho": 1920, "imagenAlto": 1080,
+      "prioridad": "0.8"
+    },
+    "/tienda": {
+      "title": "Comprar libros online | Envío a Europa, EE. UU. y Latinoamérica",
+      "description": "Libros de Grupo Dauro con envío a España, Europa, Estados Unidos, México, Argentina, Colombia, Chile y más. Tienda directa y distribución internacional.",
+      "h1": "Nuestros libros, en toda Europa, EE. UU. y Latinoamérica",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.8"
+    },
+    "/blog": {
+      "title": "Blog de Grupo Dauro | Noticias culturales y presentaciones",
+      "description": "Presentaciones de libros, eventos de arte, estrenos audiovisuales y novedades sobre IA creativa: el blog de Grupo Dauro.",
+      "h1": "Blog",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "changefreq": "daily",
+      "prioridad": "0.9"
+    },
+    "/blog/hemeroteca": {
+      "title": "Hemeroteca | El archivo del blog de Grupo Dauro (2006-2025)",
+      "description": "Casi veinte años de vida cultural de Grupo Dauro: presentaciones de libros, autores, exposiciones y noticias publicadas entre 2006 y 2025.",
+      "h1": "Hemeroteca",
+      "prioridad": "0.6"
+    },
+    "/blog/hemeroteca/galeria": {
+      "title": "Galería de la hemeroteca | Grupo Dauro",
+      "description": "Casi dos mil fotografías de la vida cultural de Grupo Dauro entre 2006 y 2025: presentaciones de libros, autores, exposiciones y encuentros literarios.",
+      "h1": "La galería",
+      "prioridad": "0.5"
+    },
+    "/portafolio": {
+      "title": "Portafolio creativo | Webs, booktrailers, diseño y branding",
+      "description": "Explora nuestro portafolio de proyectos creativos: webs de libros, booktrailers, diseño de portadas, imagen corporativa, producción musical y pintura.",
+      "h1": "Nuestro portafolio",
+      "imagen": "/og-grupo-dauro.jpg", "imagenAncho": 1920, "imagenAlto": 1080,
+      "prioridad": "0.8"
+    },
+    "/portafolio/jose-carrera": {
+      "title": "José Carrera, cantante | Dauro Música",
+      "description": "Cantante con voz serena y contenida que acompaña y potencia proyectos empresariales mediante canciones y videoclips de alta calidad.",
+      "h1": "José Carrera",
+      "imagen": "/og-jose-carrera-2025.jpg", "imagenAncho": 1200, "imagenAlto": 640,
+      "prioridad": "0.6"
+    },
+    "/webs-de-libros": {
+      "title": "Webs de libros | Páginas web exclusivas para autores",
+      "description": "Páginas web exclusivas para los libros de nuestros autores: cada obra con su propio espacio digital, con reseñas, extractos y compra directa.",
+      "h1": "Páginas web dedicadas",
+      "prioridad": "0.6"
+    },
+    "/webs-de-libros/carlos-blanco/leonardo-da-vinci": {
+      "title": "Leonardo da Vinci: La Tragedia de la Perfección | Carlos Blanco",
+      "description": "Una indagación poética y filosófica en la grandeza de la mente humana. Ensayo de Carlos Blanco sobre Leonardo da Vinci.",
+      "h1": "Leonardo da Vinci: La Tragedia de la Perfección",
+      "imagen": "/webs-libros/leonardo/portada-libro.jpg", "imagenAncho": 1283, "imagenAlto": 2048,
+      "imagenAlt": "Cubierta de «Leonardo da Vinci: La Tragedia de la Perfección», de Carlos Blanco",
+      "ogType": "book",
+      "prioridad": "0.6"
+    },
+    "/webs-de-libros/antonio-rodriguez/liderazgo-discursivo": {
+      "title": "La Construcción Discursiva del Liderazgo | Antonio Rodríguez",
+      "description": "De Platón a la inteligencia artificial: una obra que analiza cómo se construye el liderazgo a través del poder del discurso. Por Antonio Rodríguez Jiménez.",
+      "h1": "La Construcción Discursiva del Liderazgo",
+      "imagen": "/products/construccion-discursiva-liderazgo.png", "imagenAncho": 1066, "imagenAlto": 1600,
+      "imagenAlt": "Cubierta de «La Construcción Discursiva del Liderazgo», de Antonio Rodríguez Jiménez",
+      "ogType": "book",
+      "prioridad": "0.6"
+    },
+    "/contacto": {
+      "title": "Contacto | Envía tu manuscrito a Grupo Dauro",
+      "description": "¿Quieres publicar tu libro? Envía tu manuscrito, pide presupuesto de edición o información sobre nuestros servicios editoriales. Respuesta en 48 horas.",
+      "h1": "Publica tu libro",
+      "prioridad": "0.7"
+    },
+    "/solicitar-proyecto": {
+      "title": "Solicita tu proyecto | Grupo Dauro",
+      "description": "¿Tienes un proyecto en mente? Desarrollo web, booktrailers, audiovisual, avatares y más: solicita tu presupuesto personalizado.",
+      "h1": "Solicita tu proyecto",
+      "prioridad": "0.7"
+    },
+    "/solicitar-web": {
+      "title": "Solicita el desarrollo de tu web | Grupo Dauro",
+      "description": "Solicita el desarrollo de tu proyecto web: diseño y desarrollo web profesional adaptado a tus necesidades, para autores, libros y empresas.",
+      "h1": "Solicita tu proyecto web",
+      "prioridad": "0.7"
+    },
+    "/solicitar-booktrailer": {
+      "title": "Solicita tu booktrailer | Grupo Dauro",
+      "description": "Solicita tu booktrailer personalizado: sube imágenes, comparte tu visión y creamos el vídeo que presenta tu libro a los lectores.",
+      "h1": "Solicita tu booktrailer",
+      "imagen": "/og-cine.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.7"
+    },
+    "/solicitar-portada": {
+      "title": "Diseño de portadas de libros | Solicita presupuesto",
+      "description": "Diseño profesional de portadas para tu libro, personalizadas y pensadas para vender en Amazon, Casa del Libro y librerías. Presupuesto sin compromiso.",
+      "h1": "Solicitar portada personalizada",
+      "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
+      "prioridad": "0.7"
+    },
+    "/compromiso-etico": {
+      "title": "Compromiso ético y transparencia editorial | Grupo Dauro",
+      "description": "Información oficial sobre transparencia, ética profesional y aclaración pública sobre reseñas no representativas de Grupo Dauro.",
+      "h1": "Compromiso ético y transparencia editorial",
+      "prioridad": "0.6"
+    },
+    "/archivo-historico": {
+      "title": "Archivo histórico digital | Grupo Dauro",
+      "description": "Archivo histórico digital con publicaciones, proyectos y contenido cultural de Grupo Dauro desde sus inicios.",
+      "h1": "Archivo histórico digital",
+      "prioridad": "0.5"
+    },
+    "/privacidad": {
+      "title": "Política de privacidad | Grupo Dauro",
+      "description": "Política de privacidad y protección de datos de Grupo Dauro: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos.",
+      "h1": "Política de privacidad",
+      "changefreq": "yearly",
+      "prioridad": "0.3"
+    },
+    "/terminos": {
+      "title": "Términos y condiciones | Grupo Dauro",
+      "description": "Términos y condiciones de uso de la web y los servicios de Grupo Dauro: contratación, propiedad intelectual y responsabilidades.",
+      "h1": "Términos y condiciones",
+      "changefreq": "yearly",
+      "prioridad": "0.3"
+    },
+    "/cookies": {
+      "title": "Política de cookies | Grupo Dauro",
+      "description": "Qué cookies y qué almacenamiento del navegador utiliza la web de Grupo Dauro, para qué sirven y cómo puedes gestionarlos.",
+      "h1": "Política de cookies",
+      "changefreq": "yearly",
+      "prioridad": "0.3"
+    },
+    "/gracias": { "title": "Propuesta recibida | Grupo Dauro", "description": "Confirmación de que hemos recibido tu propuesta editorial. Te responderemos muy pronto.", "indexar": false },
+    "/gracias-dauro-ciencia": { "title": "Propuesta académica recibida | Dauro Ciencia", "description": "Confirmación de que hemos recibido tu propuesta para Dauro Ciencia. Te responderemos muy pronto.", "indexar": false },
+    "/gracias-compra": { "title": "Gracias por tu compra | Grupo Dauro", "description": "Tu pedido se ha procesado correctamente. Gracias por confiar en Grupo Dauro y en los libros de nuestro catálogo.", "indexar": false },
+    "/auth": { "title": "Acceso | Grupo Dauro", "description": "Acceso al panel interno de Grupo Dauro, reservado al equipo y sin contenido público.", "indexar": false },
+    "/admin": { "title": "Panel de administración | Grupo Dauro", "description": "Panel interno de administración de Grupo Dauro, reservado al equipo y sin contenido público.", "indexar": false },
+    "/mis-ebooks": { "title": "Mis ebooks | Grupo Dauro", "description": "Biblioteca personal con los ebooks comprados en Grupo Dauro, disponible solo para el comprador.", "indexar": false },
+    "/descargar-ebook": { "title": "Descargar ebook | Grupo Dauro", "description": "Descarga del ebook comprado en Grupo Dauro, disponible solo para el comprador con su enlace personal.", "indexar": false },
+    "/blog/stats": { "title": "Estadísticas del blog | Grupo Dauro", "description": "Estadísticas internas del blog de Grupo Dauro: publicaciones más leídas y tendencias por categoría.", "indexar": false }
+  },
+  "sitemapExtra": []
+}

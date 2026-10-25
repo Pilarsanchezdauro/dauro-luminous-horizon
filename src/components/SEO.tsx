@@ -42,32 +42,35 @@ export const SEO = ({
   // Generar alt text optimizado para la imagen OG
   const imageAlt = `${title} – Grupo Cultural Dauro`;
 
-  // Organización structured data base
+  // Organización: mismos datos que el JSON-LD de seo.config.json (lo que ven los robots sin JavaScript)
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Grupo Cultural Dauro",
-    "alternateName": "Grupo Dauro",
-    "foundingDate": "2000",
-    "url": SITE_URL,
+    "@id": `${SITE_URL}/#organization`,
+    "name": "Grupo Dauro",
+    "alternateName": "Grupo Cultural Dauro",
+    "legalName": "Legal International & Finances Experts Group S.L.",
+    "taxID": "B19661685",
+    "url": `${SITE_URL}/`,
     "logo": `${SITE_URL}/og-logo.png`,
-    "description": "Grupo cultural dedicado a la edición de libros, los guiones de cine y televisión, la representación de arte y la inteligencia artificial en Granada",
+    "description": "Grupo cultural y tecnológico: editorial con más de 2.000 obras publicadas, guiones de cine y televisión, representación de arte, producción musical con IA e inteligencia artificial para empresas.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Calle Almajara 11",
+      "streetAddress": "C/ Almajara 11",
       "postalCode": "18008",
       "addressLocality": "Granada",
       "addressRegion": "Andalucía",
       "addressCountry": "ES"
     },
-    "telephone": "+34 958 28 11 83",
+    "telephone": "+34 640 91 90 90",
     "email": "info@grupodauro.com",
     "sameAs": [
       "https://www.facebook.com/grupodauro",
       "https://www.instagram.com/grupodauro/",
       "https://x.com/EdicionesDauro",
       "https://es.pinterest.com/Grupoculturaldauro/",
-      "https://www.youtube.com/@grupodauro2900"
+      "https://www.youtube.com/@grupodauro2900",
+      "https://whatsapp.com/channel/0029Vb7T73a2v1Iv9rL0U33K"
     ]
   };
 

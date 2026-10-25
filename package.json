@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-config-blog.mjs && node scripts/seo-build.mjs node_modules/.cache/seo.config.completo.json",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
