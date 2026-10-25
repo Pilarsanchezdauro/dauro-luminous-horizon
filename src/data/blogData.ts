@@ -38,6 +38,65 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Más de cien personas en la Torre de los Anaya: así fue la presentación de «La sota de espadas»",
+    excerpt: "La sala se llenó casi por completo. José Luis Sánchez Iglesias presentó su novela negra acompañado por José Vicente Ledesma Agudo, policía con cuarenta años de servicio. Hubo aplausos al final, firma de ejemplares y una pregunta desde el público: si habrá más casos del inspector Rocasolano.",
+    date: "25 Octubre 2026",
+    author: "Grupo Dauro",
+    image: "/blog/sota-presentacion/cronica-portada.jpg",
+    ogImage: "/blog/sota-presentacion/cronica-portada.jpg",
+    imageAlt: "Sala llena durante la presentación de «La sota de espadas» en la Torre de los Anaya de Salamanca, el 23 de octubre de 2026",
+    metaTitle: "Así fue la presentación de «La sota de espadas» en Salamanca",
+    metaDescription: "Crónica de la presentación de la novela negra de José Luis Sánchez Iglesias en la Torre de los Anaya: sala llena, conversación con el policía José Vicente Ledesma y firma de ejemplares.",
+    keywords: "La sota de espadas, José Luis Sánchez Iglesias, presentación Salamanca, Torre de los Anaya, novela negra, inspector Rocasolano, José Vicente Ledesma Agudo, Grupo Dauro",
+    category: "literatura",
+    slug: "cronica-presentacion-la-sota-de-espadas-salamanca",
+    bookLink: "https://tiendaspain.grupodauro.com/shop/la-sota-de-espadas-18042",
+    amazonLink: "https://www.amazon.es/dp/B0HKVX4HBH",
+    gallery: [
+      "/blog/sota-presentacion/cronica-sala.jpg",
+      "/blog/sota-presentacion/cronica-mesa.jpg",
+    ],
+    content: `## Una sala grande, y casi llena
+
+Al autor le habían asignado una sala para más de cien personas y confesaba, la mañana del viernes, que le parecía demasiado grande. A las siete y media estaba casi llena.
+
+El **23 de octubre**, la **Torre de los Anaya** acogió la presentación de **«La sota de espadas»**, la décima novela de **José Luis Sánchez Iglesias** (Salamanca, 1955), doctor en Historia Medieval por la Universidad de Salamanca. Hubo aplausos al final, se vendieron muchos ejemplares en la propia sala y una cola para firmar que se alargó un buen rato.
+
+## El novelista y el policía
+
+Acompañó al autor **José Vicente Ledesma Agudo, policía con cuarenta años de servicio**, y eso cambió la naturaleza del acto. No fue una presentación al uso, sino una conversación entre quien ha imaginado una investigación y quien las ha dirigido de verdad: las primeras horas tras un crimen, el juez de guardia, la policía científica, el forense, las cámaras de un garaje. Y lo incómodo también: hasta dónde llega el margen de un policía cuando la orden que recibe no le cuadra con lo que está viendo.
+
+## Quién es Íñigo Rocasolano
+
+Buena parte de la intervención del autor fue para presentar a su inspector, y mereció la pena.
+
+Íñigo Rocasolano es inspector del Cuerpo Nacional de Policía, destinado en la comisaría de Salamanca y procedente de las de Madrid. Goza de buena reputación entre sus compañeros, sobre todo desde que resolvió el caso que se conoció como **«El fantasma de las Torres»**. Es un hombre de mediana edad y complexión fuerte, con algunas entradas ya, amante de la buena comida y del buen vino —de los que es buen conocedor, aunque él se quite mérito—. No tiene pareja estable: por encima de todo está su trabajo, al que dedica las veinticuatro horas del día, sin horarios fijos, algo que difícilmente resulta compatible con una relación convencional.
+
+## «¿Habrá más casos del inspector?»
+
+Antes de terminar, desde el público llegó la pregunta que todo novelista quiere oír: si habrá una tercera entrega de Rocasolano. El autor respondió lo que cabía responder: que dependerá de cómo le vaya a esta.
+
+Rocasolano apareció por primera vez en «El fantasma de las Torres» (2014) y ha tardado doce años en volver. No hace falta haber leído aquella para entender esta.
+
+## En los medios
+
+La presentación tuvo eco en la prensa salmantina:
+
+- **Ayuntamiento de Salamanca**: [La Torre de los Anaya acoge este viernes la presentación de «La sota de espadas»](https://www.aytosalamanca.es/w/la-torre-de-los-anaya-acoge-este-viernes-la-presentaci%C3%B3n-de-la-sota-de-espadas-una-novela-escrita-por-el-salmantino-jos%C3%A9-luis-s%C3%A1nchez-iglesias)
+- **El Diario de Salamanca**: [El escritor salmantino José Luis Sánchez Iglesias presenta su nueva novela policiaca](https://eldiariodesalamanca.com/cultura-ocio/2026/10/22/el-escritor-salmantino-jose-luis-sanchez-iglesias-presenta-su-nueva-novela-policiaca/)
+- **Salamanca Vívela**: [La Torre de los Anaya acoge este viernes la presentación de «La sota de espadas»](https://salamancavivela.es/la-torre-de-los-anaya-acoge-este-viernes-la-presentacion-de-la-sota-de-espadas-la-nueva-novela-negra-de-jose-luis-sanchez-iglesias/)
+- **La Gaceta de Salamanca** recogió el acto en su edición impresa del 24 de octubre.
+
+## La novela
+
+Un domingo de agosto, con Salamanca medio vacía y un calor que no deja respirar, aparece el cadáver de una mujer en el garaje de un edificio de Huerta Otea. Está degollada y tiene un naipe sujeto entre los dientes: la sota de espadas. La firma parece inconfundible —en Madrid lleva meses actuando el «asesino de la baraja»—, pero hay cosas que a Rocasolano no le cuadran.
+
+- 📖 En papel y en ebook, en [nuestra tienda](https://tiendaspain.grupodauro.com/shop/la-sota-de-espadas-18042) y en [Amazon](https://www.amazon.es/dp/B0HKVX4HBH).
+- 🌐 En [**lasotadeespadas.grupodauro.com**](https://lasotadeespadas.grupodauro.com) puedes ver los **vídeos y las fotos de la presentación**, hojear las veinticinco primeras páginas y descargar la cubierta en alta resolución.
+
+Organizó Grupo Dauro, con la colaboración de la Fundación Salamanca Ciudad de Cultura y Saberes. Gracias a todos los que vinieron.`,
+  },
+  {
     title: "«Cartas desde la otra orilla», de Carmen Puerta, sigue de gira: próximas presentaciones por Tierra Estella",
     excerpt: "La primera novela de Carmen Puerta Extremera continúa su gira por Navarra. Próximas citas: 24 de octubre en Barbarin, 29 en Estella-Lizarra y 30 en Egüés.",
     date: "18 Octubre 2026",
