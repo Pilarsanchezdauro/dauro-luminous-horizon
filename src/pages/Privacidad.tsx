@@ -132,9 +132,27 @@ const Privacidad = () => {
               {/* Destinatarios */}
               <section>
                 <h2 className="text-2xl font-playfair font-bold mb-4">6. Destinatarios de datos</h2>
+                <p className="text-muted-foreground mb-4">
+                  No cedemos sus datos a terceros, salvo obligación legal o cuando sea necesario para prestar
+                  el servicio que nos pide (por ejemplo, a la imprenta o la distribuidora de su libro).
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Para funcionar, la web y nuestra gestión se apoyan en proveedores que tratan datos por cuenta
+                  de Grupo Dauro como <strong>encargados del tratamiento</strong>, con contrato y garantías:
+                </p>
+                <ul className="list-disc list-inside text-muted-foreground space-y-2 mb-4">
+                  <li>Vercel Inc. (alojamiento de la web y de los formularios)</li>
+                  <li>Supabase Inc. (base de datos y archivos que nos envía)</li>
+                  <li>Odoo S.A. (gestión de clientes y autores)</li>
+                  <li>Brevo y Google Workspace (correo electrónico)</li>
+                  <li>OpenAI (respuestas del asistente de la web, si decide usarlo)</li>
+                  <li>Meta Platforms (WhatsApp, si nos escribe por ese canal)</li>
+                </ul>
                 <p className="text-muted-foreground">
-                  Sus datos no serán cedidos a terceros salvo obligación legal. No se realizarán 
-                  transferencias internacionales de datos.
+                  Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, en
+                  particular en Estados Unidos. En ese caso, la transferencia se ampara en el Marco de
+                  Privacidad de Datos UE-EE. UU. o en cláusulas contractuales tipo aprobadas por la Comisión
+                  Europea.
                 </p>
               </section>
 
