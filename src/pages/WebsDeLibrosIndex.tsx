@@ -21,6 +21,19 @@ interface AuthorInfo {
 
 const authors: AuthorInfo[] = [
   {
+    name: "Roberto González de Cuenca",
+    slug: "roberto-gonzalez-de-cuenca",
+    books: [
+      {
+        title: "Voceis Pyrenaei",
+        slug: "voceis-pyrenaei",
+        cover: "/webs-libros/voceis/portada.jpg",
+        description: "Poesía bilingüe español-francés. Sonetos acrósticos con títulos en latín que hacen de los Pirineos un lugar de encuentro. Web con flipbook, en español, francés e inglés.",
+        external: "https://voceispyrenaei.grupodauro.com"
+      }
+    ]
+  },
+  {
     name: "Isidoro de Antillón · ed. de Eduard Ariza Ugalde",
     slug: "isidoro-de-antillon",
     books: [
