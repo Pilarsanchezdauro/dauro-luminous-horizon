@@ -17,13 +17,57 @@ const portadasMuestra = [
   { src: libroLatido, alt: 'Cubierta diseñada por Grupo Dauro: Latido' },
 ];
 
+const preguntasFrecuentes = [
+  {
+    pregunta: '¿Cuánto cuesta una cubierta profesional?',
+    respuesta:
+      'Trabajamos con presupuesto cerrado desde 450 €, que se concreta según la complejidad del diseño (fotografía, ilustración, colección). El precio se fija antes de empezar y no cambia durante el proceso. Las revisiones están incluidas hasta que la cubierta te convenza.',
+  },
+  {
+    pregunta: '¿Qué incluye exactamente el encargo?',
+    respuesta:
+      'La cubierta completa: portada, lomo y contraportada, con los textos que nos facilites (sinopsis, biografía) compuestos tipográficamente. Entregamos los archivos finales listos para imprenta (PDF con sangrado), para Amazon KDP y la versión de ebook, además de una imagen promocional para redes.',
+  },
+  {
+    pregunta: '¿Sirve para publicar en Amazon KDP?',
+    respuesta:
+      'Sí. Calculamos las medidas exactas que exige Amazon según el número de páginas, el tamaño del libro y el tipo de papel, con el lomo ajustado y el espacio para el código de barras. Recibes el archivo preparado para subirlo a KDP sin rechazos.',
+  },
+  {
+    pregunta: '¿Puedo encargar la cubierta si mi libro ya está publicado?',
+    respuesta:
+      'Sí, el rediseño de cubiertas de libros ya publicados es uno de los encargos más habituales. Una cubierta nueva es la forma más directa de relanzar un libro que no está funcionando en tienda.',
+  },
+  {
+    pregunta: '¿Cuánto tarda?',
+    respuesta:
+      'Recibes las primeras propuestas en pocos días laborables. El plazo total depende de las rondas de revisión, pero lo habitual es tener la cubierta definitiva en una o dos semanas.',
+  },
+  {
+    pregunta: '¿De quién son los derechos del diseño?',
+    respuesta:
+      'Recibes los derechos de uso completos para tu libro en todos los formatos y canales de venta, sin límite de tiempo ni de tirada. La autoría del diseño queda acreditada a Grupo Dauro.',
+  },
+];
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntasFrecuentes.map((f) => ({
+    '@type': 'Question',
+    name: f.pregunta,
+    acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+  })),
+};
+
 export default function SolicitarPortada() {
   return (
     <>
       <SEO
         title="Diseño de Portadas de Libros Profesional | Presupuesto sin compromiso"
         description="Diseño profesional de portadas para tu libro, también si publicas por tu cuenta. Cubiertas personalizadas y optimizadas para venta en Amazon, Casa del Libro y librerías. Presupuesto cerrado desde 450 €."
-        keywords="diseño portada libro, portada personalizada, diseño editorial profesional, portada Amazon, portada profesional, diseñador portadas, cover design, portada novela, portada poesía"
+        keywords="diseño portada libro, portada personalizada, diseño editorial profesional, portada Amazon, portada profesional, diseñador portadas, cover design, portada novela, portada poesía, cuanto cuesta portada libro, medidas portada KDP, rediseño cubierta libro"
+        structuredData={faqStructuredData}
       />
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -131,6 +175,27 @@ export default function SolicitarPortada() {
                 <BookCoverRequestForm />
               </CardContent>
             </Card>
+
+            {/* Preguntas frecuentes */}
+            <div className="mt-16">
+              <h2 className="font-playfair text-3xl font-bold text-center mb-8 text-foreground">
+                Preguntas frecuentes
+              </h2>
+              <div className="space-y-4">
+                {preguntasFrecuentes.map((faq) => (
+                  <Card key={faq.pregunta}>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg">{faq.pregunta}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-base leading-relaxed">
+                        {faq.respuesta}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
 
           </div>
         </main>
