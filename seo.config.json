@@ -278,7 +278,19 @@
       "description": "Diseño profesional de portadas, también si publicas por tu cuenta. Cubiertas pensadas para vender en Amazon y librerías. Presupuesto cerrado desde 450 €.",
       "h1": "Solicitar portada personalizada",
       "imagen": "/og-editorial.jpg", "imagenAncho": 1600, "imagenAlto": 900,
-      "prioridad": "0.7"
+      "prioridad": "0.7",
+      "jsonld": [{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "¿Cuánto cuesta una cubierta profesional?", "acceptedAnswer": {"@type": "Answer", "text": "Trabajamos con presupuesto cerrado desde 450 €, que se concreta según la complejidad del diseño (fotografía, ilustración, colección). El precio se fija antes de empezar y no cambia durante el proceso. Las revisiones están incluidas hasta que la cubierta te convenza."}},
+          {"@type": "Question", "name": "¿Qué incluye exactamente el encargo?", "acceptedAnswer": {"@type": "Answer", "text": "La cubierta completa: portada, lomo y contraportada, con los textos que nos facilites (sinopsis, biografía) compuestos tipográficamente. Entregamos los archivos finales listos para imprenta (PDF con sangrado), para Amazon KDP y la versión de ebook, además de una imagen promocional para redes."}},
+          {"@type": "Question", "name": "¿Sirve para publicar en Amazon KDP?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Calculamos las medidas exactas que exige Amazon según el número de páginas, el tamaño del libro y el tipo de papel, con el lomo ajustado y el espacio para el código de barras. Recibes el archivo preparado para subirlo a KDP sin rechazos."}},
+          {"@type": "Question", "name": "¿Puedo encargar la cubierta si mi libro ya está publicado?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el rediseño de cubiertas de libros ya publicados es uno de los encargos más habituales. Una cubierta nueva es la forma más directa de relanzar un libro que no está funcionando en tienda."}},
+          {"@type": "Question", "name": "¿Cuánto tarda?", "acceptedAnswer": {"@type": "Answer", "text": "Recibes las primeras propuestas en pocos días laborables. El plazo total depende de las rondas de revisión, pero lo habitual es tener la cubierta definitiva en una o dos semanas."}},
+          {"@type": "Question", "name": "¿De quién son los derechos del diseño?", "acceptedAnswer": {"@type": "Answer", "text": "Recibes los derechos de uso completos para tu libro en todos los formatos y canales de venta, sin límite de tiempo ni de tirada. La autoría del diseño queda acreditada a Grupo Dauro."}}
+        ]
+      }]
     },
     "/compromiso-etico": {
       "title": "Compromiso ético y transparencia editorial | Grupo Dauro",
