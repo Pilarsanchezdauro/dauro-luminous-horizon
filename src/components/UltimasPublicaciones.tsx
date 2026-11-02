@@ -23,6 +23,13 @@ const TIENDA = "https://tiendaspain.grupodauro.com";
 
 const PUBLICACIONES: Publicacion[] = [
   {
+    id: 18137,
+    titulo: "Voceis Pyrenaei",
+    autor: "Roberto González de Cuenca",
+    precio: "17 €",
+    url: `${TIENDA}/shop/voceis-pyrenaei-18137`,
+  },
+  {
     id: 18029,
     titulo: "Los fotones creen en Dios",
     autor: "Francisco López Barrios",
@@ -49,13 +56,6 @@ const PUBLICACIONES: Publicacion[] = [
     autor: "Tony de Haro",
     precio: "25,90 €",
     url: `${TIENDA}/shop/pelayo-leyenda-y-vida-i-18016`,
-  },
-  {
-    id: 18026,
-    titulo: "Cartas desde la otra orilla",
-    autor: "Carmen Puerta Extremera",
-    precio: "17 €",
-    url: `${TIENDA}/shop/cartas-desde-la-otra-orilla-18026`,
   },
 ];
 
