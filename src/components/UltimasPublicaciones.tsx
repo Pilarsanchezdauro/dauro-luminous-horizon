@@ -23,6 +23,13 @@ const TIENDA = "https://tiendaspain.grupodauro.com";
 
 const PUBLICACIONES: Publicacion[] = [
   {
+    id: 18052,
+    titulo: "Disertación sobre el origen de la esclavitud de los negros",
+    autor: "Isidoro de Antillón · ed. de Eduard Ariza Ugalde",
+    precio: "18 €",
+    url: `${TIENDA}/shop/979-13-992927-5-6-disertacion-sobre-el-origen-de-la-esclavitud-de-los-negros-18052`,
+  },
+  {
     id: 18137,
     titulo: "Voceis Pyrenaei",
     autor: "Roberto González de Cuenca",
@@ -72,7 +79,7 @@ export const UltimasPublicaciones = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 lg:gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 lg:gap-6 max-w-6xl mx-auto">
         {PUBLICACIONES.map((libro) => (
           <a
             key={libro.id}
