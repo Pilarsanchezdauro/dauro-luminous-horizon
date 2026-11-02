@@ -29,8 +29,9 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     flag: "🇪🇸",
     country: "España",
     short: "España",
-    distributor: "Arnoia, Azeta, Elkar y Cimadevilla",
+    distributor: "Logista (Logista Libros), Azeta, Arnoia y Distriforma",
     channels: [],
+    note: "Librerías: pedidos con depósito y derecho a devolución.",
     storeUrl: "https://tiendaspain.grupodauro.com",
   },
   
