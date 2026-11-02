@@ -112,15 +112,35 @@ User-agent: SearchmetricsBot
 Disallow: /
 
 # ============================================
-# Bloquear bots de IA que extraen contenido
+# Robots de IA — BÚSQUEDA Y RESPUESTA: permitidos
+# (que ChatGPT, Claude y Perplexity nos citen con enlace)
+# ============================================
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ============================================
+# Robots de IA — ENTRENAMIENTO: bloqueados
+# (protegen el texto de los libros: adelantos, capítulos)
 # ============================================
 User-agent: GPTBot
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: CCBot
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: anthropic-ai
@@ -129,10 +149,10 @@ Disallow: /
 User-agent: Claude-Web
 Disallow: /
 
-User-agent: Google-Extended
+User-agent: CCBot
 Disallow: /
 
-User-agent: PerplexityBot
+User-agent: Google-Extended
 Disallow: /
 
 User-agent: Bytespider
