@@ -155,7 +155,7 @@ const Tienda = () => {
               <h2 id="distribucion-internacional" className="text-2xl md:text-3xl font-bold text-foreground">Tiendas online internacionales</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Red de tiendas gestionadas por <strong className="text-foreground">Quares</strong>, nuestro socio de distribución internacional. Compra desde tu país con envío local y sin aduanas.
+              Nuestras tiendas internacionales por país. Compra desde el tuyo con envío local y sin aduanas.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {distributionStores.map((store) => (
@@ -198,7 +198,7 @@ const Tienda = () => {
                 <h3 className="text-lg md:text-xl font-bold text-foreground">Europa — envío a domicilio</h3>
               </div>
               <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
-                Impresión en España y entrega a domicilio en <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong>, sin aduanas, a través de nuestro socio de distribución Quares.
+                Impresión en España y entrega a domicilio en <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong>, con envío local y sin aduanas.
               </p>
               <div className="flex flex-wrap gap-2">
                 {EUROPE_COUNTRIES.map((c) => (
@@ -277,7 +277,7 @@ const Tienda = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Quién gestiona la distribución internacional?</h3>
-                <p className="text-muted-foreground">La distribución fuera de España la gestiona Quares, una empresa especializada en distribución editorial internacional con almacenes en cada zona.</p>
+                <p className="text-muted-foreground">Contamos con almacenes y distribución en cada zona, de modo que tu pedido se imprime y se envía localmente, con envío nacional y sin aduanas.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Los precios incluyen gastos de envío?</h3>

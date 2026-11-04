@@ -252,7 +252,7 @@ Una **talla románica** y un viejo **sello de la Orden del Santo Sepulcro**, con
 ## Dónde conseguirla
 
 - En [nuestra tienda](https://tiendaspain.grupodauro.com/shop/pelayo-leyenda-y-vida-i-18016), en papel
-- En tu librería habitual (distribuye Quares)
+- En tu librería habitual
 - Y toda la información, con las primeras páginas para hojear, en la web del libro: [pelayo.grupodauro.com](https://pelayo.grupodauro.com)
 
 Si tienes un club de lectura, escríbenos: organizamos **encuentros con el autor**, presenciales u online, y tenemos guía de lectura disponible.
@@ -310,7 +310,7 @@ Su debut en la narrativa tiene la prosa de una poeta: sensorial y contenida. Cad
 
 - En [nuestra tienda](https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-18026), en papel y en [ebook](https://tiendaspain.grupodauro.com/shop/cartas-desde-la-otra-orilla-ebook-18028)
 - En [Amazon](https://www.amazon.es/dp/B0H7JSW6KK), en papel y Kindle
-- En tu librería habitual (distribuye Quares)
+- En tu librería habitual
 - Y toda la información, con las primeras páginas para hojear, en la web del libro: [cartasdesdelaotraorilla.grupodauro.com](https://cartasdesdelaotraorilla.grupodauro.com)
 
 Si tienes un club de lectura, escríbenos: organizamos **encuentros con la autora**, presenciales u online, y tenemos guía de lectura disponible. Y si eres librero, [aquí tienes la ficha técnica](https://cartasdesdelaotraorilla.grupodauro.com/ficha-tecnica.pdf).
