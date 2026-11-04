@@ -107,32 +107,63 @@ const Tienda = () => {
             </div>
           </header>
 
-          {/* Compra directa */}
-          <section className="mb-20" aria-labelledby="compra-directa">
+          {/* ¿Dónde comprar? — dos canales: nuestra tienda (España) vs España+Europa */}
+          <section className="mb-20" aria-labelledby="donde-comprar">
             <div className="flex items-center gap-3 mb-3">
               <ShoppingBag className="h-6 w-6 text-primary" />
-              <h2 id="compra-directa" className="text-2xl md:text-3xl font-bold text-foreground">Compra directa — España y Europa</h2>
+              <h2 id="donde-comprar" className="text-2xl md:text-3xl font-bold text-foreground">¿Dónde comprar nuestros libros?</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Nuestra tienda propia con todo el catálogo, gestionada directamente por Grupo Dauro. Envío desde España a toda Europa y atención personalizada.
+              Dos canales distintos: nuestra <strong className="text-foreground">tienda propia en España</strong> y la red de <strong className="text-foreground">impresión y envío local que cubre España y toda Europa</strong>.
             </p>
-            <div className="max-w-md">
-              {/* Única tienda directa: la tienda Odoo (tiendaspain.grupodauro.com) */}
-              <a
-                href="https://tiendaspain.grupodauro.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
-              >
-                <span className="text-5xl">🇪🇸</span>
-                <div className="flex-1">
-                  <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
-                    Tienda Grupo Dauro
-                  </span>
-                  <span className="text-sm text-muted-foreground">Todo el catálogo · envío a España y a toda Europa</span>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* 1 · Nuestra tienda (España, independiente) */}
+              <div className="rounded-2xl border-2 border-primary/30 bg-primary/5 p-7 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <ShoppingBag className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">1 · Nuestra tienda · España</h3>
                 </div>
-                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </a>
+                <p className="text-sm text-muted-foreground mb-5 flex-1">
+                  Tienda propia de Grupo Dauro, independiente y gestionada por nosotros. Compra online con todo el catálogo y envío desde España.
+                </p>
+                <a
+                  href="https://tiendaspain.grupodauro.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-semibold px-5 py-3 hover:opacity-90 transition"
+                >
+                  <span>🇪🇸</span> Ir a la tienda
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* 2 · España y toda Europa (impresión y envío local) */}
+              <div className="rounded-2xl border border-border bg-card p-7 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <Truck className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">2 · España y toda Europa</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Imprimimos en España y enviamos a domicilio, <strong className="text-foreground">sin aduanas</strong>, en España y <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong> más. Pídelo en tu librería habitual o escríbenos.
+                </p>
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  <span className="inline-flex items-center gap-1.5 bg-background border border-border px-2.5 py-1 rounded-lg text-xs">
+                    <span className="text-base leading-none">🇪🇸</span>
+                    <span className="font-semibold text-foreground">España</span>
+                  </span>
+                  {EUROPE_COUNTRIES.map((c) => (
+                    <span key={c.country} className="inline-flex items-center gap-1.5 bg-background border border-border px-2.5 py-1 rounded-lg text-xs">
+                      <span className="text-base leading-none">{c.flag}</span>
+                      <span className="font-medium text-foreground">{c.short}</span>
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto text-sm">
+                  <a href="mailto:info@grupodauro.com" className="text-primary font-medium hover:underline">info@grupodauro.com</a>
+                  <span className="text-muted-foreground"> · WhatsApp +34 640 91 90 90</span>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -169,43 +200,15 @@ const Tienda = () => {
             </div>
           </section>
 
-          {/* Red de distribuidores y puntos de venta */}
+          {/* Distribuidores y puntos de venta en América */}
           <section className="mt-20 border-t border-border pt-12" aria-labelledby="distribuidores-red">
             <div className="flex items-center gap-3 mb-3">
               <Store className="h-6 w-6 text-primary" />
-              <h2 id="distribuidores-red" className="text-2xl md:text-3xl font-bold text-foreground">Distribuidores y puntos de venta</h2>
+              <h2 id="distribuidores-red" className="text-2xl md:text-3xl font-bold text-foreground">Distribuidores y puntos de venta en América</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Producimos cada libro en su zona y lo entregamos con envío local, sin aduanas. En Europa imprimimos en España y enviamos a domicilio; en América trabajamos con distribuidores locales en librerías físicas y marketplaces.
+              Además de las tiendas online, en América trabajamos con distribuidores locales para que encuentres nuestros libros en librerías físicas y marketplaces.
             </p>
-
-            {/* Europa — envío a domicilio */}
-            <div className="mb-10">
-              <div className="flex items-center gap-2 mb-3">
-                <Truck className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-bold text-foreground">Europa — envío a domicilio</h3>
-              </div>
-              <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
-                Impresión en España y entrega a domicilio en <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong>, con envío local y sin aduanas.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {EUROPE_COUNTRIES.map((c) => (
-                  <span
-                    key={c.country}
-                    className="inline-flex items-center gap-2 bg-card border border-border px-3.5 py-2 rounded-xl text-sm hover:border-primary/40 transition-colors"
-                  >
-                    <span className="text-lg leading-none">{c.flag}</span>
-                    <span className="font-medium text-foreground">{c.short}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* América — distribuidores locales */}
-            <div className="flex items-center gap-2 mb-4">
-              <MapPin className="h-5 w-5 text-primary" />
-              <h3 className="text-lg md:text-xl font-bold text-foreground">América — distribuidores locales</h3>
-            </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {AMERICA_COUNTRIES.map((c) => (
                 <div
@@ -261,7 +264,7 @@ const Tienda = () => {
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Puedo comprar desde cualquier país?</h3>
-                <p className="text-muted-foreground">Sí. Imprimimos en España y enviamos a domicilio en toda Europa, y tenemos tiendas específicas para Estados Unidos y los principales países de Latinoamérica. Si tu país no aparece, puedes comprar en nuestra tienda de España, que envía a cualquier país, o escribirnos y te lo resolvemos.</p>
+                <p className="text-muted-foreground">Sí. En España tienes nuestra tienda propia; en España y toda Europa imprimimos y enviamos a domicilio sin aduanas (pídelo en tu librería o escríbenos); y en América hay tienda online en cada país. Si tu país no aparece, escríbenos y te lo resolvemos.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Quién gestiona la distribución internacional?</h3>
