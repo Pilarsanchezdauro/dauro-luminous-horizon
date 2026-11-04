@@ -3,7 +3,7 @@ import { Mail, Facebook, Instagram, Twitter, Youtube, Pin, Rss, MessageCircle, G
 import logoNega from "@/assets/logo-nega.png";
 import logoBpwMadrid from "@/assets/logo-bpw-madrid.png";
 import logoIwfSpain from "@/assets/logo-iwf-spain.png";
-import { ACTIVE_COUNTRIES, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
+import { ACTIVE_COUNTRIES, TOTAL_COUNTRIES, EUROPE_COUNT } from "@/data/distributionNetwork";
 
 const Footer = () => {
   return (
@@ -262,6 +262,9 @@ const Footer = () => {
               </div>
             ))}
           </div>
+          <p className="text-xs text-background/60 mb-4">
+            <span className="text-background/90 font-medium">Europa:</span> envío a domicilio en {EUROPE_COUNT} países (impresión en España, sin aduanas).
+          </p>
           <Link
             to="/tienda"
             className="inline-flex items-center gap-1 text-xs text-primary hover:underline"

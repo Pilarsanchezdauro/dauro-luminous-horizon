@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { ExternalLink, Globe, ShoppingBag, ShoppingCart, Truck, MapPin, Store } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { DISTRIBUTION_NETWORK, COUNTRIES_WITH_STORE, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
+import { AMERICA_COUNTRIES, EUROPE_COUNTRIES, COUNTRIES_WITH_STORE, TOTAL_COUNTRIES, EUROPE_COUNT } from "@/data/distributionNetwork";
 
 const distributionStores = COUNTRIES_WITH_STORE.map(c => ({
   flag: c.flag,
@@ -26,7 +26,27 @@ const storeStructuredData = {
     "addressCountry": "ES"
   },
   "areaServed": [
+    { "@type": "Place", "name": "España" },
     { "@type": "Place", "name": "Europa" },
+    { "@type": "Place", "name": "Alemania" },
+    { "@type": "Place", "name": "Andorra" },
+    { "@type": "Place", "name": "Austria" },
+    { "@type": "Place", "name": "Bélgica" },
+    { "@type": "Place", "name": "Chipre" },
+    { "@type": "Place", "name": "Dinamarca" },
+    { "@type": "Place", "name": "Estonia" },
+    { "@type": "Place", "name": "Finlandia" },
+    { "@type": "Place", "name": "Francia" },
+    { "@type": "Place", "name": "Grecia" },
+    { "@type": "Place", "name": "Países Bajos" },
+    { "@type": "Place", "name": "Hungría" },
+    { "@type": "Place", "name": "Irlanda" },
+    { "@type": "Place", "name": "Italia" },
+    { "@type": "Place", "name": "Luxemburgo" },
+    { "@type": "Place", "name": "Polonia" },
+    { "@type": "Place", "name": "Portugal" },
+    { "@type": "Place", "name": "Suecia" },
+    { "@type": "Place", "name": "Suiza" },
     { "@type": "Place", "name": "Estados Unidos" },
     { "@type": "Place", "name": "México" },
     { "@type": "Place", "name": "Argentina" },
@@ -79,7 +99,7 @@ const Tienda = () => {
                 Nuestros libros, en toda Europa, EE.UU. y Latinoamérica
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Disponibles en <strong className="text-foreground">España</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong> a través de distribuidores locales. Elige tu zona y recibe tu pedido con envío local.
+                Disponibles en <strong className="text-foreground">España</strong>, <strong className="text-foreground">toda Europa</strong>, <strong className="text-foreground">Estados Unidos</strong> y los principales países de <strong className="text-foreground">Latinoamérica</strong>. Elige tu zona y recibe tu pedido con envío local, sin aduanas.
               </p>
             </div>
           </header>
@@ -168,10 +188,38 @@ const Tienda = () => {
               <h2 id="distribuidores-red" className="text-2xl md:text-3xl font-bold text-foreground">Distribuidores y puntos de venta</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Trabajamos con distribuidores locales en cada país para garantizar disponibilidad en librerías físicas y marketplaces.
+              Producimos cada libro en su zona y lo entregamos con envío local, sin aduanas. En Europa imprimimos en España y enviamos a domicilio; en América trabajamos con distribuidores locales en librerías físicas y marketplaces.
             </p>
+
+            {/* Europa — envío a domicilio */}
+            <div className="mb-10">
+              <div className="flex items-center gap-2 mb-3">
+                <Truck className="h-5 w-5 text-primary" />
+                <h3 className="text-lg md:text-xl font-bold text-foreground">Europa — envío a domicilio</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
+                Impresión en España y entrega a domicilio en <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong>, sin aduanas, a través de nuestro socio de distribución Quares.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {EUROPE_COUNTRIES.map((c) => (
+                  <span
+                    key={c.country}
+                    className="inline-flex items-center gap-2 bg-card border border-border px-3.5 py-2 rounded-xl text-sm hover:border-primary/40 transition-colors"
+                  >
+                    <span className="text-lg leading-none">{c.flag}</span>
+                    <span className="font-medium text-foreground">{c.short}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* América — distribuidores locales */}
+            <div className="flex items-center gap-2 mb-4">
+              <MapPin className="h-5 w-5 text-primary" />
+              <h3 className="text-lg md:text-xl font-bold text-foreground">América — distribuidores locales</h3>
+            </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {DISTRIBUTION_NETWORK.map((c) => (
+              {AMERICA_COUNTRIES.map((c) => (
                 <div
                   key={c.country}
                   className="bg-card border border-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all"
@@ -225,7 +273,7 @@ const Tienda = () => {
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Puedo comprar desde cualquier país?</h3>
-                <p className="text-muted-foreground">Sí. Tenemos tiendas específicas para Estados Unidos y los principales países de Latinoamérica. Si tu país no aparece, puedes comprar en nuestra tienda de España, que envía a cualquier país, o escribirnos y te lo resolvemos.</p>
+                <p className="text-muted-foreground">Sí. Imprimimos en España y enviamos a domicilio en toda Europa, y tenemos tiendas específicas para Estados Unidos y los principales países de Latinoamérica. Si tu país no aparece, puedes comprar en nuestra tienda de España, que envía a cualquier país, o escribirnos y te lo resolvemos.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">¿Quién gestiona la distribución internacional?</h3>

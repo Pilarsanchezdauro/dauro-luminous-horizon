@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Globe, ExternalLink, Truck, MapPin, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DISTRIBUTION_NETWORK, ACTIVE_COUNTRIES, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
+import { DISTRIBUTION_NETWORK, ACTIVE_COUNTRIES, AMERICA_COUNTRIES, EUROPE_COUNTRIES, EUROPE_COUNT, TOTAL_COUNTRIES } from "@/data/distributionNetwork";
 
 interface GlobalDistributionBannerProps {
   /** "full" = homepage style with CTA. "compact" = inline for author pages. "mini" = single line for popups. "detailed" = full network with channels */
@@ -78,12 +78,35 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
               Dónde encontrar nuestros libros
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Trabajamos con distribuidores locales en cada país para que los lectores compren con envío local, sin aduanas y al mejor precio.
+              Producimos cada libro en su zona para que los lectores compren con envío local, sin aduanas y al mejor precio. En Europa imprimimos en España y enviamos a domicilio; en América trabajamos con distribuidores locales.
             </p>
           </div>
 
+          {/* Europa — envío a domicilio */}
+          <div className="mb-10">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Truck className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-bold text-foreground">Europa — envío a domicilio en {EUROPE_COUNT} países</h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {EUROPE_COUNTRIES.map((c) => (
+                <span
+                  key={c.country}
+                  className="inline-flex items-center gap-2 bg-card border border-border px-3.5 py-2 rounded-xl text-sm"
+                >
+                  <span className="text-lg leading-none">{c.flag}</span>
+                  <span className="font-medium text-foreground">{c.short}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <MapPin className="w-5 h-5 text-primary" />
+            <h3 className="text-lg font-bold text-foreground">América — distribuidores locales</h3>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {DISTRIBUTION_NETWORK.map((c) => (
+            {AMERICA_COUNTRIES.map((c) => (
               <div
                 key={c.country}
                 className="bg-card border border-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all"
