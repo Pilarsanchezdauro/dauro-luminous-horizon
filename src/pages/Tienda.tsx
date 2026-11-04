@@ -1,16 +1,19 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ExternalLink, Globe, ShoppingBag, ShoppingCart, Truck, MapPin, Store } from "lucide-react";
+import { ExternalLink, Globe, ShoppingBag, Truck, MapPin, Store } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AMERICA_COUNTRIES, EUROPE_COUNTRIES, COUNTRIES_WITH_STORE, TOTAL_COUNTRIES, EUROPE_COUNT } from "@/data/distributionNetwork";
 
-const distributionStores = COUNTRIES_WITH_STORE.map(c => ({
-  flag: c.flag,
-  name: c.country,
-  subtitle: c.country === "España" ? "Distribuidores: " + c.distributor : c.distributor,
-  url: c.storeUrl!,
-}));
+// España es la tienda directa (sección "Compra directa"); aquí solo las de América.
+const distributionStores = COUNTRIES_WITH_STORE
+  .filter(c => c.country !== "España")
+  .map(c => ({
+    flag: c.flag,
+    name: c.country,
+    subtitle: c.distributor,
+    url: c.storeUrl!,
+  }));
 
 const storeStructuredData = {
   "@context": "https://schema.org",
@@ -108,13 +111,13 @@ const Tienda = () => {
           <section className="mb-20" aria-labelledby="compra-directa">
             <div className="flex items-center gap-3 mb-3">
               <ShoppingBag className="h-6 w-6 text-primary" />
-              <h2 id="compra-directa" className="text-2xl md:text-3xl font-bold text-foreground">Compra directa</h2>
+              <h2 id="compra-directa" className="text-2xl md:text-3xl font-bold text-foreground">Compra directa — España y Europa</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Nuestras tiendas propias con todo el catálogo, gestionadas directamente por Grupo Dauro. Atención personalizada y envío desde España.
+              Nuestra tienda propia con todo el catálogo, gestionada directamente por Grupo Dauro. Envío desde España a toda Europa y atención personalizada.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-              {/* Los dos botones abren la tienda Odoo (tiendaspain.grupodauro.com) en pestaña nueva */}
+            <div className="max-w-md">
+              {/* Única tienda directa: la tienda Odoo (tiendaspain.grupodauro.com) */}
               <a
                 href="https://tiendaspain.grupodauro.com/"
                 target="_blank"
@@ -124,24 +127,9 @@ const Tienda = () => {
                 <span className="text-5xl">🇪🇸</span>
                 <div className="flex-1">
                   <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
-                    Grupo Dauro
+                    Tienda Grupo Dauro
                   </span>
-                  <span className="text-sm text-muted-foreground">Catálogo completo</span>
-                </div>
-                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </a>
-              <a
-                href="https://tiendaspain.grupodauro.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-5 p-7 rounded-2xl border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg transition-all duration-300"
-              >
-                <ShoppingCart className="h-12 w-12 text-muted-foreground group-hover:text-primary transition-colors" />
-                <div className="flex-1">
-                  <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors block">
-                    Tienda Online
-                  </span>
-                  <span className="text-sm text-muted-foreground">Compra directa con envío desde España</span>
+                  <span className="text-sm text-muted-foreground">Todo el catálogo · envío a España y a toda Europa</span>
                 </div>
                 <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </a>
@@ -152,10 +140,10 @@ const Tienda = () => {
           <section aria-labelledby="distribucion-internacional">
             <div className="flex items-center gap-3 mb-3">
               <Truck className="h-6 w-6 text-primary" />
-              <h2 id="distribucion-internacional" className="text-2xl md:text-3xl font-bold text-foreground">Tiendas online internacionales</h2>
+              <h2 id="distribucion-internacional" className="text-2xl md:text-3xl font-bold text-foreground">Tiendas online en América</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Nuestras tiendas internacionales por país. Compra desde el tuyo con envío local y sin aduanas.
+              Tiendas propias por país en América. Compra desde el tuyo con impresión y envío local, sin aduanas.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {distributionStores.map((store) => (
