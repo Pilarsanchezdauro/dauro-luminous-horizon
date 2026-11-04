@@ -145,7 +145,7 @@ const Tienda = () => {
                   <h3 className="text-lg md:text-xl font-bold text-foreground">2 · España y toda Europa</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Imprimimos en España y enviamos a domicilio, <strong className="text-foreground">sin aduanas</strong>, en España y <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong> más. Pídelo en tu librería habitual o escríbenos.
+                  Imprimimos en España y enviamos a domicilio, <strong className="text-foreground">sin aduanas</strong>, en España y <strong className="text-foreground">{EUROPE_COUNT} países europeos</strong> más. Compra online en nuestra tienda europea.
                 </p>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   <span className="inline-flex items-center gap-1.5 bg-background border border-border px-2.5 py-1 rounded-lg text-xs">
@@ -159,9 +159,17 @@ const Tienda = () => {
                     </span>
                   ))}
                 </div>
-                <div className="mt-auto text-sm">
-                  <a href="mailto:info@grupodauro.com" className="text-primary font-medium hover:underline">info@grupodauro.com</a>
-                  <span className="text-muted-foreground"> · WhatsApp +34 640 91 90 90</span>
+                <a
+                  href="https://tienda.grupodauro.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/40 text-primary font-semibold px-5 py-3 hover:bg-primary/5 transition mb-3"
+                >
+                  <span>🇪🇺</span> Ir a la tienda (Europa)
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <div className="mt-auto text-xs text-muted-foreground">
+                  También en tu librería habitual · <a href="mailto:info@grupodauro.com" className="text-primary hover:underline">info@grupodauro.com</a>
                 </div>
               </div>
             </div>
