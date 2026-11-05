@@ -27,24 +27,115 @@ const TRAMOS_INFORME = [
   { extension: 'De 401 a 500 páginas', precio: '295 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18041' },
 ];
 
-const INCLUDED_FEATURES = [
-  { icon: FileText, title: 'Maquetación profesional interior', description: 'Diseño tipográfico cuidado y legible' },
-  { icon: Palette, title: 'Diseño de portada personalizada', description: 'Portada única creada para tu libro' },
-  { icon: Shield, title: 'ISBN y alta legal', description: 'Registro oficial en la Agencia del ISBN' },
-  { icon: BookOpen, title: 'Ebook gratis incluido', description: 'Versión digital lista para todas las plataformas' },
-  { icon: Globe, title: 'Distribución global', description: 'Amazon, Casa del Libro, Fnac, El Corte Inglés, Kobo, Apple Books...' },
-  { icon: Package, title: 'Impresión bajo demanda', description: 'Sin stock ni inversión en ejemplares' },
-  { icon: CreditCard, title: 'Financiación sin intereses', description: 'Pago en 2 plazos sin coste adicional' },
-  { icon: BarChart3, title: 'Panel de ventas (opcional)', description: 'Consulta tus ventas en tiempo real' },
+// Los servicios editoriales son trabajos que se contratan SIN publicar con
+// nosotros: el autor encarga, paga y se lleva el trabajo. Por eso aqui no hay
+// ISBN, ni deposito legal, ni distribucion, ni panel de ventas: todo eso solo
+// existe cuando el libro sale con el sello de Dauro, y eso es la otra puerta.
+const FAMILIAS_SERVICIO = [
+  {
+    titulo: 'Saber qué tienes entre manos',
+    entradilla: 'Antes de mover la obra, o antes de seguir escribiéndola.',
+    servicios: [
+      {
+        nombre: 'Informe de valoración',
+        texto: 'Cinco o seis páginas del comité: arquitectura y trama, personajes, rigor documental, estilo y viabilidad, con una nota de potencial y el plan de trabajo que necesitaría.',
+      },
+      {
+        nombre: 'Lectura de diagnóstico',
+        texto: 'Una lectura y una respuesta breve: si la obra se sostiene y qué es lo primero que habría que resolver. Para quien no quiere el informe entero.',
+      },
+      {
+        nombre: 'Informe de marcas de inteligencia artificial',
+        texto: 'Si has escrito con ayuda de IA, te decimos dónde se nota: fórmulas que se repiten, vocabulario corto, diálogos mal cerrados, capítulos sin acontecimiento. Con las cifras del texto, no con impresiones.',
+      },
+      {
+        nombre: 'Informe de similitud',
+        texto: 'Comparamos tu obra con lo publicado para que sepas a qué se parece y en qué se distingue antes de que te lo diga otro.',
+      },
+    ],
+  },
+  {
+    titulo: 'Trabajar el texto',
+    entradilla: 'Lo hace nuestro equipo y tú das el visto bueno. Siempre sobre tu archivo, con control de cambios: ves cada palabra que se quita y cada palabra que se pone.',
+    servicios: [
+      {
+        nombre: 'Corrección ortotipográfica',
+        texto: 'Ortografía, puntuación, rayas de diálogo, comillas, cursivas y todo lo que delata a un texto sin revisar.',
+      },
+      {
+        nombre: 'Corrección de estilo',
+        texto: 'Lo anterior y la prosa: repeticiones, muletillas, frases que no se sostienen, párrafos que sobran.',
+      },
+      {
+        nombre: 'Intervención editorial',
+        texto: 'La más profunda: ajustar la extensión, rehacer un desenlace, cerrar el arco de un personaje, redistribuir capítulos. No se corrige, se reconstruye.',
+      },
+      {
+        nombre: 'Escritura por encargo',
+        texto: 'Tú pones la historia, los materiales y la voz; el libro lo escribimos nosotros con tu visto bueno capítulo a capítulo.',
+      },
+      {
+        nombre: 'Traducción',
+        texto: 'A los principales idiomas europeos, con tarifa por palabra. Más abajo tienes los precios.',
+      },
+      {
+        nombre: 'Adaptación a guion',
+        texto: 'De tu novela a guion de cine o a biblia de serie, con el tratamiento y las escaletas.',
+      },
+    ],
+  },
+  {
+    titulo: 'Convertirlo en un libro',
+    entradilla: 'El objeto terminado, listo para que lo lleves donde quieras.',
+    servicios: [
+      {
+        nombre: 'Maquetación de interior',
+        texto: 'Con la tipografía y la caja de nuestro catálogo, o con la que nos pidas. Entregamos el archivo listo para imprenta.',
+      },
+      {
+        nombre: 'Cubierta y portada',
+        texto: 'Diseño original a partir de un briefing contigo, con sus revisiones y los archivos finales para papel y para pantalla.',
+      },
+      {
+        nombre: 'Conversión a ebook',
+        texto: 'EPUB con su cubierta, su índice y su maquetación, listo para subir a la plataforma que elijas.',
+      },
+      {
+        nombre: 'Producción de audiolibro',
+        texto: 'Tu libro leído, con voz de inteligencia artificial y los archivos listos para distribuir.',
+      },
+    ],
+  },
+  {
+    titulo: 'Darlo a conocer',
+    entradilla: 'Lo que hace falta cuando el libro ya existe.',
+    servicios: [
+      {
+        nombre: 'Ficha de Amazon KDP',
+        texto: 'Título y subtítulo, descripción, las siete palabras clave, las tres categorías y el precio. Lista para pegar.',
+      },
+      {
+        nombre: 'Web del libro',
+        texto: 'Una página propia con su dominio: el libro, el autor, dónde comprarlo y la agenda de presentaciones.',
+      },
+      {
+        nombre: 'Booktrailer',
+        texto: 'El vídeo de presentación de tu obra, con guion, montaje y versiones para cada red.',
+      },
+      {
+        nombre: 'Dossier de prensa',
+        texto: 'Nota de prensa, biografía, sinopsis y material gráfico para medios, librerías y presentaciones.',
+      },
+    ],
+  },
 ];
 
 const PROCESS_STEPS = [
-  { step: 1, title: 'Envías tu manuscrito', description: 'Nos cuentas tu proyecto y recibimos tu texto.' },
-  { step: 2, title: 'Presupuesto personalizado', description: 'Te enviamos precio exacto según páginas, plazo y servicios.' },
-  { step: 3, title: 'Revisión y maquetación', description: 'Trabajamos tu libro con calidad artesanal y tecnológica.' },
-  { step: 4, title: 'Diseño de portada', description: 'Portada profesional a tu gusto, con revisiones incluidas.' },
-  { step: 5, title: 'ISBN y distribución', description: 'Alta oficial en todas las plataformas de venta.' },
-  { step: 6, title: 'Tu libro en tus manos', description: 'Recíbelo impreso y en digital. Listo para vender.' },
+  { step: 1, title: 'Nos cuentas qué necesitas', description: 'El texto, en qué punto está y qué trabajo tienes en mente.' },
+  { step: 2, title: 'Lo miramos y te damos precio', description: 'Presupuesto cerrado por escrito, sin ampliaciones a mitad de camino.' },
+  { step: 3, title: 'Trabajamos sobre tu archivo', description: 'Con control de cambios: ves cada decisión y la aceptas o la rechazas.' },
+  { step: 4, title: 'Lo revisas tú', description: 'Nada se da por bueno sin tu visto bueno. La última palabra es tuya.' },
+  { step: 5, title: 'Te entregamos el trabajo', description: 'Los archivos son tuyos y haces con ellos lo que quieras.' },
 ];
 
 
@@ -333,21 +424,20 @@ export default function Autoedicion() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Publica tu primer libro con{' '}
-              <span className="text-primary">calidad profesional</span>
-            </h1>
+              Servicios editoriales,{' '}
+              <span className="text-primary">sin publicar con nosotros</span></h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-              Servicios editoriales artesanales y tecnológicos. Precios justos. Plazos a tu medida.
+              Valoramos, corregimos, maquetamos, diseñamos la cubierta y traducimos. Tú encargas el trabajo, lo pagas y te lo llevas: el libro es tuyo y lo publicas donde quieras.
             </p>
             
             <p className="text-lg text-primary font-medium mb-4">
-              "Tu libro, con calidad de bestseller. Si nos enamora tu obra, la editamos sin coste para ti."
+              ¿Lo que quieres es publicar con nuestro sello? Eso es otra cosa y no se paga igual: te lo contamos abajo.
             </p>
 
             <p className="text-base text-muted-foreground mb-8 flex items-center justify-center gap-2">
               <Globe className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>Tus libros disponibles en <strong className="text-foreground">11 países</strong>: Europa, EE.UU. y Latinoamérica</span>
+              <span>Trabajamos con autores de España, Europa y América, y todo el proceso se hace a distancia</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -371,9 +461,9 @@ export default function Autoedicion() {
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                 <Award className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Calidad bestseller</h3>
+              <h3 className="text-xl font-bold text-foreground mb-3">El criterio de la casa</h3>
               <p className="text-muted-foreground">
-                Maquetación profesional, portada de autor, ISBN y distribución real en <strong className="text-foreground">11 países</strong> de Europa, EE.UU. y Latinoamérica.
+                El mismo equipo y el mismo criterio que aplicamos a los libros de nuestro catálogo. <strong className="text-foreground">No hay una versión barata del trabajo.</strong>
               </p>
             </div>
 
@@ -383,7 +473,7 @@ export default function Autoedicion() {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Precios competitivos</h3>
               <p className="text-muted-foreground">
-                Más económico que los grandes grupos editoriales, sin costes ocultos ni sorpresas.
+                Presupuesto cerrado antes de empezar. Ni costes ocultos ni ampliaciones a mitad de camino.
               </p>
             </div>
 
@@ -391,38 +481,62 @@ export default function Autoedicion() {
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                 <Clock className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Tú decides el ritmo</h3>
+              <h3 className="text-xl font-bold text-foreground mb-3">Tú decides qué contratas</h3>
               <p className="text-muted-foreground">
-                Elige tu plazo de entrega y ajusta el precio según tu necesidad. Desde 30 días.
+                Encargas lo que necesitas y cuando lo necesitas: un servicio, varios, o todos en orden.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* What's Included */}
+      {/* El catalogo de servicios sueltos: lo que se puede encargar sin publicar. */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-14 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Qué incluye tu publicación
+              Qué puedes encargarnos
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Todo lo que necesitas para publicar tu libro con éxito
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Cada uno de estos trabajos se contrata por separado. Puedes pedir uno solo, varios o
+              todos, y en cualquier momento: con el manuscrito a medias, terminado o ya publicado
+              por tu cuenta.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {INCLUDED_FEATURES.map((feature, index) => (
-              <div 
-                key={index}
-                className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors"
-              >
-                <feature.icon className="w-8 h-8 text-primary mb-4" />
-                <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+          <div className="max-w-5xl mx-auto space-y-12">
+            {FAMILIAS_SERVICIO.map((familia) => (
+              <div key={familia.titulo}>
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-2">
+                  {familia.titulo}
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-3xl">{familia.entradilla}</p>
+                <div className="grid md:grid-cols-2 gap-5">
+                  {familia.servicios.map((srv) => (
+                    <div
+                      key={srv.nombre}
+                      className="p-6 rounded-2xl border border-border bg-card hover:border-primary/30 transition-colors"
+                    >
+                      <h4 className="font-bold text-foreground mb-2">{srv.nombre}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{srv.texto}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="max-w-5xl mx-auto mt-12 p-6 rounded-2xl border border-border bg-muted/40">
+            <h3 className="font-bold text-foreground mb-2">Lo que no va por aquí</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              El <strong className="text-foreground">ISBN</strong>, el{' '}
+              <strong className="text-foreground">depósito legal</strong>, la{' '}
+              <strong className="text-foreground">distribución</strong> en librerías y el{' '}
+              <strong className="text-foreground">panel de ventas</strong> no se contratan sueltos,
+              y no es por capricho: el ISBN identifica al editor, y si lo ponemos nosotros el editor
+              somos nosotros. Todo eso existe cuando el libro sale con el sello de Dauro, y entonces
+              lo asumimos nosotros sin que te cueste nada.
+            </p>
           </div>
         </div>
       </section>
@@ -802,7 +916,7 @@ export default function Autoedicion() {
               Proceso paso a paso
             </h2>
             <p className="text-xl text-muted-foreground">
-              Así es como publicamos tu libro
+              Así trabajamos cada encargo
             </p>
           </div>
 
