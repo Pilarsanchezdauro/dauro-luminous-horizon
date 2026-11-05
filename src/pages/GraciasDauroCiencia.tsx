@@ -87,7 +87,7 @@ export default function GraciasDauroCiencia() {
                 <div>
                   <h3 className="font-semibold text-lg">Alcance Internacional</h3>
                   <p className="text-muted-foreground text-sm">
-                    Distribución en +4.000 librerías de España, Amazon Global, Casa del Libro, FNAC y las principales plataformas digitales.
+                    Distribución en +4.000 librerías de España y Portugal, envío local en toda Europa y América, Amazon Global, Casa del Libro, FNAC y las principales plataformas digitales.
                   </p>
                 </div>
               </div>

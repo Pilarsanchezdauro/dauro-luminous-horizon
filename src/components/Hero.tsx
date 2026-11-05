@@ -62,7 +62,7 @@ const Hero = () => {
           <span className="italic text-[#E31B23]">CUALQUIER LIBRO</span>
         </h1>
         <p className="text-sm sm:text-base md:text-[1.375rem] font-normal leading-relaxed md:leading-[1.4] text-[#333333] mb-6 md:mb-7 max-w-full md:max-w-[840px] mx-auto animate-fade-in-up-delayed text-center px-4 break-words">
-          Los que publicamos, los defendemos. Más de dos mil obras editadas y en las librerías de España y América, con el criterio de una editorial que elige.
+          Los que publicamos, los defendemos. Más de dos mil obras editadas y en las librerías de España, Europa y América, con el criterio de una editorial que elige.
         </p>
         <Link to="/valoracion">
           <Button

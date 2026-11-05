@@ -74,7 +74,7 @@ export const UltimasPublicaciones = () => {
           Nuestras últimas <span className="text-primary">publicaciones</span>
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Libros que hemos editado y llevado a las librerías de España y América. Esto es
+          Libros que hemos editado y llevado a las librerías de España, Europa y América. Esto es
           lo que hacemos cuando una obra está lista.
         </p>
       </div>

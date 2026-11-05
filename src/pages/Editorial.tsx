@@ -12,6 +12,7 @@ import libroHorizonte from "@/assets/libro-horizonte-interior.png";
 import libroBesos from "@/assets/libro-besos.png";
 import libroBoabdil from "@/assets/libro-boabdil.png";
 import SubmitWorkForm from "@/components/SubmitWorkForm";
+import { AMERICA_COUNTRIES, EUROPE_COUNT } from "@/data/distributionNetwork";
 import GuideDownloadForm from "@/components/GuideDownloadForm";
 import mascotLogo from "@/assets/mascot.png";
 
@@ -36,7 +37,7 @@ const Editorial = () => {
     "knowsAbout": ["Edición de libros", "Publicación", "Servicios editoriales", "Distribución editorial"],
     "name": "Grupo Dauro",
     "url": "https://www.grupodauro.com/grupo-dauro/editorial",
-    "description": "Editorial con más de 2000 obras publicadas y distribución en 4000 librerías de España y América. Si tu obra está terminada, apostamos por ella sin coste; si necesita trabajo, son servicios editoriales. Envía tu manuscrito.",
+    "description": "Editorial con más de 2000 obras publicadas y distribución en 4000 librerías de España y Portugal, más toda Europa, Estados Unidos y Latinoamérica. Si tu obra está terminada, apostamos por ella sin coste; si necesita trabajo, son servicios editoriales. Envía tu manuscrito.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Granada",
@@ -91,7 +92,7 @@ const Editorial = () => {
         "name": "¿En qué librerías estarán disponibles mis libros?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal, además de Amazon, Casa del Libro, FNAC y El Corte Inglés."
+          "text": "Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal, además de Amazon, Casa del Libro, FNAC y El Corte Inglés. Y llegan con envío local a toda Europa, Estados Unidos y Latinoamérica."
         }
       }
     ]
@@ -100,8 +101,8 @@ const Editorial = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Editorial Dauro | Edición y Distribución de Libros en España y América"
-        description="¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales con presupuesto. Distribución en 4.000 librerías de España y América. Más de 2.000 obras publicadas."
+        title="Editorial Dauro | Edición y Distribución de Libros en España, Europa y América"
+        description="¿Quieres publicar tu libro? Si tu manuscrito está terminado, apostamos por él y lo editamos sin coste para ti; si necesita trabajo, son servicios editoriales con presupuesto. Distribución en 4.000 librerías de España y Portugal, y envío local en toda Europa, EE.UU. y Latinoamérica. Más de 2.000 obras publicadas."
         keywords="publicar libro, editorial España, edición de libros, cómo publicar mi libro, enviar manuscrito, publicar novela, editar libro, servicios editoriales, publicar libro con editorial, coste publicar libro, ISBN libro"
         url="https://www.grupodauro.com/grupo-dauro/editorial"
         structuredData={structuredData}
@@ -128,7 +129,7 @@ const Editorial = () => {
             Editorial profesional para autores exigentes
           </p>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Más de 2.000 obras publicadas. Distribución en 4.000 librerías de España y Portugal. Tu libro en Amazon, Casa del Libro, FNAC y El Corte Inglés.
+            Más de 2.000 obras publicadas. Distribución en 4.000 librerías de España y Portugal, y envío local en toda Europa, EE.UU. y Latinoamérica. Tu libro en Amazon, Casa del Libro, FNAC y El Corte Inglés.
           </p>
         </div>
       </section>
@@ -224,7 +225,7 @@ const Editorial = () => {
               Distribución Global
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed text-center mb-8 max-w-3xl mx-auto relative z-10">
-              Nuestros libros están disponibles en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online. Además, contamos con <strong className="text-foreground">distribución directa en toda Europa (excepto Reino Unido), Estados Unidos y Latinoamérica</strong> a través de distribuidores locales en cada país.
+              Nuestros libros están en más de 4.000 librerías de España y Portugal y en todas las grandes redes de venta online. Y fuera de ahí llegan igual: <strong className="text-foreground">{EUROPE_COUNT} países de Europa</strong> con impresión en España y envío a domicilio sin aduanas, y <strong className="text-foreground">{AMERICA_COUNTRIES.length} de América</strong> con impresión y distribuidor en cada país.
             </p>
             <div className="flex flex-wrap justify-center gap-6 relative z-10 mb-8">
               <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
@@ -250,9 +251,14 @@ const Editorial = () => {
             </div>
             {/* Banderas de distribución internacional */}
             <div className="flex flex-wrap justify-center gap-3 relative z-10">
-              {["🇪🇺 Europa", "🇺🇸 EE.UU.", "🇲🇽 México", "🇦🇷 Argentina", "🇨🇴 Colombia", "🇨🇱 Chile", "🇪🇨 Ecuador", "🇧🇴 Bolivia", "🇨🇷 Costa Rica", "🇬🇹 Guatemala", "🇻🇪 Venezuela"].map((country) => (
-                <span key={country} className="inline-flex items-center gap-1.5 bg-background/60 border border-border px-3 py-1.5 rounded-full text-sm font-medium text-foreground">
-                  {country}
+              {[
+                { flag: "🇪🇸", label: "España" },
+                { flag: "🇪🇺", label: `Europa · ${EUROPE_COUNT} países` },
+                ...AMERICA_COUNTRIES.map((c) => ({ flag: c.flag, label: c.short })),
+              ].map(({ flag, label }) => (
+                <span key={label} className="inline-flex items-center gap-1.5 bg-background/60 border border-border px-3 py-1.5 rounded-full text-sm font-medium text-foreground">
+                  <span aria-hidden="true">{flag}</span>
+                  {label}
                 </span>
               ))}
             </div>
