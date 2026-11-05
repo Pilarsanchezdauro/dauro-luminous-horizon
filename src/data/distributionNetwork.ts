@@ -1,7 +1,9 @@
 /**
  * Red de distribución internacional de Grupo Dauro.
  * Fuente: Quares (distribuidora internacional).
- * - América: impresión bajo demanda (POD) en cada país con distribuidor local y tienda propia.
+ * - América: impresión bajo demanda (POD) en cada país con distribuidor local y tienda propia,
+ *   salvo Nicaragua y Honduras, donde la imprenta local está en negociación y el libro llega
+ *   de momento por Amazon (confirmado por Pilar el 5-11-2026).
  * - Europa: impresión en España y envío a domicilio en toda Europa (sin aduanas) vía Quares.
  * Última actualización: noviembre 2026 (ampliación a los países europeos de Quares).
  */
@@ -195,8 +197,9 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     country: "Nicaragua",
     short: "Nicaragua",
     region: "Latinoamérica",
-    distributor: "Distribución mediante acuerdos locales",
-    channels: [],
+    distributor: "Amazon",
+    channels: [{ name: "Amazon" }],
+    note: "Imprenta local en negociación. De momento el libro llega por Amazon y en edición digital.",
     expanding: true,
   },
   {
@@ -204,8 +207,9 @@ export const DISTRIBUTION_NETWORK: CountryDistribution[] = [
     country: "Honduras",
     short: "Honduras",
     region: "Latinoamérica",
-    distributor: "Distribución mediante acuerdos locales",
-    channels: [],
+    distributor: "Amazon",
+    channels: [{ name: "Amazon" }],
+    note: "Imprenta local en negociación. De momento el libro llega por Amazon y en edición digital.",
     expanding: true,
   },
 ];

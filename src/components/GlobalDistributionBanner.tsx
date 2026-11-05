@@ -56,7 +56,10 @@ export const GlobalDistributionBanner = ({ variant = "full" }: GlobalDistributio
           ))}
         </div>
         <p className="text-sm text-muted-foreground">
-          Tus lectores compran con <strong className="text-foreground">envío local</strong> y sin aduanas desde su propio país.
+          En casi todos estos países tus lectores compran con{" "}
+          <strong className="text-foreground">envío local</strong> y sin aduanas desde su propio país.
+          En <strong className="text-foreground">Nicaragua y Honduras</strong> aún no imprimimos —estamos
+          en ello—: de momento el libro llega allí por Amazon y en edición digital.
         </p>
         <Link to="/tienda" className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold mt-3 hover:underline">
           Ver red completa de distribución <ExternalLink className="w-3.5 h-3.5" />

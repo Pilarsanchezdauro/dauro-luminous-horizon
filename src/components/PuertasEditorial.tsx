@@ -58,12 +58,14 @@ export const PuertasEditorial = () => {
             Le pasa a casi todos los manuscritos. Si hay que corregirlo, estructurarlo o
             intervenirlo, eso son <strong className="text-foreground">servicios
             editoriales</strong>: los hacemos nosotros, con un{" "}
-            <strong className="text-foreground">precio claro que conoces desde el
-            principio</strong>. Ninguna editorial reescribe gratis un texto sin terminar.
+            <strong className="text-foreground">presupuesto cerrado que conoces antes de
+            empezar</strong>. El precio depende de lo que tu obra necesite, así que primero
+            la leemos y después te lo decimos. Ninguna editorial reescribe gratis un texto
+            sin terminar.
           </p>
           <Link to="/servicios-editoriales" className="mt-auto">
             <Button className="w-full bg-primary hover:bg-primary/90">
-              Calcula tu presupuesto
+              Envíanos tu manuscrito
             </Button>
           </Link>
         </div>

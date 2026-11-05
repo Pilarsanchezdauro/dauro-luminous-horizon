@@ -8,13 +8,24 @@ import {
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import { AutoedicionCalculator } from '@/components/AutoedicionCalculator';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import SubmitWorkForm from '@/components/SubmitWorkForm';
 import { PuertasEditorial } from '@/components/PuertasEditorial';
 import GuideDownloadForm from '@/components/GuideDownloadForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { GlobalDistributionBanner } from '@/components/GlobalDistributionBanner';
+
+// Informe de valoración. Vino de /valoracion el 5-11-2026: allí chocaba con el envío
+// gratuito de la obra, y su sitio es esta página, que es la de los servicios de pago.
+const TRAMOS_INFORME = [
+  { extension: 'Hasta 100 páginas', precio: '90 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18037' },
+  { extension: 'De 101 a 200 páginas', precio: '145 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18038' },
+  { extension: 'De 201 a 300 páginas', precio: '195 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18039' },
+  { extension: 'De 301 a 400 páginas', precio: '245 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18040' },
+  { extension: 'De 401 a 500 páginas', precio: '295 €', url: 'https://tiendaspain.grupodauro.com/shop/product/18041' },
+];
 
 const INCLUDED_FEATURES = [
   { icon: FileText, title: 'Maquetación profesional interior', description: 'Diseño tipográfico cuidado y legible' },
@@ -266,6 +277,7 @@ function TranslationSection() {
 
 export default function Autoedicion() {
   const formRef = useRef<HTMLDivElement>(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -328,7 +340,7 @@ export default function Autoedicion() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg px-8 py-6" onClick={scrollToForm}>
-                Calcula tu presupuesto
+                Envíanos tu manuscrito
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 py-6" onClick={scrollToForm}>
@@ -413,19 +425,96 @@ export default function Autoedicion() {
       {/* Dos puertas: editorial tradicional vs servicios editoriales */}
       <PuertasEditorial />
 
-      {/* Budget Calculator Section */}
+      {/* El precio sale de la obra, no de un formulario que rellena el autor: aquí va el
+          envío del manuscrito, y el presupuesto se lo damos después de leerlo. */}
       <section className="py-16 bg-muted/30" ref={formRef}>
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Calcula tu presupuesto
+              ¿Cuánto cuesta? Depende de tu libro
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Obtén una estimación instantánea del coste de publicar tu libro
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              No es lo mismo un texto que solo necesita una corrección ortotipográfica que uno
+              al que hay que reconstruirle la estructura. Por eso no te damos un precio antes
+              de leerte: te damos{' '}
+              <strong className="text-foreground">el precio de tu libro</strong>, en un
+              presupuesto cerrado y sin ampliaciones a mitad de camino.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+              Envíanos la obra y te diremos qué necesita y cuánto cuesta. Este paso es gratuito
+              y no te compromete a nada.
             </p>
           </div>
 
-          <AutoedicionCalculator />
+          <div className="flex justify-center">
+            <Button size="lg" className="text-lg px-8 py-6" onClick={() => setIsFormOpen(true)}>
+              Envíanos tu manuscrito
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* El informe de valoración: un servicio aparte, por escrito y de pago. */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+              ¿Y si quieres el diagnóstico por escrito?
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+              La respuesta a tu envío es gratuita y te dice si publicamos, si la obra no encaja o
+              qué trabajo necesitaría. Si además quieres el{' '}
+              <strong className="text-foreground">análisis completo por escrito</strong>, eso es un
+              informe de valoración y se contrata aparte.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              De cinco a seis páginas en las que nuestro comité analiza la obra apartado por
+              apartado —arquitectura y trama, personajes, rigor documental, estilo y viabilidad—,
+              con una nota de potencial y el plan de trabajo que necesitaría. Lo tienes en una
+              semana.{' '}
+              <strong className="text-foreground">
+                Si después nos contratas el trabajo editorial dentro de los treinta días
+                siguientes, el importe se te descuenta íntegro.
+              </strong>
+            </p>
+
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
+              {TRAMOS_INFORME.map((t, i) => (
+                <div
+                  key={t.extension}
+                  className={`flex flex-wrap items-center justify-between gap-4 p-5 ${
+                    i !== TRAMOS_INFORME.length - 1 ? 'border-b border-border' : ''
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <FileText className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-foreground">{t.extension}</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-lg font-bold text-foreground">{t.precio}</span>
+                    <a
+                      href={t.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 rounded-full text-sm font-medium transition-colors"
+                    >
+                      Contratar
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground mt-4">
+              Una página estándar son 347 palabras. Para obras de más de 500 páginas, escríbenos a{' '}
+              <a href="mailto:info@grupodauro.com" className="text-primary hover:underline">
+                info@grupodauro.com
+              </a>{' '}
+              y te pasamos el precio. El informe es un diagnóstico privado para ti: no es un aval ni
+              una recomendación ante terceros.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -792,6 +881,19 @@ export default function Autoedicion() {
           </div>
         </div>
       </section>
+
+      {/* El formulario va detras de un boton: la pagina queda limpia y el autor lo abre
+          cuando ya ha decidido mandarnos la obra. */}
+      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-playfair">
+              Envíanos tu manuscrito
+            </DialogTitle>
+          </DialogHeader>
+          <SubmitWorkForm onSuccess={() => setIsFormOpen(false)} />
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>

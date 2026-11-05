@@ -1,24 +1,22 @@
 import { Link } from "react-router-dom";
-import { FileSearch, Clock, CheckCircle2, XCircle, BookOpen, Euro, ArrowRight } from "lucide-react";
+import { FileSearch, Clock, CheckCircle2, XCircle, Euro, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { PuertasEditorial } from "@/components/PuertasEditorial";
 import { SEO } from "@/components/SEO";
 
 /**
  * Cómo valoramos una obra (/valoracion).
- * Publica el embudo acordado el 20-sep-2026: filtro gratuito de 48 h con tres salidas,
- * informe de valoración de pago por tramos de extensión (enlaces de compra en la tienda),
- * y las dos formas de pagar el trabajo editorial: en dinero o en ejemplares.
+ * Esta pagina es el EMBUDO GRATUITO y no lleva ni un precio: el autor envia la obra,
+ * la leemos en 48 h y le damos una de tres respuestas. Si necesita trabajo editorial, se
+ * lo decimos y le pasamos el presupuesto.
+ *
+ * Decidido por Pilar el 5-11-2026:
+ *  - El informe de valoracion de pago se fue a /servicios-editoriales. Aqui chocaba:
+ *    no se puede pedir la obra gratis y cobrar por leerla en la misma pagina.
+ *  - Pagar el trabajo editorial en ejemplares ya NO es una opcion.
+ *  - El bloque de las dos puertas no va al final: la pagina entera ya las explica.
  */
 
-const TRAMOS = [
-  { extension: "Hasta 100 páginas", precio: "90 €", url: "https://tiendaspain.grupodauro.com/shop/product/18037" },
-  { extension: "De 101 a 200 páginas", precio: "145 €", url: "https://tiendaspain.grupodauro.com/shop/product/18038" },
-  { extension: "De 201 a 300 páginas", precio: "195 €", url: "https://tiendaspain.grupodauro.com/shop/product/18039" },
-  { extension: "De 301 a 400 páginas", precio: "245 €", url: "https://tiendaspain.grupodauro.com/shop/product/18040" },
-  { extension: "De 401 a 500 páginas", precio: "295 €", url: "https://tiendaspain.grupodauro.com/shop/product/18041" },
-];
 
 const SALIDAS = [
   {
@@ -37,7 +35,7 @@ const SALIDAS = [
     icono: FileSearch,
     titulo: "Tiene recorrido",
     texto:
-      "Hay trabajo por hacer antes de publicarla. Qué trabajo y cuánto es lo que responde nuestro informe de valoración.",
+      "Hay trabajo por hacer antes de publicarla. Te decimos qué es y te pasamos el presupuesto, sin coste y sin compromiso.",
   },
 ];
 
@@ -46,7 +44,7 @@ const Valoracion = () => {
     <>
       <SEO
         title="Publica tu libro con Dauro | Cómo valoramos tu obra — Grupo Dauro"
-        description="Envía quince páginas y te respondemos en 48 horas: si tu obra no encaja, si apostamos por ella y la editamos sin coste para ti, o si merece un informe de valoración. El informe cuesta desde 90 € según la extensión y se descuenta íntegro si después contratas el trabajo editorial."
+        description="Envíanos tu obra entera y te respondemos en 48 horas, sin coste: te decimos si no encaja, si apostamos por ella y la editamos sin coste para ti, o si necesita trabajo editorial antes de publicarse. En ese caso te explicamos cuál y te pasamos el presupuesto."
         keywords="cómo publicar un libro, publicar tu libro, enviar manuscrito a editorial, informe de valoración editorial, valoración de manuscritos, servicios editoriales, intervención editorial, publicar novela, Grupo Dauro"
         url="https://www.grupodauro.com/valoracion"
       />
@@ -67,7 +65,7 @@ const Valoracion = () => {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
                 Leemos todo lo que nos llega, pero no publicamos todo lo que leemos. Aquí tienes,
-                sin letra pequeña, lo que hacemos con tu manuscrito desde que nos lo mandas.
+                sin letra pequeña, lo que hacemos con tu manuscrito desde que nos lo envías.
               </p>
             </div>
           </div>
@@ -86,14 +84,19 @@ const Valoracion = () => {
                 </h2>
               </div>
               <p className="text-muted-foreground mb-4">
-                Para el primer contacto nos mandas <strong className="text-foreground">tu obra</strong>,
+                Para el primer contacto nos envías <strong className="text-foreground">tu obra</strong>,
                 la sinopsis y unas líneas sobre ti. La leemos nosotros: no decidimos por un resumen ni
                 por las primeras páginas.
               </p>
-              <div className="flex items-center gap-2 text-primary font-medium mb-8">
+              <div className="flex items-center gap-2 text-primary font-medium mb-4">
                 <Clock className="w-5 h-5" />
                 <span>Te respondemos en 48 horas, y este paso es gratuito.</span>
               </div>
+              <p className="text-muted-foreground mb-8">
+                De aquí salen <strong className="text-foreground">dos formas de editar</strong>
+                {" "}—que la asumamos entera nosotros, o que haya trabajo previo que pagar— y la
+                posibilidad de que la obra no encaje en nuestro catálogo.
+              </p>
 
               <div className="grid md:grid-cols-3 gap-5">
                 {SALIDAS.map((s) => (
@@ -111,75 +114,13 @@ const Valoracion = () => {
           </div>
         </section>
 
-        {/* Paso 2: el informe */}
-        <section className="py-16 md:py-20 bg-muted/40">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold">
-                  2
-                </span>
-                <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground">
-                  El informe de valoración
-                </h2>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                De cinco a seis páginas en las que nuestro comité analiza tu obra apartado por apartado
-                —arquitectura y trama, personajes, rigor documental, estilo y viabilidad—, con una nota
-                de potencial y el plan de trabajo que necesitaría. Lo tienes en una semana.
-              </p>
-              <p className="text-muted-foreground mb-8">
-                Es un trabajo de lectura y análisis, y por eso se paga. El precio depende de la extensión
-                de la obra. <strong className="text-foreground">Si después contratas con nosotros el trabajo
-                editorial dentro de los treinta días siguientes, el importe se te descuenta íntegro.</strong>
-              </p>
-
-              <div className="rounded-2xl border border-border bg-card overflow-hidden">
-                {TRAMOS.map((t, i) => (
-                  <div
-                    key={t.extension}
-                    className={`flex flex-wrap items-center justify-between gap-4 p-5 ${
-                      i !== TRAMOS.length - 1 ? "border-b border-border" : ""
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <BookOpen className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-foreground">{t.extension}</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <span className="text-lg font-bold text-foreground">{t.precio}</span>
-                      <a
-                        href={t.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 rounded-full text-sm font-medium transition-colors"
-                      >
-                        Contratar
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground mt-4">
-                Una página estándar son 347 palabras. Para obras de más de 500 páginas, escríbenos a{" "}
-                <a href="mailto:info@grupodauro.com" className="text-primary hover:underline">
-                  info@grupodauro.com
-                </a>{" "}
-                y te pasamos el precio. El informe es un diagnóstico privado para ti: no es un aval ni una
-                recomendación ante terceros.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Paso 3: el trabajo editorial */}
+        {/* Paso 2: el trabajo editorial */}
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold">
-                  3
+                  2
                 </span>
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground">
                   Si hay trabajo que hacer, se encarga nuestro equipo editorial
@@ -192,24 +133,14 @@ const Valoracion = () => {
                 la asume siempre la editorial.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-5">
-                <div className="p-6 rounded-2xl border border-border bg-card">
-                  <Euro className="w-6 h-6 text-primary mb-3" />
-                  <h3 className="font-bold text-foreground mb-2">Lo pagas en dinero</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Presupuesto cerrado antes de empezar, sin ampliaciones a mitad de camino. La mitad al
-                    comenzar y la mitad a la entrega del texto trabajado.
-                  </p>
-                </div>
-                <div className="p-6 rounded-2xl border border-border bg-card">
-                  <BookOpen className="w-6 h-6 text-primary mb-3" />
-                  <h3 className="font-bold text-foreground mb-2">O lo pagas en ejemplares</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    En lugar de pagar el trabajo, te comprometes a comprar una primera tirada de tu propio
-                    libro a precio de autor. En vez de pagar una corrección, inviertes en libros que puedes
-                    vender, firmar y regalar.
-                  </p>
-                </div>
+              <div className="p-6 rounded-2xl border border-border bg-card">
+                <Euro className="w-6 h-6 text-primary mb-3" />
+                <h3 className="font-bold text-foreground mb-2">Presupuesto cerrado</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Al leerte vemos qué le falta al libro, y con eso te pasamos el presupuesto: lo
+                  conoces antes de que empecemos y no se amplía a mitad de camino. La mitad al
+                  comenzar y la mitad a la entrega del texto trabajado.
+                </p>
               </div>
             </div>
           </div>
@@ -220,10 +151,11 @@ const Valoracion = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 p-10 lg:p-14 rounded-3xl border-2 border-primary/20">
               <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground mb-4">
-                Empieza por las quince páginas
+                Envíanos tu obra y la leemos
               </h2>
               <p className="text-muted-foreground mb-8">
-                Este primer paso es gratuito y no te compromete a nada.
+                Entera, con la sinopsis y unas líneas sobre ti. Este primer paso es gratuito y no
+                te compromete a nada.
               </p>
               <Link
                 to="/grupo-dauro/editorial#enviar-obra"
@@ -237,7 +169,8 @@ const Valoracion = () => {
         </section>
       </main>
 
-      <PuertasEditorial />
+      {/* Aquí NO va el bloque de las dos puertas: la página entera ya las explica, y
+          ponerlo detrás del botón de enviar reabría una decisión ya cerrada. */}
 
       <Footer />
     </>

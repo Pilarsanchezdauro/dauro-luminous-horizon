@@ -83,7 +83,6 @@ const ProductClassifier = lazy(() => import("./pages/admin/ProductClassifier"));
 const Autoedicion = lazy(() => import("./pages/Autoedicion"));
 const DauroCiencia = lazy(() => import("./pages/DauroCiencia"));
 const PresupuestadorCiencia = lazy(() => import("./pages/PresupuestadorCiencia"));
-const PresupuestadorAutoedicion = lazy(() => import("./pages/PresupuestadorAutoedicion"));
 const WebsDeLibrosIndex = lazy(() => import("./pages/WebsDeLibrosIndex"));
 const WebsDeLibrosLeonardo = lazy(() => import("./pages/WebsDeLibrosLeonardo"));
 const WebsDeLibrosLiderazgo = lazy(() => import("./pages/WebsDeLibrosLiderazgo"));
@@ -110,7 +109,10 @@ const App = () => (
             <Route path="/servicios-editoriales" element={<Autoedicion />} />
             {/* Redirección de la ruta antigua para no romper enlaces ni SEO */}
             <Route path="/autoedicion" element={<Navigate to="/servicios-editoriales" replace />} />
-            <Route path="/presupuestador" element={<PresupuestadorAutoedicion />} />
+            {/* La calculadora se retiró: el precio depende de la intervención que necesite
+                cada obra y lo fija el comité tras leerla, no un formulario que rellena el
+                autor. La ruta se mantiene redirigida para no romper enlaces ni SEO. */}
+            <Route path="/presupuestador" element={<Navigate to="/servicios-editoriales" replace />} />
             <Route path="/webs-de-libros" element={<WebsDeLibrosIndex />} />
             <Route path="/webs-de-libros/carlos-blanco/leonardo-da-vinci" element={<WebsDeLibrosLeonardo />} />
             <Route path="/webs-de-libros/antonio-rodriguez/liderazgo-discursivo" element={<WebsDeLibrosLiderazgo />} />

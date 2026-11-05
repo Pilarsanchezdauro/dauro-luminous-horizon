@@ -39,11 +39,28 @@ const formSchema = z.object({
     .string({ required_error: "Selecciona un tipo de obra", invalid_type_error: "Selecciona un tipo de obra" })
     .trim()
     .min(1, "Selecciona un tipo de obra"),
+  pais: z
+    .string({ required_error: "Dinos desde dónde escribes", invalid_type_error: "Dinos desde dónde escribes" })
+    .trim()
+    .min(1, "Dinos desde dónde escribes"),
   via: z
     .string({ required_error: "Elige qué buscas", invalid_type_error: "Elige qué buscas" })
     .trim()
     .min(1, "Elige qué buscas"),
 });
+
+// Dónde reside el autor. No es un dato de relleno: condiciona la impresión, el envío y
+// el precio, y saberlo desde el principio evita ofrecerle algo que luego hay que retirar.
+const PAISES = [
+  "España",
+  "Argentina", "Bolivia", "Chile", "Colombia", "Costa Rica", "Cuba", "Ecuador",
+  "El Salvador", "Estados Unidos", "Guatemala", "Honduras", "México", "Nicaragua",
+  "Panamá", "Paraguay", "Perú", "Puerto Rico", "República Dominicana", "Uruguay",
+  "Venezuela",
+  "Alemania", "Andorra", "Austria", "Bélgica", "Francia", "Irlanda", "Italia",
+  "Países Bajos", "Portugal", "Reino Unido", "Suiza",
+  "Otro país",
+];
 
 // Las dos puertas de la casa. Se guarda la clave y se manda también la etiqueta, para
 // que la propuesta entre en Odoo ya clasificada por vía y no haya que adivinarlo.
@@ -96,6 +113,7 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
   });
 
   const tipoObra = watch("tipo_obra");
+  const pais = watch("pais");
   const via = watch("via");
 
   // El formulario es largo y vive dentro de un contenedor con scroll propio: al fallar la
@@ -214,11 +232,12 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         telefono: data.telefono,
         titulo_obra: data.titulo_obra,
         tipo_obra: data.tipo_obra,
+        pais: data.pais,
         via: data.via,
         via_etiqueta: viaElegida?.titulo ?? data.via,
         manuscrito_url: obraUrl,
         curriculum_url: cvUrl,
-        mensaje: `🎉 NUEVA PROPUESTA EDITORIAL RECIBIDA\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👤 DATOS DEL AUTOR:\n   • Nombre: ${data.nombre} ${data.apellidos}\n   • Email: ${data.email}\n   • Teléfono: ${data.telefono}\n\n📚 DATOS DE LA OBRA:\n   • Título: ${data.titulo_obra}\n   • Tipo: ${data.tipo_obra}\n\n🚪 VÍA ELEGIDA POR EL AUTOR:\n   • ${viaElegida?.titulo ?? data.via}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📥 DESCARGAR ARCHIVOS:\n\n📖 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 Haz clic en los enlaces para descargar los archivos directamente.\n⚠️ Los enlaces caducan a los 30 días; después, los archivos siguen disponibles en el panel de administración (grupodauro.com/admin/editorial).\n\nGrupo Dauro Editorial`,
+        mensaje: `🎉 NUEVA PROPUESTA EDITORIAL RECIBIDA\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👤 DATOS DEL AUTOR:\n   • Nombre: ${data.nombre} ${data.apellidos}\n   • Email: ${data.email}\n   • Teléfono: ${data.telefono}\n   • País: ${data.pais}\n\n📚 DATOS DE LA OBRA:\n   • Título: ${data.titulo_obra}\n   • Tipo: ${data.tipo_obra}\n\n🚪 VÍA ELEGIDA POR EL AUTOR:\n   • ${viaElegida?.titulo ?? data.via}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📥 DESCARGAR ARCHIVOS:\n\n📖 MANUSCRITO:\n${obraUrl}\n\n📄 CURRÍCULUM VITAE:\n${cvUrl}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 Haz clic en los enlaces para descargar los archivos directamente.\n⚠️ Los enlaces caducan a los 30 días; después, los archivos siguen disponibles en el panel de administración (grupodauro.com/admin/editorial).\n\nGrupo Dauro Editorial`,
       };
       
       const [formspreeResponse, supabaseResponse] = await Promise.all([
@@ -455,6 +474,29 @@ export default function SubmitWorkForm({ onSuccess }: SubmitWorkFormProps) {
         </Select>
         {errors.tipo_obra && (
           <p className="text-sm text-destructive mt-1">{errors.tipo_obra.message}</p>
+        )}
+      </div>
+
+      {/* País de residencia. Determina dónde podemos imprimir y enviar, así que se
+          pregunta aquí y no se descubre a mitad de la conversación. */}
+      <div>
+        <Label htmlFor="pais">¿Desde dónde nos escribes? *</Label>
+        <Select value={pais} onValueChange={(value) => setValue("pais", value, { shouldValidate: true })}>
+          <SelectTrigger className="mt-2">
+            <SelectValue placeholder="Selecciona tu país de residencia" />
+          </SelectTrigger>
+          <SelectContent className="max-h-72">
+            {PAISES.map((p) => (
+              <SelectItem key={p} value={p}>{p}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <p className="text-sm text-muted-foreground mt-2">
+          Lo necesitamos porque la impresión y el envío cambian según el país, y queremos
+          darte las condiciones que de verdad te corresponden.
+        </p>
+        {errors.pais && (
+          <p className="text-sm text-destructive mt-1">{errors.pais.message}</p>
         )}
       </div>
 
