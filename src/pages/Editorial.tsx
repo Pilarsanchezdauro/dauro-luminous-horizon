@@ -519,6 +519,7 @@ const Editorial = () => {
         </DialogContent>
       </Dialog>
 
+      <div id="enviar-obra" />
       <PuertasEditorial />
 
       <Footer />

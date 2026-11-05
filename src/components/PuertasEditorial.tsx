@@ -63,7 +63,9 @@ export const PuertasEditorial = () => {
             la leemos y después te lo decimos. Ninguna editorial reescribe gratis un texto
             sin terminar.
           </p>
-          <Link to="/servicios-editoriales" className="mt-auto">
+          {/* Al ancla y no a la página a secas: este bloque se pinta también DENTRO de
+              /servicios-editoriales, y ahí un enlace a la propia página no hacía nada. */}
+          <Link to="/servicios-editoriales#enviar-obra" className="mt-auto">
             <Button className="w-full bg-primary hover:bg-primary/90">
               Envíanos tu manuscrito
             </Button>

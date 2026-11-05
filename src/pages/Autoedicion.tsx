@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   BookOpen, Check, ArrowRight, Star, Clock, Shield, 
   Globe, CreditCard, FileText, Palette, Package, 
@@ -278,6 +278,18 @@ function TranslationSection() {
 export default function Autoedicion() {
   const formRef = useRef<HTMLDivElement>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const location = useLocation();
+
+  // Se llega aquí desde el bloque de las dos puertas con #enviar-obra: se abre el
+  // formulario directamente, sin obligar al autor a buscar el botón.
+  useEffect(() => {
+    if (location.hash === '#enviar-obra') {
+      setIsFormOpen(true);
+      requestAnimationFrame(() => {
+        document.getElementById('enviar-obra')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  }, [location.hash]);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -427,7 +439,7 @@ export default function Autoedicion() {
 
       {/* El precio sale de la obra, no de un formulario que rellena el autor: aquí va el
           envío del manuscrito, y el presupuesto se lo damos después de leerlo. */}
-      <section className="py-16 bg-muted/30" ref={formRef}>
+      <section id="enviar-obra" className="py-16 bg-muted/30" ref={formRef}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
