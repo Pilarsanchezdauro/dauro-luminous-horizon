@@ -158,14 +158,13 @@ const FEATURED_AUTHORS = [
 ];
 
 const WHY_DAURO = [
-  'Más de 2.000 obras publicadas',
-  'Autores premiados en el catálogo (Premio Andalucía de la Crítica, entre otros)',
-  'Equipo editorial profesional con trato directo',
-  'Financiación en 2 plazos sin intereses',
-  'Ebook gratis con cada publicación',
-  'Descuento permanente de autor para tus ejemplares',
-  'Servicio de traducción profesional a múltiples idiomas',
-  'Contrato temporal y transparente',
+  'Veintiséis años editando y más de 2.000 obras publicadas',
+  'El trabajo lo hace nuestro equipo editorial, con trato directo y sin intermediarios',
+  'Presupuesto cerrado por escrito antes de empezar',
+  'Siempre sobre tu archivo y con control de cambios: ves cada decisión',
+  'La última palabra sobre tu texto es tuya, sin excepción',
+  'Los archivos que te entregamos son tuyos y puedes hacer con ellos lo que quieras',
+  'Atención también los sábados, de 9:00 a 14:00 h',
 ];
 
 const structuredData = {
@@ -256,7 +255,7 @@ function TranslationSection() {
               Servicio de traducción profesional
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Lleva tu libro al siguiente nivel
+              Traducción, con la tarifa delante
             </h2>
             <p className="text-xl text-muted-foreground mb-6">
               Alcanza lectores en todo el mundo con traducciones profesionales de calidad editorial
@@ -432,7 +431,7 @@ export default function Autoedicion() {
             </p>
             
             <p className="text-lg text-primary font-medium mb-4">
-              ¿Lo que quieres es publicar con nuestro sello? Eso es otra cosa y no se paga igual: te lo contamos abajo.
+              Veintiséis años editando. El mismo equipo que trabaja los libros de nuestro catálogo.
             </p>
 
             <p className="text-base text-muted-foreground mb-8 flex items-center justify-center gap-2">
@@ -534,22 +533,12 @@ export default function Autoedicion() {
               <strong className="text-foreground">distribución</strong> en librerías y el{' '}
               <strong className="text-foreground">panel de ventas</strong> no se contratan sueltos,
               y no es por capricho: el ISBN identifica al editor, y si lo ponemos nosotros el editor
-              somos nosotros. Todo eso existe cuando el libro sale con el sello de Dauro, y entonces
-              lo asumimos nosotros sin que te cueste nada.
+              somos nosotros. Todo eso solo existe cuando el libro sale con el sello de
+              una editorial.
             </p>
           </div>
         </div>
       </section>
-
-      {/* Distribución Internacional para Autores */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <GlobalDistributionBanner variant="compact" />
-        </div>
-      </section>
-
-      {/* Dos puertas: editorial tradicional vs servicios editoriales */}
-      <PuertasEditorial />
 
       {/* El precio sale de la obra, no de un formulario que rellena el autor: aquí va el
           envío del manuscrito, y el presupuesto se lo damos después de leerlo. */}
@@ -644,269 +633,8 @@ export default function Autoedicion() {
         </div>
       </section>
 
-      {/* Autores de Prestigio */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Trophy className="w-4 h-4" />
-                Autores de prestigio en nuestro catálogo
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Únete a autores reconocidos
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Nuestro catálogo incluye escritores galardonados con los premios más prestigiosos
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              {FEATURED_AUTHORS.map((author, index) => (
-                <div 
-                  key={index}
-                  className={`flex items-center gap-4 p-5 rounded-xl border ${
-                    author.highlight 
-                      ? 'bg-primary/5 border-primary/30' 
-                      : 'bg-card border-border'
-                  }`}
-                >
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                    author.highlight ? 'bg-primary text-primary-foreground' : 'bg-muted'
-                  }`}>
-                    <Award className="w-6 h-6" />
-                  </div>
-                  <span className="font-medium text-foreground">{author.name}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CEO Premiados y Trayectoria */}
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-card p-6 rounded-xl border border-border text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">CEOs Premiados</h3>
-                <p className="text-muted-foreground text-sm">
-                  Dirección editorial con múltiples reconocimientos en el sector cultural
-                </p>
-              </div>
-
-              <div className="bg-card p-6 rounded-xl border border-border text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Calendar className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">26 Años</h3>
-                <p className="text-muted-foreground text-sm">
-                  Más de dos décadas de experiencia editando obras de calidad
-                </p>
-              </div>
-
-              <div className="bg-card p-6 rounded-xl border border-border text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">+2.000 Obras</h3>
-                <p className="text-muted-foreground text-sm">
-                  Un catálogo con más de dos mil títulos publicados de todos los géneros
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Translation Service */}
+      {/* Traduccion: el otro servicio con tarifa publica, junto al informe. */}
       <TranslationSection />
-
-      {/* Marketing Services */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Megaphone className="w-4 h-4" />
-                Servicios de promoción
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Te ayudamos a dar a conocer tu libro
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Servicios de marketing y promoción para impulsar tu obra
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Free service */}
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                  GRATIS
-                </div>
-                <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                  <Megaphone className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Publicidad para presentaciones
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Creamos todo el material publicitario para las presentaciones de tu libro sin ningún coste adicional.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    'Carteles y diseños promocionales',
-                    'Material para redes sociales',
-                    'Notas de prensa',
-                    'Invitaciones digitales'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-foreground">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Paid services */}
-              <div className="bg-card border border-border rounded-2xl p-8">
-                <div className="absolute top-4 right-4 bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  PRECIOS ECONÓMICOS
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-6">
-                  Servicios adicionales
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Video className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Booktrailer</h4>
-                      <p className="text-sm text-muted-foreground">Vídeo promocional profesional para dar a conocer tu libro</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Star className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Marca de autor</h4>
-                      <p className="text-sm text-muted-foreground">Identidad visual personal: logo, colores y estilo propio</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Monitor className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Página web de autor</h4>
-                      <p className="text-sm text-muted-foreground">Tu espacio online profesional para mostrar tu obra</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Share2 className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Plan de marketing digital</h4>
-                      <p className="text-sm text-muted-foreground">Estrategia completa para redes sociales y promoción online</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-center text-sm text-muted-foreground mt-6 pt-6 border-t border-border">
-                  Consulta precios personalizados según tus necesidades
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Proposition - Atención Personalizada */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Heart className="w-4 h-4" />
-                Lo que nos hace diferentes
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Valor real superior al coste
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                No somos una fábrica de libros. Cada proyecto recibe atención individual porque tu historia merece ser tratada como única
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Atención Personalizada */}
-              <div className="bg-card border border-border rounded-2xl p-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <Users className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Atención personalizada real
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Tendrás contacto directo con nuestro equipo editorial durante todo el proceso. Sin intermediarios, sin respuestas automáticas.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    'Un editor asignado a tu proyecto',
-                    'Comunicación directa por teléfono y WhatsApp',
-                    'Resolución de dudas en tiempo real',
-                    'Asesoramiento editorial honesto'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-foreground">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Valor Superior */}
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                  <Award className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Todo incluido, sin sorpresas
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Lo que otras editoriales cobran como extras, nosotros lo incluimos. Precio cerrado desde el primer día.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    'ISBN y depósito legal incluidos',
-                    'Ebook en formato profesional gratis',
-                    'Distribución en plataformas incluida',
-                    'Material promocional sin coste extra'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-foreground">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Quote/Testimonial style emphasis */}
-            <div className="mt-12 text-center bg-card border border-border rounded-2xl p-8">
-              <p className="text-2xl md:text-3xl font-medium text-foreground italic mb-4">
-                "No buscamos el mayor volumen de publicaciones, sino los mejores resultados para cada autor"
-              </p>
-              <p className="text-primary font-semibold">— Filosofía Dauro Editorial</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Process Timeline */}
       <section className="py-20">
@@ -944,7 +672,7 @@ export default function Autoedicion() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Por qué Dauro Editorial
+                Por qué encargárnoslo a nosotros
               </h2>
             </div>
 
@@ -967,47 +695,6 @@ export default function Autoedicion() {
         </div>
       </section>
 
-      {/* Explore More Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Explora más
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Descubre nuestro catálogo y herramientas para autores
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-            {/* Tienda */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl border border-primary/20 flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <ShoppingBag className="h-8 w-8 text-primary" />
-                <h3 className="text-xl font-playfair font-bold text-foreground">
-                  Tienda Online
-                </h3>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Explora nuestro catálogo completo de libros publicados. Novelas, ensayos, poesía y más géneros de autores nacionales e internacionales. Envío a toda España y compra segura.
-              </p>
-              <p className="text-sm text-muted-foreground mb-6 flex-grow">
-                Más de 500 títulos disponibles con envío gratuito en pedidos superiores a 20€.
-              </p>
-              <Button asChild className="w-full gap-2 mt-auto">
-                <Link to="/tienda">
-                  <ShoppingBag className="h-4 w-4" />
-                  Visitar tienda
-                </Link>
-              </Button>
-            </div>
-
-            {/* Guía Editorial con formulario */}
-            <GuideDownloadForm pdfUrl="/docs/guia-editorial-autores.pdf" />
-          </div>
-        </div>
-      </section>
-
       {/* El formulario va detras de un boton: la pagina queda limpia y el autor lo abre
           cuando ya ha decidido mandarnos la obra. */}
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
@@ -1020,6 +707,22 @@ export default function Autoedicion() {
           <SubmitWorkForm onSuccess={() => setIsFormOpen(false)} />
         </DialogContent>
       </Dialog>
+
+      {/* La unica salida a «publicar con nosotros» de toda la pagina, y va al final:
+          quien viene a encargar un trabajo no tiene que tropezarse con ella antes. */}
+      <section className="pt-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-muted-foreground">
+              Hasta aquí, lo que puedes encargarnos sin publicar con nosotros.{' '}
+              <strong className="text-foreground">¿Y si lo que quieres es publicar?</strong> Entonces
+              el camino es otro, y hay dos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <PuertasEditorial />
 
       <Footer />
     </div>
